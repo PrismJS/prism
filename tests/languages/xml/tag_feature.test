@@ -6,72 +6,58 @@
 <foo:bar> </foo:bar>
 <div
 
-
 ----------------------------------------------------
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["tag", [
-        ["tag", [
-            ["punctuation", "</"],
-            "p"
-        ]],
-        ["punctuation", ">"]
-    ]],
+		["punctuation", "</"],
+		["tag", ["p"]],
+		["punctuation", ">"]
+	]],
 
-    ["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	"dummy",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"], ["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"], ["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["namespace", "foo:"],
 			"bar"
 		]],
 		["punctuation", ">"]
 	]],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["namespace", "foo:"],
 			"bar"
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n<div"
 ]
 

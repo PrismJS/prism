@@ -68,10 +68,8 @@
 	["punctuation", "}"],
 	".\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"code"
-		]],
+		["punctuation", "<"],
+		["tag", ["code"]],
 		["punctuation", ">"]
 	]],
 	["code-section", [
@@ -87,19 +85,15 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"code"
-		]],
+		["punctuation", "</"],
+		["tag", ["code"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"tt"
-		]],
+		["punctuation", "<"],
+		["tag", ["tt"]],
 		["punctuation", ">"]
 	]],
 	["code-section", [
@@ -110,26 +104,20 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"tt"
-		]],
+		["punctuation", "</"],
+		["tag", ["tt"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"pre"
-		]],
+		["punctuation", "<"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"code"
-		]],
+		["punctuation", "<"],
+		["tag", ["code"]],
 		["punctuation", ">"]
 	]],
 
@@ -189,26 +177,20 @@
 		"\r\n *"
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"code"
-		]],
+		["punctuation", "</"],
+		["tag", ["code"]],
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"pre"
-		]],
+		["punctuation", "</"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"pre"
-		]],
+		["punctuation", "<"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"],
@@ -244,19 +226,15 @@
 	]],
 	["punctuation", "}"],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"pre"
-		]],
+		["punctuation", "</"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"pre"
-		]],
+		["punctuation", "<"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
@@ -279,19 +257,15 @@
 		"\r\n *"
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"pre"
-		]],
+		["punctuation", "</"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"pre"
-		]],
+		["punctuation", "<"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
@@ -299,32 +273,24 @@
 		"*     ",
 		["line", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"b"
-				]],
+				["punctuation", "<"],
+				["tag", ["b"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"i"
-				]],
+				["punctuation", "<"],
+				["tag", ["i"]],
 				["punctuation", ">"]
 			]],
 			["code", ["c"]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"i"
-				]],
+				["punctuation", "</"],
+				["tag", ["i"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"b"
-				]],
+				["punctuation", "</"],
+				["tag", ["b"]],
 				["punctuation", ">"]
 			]],
 			["code", [
@@ -357,32 +323,24 @@
 				["punctuation", "("]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"b"
-				]],
+				["punctuation", "<"],
+				["tag", ["b"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"i"
-				]],
+				["punctuation", "<"],
+				["tag", ["i"]],
 				["punctuation", ">"]
 			]],
 			["code", ["b"]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"i"
-				]],
+				["punctuation", "</"],
+				["tag", ["i"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"b"
-				]],
+				["punctuation", "</"],
+				["tag", ["b"]],
 				["punctuation", ">"]
 			]],
 			["code", [
@@ -398,19 +356,15 @@
 		"\r\n *"
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"pre"
-		]],
+		["punctuation", "</"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 
 	"\r\n *\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"pre"
-		]],
+		["punctuation", "<"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"],
@@ -576,10 +530,8 @@
 	]],
 	["punctuation", "}"],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"pre"
-		]],
+		["punctuation", "</"],
+		["tag", ["pre"]],
 		["punctuation", ">"]
 	]],
 

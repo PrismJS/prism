@@ -11,10 +11,8 @@ quan="{$item/@quantity}"/>
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"li"
-		]],
+		["punctuation", "<"],
+		["tag", ["li"]],
 		["attr-name", ["dep"]],
 		["attr-value", [
 			["punctuation", "=\""],
@@ -38,6 +36,7 @@ quan="{$item/@quantity}"/>
 	["punctuation", "/"],
 	"number",
 	["punctuation", ")"],
+
 	["punctuation", "}"],
 	["plain-text", ", name: "],
 	["punctuation", "{"],
@@ -49,19 +48,15 @@ quan="{$item/@quantity}"/>
 	["punctuation", ")"],
 	["punctuation", "}"],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"li"
-		]],
+		["punctuation", "</"],
+		["tag", ["li"]],
 		["punctuation", ">"]
 	]],
 
 	["keyword", "return"],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"item"
-		]],
+		["punctuation", "<"],
+		["tag", ["item"]],
 		["attr-name", ["num"]],
 		["attr-value", [
 			["punctuation", "=\""],
@@ -75,6 +70,7 @@ quan="{$item/@quantity}"/>
 			]],
 			["punctuation", "\""]
 		]],
+
 		["attr-name", ["name"]],
 		["attr-value", [
 			["punctuation", "=\""],
@@ -85,6 +81,7 @@ quan="{$item/@quantity}"/>
 			]],
 			["punctuation", "\""]
 		]],
+
 		["attr-name", ["quan"]],
 		["attr-value", [
 			["punctuation", "=\""],
@@ -102,10 +99,8 @@ quan="{$item/@quantity}"/>
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"li"
-		]],
+		["punctuation", "<"],
+		["tag", ["li"]],
 		["attr-name", ["dep"]],
 		["attr-value", [
 			["punctuation", "=\""],

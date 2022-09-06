@@ -28,26 +28,20 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	"@@Username",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -55,18 +49,14 @@
 		["csharp", ["Username"]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -78,18 +68,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -104,18 +90,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -131,18 +113,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -161,18 +139,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	"Last week this time: ",
@@ -194,18 +168,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	"Last week: ",
@@ -219,26 +189,20 @@
 	]],
 	" - TimeSpan.FromDays(7)",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	"Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
@@ -266,10 +230,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	"Age",
@@ -284,18 +246,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -316,10 +274,8 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 

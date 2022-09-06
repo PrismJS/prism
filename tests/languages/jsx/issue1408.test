@@ -4,10 +4,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["style"]],
 		["script", [
 			["script-punctuation", "="],

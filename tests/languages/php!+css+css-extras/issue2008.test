@@ -4,10 +4,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"img"
-		]],
+		["punctuation", "<"],
+		["tag", ["img"]],
 		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [

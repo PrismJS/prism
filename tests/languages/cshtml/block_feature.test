@@ -137,10 +137,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"text"
-					]],
+					["punctuation", "<"],
+					["tag", ["text"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
@@ -153,10 +151,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"text"
-					]],
+					["punctuation", "</"],
+					["tag", ["text"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -180,18 +176,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The value was even.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -215,18 +207,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The value was even.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -245,18 +233,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The value is large.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -269,18 +253,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The value is odd and small.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -304,18 +284,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The value is 1!",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -329,18 +305,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Your number is 1337!",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -353,18 +325,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Your number wasn't 1 or 1337.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -412,10 +380,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
@@ -428,20 +394,16 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Age: ",
@@ -454,10 +416,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -482,10 +442,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
@@ -498,20 +456,16 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Age: ",
@@ -524,10 +478,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -577,10 +529,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
@@ -593,20 +543,16 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Age: ",
@@ -619,10 +565,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -666,10 +610,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
@@ -682,20 +624,16 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Age: ",
@@ -708,10 +646,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -748,19 +684,15 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"div"
-					]],
+					["punctuation", "<"],
+					["tag", ["div"]],
 					["punctuation", ">"]
 				]],
 
 				"\r\n        Email: ",
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"input"
-					]],
+					["punctuation", "<"],
+					["tag", ["input"]],
 					["attr-name", ["type"]],
 					["attr-value", [
 						["punctuation", "="],
@@ -785,26 +717,20 @@ finally
 				]],
 
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"button"
-					]],
+					["punctuation", "<"],
+					["tag", ["button"]],
 					["punctuation", ">"]
 				]],
 				"Register",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"button"
-					]],
+					["punctuation", "</"],
+					["tag", ["button"]],
 					["punctuation", ">"]
 				]],
 
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"div"
-					]],
+					["punctuation", "</"],
+					["tag", ["div"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -839,10 +765,8 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The exception message: ",
@@ -855,10 +779,8 @@ finally
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -871,18 +793,14 @@ finally
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"The finally statement.",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],

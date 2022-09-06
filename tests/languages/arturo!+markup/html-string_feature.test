@@ -9,18 +9,14 @@
 		["string", "{!html"],
 		["embedded", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"h1"
-				]],
+				["punctuation", "<"],
+				["tag", ["h1"]],
 				["punctuation", ">"]
 			]],
 			"Header",
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"h1"
-				]],
+				["punctuation", "</"],
+				["tag", ["h1"]],
 				["punctuation", ">"]
 			]]
 		]],

@@ -18,6 +18,7 @@
 		["keyword", "literal"],
 		["delimiter", "}"]
 	]],
+
 	["soy", [
 		["delimiter", "{"],
 		["variable", ["$highlight"]],
@@ -29,10 +30,8 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -42,19 +41,20 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n{if $bar}{$bar}{/if}",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	["soy", [
 		["delimiter", "{/"],
 		["keyword", "literal"],
 		["delimiter", "}"]
 	]],
+
 	["soy", [
 		["delimiter", "{"],
 		["keyword", "literal"],

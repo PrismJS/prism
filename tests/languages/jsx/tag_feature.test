@@ -11,10 +11,8 @@ var myElement = <MyComponent someProperty={true} />;
 	" myDivElement ",
 	["operator", "="],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["className"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -30,8 +28,8 @@ var myElement = <MyComponent someProperty={true} />;
 	" myElement ",
 	["operator", "="],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MyComponent"]
 		]],
 		["attr-name", ["someProperty"]],
@@ -46,10 +44,8 @@ var myElement = <MyComponent someProperty={true} />;
 	["punctuation", ";"],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["spread", [
 			["punctuation", "{"],
 			["operator", "..."],
@@ -59,30 +55,28 @@ var myElement = <MyComponent someProperty={true} />;
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
+		"<",
 		["tag", [
-			["punctuation", "<"]
 		]],
-		["punctuation", ">"]
+		">"
 	]],
 	["plain-text", " "],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"]
 		]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Tree.TreeNode.Item"]
 		]],
 		["attr-name", ["leaf"]],
@@ -95,8 +89,8 @@ var myElement = <MyComponent someProperty={true} />;
 		["punctuation", ">"]
 	]],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["class-name", "Tree.TreeNode.Item"]
 		]],
 		["punctuation", ">"]

@@ -19,10 +19,8 @@
 	["comment", "<!-- This will only print if the page with handle \"about\" is not empty -->"],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"h1"
-		]],
+		["punctuation", "<"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]],
 	["liquid", [
@@ -35,18 +33,14 @@
 		["delimiter", "}}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"h1"
-		]],
+		["punctuation", "</"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["liquid", [
@@ -59,10 +53,8 @@
 		["delimiter", "}}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 

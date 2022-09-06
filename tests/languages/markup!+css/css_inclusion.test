@@ -20,10 +20,8 @@ foo {
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"style"
-		]],
+		["punctuation", "<"],
+		["tag", ["style"]],
 		["attr-name", ["type"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -35,24 +33,26 @@ foo {
 	]],
 	["style", [
 		["language-css", [
-			["selector", "foo"], ["punctuation", "{"],
-			["property", "bar"], ["punctuation", ":"], " baz", ["punctuation", ";"],
+			["selector", "foo"],
+			["punctuation", "{"],
+
+			["property", "bar"],
+			["punctuation", ":"],
+			" baz",
+			["punctuation", ";"],
+
 			["punctuation", "}"]
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"style"
-		]],
+		["punctuation", "</"],
+		["tag", ["style"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"style"
-		]],
+		["punctuation", "<"],
+		["tag", ["style"]],
 		["punctuation", ">"]
 	]],
 	["style", [
@@ -64,8 +64,14 @@ foo {
 		["included-cdata", [
 			["cdata", "<![CDATA["],
 			["language-css", [
-				["selector", "foo"], ["punctuation", "{"],
-				["property", "bar"], ["punctuation", ":"], " baz", ["punctuation", ";"],
+				["selector", "foo"],
+				["punctuation", "{"],
+
+				["property", "bar"],
+				["punctuation", ":"],
+				" baz",
+				["punctuation", ";"],
+
 				["punctuation", "}"]
 			]],
 			["cdata", "]]>"]
@@ -77,18 +83,14 @@ foo {
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"style"
-		]],
+		["punctuation", "</"],
+		["tag", ["style"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"foo"
-		]],
+		["punctuation", "<"],
+		["tag", ["foo"]],
 		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [

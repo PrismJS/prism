@@ -11,12 +11,11 @@ plaintext
 [
 	["keyword", "return"],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"ul"
-		]],
+		["punctuation", "<"],
+		["tag", ["ul"]],
 		["punctuation", ">"]
 	]],
+
 	["comment", "<!-- {concat(\" List of \", $count, \" products \")} -->"],
 	["plain-text", "\r\nplaintext\r\n"],
 	["punctuation", "{"],
@@ -32,19 +31,16 @@ plaintext
 	["punctuation", ")"],
 	["punctuation", "}"],
 	["punctuation", "}"],
+
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"ul"
-		]],
+		["punctuation", "</"],
+		["tag", ["ul"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"h1"
-		]],
+		["punctuation", "<"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "data($prod/name)"],
@@ -58,10 +54,8 @@ plaintext
 	["punctuation", "}"],
 	["plain-text", "{{data($prod/name)}}"],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"h1"
-		]],
+		["punctuation", "</"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]]
 ]

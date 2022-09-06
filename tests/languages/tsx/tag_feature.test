@@ -15,10 +15,8 @@ class Test extends Component {
 	" myDivElement ",
 	["operator", "="],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["className"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -34,8 +32,8 @@ class Test extends Component {
 	" myElement ",
 	["operator", "="],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MyComponent"]
 		]],
 		["attr-name", ["someProperty"]],
@@ -50,10 +48,8 @@ class Test extends Component {
 	["punctuation", ";"],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["spread", [
 			["punctuation", "{"],
 			["operator", "..."],
@@ -64,8 +60,8 @@ class Test extends Component {
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Tree.TreeNode.Item"]
 		]],
 		["attr-name", ["leaf"]],
@@ -78,8 +74,8 @@ class Test extends Component {
 		["punctuation", ">"]
 	]],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["class-name", "Tree.TreeNode.Item"]
 		]],
 		["punctuation", ">"]
@@ -98,10 +94,8 @@ class Test extends Component {
 
 	["keyword", "return"],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["attr-name", ["onClick"]],
 		["script", [
 			["script-punctuation", "="],
@@ -115,10 +109,8 @@ class Test extends Component {
 	]],
 	["plain-text", "Hello world."],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", ";"],

@@ -39,26 +39,32 @@
 		["punctuation", "("],
 		["keyword", "^eval"],
 		["punctuation", "("],
-		["number", "2"], ["operator", "+"], ["number", "2"],
+		["number", "2"],
+		["operator", "+"],
+		["number", "2"],
 		["punctuation", ")"],
 		["punctuation", ")"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
 			["keyword", "^if"],
 			["expression", [
-				["punctuation", "("], ["variable", ["$foo"]], ["punctuation", ")"]
+				["punctuation", "("],
+				["variable", ["$foo"]],
+				["punctuation", ")"]
 			]],
-			["parser-punctuation", "{"], "bar", ["parser-punctuation", "}"],
-			["parser-punctuation", "{"], "baz", ["parser-punctuation", "}"],
+			["parser-punctuation", "{"],
+			"bar",
+			["parser-punctuation", "}"],
+			["parser-punctuation", "{"],
+			"baz",
+			["parser-punctuation", "}"],
 			["punctuation", "\""]
 		]],
 		["punctuation", ">"]

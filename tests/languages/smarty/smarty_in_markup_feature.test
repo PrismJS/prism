@@ -6,10 +6,8 @@ ___SMARTY1___{$foo}
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["smarty", [
@@ -18,17 +16,14 @@ ___SMARTY1___{$foo}
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -42,6 +37,7 @@ ___SMARTY1___{$foo}
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n___SMARTY1___",
 	["smarty", [
 		["delimiter", "{"],

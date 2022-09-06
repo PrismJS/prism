@@ -5,13 +5,9 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
-		["attr-name", [
-			"runat"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
+		["attr-name", ["runat"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -27,18 +23,14 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 	["script", [
@@ -51,10 +43,8 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]]
 ]

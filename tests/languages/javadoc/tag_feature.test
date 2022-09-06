@@ -18,85 +18,72 @@
 [
 	"/**\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"table"
-		]],
+		["punctuation", "<"],
+		["tag", ["table"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *     ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"tr"
-		]],
+		["punctuation", "<"],
+		["tag", ["tr"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *         ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"td"
-		]],
+		["punctuation", "<"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *             foo\r\n *         ",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"td"
-		]],
+		["punctuation", "</"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *         ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"td"
-		]],
+		["punctuation", "<"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *             bar\r\n *         ",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"td"
-		]],
+		["punctuation", "</"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *     ",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"tr"
-		]],
+		["punctuation", "</"],
+		["tag", ["tr"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"table"
-		]],
+		["punctuation", "</"],
+		["tag", ["table"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n * ",
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
-		["attr-name", [
-			"href"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
+		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -107,12 +94,11 @@
 	]],
 	"some link",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"a"
-		]],
+		["punctuation", "</"],
+		["tag", ["a"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n */"
 ]
 

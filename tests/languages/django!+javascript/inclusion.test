@@ -8,10 +8,8 @@ var foo = {{ bar }};
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 	["script", [
@@ -22,6 +20,7 @@ var foo = {{ bar }};
 				["variable", "foo"],
 				["delimiter", "%}"]
 			]],
+
 			["keyword", "var"],
 			" foo ",
 			["operator", "="],
@@ -31,6 +30,7 @@ var foo = {{ bar }};
 				["delimiter", "}}"]
 			]],
 			["punctuation", ";"],
+
 			["django", [
 				["delimiter", "{%"],
 				["tag", "endif"],
@@ -39,10 +39,8 @@ var foo = {{ bar }};
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]]
 ]

@@ -3,269 +3,85 @@
 {{if name "I have a name" "I have no name"}}
 <span data-has-name={{if name true}}></span>
 <div {{on "click" this.hello}} />
+
 ----------------------------------------------------
 
 [
-	[
-		"handlebars",
-		[
-			[
-				"delimiter",
-				"{{"
-			],
-			[
-				"variable",
-				"aUserModel"
-			],
-			[
-				"punctuation",
-				"."
-			],
-			[
-				"variable",
-				"name"
-			],
-			[
-				"delimiter",
-				"}}"
-			]
-		]
-	],
-	[
-		"tag",
-		[
-			[
-				"tag",
-				[
-					[
-						"punctuation",
-						"<"
-					],
-					"div"
-				]
-			],
-			[
-				"punctuation",
-				">"
-			]
-		]
-	],
-	[
-		"handlebars",
-		[
-			[
-				"delimiter",
-				"{{"
-			],
-			[
-				"variable",
-				"listOfUsers"
-			],
-			[
-				"punctuation",
-				"."
-			],
-			[
-				"variable",
-				"firstObject"
-			],
-			[
-				"punctuation",
-				"."
-			],
-			[
-				"variable",
-				"name"
-			],
-			[
-				"delimiter",
-				"}}"
-			]
-		]
-	],
-	[
-		"tag",
-		[
-			[
-				"tag",
-				[
-					[
-						"punctuation",
-						"</"
-					],
-					"div"
-				]
-			],
-			[
-				"punctuation",
-				">"
-			]
-		]
-	],
-	[
-		"handlebars",
-		[
-			[
-				"delimiter",
-				"{{"
-			],
-			[
-				"variable",
-				"if"
-			],
-			[
-				"variable",
-				"name"
-			],
-			[
-				"string",
-				"\"I have a name\""
-			],
-			[
-				"string",
-				"\"I have no name\""
-			],
-			[
-				"delimiter",
-				"}}"
-			]
-		]
-	],
-	[
-		"tag",
-		[
-			[
-				"tag",
-				[
-					[
-						"punctuation",
-						"<"
-					],
-					"span"
-				]
-			],
-			[
-				"attr-name",
-				[
-					"data-has-name"
-				]
-			],
-			[
-				"attr-value",
-				[
-					[
-						"punctuation",
-						"="
-					],
-					[
-						"handlebars",
-						[
-							[
-								"delimiter",
-								"{{"
-							],
-							[
-								"variable",
-								"if"
-							],
-							[
-								"variable",
-								"name"
-							],
-							[
-								"boolean",
-								"true"
-							],
-							[
-								"delimiter",
-								"}}"
-							]
-						]
-					]
-				]
-			],
-			[
-				"punctuation",
-				">"
-			]
-		]
-	],
-	[
-		"tag",
-		[
-			[
-				"tag",
-				[
-					[
-						"punctuation",
-						"</"
-					],
-					"span"
-				]
-			],
-			[
-				"punctuation",
-				">"
-			]
-		]
-	],
-	[
-		"tag",
-		[
-			[
-				"tag",
-				[
-					[
-						"punctuation",
-						"<"
-					],
-					"div"
-				]
-			],
-			[
-				"attr-name",
-				[
-					[
-						"handlebars",
-						[
-							[
-								"delimiter",
-								"{{"
-							],
-							[
-								"variable",
-								"on"
-							],
-							[
-								"string",
-								"\"click\""
-							],
-							[
-								"variable",
-								"this"
-							],
-							[
-								"punctuation",
-								"."
-							],
-							[
-								"variable",
-								"hello"
-							],
-							[
-								"delimiter",
-								"}}"
-							]
-						]
-					]
-				]
-			],
-			[
-				"punctuation",
-				"/>"
-			]
-		]
-	]
+	["handlebars", [
+		["delimiter", "{{"],
+		["variable", "aUserModel"],
+		["punctuation", "."],
+		["variable", "name"],
+		["delimiter", "}}"]
+	]],
+
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["div"]],
+		["punctuation", ">"]
+	]],
+	["handlebars", [
+		["delimiter", "{{"],
+		["variable", "listOfUsers"],
+		["punctuation", "."],
+		["variable", "firstObject"],
+		["punctuation", "."],
+		["variable", "name"],
+		["delimiter", "}}"]
+	]],
+	["tag", [
+		["punctuation", "</"],
+		["tag", ["div"]],
+		["punctuation", ">"]
+	]],
+
+	["handlebars", [
+		["delimiter", "{{"],
+		["variable", "if"],
+		["variable", "name"],
+		["string", "\"I have a name\""],
+		["string", "\"I have no name\""],
+		["delimiter", "}}"]
+	]],
+
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["span"]],
+		["attr-name", ["data-has-name"]],
+		["attr-value", [
+			["punctuation", "="],
+			["handlebars", [
+				["delimiter", "{{"],
+				["variable", "if"],
+				["variable", "name"],
+				["boolean", "true"],
+				["delimiter", "}}"]
+			]]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["punctuation", "</"],
+		["tag", ["span"]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["div"]],
+		["attr-name", [
+			["handlebars", [
+				["delimiter", "{{"],
+				["variable", "on"],
+				["string", "\"click\""],
+				["variable", "this"],
+				["punctuation", "."],
+				["variable", "hello"],
+				["delimiter", "}}"]
+			]]
+		]],
+		["punctuation", "/>"]
+	]]
 ]
 
 ----------------------------------------------------

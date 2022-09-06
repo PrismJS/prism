@@ -29,10 +29,8 @@ exports[`Autolinker In HTML code 1`] = `
 	) --&gt;
 </span>
 <span class=\\"token tag\\">
-	<span class=\\"token tag\\">
-		<span class=\\"token punctuation\\">&lt;</span>
-		img
-	</span>
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">img</span>
 	<span class=\\"token attr-name\\">src</span>
 	<span class=\\"token attr-value\\">
 		<span class=\\"token punctuation attr-equals\\">=</span>
@@ -52,19 +50,15 @@ exports[`Autolinker In HTML code 1`] = `
 	<span class=\\"token punctuation\\">/&gt;</span>
 </span>
 <span class=\\"token tag\\">
-	<span class=\\"token tag\\">
-		<span class=\\"token punctuation\\">&lt;</span>
-		p
-	</span>
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">p</span>
 	<span class=\\"token punctuation\\">&gt;</span>
 </span>
 Autolinking in raw text:
 <a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a>
 <span class=\\"token tag\\">
-	<span class=\\"token tag\\">
-		<span class=\\"token punctuation\\">&lt;/</span>
-		p
-	</span>
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<span class=\\"token tag\\">p</span>
 	<span class=\\"token punctuation\\">&gt;</span>
 </span>
 "

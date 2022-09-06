@@ -10,10 +10,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 	["script", [
@@ -30,10 +28,8 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]]
 ]

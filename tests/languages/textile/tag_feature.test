@@ -4,17 +4,13 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"details"
-		]],
+		["punctuation", "<"],
+		["tag", ["details"]],
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"details"
-		]],
+		["punctuation", "</"],
+		["tag", ["details"]],
 		["punctuation", ">"]
 	]]
 ]

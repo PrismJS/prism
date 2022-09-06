@@ -52,6 +52,7 @@
 		["variable", ["$mudsOnSpecial"]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
@@ -65,6 +66,7 @@
 		]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -73,6 +75,7 @@
 		["string", "\"Velocity\""],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -88,8 +91,14 @@
 		["number", "3"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "set", ["punctuation", "}"]]],
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"set",
+			["punctuation", "}"]
+		]],
 		["punctuation", "("],
 		["variable", [
 			"$map",
@@ -101,6 +110,7 @@
 		["string", "\"orange\""],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
@@ -112,6 +122,7 @@
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
@@ -122,19 +133,30 @@
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
 		["variable", ["$foo"]],
 		["operator", "&&"],
-		["variable", ["$foo", ["punctuation", "."], "bar"]],
+		["variable", [
+			"$foo",
+			["punctuation", "."],
+			"bar"
+		]],
 		["punctuation", ")"]
 	]],
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "if", ["punctuation", "}"]]],
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"if",
+			["punctuation", "}"]
+		]],
 		["punctuation", "("],
 		["variable", ["$foo1"]],
 		["operator", "||"],
@@ -144,10 +166,15 @@
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
-		["variable", ["$monkey", ["punctuation", "."], "Say"]],
+		["variable", [
+			"$monkey",
+			["punctuation", "."],
+			"Say"
+		]],
 		["operator", "="],
 		["punctuation", "["],
 		["string", "\"Not\""],
@@ -158,10 +185,15 @@
 		["punctuation", "]"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
-		["variable", ["$monkey", ["punctuation", "."], "Map"]],
+		["variable", [
+			"$monkey",
+			["punctuation", "."],
+			"Map"
+		]],
 		["operator", "="],
 		["punctuation", "{"],
 		["string", "\"banana\""],
@@ -174,6 +206,7 @@
 		["punctuation", "}"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -189,6 +222,7 @@
 		]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -197,6 +231,7 @@
 		["boolean", "true"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -205,6 +240,7 @@
 		["boolean", "false"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
@@ -213,6 +249,7 @@
 		["number", "10"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#elseif"]],
 		["punctuation", "("],
@@ -221,12 +258,15 @@
 		["number", "10"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#else"]]
 	]],
+
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#if"]],
 		["punctuation", "("],
@@ -237,12 +277,18 @@
 	]],
 	"it's true!",
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "else", ["punctuation", "}"]]]
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"else",
+			["punctuation", "}"]
+		]]
 	]],
 	"it's not!",
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#include"]],
 		["punctuation", "("],
@@ -251,63 +297,111 @@
 		["variable", ["$seasonalstock"]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#parse"]],
 		["punctuation", "("],
 		["string", "\"me.vm\""],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "parse", ["punctuation", "}"]]],
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"parse",
+			["punctuation", "}"]
+		]],
 		["punctuation", "("],
 		["string", "\"me.vm\""],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#break"]]
 	]],
+
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "break", ["punctuation", "}"]]]
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"break",
+			["punctuation", "}"]
+		]]
 	]],
+
 	["directive", [
 		["keyword", ["#break"]],
 		["punctuation", "("],
-		["variable", ["$macro", ["punctuation", "."], "topmost"]],
+		["variable", [
+			"$macro",
+			["punctuation", "."],
+			"topmost"
+		]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#stop"]],
 		["punctuation", "("],
 		["string", "'$foo was not in context'"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
-		["keyword", ["#", ["punctuation", "{"], "stop", ["punctuation", "}"]]]
+		["keyword", [
+			"#",
+			["punctuation", "{"],
+			"stop",
+			["punctuation", "}"]
+		]]
 	]],
+
 	["directive", [
 		["keyword", ["#evaluate"]],
 		["punctuation", "("],
 		["variable", ["$dynamicsource"]],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#macro"]],
 		["punctuation", "("],
 		" d ",
 		["punctuation", ")"]
 	]],
-	["tag", [["tag", [["punctuation", "<"], "tr"]], ["punctuation", ">"]]],
-	["tag", [["tag", [["punctuation", "<"], "td"]], ["punctuation", ">"]]],
-	["tag", [["tag", [["punctuation", "</"], "td"]], ["punctuation", ">"]]],
-	["tag", [["tag", [["punctuation", "</"], "tr"]], ["punctuation", ">"]]],
+
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["tr"]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["td"]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["punctuation", "</"],
+		["tag", ["td"]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["punctuation", "</"],
+		["tag", ["tr"]],
+		["punctuation", ">"]
+	]],
+
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#d"]],
 		["punctuation", "("],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#@d"]],
 		["punctuation", "("],
@@ -317,6 +411,7 @@
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	"\r\n\\#include( \"a.txt\" )\r\n\\\\",
 	["directive", [
 		["keyword", ["#include"]],
@@ -324,6 +419,7 @@
 		["string", "\"a.txt\""],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -348,6 +444,7 @@
 	["directive", [
 		["keyword", ["#end"]]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -358,6 +455,7 @@
 		["number", "3"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -368,6 +466,7 @@
 		["number", "4"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -378,6 +477,7 @@
 		["number", "6"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -388,6 +488,7 @@
 		["number", "2"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#set"]],
 		["punctuation", "("],
@@ -398,6 +499,7 @@
 		["number", "5"],
 		["punctuation", ")"]
 	]],
+
 	["directive", [
 		["keyword", ["#foreach"]],
 		["punctuation", "("],

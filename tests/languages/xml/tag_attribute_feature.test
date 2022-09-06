@@ -11,40 +11,27 @@ baz">
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
-		["attr-name", [
-			"class"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
+		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
 			"test",
 			["punctuation", "\""]
 		]],
-		["attr-name", [
-			"foo"
-		]],
-		["attr-name", [
-			"bar"
-		]],
+		["attr-name", ["foo"]],
+		["attr-name", ["bar"]],
 		["attr-value", [
 			["punctuation", "="],
 			"baz"
 		]],
 		["punctuation", ">"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
-		["attr-name", [
-			"foo"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
+		["attr-name", ["foo"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "'"],
@@ -53,15 +40,10 @@ baz">
 		]],
 		["punctuation", ">"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
-		["attr-name", [
-			"class"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
+		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -70,12 +52,9 @@ baz">
 		]],
 		["punctuation", ">"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", [
 			["namespace", "foo:"],
 			"bar"
@@ -86,12 +65,9 @@ baz">
 		]],
 		["punctuation", ">"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["foo"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -106,12 +82,9 @@ baz">
 		]],
 		["punctuation", ">"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["foo"]],
 		["attr-value", [
 			["punctuation", "="],

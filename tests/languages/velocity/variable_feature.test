@@ -31,7 +31,13 @@ $\\\!foo
 
 [
 	["variable", ["$mud"]],
-	["variable", ["$customer", ["punctuation", "."], "Name"]],
+
+	["variable", [
+		"$customer",
+		["punctuation", "."],
+		"Name"
+	]],
+
 	["variable", [
 		"$flogger",
 		["punctuation", "."],
@@ -40,10 +46,15 @@ $\\\!foo
 		" $mud ",
 		["punctuation", ")"]
 	]],
+
 	["variable", ["$mud-slinger"]],
+
 	["variable", ["$mud_slinger"]],
+
 	["variable", ["$mudSlinger1"]],
+
 	["variable", ["$!mudSlinger_9"]],
+
 	["variable", [
 		"$person",
 		["punctuation", "."],
@@ -58,9 +69,28 @@ $\\\!foo
 		["punctuation", "]"],
 		["punctuation", ")"]
 	]],
-	["variable", ["$foo", ["punctuation", "["], ["number", "0"], ["punctuation", "]"]]],
-	["variable", ["$foo", ["punctuation", "["], "$i", ["punctuation", "]"]]],
-	["variable", ["$foo", ["punctuation", "["], ["string", "\"bar\""], ["punctuation", "]"]]],
+
+	["variable", [
+		"$foo",
+		["punctuation", "["],
+		["number", "0"],
+		["punctuation", "]"]
+	]],
+
+	["variable", [
+		"$foo",
+		["punctuation", "["],
+		"$i",
+		["punctuation", "]"]
+	]],
+
+	["variable", [
+		"$foo",
+		["punctuation", "["],
+		["string", "\"bar\""],
+		["punctuation", "]"]
+	]],
+
 	["variable", [
 		"$foo",
 		["punctuation", "."],
@@ -71,6 +101,7 @@ $\\\!foo
 		["punctuation", "."],
 		"junk"
 	]],
+
 	["variable", [
 		"$foo",
 		["punctuation", "."],
@@ -81,6 +112,7 @@ $\\\!foo
 		["number", "1"],
 		["punctuation", "]"]
 	]],
+
 	["variable", [
 		"$foo",
 		["punctuation", "["],
@@ -90,8 +122,21 @@ $\\\!foo
 		["number", "4"],
 		["punctuation", "]"]
 	]],
-	["variable", ["$", ["punctuation", "{"], "mudSlinger", ["punctuation", "}"]]],
-	["variable", ["$!", ["punctuation", "{"], "mudSlinger_9", ["punctuation", "}"]]],
+
+	["variable", [
+		"$",
+		["punctuation", "{"],
+		"mudSlinger",
+		["punctuation", "}"]
+	]],
+
+	["variable", [
+		"$!",
+		["punctuation", "{"],
+		"mudSlinger_9",
+		["punctuation", "}"]
+	]],
+
 	["variable", [
 		"$",
 		["punctuation", "{"],
@@ -100,6 +145,7 @@ $\\\!foo
 		"Address",
 		["punctuation", "}"]
 	]],
+
 	["variable", [
 		"$",
 		["punctuation", "{"],
@@ -110,11 +156,10 @@ $\\\!foo
 		["punctuation", ")"],
 		["punctuation", "}"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"input"
-		]],
+		["punctuation", "<"],
+		["tag", ["input"]],
 		["attr-name", ["value"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -124,22 +169,32 @@ $\\\!foo
 		]],
 		["punctuation", "/>"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"input"
-		]],
+		["punctuation", "<"],
+		["tag", ["input"]],
 		["attr-name", ["value"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
-			["variable", ["$!", ["punctuation", "{"], "email", ["punctuation", "}"]]],
+			["variable", [
+				"$!",
+				["punctuation", "{"],
+				"email",
+				["punctuation", "}"]
+			]],
 			["punctuation", "\""]
 		]],
 		["punctuation", "/>"]
 	]],
+
 	"\r\n$\\!foo\r\n$\\!{foo}\r\n$\\\\!foo\r\n$\\\\\\!foo\r\n\\$foo\r\n\\$!foo\r\n\\$!{foo}\r\n\\\\",
-	["variable", ["$!", ["punctuation", "{"], "foo", ["punctuation", "}"]]]
+	["variable", [
+		"$!",
+		["punctuation", "{"],
+		"foo",
+		["punctuation", "}"]
+	]]
 ]
 
 ----------------------------------------------------

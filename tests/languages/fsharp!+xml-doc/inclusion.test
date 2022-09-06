@@ -12,49 +12,35 @@
 	["doc-comment", [
 		"/// ",
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"summary"
-			]],
+			["punctuation", "<"],
+			["tag", ["summary"]],
 			["punctuation", ">"]
 		]]
 	]],
-	["doc-comment", [
-		"/// Class level summary documentation goes here."
-	]],
+	["doc-comment", ["/// Class level summary documentation goes here."]],
 	["doc-comment", [
 		"/// ",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"summary"
-			]],
+			["punctuation", "</"],
+			["tag", ["summary"]],
 			["punctuation", ">"]
 		]]
 	]],
 	["doc-comment", [
 		"/// ",
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"remarks"
-			]],
+			["punctuation", "<"],
+			["tag", ["remarks"]],
 			["punctuation", ">"]
 		]]
 	]],
-	["doc-comment", [
-		"/// Longer comments can be associated with a type or member through"
-	]],
-	["doc-comment", [
-		"/// the remarks tag."
-	]],
+	["doc-comment", ["/// Longer comments can be associated with a type or member through"]],
+	["doc-comment", ["/// the remarks tag."]],
 	["doc-comment", [
 		"/// ",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"remarks"
-			]],
+			["punctuation", "</"],
+			["tag", ["remarks"]],
 			["punctuation", ">"]
 		]]
 	]]

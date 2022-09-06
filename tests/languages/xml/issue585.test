@@ -6,41 +6,33 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"Läufer"
-		]],
+		["punctuation", "<"],
+		["tag", ["Läufer"]],
 		["punctuation", ">"]
 	]],
 	"foo",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"Läufer"
+		["punctuation", "</"],
+		["tag", ["Läufer"]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["tag"]],
+		["attr-name", ["läufer"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"läufer",
+			["punctuation", "\""]
 		]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-        ["tag", [
-            ["punctuation", "<"],
-            "tag"
-        ]],
-        ["attr-name", [
-            "läufer"
-        ]],
-        ["attr-value", [
-            ["punctuation", "="],
-            ["punctuation", "\""],
-            "läufer",
-            ["punctuation", "\""]
-        ]],
-        ["punctuation", ">"]
-    ]],
-
-    ["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["namespace", "läufer:"],
 			"tag"
 		]],
@@ -48,8 +40,8 @@
 	]],
 	"baz",
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["namespace", "läufer:"],
 			"tag"
 		]],

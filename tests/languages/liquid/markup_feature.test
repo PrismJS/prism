@@ -6,10 +6,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
 		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -25,18 +23,14 @@
 	]],
 	"link",
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"a"
-		]],
+		["punctuation", "</"],
+		["tag", ["a"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -47,10 +41,8 @@
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]]
 ]

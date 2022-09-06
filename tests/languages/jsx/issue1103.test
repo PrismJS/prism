@@ -7,10 +7,8 @@ var myDivElement = <div foo="bar baz" />;
 	" myDivElement ",
 	["operator", "="],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["foo"]],
 		["attr-value", [
 			["punctuation", "="],

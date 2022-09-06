@@ -57,10 +57,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -68,10 +66,8 @@
 		["csharp", ["quote"]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
@@ -90,10 +86,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"p"
-		]],
+		["punctuation", "<"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -101,10 +95,8 @@
 		["csharp", ["quote"]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"p"
-		]],
+		["punctuation", "</"],
+		["tag", ["p"]],
 		["punctuation", ">"]
 	]],
 
@@ -128,18 +120,14 @@
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Name: ",
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"strong"
-					]],
+					["punctuation", "<"],
+					["tag", ["strong"]],
 					["punctuation", ">"]
 				]],
 				["value", [
@@ -147,17 +135,13 @@
 					["csharp", ["name"]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"strong"
-					]],
+					["punctuation", "</"],
+					["tag", ["strong"]],
 					["punctuation", ">"]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -195,10 +179,8 @@
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"Now in HTML, was in C# ",
@@ -207,10 +189,8 @@
 					["csharp", ["inCSharp"]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],
@@ -237,18 +217,14 @@
 			["html", [
 				["delegate-operator", "@"],
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"You have a pet named ",
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"strong"
-					]],
+					["punctuation", "<"],
+					["tag", ["strong"]],
 					["punctuation", ">"]
 				]],
 				["value", [
@@ -260,18 +236,14 @@
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"strong"
-					]],
+					["punctuation", "</"],
+					["tag", ["strong"]],
 					["punctuation", ">"]
 				]],
 				".",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],

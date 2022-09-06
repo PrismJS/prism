@@ -25,10 +25,8 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["n-attr", [
 			["attr-name", "n:attr"],
 			["attr-value", [

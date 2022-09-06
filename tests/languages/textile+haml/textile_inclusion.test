@@ -12,17 +12,13 @@
 		["filter-name", ":textile"],
 		["text", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"div"
-				]],
+				["punctuation", "<"],
+				["tag", ["div"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"div"
-				]],
+				["punctuation", "</"],
+				["tag", ["div"]],
 				["punctuation", ">"]
 			]]
 		]]
@@ -32,17 +28,13 @@
 		["filter-name", ":textile"],
 		["text", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"div"
-				]],
+				["punctuation", "<"],
+				["tag", ["div"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"div"
-				]],
+				["punctuation", "</"],
+				["tag", ["div"]],
 				["punctuation", ">"]
 			]]
 		]]

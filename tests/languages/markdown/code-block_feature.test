@@ -15,10 +15,8 @@ var foo = 0;
 
 		["code-block", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"a"
-				]],
+				["punctuation", "<"],
+				["tag", ["a"]],
 				["attr-name", ["href"]],
 				["attr-value", [
 					["punctuation", "="],
@@ -30,10 +28,8 @@ var foo = 0;
 			]],
 			"Click me!",
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"a"
-				]],
+				["punctuation", "</"],
+				["tag", ["a"]],
 				["punctuation", ">"]
 			]],
 			["entity", "&amp;"]

@@ -23,10 +23,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"input"
-		]],
+		["punctuation", "<"],
+		["tag", ["input"]],
 		["attr-name", ["type"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -55,10 +53,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"h1"
-		]],
+		["punctuation", "<"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]],
 	["value", [
@@ -73,10 +69,8 @@
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"h1"
-		]],
+		["punctuation", "</"],
+		["tag", ["h1"]],
 		["punctuation", ">"]
 	]],
 
@@ -145,10 +139,8 @@
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"h1"
-					]],
+					["punctuation", "<"],
+					["tag", ["h1"]],
 					["punctuation", ">"]
 				]],
 				["value", [
@@ -162,28 +154,22 @@
 					]]
 				]],
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"h1"
-					]],
+					["punctuation", "</"],
+					["tag", ["h1"]],
 					["punctuation", ">"]
 				]]
 			]],
 
 			["html", [
 				["tag", [
-					["tag", [
-						["punctuation", "<"],
-						"p"
-					]],
+					["punctuation", "<"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]],
 				"\r\n        Hello World!\r\n    ",
 				["tag", [
-					["tag", [
-						["punctuation", "</"],
-						"p"
-					]],
+					["punctuation", "</"],
+					["tag", ["p"]],
 					["punctuation", ">"]
 				]]
 			]],

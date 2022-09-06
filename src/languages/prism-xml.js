@@ -50,9 +50,9 @@ export default /** @type {import("../types").LanguageProto<'xml'>} */ ({
 				greedy: true,
 				inside: {
 					'tag': {
-						pattern: /^<\/?[^\s>\/]+/,
+						pattern: /^(<\/?)[^\s>\/]+/,
+						lookbehind: true,
 						inside: {
-							'punctuation': /^<\/?/,
 							'namespace': /^[^\s>\/:]+:/
 						}
 					},
@@ -72,7 +72,7 @@ export default /** @type {import("../types").LanguageProto<'xml'>} */ ({
 							'entity': entity
 						}
 					},
-					'punctuation': /\/?>/,
+					'punctuation': /^<\/?|\/?>$/,
 					'attr-name': {
 						pattern: /[^\s>\/]+/,
 						inside: {

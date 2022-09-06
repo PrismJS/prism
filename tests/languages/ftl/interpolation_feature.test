@@ -6,10 +6,8 @@ ${ "{}foo${bar}" }
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
 		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -29,10 +27,8 @@ ${ "{}foo${bar}" }
 		["punctuation", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"a"
-		]],
+		["punctuation", "</"],
+		["tag", ["a"]],
 		["punctuation", ">"]
 	]],
 

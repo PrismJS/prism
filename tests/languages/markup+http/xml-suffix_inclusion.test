@@ -12,17 +12,13 @@ Content-type: text/x.anything+something-else+xml
 	]],
 	["application-xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"foo"
-			]],
+			["punctuation", "<"],
+			["tag", ["foo"]],
 			["punctuation", ">"]
 		]],
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"foo"
-			]],
+			["punctuation", "</"],
+			["tag", ["foo"]],
 			["punctuation", ">"]
 		]]
 	]]

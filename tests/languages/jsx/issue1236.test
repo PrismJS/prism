@@ -4,8 +4,8 @@
 
 [
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Child"]
 		]],
 		["spread", [

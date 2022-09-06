@@ -13,10 +13,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
 		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -48,18 +46,14 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"a"
-		]],
+		["punctuation", "</"],
+		["tag", ["a"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
 		["attr-name", [
 			["latte", [
 				["delimiter", "{"],
@@ -98,10 +92,8 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"a"
-		]],
+		["punctuation", "</"],
+		["tag", ["a"]],
 		["punctuation", ">"]
 	]],
 
@@ -120,10 +112,8 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["n-attr", [
 			["attr-name", "n:attr"],
 			["attr-value", [

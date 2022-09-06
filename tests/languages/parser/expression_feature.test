@@ -21,8 +21,8 @@
 		["number", "4"],
 		["punctuation", ")"]
 	]],
-	["keyword", "^eval"],
 
+	["keyword", "^eval"],
 	["expression", [
 		["punctuation", "("],
 		["number", "4"],
@@ -32,10 +32,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -44,7 +42,9 @@
 			["keyword", "^eval"],
 			["expression", [
 				["punctuation", "("],
-				["number", "4"], ["operator", "+"], ["number", "2"],
+				["number", "4"],
+				["operator", "+"],
+				["number", "2"],
 				["punctuation", ")"]
 			]],
 			["punctuation", "\""]

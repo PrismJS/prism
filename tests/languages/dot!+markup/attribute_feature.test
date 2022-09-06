@@ -13,10 +13,8 @@
 		"<",
 		["markup", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"TABLE"
-				]],
+				["punctuation", "<"],
+				["tag", ["TABLE"]],
 				["attr-name", ["BORDER"]],
 				["attr-value", [
 					["punctuation", "="],
@@ -42,32 +40,24 @@
 			]],
 
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"TR"
-				]],
+				["punctuation", "<"],
+				["tag", ["TR"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"TD"
-				]],
+				["punctuation", "<"],
+				["tag", ["TD"]],
 				["punctuation", ">"]
 			]],
 			"left",
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"TD"
-				]],
+				["punctuation", "</"],
+				["tag", ["TD"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"TD"
-				]],
+				["punctuation", "<"],
+				["tag", ["TD"]],
 				["attr-name", ["PORT"]],
 				["attr-value", [
 					["punctuation", "="],
@@ -79,17 +69,13 @@
 			]],
 			"mid dle",
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"TD"
-				]],
+				["punctuation", "</"],
+				["tag", ["TD"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"TD"
-				]],
+				["punctuation", "<"],
+				["tag", ["TD"]],
 				["attr-name", ["PORT"]],
 				["attr-value", [
 					["punctuation", "="],
@@ -101,25 +87,19 @@
 			]],
 			"right",
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"TD"
-				]],
+				["punctuation", "</"],
+				["tag", ["TD"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"TR"
-				]],
+				["punctuation", "</"],
+				["tag", ["TR"]],
 				["punctuation", ">"]
 			]],
 
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"TABLE"
-				]],
+				["punctuation", "</"],
+				["tag", ["TABLE"]],
 				["punctuation", ">"]
 			]]
 		]],

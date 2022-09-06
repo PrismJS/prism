@@ -87,10 +87,8 @@
 	["smarty-comment", "{* output the variable *}"],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"strong"
-		]],
+		["punctuation", "<"],
+		["tag", ["strong"]],
 		["punctuation", ">"]
 	]],
 	["smarty", [
@@ -99,10 +97,8 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"strong"
-		]],
+		["punctuation", "</"],
+		["tag", ["strong"]],
 		["punctuation", ">"]
 	]],
 	" is my fav ice cream :-)"

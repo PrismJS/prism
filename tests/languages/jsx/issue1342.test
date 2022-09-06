@@ -4,8 +4,8 @@
 
 [
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "CodeView"]
 		]],
 		["attr-name", ["title"]],
@@ -13,10 +13,8 @@
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"span"
-				]],
+				["punctuation", "<"],
+				["tag", ["span"]],
 				["attr-name", ["title"]],
 				["script", [
 					["script-punctuation", "="],
@@ -28,10 +26,8 @@
 			]],
 			["plain-text", "2"],
 			["tag", [
-				["tag", [
-					["punctuation", "</"],
-					"span"
-				]],
+				["punctuation", "</"],
+				["tag", ["span"]],
 				["punctuation", ">"]
 			]],
 			["punctuation", "}"]
@@ -40,8 +36,8 @@
 	]],
 	["plain-text", "for of as"],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["class-name", "CodeView"]
 		]],
 		["punctuation", ">"]

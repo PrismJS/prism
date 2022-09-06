@@ -329,10 +329,8 @@
 		["delimiter", "}}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"img"
-		]],
+		["punctuation", "<"],
+		["tag", ["img"]],
 		["attr-name", ["src"]],
 		["attr-value", [
 			["punctuation", "="],

@@ -4,10 +4,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["$$"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -21,5 +19,6 @@
 ]
 
 ----------------------------------------------------
+
 Checks that attribute names can contain $
 No issue filed

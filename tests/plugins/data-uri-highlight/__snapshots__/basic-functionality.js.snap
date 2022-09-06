@@ -19,10 +19,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 			data:image/svg+xml,
 			<span class=\\"token language-markup\\">
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						svg
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">svg</span>
 					<span class=\\"token attr-name\\">xmlns</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -48,10 +46,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 				</span>
 				\\\\
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -83,10 +79,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 					<span class=\\"token punctuation\\">/></span>
 				</span>
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -119,10 +113,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 				</span>
 				\\\\
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -154,10 +146,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 					<span class=\\"token punctuation\\">/></span>
 				</span>
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -190,10 +180,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 				</span>
 				\\\\
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -226,10 +214,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 				</span>
 				\\\\
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -261,10 +247,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 					<span class=\\"token punctuation\\">/></span>
 				</span>
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -297,10 +281,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 				</span>
 				\\\\
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -332,10 +314,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 					<span class=\\"token punctuation\\">/></span>
 				</span>
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;</span>
-						circle
-					</span>
+					<span class=\\"token punctuation\\">&lt;</span>
+					<span class=\\"token tag\\">circle</span>
 					<span class=\\"token attr-name\\">cx</span>
 					<span class=\\"token attr-value\\">
 						<span class=\\"token punctuation attr-equals\\">=</span>
@@ -367,10 +347,8 @@ exports[`Data-URI Highlight should set prefix 1`] = `
 					<span class=\\"token punctuation\\">/></span>
 				</span>
 				<span class=\\"token tag\\">
-					<span class=\\"token tag\\">
-						<span class=\\"token punctuation\\">&lt;/</span>
-						svg
-					</span>
+					<span class=\\"token punctuation\\">&lt;/</span>
+					<span class=\\"token tag\\">svg</span>
 					<span class=\\"token punctuation\\">></span>
 				</span>
 			</span>

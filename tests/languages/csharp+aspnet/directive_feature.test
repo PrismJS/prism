@@ -15,7 +15,6 @@
 		"Title ",
 		["directive", "%>"]
 	]],
-
 	["directive", [
 		["directive", "<%#:"],
 		"Item",
@@ -23,15 +22,10 @@
 		"ProductID",
 		["directive", "%>"]
 	]],
-
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"a"
-		]],
-		["attr-name", [
-			"href"
-		]],
+		["punctuation", "<"],
+		["tag", ["a"]],
+		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -47,7 +41,6 @@
 		]],
 		["punctuation", ">"]
 	]],
-
 	["directive", [
 		["directive", "<%"],
 		["keyword", "if"],

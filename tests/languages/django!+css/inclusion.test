@@ -10,22 +10,22 @@ a {
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"style"
-		]],
+		["punctuation", "<"],
+		["tag", ["style"]],
 		["punctuation", ">"]
 	]],
 	["style", [
 		["language-css", [
 			["selector", "a"],
 			["punctuation", "{"],
+
 			["django", [
 				["delimiter", "{%"],
 				["tag", "if"],
 				["variable", "setColor"],
 				["delimiter", "%}"]
 			]],
+
 			["property", "color"],
 			["punctuation", ":"],
 			["django", [
@@ -34,19 +34,19 @@ a {
 				["delimiter", "}}"]
 			]],
 			["punctuation", ";"],
+
 			["django", [
 				["delimiter", "{%"],
 				["tag", "endif"],
 				["delimiter", "%}"]
 			]],
+
 			["punctuation", "}"]
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"style"
-		]],
+		["punctuation", "</"],
+		["tag", ["style"]],
 		["punctuation", ">"]
 	]]
 ]

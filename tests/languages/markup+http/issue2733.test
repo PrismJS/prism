@@ -51,50 +51,38 @@ transfer-encoding: chunked
 
 	["application-xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"xml"
-			]],
+			["punctuation", "<"],
+			["tag", ["xml"]],
 			["punctuation", ">"]
 		]],
 
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"one"
-			]],
+			["punctuation", "<"],
+			["tag", ["one"]],
 			["punctuation", ">"]
 		]],
 		"Data",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"one"
-			]],
+			["punctuation", "</"],
+			["tag", ["one"]],
 			["punctuation", ">"]
 		]],
 
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"two"
-			]],
+			["punctuation", "<"],
+			["tag", ["two"]],
 			["punctuation", ">"]
 		]],
 		"More Data",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"two"
-			]],
+			["punctuation", "</"],
+			["tag", ["two"]],
 			["punctuation", ">"]
 		]],
 
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"xml"
-			]],
+			["punctuation", "</"],
+			["tag", ["xml"]],
 			["punctuation", ">"]
 		]]
 	]]

@@ -18,10 +18,8 @@
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"h2"
-		]],
+		["punctuation", "<"],
+		["tag", ["h2"]],
 		["punctuation", ">"]
 	]],
 	["ejs", [
@@ -34,10 +32,8 @@
 		["delimiter", "%>"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"h2"
-		]],
+		["punctuation", "</"],
+		["tag", ["h2"]],
 		["punctuation", ">"]
 	]],
 

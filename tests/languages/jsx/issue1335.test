@@ -12,8 +12,8 @@
 
 [
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Button"]
 		]],
 		["attr-name", ["onClick"]],
@@ -40,8 +40,8 @@
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Component"]
 		]],
 
@@ -81,8 +81,8 @@
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Component"]
 		]],
 		["attr-name", ["title"]],
@@ -104,8 +104,8 @@
 	]],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "Component"]
 		]],
 		["attr-name", ["title"]],

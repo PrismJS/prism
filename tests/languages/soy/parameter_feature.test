@@ -16,6 +16,7 @@
 		["boolean", "true"],
 		["delimiter", "/}"]
 	]],
+
 	["soy", [
 		["delimiter", "{"],
 		["keyword", "param"],
@@ -25,11 +26,10 @@
 		["string", "\"html\""],
 		["delimiter", "}"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"b"
-		]],
+		["punctuation", "<"],
+		["tag", ["b"]],
 		["punctuation", ">"]
 	]],
 	["soy", [
@@ -38,17 +38,17 @@
 		["delimiter", "}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"b"
-		]],
+		["punctuation", "</"],
+		["tag", ["b"]],
 		["punctuation", ">"]
 	]],
+
 	["soy", [
 		["delimiter", "{/"],
 		["keyword", "param"],
 		["delimiter", "}"]
 	]],
+
 	["soy", [
 		["delimiter", "{"],
 		["keyword", "@param"],
@@ -57,6 +57,7 @@
 		["keyword", "string"],
 		["delimiter", "}"]
 	]],
+
 	["soy", [
 		["delimiter", "{"],
 		["keyword", "@param?"],

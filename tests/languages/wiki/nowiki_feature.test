@@ -7,52 +7,40 @@
 [
 	["nowiki", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"nowiki"
-			]],
+			["punctuation", "<"],
+			["tag", ["nowiki"]],
 			["punctuation", ">"]
 		]],
 		"{{foo}} ''bar'' <baz>",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"nowiki"
-			]],
+			["punctuation", "</"],
+			["tag", ["nowiki"]],
 			["punctuation", ">"]
 		]]
 	]],
 	["nowiki", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"source"
-			]],
+			["punctuation", "<"],
+			["tag", ["source"]],
 			["punctuation", ">"]
 		]],
 		"{{foo}} ''bar'' <baz>",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"source"
-			]],
+			["punctuation", "</"],
+			["tag", ["source"]],
 			["punctuation", ">"]
 		]]
 	]],
 	["nowiki", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"pre"
-			]],
+			["punctuation", "<"],
+			["tag", ["pre"]],
 			["punctuation", ">"]
 		]],
 		"{{foo}} ''bar'' <baz>",
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"pre"
-			]],
+			["punctuation", "</"],
+			["tag", ["pre"]],
 			["punctuation", ">"]
 		]]
 	]]

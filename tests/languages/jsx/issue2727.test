@@ -118,16 +118,16 @@ export default function App() {
 	["punctuation", "("],
 
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "React.Fragment"]
 		]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Bang"]
 		]],
 
@@ -171,8 +171,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Ezdac"]
 		]],
 
@@ -218,8 +218,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Message"]
 		]],
 
@@ -271,8 +271,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Object"]
 		]],
 
@@ -299,8 +299,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Playbar"]
 		]],
 
@@ -410,8 +410,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.RadioGroup"]
 		]],
 
@@ -487,8 +487,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Slider"]
 		]],
 
@@ -559,8 +559,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.TextButton"]
 		]],
 
@@ -674,8 +674,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Toggle"]
 		]],
 
@@ -720,8 +720,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n            "],
 	["tag", [
+		["punctuation", "<"],
 		["tag", [
-			["punctuation", "<"],
 			["class-name", "MaxMSP.Umenu"]
 		]],
 
@@ -807,8 +807,8 @@ export default function App() {
 	]],
 	["plain-text", "\r\n\r\n        "],
 	["tag", [
+		["punctuation", "</"],
 		["tag", [
-			["punctuation", "</"],
 			["class-name", "React.Fragment"]
 		]],
 		["punctuation", ">"]

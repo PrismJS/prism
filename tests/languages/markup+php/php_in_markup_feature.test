@@ -9,10 +9,8 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["php", [
@@ -23,17 +21,14 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 		["delimiter", "?>"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["php", [
@@ -44,17 +39,14 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 		["delimiter", "?>"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -70,11 +62,10 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 		]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -90,11 +81,10 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 		]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["php", [
@@ -104,12 +94,11 @@ ___PHP1___<?php 1 ?>___PHP2___ <?php 2 ?>
 		["delimiter", "?>"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n___PHP1___",
 	["php", [
 		["delimiter", "<?php"],

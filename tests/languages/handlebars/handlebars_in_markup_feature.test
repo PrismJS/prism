@@ -7,10 +7,8 @@ ___HANDLEBARS1___{{{intro}}}
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
 	["handlebars", [
@@ -19,17 +17,14 @@ ___HANDLEBARS1___{{{intro}}}
 		["delimiter", "}}}"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"div"
-		]],
+		["punctuation", "</"],
+		["tag", ["div"]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"div"
-		]],
+		["punctuation", "<"],
+		["tag", ["div"]],
 		["attr-name", ["class"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -43,12 +38,14 @@ ___HANDLEBARS1___{{{intro}}}
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n___HANDLEBARS1___",
 	["handlebars", [
 		["delimiter", "{{{"],
 		["variable", "intro"],
 		["delimiter", "}}}"]
 	]],
+
 	["handlebars", [
 		["comment", "{{!<div></div>}}"]
 	]]

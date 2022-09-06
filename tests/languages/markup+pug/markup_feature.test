@@ -6,21 +6,17 @@
 [
 	["markup", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"div"
-			]],
+			["punctuation", "<"],
+			["tag", ["div"]],
 			["punctuation", ">"]
 		]]
 	]],
 	["markup", [
 		["tag", [
-            ["tag", [
-                ["punctuation", "<"],
-                "span"
-            ]],
-            ["punctuation", ">"]
-        ]]
+			["punctuation", "<"],
+			["tag", ["span"]],
+			["punctuation", ">"]
+		]]
 	]]
 ]
 

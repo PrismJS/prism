@@ -15,44 +15,67 @@ class Columns extends React.Component {
 	["keyword", "class"],
 	["class-name", ["Columns"]],
 	["keyword", "extends"],
-	["class-name", ["React", ["punctuation", "."], "Component"]],
+	["class-name", [
+		"React",
+		["punctuation", "."],
+		"Component"
+	]],
 	["punctuation", "{"],
+
 	["function", "render"],
-	["punctuation", "("], ["punctuation", ")"],
+	["punctuation", "("],
+	["punctuation", ")"],
 	["punctuation", "{"],
-	["keyword", "return"], ["punctuation", "("],
+
+	["keyword", "return"],
+	["punctuation", "("],
+
 	["tag", [
-		["tag", [["punctuation", "<"]]],
-		["punctuation", ">"]
+		"<",
+		["tag", [
+		]],
+		">"
 	]],
 	["plain-text", "\r\n        "],
 	["tag", [
-		["tag", [["punctuation", "<"], "td"]],
+		["punctuation", "<"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "Hello"],
 	["tag", [
-		["tag", [["punctuation", "</"], "td"]],
+		["punctuation", "</"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "\r\n        "],
 	["tag", [
-		["tag", [["punctuation", "<"], "td"]],
+		["punctuation", "<"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "World"],
 	["tag", [
-		["tag", [["punctuation", "</"], "td"]],
+		["punctuation", "</"],
+		["tag", ["td"]],
 		["punctuation", ">"]
 	]],
 	["plain-text", "\r\n      "],
 	["tag", [
-		["tag", [["punctuation", "</"]]],
+		["punctuation", "</"],
+		["tag", [
+		]],
 		["punctuation", ">"]
 	]],
-	["punctuation", ")"], ["punctuation", ";"],
-	["punctuation", "}"], ["punctuation", "}"]
+
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------
+
 Checks for fragments short syntax. See #1421

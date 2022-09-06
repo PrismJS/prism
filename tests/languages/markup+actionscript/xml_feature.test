@@ -11,24 +11,20 @@ var employees:XML =
 	["punctuation", ":"],
 	["constant", "XML"],
 	["operator", "="],
+
 	["xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"employees"
-			]],
+			["punctuation", "<"],
+			["tag", ["employees"]],
 			["punctuation", ">"]
 		]]
 	]],
+
 	["xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"employee"
-			]],
-			["attr-name", [
-				"ssn"
-			]],
+			["punctuation", "<"],
+			["tag", ["employee"]],
+			["attr-name", ["ssn"]],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
@@ -40,19 +36,16 @@ var employees:XML =
 	]],
 	["xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"employee"
-			]],
+			["punctuation", "</"],
+			["tag", ["employee"]],
 			["punctuation", ">"]
 		]]
 	]],
+
 	["xml", [
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"employees"
-			]],
+			["punctuation", "</"],
+			["tag", ["employees"]],
 			["punctuation", ">"]
 		]]
 	]],

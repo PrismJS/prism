@@ -21,6 +21,7 @@
 		["name", "html"],
 		["punctuation", ">"]
 	]],
+
 	["doctype", [
 		["punctuation", "<!"],
 		["doctype-tag", "DOCTYPE"],
@@ -29,15 +30,18 @@
 		["string", "\"-//W3C//DTD HTML 4.01//EN\""],
 		["punctuation", ">"]
 	]],
+
 	["doctype", [
 		["punctuation", "<!"],
 		["doctype-tag", "DOCTYPE"],
 		["name", "html"],
 		["name", "PUBLIC"],
 		["string", "\"-//W3C//DTD XHTML 1.0 Strict//EN\""],
+
 		["string", "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\""],
 		["punctuation", ">"]
 	]],
+
 	["doctype", [
 		["punctuation", "<!"],
 		["doctype-tag", "DOCTYPE"],
@@ -46,6 +50,7 @@
 		["string", "\"hello.dtd\""],
 		["punctuation", ">"]
 	]],
+
 	["doctype", [
 		["punctuation", "<!"],
 		["doctype-tag", "DOCTYPE"],
@@ -53,22 +58,17 @@
 		["punctuation", "["],
 		["internal-subset", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"!ELEMENT"
-				]],
-				["attr-name", [
-					"greeting"
-				]],
-				["attr-name", [
-					"(#PCDATA)"
-				]],
+				["punctuation", "<"],
+				["tag", ["!ELEMENT"]],
+				["attr-name", ["greeting"]],
+				["attr-name", ["(#PCDATA)"]],
 				["punctuation", ">"]
 			]]
 		]],
 		["punctuation", "]"],
 		["punctuation", ">"]
 	]],
+
 	["doctype", [
 		["punctuation", "<!"],
 		["doctype-tag", "DOCTYPE"],
@@ -76,29 +76,17 @@
 		["punctuation", "["],
 		["internal-subset", [
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"!ELEMENT"
-				]],
-				["attr-name", [
-					"greeting"
-				]],
-				["attr-name", [
-					"(#PCDATA)"
-				]],
+				["punctuation", "<"],
+				["tag", ["!ELEMENT"]],
+				["attr-name", ["greeting"]],
+				["attr-name", ["(#PCDATA)"]],
 				["punctuation", ">"]
 			]],
 			["tag", [
-				["tag", [
-					["punctuation", "<"],
-					"!ELEMENT"
-				]],
-				["attr-name", [
-					"subject"
-				]],
-				["attr-name", [
-					"(#PCDATA)"
-				]],
+				["punctuation", "<"],
+				["tag", ["!ELEMENT"]],
+				["attr-name", ["subject"]],
+				["attr-name", ["(#PCDATA)"]],
 				["punctuation", ">"]
 			]],
 			["comment", "<!-- comment ]> -->"]

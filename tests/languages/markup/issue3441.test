@@ -4,10 +4,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"google-chart"
-		]],
+		["punctuation", "<"],
+		["tag", ["google-chart"]],
 		["attr-name", ["data"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -18,10 +16,8 @@
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"google-chart"
-		]],
+		["punctuation", "</"],
+		["tag", ["google-chart"]],
 		["punctuation", ">"]
 	]]
 ]

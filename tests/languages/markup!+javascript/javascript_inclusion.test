@@ -19,10 +19,8 @@ let foo = '</script>';
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["attr-name", ["type"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -40,18 +38,14 @@ let foo = '</script>';
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 	["script", [
@@ -60,18 +54,14 @@ let foo = '</script>';
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
+		["punctuation", "<"],
+		["tag", ["script"]],
 		["attr-name", ["type"]],
 		["attr-value", [
 			["punctuation", "="],
@@ -105,18 +95,14 @@ let foo = '</script>';
 		]]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
+		["punctuation", "</"],
+		["tag", ["script"]],
 		["punctuation", ">"]
 	]],
 
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"foo"
-		]],
+		["punctuation", "<"],
+		["tag", ["foo"]],
 		["special-attr", [
 			["attr-name", "onclick"],
 			["attr-value", [
@@ -135,10 +121,8 @@ let foo = '</script>';
 		["punctuation", ">"]
 	]],
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"foo"
-		]],
+		["punctuation", "<"],
+		["tag", ["foo"]],
 		["attr-name", ["mouseover"]],
 		["attr-value", [
 			["punctuation", "="],

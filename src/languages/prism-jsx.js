@@ -27,14 +27,14 @@ function walkTokens(tokens) {
 		let notTagNorBrace = false;
 
 		if (isToken) {
-			const nestedTag = token.content[0];
+			const nestedTag = token.content[1];
 			if (token.type === 'tag' && typeof nestedTag === 'object' && nestedTag.type === 'tag') {
 				// We found a tag, now find its kind
 
-				const firstNestedChild = nestedTag.content[0];
-				if (typeof firstNestedChild === 'object' && firstNestedChild.content === '</') {
+				const firstChild = token.content[0];
+				if (typeof firstChild === 'object' && firstChild.content === '</') {
 					// Closing tag
-					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag.content[1])) {
+					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag)) {
 						// Pop matching opening tag
 						openedTags.pop();
 					}
@@ -45,7 +45,7 @@ function walkTokens(tokens) {
 					} else {
 						// Opening tag
 						openedTags.push({
-							tagName: stringifyToken(nestedTag.content[1]),
+							tagName: stringifyToken(nestedTag),
 							openedBraces: 0
 						});
 					}
@@ -127,7 +127,7 @@ export default /** @type {import("../types").LanguageProto<'jsx'>} */ ({
 		);
 
 		// @ts-ignore
-		tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
+		tag.inside['tag'].pattern = /^(<\/?)[^\s>\/]*/;
 		// @ts-ignore
 		tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
 		// @ts-ignore

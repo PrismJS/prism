@@ -4,10 +4,8 @@
 
 [
 	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"android.support.v7.widget.CardView"
-		]],
+		["punctuation", "<"],
+		["tag", ["android.support.v7.widget.CardView"]],
 		["punctuation", ">"]
 	]]
 ]
