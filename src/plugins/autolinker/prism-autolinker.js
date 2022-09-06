@@ -1,3 +1,4 @@
+import { addHooks } from '../../shared/hooks-util';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 
 export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
@@ -23,20 +24,21 @@ export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 			'email-link': email
 		};
 
-		Prism.hooks.add('after-tokenize', (env) => {
-			tokenizeStrings(env.tokens, code => Prism.tokenize(code, links));
-		});
+		return addHooks(Prism.hooks, {
+			'after-tokenize': (env) => {
+				tokenizeStrings(env.tokens, code => Prism.tokenize(code, links));
+			},
+			'wrap': (env) => {
+				if (env.type.endsWith('-link')) {
+					let href = env.content;
 
-		Prism.hooks.add('wrap', (env) => {
-			if (env.type.endsWith('-link')) {
-				let href = env.content;
+					if (env.type == 'email-link' && !href.startsWith('mailto:')) {
+						href = 'mailto:' + href;
+					}
 
-				if (env.type == 'email-link' && !href.startsWith('mailto:')) {
-					href = 'mailto:' + href;
+					env.tag = 'a';
+					env.attributes.href = href;
 				}
-
-				env.tag = 'a';
-				env.attributes.href = href;
 			}
 		});
 	}
