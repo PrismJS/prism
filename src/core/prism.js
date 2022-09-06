@@ -49,10 +49,13 @@ export class Prism {
 
 		this.hooks.run('before-highlightall', env);
 
+		// @ts-ignore
 		env.elements = [...env.root.querySelectorAll(env.selector)];
 
+		// @ts-ignore
 		this.hooks.run('before-all-elements-highlight', env);
 
+		// @ts-ignore
 		for (const element of env.elements) {
 			this.highlightElement(element, { async, callback: env.callback });
 		}
@@ -104,12 +107,16 @@ export class Prism {
 
 		/** @param {string} highlightedCode */
 		const insertHighlightedCode = (highlightedCode) => {
+			// @ts-ignore
 			env.highlightedCode = highlightedCode;
 
+			// @ts-ignore
 			this.hooks.run('before-insert', env);
 
+			// @ts-ignore
 			env.element.innerHTML = env.highlightedCode;
 
+			// @ts-ignore
 			this.hooks.run('after-highlight', env);
 			this.hooks.run('complete', env);
 			callback && callback(env.element);
@@ -179,9 +186,12 @@ export class Prism {
 		if (!env.grammar) {
 			throw new Error('The language "' + env.language + '" has no grammar.');
 		}
+		// @ts-ignore
 		env.tokens = this.tokenize(env.code, env.grammar);
+		// @ts-ignore
 		this.hooks.run('after-tokenize', env);
 
+		// @ts-ignore
 		return stringify(env.tokens, env.language, this.hooks);
 	}
 
