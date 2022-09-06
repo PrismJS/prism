@@ -41,15 +41,12 @@ export default /** @type {import("../types").LanguageProto<'diff'>} */ ({
 			}
 
 			diff[name] = {
-				pattern: RegExp('^(?:[' + prefix + '].*(?:\r\n?|\n|(?![\\s\\S])))+', 'm'),
+				pattern: RegExp(`^(?:[${prefix}].*(?:\r\n?|\n|(?![\\s\\S])))+`, 'm'),
 				alias,
 				inside: {
-					'line': {
-						pattern: /(.)(?=[\s\S]).*(?:\r\n?|\n)?/,
-						lookbehind: true
-					},
 					'prefix': {
-						pattern: /[\s\S]/,
+						pattern: RegExp(`^[${prefix}]`, 'm'),
+						greedy: true,
 						alias: mainName
 					}
 				}
