@@ -25,6 +25,7 @@ describe('Copy to Clipboard', () => {
 
 	it('should work', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
+		// @ts-ignore
 		window.navigator.clipboard = clipboard;
 
 		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
@@ -42,6 +43,7 @@ describe('Copy to Clipboard', () => {
 
 	it('should copy the current text even after the code block changes its text', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
+		// @ts-ignore
 		window.navigator.clipboard = clipboard;
 
 		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
@@ -57,6 +59,7 @@ describe('Copy to Clipboard', () => {
 		assert.strictEqual(clipboard.text, 'foo');
 
 		// change text
+		// @ts-ignore
 		document.querySelector('code').textContent = 'bar';
 		// and click
 		button.click();
@@ -64,6 +67,7 @@ describe('Copy to Clipboard', () => {
 		assert.strictEqual(clipboard.text, 'bar');
 
 		// change text
+		// @ts-ignore
 		document.querySelector('code').textContent = 'baz';
 		Prism.highlightAll();
 		// and click

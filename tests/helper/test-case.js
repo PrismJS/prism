@@ -353,6 +353,7 @@ export async function runTestCaseWithRunner(languageIdentifier, filePath, update
 
 		runner.assertEqual(actualValue, testCase.expected, diffIndex => {
 			const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
+			// @ts-ignore
 			const columnNumber = expectedLines.pop().length + 1;
 			const lineNumber = testCase.expectedLineStart + expectedLines.length;
 
