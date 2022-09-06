@@ -1,17 +1,12 @@
-import { Token } from '../../core/token';
+import { Token, getTextContent } from '../../core/token';
 import diff, { PREFIXES } from '../../languages/prism-diff';
 import { addHooks } from '../../shared/hooks-util';
-import { MARKUP_TAG } from '../../shared/languages/patterns';
-import { htmlEncode } from '../../shared/util';
 
 export default /** @type {import("../../types").PluginProto<'diff-highlight'>} */ ({
 	id: 'diff-highlight',
 	require: diff,
 	effect(Prism) {
 		const LANGUAGE_REGEX = /^diff-([\w-]+)/i;
-		const HTML_TAG = RegExp(MARKUP_TAG, 'g');
-		// this will match a line plus the line break while ignoring the line breaks HTML tags may contain.
-		const HTML_LINE = RegExp(/(?:__|[^\r\n<])*(?:\r\n?|\n|(?:__|[^\r\n<])(?![^\r\n]))/.source.replace(/__/g, () => MARKUP_TAG.source), 'gi');
 
 		/**
 		 * @param {import('../../core/hooks-env.js').BeforeSanityCheckEnv | import('../../core/hooks-env.js').BeforeTokenizeEnv} env
@@ -26,61 +21,98 @@ export default /** @type {import("../../types").PluginProto<'diff-highlight'>} *
 		return addHooks(Prism.hooks, {
 			'before-sanity-check': setMissingGrammar,
 			'before-tokenize': setMissingGrammar,
-			'wrap': (env) => {
-				let diffLanguage;
-
-				if (env.language !== 'diff') {
-					const langMatch = LANGUAGE_REGEX.exec(env.language);
-					if (!langMatch) {
-						return; // not a language specific diff
-					}
-
-					diffLanguage = langMatch[1];
+			'after-tokenize': (env) => {
+				const langMatch = LANGUAGE_REGEX.exec(env.language);
+				if (!langMatch) {
+					return; // not a language specific diff
 				}
 
+				const diffLanguage = langMatch[1];
+				const diffGrammar = Prism.components.getLanguage(diffLanguage);
+				if (!diffGrammar) {
+					return;
+				}
 
-				// one of the diff tokens without any nested tokens
-				if (env.type in PREFIXES) {
-					/** @type {string} */
-					const content = env.content.replace(HTML_TAG, ''); // remove all HTML tags
-
-					/** @type {string} */
-					const decoded = content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-					// remove any one-character prefix
-					const code = decoded.replace(/(^|[\r\n])./g, '$1');
-
-					// highlight, if possible
-					let highlighted;
-					if (diffLanguage) {
-						highlighted = Prism.highlight(code, diffLanguage);
-					} else {
-						highlighted = htmlEncode(code);
+				for (const token of env.tokens) {
+					if (typeof token === 'string' || !(token.type in PREFIXES) || !Array.isArray(token.content)) {
+						continue;
 					}
 
-					// get the HTML source of the prefix token
-					const prefixToken = new Token(
-						'prefix',
-						PREFIXES[/** @type {keyof PREFIXES} */(env.type)],
-						/\w+/.exec(env.type)?.[0]
-					);
-					const prefix = Prism.Token.stringify(prefixToken, env.language);
+					const type = /** @type {keyof PREFIXES} */ (token.type);
+					let insertedPrefixes = 0;
+					const getPrefixToken = () => {
+						insertedPrefixes++;
+						return new Token('prefix', PREFIXES[type], /\w+/.exec(type)?.[0]);
+					};
 
-					// add prefix
-					const lines = []; let m;
-					HTML_LINE.lastIndex = 0;
-					while ((m = HTML_LINE.exec(highlighted))) {
-						lines.push(prefix + m[0]);
-					}
-					if (/(?:^|[\r\n]).$/.test(decoded)) {
-					// because both "+a\n+" and "+a\n" will map to "a\n" after the line prefixes are removed
-						lines.push(prefix);
-					}
-					env.content = lines.join('');
+					const withoutPrefixes = token.content.filter(t => typeof t === 'string' || t.type !== 'prefix');
+					const prefixCount = token.content.length - withoutPrefixes.length;
 
-					if (diffLanguage) {
-						env.classes.push('language-' + diffLanguage);
+					const diffTokens = Prism.tokenize(getTextContent(withoutPrefixes), diffGrammar);
+
+					// re-insert prefixes
+
+					// always add a prefix at the start
+					diffTokens.unshift(getPrefixToken());
+
+					const LINE_BREAK = /\r\n|\n/g;
+					/**
+					 * @param {string} text
+					 * @returns {import('../../core/token').TokenStream | undefined}
+					 */
+					const insertAfterLineBreakString = (text) => {
+						/** @type {import('../../core/token').TokenStream} */
+						const result = [];
+						LINE_BREAK.lastIndex = 0;
+						let last = 0;
+						let m;
+						while (insertedPrefixes < prefixCount && (m = LINE_BREAK.exec(text))) {
+							const end = m.index + m[0].length;
+							result.push(text.slice(last, end));
+							last = end;
+							result.push(getPrefixToken());
+						}
+
+						if (result.length === 0) {
+							return undefined;
+						}
+
+						if (last < text.length) {
+							result.push(text.slice(last));
+						}
+						return result;
+					};
+					/**
+					 * @param {import('../../core/token').TokenStream} tokens
+					 */
+					const insertAfterLineBreak = (tokens) => {
+						for (let i = 0; i < tokens.length && insertedPrefixes < prefixCount; i++) {
+							const token = tokens[i];
+
+							if (typeof token === 'string') {
+								const inserted = insertAfterLineBreakString(token);
+								if (inserted) {
+									tokens.splice(i, 1, ...inserted);
+									i += inserted.length - 1;
+								}
+							} else if (typeof token.content === 'string') {
+								const inserted = insertAfterLineBreakString(token.content);
+								if (inserted) {
+									token.content = inserted;
+								}
+							} else {
+								insertAfterLineBreak(token.content);
+							}
+						}
+					};
+					insertAfterLineBreak(diffTokens);
+
+					if (insertedPrefixes < prefixCount) {
+						// we are missing the last prefix
+						diffTokens.push(getPrefixToken());
 					}
+
+					token.content = diffTokens;
 				}
 			}
 		});
