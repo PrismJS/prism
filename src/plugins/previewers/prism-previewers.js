@@ -498,7 +498,7 @@ const previewers = {
 			});
 		},
 		tokens: {
-			'color': [Prism.languages.css['hexcode']].concat(Prism.languages.css['color'])
+			'color': [Prism.languages.css?.['hexcode']].concat(Prism.languages.css?.['color'])
 		},
 		languages: {
 			// CSS extras is required, so css and scss are not necessary
