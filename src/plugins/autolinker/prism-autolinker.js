@@ -33,7 +33,7 @@ export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 				if (env.type.endsWith('-link')) {
 					let href = env.content;
 
-					if (env.type == 'email-link' && !href.startsWith('mailto:')) {
+					if (env.type === 'email-link' && !href.startsWith('mailto:')) {
 						href = 'mailto:' + href;
 					}
 

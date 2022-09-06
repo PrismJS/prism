@@ -119,7 +119,7 @@ function testPatterns(getPrism, mainLanguage) {
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
 
-				if (key && Object.prototype.toString.call(value) == '[object RegExp]') {
+				if (key && Object.prototype.toString.call(value) === '[object RegExp]') {
 					try {
 						let ast;
 						try {
@@ -300,7 +300,7 @@ function testPatterns(getPrism, mainLanguage) {
 		await forEachPattern(({ name, parent, tokenPath, path }) => {
 			// token name
 			let offset = 1;
-			if (name == 'pattern') { // regex can be inside an object
+			if (name === 'pattern') { // regex can be inside an object
 				offset++;
 			}
 			if (Array.isArray(path[path.length - 1 - offset].value)) { // regex/regex object can be inside an array
@@ -312,7 +312,7 @@ function testPatterns(getPrism, mainLanguage) {
 			}
 
 			// check alias
-			if (name == 'pattern' && 'alias' in parent) {
+			if (name === 'pattern' && 'alias' in parent) {
 				const alias = parent.alias;
 				if (typeof alias === 'string') {
 					testName(alias, `alias of '${tokenPath}'`);

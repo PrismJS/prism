@@ -43,7 +43,7 @@ export default /** @type {import("../../types").PluginProto<'unescaped-markup'>}
 				if (!env.code) {
 					// no code
 					const childNodes = element.childNodes;
-					if (childNodes.length === 1 && childNodes[0].nodeName == '#comment') {
+					if (childNodes.length === 1 && childNodes[0].nodeName === '#comment') {
 						// the only child is a comment -> use the comment's text
 						element.textContent = env.code = childNodes[0].textContent || '';
 					}

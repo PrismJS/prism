@@ -266,7 +266,7 @@ export class Prism {
 			const patterns = Array.isArray(tokenValue) ? tokenValue : [tokenValue];
 
 			for (let j = 0; j < patterns.length; ++j) {
-				if (rematch && rematch.cause == token + ',' + j) {
+				if (rematch && rematch.cause === token + ',' + j) {
 					return;
 				}
 
@@ -432,7 +432,7 @@ function matchPattern(pattern, pos, text, lookbehind) {
  * @returns {string} The HTML representation of the token or token stream.
  */
 function stringify(o, language, hooks) {
-	if (typeof o == 'string') {
+	if (typeof o === 'string') {
 		return htmlEncode(o);
 	}
 	if (Array.isArray(o)) {

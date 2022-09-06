@@ -40,13 +40,13 @@ function getLanguage(tag) {
 
 	if (typeof document !== 'undefined') {
 		const htmlInterface = (document.createElement(tag).toString().match(/\[object HTML(.+)Element\]/) || [])[1];
-		if (htmlInterface && htmlInterface != 'Unknown') {
+		if (htmlInterface && htmlInterface !== 'Unknown') {
 			htmlTags.add(tagL);
 			return 'html';
 		}
 
 		const svgInterface = (document.createElementNS('http://www.w3.org/2000/svg', tag).toString().match(/\[object SVG(.+)Element\]/) || [])[1];
-		if (svgInterface && svgInterface != 'Unknown') {
+		if (svgInterface && svgInterface !== 'Unknown') {
 			svgTags.add(tag);
 			return 'svg';
 		}
@@ -74,25 +74,25 @@ export default /** @type {import("../../types").PluginProto<'wpd'>} */ ({
 			}
 
 			const lang = Prism.components.resolveAlias(env.language);
-			if (lang == 'css' || lang == 'scss') {
+			if (lang === 'css' || lang === 'scss') {
 				href += 'css/';
 
-				if (env.type == 'property' && !content.startsWith('-')) {
+				if (env.type === 'property' && !content.startsWith('-')) {
 					href += 'properties/';
-				} else if (env.type == 'rule' && !content.startsWith('@-')) {
+				} else if (env.type === 'rule' && !content.startsWith('@-')) {
 					href += 'atrules/';
 					content = content.substring(1);
-				} else if (env.type == 'pseudo-class' && !content.startsWith(':-')) {
+				} else if (env.type === 'pseudo-class' && !content.startsWith(':-')) {
 					href += 'selectors/pseudo-classes/';
 					content = content.substring(1);
-				} else if (env.type == 'pseudo-element' && !content.startsWith('::-')) {
+				} else if (env.type === 'pseudo-element' && !content.startsWith('::-')) {
 					href += 'selectors/pseudo-elements/';
 					content = content.substring(2);
 				} else {
 					return;
 				}
-			} else if (lang == 'markup') {
-				if (env.type == 'tag' && /^[\w-]+$/.test(content)) {
+			} else if (lang === 'markup') {
+				if (env.type === 'tag' && /^[\w-]+$/.test(content)) {
 					// Check language
 					const language = getLanguage(content);
 

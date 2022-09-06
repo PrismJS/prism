@@ -6,7 +6,7 @@ import { getParentPre, isActive } from '../../shared/dom-util';
 function tabLength(str) {
 	let res = 0;
 	for (let i = 0; i < str.length; ++i) {
-		if (str.charCodeAt(i) == '\t'.charCodeAt(0)) {
+		if (str.charCodeAt(i) === '\t'.charCodeAt(0)) {
 			res += 3;
 		}
 	}
@@ -226,7 +226,7 @@ export default /** @type {import("../../types").PluginProto<'normalize-whitespac
 			for (let i = 0; i < children.length; ++i) {
 				const node = children[i];
 
-				if (node == env.element) {
+				if (node === env.element) {
 					codeFound = true;
 				} else if (node.nodeName === '#text') {
 					if (codeFound) {

@@ -12,6 +12,7 @@ module.exports = {
 	},
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
+		'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
 
 		// imports
 		'import/extensions': ['warn', 'never'],

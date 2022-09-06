@@ -27,7 +27,7 @@ describe('Pattern test coverage', () => {
 			const { key, value } = path[path.length - 1];
 			const tokenPath = BFSPathToPrismTokenPath(path);
 
-			if (key && Object.prototype.toString.call(value) == '[object RegExp]') {
+			if (key && Object.prototype.toString.call(value) === '[object RegExp]') {
 				const regex = makeGlobal(value);
 				object[key] = regex;
 

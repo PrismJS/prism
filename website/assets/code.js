@@ -123,7 +123,7 @@
 		return;
 	}
 
-	if (PrefixFree.functions.indexOf('calc') == -1) {
+	if (PrefixFree.functions.indexOf('calc') === -1) {
 		const style = document.createElement('_').style;
 		style.width = 'calc(1px + 1%)';
 
@@ -214,7 +214,7 @@ var setTheme;
 
 	function listPlugins(ul) {
 		for (const id in components.plugins) {
-			if (id == 'meta') {
+			if (id === 'meta') {
 				continue;
 			}
 

@@ -22,7 +22,7 @@ function loadFile(src, success, error) {
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET', src, true);
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4) {
+		if (xhr.readyState === 4) {
 			if (xhr.status < 400 && xhr.responseText) {
 				success(xhr.responseText);
 			} else {

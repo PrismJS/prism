@@ -43,7 +43,7 @@ export function BFS(start, callback) {
 					path.push({ key, value });
 					callback(path, obj);
 
-					if (Array.isArray(value) || Object.prototype.toString.call(value) == '[object Object]') {
+					if (Array.isArray(value) || Object.prototype.toString.call(value) === '[object Object]') {
 						newToVisit.push([...path]);
 					}
 

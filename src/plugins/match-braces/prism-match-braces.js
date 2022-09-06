@@ -55,7 +55,7 @@ export default /** @type {import("../../types").PluginProto<'match-braces'>} */ 
 			if (!match) {
 				return null;
 			}
-			return document.querySelector('#' + match[1] + (match[2] == 'open' ? 'close' : 'open'));
+			return document.querySelector('#' + match[1] + (match[2] === 'open' ? 'close' : 'open'));
 		}
 
 		/**
@@ -124,7 +124,7 @@ export default /** @type {import("../../types").PluginProto<'match-braces'>} */ 
 				toMatch.push('(', '[', '{');
 			}
 
-			if (toMatch.length == 0) {
+			if (toMatch.length === 0) {
 				// nothing to match
 				return;
 			}
@@ -158,7 +158,7 @@ export default /** @type {import("../../types").PluginProto<'match-braces'>} */ 
 
 				for (let i = 0; i < punctuation.length; i++) {
 					const element = punctuation[i];
-					if (element.childElementCount == 0) {
+					if (element.childElementCount === 0) {
 						let text = element.textContent || '';
 						text = BRACE_ALIAS_MAP[text] || text;
 						if (text === open) {

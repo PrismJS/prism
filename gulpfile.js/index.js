@@ -40,7 +40,7 @@ function inlineRegexSource() {
 					if (/[nrt0/]/.test(g1)) {
 						return m;
 					}
-					if ('\\' == g1) {
+					if ('\\' === g1) {
 						return '\\\\\\\\'; // escape using 4 backslashes
 					}
 					return '\\\\' + g1;

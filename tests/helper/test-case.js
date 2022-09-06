@@ -427,7 +427,7 @@ function firstDiff(expected, actual) {
 		i++; j++;
 	}
 
-	if (i == expected.length && j == actual.length) {
+	if (i === expected.length && j === actual.length) {
 		return undefined;
 	}
 	return i;

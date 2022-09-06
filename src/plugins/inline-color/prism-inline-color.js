@@ -30,7 +30,7 @@ function parseHexColor(hex) {
 	const channelCount = hex.length / channelWidth;
 
 	// the scale used to normalize 4bit and 8bit values
-	const scale = channelWidth == 1 ? 1 / 15 : 1 / 255;
+	const scale = channelWidth === 1 ? 1 / 15 : 1 / 255;
 
 	// normalized RGBA channels
 	const channels = [];
@@ -38,7 +38,7 @@ function parseHexColor(hex) {
 		const int = parseInt(hex.substr(i * channelWidth, channelWidth), 16);
 		channels.push(int * scale);
 	}
-	if (channelCount == 3) {
+	if (channelCount === 3) {
 		channels.push(1); // add alpha of 100%
 	}
 

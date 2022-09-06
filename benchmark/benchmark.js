@@ -444,7 +444,7 @@ async function getCandidates(config) {
 function toArray(value) {
 	if (Array.isArray(value)) {
 		return value;
-	} else if (value != undefined) {
+	} else if (value != null) {
 		return [value];
 	} else {
 		return [];

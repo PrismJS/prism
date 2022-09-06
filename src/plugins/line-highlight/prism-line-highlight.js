@@ -125,7 +125,7 @@ export class LineHighlight {
 		 *
 		 * This offset will be 0 if the parent element of the line highlight element is the `<code>` element.
 		 */
-		const codePreOffset = !codeElement || parentElement == codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
+		const codePreOffset = !codeElement || parentElement === codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
 
 		ranges.forEach((currentRange) => {
 			const range = currentRange.split('-');

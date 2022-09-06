@@ -377,7 +377,7 @@
 			for (var id in all) {
 				var info = all[id];
 
-				if (info.enabled || id == updatedId) {
+				if (info.enabled || id === updatedId) {
 					const distro = info.files[minified ? 'minified' : 'dev'];
 
 					distro.paths.forEach((path) => {
@@ -396,7 +396,7 @@
 								total[type] += size;
 							}
 
-							if (id == updatedId) {
+							if (id === updatedId) {
 								updated[type] += size;
 							}
 						}
@@ -565,7 +565,7 @@
 		const toSortMap = {};
 
 		promises.forEach((p) => {
-			if (p.category == 'core' || p.category == 'themes') {
+			if (p.category === 'core' || p.category === 'themes') {
 				finalPromises.push(p);
 			} else {
 				let infos = toSortMap[p.id];
