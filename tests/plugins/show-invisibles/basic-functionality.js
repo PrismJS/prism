@@ -10,14 +10,16 @@ describe('Show Invisibles', () => {
 	it('should show invisible characters', ({ util }) => {
 		util.assert.highlightElement({
 			language: 'javascript',
-			code: `  \t\n\r\n\t\t`
+			code: `  \t\n\r\n\t\t`,
+			format: false
 		});
 	});
 
 	it('should show invisible characters inside tokens', ({ util }) => {
 		util.assert.highlightElement({
 			language: 'javascript',
-			code: `/* \n */`
+			code: `/* \n */`,
+			format: false
 		});
 	});
 });

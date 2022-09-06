@@ -1,9 +1,8 @@
 import { assert } from 'chai';
 import fs from 'fs';
-import * as Prettier from 'prettier';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
-import { getLeadingSpaces } from './util';
+import { formatHtml, getLeadingSpaces } from './util';
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
@@ -241,13 +240,7 @@ class HighlightHTMLRunner {
 	 * @returns {string}
 	 */
 	print(actual) {
-		return Prettier.format(actual, {
-			printWidth: 100,
-			tabWidth: 4,
-			useTabs: true,
-			htmlWhitespaceSensitivity: 'ignore',
-			filepath: 'fake.html',
-		});
+		return formatHtml(actual);
 	}
 	/**
 	 * @param {string} actual

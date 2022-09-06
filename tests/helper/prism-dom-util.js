@@ -1,5 +1,6 @@
 import { createPrismDOM } from './prism-loader';
 import { assertEqual, useSnapshot } from './snapshot';
+import { formatHtml } from './util';
 
 /**
  * @param {import('./prism-loader').PrismWindow<{}>} window
@@ -7,6 +8,7 @@ import { assertEqual, useSnapshot } from './snapshot';
  * @typedef AssertOptions
  * @property {string} [language]
  * @property {string} code
+ * @property {boolean} [format]
  * @property {string | useSnapshot} [expected]
  */
 export function createUtil(window) {
@@ -17,25 +19,33 @@ export function createUtil(window) {
 			/**
 			 * @param {AssertOptions} param0
 			 */
-			highlight({ language = 'none', code, expected = useSnapshot }) {
-				assertEqual(Prism.highlight(code, language), expected);
+			highlight({ language = 'none', code, format = true, expected = useSnapshot }) {
+				let actual = Prism.highlight(code, language);
+				if (format) {
+					actual = formatHtml(actual);
+				}
+				assertEqual(actual, expected);
 			},
 			/**
 			 * @param {AssertOptions} param0
 			 */
-			highlightElement({ language = 'none', code, expected = useSnapshot }) {
+			highlightElement({ language = 'none', code, format = true, expected = useSnapshot }) {
 				const element = document.createElement('code');
 				element.classList.add('language-' + language);
 				element.textContent = code;
 
 				Prism.highlightElement(element);
 
-				assertEqual(element.innerHTML, expected);
+				let actual = element.innerHTML;
+				if (format) {
+					actual = formatHtml(actual);
+				}
+				assertEqual(actual, expected);
 			},
 			/**
 			 * @param {AssertOptions & { attributes?: Record<string, string> }} param0
 			 */
-			highlightPreElement({ language = 'none', attributes = {}, code, expected = useSnapshot }) {
+			highlightPreElement({ language = 'none', attributes = {}, code, format = false, expected = useSnapshot }) {
 				const preElement = document.createElement('pre');
 				for (const key in attributes) {
 					const value = attributes[key];
@@ -49,7 +59,11 @@ export function createUtil(window) {
 
 				Prism.highlightElement(codeElement);
 
-				assertEqual(preElement.outerHTML, expected);
+				let actual = preElement.outerHTML;
+				if (format) {
+					actual = formatHtml(actual);
+				}
+				assertEqual(actual, expected);
 			}
 		},
 	};

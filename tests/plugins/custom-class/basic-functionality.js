@@ -13,7 +13,6 @@ describe('Custom class', () => {
 		util.assert.highlight({
 			language: 'javascript',
 			code: `var a = true;`,
-			expected: `<span class="prism-token prism-keyword">var</span> a <span class="prism-token prism-operator">=</span> <span class="prism-token prism-boolean">true</span><span class="prism-token prism-punctuation">;</span>`
 		});
 	});
 
@@ -23,7 +22,6 @@ describe('Custom class', () => {
 		util.assert.highlight({
 			language: 'javascript',
 			code: `var a = true;`,
-			expected: `<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>`
 		});
 	});
 
@@ -35,7 +33,6 @@ describe('Custom class', () => {
 		util.assert.highlight({
 			language: 'javascript',
 			code: `var a = true;`,
-			expected: `<span class="javascript-token javascript-keyword">var</span> a <span class="javascript-token javascript-operator">=</span> <span class="javascript-token javascript-boolean">true</span><span class="javascript-token javascript-punctuation">;</span>`
 		});
 	});
 
@@ -50,7 +47,6 @@ describe('Custom class', () => {
 		util.assert.highlight({
 			language: 'javascript',
 			code: `var a = true;`,
-			expected: `<span class="token kw">var</span> a <span class="token op">=</span> <span class="token b">true</span><span class="token p">;</span>`
 		});
 	});
 
@@ -60,7 +56,6 @@ describe('Custom class', () => {
 		util.assert.highlight({
 			language: 'javascript',
 			code: `var a = true;`,
-			expected: `<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>`
 		});
 	});
 

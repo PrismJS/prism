@@ -1,5 +1,5 @@
+import * as Prettier from 'prettier';
 import { RegExpParser } from 'regexpp';
-
 
 /**
  * @typedef {import("regexpp/ast").Pattern} Pattern
@@ -109,4 +109,18 @@ export function getLeadingSpaces(string) {
  */
 export function getTrailingSpaces(string) {
 	return /\s*$/.exec(string)?.[0] ?? '';
+}
+
+/**
+ * @param {string} html
+ * @returns {string}
+ */
+export function formatHtml(html) {
+	return Prettier.format(html, {
+		printWidth: 100,
+		tabWidth: 4,
+		useTabs: true,
+		htmlWhitespaceSensitivity: 'ignore',
+		filepath: 'fake.html',
+	});
 }

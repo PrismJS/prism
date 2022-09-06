@@ -1,33 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Autolinker In CSS code 1`] = `
-"
-<span class=\\"token atrule\\"><span class=\\"token rule\\">@font-face</span></span> <span class=\\"token punctuation\\">{</span>
-	<span class=\\"token property\\">src</span><span class=\\"token punctuation\\">:</span> <span class=\\"token url\\"><span class=\\"token function\\">url</span><span class=\\"token punctuation\\">(</span><a class=\\"token url-link\\" href=\\"http://lea.verou.me/logo.otf\\">http://lea.verou.me/logo.otf</a><span class=\\"token punctuation\\">)</span></span><span class=\\"token punctuation\\">;</span>
-	<span class=\\"token property\\">font-family</span><span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'LeaVerou'</span><span class=\\"token punctuation\\">;</span>
+"<span class=\\"token atrule\\"><span class=\\"token rule\\">@font-face</span></span>
+<span class=\\"token punctuation\\">{</span>
+<span class=\\"token property\\">src</span>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token url\\">
+	<span class=\\"token function\\">url</span>
+	<span class=\\"token punctuation\\">(</span>
+	<a class=\\"token url-link\\" href=\\"http://lea.verou.me/logo.otf\\">http://lea.verou.me/logo.otf</a>
+	<span class=\\"token punctuation\\">)</span>
+</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">font-family</span>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token string\\">'LeaVerou'</span>
+<span class=\\"token punctuation\\">;</span>
 <span class=\\"token punctuation\\">}</span>
 "
 `;
 
 exports[`Autolinker In HTML code 1`] = `
-"
-<span class=\\"token comment\\">&lt;!-- Links in HTML, woo!
-Lea Verou <a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a> or, with Markdown, [Lea Verou](<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>) --&gt;</span>
-<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>img</span> <span class=\\"token attr-name\\">src</span><span class=\\"token attr-value\\"><span class=\\"token punctuation attr-equals\\">=</span><span class=\\"token punctuation\\">\\"</span><a class=\\"token url-link\\" href=\\"https://prismjs.com/assets/img/spectrum.png\\">https://prismjs.com/assets/img/spectrum.png</a><span class=\\"token punctuation\\">\\"</span></span> <span class=\\"token attr-name\\">alt</span><span class=\\"token attr-value\\"><span class=\\"token punctuation attr-equals\\">=</span><span class=\\"token punctuation\\">\\"</span>In attributes too!<span class=\\"token punctuation\\">\\"</span></span> <span class=\\"token punctuation\\">/&gt;</span></span>
-<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>p</span><span class=\\"token punctuation\\">&gt;</span></span>Autolinking in raw text: <a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>p</span><span class=\\"token punctuation\\">&gt;</span></span>
+"<span class=\\"token comment\\">
+	&lt;!-- Links in HTML, woo! Lea Verou
+	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
+	or, with Markdown, [Lea Verou](
+	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
+	) --&gt;
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token tag\\">
+		<span class=\\"token punctuation\\">&lt;</span>
+		img
+	</span>
+	<span class=\\"token attr-name\\">src</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		<a class=\\"token url-link\\" href=\\"https://prismjs.com/assets/img/spectrum.png\\">
+			https://prismjs.com/assets/img/spectrum.png
+		</a>
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">alt</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		In attributes too!
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token tag\\">
+		<span class=\\"token punctuation\\">&lt;</span>
+		p
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+Autolinking in raw text:
+<a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a>
+<span class=\\"token tag\\">
+	<span class=\\"token tag\\">
+		<span class=\\"token punctuation\\">&lt;/</span>
+		p
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
 "
 `;
 
 exports[`Autolinker In JS code 1`] = `
-"
-<span class=\\"token doc-comment\\">/**
- * Prism: Lightweight, robust, elegant syntax highlighting
- * MIT license <a class=\\"token url-link\\" href=\\"http://www.opensource.org/licenses/mit-license.php/\\">http://www.opensource.org/licenses/mit-license.php/</a>
- * @author Lea Verou <a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
- * Reach Lea at <a class=\\"token email-link\\" href=\\"mailto:fake@email.com\\">fake@email.com</a> (no, not really)
- * And this is [a Markdown link](<a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a>). Sweet, huh?
- */</span>
-<span class=\\"token keyword\\">var</span> foo <span class=\\"token operator\\">=</span> <span class=\\"token number\\">5</span><span class=\\"token punctuation\\">;</span>
-<span class=\\"token comment\\">// And a single line comment <a class=\\"token url-link\\" href=\\"http://google.com\\">http://google.com</a></span>
+"<span class=\\"token doc-comment\\">
+	/** * Prism: Lightweight, robust, elegant syntax highlighting * MIT license
+	<a class=\\"token url-link\\" href=\\"http://www.opensource.org/licenses/mit-license.php/\\">
+		http://www.opensource.org/licenses/mit-license.php/
+	</a>
+	* @author Lea Verou
+	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
+	* Reach Lea at
+	<a class=\\"token email-link\\" href=\\"mailto:fake@email.com\\">fake@email.com</a>
+	(no, not really) * And this is [a Markdown link](
+	<a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a>
+	). Sweet, huh? */
+</span>
+<span class=\\"token keyword\\">var</span>
+foo
+<span class=\\"token operator\\">=</span>
+<span class=\\"token number\\">5</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token comment\\">
+	// And a single line comment
+	<a class=\\"token url-link\\" href=\\"http://google.com\\">http://google.com</a>
+</span>
 "
 `;
