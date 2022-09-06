@@ -1,4 +1,4 @@
-import { Grammar } from '../types';
+import { Grammar, TokenName } from '../types';
 import { HookState } from './hook-state';
 import { TokenStream } from './token';
 
@@ -92,7 +92,7 @@ export interface AfterTokenizeEnv {
 }
 
 export interface WrapEnv {
-	type: string;
+	type: TokenName;
 	content: string;
 	tag: string;
 	classes: string[];

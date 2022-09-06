@@ -26,6 +26,43 @@ export interface PluginProto<Id extends string = string> extends ComponentProtoB
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
+export type StandardTokenName =
+	| 'atrule'
+	| 'attr-name'
+	| 'attr-value'
+	| 'bold'
+	| 'boolean'
+	| 'builtin'
+	| 'cdata'
+	| 'char'
+	| 'class-name'
+	| 'comment'
+	| 'constant'
+	| 'deleted'
+	| 'doctype'
+	| 'entity'
+	| 'function'
+	| 'important'
+	| 'inserted'
+	| 'italic'
+	| 'keyword'
+	| 'namespace'
+	| 'number'
+	| 'operator'
+	| 'prolog'
+	| 'property'
+	| 'punctuation'
+	| 'regex'
+	| 'selector'
+	| 'string'
+	| 'symbol'
+	| 'tag'
+	| 'url'
+	;
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type TokenName = string & {} | StandardTokenName;
+
 /**
  * The expansion of a simple `RegExp` literal to support additional properties.
  */
@@ -49,7 +86,7 @@ export interface GrammarToken {
 	/**
 	 * An optional alias or list of aliases.
 	 */
-	alias?: string | string[]
+	alias?: TokenName | TokenName[]
 	/**
 	 * The nested grammar of this token.
 	 *
@@ -70,7 +107,7 @@ export interface GrammarToken {
 	readonly exec?: never;
 }
 
-export type GrammarTokens = Partial<Record<string, RegExp | GrammarToken | (RegExp | GrammarToken)[]>>;
+export type GrammarTokens = Partial<Record<TokenName, RegExp | GrammarToken | (RegExp | GrammarToken)[]>>;
 export interface GrammarSymbols {
 	/**
 	 * An optional grammar object that will be appended to this grammar.

@@ -2,9 +2,9 @@ export class Token {
 	/**
 	 * Creates a new token.
 	 *
-	 * @param {string} type See {@link Token#type type}
+	 * @param {import("../types").TokenName} type See {@link Token#type type}
 	 * @param {string | TokenStream} content See {@link Token#content content}
-	 * @param {string | string[]} [alias] The alias(es) of the token.
+	 * @param {import("../types").TokenName | import("../types").TokenName[]} [alias] The alias(es) of the token.
 	 * @param {string} [matchedStr=""] A copy of the full string this token was created from.
 	 * @public
 	 */
@@ -14,7 +14,7 @@ export class Token {
 		 *
 		 * This is usually the key of a pattern in a {@link Grammar}.
 		 *
-		 * @type {string}
+		 * @type {import("../types").TokenName}
 		 * @see GrammarToken
 		 * @public
 		 */
@@ -31,7 +31,7 @@ export class Token {
 		/**
 		 * The alias(es) of the token.
 		 *
-		 * @type {undefined | string | string[]}
+		 * @type {undefined | import("../types").TokenName | import("../types").TokenName[]}
 		 * @see GrammarToken
 		 * @public
 		 */
@@ -44,7 +44,7 @@ export class Token {
 	/**
 	 * Adds the given alias to the list of aliases of this token.
 	 *
-	 * @param {string} alias
+	 * @param {import("../types").TokenName} alias
 	 */
 	addAlias(alias) {
 		let aliases = this.alias;
