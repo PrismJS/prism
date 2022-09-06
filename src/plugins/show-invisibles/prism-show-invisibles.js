@@ -2,7 +2,7 @@ import { tokenizeStrings } from '../../shared/tokenize-strings';
 
 export default /** @type {import("../../types").PluginProto<'show-invisibles'>} */ ({
 	id: 'show-invisibles',
-	optional: ['autolinker', 'data-uri-highlight'],
+	optional: ['autolinker', 'data-uri-highlight', 'diff-highlight'],
 	effect(Prism) {
 		const invisibles = {
 			'tab': /\t/,

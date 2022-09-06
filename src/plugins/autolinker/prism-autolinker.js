@@ -3,6 +3,7 @@ import { tokenizeStrings } from '../../shared/tokenize-strings';
 
 export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 	id: 'autolinker',
+	optional: 'diff-highlight',
 	effect(Prism) {
 		/**
 		 * @param {string} chars
