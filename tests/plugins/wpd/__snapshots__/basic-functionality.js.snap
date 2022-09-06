@@ -1,0 +1,675 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WPD should work with CSS 1`] = `
+"<span class=\\"token atrule\\">
+	<a
+		class=\\"token rule\\"
+		href=\\"https://webplatform.github.io/docs/css/atrules/import\\"
+		target=\\"_blank\\"
+	>
+		@import
+	</a>
+	<span class=\\"token url\\">
+		<span class=\\"token function\\">url</span>
+		<span class=\\"token punctuation\\">(</span>
+		https://fonts.googleapis.com/css?family=Questrial
+		<span class=\\"token punctuation\\">)</span>
+	</span>
+	<span class=\\"token punctuation\\">;</span>
+</span>
+<span class=\\"token atrule\\">
+	<a
+		class=\\"token rule\\"
+		href=\\"https://webplatform.github.io/docs/css/atrules/import\\"
+		target=\\"_blank\\"
+	>
+		@import
+	</a>
+	<span class=\\"token url\\">
+		<span class=\\"token function\\">url</span>
+		<span class=\\"token punctuation\\">(</span>
+		https://fonts.googleapis.com/css?family=Arvo
+		<span class=\\"token punctuation\\">)</span>
+	</span>
+	<span class=\\"token punctuation\\">;</span>
+</span>
+
+<span class=\\"token atrule\\">
+	<a
+		class=\\"token rule\\"
+		href=\\"https://webplatform.github.io/docs/css/atrules/font-face\\"
+		target=\\"_blank\\"
+	>
+		@font-face
+	</a>
+</span>
+<span class=\\"token punctuation\\">{</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/src\\"
+	target=\\"_blank\\"
+>
+	src
+</a>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token url\\">
+	<span class=\\"token function\\">url</span>
+	<span class=\\"token punctuation\\">(</span>
+	https://lea.verou.me/logo.otf
+	<span class=\\"token punctuation\\">)</span>
+</span>
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/font-family\\"
+	target=\\"_blank\\"
+>
+	font-family
+</a>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token string\\">'LeaVerou'</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token punctuation\\">}</span>
+
+<span class=\\"token comment\\">/* Shared styles */</span>
+
+<span class=\\"token selector\\">
+	section h1
+	<span class=\\"token punctuation\\">,</span>
+	<span class=\\"token id\\">#features</span>
+	li strong
+	<span class=\\"token punctuation\\">,</span>
+	header h2
+	<span class=\\"token punctuation\\">,</span>
+	footer p
+</span>
+<span class=\\"token punctuation\\">{</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/font\\"
+	target=\\"_blank\\"
+>
+	font
+</a>
+<span class=\\"token punctuation\\">:</span>
+100% Rockwell
+<span class=\\"token punctuation\\">,</span>
+Arvo
+<span class=\\"token punctuation\\">,</span>
+serif
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token punctuation\\">}</span>
+
+<span class=\\"token selector\\">
+	code
+	<span class=\\"token attribute\\">
+		<span class=\\"token punctuation\\">[</span>
+		<span class=\\"token attr-name\\">class</span>
+		<span class=\\"token operator\\">*=</span>
+		<span class=\\"token attr-value\\">\\"language-\\"</span>
+		<span class=\\"token punctuation\\">]</span>
+	</span>
+	<span class=\\"token punctuation\\">,</span>
+	pre
+	<span class=\\"token attribute\\">
+		<span class=\\"token punctuation\\">[</span>
+		<span class=\\"token attr-name\\">class</span>
+		<span class=\\"token operator\\">*=</span>
+		<span class=\\"token attr-value\\">\\"language-\\"</span>
+		<span class=\\"token punctuation\\">]</span>
+	</span>
+</span>
+<span class=\\"token punctuation\\">{</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/color\\"
+	target=\\"_blank\\"
+>
+	color
+</a>
+<span class=\\"token punctuation\\">:</span>
+black
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/background\\"
+	target=\\"_blank\\"
+>
+	background
+</a>
+<span class=\\"token punctuation\\">:</span>
+none
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/text-shadow\\"
+	target=\\"_blank\\"
+>
+	text-shadow
+</a>
+<span class=\\"token punctuation\\">:</span>
+0 1px white
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/font-family\\"
+	target=\\"_blank\\"
+>
+	font-family
+</a>
+<span class=\\"token punctuation\\">:</span>
+Consolas
+<span class=\\"token punctuation\\">,</span>
+Monaco
+<span class=\\"token punctuation\\">,</span>
+<span class=\\"token string\\">'Andale Mono'</span>
+<span class=\\"token punctuation\\">,</span>
+<span class=\\"token string\\">'Ubuntu Mono'</span>
+<span class=\\"token punctuation\\">,</span>
+monospace
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/font-size\\"
+	target=\\"_blank\\"
+>
+	font-size
+</a>
+<span class=\\"token punctuation\\">:</span>
+1em
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/text-align\\"
+	target=\\"_blank\\"
+>
+	text-align
+</a>
+<span class=\\"token punctuation\\">:</span>
+left
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/white-space\\"
+	target=\\"_blank\\"
+>
+	white-space
+</a>
+<span class=\\"token punctuation\\">:</span>
+pre
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/word-spacing\\"
+	target=\\"_blank\\"
+>
+	word-spacing
+</a>
+<span class=\\"token punctuation\\">:</span>
+normal
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/word-break\\"
+	target=\\"_blank\\"
+>
+	word-break
+</a>
+<span class=\\"token punctuation\\">:</span>
+normal
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/word-wrap\\"
+	target=\\"_blank\\"
+>
+	word-wrap
+</a>
+<span class=\\"token punctuation\\">:</span>
+normal
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/line-height\\"
+	target=\\"_blank\\"
+>
+	line-height
+</a>
+<span class=\\"token punctuation\\">:</span>
+1.5
+<span class=\\"token punctuation\\">;</span>
+
+<span class=\\"token property\\">-moz-tab-size</span>
+<span class=\\"token punctuation\\">:</span>
+4
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">-o-tab-size</span>
+<span class=\\"token punctuation\\">:</span>
+4
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/tab-size\\"
+	target=\\"_blank\\"
+>
+	tab-size
+</a>
+<span class=\\"token punctuation\\">:</span>
+4
+<span class=\\"token punctuation\\">;</span>
+
+<span class=\\"token property\\">-webkit-hyphens</span>
+<span class=\\"token punctuation\\">:</span>
+none
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">-moz-hyphens</span>
+<span class=\\"token punctuation\\">:</span>
+none
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">-ms-hyphens</span>
+<span class=\\"token punctuation\\">:</span>
+none
+<span class=\\"token punctuation\\">;</span>
+<a
+	class=\\"token property\\"
+	href=\\"https://webplatform.github.io/docs/css/properties/hyphens\\"
+	target=\\"_blank\\"
+>
+	hyphens
+</a>
+<span class=\\"token punctuation\\">:</span>
+none
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token punctuation\\">}</span>
+"
+`;
+
+exports[`WPD should work with SVG 1`] = `
+"<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a class=\\"token tag\\" href=\\"https://webplatform.github.io/docs/svg/elements/svg\\" target=\\"_blank\\">
+		svg
+	</a>
+	<span class=\\"token attr-name\\">xmlns</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		http://www.w3.org/2000/svg
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">viewBox</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		0 0 200 170
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">path</span>
+	<span class=\\"token attr-name\\">fill</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		#fff
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">d</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		M55.37 131.5H48.4v9.13h6.97c1.67 0 2.92-.4 3.78-1.22.85 -.8 1.28-1.92
+		1.28-3.33s-.43-2.54-1.28-3.35c-.86-.8-2.12-1.2-3.78-1.2m29.52 6.4c.3-.53.47-1.2.47-2.04
+		0-1.35-.45-2.4-1.37-3.2-.92-.76-2.14-1.15-3.65 -1.15H72.9v8.52h7.32c2.26 0 3.82-.7
+		4.67-2.1M100 0L0 170h200L100 0M60.86 141.03c-1.3 1.22-3.1 1.84-5.33
+		1.84H48.4v7.55H46v-21.2h9.53c2.24 0 4.02.63 5.34 1.87 1.3 1.23 1.96 2.88 1.96 4.95 0 2.1-.66
+		3.75-1.97 4.98m24.5 9.4l -5.1-8.14h-7.37v8.12h-2.4v-21.2h10.14c2.15 0 3.88.6 5.18 1.8 1.3
+		1.18 1.95 2.8 1.95 4.84 0 2.64-1.1 4.44-3.3 5.4-.6.28-1.22.5-1.82.6l5.57 8.56h-2.85m 13.43
+		0h-2.4v-21.2h2.4v21.2m23.56-1.32c-1.48 1.05-3.53 1.57-6.16 1.57-2.96 0
+		-5.23-.6-6.78-1.85-1.4-1.1-2.18-2.7-2.37-4.74h2.5c.08 1.45.78 2.56 2.1 3.33 1.16.67 2.68 1
+		4.58 1 3.97 0 5.95-1.25 5.95-3.74 0-.86-.35-1.53-1.07-2.02-.7
+		-.5-1.6-.9-2.68-1.2-1.07-.33-2.24-.63-3.48-.9s-2.4-.65-3.5-1.08-1.97-1.02
+		-2.68-1.73c-.7-.72-1.07-1.68-1.07-2.9 0-1.73.65-3.13 1.97-4.22 1.32-1.08 3.32-1.62 6-1.62
+		2.67 0 4.75.6 6.23 1.85 1.34 1.1 2.05 2.5 2.14 4.2h-2.46c
+		-.22-1.76-1.35-2.92-3.4-3.5-.72-.2-1.62-.3-2.7-.3s-1.98.1-2.72.35c-.74.25
+		-1.3.55-1.7.9-.42.35-.7.74-.83 1.17s-.2.88-.2 1.36c0 .5.2.93.62 1.33s.96.75 1.65 1.03c.68.28
+		1.46.52 2.33.73.88.2 1.77.43 2.67.65.9.22 1.8.48 2.68.77.87 .3 1.65.65 2.33 1.1 1.53.96 2.28
+		2.27 2.28 3.94 0 2-.74 3.5-2.22 4.55m28.84 1.32v-17.54l-7.84
+		10.08-7.97-10.08v17.54H133v-21.2h2.78l7.58 10.06 7.45 -10.05h2.8v21.2h-2.4
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a class=\\"token tag\\" href=\\"https://webplatform.github.io/docs/svg/elements/svg\\" target=\\"_blank\\">
+		svg
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+"
+`;
+
+exports[`WPD should work with markup 1`] = `
+"<span class=\\"token doctype\\">
+	<span class=\\"token punctuation\\">&lt;!</span>
+	<span class=\\"token doctype-tag\\">DOCTYPE</span>
+	<span class=\\"token name\\">html</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/html\\"
+		target=\\"_blank\\"
+	>
+		html
+	</a>
+	<span class=\\"token attr-name\\">lang</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		en
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/head\\"
+		target=\\"_blank\\"
+	>
+		head
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token script\\">
+	<span class=\\"token language-javascript\\">
+		<span class=\\"token comment\\">
+			// Just a lil' script to show off that inline JS gets highlighted
+		</span>
+		window
+		<span class=\\"token punctuation\\">.</span>
+		console
+		<span class=\\"token operator\\">&amp;&amp;</span>
+		console
+		<span class=\\"token punctuation\\">.</span>
+		<span class=\\"token function\\">log</span>
+		<span class=\\"token punctuation\\">(</span>
+		<span class=\\"token string\\">'foo'</span>
+		<span class=\\"token punctuation\\">)</span>
+		<span class=\\"token punctuation\\">;</span>
+	</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/meta\\"
+		target=\\"_blank\\"
+	>
+		meta
+	</a>
+	<span class=\\"token attr-name\\">charset</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		utf-8
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/link\\"
+		target=\\"_blank\\"
+	>
+		link
+	</a>
+	<span class=\\"token attr-name\\">rel</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		icon
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">href</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		assets/favicon.png
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/title\\"
+		target=\\"_blank\\"
+	>
+		title
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+Prism
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/title\\"
+		target=\\"_blank\\"
+	>
+		title
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/link\\"
+		target=\\"_blank\\"
+	>
+		link
+	</a>
+	<span class=\\"token attr-name\\">rel</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		stylesheet
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">href</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		assets/style.css
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/link\\"
+		target=\\"_blank\\"
+	>
+		link
+	</a>
+	<span class=\\"token attr-name\\">rel</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		stylesheet
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">href</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		themes/prism.css
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">data-noprefix</span>
+	<span class=\\"token punctuation\\">/&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token attr-name\\">src</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		assets/vendor/prefixfree.min.js
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token script\\"></span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token script\\">
+	<span class=\\"token language-javascript\\">
+		<span class=\\"token keyword\\">var</span>
+		_gaq
+		<span class=\\"token operator\\">=</span>
+		<span class=\\"token punctuation\\">[</span>
+		<span class=\\"token punctuation\\">[</span>
+		<span class=\\"token string\\">'_setAccount'</span>
+		<span class=\\"token punctuation\\">,</span>
+		<span class=\\"token string\\">'UA-33746269-1'</span>
+		<span class=\\"token punctuation\\">]</span>
+		<span class=\\"token punctuation\\">,</span>
+		<span class=\\"token punctuation\\">[</span>
+		<span class=\\"token string\\">'_trackPageview'</span>
+		<span class=\\"token punctuation\\">]</span>
+		<span class=\\"token punctuation\\">]</span>
+		<span class=\\"token punctuation\\">;</span>
+	</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token attr-name\\">src</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		https://www.google-analytics.com/ga.js
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">async</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token script\\"></span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/script\\"
+		target=\\"_blank\\"
+	>
+		script
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/head\\"
+		target=\\"_blank\\"
+	>
+		head
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<a
+		class=\\"token tag\\"
+		href=\\"https://webplatform.github.io/docs/html/elements/body\\"
+		target=\\"_blank\\"
+	>
+		body
+	</a>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+"
+`;

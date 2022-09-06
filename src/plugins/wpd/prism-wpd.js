@@ -65,19 +65,16 @@ export default /** @type {import("../../types").PluginProto<'wpd'>} */ ({
 	id: 'wpd',
 	require: cssSelector,
 	effect(Prism) {
-		if (Prism.languages.markup) {
-			Prism.languages.markup.tag.inside.tag.inside['tag-id'] = /[\w-]+/;
-		}
-
 		return Prism.hooks.add('wrap', (env) => {
 			let href = 'https://webplatform.github.io/docs/';
 			let content = env.content;
 
-			if (content.includes('<')) {
+			if (/[<&]/.test(content)) {
 				return;
 			}
 
-			if (env.language == 'css' || env.language == 'scss') {
+			const lang = Prism.components.resolveAlias(env.language);
+			if (lang == 'css' || lang == 'scss') {
 				href += 'css/';
 
 				if (env.type == 'property' && !content.startsWith('-')) {
@@ -94,8 +91,8 @@ export default /** @type {import("../../types").PluginProto<'wpd'>} */ ({
 				} else {
 					return;
 				}
-			} else if (env.language == 'markup') {
-				if (env.type == 'tag-id') {
+			} else if (lang == 'markup') {
+				if (env.type == 'tag' && /^[\w-]+$/.test(content)) {
 					// Check language
 					const language = getLanguage(content);
 
