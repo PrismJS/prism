@@ -49,6 +49,10 @@ import { rest, tokenize } from './symbols';
  * @param {import("../types").GrammarTokens} insert An object containing the key-value pairs to be inserted.
  */
 export function insertBefore(grammar, before, insert) {
+	if (!(before in grammar)) {
+		throw new Error(`"${before}" has to be a key of grammar.`);
+	}
+
 	const grammarEntries = Object.entries(grammar);
 
 	// delete all keys in `grammar`
