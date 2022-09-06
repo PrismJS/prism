@@ -1,5 +1,11 @@
 import { addHooks } from '../../shared/hooks-util';
 
+/**
+ * @returns {Record<string, unknown>}
+ */
+function getGlobal() {
+	return typeof window === 'object' ? /** @type {any} */ (window) : {};
+}
 
 let jsonpCallbackCounter = 0;
 
@@ -34,7 +40,7 @@ function jsonp(src, callbackParameter, timeout, onSuccess, onError) {
 	}, timeout);
 
 
-	const global = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (window));
+	const global = getGlobal();
 
 	function cleanup() {
 		clearTimeout(timeoutId);
@@ -298,8 +304,9 @@ export default /** @type {import("../../types").PluginProto<'jsonp-highlight'>} 
 				/** @type {Adapter | null} */
 				let adapter = null;
 				if (adapterName) {
-					if (typeof window[adapterName] === 'function') {
-						adapter = window[adapterName];
+					const global = getGlobal();
+					if (typeof global[adapterName] === 'function') {
+						adapter = /** @type {Adapter} */ (global[adapterName]);
 					} else {
 						// mark as failed
 						pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
