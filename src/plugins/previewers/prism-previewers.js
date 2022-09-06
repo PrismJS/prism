@@ -209,7 +209,7 @@ export class PreviewerCollection {
 }
 
 // TODO: Filthy hack to be able to load this script
-const Prism = { languages: {} };
+const Prism = { languages: /** @type {Record<string, any>} */ ({}) };
 
 const previewers = {
 	// gradient must be defined before color and angle
@@ -295,15 +295,19 @@ const previewers = {
 					if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 						// Found a position
 						// Remove angle value, if any
+						// @ts-ignore
 						position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
 					}
 					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 						// Found a shape and/or size
+						// @ts-ignore
 						const shapeSizeParts = values.shift().split(/\s+/);
 						if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
+							// @ts-ignore
 							shape = shapeSizeParts.shift();
 						}
 						if (shapeSizeParts[0]) {
+							// @ts-ignore
 							size = shapeSizeParts.shift();
 						}
 
@@ -702,7 +706,7 @@ export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 		return collection;
 	},
 	effect(Prism) {
-
+		/*
 		Prism.hooks.add('before-highlight', (env) => {
 			for (const previewer of Object.values(previewers)) {
 				const languages = previewer.languages;
@@ -735,8 +739,9 @@ export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 				}
 			}
 		});
+		*/
 
-		Prism.hooks.add('after-highlight', (env) => {
+		return Prism.hooks.add('after-highlight', (env) => {
 			Prism.plugins.previewers.initEvents(env.element, env.language);
 		});
 	}
