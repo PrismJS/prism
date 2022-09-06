@@ -34,7 +34,7 @@ export default /** @type {import("../../types").PluginProto<'data-uri-highlight'
 		};
 
 		return Prism.hooks.add('after-tokenize', (env) => {
-			tokenizeStrings(env.tokens, code => Prism.tokenize(code, uri));
+			tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, uri));
 		});
 	}
 });

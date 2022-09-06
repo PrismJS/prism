@@ -21,7 +21,7 @@ describe('Pattern test coverage', () => {
 	async function createInstance(languages) {
 		const Prism = await PrismLoader.createInstance(languages);
 
-		const root = Object.fromEntries([...Prism.components['entries'].keys()].map(id => [id, Prism.components.getLanguage(id)]));
+		const root = Object.fromEntries([...Prism.components['entries'].keys()].map((id) => [id, Prism.components.getLanguage(id)]));
 
 		BFS(root, (path, object) => {
 			const { key, value } = path[path.length - 1];
@@ -45,7 +45,7 @@ describe('Pattern test coverage', () => {
 				data.from.add(tokenPath);
 				const { matches } = data;
 
-				regex.exec = string => {
+				regex.exec = (string) => {
 					const match = RegExp.prototype.exec.call(regex, string);
 					if (match) {
 						matches.push(match);
@@ -89,12 +89,12 @@ describe('Pattern test coverage', () => {
 		for (const language of PrismLoader.getLanguageIds()) {
 			describe(language, () => {
 				it(`- should cover all patterns`, () => {
-					const untested = getAllOf(language).filter(d => d.matches.length === 0);
+					const untested = getAllOf(language).filter((d) => d.matches.length === 0);
 					if (untested.length === 0) {
 						return;
 					}
 
-					const problems = untested.map(data => {
+					const problems = untested.map((data) => {
 						return formatProblem(data, [
 							'This pattern is completely untested. Add test files that match this pattern.'
 						]);
@@ -132,7 +132,7 @@ describe('Pattern test coverage', () => {
 						if (keywords.size > 0) {
 							problems.push(formatProblem(data, [
 								`Add test files to test all keywords. The following keywords (${keywords.size}/${keywordCount}) are untested:`,
-								...[...keywords].map(k => `    ${k}`)
+								...[...keywords].map((k) => `    ${k}`)
 							]));
 						}
 					}
@@ -156,7 +156,7 @@ describe('Pattern test coverage', () => {
 	 * @returns {PatternData[]}
 	 */
 	function getAllOf(language) {
-		return [...patterns.values()].filter(d => d.language === language);
+		return [...patterns.values()].filter((d) => d.language === language);
 	}
 
 	/**
@@ -230,7 +230,7 @@ describe('Pattern test coverage', () => {
 			lines.push(
 				'',
 				'Other occurrences of this pattern:',
-				...otherOccurrences.map(o => `- ${o}`)
+				...otherOccurrences.map((o) => `- ${o}`)
 			);
 		}
 

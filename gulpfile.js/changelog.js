@@ -18,7 +18,7 @@ function linkify(cb) {
 		replace(ISSUE_RE, ISSUE_SUB),
 		replace(
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
-			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
+			(m) => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
 		),
 		dest('.')
 	], cb);
@@ -70,7 +70,7 @@ async function getCommitInfo(line) {
 	 */
 	const output = await git.raw(['diff-tree', '--no-commit-id', '--name-status', '-r', hash]);
 
-	const changes = !output ? [] : output.trim().split(/\n/g).map(line => {
+	const changes = !output ? [] : output.trim().split(/\n/g).map((line) => {
 		const [, mode, file] = /(\w)\s+(.+)/.exec(line);
 		return { mode, file };
 	});
@@ -102,7 +102,7 @@ async function getLog(range) {
 
 const revisionRanges = {
 	nextRelease() {
-		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
+		return git.raw(['describe', '--abbrev=0', '--tags']).then((res) => `${res.trim()}..HEAD`);
 	}
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
@@ -222,7 +222,7 @@ async function changes() {
 			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, notFailures));
 
 			// `components.json` has to be modified
-			if (relevantChanges.some(c => c.file === 'components.json')) {
+			if (relevantChanges.some((c) => c.file === 'components.json')) {
 				relevantChanges = relevantChanges.filter(and(notComponentsJSON, notPartlyGenerated));
 
 				// now, only the newly added JS should be left
@@ -248,7 +248,7 @@ async function changes() {
 			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, notFailures));
 
 			// if `components.json` changed, then autoloader and show-language also change
-			if (relevantChanges.some(c => c.file === 'components.json')) {
+			if (relevantChanges.some((c) => c.file === 'components.json')) {
 				relevantChanges = relevantChanges.filter(and(notComponentsJSON, notPartlyGenerated));
 			}
 
@@ -268,10 +268,10 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			const relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
+			const relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, (c) => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
-				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {
+				relevantChanges.every((c) => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {
 
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
@@ -286,7 +286,7 @@ async function changes() {
 		},
 
 		function changedTheme(info) {
-			if (info.changes.length > 0 && info.changes.every(c => {
+			if (info.changes.length > 0 && info.changes.every((c) => {
 				return /themes\/.*\.css/.test(c.file) && c.mode === 'M';
 			})) {
 				if (info.changes.length === 1) {
@@ -304,7 +304,7 @@ async function changes() {
 		function changedInfrastructure(info) {
 			const relevantChanges = info.changes.filter(notGenerated);
 
-			if (relevantChanges.length > 0 && relevantChanges.every(c => {
+			if (relevantChanges.length > 0 && relevantChanges.every((c) => {
 				if (/^(?:gulpfile.js|tests)\//.test(c.file)) {
 					// gulp tasks or tests
 					return true;
@@ -328,7 +328,7 @@ async function changes() {
 		},
 
 		function changedWebsite(info) {
-			if (info.changes.length > 0 && info.changes.every(c => {
+			if (info.changes.length > 0 && info.changes.every((c) => {
 				return /[\w-]+\.html$/.test(c.file) || /^(?:assets|docs)\//.test(c.file);
 			})) {
 				addEntry('Other >> Website', info);
@@ -339,7 +339,7 @@ async function changes() {
 		function otherChanges(info) {
 			// detect changes of the Github setup
 			// This assumes that .md files are related to GitHub
-			if (info.changes.length > 0 && info.changes.every(c => /\.md$/i.test(c.file))) {
+			if (info.changes.length > 0 && info.changes.every((c) => /\.md$/i.test(c.file))) {
 				addEntry('Other', info);
 				return true;
 			}
@@ -348,7 +348,7 @@ async function changes() {
 	];
 
 	for (const info of infos) {
-		if (!commitSorters.some(sorter => sorter(info))) {
+		if (!commitSorters.some((sorter) => sorter(info))) {
 			addEntry('TODO:', info);
 		}
 	}

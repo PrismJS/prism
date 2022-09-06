@@ -205,7 +205,7 @@ async function languagePlugins() {
 	];
 
 	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
-	const taskResults = await Promise.all(tasks.map(async task => {
+	const taskResults = await Promise.all(tasks.map(async (task) => {
 		try {
 			const value = await new Promise((resolve, reject) => {
 				const stream = src(task.plugin)
@@ -224,9 +224,9 @@ async function languagePlugins() {
 		}
 	}));
 
-	const rejectedTasks = taskResults.filter(/** @returns {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
+	const rejectedTasks = taskResults.filter(/** @returns {r is {status: 'rejected', reason: any}} */ (r) => r.status === 'rejected');
 	if (rejectedTasks.length > 0) {
-		throw rejectedTasks.map(r => r.reason);
+		throw rejectedTasks.map((r) => r.reason);
 	}
 }
 
@@ -244,7 +244,7 @@ async function treeviewIconFont() {
 
 	// generate the font
 	const result = await webfont({
-		files: iconList.map(n => `plugins/treeview/icons/${n}.svg`),
+		files: iconList.map((n) => `plugins/treeview/icons/${n}.svg`),
 		formats: ['woff'],
 		fontName,
 		sort: false

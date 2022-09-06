@@ -49,6 +49,7 @@ module.exports = {
 		'wrap-iife': 'warn',
 
 		// spaces and indentation
+		'arrow-parens': 'warn',
 		'arrow-spacing': 'warn',
 		'block-spacing': 'warn',
 		'comma-spacing': 'warn',

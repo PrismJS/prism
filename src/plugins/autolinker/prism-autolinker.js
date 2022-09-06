@@ -27,7 +27,7 @@ export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 
 		return addHooks(Prism.hooks, {
 			'after-tokenize': (env) => {
-				tokenizeStrings(env.tokens, code => Prism.tokenize(code, links));
+				tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, links));
 			},
 			'wrap': (env) => {
 				if (env.type.endsWith('-link')) {

@@ -11,9 +11,9 @@ describe('Components', () => {
 
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
-			const require = new Set(toArray(proto?.require).map(p => p.id));
+			const require = new Set(toArray(proto?.require).map((p) => p.id));
 
-			forEach(proto?.optional, opt => {
+			forEach(proto?.optional, (opt) => {
 				if (require.has(opt)) {
 					assert.fail(`The optional dependency ${opt} is redundant because ${id} already requires it. Remove the optional dependency.`);
 				}
@@ -43,7 +43,7 @@ describe('Components', () => {
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
 			add(id, 'a component id');
-			forEach(proto?.alias, a => add(a, `an alias of ${id}`));
+			forEach(proto?.alias, (a) => add(a, `an alias of ${id}`));
 		}
 	});
 });
@@ -93,7 +93,7 @@ describe('components.json', () => {
 				/** @type {Record<string, string>} */
 				const aliasTitles = components.languages[lang]?.aliasTitles ?? {};
 
-				Object.keys(aliasTitles).forEach(id => {
+				Object.keys(aliasTitles).forEach((id) => {
 					if (!aliases.has(id)) {
 						const titleJson = JSON.stringify(aliasTitles[id]);
 						assert.fail(`The alias '${id}' with the title ${titleJson} is not registered as an alias.`);
@@ -106,7 +106,7 @@ describe('components.json', () => {
 	it('- should have a sorted language list', () => {
 		const ignore = new Set(['meta', 'xml', 'markup', 'css', 'clike', 'javascript', 'plain']);
 		/** @type {{ id: string, title: string }[]} */
-		const languages = Object.keys(components.languages).filter(key => !ignore.has(key)).map(key => {
+		const languages = Object.keys(components.languages).filter((key) => !ignore.has(key)).map((key) => {
 			return {
 				id: key,
 				title: components.languages[key].title

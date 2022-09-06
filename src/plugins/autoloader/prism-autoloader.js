@@ -77,14 +77,14 @@ export class Autoloader {
 	async loadLanguages(languages) {
 		const toLoad = toArray(languages)
 			.map(resolveAlias)
-			.filter(id => !isLoaded(this.Prism, id));
+			.filter((id) => !isLoaded(this.Prism, id));
 
 		await Promise.all(toLoad.map((id) => {
 			const path = pathJoin(this.srcPath, `languages/prism-${id}.js`);
 
 			let promise = this._importCache.get(path);
 			if (promise === undefined) {
-				promise = import(path).then(exports => {
+				promise = import(path).then((exports) => {
 					const proto = /** @type {import('../../types').ComponentProto} */ (exports.default);
 					this.Prism.components.add(proto);
 				});
@@ -103,7 +103,7 @@ export class Autoloader {
 	 * @returns {void}
 	 */
 	preloadLanguages(languages) {
-		this.loadLanguages(languages).catch(reason => {
+		this.loadLanguages(languages).catch((reason) => {
 			console.error(`Failed to preload languages (${toArray(languages).join(', ')}): ${reason}`);
 		});
 	}
@@ -159,7 +159,7 @@ export default /** @type {import("../../types").PluginProto<'autoloader'>} */ ({
 				deps.push(...mapDependency(name));
 			}
 
-			deps = deps.filter(name => !isLoaded(Prism, name));
+			deps = deps.filter((name) => !isLoaded(Prism, name));
 			if (deps.length === 0) {
 				// all dependencies are already loaded
 				return;

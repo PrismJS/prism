@@ -9,7 +9,7 @@ const SRC_DIR = path.join(__dirname, '../../src');
 export const getLanguageIds = lazy(() => {
 	const files = readdirSync(path.join(SRC_DIR, 'languages'));
 	return files
-		.map(f => {
+		.map((f) => {
 			const match = /^prism-([\w-]+)\.js$/.exec(f);
 			if (!match) {
 				return undefined;

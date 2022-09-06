@@ -56,7 +56,7 @@ export default /** @type {import("../types").LanguageProto<'pascaligo'>} */ ({
 
 		/** @type {(keyof typeof pascaligo)[]} */
 		const keys = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'];
-		keys.forEach(key => classNameInside[key] = pascaligo[key]);
+		keys.forEach((key) => classNameInside[key] = pascaligo[key]);
 
 		return pascaligo;
 	}

@@ -52,7 +52,7 @@ export default /** @type {import("../types").LanguageProto<'treeview'>} */ ({
 							continue;
 						}
 
-						if (token.content.some(t => typeof t !== 'string' && t.type === 'symlink')) {
+						if (token.content.some((t) => typeof t !== 'string' && t.type === 'symlink')) {
 							continue;
 						}
 

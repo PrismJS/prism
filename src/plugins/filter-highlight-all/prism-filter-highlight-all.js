@@ -123,7 +123,7 @@ export default /** @type {import("../../types").PluginProto<'filter-highlight-al
 		const config = Prism.plugins.filterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', (env) => {
-			env.elements = env.elements.filter(e => config.everyFilter(e));
+			env.elements = env.elements.filter((e) => config.everyFilter(e));
 		});
 	}
 });

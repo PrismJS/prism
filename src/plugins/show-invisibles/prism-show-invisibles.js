@@ -13,7 +13,7 @@ export default /** @type {import("../../types").PluginProto<'show-invisibles'>} 
 		};
 
 		return Prism.hooks.add('after-tokenize', (env) => {
-			tokenizeStrings(env.tokens, code => Prism.tokenize(code, invisibles));
+			tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, invisibles));
 		});
 	}
 });

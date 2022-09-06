@@ -114,7 +114,7 @@ function testPatterns(getPrism, mainLanguage) {
 			}
 			visited.add(grammar);
 
-			BFS(grammar, path => {
+			BFS(grammar, (path) => {
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
@@ -140,7 +140,7 @@ function testPatterns(getPrism, mainLanguage) {
 							path,
 							lookbehind,
 							lookbehindGroup,
-							reportError: message => errors.push(message)
+							reportError: (message) => errors.push(message)
 						});
 					} catch (error) {
 						errors.push(asError(error));
@@ -182,7 +182,7 @@ function testPatterns(getPrism, mainLanguage) {
 		}
 
 		if (errors.length > 0) {
-			throw new Error(errors.map(e => typeof e === 'string' ? e : e.message).join('\n\n'));
+			throw new Error(errors.map((e) => typeof e === 'string' ? e : e.message).join('\n\n'));
 		}
 	}
 
@@ -278,7 +278,7 @@ function testPatterns(getPrism, mainLanguage) {
 						+ `Unused capturing groups generally degrade the performance of regular expressions. `
 						+ `They might also be a sign that a backreference is incorrect or that a 'lookbehind: true' declaration in missing.\n`
 						+ `To fix this, do one of the following:\n`
-						+ fixes.map(f => '- ' + f).join('\n'));
+						+ fixes.map((f) => '- ' + f).join('\n'));
 				}
 			});
 		});
@@ -317,7 +317,7 @@ function testPatterns(getPrism, mainLanguage) {
 				if (typeof alias === 'string') {
 					testName(alias, `alias of '${tokenPath}'`);
 				} else if (Array.isArray(alias)) {
-					alias.forEach(name => testName(name, `alias of '${tokenPath}'`));
+					alias.forEach((name) => testName(name, `alias of '${tokenPath}'`));
 				}
 			}
 		});
@@ -339,7 +339,7 @@ function testPatterns(getPrism, mainLanguage) {
 	});
 
 	it('- should not cause exponential backtracking', async () => {
-		await replaceRegExpProto(exec => {
+		await replaceRegExpProto((exec) => {
 			return function (input) {
 				checkExponentialBacktracking('<Unknown>', this);
 				return exec.call(this, input);
@@ -352,7 +352,7 @@ function testPatterns(getPrism, mainLanguage) {
 	});
 
 	it('- should not cause polynomial backtracking', async () => {
-		await replaceRegExpProto(exec => {
+		await replaceRegExpProto((exec) => {
 			return function (input) {
 				checkPolynomialBacktracking('<Unknown>', this);
 				return exec.call(this, input);
@@ -489,7 +489,7 @@ function getResultCache(cacheName) {
  * @template {import('regexpp/ast').Node} T
  */
 function withResultCache(cacheName, cacheKey, compute) {
-	const hasBackRef = RAA.hasSomeDescendant(cacheKey, n => n.type === 'Backreference');
+	const hasBackRef = RAA.hasSomeDescendant(cacheKey, (n) => n.type === 'Backreference');
 	if (hasBackRef) {
 		compute(cacheKey);
 		return;
@@ -804,7 +804,7 @@ function highlight(highlights, offset = 0) {
  * @returns {string}
  */
 function indent(str, amount = '    ') {
-	return str.split(/\r?\n/).map(m => m === '' ? '' : amount + m).join('\n');
+	return str.split(/\r?\n/).map((m) => m === '' ? '' : amount + m).join('\n');
 }
 
 /**

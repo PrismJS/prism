@@ -67,8 +67,8 @@ async function runBenchmark(config) {
 
 			const min = results.reduce((a, c) => Math.min(a, c.stats.mean), Infinity);
 			const max = results.reduce((a, c) => Math.max(a, c.stats.mean), -Infinity);
-			const minIndex = results.findIndex(x => x.stats.mean === min);
-			const maxIndex = results.findIndex(x => x.stats.mean === max);
+			const minIndex = results.findIndex((x) => x.stats.mean === min);
+			const maxIndex = results.findIndex((x) => x.stats.mean === max);
 
 			totalSummary[minIndex].best++;
 			totalSummary[maxIndex].worst++;
@@ -100,7 +100,7 @@ async function runBenchmark(config) {
 	console.log('summary');
 	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst  relative\x1b[0m`);
 
-	totalSummary.forEach(s => {
+	totalSummary.forEach((s) => {
 		s.avgRelative = s.relative.reduce((a, c) => a + c, 0) / s.relative.length;
 	});
 	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative ?? Infinity), Infinity);
@@ -172,11 +172,11 @@ async function getCases(config) {
 		const files = new Set();
 		caseFileCache.set(id, files);
 
-		await Promise.all(toArray(caseEntry.files).map(async uri => {
+		await Promise.all(toArray(caseEntry.files).map(async (uri) => {
 			files.add(await getFileInfo(uri));
 		}));
 		for (const extendId of toArray(caseEntry.extends)) {
-			(await getCaseFiles(extendId)).forEach(info => files.add(info));
+			(await getCaseFiles(extendId)).forEach((info) => files.add(info));
 		}
 
 		return files;
@@ -192,7 +192,7 @@ async function getCases(config) {
 		if (config.options.language) {
 			// test whether the given languages contain any of the required languages
 			const required = new Set(config.options.language.split(/,/g).filter(Boolean));
-			return languages.some(l => required.has(l));
+			return languages.some((l) => required.has(l));
 		}
 
 		return true;
@@ -274,7 +274,7 @@ async function getFilePath(uri) {
 		if (!fs.existsSync(localPath)) {
 			// download file
 			console.log(`Downloading ${uri}...`);
-			await fs.promises.writeFile(localPath, await fetch(uri).then(r => r.text()), 'utf8');
+			await fs.promises.writeFile(localPath, await fetch(uri).then((r) => r.text()), 'utf8');
 		}
 
 		return localPath;
@@ -301,7 +301,7 @@ function measureCandidates(candidates, options) {
 	/** @type {Result[]} */
 	const results = [];
 
-	suite.on('cycle', event => {
+	suite.on('cycle', (event) => {
 		results.push({
 			name: event.target.name,
 			stats: event.target.stats

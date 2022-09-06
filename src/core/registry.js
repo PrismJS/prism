@@ -79,7 +79,7 @@ export class Registry {
 			added.add(id);
 
 			// add aliases
-			forEach(proto.alias, alias => this.aliasMap.set(alias, id));
+			forEach(proto.alias, (alias) => this.aliasMap.set(alias, id));
 
 			// dependencies
 			forEach(proto.require, register);
@@ -204,8 +204,8 @@ export class Registry {
 		}
 
 		// handle dependencies
-		forEach(entry.proto.require, proto => this.getLanguage(proto.id));
-		forEach(entry.proto.optional, id => this.getLanguage(id));
+		forEach(entry.proto.require, (proto) => this.getLanguage(proto.id));
+		forEach(entry.proto.optional, (id) => this.getLanguage(id));
 
 		/**
 		 * @param {string} id
@@ -220,7 +220,7 @@ export class Registry {
 
 		entry.evaluatedGrammar = entry.proto.grammar({
 			getLanguage: required,
-			getOptionalLanguage: id => this.getLanguage(id),
+			getOptionalLanguage: (id) => this.getLanguage(id),
 			extend: (id, ref) => extend(required(id), id, ref),
 		});
 

@@ -42,7 +42,7 @@ function importFile(file) {
 export async function loadLanguages(Prism, languages = knownLanguages, srcPath = '.') {
 	languages = toArray(languages)
 		.map(resolveAlias)
-		.filter(id => !Prism.components.has(id));
+		.filter((id) => !Prism.components.has(id));
 
 	await Promise.all(languages.map(async (id) => {
 		try {

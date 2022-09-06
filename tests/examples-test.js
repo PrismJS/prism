@@ -29,7 +29,7 @@ describe('Examples', () => {
 		}
 	}
 
-	const superfluous = [...exampleFiles].filter(f => !validFiles.has(f));
+	const superfluous = [...exampleFiles].filter((f) => !validFiles.has(f));
 
 	it('- should be available for every language', () => {
 		assert.isEmpty(missing, 'Following languages do not have an example file in ./examples/\n'
@@ -38,7 +38,7 @@ describe('Examples', () => {
 
 	it('- should only be available for registered languages', () => {
 		assert.isEmpty(superfluous, 'Following files are not associated with any language\n'
-			+ superfluous.map(f => `./examples/${f}`).join('\n'));
+			+ superfluous.map((f) => `./examples/${f}`).join('\n'));
 	});
 
 	describe('Validate HTML templates', () => {
@@ -80,7 +80,7 @@ async function validateHTML(html) {
 			assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
 			assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/, 'Only certain entities are allowed.');
 		} else {
-			node.children.forEach(n => {
+			node.children.forEach((n) => {
 				if (n.type === 'tag') {
 					checkCodeElements(n);
 				}

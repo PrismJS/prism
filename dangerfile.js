@@ -40,7 +40,7 @@ const getChangedFiles = async () => {
 
 const getChangedMinifiedFiles = async () => {
 	const changed = await getChangedFiles();
-	return changed.filter(file => file.endsWith('.min.js'));
+	return changed.filter((file) => file.endsWith('.min.js'));
 };
 
 // https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
@@ -128,13 +128,13 @@ ${getSummary(rows, totalMasterFileSize, totalFileSize)}
 
 | file | master | pull | size diff | % diff |
 | --- | --- | --- | --- | --- |
-${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
+${rows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
 
 </details>
 `);
 };
 
-run().catch(err => {
+run().catch((err) => {
 	console.error(err);
 	process.exit(1);
 });

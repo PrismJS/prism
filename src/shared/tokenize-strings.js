@@ -12,7 +12,7 @@ export function tokenizeStrings(tokens, tokenize) {
 	/**
 	 * @param {string} code
 	 */
-	const wrappedTokenize = code => {
+	const wrappedTokenize = (code) => {
 		const tokens = tokenize(code);
 		if (tokens.length === 1) {
 			const single = tokens[0];
