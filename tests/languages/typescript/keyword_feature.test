@@ -30,6 +30,7 @@ private;
 protected;
 public;
 return;
+satisfies;
 static;
 super;
 switch;
@@ -118,6 +119,7 @@ import type *, {}
 	["keyword", "protected"], ["punctuation", ";"],
 	["keyword", "public"], ["punctuation", ";"],
 	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "satisfies"], ["punctuation", ";"],
 	["keyword", "static"], ["punctuation", ";"],
 	["keyword", "super"], ["punctuation", ";"],
 	["keyword", "switch"], ["punctuation", ";"],
