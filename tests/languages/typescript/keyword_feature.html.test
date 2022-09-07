@@ -1,0 +1,364 @@
+as;
+await;
+break;
+case;
+class;
+const;
+continue;
+debugger;
+default;
+delete;
+do;
+else;
+enum;
+export;
+extends;
+for;
+if;
+implements;
+import;
+in;
+instanceof;
+interface;
+let;
+new;
+null;
+of;
+package;
+private;
+protected;
+public;
+return;
+static;
+super;
+switch;
+this;
+throw;
+try;
+typeof;
+undefined;
+var;
+void;
+while;
+with;
+yield;
+
+// contextual keywords
+
+try {} catch {} finally {}
+try {} catch (e) {} finally {}
+async function (){}
+async a => {}
+async (a,b,c) => {}
+import {} from "foo"
+import {} from 'foo'
+class { get foo(){} set baz(){} get [value](){} }
+
+// import assertion
+import json from "./foo.json" assert { type: "json" };
+
+// variables, not keywords
+
+const { async, from, to } = bar;
+promise.catch(foo).finally(bar);
+assert.equal(foo, bar);
+
+// TypeScript keywords
+
+abstract;
+as;
+declare;
+implements;
+is;
+keyof;
+readonly;
+require;
+
+// contextual keywords
+
+asserts foo;
+infer foo;
+interface foo;
+module foo;
+namespace foo;
+type foo;
+
+import type { Component } from "react";
+import type *, {}
+
+----------------------------------------------------
+
+<span class="token keyword module">as</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">await</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">break</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">case</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">class</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">const</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">continue</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">debugger</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">default</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">delete</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">do</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">else</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">enum</span>
+<span class="token punctuation">;</span>
+<span class="token keyword module">export</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">extends</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">for</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">if</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">implements</span>
+<span class="token punctuation">;</span>
+<span class="token keyword module">import</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">in</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">instanceof</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">interface</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">let</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">new</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">null</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">of</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">package</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">private</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">protected</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">public</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">return</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">static</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">super</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">switch</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">this</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">throw</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">try</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">typeof</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">undefined</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">var</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">void</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">while</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">with</span>
+<span class="token punctuation">;</span>
+<span class="token keyword control-flow">yield</span>
+<span class="token punctuation">;</span>
+
+<span class="token comment">// contextual keywords</span>
+
+<span class="token keyword control-flow">try</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword control-flow">catch</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword control-flow">finally</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword control-flow">try</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword control-flow">catch</span>
+<span class="token punctuation">(</span>
+e
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword control-flow">finally</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">async</span>
+<span class="token keyword">function</span>
+<span class="token punctuation">(</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">async</span>
+a
+<span class="token operator">=></span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">async</span>
+<span class="token punctuation">(</span>
+a
+<span class="token punctuation">,</span>
+b
+<span class="token punctuation">,</span>
+c
+<span class="token punctuation">)</span>
+<span class="token operator">=></span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword module">import</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword module">from</span>
+<span class="token string">"foo"</span>
+<span class="token keyword module">import</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword module">from</span>
+<span class="token string">'foo'</span>
+<span class="token keyword">class</span>
+<span class="token punctuation">{</span>
+<span class="token keyword">get</span>
+<span class="token function">foo</span>
+<span class="token punctuation">(</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">set</span>
+<span class="token function">baz</span>
+<span class="token punctuation">(</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">get</span>
+<span class="token punctuation">[</span>
+value
+<span class="token punctuation">]</span>
+<span class="token punctuation">(</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// import assertion</span>
+<span class="token keyword module">import</span>
+json
+<span class="token keyword module">from</span>
+<span class="token string">"./foo.json"</span>
+<span class="token keyword module">assert</span>
+<span class="token punctuation">{</span>
+type
+<span class="token operator">:</span>
+<span class="token string">"json"</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">;</span>
+
+<span class="token comment">// variables, not keywords</span>
+
+<span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+async
+<span class="token punctuation">,</span>
+from
+<span class="token punctuation">,</span>
+to
+<span class="token punctuation">}</span>
+<span class="token operator">=</span>
+bar
+<span class="token punctuation">;</span>
+promise
+<span class="token punctuation">.</span>
+<span class="token function">catch</span>
+<span class="token punctuation">(</span>
+foo
+<span class="token punctuation">)</span>
+<span class="token punctuation">.</span>
+<span class="token function">finally</span>
+<span class="token punctuation">(</span>
+bar
+<span class="token punctuation">)</span>
+<span class="token punctuation">;</span>
+assert
+<span class="token punctuation">.</span>
+<span class="token function">equal</span>
+<span class="token punctuation">(</span>
+foo
+<span class="token punctuation">,</span>
+bar
+<span class="token punctuation">)</span>
+<span class="token punctuation">;</span>
+
+<span class="token comment">// TypeScript keywords</span>
+
+<span class="token keyword">abstract</span>
+<span class="token punctuation">;</span>
+<span class="token keyword module">as</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">declare</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">implements</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">is</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">keyof</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">readonly</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">require</span>
+<span class="token punctuation">;</span>
+
+<span class="token comment">// contextual keywords</span>
+
+<span class="token keyword">asserts</span>
+foo
+<span class="token punctuation">;</span>
+<span class="token keyword">infer</span>
+foo
+<span class="token punctuation">;</span>
+<span class="token keyword">interface</span>
+<span class="token class-name">foo</span>
+<span class="token punctuation">;</span>
+<span class="token keyword">module</span>
+foo
+<span class="token punctuation">;</span>
+<span class="token keyword">namespace</span>
+foo
+<span class="token punctuation">;</span>
+<span class="token keyword">type</span>
+<span class="token class-name">foo</span>
+<span class="token punctuation">;</span>
+
+<span class="token keyword module">import</span>
+<span class="token keyword">type</span>
+<span class="token punctuation">{</span>
+Component
+<span class="token punctuation">}</span>
+<span class="token keyword module">from</span>
+<span class="token string">"react"</span>
+<span class="token punctuation">;</span>
+<span class="token keyword module">import</span>
+<span class="token keyword">type</span>
+<span class="token operator">*</span>
+<span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+----------------------------------------------------
+
+Checks for keywords.
