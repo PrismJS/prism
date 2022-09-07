@@ -24,7 +24,7 @@ export default /** @type {import("../types").LanguageProto<'typescript'>} */ ({
 			...toArray(typescript.keyword),
 
 			// The keywords TypeScript adds to JavaScript
-			/\b(?:abstract|declare|is|keyof|readonly|require)\b/,
+			/\b(?:abstract|declare|is|keyof|out|readonly|require)\b/,
 			// keywords that have to be followed by an identifier
 			/\b(?:asserts|infer|interface|module|namespace|type)\b(?=\s*(?:[{_$a-zA-Z\xA0-\uFFFF]|$))/,
 			// This is for `import type *, {}`

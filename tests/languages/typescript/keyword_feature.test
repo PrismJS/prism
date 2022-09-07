@@ -24,6 +24,7 @@ let;
 new;
 null;
 of;
+out;
 package;
 private;
 protected;
@@ -111,6 +112,7 @@ import type *, {}
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "null"], ["punctuation", ";"],
 	["keyword", "of"], ["punctuation", ";"],
+	["keyword", "out"], ["punctuation", ";"],
 	["keyword", "package"], ["punctuation", ";"],
 	["keyword", "private"], ["punctuation", ";"],
 	["keyword", "protected"], ["punctuation", ";"],
