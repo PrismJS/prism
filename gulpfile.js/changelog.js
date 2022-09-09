@@ -1,27 +1,20 @@
 'use strict';
 
-const { src, dest } = require('gulp');
-
-const replace = require('gulp-replace');
-const pump = require('pump');
+const fs = require('fs/promises');
 const git = require('simple-git').gitP(__dirname);
-
 const { changelog } = require('./paths');
 
 
-const ISSUE_RE = /#(\d+)(?![\d\]])/g;
-const ISSUE_SUB = '[#$1](https://github.com/PrismJS/prism/issues/$1)';
+async function linkify() {
+	let content = await fs.readFile(changelog, 'utf-8');
 
-function linkify(cb) {
-	return pump([
-		src(changelog),
-		replace(ISSUE_RE, ISSUE_SUB),
-		replace(
-			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
-			(m) => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
-		),
-		dest('.')
-	], cb);
+	content = content.repeat(/#(\d+)(?![\d\]])/g, '[#$1](https://github.com/PrismJS/prism/issues/$1)');
+	content = content.repeat(
+		/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
+		(m) => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
+	);
+
+	await fs.writeFile(changelog, content, 'utf-8');
 }
 
 /**
