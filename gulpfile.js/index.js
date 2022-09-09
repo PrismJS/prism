@@ -37,7 +37,7 @@ async function treeviewIconFont() {
 
 	// generate the font
 	const result = await webfont({
-		files: iconList.map((n) => `plugins/treeview/icons/${n}.svg`),
+		files: iconList.map((n) => `src/plugins/treeview-icons/icons/${n}.svg`),
 		formats: ['woff'],
 		fontName,
 		sort: false
@@ -77,7 +77,7 @@ async function treeviewIconFont() {
 }
 `.trim();
 
-	const cssPath = 'plugins/treeview/prism-treeview.css';
+	const cssPath = 'src/plugins/treeview-icons/prism-treeview-icons.css';
 	const fontFaceRegex = /\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
 
 	const css = fs.readFileSync(cssPath, 'utf-8');
@@ -306,6 +306,7 @@ async function buildJS() {
 
 module.exports = {
 	build: series(clean, parallel(buildJS, buildPluginCSS, minifyThemes)),
+	buildTreeviewCss: treeviewIconFont,
 	changes,
 	linkify
 };
