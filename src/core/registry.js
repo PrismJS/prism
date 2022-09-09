@@ -195,17 +195,10 @@ export class Registry {
 			return undefined;
 		}
 
-		if (typeof entry.proto.grammar === 'object') {
-			// This is an optimization.
-			// If a grammar is given as an object, then it may depend on other languages by referencing them by id
-			// (using `inside` or `rest`), but we can evaluate those grammars later if needed.
-			entry.evaluatedGrammar = entry.proto.grammar;
-			return entry.evaluatedGrammar;
+		const grammar = entry.proto.grammar;
+		if (typeof grammar === 'object') {
+			return entry.evaluatedGrammar = grammar;
 		}
-
-		// handle dependencies
-		forEach(entry.proto.require, (proto) => this.getLanguage(proto.id));
-		forEach(entry.proto.optional, (id) => this.getLanguage(id));
 
 		/**
 		 * @param {string} id
@@ -218,7 +211,7 @@ export class Registry {
 			return grammar;
 		};
 
-		entry.evaluatedGrammar = entry.proto.grammar({
+		entry.evaluatedGrammar = grammar({
 			getLanguage: required,
 			getOptionalLanguage: (id) => this.getLanguage(id),
 			extend: (id, ref) => extend(required(id), id, ref),
