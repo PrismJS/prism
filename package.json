@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
-		"build": "gulp",
+		"build": "gulp build",
 		"start": "http-server -c-1",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
