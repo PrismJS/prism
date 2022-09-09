@@ -5,7 +5,7 @@
  *
  * @type {Readonly<Partial<Record<string, string>>>}
  */
-const knownAliases = /*aliases_placeholder[*/{}/*]*/;
+const knownAliases = /* aliases_placeholder[ */{}/* ] */;
 
 /**
  * @param {string} name

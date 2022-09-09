@@ -5,4 +5,4 @@
  *
  * @type {readonly string[]}
  */
-export const knownLanguages = /*all_languages_placeholder[*/[]/*]*/;
+export const knownLanguages = /* all_languages_placeholder[ */[]/* ] */;
