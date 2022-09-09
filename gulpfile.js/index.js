@@ -238,7 +238,26 @@ const inlineRegexSourcePlugin = {
 			}
 		);
 	},
+};
 
+/**
+ * This plugin wraps bare grammar objects into functions.
+ *
+ * When a grammar is defined as `{ id: 'foo', grammar: { ...tokens } }`, those tokens will be evaluated eagerly.
+ * This is a problem because eagerly evaluating hundreds of grammars when loading a page and only using a few of them
+ * is a waste of CPU and memory, and it causes the JS thread to be block for roughly 200ms during page load.
+ *
+ * @see https://github.com/PrismJS/prism/issues/2768
+ * @type {import("rollup").Plugin}
+ */
+const lazyGrammarPlugin = {
+	name: 'lazy-grammar',
+	renderChunk(code) {
+		return code.replace(
+			/^(?<indent>[ \t]+)grammar: (\{[\s\S]*?^\k<indent>\})/m,
+			(m, _, grammar) => `\tgrammar: () => (${grammar})`
+		);
+	},
 };
 
 const terserPlugin = rollupTerser({
@@ -286,6 +305,7 @@ async function buildJS() {
 		chunkFileNames: '_chunks/[name]-[hash].js',
 		validate: true,
 		plugins: [
+			lazyGrammarPlugin,
 			dataInsertPlugin,
 			inlineRegexSourcePlugin,
 			terserPlugin
