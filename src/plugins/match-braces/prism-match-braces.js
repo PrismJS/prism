@@ -8,9 +8,9 @@ export default /** @type {import("../../types").PluginProto<'match-braces'>} */ 
 		 * @returns {string}
 		 */
 		function mapClassName(name) {
-			const customClass = /** @type {import('../custom-class/prism-custom-class.js').CustomClass} */ (Prism.plugins.customClass);
+			const customClass = Prism.plugins.customClass;
 			if (customClass) {
-				return customClass.apply(name, 'none');
+				return customClass.apply(name);
 			} else {
 				return name;
 			}
