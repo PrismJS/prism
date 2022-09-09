@@ -1,7 +1,6 @@
 /**
  * @callback ClassMapper
  * @param {string} className
- * @param {string} language
  * @returns {string}
  *
  * @callback ClassAdder
@@ -57,9 +56,7 @@ export class CustomClass {
 		if (typeof classMapper === 'function') {
 			this.mapper = classMapper;
 		} else {
-			this.mapper = function (className) {
-				return classMapper[className] || className;
-			};
+			this.mapper = (className) => classMapper[className] || className;
 		}
 	}
 
@@ -67,12 +64,9 @@ export class CustomClass {
 	 * Applies the current mapping and prefix to the given class name.
 	 *
 	 * @param {string} className A single class name.
-	 * @param {string} language The language of the code that contains this class name.
-	 *
-	 * If the language is unknown, pass `"none"`.
 	 */
-	apply(className, language) {
-		return this.prefix + (this.mapper ? this.mapper(className, language) : className);
+	apply(className) {
+		return this.prefix + (this.mapper ? this.mapper(className) : className);
 	}
 }
 
@@ -103,7 +97,7 @@ export default /** @type {import("../../types").PluginProto<'custom-class'>} */ 
 				return;
 			}
 
-			env.classes = env.classes.map((c) => customClass.apply(c, env.language));
+			env.classes = env.classes.map((c) => customClass.apply(c));
 		});
 	}
 });
