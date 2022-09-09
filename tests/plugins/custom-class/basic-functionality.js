@@ -26,8 +26,8 @@ describe('Custom class', () => {
 	});
 
 	it('should map class names using a function', ({ Prism, util }) => {
-		Prism.plugins.customClass.map((cls, language) => {
-			return `${language}-${cls}`;
+		Prism.plugins.customClass.map((cls) => {
+			return `${cls}-suffix`;
 		});
 
 		util.assert.highlight({

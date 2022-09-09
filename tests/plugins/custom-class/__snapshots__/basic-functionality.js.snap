@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Custom class should map class names using a function 1`] = `
-"<span class=\\"javascript-token javascript-keyword\\">var</span>
+"<span class=\\"token-suffix keyword-suffix\\">var</span>
 a
-<span class=\\"javascript-token javascript-operator\\">=</span>
-<span class=\\"javascript-token javascript-boolean\\">true</span>
-<span class=\\"javascript-token javascript-punctuation\\">;</span>
+<span class=\\"token-suffix operator-suffix\\">=</span>
+<span class=\\"token-suffix boolean-suffix\\">true</span>
+<span class=\\"token-suffix punctuation-suffix\\">;</span>
 "
 `;
 
