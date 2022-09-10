@@ -22,7 +22,7 @@
  * @property {string | string[]} [extends]
  * @property {string | string[]} [files]
  */
-const config = {
+export const config = {
 	options: {
 		testFunction: 'tokenize',
 		maxTime: 3,
@@ -100,5 +100,3 @@ const config = {
 		}
 	}
 };
-
-module.exports = config;

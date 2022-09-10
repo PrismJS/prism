@@ -1,13 +1,16 @@
 // @ts-check
 
-const Benchmark = require('benchmark');
-const crypto = require('crypto');
-const fs = require('fs');
-const fetch = require('node-fetch').default;
-const path = require('path');
-const simpleGit = require('simple-git');
-const { argv } = require('yargs');
-const { parseLanguageNames } = require('../tests/helper/test-case');
+import Benchmark from 'benchmark';
+import crypto from 'crypto';
+import fs from 'fs';
+import fetch from 'node-fetch';
+import path from 'path';
+import simpleGit from 'simple-git';
+import yargs from 'yargs';
+import { toArray } from '../src/shared/util.js';
+import * as PrismLoader from '../tests/helper/prism-loader.js';
+import { parseLanguageNames } from '../tests/helper/test-case.js';
+import { config as baseConfig } from './config.js';
 
 
 /**
@@ -45,12 +48,12 @@ async function runBenchmark(config) {
 
 		// prepare candidates
 		const warmupCode = await fs.promises.readFile($case.files[0].path, 'utf8');
-		/** @type {[string, (code: string) => void][]} */
-		const candidateFunctions = candidates.map(({ name, setup }) => {
-			const fn = setup($case.language, $case.languages);
+
+		const candidateFunctions = await Promise.all(candidates.map(async ({ name, setup }) => {
+			const fn = await setup($case.language, $case.languages);
 			fn(warmupCode); // warmup
-			return [name, fn];
-		});
+			return { name, fn };
+		}));
 
 
 		// bench all files
@@ -59,7 +62,7 @@ async function runBenchmark(config) {
 
 			const code = await fs.promises.readFile(caseFile.path, 'utf8');
 
-			const results = measureCandidates(candidateFunctions.map(([name, fn]) => [name, () => fn(code)]), {
+			const results = measureCandidates(candidateFunctions.map(({ name, fn }) => [name, () => fn(code)]), {
 				maxTime: config.options.maxTime,
 				minSamples: 1,
 				delay: 0,
@@ -116,25 +119,23 @@ async function runBenchmark(config) {
 }
 
 function getConfig() {
-	const base = require('./config');
-
-	const args = /** @type {Record<string, unknown>} */(argv);
+	const args = /** @type {Record<string, unknown>} */(yargs.argv);
 
 	if (typeof args.testFunction === 'string') {
 		// @ts-ignore
-		base.options.testFunction = args.testFunction;
+		baseConfig.options.testFunction = args.testFunction;
 	}
 	if (typeof args.maxTime === 'number') {
-		base.options.maxTime = args.maxTime;
+		baseConfig.options.maxTime = args.maxTime;
 	}
 	if (typeof args.language === 'string') {
-		base.options.language = args.language;
+		baseConfig.options.language = args.language;
 	}
 	if (typeof args.remotesOnly === 'boolean') {
-		base.options.remotesOnly = args.remotesOnly;
+		baseConfig.options.remotesOnly = args.remotesOnly;
 	}
 
-	return base;
+	return baseConfig;
 }
 
 /**
@@ -352,7 +353,7 @@ function getWorst(results) {
 /**
  * Create a new test function from the given Prism instance.
  *
- * @param {any} Prism
+ * @param {import("../src/core/prism").Prism} Prism
  * @param {string} mainLanguage
  * @param {string} testFunction
  * @returns {(code: string) => void}
@@ -360,11 +361,15 @@ function getWorst(results) {
 function createTestFunction(Prism, mainLanguage, testFunction) {
 	if (testFunction === 'tokenize') {
 		return (code) => {
-			Prism.tokenize(code, Prism.languages[mainLanguage]);
+			const grammar = Prism.components.getLanguage(mainLanguage);
+			if (!grammar) {
+				throw new Error(`No grammar for ${mainLanguage}`);
+			}
+			Prism.tokenize(code, grammar);
 		};
 	} else if (testFunction === 'highlight') {
 		return (code) => {
-			Prism.highlight(code, Prism.languages[mainLanguage], mainLanguage);
+			Prism.highlight(code, mainLanguage);
 		};
 	} else {
 		throw new Error(`Unknown test function "${testFunction}"`);
@@ -378,7 +383,7 @@ function createTestFunction(Prism, mainLanguage, testFunction) {
  *
  * @typedef Candidate
  * @property {string} name
- * @property {(mainLanguage: string, languages: string[]) => (code: string) => void} setup
+ * @property {(mainLanguage: string, languages: string[]) => Promise<(code: string) => void>} setup
  */
 async function getCandidates(config) {
 	/** @type {Candidate[]} */
@@ -386,11 +391,10 @@ async function getCandidates(config) {
 
 	// local
 	if (!config.options.remotesOnly) {
-		const localPrismLoader = require('../tests/helper/prism-loader');
 		candidates.push({
 			name: 'local',
-			setup(mainLanguage, languages) {
-				const Prism = localPrismLoader.createInstance(languages);
+			async setup(mainLanguage, languages) {
+				const Prism = await PrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
 			}
 		});
@@ -402,7 +406,7 @@ async function getCandidates(config) {
 	const remoteBaseDir = path.join(__dirname, 'remotes');
 	await fs.promises.mkdir(remoteBaseDir, { recursive: true });
 
-	const baseGit = simpleGit.gitP(remoteBaseDir);
+	const baseGit = simpleGit(remoteBaseDir);
 
 	for (const remote of config.remotes) {
 		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo);
@@ -414,18 +418,18 @@ async function getCandidates(config) {
 		if (!fs.existsSync(remoteDir)) {
 			console.log(`Cloning ${remote.repo}`);
 			await baseGit.clone(remote.repo, remoteName);
-			remoteGit = simpleGit.gitP(remoteDir);
+			remoteGit = simpleGit(remoteDir);
 		} else {
-			remoteGit = simpleGit.gitP(remoteDir);
+			remoteGit = simpleGit(remoteDir);
 			await remoteGit.fetch('origin', branch); // get latest version of branch
 		}
 		await remoteGit.checkout(branch); // switch to branch
 
-		const remotePrismLoader = require(path.join(remoteDir, 'tests/helper/prism-loader'));
+		const remotePrismLoader = import(path.join(remoteDir, 'tests/helper/prism-loader.js'));
 		candidates.push({
 			name: remoteName,
-			setup(mainLanguage, languages) {
-				const Prism = remotePrismLoader.createInstance(languages);
+			async setup(mainLanguage, languages) {
+				const Prism = await remotePrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
 			}
 		});
@@ -433,23 +437,5 @@ async function getCandidates(config) {
 
 	return candidates;
 }
-
-/**
- * A utility function that converts the given optional array-like value into an array.
- *
- * @param {T[] | T | undefined | null} value
- * @returns {readonly T[]}
- * @template T
- */
-function toArray(value) {
-	if (Array.isArray(value)) {
-		return value;
-	} else if (value != null) {
-		return [value];
-	} else {
-		return [];
-	}
-}
-
 
 runBenchmark(getConfig());
