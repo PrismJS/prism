@@ -165,13 +165,6 @@ module.exports = {
 			}
 		},
 		{
-			// Core
-			files: ['src/core/**/*.js'],
-			env: {
-				browser: true,
-			},
-		},
-		{
 			// Browser-specific parts
 			files: ['src/auto-start.js'],
 			env: {

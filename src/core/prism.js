@@ -44,7 +44,7 @@ export class Prism {
 
 		const env = /** @type {EnvMap["before-highlightall"] | EnvMap["before-all-elements-highlight"]} */ ({
 			callback,
-			root: root ?? document,
+			root: root ?? getRootDocument(),
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
 			state: new HookState()
 		});
@@ -497,4 +497,12 @@ function resolve(components, reference) {
 		return reference;
 	}
 	return undefined;
+}
+
+function getRootDocument() {
+	if (typeof document !== 'undefined') {
+		// eslint-disable-next-line no-undef
+		return document;
+	}
+	throw new Error('Cannot find global document variable. Please provide an explicit root for highlightAll.');
 }
