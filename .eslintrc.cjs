@@ -15,7 +15,7 @@ module.exports = {
 		'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
 
 		// imports
-		'import/extensions': ['warn', 'never'],
+		'import/extensions': ['error', 'always'],
 		'import/order': [
 			'warn',
 			{
@@ -169,7 +169,6 @@ module.exports = {
 			files: ['src/core/**/*.js'],
 			env: {
 				browser: true,
-				node: true,
 			},
 		},
 		{
@@ -211,8 +210,7 @@ module.exports = {
 			// Test files
 			files: 'tests/**',
 			env: {
-				mocha: true,
-				node: true
+				mocha: true
 			},
 		},
 		{
@@ -228,7 +226,7 @@ module.exports = {
 		},
 		{
 			// This file
-			files: '.eslintrc.js',
+			files: '.eslintrc.cjs',
 			env: {
 				node: true
 			}
