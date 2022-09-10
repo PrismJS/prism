@@ -1,9 +1,12 @@
 import { assert } from 'chai';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { forEach, noop, toArray } from '../src/shared/util.js';
 import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 describe('Components', () => {
 	it('- should not have redundant optional dependencies', async function () {

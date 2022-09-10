@@ -2,7 +2,11 @@ import { assert } from 'chai';
 import { readFileSync, readdirSync } from 'fs';
 import { Parser } from 'htmlparser2';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { getLanguageIds } from './helper/prism-loader.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const EXAMPLES_DIR = path.join(__dirname, '/../website/examples');
 

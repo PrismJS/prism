@@ -1,8 +1,10 @@
 import { assert } from 'chai';
+import { fileURLToPath } from 'url';
 import { toArray } from '../src/shared/util.js';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader.js';
 import { prettyprint } from './helper/token-stream-transformer.js';
 
+const __filename = fileURLToPath(import.meta.url);
 
 // This is where you can exclude a language from the identifier test.
 //

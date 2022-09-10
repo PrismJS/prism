@@ -1,8 +1,12 @@
 import { readdirSync } from 'fs';
 import { JSDOM } from 'jsdom';
 import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { Prism } from '../../src/core/prism.js';
 import { isNonNull, lazy, noop, toArray } from '../../src/shared/util.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const SRC_DIR = path.join(__dirname, '../../src');
 
@@ -31,11 +35,11 @@ export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds(
 async function getComponentUncached(id) {
 	if (getPluginIds().includes(id)) {
 		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.js`);
-		const exports = await import(file);
+		const exports = await import(pathToFileURL(file).toString());
 		return /** @type {import('../../src/types').PluginProto} */ (exports.default);
 	} else {
 		const file = path.join(SRC_DIR, 'languages', `prism-${id}.js`);
-		const exports = await import(file);
+		const exports = await import(pathToFileURL(file).toString());
 		return /** @type {import('../../src/types').LanguageProto} */ (exports.default);
 	}
 }
@@ -127,6 +131,7 @@ export function createPrismDOM() {
 	 * @param {() => void} fn
 	 */
 	const withGlobals = (fn) => {
+		// eslint-disable-next-line no-undef
 		const g = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (global));
 		let undo;
 		try {
