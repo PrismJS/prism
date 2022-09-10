@@ -1,4 +1,4 @@
-import { addHooks } from '../../shared/hooks-util';
+import { addHooks } from '../../shared/hooks-util.js';
 
 export default /** @type {import("../../types").PluginProto<'unescaped-markup'>} */ ({
 	id: 'unescaped-markup',

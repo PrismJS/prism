@@ -1,7 +1,7 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import javascript from './prism-javascript';
-import markup from './prism-markup';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
+import javascript from './prism-javascript.js';
+import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto<'pug'>} */ ({
 	id: 'pug',

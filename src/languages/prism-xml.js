@@ -1,4 +1,4 @@
-import { MARKUP_TAG } from '../shared/languages/patterns';
+import { MARKUP_TAG } from '../shared/languages/patterns.js';
 
 export default /** @type {import("../types").LanguageProto<'xml'>} */ ({
 	id: 'xml',

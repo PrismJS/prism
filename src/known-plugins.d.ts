@@ -1,13 +1,13 @@
-import { Autoloader } from './plugins/autoloader/prism-autoloader';
-import { CustomClass } from './plugins/custom-class/prism-custom-class';
-import { FileHighlight } from './plugins/file-highlight/prism-file-highlight';
-import { FilterHighlightAll } from './plugins/filter-highlight-all/prism-filter-highlight-all';
-import { JsonpHighlight } from './plugins/jsonp-highlight/prism-jsonp-highlight';
-import { LineHighlight } from './plugins/line-highlight/prism-line-highlight';
-import { LineNumbers } from './plugins/line-numbers/prism-line-numbers';
-import { NormalizeWhitespace } from './plugins/normalize-whitespace/prism-normalize-whitespace';
-import { PreviewerCollection } from './plugins/previewers/prism-previewers';
-import { Toolbar } from './plugins/toolbar/prism-toolbar';
+import { Autoloader } from './plugins/autoloader/prism-autoloader.js';
+import { CustomClass } from './plugins/custom-class/prism-custom-class.js';
+import { FileHighlight } from './plugins/file-highlight/prism-file-highlight.js';
+import { FilterHighlightAll } from './plugins/filter-highlight-all/prism-filter-highlight-all.js';
+import { JsonpHighlight } from './plugins/jsonp-highlight/prism-jsonp-highlight.js';
+import { LineHighlight } from './plugins/line-highlight/prism-line-highlight.js';
+import { LineNumbers } from './plugins/line-numbers/prism-line-numbers.js';
+import { NormalizeWhitespace } from './plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import { PreviewerCollection } from './plugins/previewers/prism-previewers.js';
+import { Toolbar } from './plugins/toolbar/prism-toolbar.js';
 
 declare interface KnownPlugins {
 	autoloader: Autoloader;

@@ -1,5 +1,5 @@
-import { extend } from '../shared/language-util';
-import { forEach, kebabToCamelCase } from '../shared/util';
+import { extend } from '../shared/language-util.js';
+import { forEach, kebabToCamelCase } from '../shared/util.js';
 
 /**
  * @typedef Entry

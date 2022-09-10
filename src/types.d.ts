@@ -1,7 +1,7 @@
-import { Prism } from './core/prism';
-import { TokenStream } from './core/token';
-import { KnownPlugins } from './known-plugins';
-import { rest, tokenize } from './shared/symbols';
+import { Prism } from './core/prism.js';
+import { TokenStream } from './core/token.js';
+import { KnownPlugins } from './known-plugins.d.ts';
+import { rest, tokenize } from './shared/symbols.js';
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;

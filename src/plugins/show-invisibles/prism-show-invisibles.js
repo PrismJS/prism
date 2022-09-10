@@ -1,4 +1,4 @@
-import { tokenizeStrings } from '../../shared/tokenize-strings';
+import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 
 export default /** @type {import("../../types").PluginProto<'show-invisibles'>} */ ({
 	id: 'show-invisibles',

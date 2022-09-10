@@ -1,4 +1,4 @@
-import { rest } from '../shared/symbols';
+import { rest } from '../shared/symbols.js';
 
 export default /** @type {import("../types").LanguageProto<'stylus'>} */ ({
 	id: 'stylus',

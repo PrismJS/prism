@@ -1,6 +1,6 @@
-import java from './prism-java';
-import mata from './prism-mata';
-import python from './prism-python';
+import java from './prism-java.js';
+import mata from './prism-mata.js';
+import python from './prism-python.js';
 
 export default /** @type {import("../types").LanguageProto<'stata'>} */ ({
 	id: 'stata',

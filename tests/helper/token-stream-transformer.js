@@ -1,4 +1,4 @@
-import { getLeadingSpaces, getTrailingSpaces } from './util';
+import { getLeadingSpaces, getTrailingSpaces } from './util.js';
 
 /**
  * @typedef TokenStreamItem

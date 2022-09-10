@@ -1,4 +1,4 @@
-import { rest, tokenize } from './symbols';
+import { rest, tokenize } from './symbols.js';
 
 // TODO: Update documentation
 

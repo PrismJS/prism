@@ -1,6 +1,6 @@
-import { Token, getTextContent } from '../../core/token';
-import diff, { PREFIXES } from '../../languages/prism-diff';
-import { addHooks } from '../../shared/hooks-util';
+import { Token, getTextContent } from '../../core/token.js';
+import diff, { PREFIXES } from '../../languages/prism-diff.js';
+import { addHooks } from '../../shared/hooks-util.js';
 
 export default /** @type {import("../../types").PluginProto<'diff-highlight'>} */ ({
 	id: 'diff-highlight',

@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util';
-import { toArray } from '../shared/util';
-import javascript from './prism-javascript';
+import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
+import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto<'flow'>} */ ({
 	id: 'flow',

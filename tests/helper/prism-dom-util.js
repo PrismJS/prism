@@ -1,6 +1,6 @@
-import { createPrismDOM } from './prism-loader';
-import { assertEqual, useSnapshot } from './snapshot';
-import { formatHtml } from './util';
+import { createPrismDOM } from './prism-loader.js';
+import { assertEqual, useSnapshot } from './snapshot.js';
+import { formatHtml } from './util.js';
 
 /**
  * @param {import('./prism-loader').PrismWindow<{}>} window

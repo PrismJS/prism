@@ -1,7 +1,7 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import csharp from './prism-csharp';
-import markup from './prism-markup';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
+import csharp from './prism-csharp.js';
+import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto<'aspnet'>} */ ({
 	id: 'aspnet',

@@ -1,7 +1,7 @@
-import { Token, getTextContent } from '../core/token';
-import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
+import { Token, getTextContent } from '../core/token.js';
+import { withoutTokenize } from '../shared/language-util.js';
+import { tokenize } from '../shared/symbols.js';
+import markup from './prism-markup.js';
 
 /**
  * @param {import('../core/token.js').TokenStream} tokens

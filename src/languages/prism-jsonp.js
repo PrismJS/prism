@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import json from './prism-json';
+import { insertBefore } from '../shared/language-util.js';
+import json from './prism-json.js';
 
 export default /** @type {import("../types").LanguageProto<'jsonp'>} */ ({
 	id: 'jsonp',

@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import { Prism } from '../../src/core/prism';
-import { simplify } from '../helper/token-stream-transformer';
+import { Prism } from '../../src/core/prism.js';
+import { simplify } from '../helper/token-stream-transformer.js';
 
 /**
  * @param {{ grammar: import('../../src/types').Grammar, code: string, expected: any }} param0

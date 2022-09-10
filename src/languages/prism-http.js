@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../shared/language-util.js';
 
 export default /** @type {import("../types").LanguageProto<'http'>} */ ({
 	id: 'http',

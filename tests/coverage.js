@@ -1,8 +1,8 @@
 import { assert } from 'chai';
-import * as PrismLoader from './helper/prism-loader';
-import { runTestCase } from './helper/test-case';
-import { loadAllTests } from './helper/test-discovery';
-import { BFS, BFSPathToPrismTokenPath } from './helper/util';
+import * as PrismLoader from './helper/prism-loader.js';
+import { runTestCase } from './helper/test-case.js';
+import { loadAllTests } from './helper/test-discovery.js';
+import { BFS, BFSPathToPrismTokenPath } from './helper/util.js';
 
 describe('Pattern test coverage', () => {
 	/**

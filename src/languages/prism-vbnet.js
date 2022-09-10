@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import basic from './prism-basic';
+import { insertBefore } from '../shared/language-util.js';
+import basic from './prism-basic.js';
 
 export default /** @type {import("../types").LanguageProto<'vbnet'>} */ ({
 	id: 'vbnet',

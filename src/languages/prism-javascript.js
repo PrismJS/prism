@@ -1,8 +1,8 @@
-import { insertBefore } from '../shared/language-util';
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
-import { rest } from '../shared/symbols';
-import { toArray } from '../shared/util';
-import clike from './prism-clike';
+import { insertBefore } from '../shared/language-util.js';
+import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
+import { rest } from '../shared/symbols.js';
+import { toArray } from '../shared/util.js';
+import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 	id: 'javascript',

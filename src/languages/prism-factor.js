@@ -1,4 +1,4 @@
-import { regexEscape } from '../shared/util';
+import { regexEscape } from '../shared/util.js';
 
 export default /** @type {import("../types").LanguageProto<'factor'>} */ ({
 	id: 'factor',

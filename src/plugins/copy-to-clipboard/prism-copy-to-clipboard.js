@@ -1,4 +1,4 @@
-import toolbar from '../toolbar/prism-toolbar';
+import toolbar from '../toolbar/prism-toolbar.js';
 
 /**
  * When the given elements is clicked by the user, the given text will be copied to clipboard.

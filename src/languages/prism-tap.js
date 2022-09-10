@@ -1,4 +1,4 @@
-import yaml from './prism-yaml';
+import yaml from './prism-yaml.js';
 
 // https://en.wikipedia.org/wiki/Test_Anything_Protocol
 

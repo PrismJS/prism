@@ -1,7 +1,7 @@
-import { insertBefore } from '../shared/language-util';
-import javadoclike from './prism-javadoclike';
-import javascript from './prism-javascript';
-import typescript from './prism-typescript';
+import { insertBefore } from '../shared/language-util.js';
+import javadoclike from './prism-javadoclike.js';
+import javascript from './prism-javascript.js';
+import typescript from './prism-typescript.js';
 
 export default /** @type {import("../types").LanguageProto<'jsdoc'>} */ ({
 	id: 'jsdoc',

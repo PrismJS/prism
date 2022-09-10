@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { forEach, noop, toArray } from '../src/shared/util';
-import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader';
+import { forEach, noop, toArray } from '../src/shared/util.js';
+import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader.js';
 
 
 describe('Components', () => {

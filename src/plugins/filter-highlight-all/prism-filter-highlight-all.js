@@ -1,4 +1,4 @@
-import { getLanguage } from '../../shared/dom-util';
+import { getLanguage } from '../../shared/dom-util.js';
 
 /**
  * @typedef {(value: { element: Element, language: string }) => boolean} Condition

@@ -1,4 +1,4 @@
-import cssSelector from '../../languages/prism-css-selector';
+import cssSelector from '../../languages/prism-css-selector.js';
 
 /** @type {Set<string>} */
 const htmlTags = new Set([

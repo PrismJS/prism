@@ -1,6 +1,6 @@
-import { getParentPre } from '../../shared/dom-util';
-import { resolveAlias } from '../../shared/meta/alias-data';
-import { toArray } from '../../shared/util';
+import { getParentPre } from '../../shared/dom-util.js';
+import { resolveAlias } from '../../shared/meta/alias-data.js';
+import { toArray } from '../../shared/util.js';
 
 function getDefaultSrcPath() {
 	if (typeof document !== 'undefined') {

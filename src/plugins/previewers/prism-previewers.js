@@ -1,5 +1,5 @@
-import cssExtras from '../../languages/prism-css-extras';
-import { forEach } from '../../shared/util';
+import cssExtras from '../../languages/prism-css-extras.js';
+import { forEach } from '../../shared/util.js';
 
 /**
  * Returns the absolute X, Y offsets for an element

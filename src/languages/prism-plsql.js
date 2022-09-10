@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import sql from './prism-sql';
+import { insertBefore } from '../shared/language-util.js';
+import sql from './prism-sql.js';
 
 export default /** @type {import("../types").LanguageProto<'plsql'>} */ ({
 	id: 'plsql',

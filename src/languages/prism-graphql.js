@@ -1,5 +1,5 @@
-import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
+import { withoutTokenize } from '../shared/language-util.js';
+import { tokenize } from '../shared/symbols.js';
 
 export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 	id: 'graphql',

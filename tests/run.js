@@ -1,7 +1,7 @@
 import path from 'path';
-import { language, update } from './helper/args';
-import * as TestCase from './helper/test-case';
-import * as TestDiscovery from './helper/test-discovery';
+import { language, update } from './helper/args.js';
+import * as TestCase from './helper/test-case.js';
+import * as TestDiscovery from './helper/test-discovery.js';
 
 const testSuite =
 	language

@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import fs from 'fs';
-import { createInstance } from './prism-loader';
-import * as TokenStreamTransformer from './token-stream-transformer';
-import { formatHtml, getLeadingSpaces } from './util';
+import { createInstance } from './prism-loader.js';
+import * as TokenStreamTransformer from './token-stream-transformer.js';
+import { formatHtml, getLeadingSpaces } from './util.js';
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream

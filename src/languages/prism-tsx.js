@@ -1,5 +1,5 @@
-import jsx from './prism-jsx';
-import typescript from './prism-typescript';
+import jsx from './prism-jsx.js';
+import typescript from './prism-typescript.js';
 
 export default /** @type {import("../types").LanguageProto<'tsx'>} */ ({
 	id: 'tsx',

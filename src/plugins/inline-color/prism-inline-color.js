@@ -1,5 +1,5 @@
-import cssExtras from '../../languages/prism-css-extras';
-import { MARKUP_TAG } from '../../shared/languages/patterns';
+import cssExtras from '../../languages/prism-css-extras.js';
+import { MARKUP_TAG } from '../../shared/languages/patterns.js';
 
 const HTML_TAG = RegExp(MARKUP_TAG, 'g');
 

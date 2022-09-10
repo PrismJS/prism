@@ -1,6 +1,6 @@
-import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { tokenize } from '../shared/symbols.js';
+import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto<'smarty'>} */ ({
 	id: 'smarty',

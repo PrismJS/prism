@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 
 export default /** @type {import("../types").LanguageProto<'rescript'>} */ ({
 	id: 'rescript',

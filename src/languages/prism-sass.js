@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import css from './prism-css';
+import { insertBefore } from '../shared/language-util.js';
+import css from './prism-css.js';
 
 export default /** @type {import("../types").LanguageProto<'sass'>} */ ({
 	id: 'sass',

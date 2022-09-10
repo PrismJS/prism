@@ -1,7 +1,7 @@
-import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
-import lua from './prism-lua';
-import markup from './prism-markup';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { tokenize } from '../shared/symbols.js';
+import lua from './prism-lua.js';
+import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto<'etlua'>} */ ({
 	id: 'etlua',

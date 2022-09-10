@@ -1,4 +1,4 @@
-import c from './prism-c';
+import c from './prism-c.js';
 
 export default /** @type {import("../types").LanguageProto<'objectivec'>} */ ({
 	id: 'objectivec',

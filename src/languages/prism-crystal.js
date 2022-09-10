@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util';
-import { toArray } from '../shared/util';
-import ruby from './prism-ruby';
+import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
+import ruby from './prism-ruby.js';
 
 export default /** @type {import("../types").LanguageProto<'crystal'>} */ ({
 	id: 'crystal',

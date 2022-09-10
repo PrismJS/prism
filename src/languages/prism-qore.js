@@ -1,4 +1,4 @@
-import clike from './prism-clike';
+import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto<'qore'>} */ ({
 	id: 'qore',

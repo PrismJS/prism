@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import java from './prism-java';
+import { insertBefore } from '../shared/language-util.js';
+import java from './prism-java.js';
 
 export default /** @type {import("../types").LanguageProto<'scala'>} */ ({
 	id: 'scala',

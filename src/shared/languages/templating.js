@@ -1,5 +1,5 @@
-import { getTextContent } from '../../core/token';
-import { withoutTokenize } from '../language-util';
+import { getTextContent } from '../../core/token.js';
+import { withoutTokenize } from '../language-util.js';
 
 /**
  * @typedef {import('../../core/token').Token} Token

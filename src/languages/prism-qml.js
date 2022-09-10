@@ -1,4 +1,4 @@
-import javascript from './prism-javascript';
+import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto<'qml'>} */ ({
 	id: 'qml',

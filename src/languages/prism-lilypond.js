@@ -1,5 +1,5 @@
-import { rest } from '../shared/symbols';
-import scheme from './prism-scheme';
+import { rest } from '../shared/symbols.js';
+import scheme from './prism-scheme.js';
 
 export default /** @type {import("../types").LanguageProto<'lilypond'>} */ ({
 	id: 'lilypond',

@@ -1,5 +1,5 @@
-import { toArray } from '../shared/util';
-import c from './prism-c';
+import { toArray } from '../shared/util.js';
+import c from './prism-c.js';
 
 export default /** @type {import("../types").LanguageProto<'hlsl'>} */ ({
 	id: 'hlsl',

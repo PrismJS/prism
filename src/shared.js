@@ -4,7 +4,7 @@
  * @file
  */
 
-export { getLanguage, setLanguage, isActive } from './shared/dom-util';
-export { extend, insertBefore } from './shared/language-util';
-export { rest, tokenize } from './shared/symbols';
-export { templating, embeddedIn } from './shared/languages/templating';
+export { getLanguage, setLanguage, isActive } from './shared/dom-util.js';
+export { extend, insertBefore } from './shared/language-util.js';
+export { rest, tokenize } from './shared/symbols.js';
+export { templating, embeddedIn } from './shared/languages/templating.js';

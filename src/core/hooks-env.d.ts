@@ -1,6 +1,6 @@
-import { Grammar, TokenName } from '../types';
-import { HookState } from './hook-state';
-import { TokenStream } from './token';
+import { Grammar, TokenName } from '../types.d.ts';
+import { HookState } from './hook-state.js';
+import { TokenStream } from './token.js';
 
 /**
  * An interface containing all hooks Prism runs.

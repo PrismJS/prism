@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import { toArray } from '../src/shared/util';
-import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
-import { prettyprint } from './helper/token-stream-transformer';
+import { toArray } from '../src/shared/util.js';
+import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader.js';
+import { prettyprint } from './helper/token-stream-transformer.js';
 
 
 // This is where you can exclude a language from the identifier test.

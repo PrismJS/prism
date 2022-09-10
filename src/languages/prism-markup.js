@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import xml from './prism-xml';
+import { insertBefore } from '../shared/language-util.js';
+import xml from './prism-xml.js';
 
 /**
  * Adds an inlined language to markup.

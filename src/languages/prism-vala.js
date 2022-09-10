@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import clike from './prism-clike';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
+import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto<'vala'>} */ ({
 	id: 'vala',
