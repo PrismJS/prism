@@ -54,6 +54,10 @@ export function parallel(...tasks) {
 }
 
 /**
+ * Given a record of tasks, it will run the task as dictated by the CLI arguments.
+ *
+ * To run a specific task, run `node path/to/script.js taskName`.
+ *
  * @param {Partial<Record<string, Task>>} tasks
  */
 export function run(tasks) {
@@ -63,12 +67,20 @@ export function run(tasks) {
 	if (!task) {
 		console.error(`No such task ${selected}. Available tasks: ${Object.keys(tasks).join(', ')}`);
 	} else {
-		const namedTask = wrapTask(selected, task);
-		Promise.resolve().then(() => namedTask()).catch(
-			(reason) => {
-				console.error('Error:');
-				console.error(reason);
-			}
-		);
+		runTask(task);
 	}
+}
+
+/**
+ * Runs the given task.
+ *
+ * @param {Task} tasks
+ */
+export function runTask(tasks) {
+	Promise.resolve().then(() => tasks()).catch(
+		(reason) => {
+			console.error('Error:');
+			console.error(reason);
+		}
+	);
 }

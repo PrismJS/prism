@@ -10,7 +10,9 @@
 	},
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
-		"build": "node scripts/run.js build",
+		"build": "node scripts/build.js",
+		"linkify": "node scripts/linkify-changelog.js",
+		"changes": "node scripts/create-changelog.js",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
 		"lint:ci": "eslint . --max-warnings 0",

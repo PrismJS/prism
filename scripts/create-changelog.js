@@ -1,26 +1,13 @@
-import fs from 'fs/promises';
 import path from 'path';
 import simpleGit from 'simple-git';
 import { fileURLToPath } from 'url';
 import { components } from './components.js';
+import { runTask } from './tasks.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const git = simpleGit(__dirname);
-
-export async function linkify() {
-	const changelog = 'CHANGELOG.md';
-	let content = await fs.readFile(changelog, 'utf-8');
-
-	content = content.repeat(/#(\d+)(?![\d\]])/g, '[#$1](https://github.com/PrismJS/prism/issues/$1)');
-	content = content.repeat(
-		/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
-		(m) => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
-	);
-
-	await fs.writeFile(changelog, content, 'utf-8');
-}
 
 /**
  * Creates an array which iterates its items in the order given by `compareFn`.
@@ -105,7 +92,7 @@ const revisionRanges = {
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
-export async function changes() {
+runTask(async () => {
 	const { languages, plugins } = components;
 
 	const infos = await getLog(revisionRanges.nextRelease());
@@ -384,4 +371,4 @@ export async function changes() {
 		printCategory(entries[category]);
 	}
 	console.log(md);
-}
+});

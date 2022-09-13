@@ -9,8 +9,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { webfont } from 'webfont';
 import { toArray } from '../src/shared/util.js';
 import { components } from './components.js';
-import { parallel, series } from './tasks.js';
-export { changes, linkify } from './changelog.js';
+import { parallel, runTask, series } from './tasks.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -328,4 +327,4 @@ async function buildJS() {
 	}
 }
 
-export const build = series(clean, parallel(buildJS, series(treeviewIconFont, minifyCSS)));
+runTask(series(clean, parallel(buildJS, series(treeviewIconFont, minifyCSS))));
