@@ -1,26 +1,74 @@
-'use strict';
+import { babel } from '@rollup/plugin-babel';
+import CleanCSS from 'clean-css';
+import fs from 'fs';
+import { mkdir, readFile, readdir, rm, writeFile, } from 'fs/promises';
+import path from 'path';
+import { rollup } from 'rollup';
+import { terser as rollupTerser } from 'rollup-plugin-terser';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { webfont } from 'webfont';
+import { toArray } from '../src/shared/util.js';
+import { components } from './components.js';
+import { parallel, series } from './tasks.js';
+export { changes, linkify } from './changelog.js';
 
-require('@babel/register');
-const { babel } = require('@rollup/plugin-babel');
-const fs = require('fs');
-const { rm } = require('fs/promises');
-const { src, dest, series, parallel } = require('gulp');
-const cleanCSS = require('gulp-clean-css');
-const path = require('path');
-const pump = require('pump');
-const { rollup } = require('rollup');
-const { terser: rollupTerser } = require('rollup-plugin-terser');
-const webfont = require('webfont').default;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const { changes, linkify } = require('./changelog');
-const paths = require('./paths');
+const SRC_DIR = path.join(__dirname, '../src/');
+const languageIds = fs.readdirSync(path.join(SRC_DIR, 'languages')).map((f) => f.slice('prism-'.length).slice(0, -'.js'.length)).sort();
+const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
 
-
-function buildPluginCSS(cb) {
-	pump([src(paths.pluginsCSS), cleanCSS(), dest('dist/plugins')], cb);
+/**
+ * @param {string} id
+ * @returns {Promise<import('../src/types').ComponentProto>}
+ */
+async function loadComponent(id) {
+	let file;
+	if (pluginIds.includes(id)) {
+		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`);
+	} else {
+		file = path.join(SRC_DIR, `languages/prism-${id}.js`);
+	}
+	const exports = await import(pathToFileURL(file));
+	return exports.default;
 }
-function minifyThemes(cb) {
-	pump([src(paths.themes), cleanCSS(), dest('dist/themes')], cb);
+
+async function minifyCSS() {
+	/** @type {Record<string, string>} */
+	const input = {};
+
+	const THEMES_DIR = path.join(__dirname, '../themes');
+	const themes = await readdir(THEMES_DIR);
+	for (const theme of themes.filter((f) => /\.css$/i.test(f))) {
+		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
+	}
+
+	for (const id of pluginIds) {
+		const file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.css`);
+		if (fs.existsSync(file)) {
+			input[`plugins/${id}/prism-${id}.css`] = file;
+		}
+	}
+
+	const DIST = path.join(__dirname, '../dist');
+
+	const clean = new CleanCSS({});
+
+	await Promise.all(Object.entries(input).map(async ([target, file]) => {
+		const content = await readFile(file, 'utf-8');
+		const output = clean.minify(content);
+		if (output.errors.length > 0) {
+			throw new Error(`CSS minify error:\n${output.errors.join('\n')}`);
+		}
+		for (const warn of output.warnings) {
+			console.warn(`${file}: ${warn}`);
+		}
+
+		const targetFile = path.join(DIST, target);
+		await mkdir(path.dirname(targetFile), { recursive: true });
+		await writeFile(targetFile, output.styles, 'utf-8');
+	}));
 }
 
 async function treeviewIconFont() {
@@ -84,48 +132,6 @@ async function treeviewIconFont() {
 	fs.writeFileSync(cssPath, css.replace(fontFaceRegex, fontFace), 'utf-8');
 }
 
-/**
- * @type {(arg: unknown) => arg is readonly any[]}
- */
-const isReadonlyArray = Array.isArray;
-
-/**
- * Converts the given value to an array.
- *
- * If the given value is already an error, it will be returned as is.
- *
- * @param {T | readonly T[] | undefined | null} value
- * @returns {readonly T[]}
- * @template {{}} T
- */
-function toArray(value) {
-	if (isReadonlyArray(value)) {
-		return value;
-	} else if (value == null) {
-		return [];
-	} else {
-		return [value];
-	}
-}
-
-const SRC_DIR = path.join(__dirname, '../src/');
-const languageIds = fs.readdirSync(path.join(SRC_DIR, 'languages')).map((f) => f.slice('prism-'.length).slice(0, -'.js'.length)).sort();
-const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
-
-/**
- * @param {string} id
- * @returns {Promise<import('../src/types').ComponentProto>}
- */
-async function loadComponent(id) {
-	let exports;
-	if (pluginIds.includes(id)) {
-		exports = require(path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`));
-	} else {
-		exports = require(path.join(SRC_DIR, `languages/prism-${id}.js`));
-	}
-	return exports.default;
-}
-
 /** @type {Record<string, () => Promise<any>>} */
 const dataToInsert = {
 	aliases_placeholder: async () => {
@@ -137,8 +143,6 @@ const dataToInsert = {
 	},
 	all_languages_placeholder: async () => languageIds,
 	title_placeholder: async () => {
-		// eslint-disable-next-line import/extensions
-		const components = require('../src/components.json');
 		/** @type {Map<string, string>} */
 		const rawTitles = new Map();
 		for (const [id, entry] of Object.entries(components.languages)) {
@@ -324,9 +328,4 @@ async function buildJS() {
 	}
 }
 
-module.exports = {
-	build: series(clean, parallel(buildJS, buildPluginCSS, minifyThemes)),
-	buildTreeviewCss: treeviewIconFont,
-	changes,
-	linkify
-};
+export const build = series(clean, parallel(buildJS, series(treeviewIconFont, minifyCSS)));

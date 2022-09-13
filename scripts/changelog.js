@@ -1,11 +1,16 @@
-'use strict';
+import fs from 'fs/promises';
+import path from 'path';
+import simpleGit from 'simple-git';
+import { fileURLToPath } from 'url';
+import { components } from './components.js';
 
-const fs = require('fs/promises');
-const git = require('simple-git').gitP(__dirname);
-const { changelog } = require('./paths');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+const git = simpleGit(__dirname);
 
-async function linkify() {
+export async function linkify() {
+	const changelog = 'CHANGELOG.md';
 	let content = await fs.readFile(changelog, 'utf-8');
 
 	content = content.repeat(/#(\d+)(?![\d\]])/g, '[#$1](https://github.com/PrismJS/prism/issues/$1)');
@@ -100,8 +105,8 @@ const revisionRanges = {
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
-async function changes() {
-	const { languages, plugins } = require('../src/components');
+export async function changes() {
+	const { languages, plugins } = components;
 
 	const infos = await getLog(revisionRanges.nextRelease());
 
@@ -380,9 +385,3 @@ async function changes() {
 	}
 	console.log(md);
 }
-
-
-module.exports = {
-	linkify,
-	changes
-};

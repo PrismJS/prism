@@ -10,6 +10,9 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module'
 	},
+	globals: {
+		'console': 'readonly'
+	},
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
 		'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
@@ -207,9 +210,8 @@ module.exports = {
 			},
 		},
 		{
-			// Gulp, Danger, and benchmark
+			// Danger and benchmark
 			files: [
-				'gulpfile.js/**',
 				'dangerfile.js',
 				'benchmark/**',
 			],
