@@ -1,0 +1,33 @@
+#INCLUDE foobar.h
+#DEFINE FOO 1
+#UNDEF FOO
+#if FOO
+#elif BAR
+#else
+#endif
+#ifdef FOO
+#ifndef BAR
+#INSERT FooBar
+#NAME FooBar
+#IMAGEPATHS ./img
+
+----------------------------------------------------
+
+[
+	["directive", "#INCLUDE foobar.h"],
+	["directive", "#DEFINE FOO 1"],
+	["directive", "#UNDEF FOO"],
+	["directive", "#if FOO"],
+	["directive", "#elif BAR"],
+	["directive", "#else"],
+	["directive", "#endif"],
+	["directive", "#ifdef FOO"],
+	["directive", "#ifndef BAR"],
+	["directive", "#INSERT FooBar"],
+	["directive", "#NAME FooBar"],
+	["directive", "#IMAGEPATHS ./img"]
+]
+
+----------------------------------------------------
+
+Checks for preprocessing directives.

@@ -1535,6 +1535,15 @@
 			},
 			"owner": "Golmote"
 		},
+		"visual-foxpro": {
+			"title": "Visual FoxPro",
+			"alias": ["foxpro", "vfp"],
+			"aliasTitles": {
+				"foxpro": "FoxPro",
+				"vfp": "VFP"
+			},
+			"owner": "Khaos66"
+		},
 		"warpscript": {
 			"title": "WarpScript",
 			"owner": "RunDevelopment"
