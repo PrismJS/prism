@@ -1457,6 +1457,11 @@
 			},
 			"owner": "jakubklimek"
 		},
+		"tlb": {
+			"title": "TL-B",
+			"alias": ["TL-b", "Tl-b", "Tlb", "TLB", "tlb"],
+			"owner": "sobolevn"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup-templating",
