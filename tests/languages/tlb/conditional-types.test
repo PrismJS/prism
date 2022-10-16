@@ -1,0 +1,153 @@
+masterchain_block_extra#cca5
+  key_block:(## 1)
+  shard_hashes:ShardHashes
+  shard_fees:ShardFees
+  ^[ prev_blk_signatures:(HashmapE 16 CryptoSignaturePair)
+     recover_create_msg:(Maybe ^InMsg)
+     mint_msg:(Maybe ^InMsg) ]
+  config:key_block?ConfigParams
+= McBlockExtra;
+
+
+chain_empty$_ = ProofChain 0;
+chain_link$_ {n:#} root:^Cell prev:n?^(ProofChain n) = ProofChain (n + 1);
+top_block_descr#d5 proof_for:BlockIdExt signatures:(Maybe ^BlockSignatures)
+  len:(## 8) { len >= 1 } { len <= 8 } chain:(ProofChain len) = TopBlockDescr;
+
+----------------------------------------------------
+
+[
+	["variable", "masterchain_block_extra"],
+	["symbol", "#cca5"],
+
+	["variable", "key_block"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["symbol", "#"],
+	["symbol", "#"],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["variable", "shard_hashes"],
+	["punctuation", ":"],
+	["variable", "ShardHashes"],
+
+	["variable", "shard_fees"],
+	["punctuation", ":"],
+	["variable", "ShardFees"],
+
+	["operator", "^"],
+	["punctuation", "["],
+	["variable", "prev_blk_signatures"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["variable", "HashmapE"],
+	["number", "16"],
+	["variable", "CryptoSignaturePair"],
+	["punctuation", ")"],
+
+	["variable", "recover_create_msg"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["builtin", "Maybe"],
+	["operator", "^"],
+	["variable", "InMsg"],
+	["punctuation", ")"],
+
+	["variable", "mint_msg"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["builtin", "Maybe"],
+	["operator", "^"],
+	["variable", "InMsg"],
+	["punctuation", ")"],
+	["punctuation", "]"],
+
+	["variable", "config"],
+	["punctuation", ":"],
+	["variable", "key_block"],
+	["operator", "?"],
+	["variable", "ConfigParams"],
+
+	["operator", "="],
+	["variable", "McBlockExtra"],
+	["punctuation", ";"],
+
+	["variable", "chain_empty"],
+	["symbol", "$_"],
+	["operator", "="],
+	["variable", "ProofChain"],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["variable", "chain_link"],
+	["symbol", "$_"],
+	["punctuation", "{"],
+	["variable", "n"],
+	["punctuation", ":"],
+	["symbol", "#"],
+	["punctuation", "}"],
+	["variable", "root"],
+	["punctuation", ":"],
+	["operator", "^"],
+	["builtin", "Cell"],
+	["variable", "prev"],
+	["punctuation", ":"],
+	["variable", "n"],
+	["operator", "?"],
+	["operator", "^"],
+	["punctuation", "("],
+	["variable", "ProofChain"],
+	["variable", "n"],
+	["punctuation", ")"],
+	["operator", "="],
+	["variable", "ProofChain"],
+	["punctuation", "("],
+	["variable", "n"],
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "top_block_descr"],
+	["symbol", "#d5"],
+	["variable", "proof_for"],
+	["punctuation", ":"],
+	["variable", "BlockIdExt"],
+	["variable", "signatures"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["builtin", "Maybe"],
+	["operator", "^"],
+	["variable", "BlockSignatures"],
+	["punctuation", ")"],
+
+	["variable", "len"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["symbol", "#"],
+	["symbol", "#"],
+	["number", "8"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["variable", "len"],
+	["operator", ">"],
+	["operator", "="],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", "{"],
+	["variable", "len"],
+	["operator", "<"],
+	["operator", "="],
+	["number", "8"],
+	["punctuation", "}"],
+	["variable", "chain"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["variable", "ProofChain"],
+	["variable", "len"],
+	["punctuation", ")"],
+	["operator", "="],
+	["variable", "TopBlockDescr"],
+	["punctuation", ";"]
+]
