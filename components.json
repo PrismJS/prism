@@ -491,6 +491,10 @@
 			"require": "clike",
 			"owner": "RunDevelopment"
 		},
+		"fift": {
+			"alias": "Fift",
+			"owner": "sobolevn"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
