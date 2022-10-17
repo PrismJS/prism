@@ -1,0 +1,329 @@
+#include "../";
+#pragma version >=1.0.0;
+
+global int k_const;
+global tuple k_if;
+const int k_int = 1;
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(0x4_1_0);
+
+    if ((flags & 1) == true) { ;; ignore all bounced messages
+        return ();
+    }
+
+    slice sender_address = cs~load_msg_addr();
+
+    {-
+    {-
+    test - is test
+    -}
+    -}
+
+    ;; Send message
+    var message = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(sender_address)
+        .store_coins(0)
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_slice("Hello, world!"s)
+        .end_cell();
+
+    send_raw_message(message, 64);
+
+    ;; Update counter
+    var cs = get_data().begin_parse();
+    var counter = data~load_uint(32);
+
+    store_data(
+        begin_cell()
+            .store_uint(counter + 1, 32)
+        .end_cell()
+    );
+}
+
+() recv_external(slice in_msg) impure {
+    throw(0xffff);
+}
+
+int counter() method_id {
+    var data = get_data().begin_parse();
+    return data~load_uint(32);
+}
+
+----------------------------------------------------
+
+[
+	["include", [
+		["keyword", "#include"],
+		["string", "\"../\""],
+		["punctuation", ";"]
+	]],
+	["pragma", [
+		["keyword", "#pragma"],
+		["keyword", "version"],
+		["operator", ">="],
+		["number", "1.0.0"],
+		["punctuation", ";"]
+	]],
+
+	["keyword", "global"],
+	["builtin", "int"],
+	["variable", "k_const"],
+	["punctuation", ";"],
+
+	["keyword", "global"],
+	["builtin", "tuple"],
+	["variable", "k_if"],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["builtin", "int"],
+	["variable", "k_int"],
+	["variable", "="],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["punctuation", ")"],
+	["variable", "recv_internal"],
+	["punctuation", "("],
+	["builtin", "int"],
+	["variable", "my_balance"],
+	["punctuation", ","],
+	["builtin", "int"],
+	["variable", "msg_value"],
+	["punctuation", ","],
+	["builtin", "cell"],
+	["variable", "in_msg_full"],
+	["punctuation", ","],
+	["builtin", "slice"],
+	["variable", "in_msg_body"],
+	["punctuation", ")"],
+	["keyword", "impure"],
+	["punctuation", "{"],
+
+	["builtin", "slice"],
+	["variable", "cs"],
+	["variable", "="],
+	["variable", "in_msg_full"],
+	["punctuation", "."],
+	["variable", "begin_parse"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["builtin", "int"],
+	["variable", "flags"],
+	["variable", "="],
+	["variable", "cs"],
+	["operator", "~"],
+	["variable", "load_uint"],
+	["punctuation", "("],
+	["number", "0x4_1_0"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	["punctuation", "("],
+	["variable", "flags"],
+	["variable", "&"],
+	["number", "1"],
+	["punctuation", ")"],
+	["variable", "=="],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["comment", ";; ignore all bounced messages"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["builtin", "slice"],
+	["variable", "sender_address"],
+	["variable", "="],
+	["variable", "cs"],
+	["operator", "~"],
+	["variable", "load_msg_addr"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "{-\r\n    {-\r\n    test - is test\r\n    -}"],
+	["variable", "-}"],
+
+	["comment", ";; Send message"],
+
+	["builtin", "var"],
+	["variable", "message"],
+	["variable", "="],
+	["variable", "begin_cell"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_uint"],
+	["punctuation", "("],
+	["number", "0x18"],
+	["punctuation", ","],
+	["number", "6"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_slice"],
+	["punctuation", "("],
+	["variable", "sender_address"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_coins"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_uint"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "1"],
+	["variable", "+"],
+	["number", "4"],
+	["variable", "+"],
+	["number", "4"],
+	["variable", "+"],
+	["number", "64"],
+	["variable", "+"],
+	["number", "32"],
+	["variable", "+"],
+	["number", "1"],
+	["variable", "+"],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_slice"],
+	["punctuation", "("],
+	["string", "\"Hello, world!\"s"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "end_cell"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "send_raw_message"],
+	["punctuation", "("],
+	["variable", "message"],
+	["punctuation", ","],
+	["number", "64"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", ";; Update counter"],
+
+	["builtin", "var"],
+	["variable", "cs"],
+	["variable", "="],
+	["variable", "get_data"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	["variable", "begin_parse"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["builtin", "var"],
+	["variable", "counter"],
+	["variable", "="],
+	["variable", "data"],
+	["operator", "~"],
+	["variable", "load_uint"],
+	["punctuation", "("],
+	["number", "32"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "store_data"],
+	["punctuation", "("],
+
+	["variable", "begin_cell"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "store_uint"],
+	["punctuation", "("],
+	["variable", "counter"],
+	["variable", "+"],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "32"],
+	["punctuation", ")"],
+
+	["punctuation", "."],
+	["variable", "end_cell"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "("],
+	["punctuation", ")"],
+	["variable", "recv_external"],
+	["punctuation", "("],
+	["builtin", "slice"],
+	["variable", "in_msg"],
+	["punctuation", ")"],
+	["keyword", "impure"],
+	["punctuation", "{"],
+
+	["variable", "throw"],
+	["punctuation", "("],
+	["number", "0xffff"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["builtin", "int"],
+	["variable", "counter"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["keyword", "method_id"],
+	["punctuation", "{"],
+
+	["builtin", "var"],
+	["variable", "data"],
+	["variable", "="],
+	["variable", "get_data"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	["variable", "begin_parse"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "return"],
+	["variable", "data"],
+	["operator", "~"],
+	["variable", "load_uint"],
+	["punctuation", "("],
+	["number", "32"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
