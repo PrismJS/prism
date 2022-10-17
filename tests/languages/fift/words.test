@@ -394,8 +394,7 @@ reset-counter next-counter .
 	["keyword", "cond"],
 
 	["number", "1"],
-	" '",
-	["keyword", "nop"],
+	["symbol", "'nop"],
 
 	["punctuation", "}"],
 	["operator", "::_"],

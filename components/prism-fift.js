@@ -1,4 +1,10 @@
 Prism.languages.fift = {
+	'symbol': [
+		/[xX]\{[0-9a-fA-F_]*\}/,
+		/[bB]\{[01]*\}/,
+		/'\S+/,
+	],
+	
 	'keyword': /\b(?:-roll|-rot|-trailing|-trailing0|2constant|2drop|2dup|2over|2swap|abort|abs|allot|and|anon|atom|bbitrefs|bbits|bl|box|brefs|brembitrefs|brembits|bremrefs|bye|caddr|cadr|car|cddr|cdr|char|chr|cmp|cond|cons|constant|count|cr|create|depth|dictmap|dictmerge|dictnew|does|drop|dup|ed25519_chksign|ed25519_sign|ed25519_sign_uint|emit|exch|exch2|execute|explode|find|first|fits|forget|gasrunvm|gasrunvmcode|gasrunvmctx|gasrunvmdict|halt|hash|hashB|hashu|hold|hole|if|ifnot|include|list|max|min|minmax|mod|negate|newkeypair|nil|nip|nop|not|now|null|or|over|pair|pick|quit|remaining|reverse|roll|rot|runvm|runvmcode|runvmctx|runvmdict|sbitrefs|sbits|second|sgn|shash|sign|single|skipspc|space|srefs|swap|ten|third|times|triple|tuck|tuple|type|ufits|uncons|unpair|unsingle|until|untriple|untuple|variable|while|word|words|xor)\b/,
 	'boolean': /\b(?:false|true)\b/,
 
@@ -101,11 +107,6 @@ Prism.languages.fift = {
 		/\./,
 	],
 
-	'symbol': [
-		/[xX]\{[0-9a-fA-F_]*\}/,
-		/[bB]\{[01]*\}/,
-		/'\S+/,
-	],
 	'number': [
 		/(0[xX][0-9a-fA-F]+)/,
 		/(0[bB][01]+)/,

@@ -102,11 +102,9 @@ Matrix .dump cr
 
 	["comment", "// Atoms"],
 
-	"\r\n'",
-	["operator", "+"],
+	["symbol", "'+"],
 	["number", "2"],
-	" '",
-	["operator", "*"],
+	["symbol", "'*"],
 	["number", "3"],
 	["number", "4"],
 	["number", "3"],

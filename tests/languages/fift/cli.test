@@ -56,8 +56,7 @@ variable 'eval
 	["keyword", "rot"],
 
 	["keyword", "dup"],
-	" '",
-	["operator", "+"],
+	["symbol", "'+"],
 	["operator", "eq?"],
 	["punctuation", "{"],
 	["keyword", "drop"],
@@ -66,8 +65,7 @@ variable 'eval
 	["punctuation", "{"],
 
 	["keyword", "dup"],
-	" '",
-	["operator", "-"],
+	["symbol", "'-"],
 	["operator", "eq?"],
 	["punctuation", "{"],
 	["keyword", "drop"],
@@ -75,8 +73,7 @@ variable 'eval
 	["punctuation", "}"],
 	["punctuation", "{"],
 
-	"\r\n        '",
-	["operator", "*"],
+	["symbol", "'*"],
 	["operator", "eq?"],
 	["keyword", "not"],
 	["keyword", "abort"],
@@ -96,11 +93,9 @@ variable 'eval
 	["symbol", "'eval"],
 	["operator", "!"],
 
-	"\r\n'",
-	["operator", "+"],
+	["symbol", "'+"],
 	["number", "2"],
-	" '",
-	["operator", "*"],
+	["symbol", "'*"],
 	["number", "3"],
 	["number", "4"],
 	["number", "3"],
