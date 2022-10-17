@@ -29,25 +29,17 @@ variable 'eval
 
 	["punctuation", "{"],
 	["keyword", "dup"],
-	["keyword", "tuple"],
-	"? ",
+	["operator", "tuple?"],
 	["punctuation", "{"],
 
 	["keyword", "uncons"],
 	["keyword", "uncons"],
 	["keyword", "uncons"],
 
-	["keyword", "null"],
-	"? ",
+	["operator", "null?"],
 	["keyword", "not"],
 	["keyword", "abort"],
-	"\"",
-	["variable", "three"],
-	["operator", "-"],
-	["variable", "element"],
-	["keyword", "list"],
-	["variable", "expected"],
-	"\"\r\n  ",
+	["string", "\"three-element list expected\""],
 
 	["keyword", "swap"],
 	["variable", "eval"],

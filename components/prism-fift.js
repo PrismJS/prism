@@ -4,9 +4,7 @@ Prism.languages.fift = {
 		/[bB]\{[01]*\}/,
 		/'\S+/,
 	],
-	
-	'keyword': /\b(?:-roll|-rot|-trailing|-trailing0|2constant|2drop|2dup|2over|2swap|abort|abs|allot|and|anon|atom|bbitrefs|bbits|bl|box|brefs|brembitrefs|brembits|bremrefs|bye|caddr|cadr|car|cddr|cdr|char|chr|cmp|cond|cons|constant|count|cr|create|depth|dictmap|dictmerge|dictnew|does|drop|dup|ed25519_chksign|ed25519_sign|ed25519_sign_uint|emit|exch|exch2|execute|explode|find|first|fits|forget|gasrunvm|gasrunvmcode|gasrunvmctx|gasrunvmdict|halt|hash|hashB|hashu|hold|hole|if|ifnot|include|list|max|min|minmax|mod|negate|newkeypair|nil|nip|nop|not|now|null|or|over|pair|pick|quit|remaining|reverse|roll|rot|runvm|runvmcode|runvmctx|runvmdict|sbitrefs|sbits|second|sgn|shash|sign|single|skipspc|space|srefs|swap|ten|third|times|triple|tuck|tuple|type|ufits|uncons|unpair|unsingle|until|untriple|untuple|variable|while|word|words|xor)\b/,
-	'boolean': /\b(?:false|true)\b/,
+	'string': /"([^"\r\n\\]|\\.)*"/,
 
 	'comment': [
 		{
@@ -82,7 +80,7 @@ Prism.languages.fift = {
 		/empty\?/, /eq\?/,
 		/file-exists\?/, /file>B/,
 
-		/i,/, /i>B/, /i@\+/, /i@/, /i@\?\+/, /i@\?/,
+		/i,/, /i>B/, /i@\+/, /i@\?\+/, /i@\?/, /i@/,
 		/idict!\+/, /idict!/, /idict-/, /idict@-/, /idict@/,
 
 		/null!/, /null\?/,
@@ -103,17 +101,21 @@ Prism.languages.fift = {
 
 		/\|\+/, /\|/, /\|_/,
 
+		/\?\./, /'/,
+
 		// Should be the last:
 		/\./,
 	],
+
+	'keyword': /\b(?:-roll|-rot|-trailing|-trailing0|2constant|2drop|2dup|2over|2swap|abort|abs|allot|and|anon|atom|bbitrefs|bbits|bl|box|brefs|brembitrefs|brembits|bremrefs|bye|caddr|cadr|car|cddr|cdr|char|chr|cmp|cond|cons|constant|count|cr|create|depth|dictmap|dictmerge|dictnew|does|drop|dup|ed25519_chksign|ed25519_sign|ed25519_sign_uint|emit|exch|exch2|execute|explode|find|first|fits|forget|gasrunvm|gasrunvmcode|gasrunvmctx|gasrunvmdict|halt|hash|hashB|hashu|hold|hole|if|ifnot|include|list|max|min|minmax|mod|negate|newkeypair|nil|nip|nop|not|now|null|or|over|pair|pick|quit|remaining|reverse|roll|rot|runvm|runvmcode|runvmctx|runvmdict|sbitrefs|sbits|second|sgn|shash|sign|single|skipspc|space|srefs|swap|ten|third|times|triple|tuck|tuple|type|ufits|uncons|unpair|unsingle|until|untriple|untuple|variable|while|word|words|xor)\b/,
+	'boolean': /\b(?:false|true)\b/,
 
 	'number': [
 		/(0[xX][0-9a-fA-F]+)/,
 		/(0[bB][01]+)/,
 		/(-?\d+(\/-?\d+)?)/,
 	],
-	'string': /"([^"\r\n\\]|\\.)*"/,
 	'variable': /[\w$-]+/,
 
-	'punctuation': /[\[\{\}\],]/,
+	'punctuation': /[\[\{\}\],\(\)]/,
 };

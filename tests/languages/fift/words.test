@@ -57,7 +57,7 @@ reset-counter next-counter .
   1 'nop
 } ::_ GR$
 
-{ dup abs <# ’ # 9 times char . hold #s rot sign #>
+{ dup abs <# ' # 9 times char . hold #s rot sign #>
   nip -trailing0 } : (.GR)
 { (.GR) ."GR$" type space } : .GR
 -17239000000 .GR
@@ -97,20 +97,10 @@ reset-counter next-counter .
 	["variable", "mgram"],
 	["comment", "// comment"],
 
-	"\r\n\r\n\"",
-	["variable", "Hello"],
-	["operator", ","],
-	["variable", "world"],
-	["operator", "!"],
-	"\" ",
+	["string", "\"Hello, world!\""],
 	["operator", ".s"],
 
-	"\r\n\"",
-	["variable", "Hello"],
-	["operator", ","],
-	["variable", "world"],
-	["operator", "!"],
-	"\" ",
+	["string", "\"Hello, world!\""],
 	["keyword", "constant"],
 	["variable", "hello"],
 
@@ -164,9 +154,7 @@ reset-counter next-counter .
 	["variable", "x"],
 	["operator", "."],
 	["operator", "."],
-	"\"",
-	["operator", ","],
-	" \" ",
+	["string", "\", \""],
 	["operator", "@'"],
 	["variable", "y"],
 	["operator", "."],
@@ -272,9 +260,7 @@ reset-counter next-counter .
 	["operator", "@"],
 	["operator", "."],
 	["operator", "."],
-	"\"",
-	["operator", ","],
-	" \" ",
+	["string", "\", \""],
 	["variable", "y"],
 	["operator", "@"],
 	["operator", "."],
@@ -368,17 +354,10 @@ reset-counter next-counter .
 	["keyword", "bl"],
 	["keyword", "word"],
 	["operator", "(number)"],
-	" ?",
-	["keyword", "dup"],
+	["operator", "?dup"],
 	["operator", "0="],
 	["keyword", "abort"],
-	"\"",
-	["keyword", "not"],
-	["variable", "a"],
-	["variable", "valid"],
-	["variable", "Gram"],
-	["variable", "amount"],
-	"\"\r\n  ",
+	["string", "\"not a valid Gram amount\""],
 
 	["number", "1"],
 	["operator", "-"],
@@ -405,7 +384,7 @@ reset-counter next-counter .
 	["keyword", "abs"],
 	["operator", "<"],
 	["operator", "#"],
-	" ’ ",
+	["operator", "'"],
 	["operator", "#"],
 	["number", "9"],
 	["keyword", "times"],
@@ -423,16 +402,16 @@ reset-counter next-counter .
 	["number", "0"],
 	["punctuation", "}"],
 	["operator", ":"],
-	" (",
+	["punctuation", "("],
 	["operator", "."],
 	["variable", "GR"],
-	")\r\n",
+	["punctuation", ")"],
 
 	["punctuation", "{"],
-	" (",
+	["punctuation", "("],
 	["operator", "."],
 	["variable", "GR"],
-	") ",
+	["punctuation", ")"],
 	["operator", "."],
 	["string", "\"GR$\""],
 	["keyword", "type"],
