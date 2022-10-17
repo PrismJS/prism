@@ -1,0 +1,61 @@
+// Binary
+b{00011101}
+b{}
+
+// Hex
+// data
+x{2F4d}
+x{EA_}
+x{1d}
+x{}
+
+/* Operators
+   and stuff */
+{ <b x{4A} s, rot 16 u, swap 32 i, .s b> } : mkTest
+17239 -1000000001 mkTest
+<s csr.
+
+----------------------------------------------------
+
+[
+	["comment", "// Binary"],
+	["symbol", "b{00011101}"],
+	["symbol", "b{}"],
+
+	["comment", "// Hex"],
+	["comment", "// data"],
+	["symbol", "x{2F4d}"],
+	["symbol", "x{EA_}"],
+	["symbol", "x{1d}"],
+	["symbol", "x{}"],
+
+	["comment", "/* Operators\r\n   and stuff */"],
+
+	["punctuation", "{"],
+	["operator", "<b"],
+	["symbol", "x{4A}"],
+	["variable", "s"],
+	["operator", ","],
+	["keyword", "rot"],
+	["number", "16"],
+	["variable", "u"],
+	["operator", ","],
+	["keyword", "swap"],
+	["number", "32"],
+	["variable", "i"],
+	["operator", ","],
+	["operator", ".s"],
+	["variable", "b"],
+	["operator", ">"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "mkTest"],
+
+	["number", "17239"],
+	["operator", "-"],
+	["number", "1000000001"],
+	["variable", "mkTest"],
+
+	["operator", "<s"],
+	["operator", "csr."]
+]

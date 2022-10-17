@@ -1,0 +1,428 @@
+/* Constants */
+0B01 0b1 2constant Temp
+1000000000 constant Gram
+Gram 2 * .
+
+Gram 1000 / constant mGram
+mGram .
+
+i@?+ mgram // comment
+
+"Hello, world!" .s
+"Hello, world!" constant hello
+hello type cr
+
+355 113 2constant pifrac
+
+{ dup =: x dup * =: y } : setxy
+3 setxy x . y . x y + .
+7 setxy x . y . x y + .
+
+{ ."( " @' x . .", " @' y . .") " } : showxy
+3 setxy showxy
+
+// -----
+// Words
+{ dup * } : square
+5 square .
+
+{ dup square square * } : **5
+// 3**5 == 243
+3 **5 .
+
+// ----
+// Variables
+variable x variable y
+{ dup x ! dup * y ! } : setxy
+3 setxy x @ . y @ . x @ y @ + .
+7 setxy x @ . y @ . x @ y @ + .
+{ ."( " x @ . .", " y @ . .") " } : showxy
+3 setxy showxy
+
+variable counter
+{ counter 0! } : reset-counter
+{ counter @ 1+ dup counter ! } : next-counter
+reset-counter next-counter . next-counter . next-counter .
+reset-counter next-counter .
+
+
+// -----
+// 2.8 Integer and fractional constants, or literals
+1000000000 constant Gram
+{ Gram * } : Gram*
+{ Gram swap */r } : Gram*/
+
+{ bl word (number) ?dup 0= abort"not a valid Gram amount"
+  1- { Gram swap */r } { Gram * } cond
+  1 'nop
+} ::_ GR$
+
+{ dup abs <# ' # 9 times char . hold #s rot sign #>
+  nip -trailing0 } : (.GR)
+{ (.GR) ."GR$" type space } : .GR
+-17239000000 .GR
+
+----------------------------------------------------
+
+[
+	["comment", "/* Constants */"],
+
+	["number", "0B01"],
+	["number", "0b1"],
+	["keyword", "2constant"],
+	["variable", "Temp"],
+
+	["number", "1000000000"],
+	["keyword", "constant"],
+	["variable", "Gram"],
+
+	["variable", "Gram"],
+	["number", "2"],
+	["operator", "*"],
+	["operator", "."],
+
+	["variable", "Gram"],
+	["number", "1000"],
+	["operator", "/"],
+	["keyword", "constant"],
+	["variable", "mGram"],
+
+	["variable", "mGram"],
+	["operator", "."],
+
+	["variable", "i"],
+	["operator", "@"],
+	"?",
+	["operator", "+"],
+	["variable", "mgram"],
+	["comment", "// comment"],
+
+	["string", "\"Hello, world!\""],
+	["operator", ".s"],
+
+	["string", "\"Hello, world!\""],
+	["keyword", "constant"],
+	["variable", "hello"],
+
+	["variable", "hello"],
+	["keyword", "type"],
+	["keyword", "cr"],
+
+	["number", "355"],
+	["number", "113"],
+	["keyword", "2constant"],
+	["variable", "pifrac"],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["operator", "=:"],
+	["variable", "x"],
+	["keyword", "dup"],
+	["operator", "*"],
+	["operator", "=:"],
+	["variable", "y"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "setxy"],
+
+	["number", "3"],
+	["variable", "setxy"],
+	["variable", "x"],
+	["operator", "."],
+	["variable", "y"],
+	["operator", "."],
+	["variable", "x"],
+	["variable", "y"],
+	["operator", "+"],
+	["operator", "."],
+
+	["number", "7"],
+	["variable", "setxy"],
+	["variable", "x"],
+	["operator", "."],
+	["variable", "y"],
+	["operator", "."],
+	["variable", "x"],
+	["variable", "y"],
+	["operator", "+"],
+	["operator", "."],
+
+	["punctuation", "{"],
+	["operator", "."],
+	["string", "\"( \""],
+	["operator", "@'"],
+	["variable", "x"],
+	["operator", "."],
+	["operator", "."],
+	["string", "\", \""],
+	["operator", "@'"],
+	["variable", "y"],
+	["operator", "."],
+	["operator", "."],
+	["string", "\") \""],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "showxy"],
+
+	["number", "3"],
+	["variable", "setxy"],
+	["variable", "showxy"],
+
+	["comment", "// -----"],
+
+	["comment", "// Words"],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["operator", "*"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "square"],
+
+	["number", "5"],
+	["variable", "square"],
+	["operator", "."],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["variable", "square"],
+	["variable", "square"],
+	["operator", "*"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["operator", "*"],
+	["operator", "*"],
+	["number", "5"],
+
+	["comment", "// 3**5 == 243"],
+
+	["number", "3"],
+	["operator", "*"],
+	["operator", "*"],
+	["number", "5"],
+	["operator", "."],
+
+	["comment", "// ----"],
+
+	["comment", "// Variables"],
+
+	["keyword", "variable"],
+	["variable", "x"],
+	["keyword", "variable"],
+	["variable", "y"],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["variable", "x"],
+	["operator", "!"],
+	["keyword", "dup"],
+	["operator", "*"],
+	["variable", "y"],
+	["operator", "!"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "setxy"],
+
+	["number", "3"],
+	["variable", "setxy"],
+	["variable", "x"],
+	["operator", "@"],
+	["operator", "."],
+	["variable", "y"],
+	["operator", "@"],
+	["operator", "."],
+	["variable", "x"],
+	["operator", "@"],
+	["variable", "y"],
+	["operator", "@"],
+	["operator", "+"],
+	["operator", "."],
+
+	["number", "7"],
+	["variable", "setxy"],
+	["variable", "x"],
+	["operator", "@"],
+	["operator", "."],
+	["variable", "y"],
+	["operator", "@"],
+	["operator", "."],
+	["variable", "x"],
+	["operator", "@"],
+	["variable", "y"],
+	["operator", "@"],
+	["operator", "+"],
+	["operator", "."],
+
+	["punctuation", "{"],
+	["operator", "."],
+	["string", "\"( \""],
+	["variable", "x"],
+	["operator", "@"],
+	["operator", "."],
+	["operator", "."],
+	["string", "\", \""],
+	["variable", "y"],
+	["operator", "@"],
+	["operator", "."],
+	["operator", "."],
+	["string", "\") \""],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "showxy"],
+
+	["number", "3"],
+	["variable", "setxy"],
+	["variable", "showxy"],
+
+	["keyword", "variable"],
+	["variable", "counter"],
+
+	["punctuation", "{"],
+	["variable", "counter"],
+	["number", "0"],
+	["operator", "!"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "reset"],
+	["operator", "-"],
+	["variable", "counter"],
+
+	["punctuation", "{"],
+	["variable", "counter"],
+	["operator", "@"],
+	["number", "1"],
+	["operator", "+"],
+	["keyword", "dup"],
+	["variable", "counter"],
+	["operator", "!"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "next"],
+	["operator", "-"],
+	["variable", "counter"],
+
+	["variable", "reset"],
+	["operator", "-"],
+	["variable", "counter"],
+	["variable", "next"],
+	["operator", "-"],
+	["variable", "counter"],
+	["operator", "."],
+	["variable", "next"],
+	["operator", "-"],
+	["variable", "counter"],
+	["operator", "."],
+	["variable", "next"],
+	["operator", "-"],
+	["variable", "counter"],
+	["operator", "."],
+
+	["variable", "reset"],
+	["operator", "-"],
+	["variable", "counter"],
+	["variable", "next"],
+	["operator", "-"],
+	["variable", "counter"],
+	["operator", "."],
+
+	["comment", "// -----"],
+
+	["comment", "// 2.8 Integer and fractional constants, or literals"],
+
+	["number", "1000000000"],
+	["keyword", "constant"],
+	["variable", "Gram"],
+
+	["punctuation", "{"],
+	["variable", "Gram"],
+	["operator", "*"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "Gram"],
+	["operator", "*"],
+
+	["punctuation", "{"],
+	["variable", "Gram"],
+	["keyword", "swap"],
+	["operator", "*/r"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "Gram"],
+	["operator", "*/"],
+
+	["punctuation", "{"],
+	["keyword", "bl"],
+	["keyword", "word"],
+	["operator", "(number)"],
+	["operator", "?dup"],
+	["operator", "0="],
+	["keyword", "abort"],
+	["string", "\"not a valid Gram amount\""],
+
+	["number", "1"],
+	["operator", "-"],
+	["punctuation", "{"],
+	["variable", "Gram"],
+	["keyword", "swap"],
+	["operator", "*/r"],
+	["punctuation", "}"],
+	["punctuation", "{"],
+	["variable", "Gram"],
+	["operator", "*"],
+	["punctuation", "}"],
+	["keyword", "cond"],
+
+	["number", "1"],
+	["symbol", "'nop"],
+
+	["punctuation", "}"],
+	["operator", "::_"],
+	["variable", "GR$"],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["keyword", "abs"],
+	["operator", "<"],
+	["operator", "#"],
+	["operator", "'"],
+	["operator", "#"],
+	["number", "9"],
+	["keyword", "times"],
+	["keyword", "char"],
+	["operator", "."],
+	["keyword", "hold"],
+	["operator", "#s"],
+	["keyword", "rot"],
+	["keyword", "sign"],
+	["operator", "#>"],
+
+	["keyword", "nip"],
+	["operator", "-"],
+	["variable", "trailing"],
+	["number", "0"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["punctuation", "("],
+	["operator", "."],
+	["variable", "GR"],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+	["punctuation", "("],
+	["operator", "."],
+	["variable", "GR"],
+	["punctuation", ")"],
+	["operator", "."],
+	["string", "\"GR$\""],
+	["keyword", "type"],
+	["keyword", "space"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["operator", "."],
+	["variable", "GR"],
+
+	["operator", "-"],
+	["number", "17239000000"],
+	["operator", "."],
+	["variable", "GR"]
+]
