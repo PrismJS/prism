@@ -19,45 +19,21 @@ x{}
 
 [
 	["comment", "// Binary"],
-
-	["variable", "b"],
-	["punctuation", "{"],
-	["number", "00011101"],
-	["punctuation", "}"],
-
+	["symbol", "b{00011101}"],
 	["symbol", "b{}"],
 
 	["comment", "// Hex"],
-
 	["comment", "// data"],
-
-	["variable", "x"],
-	["punctuation", "{"],
-	["number", "2"],
-	["variable", "F"],
-	["number", "4"],
-	["variable", "d"],
-	["punctuation", "}"],
-
+	["symbol", "x{2F4d}"],
 	["symbol", "x{EA_}"],
-
-	["variable", "x"],
-	["punctuation", "{"],
-	["number", "1"],
-	["variable", "d"],
-	["punctuation", "}"],
-
+	["symbol", "x{1d}"],
 	["symbol", "x{}"],
 
 	["comment", "/* Operators\r\n   and stuff */"],
 
 	["punctuation", "{"],
 	["operator", "<b"],
-	["variable", "x"],
-	["punctuation", "{"],
-	["number", "4"],
-	["variable", "A"],
-	["punctuation", "}"],
+	["symbol", "x{4A}"],
 	["variable", "s"],
 	["operator", ","],
 	["keyword", "rot"],
