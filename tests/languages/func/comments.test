@@ -1,0 +1,33 @@
+{-
+	Multiline test
+-}
+
+{- Single line test -}
+
+;; Single line
+
+;;
+
+;; Multiline
+;; comment
+
+8 ;; inline
+12
+
+----------------------------------------------------
+
+[
+	["comment", "{-\r\n\tMultiline test\r\n-}"],
+
+	["comment", "{- Single line test -}"],
+
+	["comment", ";; Single line"],
+
+	["comment", ";;"],
+
+	["comment", ";; Multiline"],
+	["comment", ";; comment"],
+
+	["number", "8"], ["comment", ";; inline"],
+	["number", "12"]
+]
