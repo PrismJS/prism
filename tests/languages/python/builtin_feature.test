@@ -1,6 +1,6 @@
 abs all any apply
 ascii basestring bin bool
-buffer bytearray bytes callable
+bytearray bytes callable
 chr classmethod cmp coerce
 compile complex delattr
 dict dir divmod enumerate
@@ -28,7 +28,7 @@ __import__
 [
 	["builtin", "abs"], ["builtin", "all"], ["builtin", "any"], ["builtin", "apply"],
 	["builtin", "ascii"], ["builtin", "basestring"], ["builtin", "bin"], ["builtin", "bool"],
-	["builtin", "buffer"], ["builtin", "bytearray"], ["builtin", "bytes"], ["builtin", "callable"],
+	["builtin", "bytearray"], ["builtin", "bytes"], ["builtin", "callable"],
 	["builtin", "chr"], ["builtin", "classmethod"], ["builtin", "cmp"], ["builtin", "coerce"],
 	["builtin", "compile"], ["builtin", "complex"], ["builtin", "delattr"],
 	["builtin", "dict"], ["builtin", "dir"], ["builtin", "divmod"], ["builtin", "enumerate"],
