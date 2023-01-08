@@ -486,6 +486,10 @@
 			"title": "False",
 			"owner": "edukisto"
 		},
+		"fasm": {
+			"title": "Flat Assembler",
+			"owner": "kspalaiologos"
+		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
