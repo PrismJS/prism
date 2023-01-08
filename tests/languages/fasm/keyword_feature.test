@@ -1,0 +1,15 @@
+mov rax, rsp
+mov rsi, bpl
+mov cr0, al
+
+----------------------------------------------------
+
+[
+	["keyword", "mov"], ["register", "rax"], ["operator", ","], ["register", "rsp"],
+	["keyword", "mov"], ["register", "rsi"], ["operator", ","], ["register", "bpl"],
+	["keyword", "mov"], ["register", "cr0"], ["operator", ","], ["register", "al"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

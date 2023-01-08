@@ -486,14 +486,14 @@
 			"title": "False",
 			"owner": "edukisto"
 		},
-		"fasm": {
-			"title": "Flat Assembler",
-			"owner": "kspalaiologos"
-		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
 			"owner": "RunDevelopment"
+		},
+		"fasm": {
+			"title": "Flat Assembler",
+			"owner": "kspalaiologos"
 		},
 		"flow": {
 			"title": "Flow",
