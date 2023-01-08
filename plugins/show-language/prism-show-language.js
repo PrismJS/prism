@@ -101,6 +101,7 @@
 		"xlsx": "Excel Formula",
 		"xls": "Excel Formula",
 		"fsharp": "F#",
+		"fasm": "Flat Assembler",
 		"firestore-security-rules": "Firestore security rules",
 		"ftl": "FreeMarker Template Language",
 		"gml": "GameMaker Language",
