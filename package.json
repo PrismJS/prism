@@ -41,7 +41,7 @@
 		"@types/node-fetch": "^2.5.5",
 		"benchmark": "^2.1.4",
 		"chai": "^4.2.0",
-		"danger": "^10.5.0",
+		"danger": "^11.2.1",
 		"del": "^4.1.1",
 		"docdash": "^1.2.0",
 		"eslint": "^7.22.0",
