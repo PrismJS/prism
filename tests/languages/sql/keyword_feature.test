@@ -130,7 +130,6 @@ FIXED
 FLOAT
 FOLLOWING
 FOR
-FOREACHROW
 FOR EACH ROW
 FORCE
 FOREIGN
@@ -367,7 +366,6 @@ WHERE
 WHILE
 WINDOW
 WITH
-WITHROLLUP
 WITH ROLLUP
 WITHIN
 WORK
@@ -510,7 +508,6 @@ YEAR
      ["keyword", "FLOAT"],
      ["keyword", "FOLLOWING"],
      ["keyword", "FOR"],
-     ["keyword", "FOREACHROW"],
      ["keyword", "FOR EACH ROW"],
      ["keyword", "FORCE"],
      ["keyword", "FOREIGN"],
@@ -747,7 +744,6 @@ YEAR
      ["keyword", "WHILE"],
      ["keyword", "WINDOW"],
      ["keyword", "WITH"],
-     ["keyword", "WITHROLLUP"],
      ["keyword", "WITH ROLLUP"],
      ["keyword", "WITHIN"],
      ["keyword", "WORK"],
