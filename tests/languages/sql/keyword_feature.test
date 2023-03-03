@@ -239,6 +239,7 @@ PROC
 PROCEDURE
 PUBLIC
 PURGE
+QUALIFY
 QUICK
 RAISERROR
 READ
@@ -598,6 +599,7 @@ YEAR
 	["keyword", "PROCEDURE"],
 	["keyword", "PUBLIC"],
 	["keyword", "PURGE"],
+	["keyword", "QUALIFY"],
 	["keyword", "QUICK"],
 	["keyword", "RAISERROR"],
 	["keyword", "READ"],
