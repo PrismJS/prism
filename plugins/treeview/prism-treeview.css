@@ -114,6 +114,7 @@
 .token.treeview-part .entry-name.ext-js:before,
 .token.treeview-part .entry-name.ext-php:before,
 .token.treeview-part .entry-name.ext-rb:before,
+.token.treeview-part .entry-name.ext-ts:before,
 .token.treeview-part .entry-name.ext-xml:before {
 	content: "\ea07";
 }
