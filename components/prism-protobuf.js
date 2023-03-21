@@ -40,4 +40,5 @@
 		}
 	});
 
+	Prism.languages.proto = Prism.languages['protobuf'];
 }(Prism));

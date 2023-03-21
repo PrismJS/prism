@@ -244,6 +244,7 @@
 		"plantuml": "plant-uml",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"proto": "protobuf",
 		"pbfasm": "purebasic",
 		"purs": "purescript",
 		"py": "python",
