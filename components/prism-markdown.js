@@ -151,7 +151,8 @@
 			// [id]: http://example.com 'Optional title'
 			// [id]: http://example.com (Optional title)
 			// [id]: <http://example.com> "Optional title"
-			pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
+			// do not allow [^id] because it is reserved for footnotes
+			pattern: /!?\[[^\^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
 			inside: {
 				'variable': {
 					pattern: /^(!?\[)[^\]]+/,
