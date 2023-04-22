@@ -1198,6 +1198,11 @@
 			"alias": "rkt",
 			"owner": "RunDevelopment"
 		},
+		"raku": {
+			"title": "Raku",
+			"require": "perl",
+			"owner": "rcmlz"
+		},
 		"cshtml": {
 			"title": "Razor C#",
 			"alias": "razor",

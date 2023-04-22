@@ -1,0 +1,19 @@
+sub foo
+sub Foo_Bar42
+sub Foo-Bar42
+multi foobar
+proto bar
+
+----------------------------------------------------
+
+[
+	["keyword", "sub"], ["function", "foo"],
+	["keyword", "sub"], ["function", "Foo_Bar42"],
+	["keyword", "sub"], ["function", "Foo-Bar42"],
+	["keyword", "multi"], ["function", "foobar"],
+	["keyword", "proto"], ["function", "bar"]
+]
+
+----------------------------------------------------
+
+Checks for functions.
