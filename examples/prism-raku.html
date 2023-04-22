@@ -1,0 +1,58 @@
+<p>For Raku we extend the <a href="prism-perl.html">Perl definition</a> and hence only list the elements that have been added (so far) <p/>
+
+<h2>Functions</h2>
+<pre><code>
+multi foo(){}
+proto foo(){}
+</code></pre>
+
+<h2>Operators</h2>
+<pre><code>where</code></pre>
+
+<h2>Full example</h2>
+<pre><code>
+#|[ The Jaccard-Coefficient 0..1 is a useful heuristic to estimate
+which strings are likely to have a small edit distance (Levenshtein Distance).
+
+1. create set A and set B of k-grams of the two input strings s1, s2
+2. calculate Jaccard-Coefficient as: |A ∩ B| / |A ∪ B|
+]
+proto jaccard-coefficient($s1, $s2, $k) returns Rational is export {*}
+
+multi jaccard-coefficient(Str $s1 where { $s1.chars > 0 },
+                          Str $s2 where { $s2.chars > 0 },
+                          UInt $k  where { $k > 1 }) {
+    my $kgrams-s1 = k-grams($s1, $k);
+    my $kgrams-s2 = k-grams($s2, $k);
+    my $intersect = $kgrams-s1 ∩ $kgrams-s2;
+    my $union = $kgrams-s1 ∪ $kgrams-s2;
+    my $coeff = $intersect.elems / $union.elems;
+    return $coeff;
+}
+
+#|[
+If we know the number of elements in the k-gram sets (counted without $ at front and end)
+of two terms we can get the jaccard-coefficient without re-calculating k-grams.
+- bord=Set("bo","or""rd") and boardroom=Set("bo","oa","ar","rd","dr","ro","oo","om")
+- have the union = Set("bo","rd") and thus jaccard-coefficient = 2 / (3 + 8 - 2)
+]
+multi jaccard-coefficient(UInt $order-intersection,
+                          UInt $order-set1,
+                          UInt $order-set2) {
+    return $order-intersection/($order-set1 + $order-set2 - $order-intersection);
+}
+
+#|[ create k-grams of strings
+- k-grams("Dog",2) --> Set('$D', 'Do', 'og', 'g$')
+- k-grams("Dog",3,'#') --> Set('#Do', 'Dog', 'og#')
+]
+sub k-grams(Str $s where { $s.chars > 0 },
+            UInt $k  where { $k > 1 },
+            Str $word-marker = '$') returns Set is export {
+    my @s = $s.split('', :skip-empty);
+    @s.prepend($word-marker);
+    @s.push($word-marker);
+    my $overlap = 1 - $k;
+    return @s.rotor($k => $overlap).map(*.join).Set;
+}
+</code></pre>
