@@ -23,9 +23,7 @@
 			"markup",
 			"csharp"
 		],
-		"astro": [
-			"tsx"
-		], 
+		"astro": "tsx",
 		"birb": "clike",
 		"bison": "c",
 		"c": "clike",

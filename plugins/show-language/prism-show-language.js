@@ -46,7 +46,6 @@
 		"aspnet": "ASP.NET (C#)",
 		"asm6502": "6502 Assembly",
 		"asmatmel": "Atmel AVR Assembly",
-		"astro": "Astro",
 		"autohotkey": "AutoHotkey",
 		"autoit": "AutoIt",
 		"avisynth": "AviSynth",
