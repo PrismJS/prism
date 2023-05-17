@@ -1,0 +1,9 @@
+<style>
+  h1 { 
+    color: red; 
+  }
+
+  .text { 
+    color: blue; 
+  }
+</style>
