@@ -1,21 +1,24 @@
 (function (Prism) {
-	console.log("PRISM!");
-	Prism.languages.astro = Prism.languages.extend('tsx', {});
-	Prism.languages.insertBefore('astro', 'prolog', {
-		'frontmatter-component-script': {
+	Prism.languages.astro = Prism.languages.extend("tsx", {
+		comment: Prism.languages.tsx.comment.concat([
+			{
+				pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
+				greedy: true,
+			},
+		]),
+	});
+	Prism.languages.insertBefore("astro", "prolog", {
+		"component-script-block": {
 			pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'punctuation': /^---|---$/,
-				'front-matter': {
+				punctuation: /^---|---$/,
+				"component-script": {
 					pattern: /\S+(?:\s+\S+)*/,
-					alias: ['yaml', 'language-yaml'],
-					inside: Prism.languages.typescript
-				}
-			}
+					inside: Prism.languages.typescript,
+				},
+			},
 		},
-	}
-	)
-
-}(Prism));
+	});
+})(Prism);
