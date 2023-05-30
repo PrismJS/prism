@@ -1,7 +1,7 @@
 import { setLanguage } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
-import { PluginProto } from '../../types';
 import type { Prism } from '../../core';
+import type { PluginProto } from '../../types';
 
 const FAILURE_MESSAGE = (status: number, message: string) => {
 	return `✖ Error ${status} while fetching file: ${message}`;

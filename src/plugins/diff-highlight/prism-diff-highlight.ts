@@ -1,8 +1,9 @@
-import { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/hooks';
-import { Token, TokenStream, getTextContent } from '../../core/token';
+import { Token, getTextContent } from '../../core/token';
 import diff, { PREFIXES } from '../../languages/prism-diff';
 import { addHooks } from '../../shared/hooks-util';
-import { PluginProto } from '../../types';
+import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/hooks';
+import type { TokenStream } from '../../core/token';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'diff-highlight',

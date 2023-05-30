@@ -1,4 +1,4 @@
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 type ClassMapper = (className: string) => string;
 type ClassAdder = (env: ClassAdderEnvironment) => undefined | string | string[];

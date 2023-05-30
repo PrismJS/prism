@@ -1,10 +1,10 @@
 import { readdirSync } from 'fs';
 import { JSDOM } from 'jsdom';
-import { DOMWindow } from 'jsdom';
 import path from 'path';
 import { Prism } from '../../src/core/prism';
 import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
-import { LanguageProto, PluginProto } from '../../src/types';
+import type { ComponentProto, LanguageProto, PluginProto } from '../../src/types';
+import type { DOMWindow } from 'jsdom';
 
 const SRC_DIR = path.join(__dirname, '../../src');
 
@@ -38,7 +38,7 @@ async function getComponentUncached(id: string) {
 		return exports.default;
 	}
 }
-const componentCache = new Map<string, Promise<import('../../src/types').ComponentProto>>();
+const componentCache = new Map<string, Promise<ComponentProto>>();
 export function getComponent(id: string) {
 	let promise = componentCache.get(id);
 	if (promise === undefined) {

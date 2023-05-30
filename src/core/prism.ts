@@ -2,12 +2,15 @@ import { getLanguage, setLanguage } from '../shared/dom-util';
 import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
 import { HookState } from './hook-state';
-import { HookEnvMap, Hooks } from './hooks';
-import { LinkedList, LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
+import { Hooks } from './hooks';
+import { LinkedList } from './linked-list';
 import { Registry } from './registry';
-import { Token, TokenStream } from './token';
+import { Token } from './token';
 import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens } from '../types';
+import type { HookEnvMap } from './hooks';
+import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
+import type { TokenStream } from './token';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting

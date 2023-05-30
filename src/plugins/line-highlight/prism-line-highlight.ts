@@ -1,8 +1,8 @@
-import { Prism } from '../../core';
 import { isActive } from '../../shared/dom-util';
 import { combineCallbacks } from '../../shared/hooks-util';
 import { lazy, noop } from '../../shared/util';
-import { PluginProto } from '../../types';
+import type { Prism } from '../../core';
+import type { PluginProto } from '../../types';
 
 const LINE_NUMBERS_CLASS = 'line-numbers';
 const LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';

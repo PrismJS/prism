@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { createTestSuite } from '../../helper/prism-dom-util';
-import { PrismDOM } from '../../helper/prism-loader';
+import type { PrismDOM } from '../../helper/prism-loader';
 
 
 describe('Show language', () => {

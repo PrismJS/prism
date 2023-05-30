@@ -1,4 +1,4 @@
-import { KebabToCamelCase } from '../types';
+import type { KebabToCamelCase } from '../types';
 
 /**
  * Returns a function that caches the result of the given supplier.

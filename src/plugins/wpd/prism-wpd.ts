@@ -1,5 +1,5 @@
 import cssSelector from '../../languages/prism-css-selector';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 const htmlTags = new Set<string>([
 	'a', 'abbr', 'acronym', 'b', 'basefont', 'bdo', 'big', 'blink', 'cite', 'code', 'dfn', 'em', 'kbd', 'i',

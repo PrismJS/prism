@@ -1,7 +1,7 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
 import { combineCallbacks } from '../../shared/hooks-util';
 import { isNonNull, noop } from '../../shared/util';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 /**
  * Plugin name which is used as a class name for <pre> which is activating the plugin

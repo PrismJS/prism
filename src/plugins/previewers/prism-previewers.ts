@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import cssExtras from '../../languages/prism-css-extras';
 import { forEach } from '../../shared/util';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 /**
  * Returns the absolute X, Y offsets for an element

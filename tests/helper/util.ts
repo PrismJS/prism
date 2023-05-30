@@ -1,6 +1,6 @@
 import * as Prettier from 'prettier';
 import { RegExpParser } from 'regexpp';
-import { Flags, Pattern } from 'regexpp/ast';
+import type { Flags, Pattern } from 'regexpp/ast';
 
 export interface LiteralAST {
 	pattern: Pattern;

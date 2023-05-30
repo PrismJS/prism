@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import javascript from './prism-javascript';
 import markup from './prism-markup';
-import type { LanguageProto } from '../types';
+import type { GrammarTokens, LanguageProto } from '../types';
 
 export default {
 	id: 'pug',
@@ -169,7 +169,7 @@ export default {
 			{ filter: 'sass', language: 'scss' },
 			'stylus'
 		];
-		const all_filters: import('../types').GrammarTokens = {};
+		const all_filters: GrammarTokens = {};
 		for (const filterItem of filters) {
 			const { filter, language } = typeof filterItem === 'string' ? { filter: filterItem, language: filterItem } : filterItem;
 			all_filters['filter-' + filter] = {

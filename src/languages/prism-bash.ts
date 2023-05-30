@@ -1,4 +1,4 @@
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'bash',
@@ -17,7 +17,7 @@ export default {
 			inside: 'bash'
 		};
 
-		const commandSubstitutionInside: import('../types').Grammar = {
+		const commandSubstitutionInside: Grammar = {
 			'variable': /^\$\(|^`|\)$|`$/
 		};
 

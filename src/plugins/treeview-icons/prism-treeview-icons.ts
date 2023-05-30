@@ -1,5 +1,5 @@
 import treeview from '../../languages/prism-treeview';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'treeview-icons',

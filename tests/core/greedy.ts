@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { Prism } from '../../src/core/prism';
-import { Grammar } from '../../src/types';
 import { simplify } from '../helper/token-stream-transformer';
+import type { Grammar } from '../../src/types';
 
 function testTokens({ grammar, code, expected }: { grammar: Grammar, code: string, expected: unknown }) {
 	const instance = new Prism();

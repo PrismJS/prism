@@ -1,6 +1,6 @@
-import { Token } from '../core';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
+import type { Token } from '../core';
 import type { LanguageProto } from '../types';
 
 export default {

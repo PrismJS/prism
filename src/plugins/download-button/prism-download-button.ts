@@ -1,6 +1,6 @@
 import { getParentPre } from '../../shared/dom-util';
-import { PluginProto } from '../../types';
 import toolbar from '../toolbar/prism-toolbar';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'download-button',

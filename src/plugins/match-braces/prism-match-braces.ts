@@ -1,5 +1,5 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'match-braces',

@@ -1,7 +1,7 @@
 import { getParentPre } from '../../shared/dom-util';
 import { getTitle } from '../../shared/meta/title-data';
-import { PluginProto } from '../../types';
 import toolbar from '../toolbar/prism-toolbar';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'show-language',

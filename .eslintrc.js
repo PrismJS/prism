@@ -184,6 +184,10 @@ module.exports = {
 						},
 						'extendDefaults': true
 					}
+				],
+				'@typescript-eslint/consistent-type-imports': [
+					'warn',
+					{ disallowTypeAnnotations: true }
 				]
 			}
 		},

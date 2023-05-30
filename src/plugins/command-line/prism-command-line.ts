@@ -1,8 +1,8 @@
 import { getParentPre } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
 import { htmlEncode } from '../../shared/util';
-import { PluginProto } from '../../types';
 import type { StateKey } from '../../core/hook-state';
+import type { PluginProto } from '../../types';
 
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';

@@ -1,5 +1,5 @@
 import { tokenizeStrings } from '../../shared/tokenize-strings';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 export default {
 	id: 'show-invisibles',

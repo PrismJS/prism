@@ -1,6 +1,6 @@
-import { Prism } from '../../core';
 import { addHooks } from '../../shared/hooks-util';
-import { PluginProto } from '../../types';
+import type { Prism } from '../../core';
+import type { PluginProto } from '../../types';
 
 function getGlobal(): Record<string, unknown> {
 	return typeof window === 'object' ? window as never : {};

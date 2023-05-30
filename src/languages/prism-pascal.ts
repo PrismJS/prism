@@ -1,4 +1,4 @@
-import type { LanguageProto } from '../types';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'pascal',
@@ -28,7 +28,7 @@ export default {
 				pattern: /(\basm\b)[\s\S]+?(?=\bend\s*[;[])/i,
 				lookbehind: true,
 				greedy: true,
-				inside: null as import('../types').GrammarToken['inside'] // see below
+				inside: null as GrammarToken['inside'] // see below
 			},
 			'keyword': [
 				{

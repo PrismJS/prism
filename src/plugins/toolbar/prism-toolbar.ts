@@ -1,7 +1,7 @@
-import { CompleteEnv, HookCallback } from '../../core/hooks';
 import { getParentPre } from '../../shared/dom-util';
 import { noop } from '../../shared/util';
-import { PluginProto } from '../../types';
+import type { CompleteEnv, HookCallback } from '../../core/hooks';
+import type { PluginProto } from '../../types';
 
 /**
  * Returns the callback order of the given element.

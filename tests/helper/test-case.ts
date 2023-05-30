@@ -1,10 +1,10 @@
 import { assert } from 'chai';
 import fs from 'fs';
-import { Prism } from '../../src/core';
-import { TokenStream } from '../../src/core/token';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
 import { formatHtml, getLeadingSpaces } from './util';
+import type { Prism } from '../../src/core';
+import type { TokenStream } from '../../src/core/token';
 
 /**
  * @param {string[]} languages

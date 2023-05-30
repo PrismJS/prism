@@ -1,6 +1,6 @@
 import cssExtras from '../../languages/prism-css-extras';
 import { MARKUP_TAG } from '../../shared/languages/patterns';
-import { PluginProto } from '../../types';
+import type { PluginProto } from '../../types';
 
 const HTML_TAG = RegExp(MARKUP_TAG, 'g');
 
