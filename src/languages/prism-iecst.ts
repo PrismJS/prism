@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'iecst',
@@ -34,4 +34,4 @@ export default {
 		'function': /\b[a-z_]\w*(?=\s*\()/i,
 		'punctuation': /[()[\].,;]/,
 	}
-} as LanguageProto<'iecst'>
+} as LanguageProto<'iecst'>;

@@ -1,9 +1,9 @@
-import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { Token, TokenStream, getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { rest, tokenize } from '../shared/symbols';
 import javascript from './prism-javascript';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 function stringifyToken(token: string | Token | TokenStream | undefined): string {
 	if (!token) {
@@ -109,16 +109,13 @@ export default {
 		const javascript = extend('javascript', {});
 		const jsx = extend('markup', javascript);
 
-		const tag = jsx.tag as GrammarToken & { inside: Grammar };
+		const tag = jsx.tag as GrammarToken & { inside: Grammar & { tag: GrammarToken & { inside: Grammar }, 'attr-value': GrammarToken } };
 		tag.pattern = re(
 			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
 		);
 
-		// @ts-ignore
 		tag.inside['tag'].pattern = /^(<\/?)[^\s>\/]*/;
-		// @ts-ignore
 		tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
-		// @ts-ignore
 		tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
 		tag.inside['comment'] = javascript['comment'];
 
@@ -152,4 +149,4 @@ export default {
 
 		return jsx;
 	}
-} as LanguageProto<'jsx'>
+} as LanguageProto<'jsx'>;

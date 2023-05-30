@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jq',
@@ -67,4 +67,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'jq'>
+} as LanguageProto<'jq'>;

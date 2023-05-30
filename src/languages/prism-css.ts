@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css',
@@ -72,4 +72,4 @@ export default {
 
 		return css;
 	}
-} as LanguageProto<'css'>
+} as LanguageProto<'css'>;

@@ -1,21 +1,21 @@
-import type { Prism } from './core';
 import { resolveAlias } from './shared/meta/alias-data';
 import { knownLanguages } from './shared/meta/all-languages-data';
 import { toArray } from './shared/util';
+import type { Prism } from './core';
 import type { ComponentProto } from './types';
 
 function pathJoin(dir: string, file: string) {
 	return dir.replace(/\/$/, '') + '/' + file;
 }
 
-const importCache = new Map<string, Promise<any>>();
+const importCache = new Map<string, Promise<unknown>>();
 function importFile<T>(file: string): Promise<T> {
 	let promise = importCache.get(file);
 	if (promise === undefined) {
 		promise = import(file);
 		importCache.set(file, promise);
 	}
-	return promise;
+	return promise as Promise<T>;
 }
 
 /**
@@ -23,7 +23,7 @@ function importFile<T>(file: string): Promise<T> {
  *
  * If no languages are provided, __all__ Prism languages will be loaded.
  */
-export async function loadLanguages(Prism: Prism, languages: string | readonly string[] = knownLanguages, srcPath: string = '.'): Promise<void> {
+export async function loadLanguages(Prism: Prism, languages: string | readonly string[] = knownLanguages, srcPath = '.'): Promise<void> {
 	languages = toArray(languages)
 		.map(resolveAlias)
 		.filter((id) => !Prism.components.has(id));
@@ -36,7 +36,7 @@ export async function loadLanguages(Prism: Prism, languages: string | readonly s
 		} catch (error) {
 			if (!loadLanguages.silent) {
 				// eslint-disable-next-line no-undef
-				console.warn(`Unable to load language ${id}: ${error}`);
+				console.warn(`Unable to load language ${id}: ${String(error)}`);
 			}
 		}
 	}));

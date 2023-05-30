@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'metafont',
@@ -86,4 +86,4 @@ export default {
 			lookbehind: true
 		}
 	}
-} as LanguageProto<'metafont'>
+} as LanguageProto<'metafont'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'autoit',
@@ -36,4 +36,4 @@ export default {
 		'operator': /<[=>]?|[-+*\/=&>]=?|[?^]|\b(?:And|Not|Or)\b/i,
 		'punctuation': /[\[\]().,:]/
 	}
-} as LanguageProto<'autoit'>
+} as LanguageProto<'autoit'>;

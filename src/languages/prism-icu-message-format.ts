@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'icu-message-format',
@@ -142,4 +142,4 @@ export default {
 			'string': string
 		};
 	}
-} as LanguageProto<'icu-message-format'>
+} as LanguageProto<'icu-message-format'>;

@@ -1,8 +1,8 @@
-import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import csharp from './prism-csharp';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'aspnet',
@@ -64,4 +64,4 @@ export default {
 
 		return aspnet;
 	}
-} as LanguageProto<'aspnet'>
+} as LanguageProto<'aspnet'>;

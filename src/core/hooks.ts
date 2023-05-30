@@ -3,7 +3,8 @@ import type { HookState } from './hook-state';
 import type { TokenStream } from './token';
 
 export class Hooks {
-	private _all = new Map<string, ((env: any) => void)[]>();
+	// eslint-disable-next-line func-call-spacing
+	private _all = new Map<string, ((env: unknown) => void)[]>();
 
 	/**
 	 * Adds the given callback to the list of callbacks for the given hook and returns a function that
@@ -28,10 +29,10 @@ export class Hooks {
 		}
 		const list = hooks;
 
-		list.push(callback);
+		list.push(callback as never);
 
 		return () => {
-			const index = list.indexOf(callback);
+			const index = list.indexOf(callback as never);
 			if (index !== -1) {
 				list.splice(index, 1);
 			}

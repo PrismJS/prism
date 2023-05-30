@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gdscript',
@@ -29,4 +29,4 @@ export default {
 		'operator': /->|:=|&&|\|\||<<|>>|[-+*/%&|!<>=]=?|[~^]/,
 		'punctuation': /[.:,;()[\]{}]/
 	}
-} as LanguageProto<'gdscript'>
+} as LanguageProto<'gdscript'>;

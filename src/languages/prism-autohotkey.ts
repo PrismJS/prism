@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'autohotkey',
@@ -48,4 +48,4 @@ export default {
 			'punctuation': /[{}[\]():,]/
 		};
 	}
-} as LanguageProto<'autohotkey'>
+} as LanguageProto<'autohotkey'>;

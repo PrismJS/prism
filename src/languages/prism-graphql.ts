@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
+import { Token } from '../core';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
-import { Token } from "../core";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'graphql',
@@ -84,7 +84,7 @@ export default {
 			/**
 			 * Returns whether the token relative to the current index has the given type.
 			 */
-			function getToken(offset: number = 0): Token {
+			function getToken(offset = 0): Token {
 				return validTokens[currentIndex + offset];
 			}
 
@@ -187,4 +187,4 @@ export default {
 			return tokens;
 		}
 	}
-} as LanguageProto<'graphql'>
+} as LanguageProto<'graphql'>;

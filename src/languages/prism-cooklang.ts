@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cooklang',
@@ -147,4 +147,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'cooklang'>
+} as LanguageProto<'cooklang'>;

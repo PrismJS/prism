@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'parser',
@@ -66,8 +66,7 @@ export default {
 			}
 		});
 
-		// @ts-ignore
-		insertBefore(parser['tag'].inside['attr-value'].inside, 'punctuation', {
+		insertBefore(((((parser['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken).inside as Grammar), 'punctuation', {
 			'expression': parser.expression,
 			'keyword': parser.keyword,
 			'variable': parser.variable,
@@ -81,4 +80,4 @@ export default {
 
 		return parser;
 	}
-} as LanguageProto<'parser'>
+} as LanguageProto<'parser'>;

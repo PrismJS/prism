@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'vhdl',
@@ -28,4 +28,4 @@ export default {
 		'operator': /[<>]=?|:=|[-+*/&=]|\b(?:abs|and|mod|nand|nor|not|or|rem|rol|ror|sla|sll|sra|srl|xnor|xor)\b/i,
 		'punctuation': /[{}[\];(),.:]/
 	}
-} as LanguageProto<'vhdl'>
+} as LanguageProto<'vhdl'>;

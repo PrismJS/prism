@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sql',
@@ -34,4 +34,4 @@ export default {
 		'operator': /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
 		'punctuation': /[;[\]()`,.]/
 	}
-} as LanguageProto<'sql'>
+} as LanguageProto<'sql'>;

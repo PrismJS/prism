@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'apl',
@@ -34,4 +34,4 @@ export default {
 			alias: 'builtin'
 		}
 	}
-} as LanguageProto<'apl'>
+} as LanguageProto<'apl'>;

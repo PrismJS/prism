@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gml',
@@ -14,4 +14,4 @@ export default {
 			'variable': /\b(?:alarm|application_surface|async_load|background_(?:alpha|blend|color|colour|foreground|height|hspeed|htiled|index|showcolor|showcolour|visible|vspeed|vtiled|width|x|xscale|y|yscale)|bbox_(?:bottom|left|right|top)|browser_(?:height|width)|caption_(?:health|lives|score)|current_(?:day|hour|minute|month|second|time|weekday|year)|cursor_sprite|debug_mode|delta_time|direction|display_aa|error_(?:last|occurred)|event_(?:action|number|object|type)|fps|fps_real|friction|game_(?:display|project|save)_(?:id|name)|gamemaker_(?:pro|registered|version)|gravity|gravity_direction|health|(?:h|v)speed|iap_data|id|image_(?:alpha|angle|blend|depth|index|number|speed|xscale|yscale)|instance_(?:count|id)|keyboard_(?:key|lastchar|lastkey|string)|layer|lives|mask_index|mouse_(?:button|lastbutton|x|y)|object_index|os_(?:browser|device|type|version)|path_(?:endaction|index|orientation|position|positionprevious|scale|speed)|persistent|phy_(?:active|angular_(?:damping|velocity)|bullet|(?:col_normal|collision|com|linear_velocity|position|speed)_(?:x|y)|collision_points|dynamic|fixed_rotation|inertia|kinematic|linear_damping|mass|position_(?:x|y)previous|rotation|sleeping|speed)|pointer_(?:invalid|null)|room|room_(?:caption|first|height|last|persistent|speed|width)|score|secure_mode|show_(?:health|lives|score)|solid|speed|sprite_(?:height|index|width|xoffset|yoffset)|temp_directory|timeline_(?:index|loop|position|running|speed)|transition_(?:color|kind|steps)|undefined|view_(?:angle|current|enabled|(?:h|v)(?:border|speed)|(?:h|w|x|y)port|(?:h|w|x|y)view|object|surface_id|visible)|visible|webgl_enabled|working_directory|x|(?:x|y)(?:previous|start)|y|argument(?:_relitive|_count|\d)|argument|global|local|other|self)\b/
 		});
 	}
-} as LanguageProto<'gml'>
+} as LanguageProto<'gml'>;

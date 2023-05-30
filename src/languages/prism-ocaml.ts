@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ocaml',
@@ -62,4 +62,4 @@ export default {
 			'punctuation': /;;|::|[(){}\[\].,:;#]|\b_\b/
 		};
 	}
-} as LanguageProto<'ocaml'>
+} as LanguageProto<'ocaml'>;

@@ -1,7 +1,7 @@
-import type { Grammar, LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { rest, tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'ftl',
@@ -100,4 +100,4 @@ export default {
 			[tokenize]: embeddedIn('markup')
 		};
 	}
-} as LanguageProto<'ftl'>
+} as LanguageProto<'ftl'>;

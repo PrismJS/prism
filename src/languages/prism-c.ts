@@ -1,6 +1,6 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'c',
@@ -97,4 +97,4 @@ export default {
 
 		return c;
 	}
-} as LanguageProto<'c'>
+} as LanguageProto<'c'>;

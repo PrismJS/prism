@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'hcl',
@@ -65,4 +65,4 @@ export default {
 		'boolean': /\b(?:false|true)\b/i,
 		'punctuation': /[=\[\]{}]/,
 	}
-} as LanguageProto<'hcl'>
+} as LanguageProto<'hcl'>;

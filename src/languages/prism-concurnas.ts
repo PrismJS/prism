@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'concurnas',
@@ -59,4 +59,4 @@ export default {
 			alias: 'builtin'
 		}
 	}
-} as LanguageProto<'concurnas'>
+} as LanguageProto<'concurnas'>;

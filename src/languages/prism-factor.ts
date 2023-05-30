@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { regexEscape } from '../shared/util';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'factor',
@@ -383,4 +383,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'factor'>
+} as LanguageProto<'factor'>;

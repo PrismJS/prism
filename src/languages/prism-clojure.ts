@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'clojure',
@@ -35,4 +35,4 @@ export default {
 			'punctuation': /[{}\[\](),]/
 		};
 	}
-} as LanguageProto<'clojure'>
+} as LanguageProto<'clojure'>;

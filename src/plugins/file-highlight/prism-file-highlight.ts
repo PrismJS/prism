@@ -1,10 +1,10 @@
-import type { Prism } from '../../core';
 import { setLanguage } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
 import { PluginProto } from '../../types';
+import type { Prism } from '../../core';
 
 const FAILURE_MESSAGE = (status: number, message: string) => {
-	return '✖ Error ' + status + ' while fetching file: ' + message;
+	return `✖ Error ${status} while fetching file: ${message}`;
 };
 const LOADING_MESSAGE = 'Loading…';
 const FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
@@ -161,7 +161,7 @@ export default {
 						// handle data-range
 						const range = parseRange(pre.getAttribute('data-range'));
 						if (range) {
-							const lines = text.split(/\r\n?|\n/g);
+							const lines = text.split(/\r\n?|\n/);
 
 							// the range is one-based and inclusive on both ends
 							let start = range[0];

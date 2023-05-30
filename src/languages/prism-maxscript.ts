@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'maxscript',
@@ -91,4 +91,4 @@ export default {
 			'punctuation': /[()\[\]{}.:,;]|#(?=\()|\\$/m
 		};
 	}
-} as LanguageProto<'maxscript'>
+} as LanguageProto<'maxscript'>;

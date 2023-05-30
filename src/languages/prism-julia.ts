@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'julia',
@@ -37,4 +37,4 @@ export default {
 		// https://docs.julialang.org/en/v1/base/numbers/#Base.im
 		'constant': /\b(?:(?:Inf|NaN)(?:16|32|64)?|im|pi)\b|[πℯ]/
 	}
-} as LanguageProto<'julia'>
+} as LanguageProto<'julia'>;

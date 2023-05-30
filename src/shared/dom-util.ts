@@ -23,6 +23,7 @@ export function getLanguage(element: Element): string {
 export function setLanguage(element: Element, language: string): void {
 	// remove all `language-xxxx` classes
 	// (this might leave behind a leading space)
+	// eslint-disable-next-line regexp/no-unused-capturing-group
 	element.className = element.className.replace(RegExp(lang, 'gi'), '');
 
 	// add the new `language-xxxx` class
@@ -50,7 +51,7 @@ export function setLanguage(element: Element, language: string): void {
  * @param defaultActivation Defaults to `false`.
  * @returns
  */
-export function isActive(element: Element | null, className: string, defaultActivation: boolean = false): boolean {
+export function isActive(element: Element | null, className: string, defaultActivation = false): boolean {
 	return element?.closest(`.${className}, .no-${className}`)?.classList?.contains(className) ?? defaultActivation;
 }
 

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'tcl',
@@ -48,4 +48,4 @@ export default {
 		'operator': /!=?|\*\*?|==|&&?|\|\|?|<[=<]?|>[=>]?|[-+~\/%?^]|\b(?:eq|in|ne|ni)\b/,
 		'punctuation': /[{}()\[\]]/
 	}
-} as LanguageProto<'tcl'>
+} as LanguageProto<'tcl'>;

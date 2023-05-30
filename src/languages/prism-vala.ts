@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'vala',
@@ -94,4 +94,4 @@ export default {
 
 		return vala;
 	}
-} as LanguageProto<'vala'>
+} as LanguageProto<'vala'>;

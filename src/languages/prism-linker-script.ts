@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'linker-script',
@@ -31,4 +31,4 @@ export default {
 		'operator': />>=?|<<=?|->|\+\+|--|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?/,
 		'punctuation': /[(){},;]/
 	}
-} as LanguageProto<'linker-script'>
+} as LanguageProto<'linker-script'>;

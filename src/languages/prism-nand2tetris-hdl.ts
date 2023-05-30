@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'nand2tetris-hdl',
@@ -11,4 +11,4 @@ export default {
 		'operator': /=|\.\./,
 		'punctuation': /[{}[\];(),:]/
 	}
-} as LanguageProto<'nand2tetris-hdl'>
+} as LanguageProto<'nand2tetris-hdl'>;

@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'php',
@@ -362,4 +362,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'php'>
+} as LanguageProto<'php'>;

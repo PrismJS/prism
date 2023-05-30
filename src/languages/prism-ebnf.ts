@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ebnf',
@@ -24,4 +24,4 @@ export default {
 		'punctuation': /\([:/]|[:/]\)|[.,;()[\]{}]/,
 		'operator': /[-=|*/!]/
 	}
-} as LanguageProto<'ebnf'>
+} as LanguageProto<'ebnf'>;

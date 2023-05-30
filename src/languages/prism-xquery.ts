@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { Token, TokenStream, getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 function walkTokens(tokens: TokenStream) {
 	const openedTags = [];
@@ -149,14 +149,13 @@ export default {
 			'punctuation': /[[\](){},;:/]/
 		});
 
-		// @ts-ignore
-		xquery.tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
-		// @ts-ignore
-		xquery['tag'].inside['attr-value'].pattern = /=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
-		// @ts-ignore
-		xquery['tag'].inside['attr-value'].inside['punctuation'] = /^="|"$/;
-		// @ts-ignore
-		xquery['tag'].inside['attr-value'].inside['expression'] = {
+		const tag = xquery['tag'] as GrammarToken;
+		tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
+		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
+		attrValue.pattern = /=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
+		const attrValueInside = attrValue.inside as Grammar;
+		attrValueInside['punctuation'] = /^="|"$/;
+		attrValueInside['expression'] = {
 			// Allow for two levels of nesting
 			pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
 			alias: 'language-xquery',
@@ -171,4 +170,4 @@ export default {
 
 		return xquery;
 	}
-} as LanguageProto<'xquery'>
+} as LanguageProto<'xquery'>;

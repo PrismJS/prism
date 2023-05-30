@@ -1,4 +1,4 @@
-import type { GrammarTokens, LanguageProto } from "../types";
+import type { GrammarTokens, LanguageProto } from '../types';
 
 export default {
 	id: 'robotframework',
@@ -96,4 +96,4 @@ export default {
 			'comment': comment
 		};
 	}
-} as LanguageProto<'robotframework'>
+} as LanguageProto<'robotframework'>;

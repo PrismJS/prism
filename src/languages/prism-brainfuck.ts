@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'brainfuck',
@@ -22,4 +22,4 @@ export default {
 		'operator': /[.,]/,
 		'comment': /\S+/
 	}
-} as LanguageProto<'brainfuck'>
+} as LanguageProto<'brainfuck'>;

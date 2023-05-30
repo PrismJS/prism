@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'elm',
@@ -47,4 +47,4 @@ export default {
 		'constant': /\b(?:[A-Z]\w*\.)*[A-Z]\w*\b/,
 		'punctuation': /[{}[\]|(),.:]/
 	}
-} as LanguageProto<'elm'>
+} as LanguageProto<'elm'>;

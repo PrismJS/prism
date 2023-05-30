@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'apacheconf',
@@ -49,4 +49,4 @@ export default {
 		'variable': /[$%]\{?(?:\w\.?[-+:]?)+\}?/,
 		'regex': /\^?.*\$|\^.*\$?/
 	}
-} as LanguageProto<'apacheconf'>
+} as LanguageProto<'apacheconf'>;

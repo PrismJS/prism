@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jsstacktrace',
@@ -51,4 +51,4 @@ export default {
 			}
 		}
 	}
-} as LanguageProto<'jsstacktrace'>
+} as LanguageProto<'jsstacktrace'>;

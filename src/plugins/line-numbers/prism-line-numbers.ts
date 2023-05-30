@@ -53,6 +53,7 @@ function resizeElements(elements: Element[]) {
 		}
 
 		let lineNumberSizer: HTMLElement | null = element.querySelector('.line-numbers-sizer');
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const codeLines = codeElement.textContent!.split(NEW_LINE_EXP);
 
 		if (!lineNumberSizer) {
@@ -115,8 +116,10 @@ function resizeElements(elements: Element[]) {
 		lineNumberSizer.innerHTML = '';
 
 		info.lineHeights.forEach((height, lineNumber) => {
-			// @ts-ignore
-			info.wrapper.children[lineNumber].style.height = height + 'px';
+			if (height !== undefined) {
+				const child = info.wrapper.children[lineNumber] as HTMLElement;
+				child.style.height = `${height}px`;
+			}
 		});
 	});
 }
@@ -256,7 +259,7 @@ export default {
 			lineNumbersWrapper.innerHTML = '<span></span>'.repeat(linesNum);
 
 			if (pre.hasAttribute('data-start')) {
-				pre.style.counterReset = 'linenumber ' + (parseInt(String(pre.getAttribute('data-start')), 10) - 1);
+				pre.style.counterReset = `linenumber ${parseInt(String(pre.getAttribute('data-start')), 10) - 1}`;
 			}
 
 			env.element.appendChild(lineNumbersWrapper);

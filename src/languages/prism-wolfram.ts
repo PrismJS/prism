@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'wolfram',
@@ -28,4 +28,4 @@ export default {
 		'operator': /\/\.|;|=\.|\^=|\^:=|:=|<<|>>|<\||\|>|:>|\|->|->|<-|@@@|@@|@|\/@|=!=|===|==|=|\+|-|\[\/-+%=\]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'punctuation': /[{}[\];(),.:]/
 	}
-} as LanguageProto<'wolfram'>
+} as LanguageProto<'wolfram'>;

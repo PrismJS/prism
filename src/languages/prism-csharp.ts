@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 /**
  * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
@@ -365,4 +365,4 @@ export default {
 
 		return csharp;
 	}
-} as LanguageProto<'csharp'>
+} as LanguageProto<'csharp'>;

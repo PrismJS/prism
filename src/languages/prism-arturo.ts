@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 function createLanguageString(lang: string, pattern?: string) {
 	return {
@@ -100,4 +100,4 @@ export default {
 			pattern: /\b(?:false|maybe|true)\b/
 		}
 	}
-} as LanguageProto<'arturo'>
+} as LanguageProto<'arturo'>;

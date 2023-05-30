@@ -1,4 +1,4 @@
-import type { Grammar, LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from '../types';
 
 /**
  * A map from the name of a block to its line prefix.
@@ -56,4 +56,4 @@ export default {
 
 		return diff;
 	}
-} as LanguageProto<'diff'>
+} as LanguageProto<'diff'>;

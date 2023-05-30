@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'dataweave',
@@ -40,4 +40,4 @@ export default {
 		'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|!|\?/,
 		'boolean': /\b(?:false|true)\b/,
 	}
-} as LanguageProto<'dataweave'>
+} as LanguageProto<'dataweave'>;

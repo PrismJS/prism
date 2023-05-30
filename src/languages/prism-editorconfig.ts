@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'editorconfig',
@@ -28,4 +28,4 @@ export default {
 			}
 		}
 	}
-} as LanguageProto<'editorconfig'>
+} as LanguageProto<'editorconfig'>;

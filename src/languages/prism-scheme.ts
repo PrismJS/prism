@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 /**
  * Given a topologically sorted BNF grammar, this will return the RegExp source of last rule of the grammar.
@@ -120,4 +120,4 @@ export default {
 		},
 		'punctuation': /[()\[\]']/
 	}
-} as LanguageProto<'scheme'>
+} as LanguageProto<'scheme'>;

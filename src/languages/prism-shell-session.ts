@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import bash from './prism-bash';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'shell-session',
@@ -71,4 +71,4 @@ export default {
 			'output': /.(?:.*(?:[\r\n]|.$))*/
 		};
 	}
-} as LanguageProto<'shell-session'>
+} as LanguageProto<'shell-session'>;

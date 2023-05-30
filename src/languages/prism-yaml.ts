@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'yaml',
@@ -76,4 +76,4 @@ export default {
 			'punctuation': /---|[:[\]{}\-,|>?]|\.\.\./
 		};
 	}
-} as LanguageProto<'yaml'>
+} as LanguageProto<'yaml'>;

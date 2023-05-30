@@ -1,6 +1,6 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import jsx from './prism-jsx';
 import typescript from './prism-typescript';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'tsx',
@@ -22,4 +22,4 @@ export default {
 
 		return tsx;
 	}
-} as LanguageProto<'tsx'>
+} as LanguageProto<'tsx'>;

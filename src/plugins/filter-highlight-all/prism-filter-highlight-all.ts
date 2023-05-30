@@ -13,7 +13,7 @@ export class FilterHighlightAll {
 	 *
 	 * @default false
 	 */
-	filterKnown = false
+	filterKnown = false;
 
 	/**
 	 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for

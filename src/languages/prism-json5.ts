@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import json from './prism-json';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'json5',
@@ -25,4 +25,4 @@ export default {
 			'number': /[+-]?\b(?:NaN|Infinity|0x[a-fA-F\d]+)\b|[+-]?(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+\b)?/
 		});
 	}
-} as LanguageProto<'json5'>
+} as LanguageProto<'json5'>;

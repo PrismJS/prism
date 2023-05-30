@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'nix',
@@ -37,4 +37,4 @@ export default {
 		'operator': /[=!<>]=?|\+\+?|\|\||&&|\/\/|->?|[?@]/,
 		'punctuation': /[{}()[\].,:;]/
 	}
-} as LanguageProto<'nix'>
+} as LanguageProto<'nix'>;

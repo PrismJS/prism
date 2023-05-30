@@ -1,7 +1,7 @@
-import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import javascript from './prism-javascript';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'typescript',
@@ -67,4 +67,4 @@ export default {
 
 		return typescript;
 	}
-} as LanguageProto<'typescript'>
+} as LanguageProto<'typescript'>;

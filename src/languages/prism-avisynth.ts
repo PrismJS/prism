@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'avisynth',
@@ -187,4 +187,4 @@ export default {
 			'punctuation': /[{}\[\]();,.]/
 		};
 	}
-} as LanguageProto<'avisynth'>
+} as LanguageProto<'avisynth'>;

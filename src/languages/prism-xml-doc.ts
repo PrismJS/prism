@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'xml-doc',
@@ -26,4 +26,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'xml-doc'>
+} as LanguageProto<'xml-doc'>;

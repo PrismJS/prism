@@ -158,7 +158,7 @@ export default {
 				}
 
 				pairs.forEach((pair) => {
-					const pairId = 'pair-' + (pairIdCounter++) + '-';
+					const pairId = `pair-${pairIdCounter++}-`;
 
 					const opening = punctuation[pair[0]];
 					const closing = punctuation[pair[1]];
@@ -178,11 +178,11 @@ export default {
 			allBraces.sort((a, b) => a.index - b.index);
 			allBraces.forEach((brace) => {
 				if (brace.open) {
-					brace.element.classList.add(mapClassName('brace-level-' + (level % LEVEL_WARP + 1)));
+					brace.element.classList.add(mapClassName(`brace-level-${level % LEVEL_WARP + 1}`));
 					level++;
 				} else {
 					level = Math.max(0, level - 1);
-					brace.element.classList.add(mapClassName('brace-level-' + (level % LEVEL_WARP + 1)));
+					brace.element.classList.add(mapClassName(`brace-level-${level % LEVEL_WARP + 1}`));
 				}
 			});
 		});

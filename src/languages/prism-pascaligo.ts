@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'pascaligo',
@@ -8,7 +8,7 @@ export default {
 		const braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
 		const type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, () => braces);
 
-		const classNameInside: import("../types").Grammar = {};
+		const classNameInside: import('../types').Grammar = {};
 
 		const pascaligo = {
 			'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
@@ -60,4 +60,4 @@ export default {
 
 		return pascaligo;
 	}
-} as LanguageProto<'pascaligo'>
+} as LanguageProto<'pascaligo'>;

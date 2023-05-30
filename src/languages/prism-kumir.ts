@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'kumir',
@@ -104,4 +104,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'kumir'>
+} as LanguageProto<'kumir'>;

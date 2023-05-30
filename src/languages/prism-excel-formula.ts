@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'excel-formula',
@@ -67,4 +67,4 @@ export default {
 		'operator': /[-+*/^%=&,]|<[=>]?|>=?/,
 		'punctuation': /[[\]();{}|]/
 	}
-} as LanguageProto<'excel-formula'>
+} as LanguageProto<'excel-formula'>;

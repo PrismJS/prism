@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cmake',
@@ -31,4 +31,4 @@ export default {
 		'function': /\b[a-z_]\w*(?=\s*\()\b/i,
 		'punctuation': /[()>}]|\$[<{]/
 	}
-} as LanguageProto<'cmake'>
+} as LanguageProto<'cmake'>;

@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javadoclike from './prism-javadoclike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'phpdoc',
@@ -30,4 +30,4 @@ export default {
 
 		return phpdoc;
 	}
-} as LanguageProto<'phpdoc'>
+} as LanguageProto<'phpdoc'>;

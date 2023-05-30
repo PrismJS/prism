@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ruby',
@@ -195,4 +195,4 @@ export default {
 
 		return ruby;
 	}
-} as LanguageProto<'ruby'>
+} as LanguageProto<'ruby'>;

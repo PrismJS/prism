@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'liquid',
@@ -59,4 +59,4 @@ export default {
 		},
 		[tokenize]: embeddedIn('markup')
 	}
-} as LanguageProto<'liquid'>
+} as LanguageProto<'liquid'>;

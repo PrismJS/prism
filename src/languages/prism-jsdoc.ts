@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javadoclike from './prism-javadoclike';
 import javascript from './prism-javascript';
 import typescript from './prism-typescript';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jsdoc',
@@ -84,4 +84,4 @@ export default {
 
 		return jsdoc;
 	}
-} as LanguageProto<'jsdoc'>
+} as LanguageProto<'jsdoc'>;

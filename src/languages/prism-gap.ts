@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gap',
@@ -56,4 +56,4 @@ export default {
 			'punctuation': /[()[\]{},;.:]/
 		};
 	}
-} as LanguageProto<'gap'>
+} as LanguageProto<'gap'>;

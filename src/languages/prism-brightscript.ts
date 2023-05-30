@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'brightscript',
@@ -44,4 +44,4 @@ export default {
 		'punctuation': /[.,;()[\]{}]/,
 		'constant': /\b(?:LINE_NUM)\b/i
 	}
-} as LanguageProto<'brightscript'>
+} as LanguageProto<'brightscript'>;

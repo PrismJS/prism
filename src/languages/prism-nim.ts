@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'nim',
@@ -46,4 +46,4 @@ export default {
 		},
 		'punctuation': /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
 	}
-} as LanguageProto<'nim'>
+} as LanguageProto<'nim'>;

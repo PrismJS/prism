@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import c from './prism-c';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'opencl',
@@ -32,4 +32,4 @@ export default {
 
 		return opencl;
 	}
-} as LanguageProto<'opencl'>
+} as LanguageProto<'opencl'>;

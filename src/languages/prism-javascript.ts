@@ -1,9 +1,9 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { rest } from '../shared/symbols';
 import { toArray } from '../shared/util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'javascript',
@@ -201,4 +201,4 @@ export default {
 
 		return javascript;
 	}
-} as LanguageProto<'javascript'>
+} as LanguageProto<'javascript'>;

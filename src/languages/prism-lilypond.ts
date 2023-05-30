@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
 import scheme from './prism-scheme';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'lilypond',
@@ -69,4 +69,4 @@ export default {
 			'number': /\b\d+(?:\/\d+)?\b/
 		};
 	}
-} as LanguageProto<'lilypond'>
+} as LanguageProto<'lilypond'>;

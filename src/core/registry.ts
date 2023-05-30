@@ -64,7 +64,7 @@ export class Registry {
 
 			// add plugin namespace
 			if ('plugin' in proto && proto.plugin) {
-				this.Prism.plugins[kebabToCamelCase(id)] = proto.plugin(this.Prism as any);
+				this.Prism.plugins[kebabToCamelCase(id)] = proto.plugin(this.Prism as never);
 			}
 		};
 		components.forEach(register);
@@ -110,7 +110,7 @@ export class Registry {
 
 			// redo effects
 			if (entry.proto.effect) {
-				entry.evaluatedEffect = entry.proto.effect(this.Prism as any);
+				entry.evaluatedEffect = entry.proto.effect(this.Prism as never);
 			}
 
 			updateStatus.set(id, status = true);

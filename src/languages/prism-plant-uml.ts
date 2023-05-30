@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'plant-uml',
@@ -101,4 +101,4 @@ export default {
 			'punctuation': /[:,;()[\]{}]|\.{3}/
 		};
 	}
-} as LanguageProto<'plant-uml'>
+} as LanguageProto<'plant-uml'>;

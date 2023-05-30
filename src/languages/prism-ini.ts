@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ini',
@@ -44,4 +44,4 @@ export default {
 		},
 		'punctuation': /=/
 	}
-} as LanguageProto<'ini'>
+} as LanguageProto<'ini'>;

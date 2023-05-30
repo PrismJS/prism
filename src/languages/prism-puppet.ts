@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'puppet',
@@ -137,4 +137,4 @@ export default {
 			'punctuation': /[\[\]{}().,;]|:+/
 		};
 	}
-} as LanguageProto<'puppet'>
+} as LanguageProto<'puppet'>;

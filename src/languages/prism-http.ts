@@ -1,5 +1,5 @@
-import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'http',
@@ -143,4 +143,4 @@ export default {
 
 		return http;
 	}
-} as LanguageProto<'http'>
+} as LanguageProto<'http'>;

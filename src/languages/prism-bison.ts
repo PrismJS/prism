@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import c from './prism-c';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'bison',
@@ -50,4 +50,4 @@ export default {
 
 		return bison;
 	}
-} as LanguageProto<'bison'>
+} as LanguageProto<'bison'>;

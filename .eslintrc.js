@@ -148,7 +148,7 @@ module.exports = {
 
 	overrides: [
 		{
-			files: ['*.d.ts'],
+			files: ['*.ts'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				tsconfigRootDir: __dirname,
@@ -161,7 +161,30 @@ module.exports = {
 				'plugin:@typescript-eslint/recommended-requiring-type-checking'
 			],
 			rules: {
-				'no-use-before-define': 'off'
+				'no-use-before-define': 'off',
+
+				// I turned this rule off because we use `hasOwnProperty` in a lot of places
+				// TODO: Think about re-enabling this rule
+				'no-prototype-builtins': 'off',
+
+
+				// turning off some regex rules
+				// these are supposed to protect against accidental use but we need those quite often
+				'no-control-regex': 'off',
+				'no-empty-character-class': 'off',
+				'no-useless-escape': 'off',
+
+				// type rules
+				'@typescript-eslint/ban-types': [
+					'error',
+					{
+						'types': {
+							// un-ban a type that's banned by default
+							'{}': false
+						},
+						'extendDefaults': true
+					}
+				]
 			}
 		},
 		{

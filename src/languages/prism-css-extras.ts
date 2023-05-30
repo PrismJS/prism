@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import cssSelector from './prism-css-selector';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css-extras',
@@ -47,4 +47,4 @@ export default {
 			'number': number
 		};
 	}
-} as LanguageProto<'css-extras'>
+} as LanguageProto<'css-extras'>;

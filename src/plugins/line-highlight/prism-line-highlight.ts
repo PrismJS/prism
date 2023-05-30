@@ -130,14 +130,14 @@ export class LineHighlight {
 				const endNode = this.Prism.plugins.lineNumbers.getLine(pre, end);
 
 				if (startNode) {
-					const top = startNode.offsetTop + codePreOffset + 'px';
+					const top = `${startNode.offsetTop + codePreOffset}px`;
 					mutateActions.push(() => {
 						line.style.top = top;
 					});
 				}
 
 				if (startNode && endNode) {
-					const height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
+					const height = `${(endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight}px`;
 					mutateActions.push(() => {
 						line.style.height = height;
 					});
@@ -150,14 +150,14 @@ export class LineHighlight {
 						line.setAttribute('data-end', String(end));
 					}
 
-					line.style.top = (start - offset - 1) * lineHeight + codePreOffset + 'px';
+					line.style.top = `${(start - offset - 1) * lineHeight + codePreOffset}px`;
 
 					line.textContent = new Array(end - start + 2).join(' \n');
 				});
 			}
 
 			mutateActions.push(() => {
-				line.style.width = pre.scrollWidth + 'px';
+				line.style.width = `${pre.scrollWidth}px`;
 			});
 
 			mutateActions.push(() => {
@@ -188,7 +188,7 @@ export class LineHighlight {
 			this.Prism.plugins.lineNumbers.getLines(pre)?.forEach((lineSpan, i) => {
 				const lineNumber = i + start;
 				lineSpan.onclick = () => {
-					const hash = id + '.' + lineNumber;
+					const hash = `${id}.${lineNumber}`;
 
 					// this will prevent scrolling since the span is obviously in view
 					this.scrollIntoView = false;
@@ -248,6 +248,7 @@ export default {
 				line.remove();
 			});
 
+			// eslint-disable-next-line no-sparse-arrays
 			const range = (hash.match(/\.([\d,-]+)$/) || [, ''])[1];
 
 			if (!range || document.getElementById(hash)) {
@@ -322,8 +323,7 @@ export default {
 			}
 
 			if (fakeTimer !== undefined) {
-				// @ts-ignore
-				clearTimeout(fakeTimer);
+				clearTimeout(fakeTimer as never);
 			}
 
 			const mutateDom = Prism.plugins.lineHighlight.highlightLines(pre);

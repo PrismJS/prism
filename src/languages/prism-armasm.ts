@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'armasm',
@@ -50,4 +50,4 @@ export default {
 		'operator': /<>|<<|>>|&&|\|\||[=!<>/]=?|[+\-*%#?&|^]|:[A-Z]+:/,
 		'punctuation': /[()[\],]/
 	}
-} as LanguageProto<'armasm'>
+} as LanguageProto<'armasm'>;

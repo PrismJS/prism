@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'livescript',
@@ -120,4 +120,4 @@ export default {
 		],
 		'punctuation': /[(){}\[\]|.,:;`]/
 	}
-} as LanguageProto<'livescript'>
+} as LanguageProto<'livescript'>;

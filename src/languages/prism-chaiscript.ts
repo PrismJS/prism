@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import clike from './prism-clike';
 import cpp from './prism-cpp';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
@@ -73,4 +73,4 @@ export default {
 
 		return chaiscript;
 	}
-} as LanguageProto<'chaiscript'>
+} as LanguageProto<'chaiscript'>;

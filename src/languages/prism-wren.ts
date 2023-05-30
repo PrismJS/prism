@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 // https://wren.io/
 
@@ -99,4 +99,4 @@ export default {
 		'operator': /<<|>>|[=!<>]=?|&&|\|\||[-+*/%~^&|?:]|\.{2,3}/,
 		'punctuation': /[\[\](){}.,;]/,
 	}
-} as LanguageProto<'wren'>
+} as LanguageProto<'wren'>;

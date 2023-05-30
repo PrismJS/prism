@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'web-idl',
@@ -14,7 +14,7 @@ export default {
 				/(?!(?:unrestricted|unsigned)\b)/.source + id + /(?:\s*<(?:[^<>]|<[^<>]*>)*>)?/.source +
 				')' + /(?:\s*\?)?/.source;
 
-		const typeInside: import("../types").Grammar = {};
+		const typeInside: import('../types').Grammar = {};
 
 		const webIdl = {
 			'comment': {
@@ -99,4 +99,4 @@ export default {
 
 		return webIdl;
 	}
-} as LanguageProto<'web-idl'>
+} as LanguageProto<'web-idl'>;

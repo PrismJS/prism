@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'qore',
@@ -26,4 +26,4 @@ export default {
 			'variable': /\$(?!\d)\w+\b/
 		});
 	}
-} as LanguageProto<'qore'>
+} as LanguageProto<'qore'>;

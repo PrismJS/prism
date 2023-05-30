@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'twig',
@@ -47,4 +47,4 @@ export default {
 		},
 		[tokenize]: embeddedIn('markup')
 	}
-} as LanguageProto<'twig'>
+} as LanguageProto<'twig'>;

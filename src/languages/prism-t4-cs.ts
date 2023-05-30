@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { createT4 } from '../shared/languages/t4-templating';
 import csharp from './prism-csharp';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 't4-cs',
@@ -9,4 +9,4 @@ export default {
 	grammar() {
 		return createT4('csharp');
 	}
-} as LanguageProto<'t4-cs'>
+} as LanguageProto<'t4-cs'>;

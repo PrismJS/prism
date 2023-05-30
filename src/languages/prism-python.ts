@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'python',
@@ -65,4 +65,4 @@ export default {
 		'operator': /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'punctuation': /[{}[\];(),.:]/
 	}
-} as LanguageProto<'python'>
+} as LanguageProto<'python'>;

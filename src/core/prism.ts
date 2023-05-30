@@ -1,13 +1,13 @@
-import type { KnownPlugins } from '../known-plugins';
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
-import type { Grammar, GrammarToken, GrammarTokens } from '../types';
 import { HookState } from './hook-state';
 import { HookEnvMap, Hooks } from './hooks';
 import { LinkedList, LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import { Registry } from './registry';
 import { Token, TokenStream } from './token';
+import type { KnownPlugins } from '../known-plugins';
+import type { Grammar, GrammarToken, GrammarTokens } from '../types';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
@@ -34,22 +34,20 @@ export class Prism {
 	highlightAll(options: HighlightAllOptions = {}) {
 		const { root, async, callback } = options;
 
-		const env: HookEnvMap["before-highlightall"] | HookEnvMap["before-all-elements-highlight"] = ({
+		const env: HookEnvMap['before-highlightall'] | HookEnvMap['before-all-elements-highlight'] = {
 			callback,
 			root: root ?? document,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
 			state: new HookState()
-		});
+		};
 
 		this.hooks.run('before-highlightall', env);
 
-		// @ts-ignore
+		assertEnv<'before-all-elements-highlight'>(env);
 		env.elements = [...env.root.querySelectorAll(env.selector)];
 
-		// @ts-ignore
 		this.hooks.run('before-all-elements-highlight', env);
 
-		// @ts-ignore
 		for (const element of env.elements) {
 			this.highlightElement(element, { async, callback: env.callback });
 		}
@@ -91,7 +89,7 @@ export class Prism {
 
 		const code = element.textContent as string;
 
-		const env: HookEnvMap["before-sanity-check"] = {
+		const env: HookEnvMap['before-sanity-check'] = {
 			element,
 			language,
 			grammar,
@@ -100,16 +98,12 @@ export class Prism {
 		};
 
 		const insertHighlightedCode = (highlightedCode: string) => {
-			// @ts-ignore
+			assertEnv<'before-insert'>(env);
 			env.highlightedCode = highlightedCode;
-
-			// @ts-ignore
 			this.hooks.run('before-insert', env);
 
-			// @ts-ignore
 			env.element.innerHTML = env.highlightedCode;
 
-			// @ts-ignore
 			this.hooks.run('after-highlight', env);
 			this.hooks.run('complete', env);
 			callback && callback(env.element);
@@ -141,7 +135,7 @@ export class Prism {
 				language: env.language,
 				code: env.code,
 				grammar: env.grammar,
-			}).then(insertHighlightedCode);
+			}).then(insertHighlightedCode, (error) => console.log(error));
 		} else {
 			insertHighlightedCode(this.highlight(env.code, env.language, { grammar: env.grammar }));
 		}
@@ -169,7 +163,7 @@ export class Prism {
 		const languageId = this.components.resolveAlias(language);
 		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 
-		const env: HookEnvMap["before-tokenize"] | HookEnvMap["after-tokenize"] = ({
+		const env: HookEnvMap['before-tokenize'] | HookEnvMap['after-tokenize'] = ({
 			code: text,
 			grammar,
 			language
@@ -178,12 +172,11 @@ export class Prism {
 		if (!env.grammar) {
 			throw new Error('The language "' + env.language + '" has no grammar.');
 		}
-		// @ts-ignore
+
+		assertEnv<'after-tokenize'>(env);
 		env.tokens = this.tokenize(env.code, env.grammar);
-		// @ts-ignore
 		this.hooks.run('after-tokenize', env);
 
-		// @ts-ignore
 		return stringify(env.tokens, env.language, this.hooks);
 	}
 
@@ -246,7 +239,7 @@ export class Prism {
 			const patterns = Array.isArray(tokenValue) ? tokenValue : [tokenValue];
 
 			for (let j = 0; j < patterns.length; ++j) {
-				if (rematch && rematch.cause === token + ',' + j) {
+				if (rematch && rematch.cause === `${token},${j}`) {
 					return;
 				}
 
@@ -361,7 +354,7 @@ export class Prism {
 						// this can only happen if the current pattern is greedy
 
 						const nestedRematch: RematchOptions = {
-							cause: token + ',' + j,
+							cause: `${token},${j}`,
 							reach
 						};
 						this._matchGrammar(text, tokenList, grammar, currentNode.prev, pos, nestedRematch);
@@ -418,6 +411,9 @@ export interface HighlightOptions {
 	grammar?: Grammar;
 }
 
+function assertEnv<T extends keyof HookEnvMap>(env: unknown): asserts env is HookEnvMap[T] {
+	/* noop */
+}
 
 function matchPattern(pattern: RegExp, pos: number, text: string, lookbehind: boolean) {
 	pattern.lastIndex = pos;
@@ -454,7 +450,7 @@ function stringify(o: string | Token | TokenStream, language: string, hooks: Hoo
 		return s;
 	}
 
-	const env: HookEnvMap["wrap"] = {
+	const env: HookEnvMap['wrap'] = {
 		type: o.type,
 		content: stringify(o.content, language, hooks),
 		tag: 'span',

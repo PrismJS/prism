@@ -1,7 +1,7 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'smarty',
@@ -107,4 +107,4 @@ export default {
 			[tokenize]: embeddedIn('markup')
 		};
 	}
-} as LanguageProto<'smarty'>
+} as LanguageProto<'smarty'>;

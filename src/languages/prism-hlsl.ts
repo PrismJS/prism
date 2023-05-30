@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { toArray } from '../shared/util';
 import c from './prism-c';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'hlsl',
@@ -28,4 +28,4 @@ export default {
 			'boolean': /\b(?:false|true)\b/
 		});
 	}
-} as LanguageProto<'hlsl'>
+} as LanguageProto<'hlsl'>;

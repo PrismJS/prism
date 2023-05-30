@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'php-extras',
@@ -16,4 +16,4 @@ export default {
 			}
 		}
 	}
-} as LanguageProto<'php-extras'>
+} as LanguageProto<'php-extras'>;

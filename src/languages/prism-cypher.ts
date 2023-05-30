@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cypher',
@@ -38,4 +38,4 @@ export default {
 		'operator': /:|<--?|--?>?|<>|=~?|[<>]=?|[+*/%^|]|\.\.\.?/,
 		'punctuation': /[()[\]{},;.]/
 	}
-} as LanguageProto<'cypher'>
+} as LanguageProto<'cypher'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'basic',
@@ -19,4 +19,4 @@ export default {
 		'operator': /<[=>]?|>=?|[+\-*\/^=&]|\b(?:AND|EQV|IMP|NOT|OR|XOR)\b/i,
 		'punctuation': /[,;:()]/
 	}
-} as LanguageProto<'basic'>
+} as LanguageProto<'basic'>;

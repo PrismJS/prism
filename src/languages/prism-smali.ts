@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'smali',
@@ -91,4 +91,4 @@ export default {
 			'punctuation': /[{}(),;:]/
 		};
 	}
-} as LanguageProto<'smali'>
+} as LanguageProto<'smali'>;

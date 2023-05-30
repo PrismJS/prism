@@ -1,11 +1,11 @@
-import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'asciidoc',
 	alias: 'adoc',
 	grammar() {
-		const placeholder = null as GrammarToken["inside"];
+		const placeholder = null as GrammarToken['inside'];
 
 		const attributes = {
 			pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
@@ -237,4 +237,4 @@ export default {
 			}
 		});
 	}
-} as LanguageProto<'asciidoc'>
+} as LanguageProto<'asciidoc'>;

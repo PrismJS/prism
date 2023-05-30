@@ -1,4 +1,4 @@
-import { PluginProto } from "../../types";
+import { PluginProto } from '../../types';
 
 export default {
 	id: 'highlight-keywords',

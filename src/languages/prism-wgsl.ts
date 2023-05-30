@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'wgsl',
@@ -71,4 +71,4 @@ export default {
 		],
 		'punctuation': /[@(){}[\],;<>:.]/,
 	}
-} as LanguageProto<'wgsl'>
+} as LanguageProto<'wgsl'>;

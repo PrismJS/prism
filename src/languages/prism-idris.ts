@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import haskell from './prism-haskell';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'idris',
@@ -27,4 +27,4 @@ export default {
 
 		return idris;
 	}
-} as LanguageProto<'idris'>
+} as LanguageProto<'idris'>;

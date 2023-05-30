@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'rip',
@@ -40,4 +40,4 @@ export default {
 
 		'reference': /[^\d\s`'",.:;#\/\\()<>\[\]{}][^\s`'",.:;#\/\\()<>\[\]{}]*/
 	}
-} as LanguageProto<'rip'>
+} as LanguageProto<'rip'>;

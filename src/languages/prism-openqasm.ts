@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'openqasm',
@@ -26,4 +26,4 @@ export default {
 			'punctuation': /[(){}\[\];,:.]/
 		};
 	}
-} as LanguageProto<'openqasm'>
+} as LanguageProto<'openqasm'>;

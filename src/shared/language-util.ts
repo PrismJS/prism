@@ -1,5 +1,5 @@
-import type { Grammar, GrammarToken, GrammarTokens } from '../types';
 import { rest, tokenize } from './symbols';
+import type { Grammar, GrammarToken, GrammarTokens } from '../types';
 
 // TODO: Update documentation
 

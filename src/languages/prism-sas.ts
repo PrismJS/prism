@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sas',
@@ -326,4 +326,4 @@ export default {
 			'punctuation': punctuation
 		};
 	}
-} as LanguageProto<'sas'>
+} as LanguageProto<'sas'>;

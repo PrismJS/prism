@@ -1,9 +1,9 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import clike from './prism-clike';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'tt2',
@@ -58,4 +58,4 @@ export default {
 			[tokenize]: embeddedIn('markup')
 		};
 	}
-} as LanguageProto<'tt2'>
+} as LanguageProto<'tt2'>;

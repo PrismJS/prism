@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 // based loosely upon: https://github.com/Azure/bicep/blob/main/src/textmate/bicep.tmlanguage
 
@@ -79,4 +79,4 @@ export default {
 		'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
 		'punctuation': /[{}[\];(),.:]/,
 	}
-} as LanguageProto<'bicep'>
+} as LanguageProto<'bicep'>;

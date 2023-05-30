@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import css from './prism-css';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'less',
@@ -63,4 +63,4 @@ export default {
 
 		return less;
 	}
-} as LanguageProto<'less'>
+} as LanguageProto<'less'>;

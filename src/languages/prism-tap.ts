@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import yaml from './prism-yaml';
+import type { LanguageProto } from '../types';
 
 // https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
@@ -26,4 +26,4 @@ export default {
 			alias: 'language-yaml'
 		}
 	}
-} as LanguageProto<'tap'>
+} as LanguageProto<'tap'>;

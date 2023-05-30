@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'vim',
@@ -12,4 +12,4 @@ export default {
 		'operator': /\|\||&&|[-+.]=?|[=!](?:[=~][#?]?)?|[<>]=?[#?]?|[*\/%?]|\b(?:is(?:not)?)\b/,
 		'punctuation': /[{}[\](),;:]/
 	}
-} as LanguageProto<'vim'>
+} as LanguageProto<'vim'>;

@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'n4js',
@@ -22,4 +22,4 @@ export default {
 
 		return n4js;
 	}
-} as LanguageProto<'n4js'>
+} as LanguageProto<'n4js'>;

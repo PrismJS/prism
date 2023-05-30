@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'moonscript',
@@ -56,4 +56,4 @@ export default {
 		'operator': /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
 		'punctuation': /[.,()[\]{}\\]/
 	}
-} as LanguageProto<'moonscript'>
+} as LanguageProto<'moonscript'>;

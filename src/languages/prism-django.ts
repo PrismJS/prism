@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 // Django/Jinja2 syntax definition for Prism.js <http://prismjs.com> syntax highlighter.
 // Mostly it works OK but can paint code incorrectly on complex html/template tag combinations.
@@ -49,4 +49,4 @@ export default {
 		},
 		[tokenize]: embeddedIn('markup')
 	}
-} as LanguageProto<'django'>
+} as LanguageProto<'django'>;

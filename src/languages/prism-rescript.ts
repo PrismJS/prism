@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'rescript',
@@ -67,4 +67,4 @@ export default {
 
 		return rescript;
 	}
-} as LanguageProto<'rescript'>
+} as LanguageProto<'rescript'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'odin',
@@ -101,4 +101,4 @@ export default {
 			'punctuation': /[(),.:;@\[\]{}]/
 		};
 	}
-} as LanguageProto<'odin'>
+} as LanguageProto<'odin'>;

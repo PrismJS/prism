@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'pcaxis',
@@ -54,4 +54,4 @@ export default {
 		},
 		'boolean': /NO|YES/,
 	}
-} as LanguageProto<'pcaxis'>
+} as LanguageProto<'pcaxis'>;

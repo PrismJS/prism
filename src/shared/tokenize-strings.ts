@@ -1,4 +1,4 @@
-import { TokenStream } from "../core/token";
+import { TokenStream } from '../core/token';
 
 /**
  * Given a token stream and a tokenization function, this will tokenize all

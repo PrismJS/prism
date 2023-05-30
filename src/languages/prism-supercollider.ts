@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'supercollider',
@@ -37,4 +37,4 @@ export default {
 		'operator': /\.{2,3}|#(?![[{])|&&|[!=]==?|\+>>|\+{1,3}|-[->]|=>|>>|\?\?|@\|?@|\|(?:@|[!=]=)?\||!\?|<[!=>]|\*{1,2}|<{2,3}\*?|[-!%&/<>?@|=`]/,
 		'punctuation': /[{}()[\].:,;]|#[[{]/
 	}
-} as LanguageProto<'supercollider'>
+} as LanguageProto<'supercollider'>;

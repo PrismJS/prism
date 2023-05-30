@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import css from './prism-css';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'scss',
@@ -89,4 +89,4 @@ export default {
 
 		return scss;
 	}
-} as LanguageProto<'scss'>
+} as LanguageProto<'scss'>;

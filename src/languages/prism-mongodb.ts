@@ -1,6 +1,6 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'mongodb',
@@ -103,4 +103,4 @@ export default {
 
 		return mongodb;
 	}
-} as LanguageProto<'mongodb'>
+} as LanguageProto<'mongodb'>;

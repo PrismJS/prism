@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'dns-zone-file',
@@ -34,4 +34,4 @@ export default {
 		},
 		'punctuation': /[()]/
 	}
-} as LanguageProto<'dns-zone-file'>
+} as LanguageProto<'dns-zone-file'>;

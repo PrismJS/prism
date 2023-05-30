@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'powerquery',
@@ -57,4 +57,4 @@ export default {
 			'punctuation': /[,;\[\](){}]/
 		};
 	}
-} as LanguageProto<'powerquery'>
+} as LanguageProto<'powerquery'>;

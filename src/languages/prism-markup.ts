@@ -1,6 +1,6 @@
-import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import xml from './prism-xml';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 /**
  * Adds an inlined language to markup.
@@ -104,4 +104,4 @@ export default {
 
 		return markup;
 	}
-} as LanguageProto<'markup'>
+} as LanguageProto<'markup'>;

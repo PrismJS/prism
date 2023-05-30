@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import javascript from './prism-javascript';
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ejs',
@@ -33,4 +33,4 @@ export default {
 		},
 		[tokenize]: embeddedIn('markup')
 	}
-} as LanguageProto<'ejs'>
+} as LanguageProto<'ejs'>;

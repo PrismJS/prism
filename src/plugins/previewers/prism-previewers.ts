@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import cssExtras from '../../languages/prism-css-extras';
 import { forEach } from '../../shared/util';
 import { PluginProto } from '../../types';
@@ -28,17 +29,17 @@ const ACTIVE_CLASS = 'active';
 const FLIPPED_CLASS = 'flipped';
 
 type Updater = (this: HTMLDivElement, value: string) => boolean;
-type PreviewerE = Previewer & { ["_elt"]: HTMLDivElement };
+type PreviewerE = Previewer & { ['_elt']: HTMLDivElement };
 type Initializer = (this: PreviewerE) => void;
 class Previewer {
-	readonly type: string
-	supportedLanguages: string | string[]
-	updater: Updater
-	initializer: Initializer | undefined
+	readonly type: string;
+	supportedLanguages: string | string[];
+	updater: Updater;
+	initializer: Initializer | undefined;
 
 	/** @package */
-	_elt: HTMLDivElement | null = null
-	private _token: Element | null = null
+	_elt: HTMLDivElement | null = null;
+	private _token: Element | null = null;
 
 	/**
 	 * Previewer constructor
@@ -114,15 +115,15 @@ class Previewer {
 
 			if (offset.top - this._elt.offsetHeight > 0) {
 				this._elt.classList.remove(FLIPPED_CLASS);
-				this._elt.style.top = offset.top + 'px';
+				this._elt.style.top = `${offset.top}px`;
 				this._elt.style.bottom = '';
 			} else {
 				this._elt.classList.add(FLIPPED_CLASS);
-				this._elt.style.bottom = offset.bottom + 'px';
+				this._elt.style.bottom = `${offset.bottom}px`;
 				this._elt.style.top = '';
 			}
 
-			this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
+			this._elt.style.left = `${(offset.left + Math.min(200, offset.width / 2))}px`;
 		} else {
 			this.hide();
 		}
@@ -186,8 +187,11 @@ export class PreviewerCollection {
 }
 
 // TODO: Filthy hack to be able to load this script
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Prism = { languages: {} as Record<string, any> };
 
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 const previewers = {
 	// gradient must be defined before color and angle
 	'gradient': {
@@ -240,9 +244,9 @@ const previewers = {
 						} else if (prefix) {
 							// Angle is shifted by 90deg in prefixed gradients
 							if (angle.includes('deg')) {
-								angle = (90 - parseFloat(angle)) + 'deg';
+								angle = `${90 - parseFloat(angle)}deg`;
 							} else if (angle.includes('rad')) {
-								angle = (Math.PI / 2 - parseFloat(angle)) + 'rad';
+								angle = `${Math.PI / 2 - parseFloat(angle)}rad`;
 							}
 						}
 					}
@@ -270,20 +274,16 @@ const previewers = {
 					if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 						// Found a position
 						// Remove angle value, if any
-						// @ts-ignore
-						position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
+						position = values.shift()!.replace(/\s*-?\d+(?:deg|rad)\s*/, '');
 					}
 					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 						// Found a shape and/or size
-						// @ts-ignore
-						const shapeSizeParts = values.shift().split(/\s+/);
+						const shapeSizeParts = values.shift()!.split(/\s+/);
 						if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
-							// @ts-ignore
-							shape = shapeSizeParts.shift();
+							shape = shapeSizeParts.shift()!;
 						}
 						if (shapeSizeParts[0]) {
-							// @ts-ignore
-							size = shapeSizeParts.shift();
+							size = shapeSizeParts.shift()!;
 						}
 
 						// Old keywords are converted to their synonyms
@@ -413,7 +413,7 @@ const previewers = {
 				this[`${num < 0 ? 'set' : 'remove'}Attribute`]('data-negative', '');
 				const circle = this.querySelector('circle');
 				if (circle) {
-					circle.style.strokeDasharray = Math.abs(percentage) + ',500';
+					circle.style.strokeDasharray = `${Math.abs(percentage)},500`;
 				}
 				return true;
 			}, '*', function () {
@@ -611,7 +611,7 @@ const previewers = {
 				const u = unit[0];
 				const circle = this.querySelector('circle');
 				if (circle) {
-					circle.style.animationDuration = 2 * num + u;
+					circle.style.animationDuration = `${2 * num}${u}`;
 				}
 				return true;
 			}, '*', function () {
@@ -663,6 +663,8 @@ const previewers = {
 		}
 	}
 };
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+/* eslint-enable @typescript-eslint/no-unsafe-member-access */
 
 
 export default {

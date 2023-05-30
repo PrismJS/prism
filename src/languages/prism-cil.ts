@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cil',
@@ -29,4 +29,4 @@ export default {
 
 		'punctuation': /[{}[\];(),:=]|IL_[0-9A-Za-z]+/
 	}
-} as LanguageProto<'cil'>
+} as LanguageProto<'cil'>;

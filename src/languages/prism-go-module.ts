@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 // https://go.dev/ref/mod#go-mod-file-module
 
@@ -27,4 +27,4 @@ export default {
 		'operator': /=>/,
 		'punctuation': /[()[\],]/
 	}
-} as LanguageProto<'go-module'>
+} as LanguageProto<'go-module'>;

@@ -3,7 +3,7 @@ import { addHooks } from '../../shared/hooks-util';
 import { PluginProto } from '../../types';
 
 function getGlobal(): Record<string, unknown> {
-	return typeof window === 'object' ? window as any : {};
+	return typeof window === 'object' ? window as never : {};
 }
 
 let jsonpCallbackCounter = 0;
@@ -15,8 +15,8 @@ let jsonpCallbackCounter = 0;
  * @param callbackParameter The name of the callback parameter. If falsy, `"callback"`
  * will be used.
  */
-function jsonp(src: string, callbackParameter: string | undefined | null, timeout: number, onSuccess: (data: unknown) => void, onError: (reason: "timeout" | "network") => void): void {
-	const callbackName = 'prismjsonp' + jsonpCallbackCounter++;
+function jsonp(src: string, callbackParameter: string | undefined | null, timeout: number, onSuccess: (data: unknown) => void, onError: (reason: 'timeout' | 'network') => void): void {
+	const callbackName = `prismjsonp${jsonpCallbackCounter++}`;
 
 	const uri = document.createElement('a');
 	uri.href = src;
@@ -181,10 +181,16 @@ export default {
 	plugin(Prism) {
 		const config = new JsonpHighlight(Prism);
 
+		/* eslint-disable @typescript-eslint/no-explicit-any */
+		/* eslint-disable @typescript-eslint/no-unsafe-argument */
+		/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+		/* eslint-disable @typescript-eslint/no-unsafe-call */
+		/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+		/* eslint-disable @typescript-eslint/restrict-template-expressions */
 		config.registerAdapter('github', (rsp: any) => {
 			if (rsp && rsp.meta && rsp.data) {
 				if (rsp.meta.status && rsp.meta.status >= 400) {
-					return 'Error: ' + (rsp.data.message || rsp.meta.status);
+					return `Error: ${rsp.data.message || rsp.meta.status}`;
 				} else if (typeof (rsp.data.content) === 'string') {
 					return typeof (atob) === 'function'
 						? atob(rsp.data.content.replace(/\s/g, ''))
@@ -196,7 +202,7 @@ export default {
 		config.registerAdapter('gist', (rsp: any, el) => {
 			if (rsp && rsp.meta && rsp.data && rsp.data.files) {
 				if (rsp.meta.status && rsp.meta.status >= 400) {
-					return 'Error: ' + (rsp.data.message || rsp.meta.status);
+					return `Error: ${rsp.data.message || rsp.meta.status}`;
 				}
 
 				const files = rsp.data.files;
@@ -214,18 +220,24 @@ export default {
 				}
 
 				if (filename && files[filename] !== undefined) {
-					return files[filename].content;
+					return String(files[filename].content);
 				}
-				return 'Error: unknown or missing gist file ' + filename;
+				return `Error: unknown or missing gist file ${filename}`;
 			}
 			return null;
 		});
 		config.registerAdapter('bitbucket', (rsp: any) => {
 			if (rsp && rsp.node && typeof (rsp.data) === 'string') {
-				return rsp.data;
+				return String(rsp.data);
 			}
 			return null;
 		});
+		/* eslint-enable @typescript-eslint/no-explicit-any */
+		/* eslint-enable @typescript-eslint/no-unsafe-argument */
+		/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+		/* eslint-enable @typescript-eslint/no-unsafe-call */
+		/* eslint-enable @typescript-eslint/no-unsafe-member-access */
+		/* eslint-enable @typescript-eslint/restrict-template-expressions */
 
 		return config;
 	},

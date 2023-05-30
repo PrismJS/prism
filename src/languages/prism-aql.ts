@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'aql',
@@ -51,4 +51,4 @@ export default {
 		'operator': /\*{2,}|[=!]~|[!=<>]=?|&&|\|\||[-+*/%]/,
 		'punctuation': /::|[?.:,;()[\]{}]/
 	}
-} as LanguageProto<'aql'>
+} as LanguageProto<'aql'>;

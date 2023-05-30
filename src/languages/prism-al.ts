@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 // based on https://github.com/microsoft/AL/blob/master/grammar/alsyntax.tmlanguage
 
@@ -27,4 +27,4 @@ export default {
 		'operator': /\.\.|:[=:]|[-+*/]=?|<>|[<>]=?|=|\b(?:and|div|mod|not|or|xor)\b/i,
 		'punctuation': /[()\[\]{}:.;,]/
 	}
-} as LanguageProto<'al'>
+} as LanguageProto<'al'>;

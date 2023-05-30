@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'keyman',
@@ -46,4 +46,4 @@ export default {
 		'operator': /[+>\\$]|\.\./,
 		'punctuation': /[()=,]/
 	}
-} as LanguageProto<'keyman'>
+} as LanguageProto<'keyman'>;

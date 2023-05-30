@@ -1,6 +1,6 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'actionscript',
@@ -30,4 +30,4 @@ export default {
 
 		return actionscript;
 	}
-} as LanguageProto<'actionscript'>
+} as LanguageProto<'actionscript'>;

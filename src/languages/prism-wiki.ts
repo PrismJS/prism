@@ -1,7 +1,7 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import markup from './prism-markup';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'wiki',
@@ -95,4 +95,4 @@ export default {
 
 		return wiki;
 	}
-} as LanguageProto<'wiki'>
+} as LanguageProto<'wiki'>;

@@ -1,7 +1,7 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
 import { rest, tokenize } from '../shared/symbols';
+import type { GrammarToken, LanguageProto } from '../types';
 
 /**
  * Creates a new pattern to match a template string with a special tag.
@@ -75,4 +75,4 @@ export default {
 			]
 		};
 	}
-} as LanguageProto<'js-templates'>
+} as LanguageProto<'js-templates'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'typoscript',
@@ -79,4 +79,4 @@ export default {
 			'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
 		};
 	}
-} as LanguageProto<'typoscript'>
+} as LanguageProto<'typoscript'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jexl',
@@ -16,4 +16,4 @@ export default {
 		'keyword': /\bin\b/,
 		'punctuation': /[{}[\](),.]/,
 	}
-} as LanguageProto<'jexl'>
+} as LanguageProto<'jexl'>;

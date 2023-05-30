@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'smalltalk',
@@ -40,4 +40,4 @@ export default {
 		'operator': /[<=]=?|:=|~[~=]|\/\/?|\\\\|>[>=]?|[!^+\-*&|,@]/,
 		'punctuation': /[.;:?\[\](){}]/
 	}
-} as LanguageProto<'smalltalk'>
+} as LanguageProto<'smalltalk'>;

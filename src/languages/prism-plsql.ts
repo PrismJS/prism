@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import sql from './prism-sql';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'plsql',
@@ -26,4 +26,4 @@ export default {
 
 		return plsql;
 	}
-} as LanguageProto<'plsql'>
+} as LanguageProto<'plsql'>;

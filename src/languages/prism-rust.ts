@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'rust',
@@ -127,4 +127,4 @@ export default {
 			'operator': /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/
 		};
 	}
-} as LanguageProto<'rust'>
+} as LanguageProto<'rust'>;

@@ -1,5 +1,5 @@
-import type { Grammar, LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'inform7',
@@ -69,4 +69,4 @@ export default {
 
 		return inform7;
 	}
-} as LanguageProto<'inform7'>
+} as LanguageProto<'inform7'>;

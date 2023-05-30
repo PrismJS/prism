@@ -6,6 +6,7 @@ export default {
 	id: 'download-button',
 	require: toolbar,
 	effect(Prism) {
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const toolbar = Prism.plugins.toolbar!;
 
 		return toolbar.registerButton('download-file', (env) => {

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'tremor',
@@ -68,4 +68,4 @@ export default {
 			'punctuation': /::|[;\[\]()\{\},.:]/,
 		};
 	}
-} as LanguageProto<'tremor'>
+} as LanguageProto<'tremor'>;

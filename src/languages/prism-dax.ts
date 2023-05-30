@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'dax',
@@ -29,4 +29,4 @@ export default {
 		'operator': /:=|[-+*\/=^]|&&?|\|\||<(?:=>?|<|>)?|>[>=]?|\b(?:IN|NOT)\b/i,
 		'punctuation': /[;\[\](){}`,.]/
 	}
-} as LanguageProto<'dax'>
+} as LanguageProto<'dax'>;

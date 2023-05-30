@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
 import ruby from './prism-ruby';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'erb',
@@ -24,4 +24,4 @@ export default {
 		},
 		[tokenize]: embeddedIn('markup')
 	}
-} as LanguageProto<'erb'>
+} as LanguageProto<'erb'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'antlr4',
@@ -66,4 +66,4 @@ export default {
 		'operator': /\.\.|->|[|~]|[*+?]\??/,
 		'punctuation': /[;:()=]/
 	}
-} as LanguageProto<'antlr4'>
+} as LanguageProto<'antlr4'>;

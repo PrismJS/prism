@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'java',
@@ -142,4 +142,4 @@ export default {
 
 		return java;
 	}
-} as LanguageProto<'java'>
+} as LanguageProto<'java'>;

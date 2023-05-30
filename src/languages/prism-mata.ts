@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'mata',
@@ -51,4 +51,4 @@ export default {
 			'punctuation': /[()[\]{},;.]/
 		};
 	}
-} as LanguageProto<'mata'>
+} as LanguageProto<'mata'>;

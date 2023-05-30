@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import markup from './prism-markup';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'xeora',
@@ -115,4 +115,4 @@ export default {
 			}
 		});
 	}
-} as LanguageProto<'xeora'>
+} as LanguageProto<'xeora'>;

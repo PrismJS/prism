@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gedcom',
@@ -30,4 +30,4 @@ export default {
 			alias: 'variable'
 		}
 	}
-} as LanguageProto<'gedcom'>
+} as LanguageProto<'gedcom'>;

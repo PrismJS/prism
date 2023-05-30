@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'treeview',
@@ -89,4 +89,4 @@ export default {
 			}
 		}
 	}
-} as LanguageProto<'treeview'>
+} as LanguageProto<'treeview'>;

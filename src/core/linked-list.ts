@@ -20,7 +20,7 @@ export class LinkedList<T> {
 	length: number;
 
 	constructor() {
-		const head: LinkedListHeadNode<T> = { value: null, prev: null, next: null as any };
+		const head: LinkedListHeadNode<T> = { value: null, prev: null, next: null as never };
 		const tail: LinkedListTailNode<T> = { value: null, prev: head, next: null };
 		head.next = tail;
 

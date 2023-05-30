@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 // ABNF grammar:
 // https://github.com/dhall-lang/dhall-lang/blob/master/standard/dhall.abnf
@@ -69,4 +69,4 @@ export default {
 		// we'll just assume that every capital word left is a type name
 		'class-name': /\b[A-Z]\w*\b/
 	}
-} as LanguageProto<'dhall'>
+} as LanguageProto<'dhall'>;

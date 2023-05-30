@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'uorazor',
@@ -50,4 +50,4 @@ export default {
 		],
 		'punctuation': /[()\[\]{}:.,]/
 	}
-} as LanguageProto<'uorazor'>
+} as LanguageProto<'uorazor'>;

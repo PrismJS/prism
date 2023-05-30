@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import turtle from './prism-turtle';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sparql',
@@ -26,4 +26,4 @@ export default {
 
 		return sparql;
 	}
-} as LanguageProto<'sparql'>
+} as LanguageProto<'sparql'>;

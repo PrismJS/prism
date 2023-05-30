@@ -1,26 +1,27 @@
-import type { TokenName, Grammar, GrammarToken } from "../types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Grammar, GrammarToken, TokenName } from '../types';
 
 export class Token {
 	/**
-	* The type of the token.
-	*
-	* This is usually the key of a pattern in a {@link Grammar}.
-	*
-	* @see {@link GrammarToken}
-	*/
-	type: TokenName
+	 * The type of the token.
+	 *
+	 * This is usually the key of a pattern in a {@link Grammar}.
+	 *
+	 * @see {@link GrammarToken}
+	 */
+	type: TokenName;
 	/**
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
 	 */
-	content: string | TokenStream
+	content: string | TokenStream;
 	/**
 	 * The alias(es) of the token.
 	 *
 	 * @see {@link GrammarToken#alias}
 	 */
-	alias?: TokenName | TokenName[]
+	alias?: TokenName | TokenName[];
 
 	/**
 	 * Length of the full string this token was created from.
@@ -29,7 +30,7 @@ export class Token {
 	 *
 	 * @internal
 	 */
-	length: number
+	length: number;
 
 	/**
 	 * Creates a new token.
@@ -40,7 +41,7 @@ export class Token {
 	 * @param matchedStr A copy of the full string this token was created from.
 	 * @public
 	 */
-	constructor(type: TokenName, content: string | TokenStream, alias?: TokenName | TokenName[], matchedStr: string = '') {
+	constructor(type: TokenName, content: string | TokenStream, alias?: TokenName | TokenName[], matchedStr = '') {
 		this.type = type;
 		this.content = content;
 		this.alias = alias;

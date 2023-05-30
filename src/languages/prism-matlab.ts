@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'matlab',
@@ -18,4 +18,4 @@ export default {
 		'operator': /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
 		'punctuation': /\.{3}|[.,;\[\](){}!]/
 	}
-} as LanguageProto<'matlab'>
+} as LanguageProto<'matlab'>;

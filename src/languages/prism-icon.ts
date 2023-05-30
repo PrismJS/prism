@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'icon',
@@ -22,4 +22,4 @@ export default {
 		'operator': /[+-]:(?!=)|(?:[\/?@^%&]|\+\+?|--?|==?=?|~==?=?|\*\*?|\|\|\|?|<(?:->?|<?=?)|>>?=?)(?::=)?|:(?:=:?)?|[!.\\|~]/,
 		'punctuation': /[\[\](){},;]/
 	}
-} as LanguageProto<'icon'>
+} as LanguageProto<'icon'>;

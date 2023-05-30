@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'eiffel',
@@ -36,4 +36,4 @@ export default {
 		'punctuation': /:=|<<|>>|\(\||\|\)|->|\.(?=\w)|[{}[\];(),:?]/,
 		'operator': /\\\\|\|\.\.\||\.\.|\/[~\/=]?|[><]=?|[-+*^=~]/
 	}
-} as LanguageProto<'eiffel'>
+} as LanguageProto<'eiffel'>;

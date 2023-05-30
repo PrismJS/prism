@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'splunk-spl',
@@ -26,4 +26,4 @@ export default {
 		'operator': /[<>=]=?|[-+*/%|]/,
 		'punctuation': /[()[\],]/
 	}
-} as LanguageProto<'splunk-spl'>
+} as LanguageProto<'splunk-spl'>;

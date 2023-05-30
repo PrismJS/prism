@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'mizar',
@@ -14,4 +14,4 @@ export default {
 		'operator': /\.\.\.|->|&|\.?=/,
 		'punctuation': /\(#|#\)|[,:;\[\](){}]/
 	}
-} as LanguageProto<'mizar'>
+} as LanguageProto<'mizar'>;

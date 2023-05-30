@@ -1,6 +1,6 @@
-import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import ruby from './prism-ruby';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'haml',
@@ -152,4 +152,4 @@ export default {
 
 		return haml;
 	}
-} as LanguageProto<'haml'>
+} as LanguageProto<'haml'>;

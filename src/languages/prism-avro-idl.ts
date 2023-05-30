@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'avro-idl',
@@ -53,4 +53,4 @@ export default {
 			'punctuation': /[()\[\]{}<>.:,;-]/
 		};
 	}
-} as LanguageProto<'avro-idl'>
+} as LanguageProto<'avro-idl'>;

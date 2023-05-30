@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import java from './prism-java';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'scala',
@@ -60,4 +60,4 @@ export default {
 
 		return scala;
 	}
-} as LanguageProto<'scala'>
+} as LanguageProto<'scala'>;

@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import json from './prism-json';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jsonp',
@@ -16,4 +16,4 @@ export default {
 
 		return jsonp;
 	}
-} as LanguageProto<'jsonp'>
+} as LanguageProto<'jsonp'>;

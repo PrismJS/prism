@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'warpscript',
@@ -23,4 +23,4 @@ export default {
 		// https://www.warp10.io/tags/operators
 		'operator': /==|&&?|\|\|?|\*\*?|>>>?|<<|[<>!~]=?|[-/%^]|\+!?|\b(?:AND|NOT|OR)\b/
 	}
-} as LanguageProto<'warpscript'>
+} as LanguageProto<'warpscript'>;

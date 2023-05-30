@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import css from './prism-css';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sass',
@@ -83,4 +83,4 @@ export default {
 
 		return sass;
 	}
-} as LanguageProto<'sass'>
+} as LanguageProto<'sass'>;

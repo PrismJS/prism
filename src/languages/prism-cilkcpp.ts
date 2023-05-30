@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import cpp from './prism-cpp';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cilkcpp',
@@ -16,4 +16,4 @@ export default {
 		});
 		return cilkcpp;
 	}
-} as LanguageProto<'cilkcpp'>
+} as LanguageProto<'cilkcpp'>;

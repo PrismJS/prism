@@ -1,7 +1,7 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import csharp from './prism-csharp';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'cshtml',
@@ -142,10 +142,9 @@ export default {
 
 		const tag = cshtml.tag as GrammarToken;
 		tag.pattern = RegExp(/<\/?/.source + tagContent);
-		// @ts-ignore
-		tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
-		// @ts-ignore
-		insertBefore(tag.inside['attr-value'].inside, 'punctuation', { 'value': inlineValue });
+		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
+		attrValue.pattern = RegExp(/=\s*/.source + tagAttrValue);
+		insertBefore(attrValue.inside as Grammar, 'punctuation', { 'value': inlineValue });
 
 		insertBefore(cshtml, 'prolog', {
 			'razor-comment': {
@@ -205,4 +204,4 @@ export default {
 
 		return cshtml;
 	}
-} as LanguageProto<'cshtml'>
+} as LanguageProto<'cshtml'>;

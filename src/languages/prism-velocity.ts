@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'velocity',
@@ -75,9 +75,8 @@ export default {
 			'variable': vel['variable']
 		});
 
-		// @ts-ignore
-		velocity['tag'].inside['attr-value'].inside[rest] = velocity;
+		((((velocity['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken).inside as Grammar)[rest] = velocity;
 
 		return velocity;
 	}
-} as LanguageProto<'velocity'>
+} as LanguageProto<'velocity'>;

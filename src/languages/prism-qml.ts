@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import javascript from './prism-javascript';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'qml',
@@ -63,4 +63,4 @@ export default {
 			'punctuation': /[{}[\]:;,]/
 		};
 	}
-} as LanguageProto<'qml'>
+} as LanguageProto<'qml'>;

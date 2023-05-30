@@ -59,9 +59,9 @@ function readSetting(element: Element) {
 		const type = settingsConfig[key];
 		if (attr !== null) {
 			try {
-				const value = JSON.parse(attr || 'true');
+				const value: unknown = JSON.parse(attr || 'true');
 				if (typeof value === type) {
-					settings[key] = value;
+					settings[key] = value as never;
 				}
 			} catch {
 				// ignore error
@@ -75,7 +75,7 @@ const normalizationMethods: { [K in keyof NormalizeWhitespaceDefaults]: (input: 
 	'left-trim': (input) => input.replace(/^\s+/, ''),
 	'right-trim': (input) => input.replace(/(^|\S)\s+$/, '$1'),
 	'tabs-to-spaces': (input, spaces) => input.replace(/\t/g, ' '.repeat(spaces)),
-	'spaces-to-tabs': (input, spaces) => input.replace(RegExp(' {' + spaces + '}', 'g'), '\t'),
+	'spaces-to-tabs': (input, spaces) => input.replace(RegExp(` {${spaces}}`, 'g'), '\t'),
 	'remove-trailing': (input) => input.replace(/\s*?$/gm, ''),
 	'remove-initial-line-feed': (input) => input.replace(/^(?:\r?\n|\r)/, ''),
 	'remove-indent': (input) => {
@@ -101,7 +101,7 @@ const normalizationMethods: { [K in keyof NormalizeWhitespaceDefaults]: (input: 
 				continue;
 			}
 
-			const line = lines[i].split(/(\s+)/g);
+			const line = lines[i].split(/(\s+)/);
 			let len = 0;
 
 			for (let j = 0; j < line.length; ++j) {
@@ -159,7 +159,7 @@ export default {
 		});
 	},
 	effect(Prism) {
-		const Normalizer = Prism.plugins.normalizeWhitespace!;
+		const Normalizer = Prism.plugins.normalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', (env) => {
 			if (!env.code) {

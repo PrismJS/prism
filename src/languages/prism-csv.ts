@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'csv',
@@ -10,4 +10,4 @@ export default {
 			'punctuation': /,/
 		};
 	}
-} as LanguageProto<'csv'>
+} as LanguageProto<'csv'>;

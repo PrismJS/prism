@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'javadoclike',
@@ -15,4 +15,4 @@ export default {
 		},
 		'punctuation': /[{}]/
 	}
-} as LanguageProto<'javadoclike'>
+} as LanguageProto<'javadoclike'>;

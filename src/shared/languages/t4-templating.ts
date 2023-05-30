@@ -1,4 +1,4 @@
-import type { Grammar, GrammarToken } from "../../types";
+import type { Grammar, GrammarToken } from '../../types';
 
 function createBlock(prefix: string, insideLang: string | Grammar): GrammarToken {
 	return {

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ada',
@@ -24,4 +24,4 @@ export default {
 		'char': /'.'/,
 		'variable': /\b[a-z](?:\w)*\b/i
 	}
-} as LanguageProto<'ada'>
+} as LanguageProto<'ada'>;

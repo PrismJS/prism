@@ -1,7 +1,7 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import javascript from './prism-javascript';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'flow',
@@ -43,4 +43,4 @@ export default {
 
 		return flow;
 	}
-} as LanguageProto<'flow'>
+} as LanguageProto<'flow'>;

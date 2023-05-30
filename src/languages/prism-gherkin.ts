@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gherkin',
@@ -85,4 +85,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'gherkin'>
+} as LanguageProto<'gherkin'>;

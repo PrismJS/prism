@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'lisp',
@@ -193,4 +193,4 @@ export default {
 			]
 		};
 	}
-} as LanguageProto<'lisp'>
+} as LanguageProto<'lisp'>;

@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import c from './prism-c';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'objectivec',
@@ -19,4 +19,4 @@ export default {
 
 		return objectivec;
 	}
-} as LanguageProto<'objectivec'>
+} as LanguageProto<'objectivec'>;

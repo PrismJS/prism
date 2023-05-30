@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'git',
@@ -70,4 +70,4 @@ export default {
 		 */
 		'commit-sha1': /^commit \w{40}$/m
 	}
-} as LanguageProto<'git'>
+} as LanguageProto<'git'>;

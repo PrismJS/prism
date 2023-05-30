@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'roboconf',
@@ -29,4 +29,4 @@ export default {
 		},
 		'punctuation': /[{},.;:=]/
 	}
-} as LanguageProto<'roboconf'>
+} as LanguageProto<'roboconf'>;

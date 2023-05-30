@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'arff',
@@ -12,4 +12,4 @@ export default {
 		'number': /\b\d+(?:\.\d+)?\b/,
 		'punctuation': /[{},]/
 	}
-} as LanguageProto<'arff'>
+} as LanguageProto<'arff'>;

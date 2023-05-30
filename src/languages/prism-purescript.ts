@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import haskell, { asciiOperator, infixOperator } from './prism-haskell';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'purescript',
@@ -34,4 +34,4 @@ export default {
 			]
 		});
 	}
-} as LanguageProto<'purescript'>
+} as LanguageProto<'purescript'>;

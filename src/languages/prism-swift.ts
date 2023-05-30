@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'swift',
@@ -146,4 +146,4 @@ export default {
 		'operator': /[-+*/%=!<>&|^~?]+|\.[.\-+*/%=!<>&|^~?]+/,
 		'punctuation': /[{}[\]();,.:\\]/
 	}
-} as LanguageProto<'swift'>
+} as LanguageProto<'swift'>;

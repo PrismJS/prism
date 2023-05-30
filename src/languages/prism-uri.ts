@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'uri',
@@ -99,4 +99,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'uri'>
+} as LanguageProto<'uri'>;

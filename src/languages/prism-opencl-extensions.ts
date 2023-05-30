@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'opencl-extensions',
@@ -30,4 +30,4 @@ export default {
 			alias: 'keyword'
 		}
 	}
-} as LanguageProto<'opencl-extensions'>
+} as LanguageProto<'opencl-extensions'>;

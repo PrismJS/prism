@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'firestore-security-rules',
@@ -44,4 +44,4 @@ export default {
 
 		return fsr;
 	}
-} as LanguageProto<'firestore-security-rules'>
+} as LanguageProto<'firestore-security-rules'>;

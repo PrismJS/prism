@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'asm6502',
@@ -31,4 +31,4 @@ export default {
 		},
 		'punctuation': /[(),:]/
 	}
-} as LanguageProto<'asm6502'>
+} as LanguageProto<'asm6502'>;

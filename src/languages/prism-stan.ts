@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'stan',
@@ -63,4 +63,4 @@ export default {
 			'punctuation': /[()\[\]{},;]/
 		};
 	}
-} as LanguageProto<'stan'>
+} as LanguageProto<'stan'>;

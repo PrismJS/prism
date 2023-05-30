@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'json',
@@ -30,4 +30,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'json'>
+} as LanguageProto<'json'>;

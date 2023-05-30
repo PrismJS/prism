@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 /** @package */
 export const infixOperator = {
@@ -72,4 +72,4 @@ export default {
 		},
 		'punctuation': /[{}[\];(),.:]/
 	}
-} as LanguageProto<'haskell'>
+} as LanguageProto<'haskell'>;

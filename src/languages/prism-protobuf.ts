@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'protobuf',
@@ -48,4 +48,4 @@ export default {
 
 		return protobuf;
 	}
-} as LanguageProto<'protobuf'>
+} as LanguageProto<'protobuf'>;

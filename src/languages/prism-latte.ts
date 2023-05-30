@@ -1,9 +1,9 @@
-import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
 import php from './prism-php';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'latte',
@@ -69,4 +69,4 @@ export default {
 			[tokenize]: embeddedIn(markupLatte)
 		};
 	}
-} as LanguageProto<'latte'>
+} as LanguageProto<'latte'>;

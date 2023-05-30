@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import basic from './prism-basic';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'vbnet',
@@ -36,4 +36,4 @@ export default {
 
 		return vbnet;
 	}
-} as LanguageProto<'vbnet'>
+} as LanguageProto<'vbnet'>;

@@ -1,8 +1,8 @@
-import type { LanguageProto } from "../types";
 import { getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'markdown',
@@ -306,8 +306,7 @@ export default {
 		['url', 'bold', 'italic', 'strike'].forEach((token) => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach((inside) => {
 				if (token !== inside) {
-					// @ts-ignore
-					markdown[token].inside.content.inside[inside] = markdown[inside];
+					((((markdown[token] as GrammarToken).inside as Grammar).content as GrammarToken).inside as Grammar)[inside] = markdown[inside];
 				}
 			});
 		});
@@ -331,18 +330,17 @@ export default {
 			}
 
 			if (codeLang && codeLang !== 'none' && typeof document !== 'undefined') {
-				const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
 				env.attributes['id'] = id;
 
 				Prism.plugins.autoloader.loadLanguages(codeLang).then(() => {
-					// eslint-disable-next-line no-undef
-					const ele = document.getElementById(id);
-					if (ele) {
-						ele.innerHTML = Prism.highlight(ele.textContent || '', codeLang);
+					const element = document.getElementById(id);
+					if (element) {
+						element.innerHTML = Prism.highlight(element.textContent || '', codeLang);
 					}
-				});
+				}, (error) => console.error(error));
 			}
 		});
 
 	}
-} as LanguageProto<'markdown'>
+} as LanguageProto<'markdown'>;

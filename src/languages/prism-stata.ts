@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import java from './prism-java';
 import mata from './prism-mata';
 import python from './prism-python';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'stata',
@@ -82,4 +82,4 @@ export default {
 			'punctuation': /[(){}[\],:]/
 		};
 	}
-} as LanguageProto<'stata'>
+} as LanguageProto<'stata'>;

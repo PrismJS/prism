@@ -1,5 +1,5 @@
-import type { Grammar, LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'stylus',
@@ -146,4 +146,4 @@ export default {
 			'punctuation': /[{}()\[\];:.]/
 		};
 	}
-} as LanguageProto<'stylus'>
+} as LanguageProto<'stylus'>;

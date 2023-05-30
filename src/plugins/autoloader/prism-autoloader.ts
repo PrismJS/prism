@@ -1,7 +1,7 @@
-import type { Prism } from '../../core';
 import { getParentPre } from '../../shared/dom-util';
 import { resolveAlias } from '../../shared/meta/alias-data';
 import { toArray } from '../../shared/util';
+import type { Prism } from '../../core';
 import type { ComponentProto, PluginProto } from '../../types';
 
 function getDefaultSrcPath() {
@@ -38,6 +38,7 @@ function pathJoin(dir: string, file: string) {
 const ignoredLanguages: ReadonlySet<string> = new Set(['none']);
 
 /**
+ * @param Prism The Prism instance
  * @param name The name of the language
  */
 function isLoaded(Prism: Prism, name: string) {
@@ -49,7 +50,7 @@ function isLoaded(Prism: Prism, name: string) {
 export class Autoloader {
 	srcPath = getDefaultSrcPath();
 
-	private _importCache = new Map<string, Promise<any>>();
+	private _importCache = new Map<string, Promise<unknown>>();
 	private Prism: Prism;
 
 	/**
@@ -73,6 +74,7 @@ export class Autoloader {
 			let promise = this._importCache.get(path);
 			if (promise === undefined) {
 				promise = import(path).then((exports) => {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					const proto = exports.default as ComponentProto;
 					this.Prism.components.add(proto);
 				});
@@ -89,7 +91,7 @@ export class Autoloader {
 	 */
 	preloadLanguages(languages: string | readonly string[]): void {
 		this.loadLanguages(languages).catch((reason) => {
-			console.error(`Failed to preload languages (${toArray(languages).join(', ')}): ${reason}`);
+			console.error(`Failed to preload languages (${toArray(languages).join(', ')}): ${String(reason)}`);
 		});
 	}
 }
@@ -111,7 +113,7 @@ export default {
 					deps = parent.getAttribute('data-dependencies')?.trim();
 				}
 			}
-			return deps ? deps.split(/\s*,\s*/g) : [];
+			return deps ? deps.split(/\s*,\s*/) : [];
 		}
 
 		/**
@@ -147,7 +149,7 @@ export default {
 			Prism.plugins.autoloader.loadLanguages(deps).then(
 				() => Prism.highlightElement(element),
 				(reason) => {
-					console.error(`Failed to load languages (${deps.join(', ')}): ${reason}`);
+					console.error(`Failed to load languages (${deps.join(', ')}): ${String(reason)}`);
 				}
 			);
 		});

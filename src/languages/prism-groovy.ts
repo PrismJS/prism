@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'groovy',
@@ -68,4 +68,4 @@ export default {
 
 		return groovy;
 	}
-} as LanguageProto<'groovy'>
+} as LanguageProto<'groovy'>;

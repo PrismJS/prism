@@ -1,4 +1,4 @@
-import { KebabToCamelCase } from "../types";
+import { KebabToCamelCase } from '../types';
 
 /**
  * Returns a function that caches the result of the given supplier.
@@ -24,7 +24,7 @@ export function htmlEncode(text: string): string {
 /**
  * A function that does nothing.
  */
-export const noop = (() => { }) as () => (void & undefined);
+export const noop = (() => { /* noop */ }) as () => (void & undefined);
 
 export function isNonNull<T>(value: T): value is T & {} {
 	return value != null;
@@ -37,6 +37,7 @@ export function regexEscape(string: string): string {
 	return string.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isReadonlyArray: (arg: unknown) => arg is readonly any[] = Array.isArray;
 
 /**

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'powershell',
@@ -58,4 +58,4 @@ export default {
 			'punctuation': /[|{}[\];(),.]/
 		};
 	}
-} as LanguageProto<'powershell'>
+} as LanguageProto<'powershell'>;

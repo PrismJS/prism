@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'parigp',
@@ -34,4 +34,4 @@ export default {
 			'punctuation': /[\[\]{}().,:;|]/
 		};
 	}
-} as LanguageProto<'parigp'>
+} as LanguageProto<'parigp'>;

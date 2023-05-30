@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css-selector',
@@ -64,4 +64,4 @@ export default {
 			'punctuation': /[(),]/,
 		};
 	}
-} as LanguageProto<'css-selector'>
+} as LanguageProto<'css-selector'>;

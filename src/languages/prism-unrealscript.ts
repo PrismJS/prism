@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'unrealscript',
@@ -43,4 +43,4 @@ export default {
 		'operator': />>|<<|--|\+\+|\*\*|[-+*/~!=<>$@]=?|&&?|\|\|?|\^\^?|[?:%]|\b(?:ClockwiseFrom|Cross|Dot)\b/,
 		'punctuation': /[()[\]{};,.]/
 	}
-} as LanguageProto<'unrealscript'>
+} as LanguageProto<'unrealscript'>;

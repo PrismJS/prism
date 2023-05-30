@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'elixir',
@@ -95,4 +95,4 @@ export default {
 			'punctuation': /<<|>>|[.,%\[\]{}()]/
 		};
 	}
-} as LanguageProto<'elixir'>
+} as LanguageProto<'elixir'>;

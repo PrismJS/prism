@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import scheme from './prism-scheme';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'racket',
@@ -26,4 +26,4 @@ export default {
 
 		return racket;
 	}
-} as LanguageProto<'racket'>
+} as LanguageProto<'racket'>;

@@ -1,5 +1,5 @@
-import type { PluginProto } from '../../types';
 import toolbar from '../toolbar/prism-toolbar';
+import type { PluginProto } from '../../types';
 
 interface CopyInfo {
 	getText: () => string;
@@ -118,6 +118,7 @@ export default {
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect(Prism) {
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const toolbar = Prism.plugins.toolbar!;
 
 		return toolbar.registerButton('copy-to-clipboard', (env) => {
@@ -159,7 +160,7 @@ export default {
 				setTimeout(() => setState('copy'), settings['copy-timeout']);
 			}
 
-			function setState(state: "copy" | "copy-error" | "copy-success") {
+			function setState(state: 'copy' | 'copy-error' | 'copy-success') {
 				linkSpan.textContent = settings[state];
 				linkCopy.setAttribute('data-copy-state', state);
 			}

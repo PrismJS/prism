@@ -1,4 +1,4 @@
-import { PluginProto } from "../../types";
+import { PluginProto } from '../../types';
 
 type ClassMapper = (className: string) => string;
 type ClassAdder = (env: ClassAdderEnvironment) => undefined | string | string[];
@@ -15,7 +15,7 @@ export class CustomClass {
 	/**
 	 * A prefix to add to all class names.
 	 */
-	prefix: string = ''
+	prefix = '';
 
 	/**
 	 * Sets the function which can be used to add custom aliases to any token.

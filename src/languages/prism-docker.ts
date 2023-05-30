@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'docker',
@@ -92,4 +92,4 @@ export default {
 			'comment': commentRule
 		};
 	}
-} as LanguageProto<'docker'>
+} as LanguageProto<'docker'>;

@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'coffeescript',
@@ -102,4 +102,4 @@ export default {
 
 		return coffeescript;
 	}
-} as LanguageProto<'coffeescript'>
+} as LanguageProto<'coffeescript'>;

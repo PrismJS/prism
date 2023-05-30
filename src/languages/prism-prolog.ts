@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'prolog',
@@ -21,4 +21,4 @@ export default {
 		'operator': /[:\\=><\-?*@\/;+^|!$.]+|\b(?:is|mod|not|xor)\b/,
 		'punctuation': /[(){}\[\],]/
 	}
-} as LanguageProto<'prolog'>
+} as LanguageProto<'prolog'>;

@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
+import type { LanguageProto } from '../types';
 
 function isBracketsBalanced(input: string): boolean {
 	const brackets = '[]{}';
@@ -149,4 +149,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'naniscript'>
+} as LanguageProto<'naniscript'>;

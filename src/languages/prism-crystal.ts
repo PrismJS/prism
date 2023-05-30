@@ -1,7 +1,7 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import ruby from './prism-ruby';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'crystal',
@@ -65,4 +65,4 @@ export default {
 
 		return crystal;
 	}
-} as LanguageProto<'crystal'>
+} as LanguageProto<'crystal'>;

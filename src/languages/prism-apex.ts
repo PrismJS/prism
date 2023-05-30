@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import clike from './prism-clike';
 import sql from './prism-sql';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'apex',
@@ -69,4 +69,4 @@ export default {
 			'punctuation': /[()\[\]{};,.]/
 		};
 	}
-} as LanguageProto<'apex'>
+} as LanguageProto<'apex'>;

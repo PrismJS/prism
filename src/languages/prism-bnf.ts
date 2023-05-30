@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'bnf',
@@ -22,4 +22,4 @@ export default {
 		},
 		'operator': /::=|[|()[\]{}*+?]|\.{3}/
 	}
-} as LanguageProto<'bnf'>
+} as LanguageProto<'bnf'>;

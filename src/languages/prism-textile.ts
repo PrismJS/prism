@@ -1,5 +1,5 @@
-import type { GrammarToken, LanguageProto } from "../types";
 import markup from './prism-markup';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'textile',
@@ -100,7 +100,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: null as GrammarToken["inside"],
+							inside: null as GrammarToken['inside'],
 						},
 
 						// _italic_, __italic__
@@ -108,7 +108,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: null as GrammarToken["inside"],
+							inside: null as GrammarToken['inside'],
 						},
 
 						// ??cite??
@@ -132,7 +132,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
 							lookbehind: true,
-							inside: null as GrammarToken["inside"],
+							inside: null as GrammarToken['inside'],
 						},
 
 						// -deleted-
@@ -140,7 +140,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
 							lookbehind: true,
-							inside: null as GrammarToken["inside"],
+							inside: null as GrammarToken['inside'],
 						},
 
 						// %span%
@@ -148,7 +148,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
 							lookbehind: true,
-							inside: null as GrammarToken["inside"],
+							inside: null as GrammarToken['inside'],
 						},
 
 						'modifier': {
@@ -286,4 +286,4 @@ export default {
 
 		return textile;
 	}
-} as LanguageProto<'textile'>
+} as LanguageProto<'textile'>;

@@ -1,5 +1,5 @@
-import type { LanguageProto } from "../types";
 import { MARKUP_TAG } from '../shared/languages/patterns';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'xml',
@@ -94,4 +94,4 @@ export default {
 			}
 		});
 	}
-} as LanguageProto<'xml'>
+} as LanguageProto<'xml'>;

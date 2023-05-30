@@ -1,6 +1,6 @@
-import type { LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'fsharp',
@@ -89,4 +89,4 @@ export default {
 
 		return fsharp;
 	}
-} as LanguageProto<'fsharp'>
+} as LanguageProto<'fsharp'>;

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'coq',
@@ -54,4 +54,4 @@ export default {
 			'punctuation': /\.\(|`\(|@\{|`\{|\{\||\[=|:>|[:.,;(){}\[\]]/
 		};
 	}
-} as LanguageProto<'coq'>
+} as LanguageProto<'coq'>;

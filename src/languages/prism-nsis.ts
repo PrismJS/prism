@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'nsis',
@@ -34,4 +34,4 @@ export default {
 			}
 		};
 	}
-} as LanguageProto<'nsis'>
+} as LanguageProto<'nsis'>;

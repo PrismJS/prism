@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'bbcode',
@@ -30,4 +30,4 @@ export default {
 			}
 		}
 	}
-} as LanguageProto<'bbcode'>
+} as LanguageProto<'bbcode'>;

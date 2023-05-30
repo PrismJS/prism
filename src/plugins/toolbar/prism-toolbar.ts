@@ -13,7 +13,7 @@ function getOrder(element: Element) {
 		if (order != null) {
 			order = order.trim();
 			if (order.length) {
-				return order.split(/\s*,\s*/g);
+				return order.split(/\s*,\s*/);
 			} else {
 				return [];
 			}
@@ -103,7 +103,7 @@ export class Toolbar {
 	/**
 	 * @package
 	 */
-	hook: HookCallback<"complete"> = (env) => {
+	hook: HookCallback<'complete'> = (env) => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		const pre = getParentPre(env.element);
 		if (!pre) {
@@ -171,7 +171,9 @@ const label: ButtonFactory = (env) => {
 	const text = pre.getAttribute('data-label');
 	try {
 		// Any normal text will blow up this selector.
-		template = document.querySelector('template#' + text);
+		if (text) {
+			template = document.querySelector('template#' + text);
+		}
 	} catch (e) { /* noop */ }
 
 	if (template) {

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gettext',
@@ -44,4 +44,4 @@ export default {
 		'number': /\b\d+\b/,
 		'punctuation': /[\[\]]/
 	}
-} as LanguageProto<'gettext'>
+} as LanguageProto<'gettext'>;
