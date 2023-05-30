@@ -109,13 +109,13 @@ async function validateHTML(html: string) {
 }
 
 interface TagNode {
-	type: "tag"
+	type: 'tag'
 	tagName: string | null
 	attributes: Record<string, string>
 	children: (TagNode | TextNode)[]
 }
 interface TextNode {
-	type: "text"
+	type: 'text'
 	rawText: string
 }
 /**

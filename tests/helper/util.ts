@@ -13,14 +13,17 @@ const astCache = new Map<string, LiteralAST>();
 
 export interface PathItem {
 	key: string | null;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	value: any;
 }
 /**
  * Performs a breadth-first search on the given start element.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function BFS(start: any, callback: (path: PathItem[], obj: Record<string, any>) => void) {
 	const visited = new Set();
 	let toVisit: PathItem[][] = [
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		[{ key: null, value: start }]
 	];
 
@@ -28,14 +31,18 @@ export function BFS(start: any, callback: (path: PathItem[], obj: Record<string,
 		const newToVisit: PathItem[][] = [];
 
 		for (const path of toVisit) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const obj = path[path.length - 1].value;
 			if (!visited.has(obj)) {
 				visited.add(obj);
 
 				for (const key in obj) {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 					const value = obj[key];
 
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					path.push({ key, value });
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					callback(path, obj);
 
 					if (Array.isArray(value) || Object.prototype.toString.call(value) === '[object Object]') {
@@ -55,7 +62,7 @@ export function BFS(start: any, callback: (path: PathItem[], obj: Record<string,
  * Given the `BFS` path given to `BFS` callbacks, this will return the Prism language token path of the current
  * value (e.g. `Prism.languages.xml.tag.pattern`).
  */
-export function BFSPathToPrismTokenPath(path: readonly PathItem[], root: string = 'Prism.languages'): string {
+export function BFSPathToPrismTokenPath(path: readonly PathItem[], root = 'Prism.languages'): string {
 	let tokenPath = root;
 	for (const { key } of path) {
 		if (!key) {
@@ -101,4 +108,8 @@ export function formatHtml(html: string): string {
 		htmlWhitespaceSensitivity: 'ignore',
 		filepath: 'fake.html',
 	});
+}
+
+export function isRegExp(value: unknown): value is RegExp {
+	return Object.prototype.toString.call(value) === '[object RegExp]';
 }

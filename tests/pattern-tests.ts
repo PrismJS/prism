@@ -2,16 +2,16 @@ import { assert } from 'chai';
 import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordSets, isDisjointWith, transform } from 'refa';
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
+import { CapturingGroup, Element, Group, LookaroundAssertion, Node, Pattern } from 'regexpp/ast';
 import * as scslre from 'scslre';
+import { Prism } from '../src/core';
 import { lazy, toArray } from '../src/shared/util';
+import { Grammar, GrammarToken } from '../src/types';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { TestCaseFile, parseLanguageNames } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
-import { BFS, BFSPathToPrismTokenPath, LiteralAST, PathItem, parseRegex } from './helper/util';
-import { Prism } from '../src/core';
-import { CapturingGroup, Element, Group, LookaroundAssertion, Node, Pattern } from 'regexpp/ast';
-import { Grammar } from '../src/types';
+import { BFS, BFSPathToPrismTokenPath, LiteralAST, PathItem, isRegExp, parseRegex } from './helper/util';
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -42,7 +42,7 @@ for (const lang of getLanguageIds()) {
 		testPatterns(create, lang);
 	});
 
-	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
+	describe(`Patterns of '${lang}' with optional dependencies`, () => {
 		const create = lazy(async () => {
 			const component = await getComponent(lang);
 			const optional = toArray(component.optional);
@@ -74,6 +74,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		ast: LiteralAST;
 		tokenPath: string;
 		name: string;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		parent: any;
 		lookbehind: boolean;
 		lookbehindGroup: CapturingGroup | undefined;
@@ -91,11 +92,12 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 			visited.add(grammar);
 
 			BFS(grammar, (path) => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
 
-				if (key && Object.prototype.toString.call(value) === '[object RegExp]') {
+				if (key && isRegExp(value)) {
 					try {
 						let ast;
 						try {
@@ -104,14 +106,17 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 							throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${asError(error).message}`);
 						}
 
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
-						const lookbehind = key === 'pattern' && parent && !!parent.lookbehind;
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+						const lookbehind = key === 'pattern' && !!parent && !!(parent as GrammarToken).lookbehind;
 						const lookbehindGroup = lookbehind ? getFirstCapturingGroup(ast.pattern) : undefined;
 						callback({
 							pattern: value,
 							ast,
 							tokenPath,
 							name: key,
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							parent,
 							path,
 							lookbehind,
@@ -143,6 +148,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 			const snippets = testSnippets.get(lang);
 			const grammar = Prism.components.getLanguage(lang);
 
+			// eslint-disable-next-line @typescript-eslint/unbound-method
 			const oldTokenize = Prism.tokenize;
 			Prism.tokenize = function (code, grammar) {
 				const result = oldTokenize.call(this, code, grammar);
@@ -187,7 +193,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		await forEachPattern(({ ast, pattern, tokenPath }) => {
 			// test for empty string
 			const empty = RAA.isPotentiallyZeroLength(ast.pattern.alternatives);
-			assert.isFalse(empty, `${tokenPath}: ${pattern} should not match the empty string.\n\n`
+			assert.isFalse(empty, `${tokenPath}: ${String(pattern)} should not match the empty string.\n\n`
 				+ `Patterns that do match the empty string can potentially cause infinitely many empty tokens. `
 				+ `Make sure that all patterns always consume at least one character.`);
 		});
@@ -262,7 +268,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
 		function testName(name: string, desc = 'token name') {
 			if (!niceName.test(name)) {
-				assert.fail(`The ${desc} '${name}' does not match ${niceName}.\n\n`
+				assert.fail(`The ${desc} '${name}' does not match ${String(niceName)}.\n\n`
 					+ `To fix this, choose a name that matches the above regular expression.`);
 			}
 		}
@@ -283,7 +289,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 
 			// check alias
 			if (name === 'pattern' && 'alias' in parent) {
-				const alias = parent.alias;
+				const alias = (parent as GrammarToken).alias;
 				if (typeof alias === 'string') {
 					testName(alias, `alias of '${tokenPath}'`);
 				} else if (Array.isArray(alias)) {
@@ -425,7 +431,8 @@ const resultCache = new Map<string, Map<string, Error | null>>();
 function getResultCache(cacheName: string) {
 	let cache = resultCache.get(cacheName);
 	if (cache === undefined) {
-		resultCache.set(cacheName, cache = new Map());
+		cache = new Map();
+		resultCache.set(cacheName, cache);
 	}
 	return cache;
 }
@@ -520,7 +527,7 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 						+ `\nIn the real world, patterns can be a lot harder to fix.`
 						+ ` If you are trying to make the tests pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway.`
 						+ ` A maintainer will help you.`
-						+ `\n\nFull pattern:\n${pattern}`);
+						+ `\n\nFull pattern:\n${String(pattern)}`);
 				} else if (i !== l - 1) {
 					total.union(current);
 				}
@@ -591,7 +598,7 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 						+ ` This can done by replacing \`<.*?>\` with \`<[^\\r\\n>]*>\`.`
 						+ `\n\nIn the real world, patterns can be a lot harder to fix.`
 						+ ` If you are trying to make this test pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway, a maintainer will help you.`
-						+ `\n\nFull pattern:\n${pattern}`);
+						+ `\n\nFull pattern:\n${String(pattern)}`);
 				}
 			});
 		},
@@ -715,8 +722,10 @@ function indent(str: string, amount = '    ') {
 	return str.split(/\r?\n/).map((m) => m === '' ? '' : amount + m).join('\n');
 }
 
-async function replaceRegExpProto(execSupplier: (exec: RegExp["exec"]) => (this: RegExp, input: string) => RegExpExecArray | null, fn: () => Promise<void>) {
+async function replaceRegExpProto(execSupplier: (exec: RegExp['exec']) => (this: RegExp, input: string) => RegExpExecArray | null, fn: () => Promise<void>) {
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const oldExec = RegExp.prototype.exec;
+	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const oldTest = RegExp.prototype.test;
 	const newExec = execSupplier(oldExec);
 

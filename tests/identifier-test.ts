@@ -1,9 +1,9 @@
 import { assert } from 'chai';
+import { Prism, Token } from '../src/core';
+import { TokenStream } from '../src/core/token';
 import { toArray } from '../src/shared/util';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
-import { Prism, Token } from '../src/core';
-import { TokenStream } from '../src/core/token';
 
 
 // This is where you can exclude a language from the identifier test.
@@ -97,13 +97,13 @@ const identifiers: Record<keyof IdentifierTestOptions, string[]> = {
 // If you only came here to exclude a language, you won't find anything below.
 
 for (const lang of getLanguageIds()) {
-	describe(`Test '${lang}'`, async () => {
+	describe(`Test '${lang}'`, () => {
 		const getPrism = createInstance(lang);
 		testLiterals(getPrism, lang);
 	});
 
 
-	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
+	describe(`Patterns of '${lang}' with optional dependencies`, () => {
 		const getPrism = async () => {
 			const component = await getComponent(lang);
 			const optional = toArray(component.optional);

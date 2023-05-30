@@ -3,7 +3,7 @@ import { createTestSuite } from '../../helper/prism-dom-util';
 import { PrismDOM } from '../../helper/prism-loader';
 
 
-describe('Keep Markup', async () => {
+describe('Keep Markup', () => {
 	const { it } = createTestSuite({
 		languages: 'javascript',
 		plugins: 'keep-markup'

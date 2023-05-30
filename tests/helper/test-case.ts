@@ -1,17 +1,17 @@
 import { assert } from 'chai';
 import fs from 'fs';
+import { Prism } from '../../src/core';
+import { TokenStream } from '../../src/core/token';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
 import { formatHtml, getLeadingSpaces } from './util';
-import { Prism } from '../../src/core';
-import { TokenStream } from '../../src/core/token';
 
 /**
  * @param {string[]} languages
  */
 const defaultCreateInstance = createInstance;
 
-type Eol = "\n" | "\r\n";
+type Eol = '\n' | '\r\n';
 
 /**
  * Handles parsing and printing of a test case file.
@@ -30,25 +30,25 @@ type Eol = "\n" | "\r\n";
  * If the file contains more than three parts, the remaining parts are part of the description.
  */
 export class TestCaseFile {
-	code: string
-	expected: string
-	description: string
+	code: string;
+	expected: string;
+	description: string;
 	/**
 	 * The end of line sequence used when printed.
 	 */
-	eol: Eol = "\n"
+	eol: Eol = '\n';
 	/**
 	 * The number of the first line of `code`.
 	 */
-	codeLineStart: number = NaN
+	codeLineStart = NaN;
 	/**
 	 * The number of the first line of `expected`.
 	 */
-	expectedLineStart: number = NaN
+	expectedLineStart = NaN;
 	/**
 	 * The number of the first line of `description`.
 	 */
-	descriptionLineStart: number = NaN
+	descriptionLineStart = NaN;
 
 	constructor(code: string, expected?: string, description?: string) {
 		this.code = code;
@@ -146,7 +146,7 @@ const jsonRunner: Runner<TokenStream> = {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		let simplifiedExpected;
 		try {
-			simplifiedExpected = JSON.parse(expected);
+			simplifiedExpected = JSON.parse(expected) as unknown;
 		} catch (error) {
 			return false;
 		}
@@ -155,7 +155,7 @@ const jsonRunner: Runner<TokenStream> = {
 	},
 	assertEqual(actual, expected, message) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
-		const simplifiedExpected = JSON.parse(expected);
+		const simplifiedExpected = JSON.parse(expected) as unknown;
 
 		const actualString = JSON.stringify(simplifiedActual);
 		const expectedString = JSON.stringify(simplifiedExpected);
@@ -172,11 +172,11 @@ const jsonRunner: Runner<TokenStream> = {
 
 		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex ?? 0));
 	}
-}
+};
 /**
-* Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
-* to enable good diffing.
-*/
+ * Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
+ * to enable good diffing.
+ */
 function normalizeHtml(html: string) {
 	return html
 		.replace(/</g, '\n<')
@@ -198,9 +198,9 @@ const htmlRunner: Runner<string> = {
 		// We don't calculate the index of the first difference because it's difficult.
 		assert.deepEqual(normalizeHtml(actual), normalizeHtml(expected), message(0));
 	},
-}
+};
 
-export type UpdateMethod = "none" | "insert" | "update"
+export type UpdateMethod = 'none' | 'insert' | 'update'
 /**
  * Runs the given test case file and asserts the result
  *
@@ -260,9 +260,9 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
 		}
 
 		runner.assertEqual(actualValue, testCase.expected, (diffIndex) => {
-			const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
-			// @ts-ignore
-			const columnNumber = expectedLines.pop().length + 1;
+			const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/);
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const columnNumber = expectedLines.pop()!.length + 1;
 			const lineNumber = testCase.expectedLineStart + expectedLines.length;
 
 			return testCase.description +

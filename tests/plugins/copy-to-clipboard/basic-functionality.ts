@@ -3,16 +3,17 @@ import { createTestSuite } from '../../helper/prism-dom-util';
 
 
 class DummyClipboard {
-	constructor() {
-		this.text = '';
+	text = '';
+	readText() {
+		return Promise.resolve(this.text);
 	}
-	async readText() {
-		return this.text;
-	}
-	/** @param {string} data */
-	writeText(data) {
+	writeText(data: string) {
 		this.text = data;
 		return Promise.resolve();
+	}
+
+	assign(navigator: Navigator) {
+		(navigator as unknown as Record<string, unknown>).clipboard = this;
 	}
 }
 
@@ -25,8 +26,7 @@ describe('Copy to Clipboard', () => {
 
 	it('should work', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
-		// @ts-ignore
-		window.navigator.clipboard = clipboard;
+		clipboard.assign(window.navigator);
 
 		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
 		Prism.highlightAll();
@@ -43,8 +43,7 @@ describe('Copy to Clipboard', () => {
 
 	it('should copy the current text even after the code block changes its text', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
-		// @ts-ignore
-		window.navigator.clipboard = clipboard;
+		clipboard.assign(window.navigator);
 
 		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
 		Prism.highlightAll();
@@ -59,16 +58,16 @@ describe('Copy to Clipboard', () => {
 		assert.strictEqual(clipboard.text, 'foo');
 
 		// change text
-		// @ts-ignore
-		document.querySelector('code').textContent = 'bar';
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		document.querySelector('code')!.textContent = 'bar';
 		// and click
 		button.click();
 
 		assert.strictEqual(clipboard.text, 'bar');
 
 		// change text
-		// @ts-ignore
-		document.querySelector('code').textContent = 'baz';
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		document.querySelector('code')!.textContent = 'baz';
 		Prism.highlightAll();
 		// and click
 		button.click();

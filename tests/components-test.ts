@@ -43,32 +43,33 @@ describe('Components', () => {
 	});
 });
 
-const components = JSON.parse(readFileSync(path.join(__dirname, '../src/components.json'), 'utf-8'));
+const components = JSON.parse(readFileSync(path.join(__dirname, '../src/components.json'), 'utf-8')) as Components;
+
+type Components = Record<string, ComponentCategory>;
+type ComponentCategory = Record<string, ComponentEntry | string>;
+interface ComponentEntry {
+	/**
+	 * The title of the component.
+	 */
+	title?: string;
+	/**
+	 * The GitHub user name of the owner.
+	 */
+	owner?: string;
+	/**
+	 * Whether the component doesn't have style sheets which should also be loaded.
+	 */
+	noCSS?: boolean;
+	/**
+	 * An optional map from an alias to its title.
+	 *
+	 * Aliases which are not in this map will the get title of the component.
+	 */
+	aliasTitles?: Record<string, string>;
+}
 
 describe('components.json', () => {
 
-	type Components = Record<string, ComponentCategory>;
-	type ComponentCategory = Record<string, ComponentEntry | string>;
-	interface ComponentEntry {
-		/**
-		 * The title of the component.
-		 */
-		title?: string;
-		/**
-		 * The GitHub user name of the owner.
-		 */
-		owner?: string;
-		/**
-		 * Whether the component doesn't have style sheets which should also be loaded.
-		 */
-		noCSS?: boolean;
-		/**
-		 * An optional map from an alias to its title.
-		 *
-		 * Aliases which are not in this map will the get title of the component.
-		 */
-		aliasTitles?: Record<string, string>;
-	}
 	function forEachEntry(consumeFn: (entry: ComponentEntry, id: string, entries: Record<string, ComponentEntry>) => void) {
 		const entries: Record<string, ComponentEntry> = {};
 
@@ -90,7 +91,7 @@ describe('components.json', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
 				const aliases = new Set(toArray((await getComponent(lang)).alias));
-				const aliasTitles: Record<string, string> = components.languages[lang]?.aliasTitles ?? {};
+				const aliasTitles = (components.languages[lang] as ComponentEntry | undefined)?.aliasTitles ?? {};
 
 				Object.keys(aliasTitles).forEach((id) => {
 					if (!aliases.has(id)) {
@@ -107,7 +108,8 @@ describe('components.json', () => {
 		const languages = Object.keys(components.languages).filter((key) => !ignore.has(key)).map((key): { id: string, title: string } => {
 			return {
 				id: key,
-				title: components.languages[key].title
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+				title: (components.languages[key] as ComponentEntry).title!
 			};
 		});
 

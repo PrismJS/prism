@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import * as PrismLoader from './helper/prism-loader';
 import { runTestCase } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
-import { BFS, BFSPathToPrismTokenPath } from './helper/util';
+import { BFS, BFSPathToPrismTokenPath, isRegExp } from './helper/util';
 
 describe('Pattern test coverage', () => {
 	interface PatternData {
@@ -19,10 +19,11 @@ describe('Pattern test coverage', () => {
 		const root = Object.fromEntries([...Prism.components['entries'].keys()].map((id) => [id, Prism.components.getLanguage(id)]));
 
 		BFS(root, (path, object) => {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const { key, value } = path[path.length - 1];
 			const tokenPath = BFSPathToPrismTokenPath(path);
 
-			if (key && Object.prototype.toString.call(value) === '[object RegExp]') {
+			if (key && isRegExp(value)) {
 				const regex = makeGlobal(value);
 				object[key] = regex;
 
@@ -54,11 +55,11 @@ describe('Pattern test coverage', () => {
 	}
 
 	describe('Register all patterns', () => {
-		it('all', function () {
+		it('all', async function () {
 			this.slow(10 * 1000);
 			// This will cause ALL regexes of Prism to be registered in the patterns map.
 			// (Languages that don't have any tests can't be caught otherwise.)
-			createInstance(PrismLoader.getLanguageIds());
+			await createInstance(PrismLoader.getLanguageIds());
 		});
 	});
 
@@ -176,7 +177,7 @@ describe('Pattern test coverage', () => {
 			if (pattern.ignoreCase) {
 				source = source.toUpperCase();
 			}
-			return new Set(source.split(/\|/g));
+			return new Set(source.split(/\|/));
 		} else {
 			return null;
 		}

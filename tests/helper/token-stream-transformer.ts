@@ -5,7 +5,8 @@ interface TokenStreamItem {
 	content: string | (string | TokenStreamItem)[];
 }
 type TokenStream = (string | TokenStreamItem)[];
-type SimplifiedTokenStream = (string | [string, string | SimplifiedTokenStream])[];
+type SimplifiedToken = string | [string, string | SimplifiedTokenStream]
+type SimplifiedTokenStream = SimplifiedToken[];
 type PrettyTokenStream = PrettyTokenStreamItem[]
 type PrettyTokenStreamItem = string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream];
 
@@ -47,7 +48,7 @@ export function prettyprint(tokenStream: TokenStream, indentation?: string): str
  */
 class LineBreakItem {
 	readonly sourceCount: number;
-	enabled: boolean = false;
+	enabled = false;
 	constructor(sourceCount: number) {
 		this.sourceCount = sourceCount;
 		this.enabled = false;
@@ -124,7 +125,7 @@ function prettyFormat(prettyStream: PrettyTokenStream, indentationWidth: number)
 			 * Returns whether lines can generally be glued together (no line breaks within lines and don't glue with
 			 * nested tokens).
 			 */
-			function glueable() {
+			const glueable = () => {
 				return lines.every((g) => {
 					if (g.length > 1) {
 						if (prettyContainsNonTriviallyNested(g)) {
@@ -139,14 +140,14 @@ function prettyFormat(prettyStream: PrettyTokenStream, indentationWidth: number)
 						return true;
 					}
 				});
-			}
-			function tokensPerLine() {
+			};
+			const tokensPerLine = () => {
 				return lines.map((g) => prettyCountTokens(g, true));
-			}
+			};
 			/**
 			 * Returns an estimate for the output length each line will have
 			 */
-			function widthPerLine() {
+			const widthPerLine = () => {
 				return lines.map((g) => {
 					if (g.length > 1) {
 						return g
@@ -167,7 +168,7 @@ function prettyFormat(prettyStream: PrettyTokenStream, indentationWidth: number)
 						return 1;
 					}
 				});
-			}
+			};
 
 			const glueTokens = glueable()
 				// at most this many tokens per line
@@ -353,7 +354,7 @@ function prettyCountTokens(prettyStream: PrettyTokenStream, recursive: boolean):
 /**
  * Adds glue between the given tokens in the given stream.
  */
-function prettyGlueTogether(prettyStream: PrettyTokenStream, prev: string | [string, string | any[]], next: string | [string, string | any[]]) {
+function prettyGlueTogether(prettyStream: PrettyTokenStream, prev: SimplifiedToken, next: SimplifiedToken) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
 	if (typeof prev !== 'string') {
 		const index = prettyStream.indexOf(prev);
@@ -382,10 +383,10 @@ function prettyGlueTogetherAll(prettyStream: PrettyTokenStream, slice: PrettyTok
 	}
 }
 
-function isToken(item: PrettyTokenStreamItem): item is (string | [string, string | any[]]) {
+function isToken(item: PrettyTokenStreamItem): item is SimplifiedToken {
 	return typeof item === 'string' || Array.isArray(item);
 }
-function isNested(item: PrettyTokenStreamItem): item is [string, any[]] {
+function isNested(item: PrettyTokenStreamItem): item is [string, SimplifiedToken[]] {
 	return Array.isArray(item) && Array.isArray(item[1]);
 }
 function isTriviallyNested(item: PrettyTokenStreamItem): item is [string, [string]] {

@@ -237,6 +237,10 @@ module.exports = {
 				mocha: true,
 				node: true
 			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./tests/tsconfig.json'],
+			},
 		},
 		{
 			// Gulp, Danger, and benchmark

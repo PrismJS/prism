@@ -1,10 +1,10 @@
 import { readdirSync } from 'fs';
 import { JSDOM } from 'jsdom';
+import { DOMWindow } from 'jsdom';
 import path from 'path';
 import { Prism } from '../../src/core/prism';
 import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
 import { LanguageProto, PluginProto } from '../../src/types';
-import { DOMWindow } from 'jsdom';
 
 const SRC_DIR = path.join(__dirname, '../../src');
 
@@ -30,12 +30,12 @@ export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds(
 async function getComponentUncached(id: string) {
 	if (getPluginIds().includes(id)) {
 		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.js`);
-		const exports = await import(file);
-		return (exports.default as PluginProto);
+		const exports = (await import(file)) as { default: PluginProto };
+		return exports.default;
 	} else {
 		const file = path.join(SRC_DIR, 'languages', `prism-${id}.js`);
-		const exports = await import(file);
-		return (exports.default as LanguageProto);
+		const exports = (await import(file)) as { default: LanguageProto };
+		return exports.default;
 	}
 }
 const componentCache = new Map<string, Promise<import('../../src/types').ComponentProto>>();
@@ -49,6 +49,7 @@ export function getComponent(id: string) {
 }
 
 // preload all components
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 getComponentIds().forEach(getComponent);
 
 /**
@@ -134,7 +135,7 @@ export function createPrismDOM(): PrismDOM<{}> {
 		dom,
 		window: (window as PrismWindow<{}>),
 		document: window.document,
-		Prism: window.Prism,
+		Prism: window.Prism as never,
 		loadLanguages: load,
 		loadPlugins: load,
 		withGlobals

@@ -1,5 +1,5 @@
 import { KebabToCamelCase } from '../../src/types';
-import { createPrismDOM, PrismDOM, PrismWindow } from './prism-loader';
+import { PrismDOM, PrismWindow, createPrismDOM } from './prism-loader';
 import { assertEqual, useSnapshot } from './snapshot';
 import { formatHtml } from './util';
 
@@ -78,7 +78,7 @@ export function createTestSuite<T extends string>(options: { languages?: string 
 					}
 
 					dom.withGlobals(() => {
-						fn({ ...dom, util: createUtil(dom.window) } as any);
+						fn({ ...dom, util: createUtil(dom.window) } as TestSuiteDom<T>);
 					});
 				} finally {
 					dom.window.close();
