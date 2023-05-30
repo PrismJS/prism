@@ -165,7 +165,7 @@ export class Prism {
 	 * @example
 	 * Prism.highlight('var foo = true;', 'javascript');
 	 */
-	highlight(text: string, language: string, options: HighlightOptions): string {
+	highlight(text: string, language: string, options?: HighlightOptions): string {
 		const languageId = this.components.resolveAlias(language);
 		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 

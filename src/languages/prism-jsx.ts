@@ -1,15 +1,11 @@
-import type { LanguageProto } from "../types";
-import { Token, getTextContent } from '../core/token';
+import type { Grammar, GrammarToken, LanguageProto } from "../types";
+import { Token, TokenStream, getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { rest, tokenize } from '../shared/symbols';
 import javascript from './prism-javascript';
 import markup from './prism-markup';
 
-/**
- * @param {string | Token | import('../core/token.js').TokenStream | undefined} token
- * @returns {string}
- */
-function stringifyToken(token) {
+function stringifyToken(token: string | Token | TokenStream | undefined): string {
 	if (!token) {
 		return '';
 	} else {
@@ -17,10 +13,7 @@ function stringifyToken(token) {
 	}
 }
 
-/**
- * @param {import('../core/token.js').TokenStream} tokens
- */
-function walkTokens(tokens) {
+function walkTokens(tokens: TokenStream) {
 	const openedTags = [];
 	for (let i = 0; i < tokens.length; i++) {
 		const token = tokens[i];
@@ -72,14 +65,12 @@ function walkTokens(tokens) {
 				let plainText = stringifyToken(token);
 
 				// And merge text with adjacent text
-				/** @type {Token | string | undefined} */
-				const next = tokens[i + 1];
+				const next: Token | string | undefined = tokens[i + 1];
 				if (next && (typeof next === 'string' || next.type === 'plain-text')) {
 					plainText += stringifyToken(next);
 					tokens.splice(i + 1, 1);
 				}
-				/** @type {Token | string | undefined} */
-				const prev = tokens[i - 1];
+				const prev: Token | string | undefined = tokens[i - 1];
 				if (prev && (typeof prev === 'string' || prev.type === 'plain-text')) {
 					plainText = stringifyToken(prev) + plainText;
 					tokens.splice(i - 1, 1);
@@ -104,11 +95,7 @@ export default {
 		const braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
 		let spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
 
-		/**
-		 * @param {string} source
-		 * @param {string} [flags]
-		 */
-		function re(source, flags) {
+		function re(source: string, flags?: string) {
 			source = source
 				.replace(/<S>/g, () => space)
 				.replace(/<BRACES>/g, () => braces)
@@ -122,7 +109,7 @@ export default {
 		const javascript = extend('javascript', {});
 		const jsx = extend('markup', javascript);
 
-		const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar}} */ (jsx.tag);
+		const tag = jsx.tag as GrammarToken & { inside: Grammar };
 		tag.pattern = re(
 			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
 		);

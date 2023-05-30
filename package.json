@@ -80,7 +80,7 @@
 		"rollup-plugin-terser": "^7.0.2",
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
-		"typescript": "^4.8.2",
+		"typescript": "^5.0.4",
 		"webfont": "^9.0.0",
 		"yargs": "^13.2.2"
 	},

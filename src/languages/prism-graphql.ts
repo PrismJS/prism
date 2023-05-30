@@ -1,6 +1,7 @@
 import type { LanguageProto } from "../types";
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
+import { Token } from "../core";
 
 export default {
 	id: 'graphql',
@@ -67,13 +68,7 @@ export default {
 		[tokenize](code, grammar, Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
-			/** @typedef {import("../core/token").Token} Token */
-
-			/**
-			 * @param {Token | string} token
-			 * @returns {token is Token}
-			 */
-			function isToken(token) {
+			function isToken(token: Token | string): token is Token {
 				return typeof token !== 'string';
 			}
 
@@ -88,22 +83,15 @@ export default {
 
 			/**
 			 * Returns whether the token relative to the current index has the given type.
-			 *
-			 * @param {number} offset
-			 * @returns {Token}
 			 */
-			function getToken(offset) {
+			function getToken(offset: number = 0): Token {
 				return validTokens[currentIndex + offset];
 			}
 
 			/**
 			 * Returns whether the token relative to the current index has the given type.
-			 *
-			 * @param {readonly string[]} types
-			 * @param {number} [offset=0]
-			 * @returns {boolean}
 			 */
-			function isTokenType(types, offset = 0) {
+			function isTokenType(types: readonly string[], offset = 0): boolean {
 				for (let i = 0; i < types.length; i++) {
 					const token = getToken(i + offset);
 					if (!token || token.type !== types[i]) {
@@ -119,12 +107,8 @@ export default {
 			 * It is assumed that `token[currentIndex - 1]` is an opening bracket.
 			 *
 			 * If no closing bracket could be found, `-1` will be returned.
-			 *
-			 * @param {RegExp} open
-			 * @param {RegExp} close
-			 * @returns {number}
 			 */
-			function findClosingBracket(open, close) {
+			function findClosingBracket(open: RegExp, close: RegExp): number {
 				let stackHeight = 1;
 
 				for (let i = currentIndex; i < validTokens.length; i++) {

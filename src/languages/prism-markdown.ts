@@ -18,11 +18,8 @@ export default {
 		 * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
 		 *
 		 * _Note:_ Keep in mind that this adds a capturing group.
-		 *
-		 * @param {string} pattern
-		 * @returns {RegExp}
 		 */
-		function createInline(pattern) {
+		function createInline(pattern: string) {
 			pattern = pattern.replace(/<inner>/g, () => inner);
 			return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
 		}

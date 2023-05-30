@@ -2,11 +2,8 @@ import type { LanguageProto } from "../types";
 
 /**
  * Given a topologically sorted BNF grammar, this will return the RegExp source of last rule of the grammar.
- *
- * @param {Record<string, string>} grammar
- * @returns {string}
  */
-function SortedBNF(grammar) {
+function SortedBNF(grammar: Record<string, string>): string {
 	let key;
 	for (key in grammar) {
 		grammar[key] = grammar[key].replace(/<[\w\s]+>/g, (key) => {

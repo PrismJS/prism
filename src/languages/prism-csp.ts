@@ -15,11 +15,7 @@ export default {
 		 */
 
 
-		/**
-		 * @param {string} source
-		 * @returns {RegExp}
-		 */
-		function value(source) {
+		function value(source: string) {
 			return RegExp(/([ \t])/.source + '(?:' + source + ')' + /(?=[\s;]|$)/.source, 'i');
 		}
 
@@ -51,10 +47,10 @@ export default {
 			'host': {
 				pattern: value(
 					/[a-z][a-z0-9.+-]*:\/\/[^\s;,']*/.source +
-						'|' +
-						/\*[^\s;,']*/.source +
-						'|' +
-						/[a-z0-9-]+(?:\.[a-z0-9-]+)+(?::[\d*]+)?(?:\/[^\s;,']*)?/.source
+					'|' +
+					/\*[^\s;,']*/.source +
+					'|' +
+					/[a-z0-9-]+(?:\.[a-z0-9-]+)+(?::[\d*]+)?(?:\/[^\s;,']*)?/.source
 				),
 				lookbehind: true,
 				alias: 'url',

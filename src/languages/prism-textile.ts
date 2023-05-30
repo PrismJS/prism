@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import markup from './prism-markup';
 
 export default {
@@ -11,11 +11,7 @@ export default {
 		// Opening and closing parentheses which are not a modifier
 		// This pattern is necessary to prevent exponential backtracking
 		const parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
-		/**
-		 * @param {string} source
-		 * @param {string} [flags]
-		 */
-		function withModifier(source, flags) {
+		function withModifier(source: string, flags?: string) {
 			return RegExp(
 				source
 					.replace(/<MOD>/g, () => '(?:' + modifierRegex + ')')
@@ -104,7 +100,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+							inside: null as GrammarToken["inside"],
 						},
 
 						// _italic_, __italic__
@@ -112,7 +108,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+							inside: null as GrammarToken["inside"],
 						},
 
 						// ??cite??
@@ -136,7 +132,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
 							lookbehind: true,
-							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+							inside: null as GrammarToken["inside"],
 						},
 
 						// -deleted-
@@ -144,7 +140,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
 							lookbehind: true,
-							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+							inside: null as GrammarToken["inside"],
 						},
 
 						// %span%
@@ -152,7 +148,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
 							lookbehind: true,
-							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+							inside: null as GrammarToken["inside"],
 						},
 
 						'modifier': {
@@ -285,7 +281,7 @@ export default {
 		});
 
 		// Only allow alpha-numeric HTML tags, not XML tags
-		const tag = /** @type {import('../types').GrammarToken} */ (textile.tag);
+		const tag = textile.tag as GrammarToken;
 		tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 		return textile;

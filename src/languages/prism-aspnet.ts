@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import csharp from './prism-csharp';
@@ -8,8 +8,7 @@ export default {
 	id: 'aspnet',
 	require: [markup, csharp],
 	grammar({ extend }) {
-		/** @type {import('../types').Grammar} */
-		const pageDirectiveInside = {
+		const pageDirectiveInside: Grammar = {
 			'page-directive': {
 				pattern: /<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
 				alias: 'tag'
@@ -35,7 +34,7 @@ export default {
 			}
 		});
 
-		const tag = /** @type {import('../types').GrammarToken & { inside: { 'attr-value': { inside: import('../types').Grammar } } }} */ (aspnet['tag']);
+		const tag = aspnet['tag'] as GrammarToken & { inside: { 'attr-value': { inside: Grammar } } };
 		pageDirectiveInside[rest] = tag.inside;
 
 		// Regexp copied from prism-markup, with a negative look-ahead added

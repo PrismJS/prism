@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import markup from './prism-markup';
@@ -8,7 +8,7 @@ export default {
 	require: markup,
 	grammar({ extend, getLanguage }) {
 		const markup = getLanguage('markup');
-		const tag = /** @type {import('../types').GrammarToken} */ (markup['tag']);
+		const tag = markup['tag'] as GrammarToken;
 
 		const wiki = extend('markup', {
 			'block-comment': {

@@ -10,8 +10,7 @@ export default {
 
 		const className = /\b(?:(?=[a-z_]\w*\s*[<\[])|(?!<keyword>))[A-Z_]\w*(?:\s*\.\s*[A-Z_]\w*)*\b(?:\s*(?:\[\s*\]|<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>))*/.source
 			.replace(/<keyword>/g, () => keywords.source);
-			/** @param {string} pattern */
-		function insertClassName(pattern) {
+		function insertClassName(pattern: string) {
 			return RegExp(pattern.replace(/<CLASS-NAME>/g, () => className), 'i');
 		}
 

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import csharp from './prism-csharp';
 import markup from './prism-markup';
@@ -15,18 +15,14 @@ export default {
 
 		const commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
 		const stringLike =
-				/@(?!")|"(?:[^\r\n\\"]|\\.)*"|@"(?:[^\\"]|""|\\[\s\S])*"(?!")/.source +
-				'|' +
-				/'(?:(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'|(?=[^\\](?!')))/.source;
+			/@(?!")|"(?:[^\r\n\\"]|\\.)*"|@"(?:[^\\"]|""|\\[\s\S])*"(?!")/.source +
+			'|' +
+			/'(?:(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'|(?=[^\\](?!')))/.source;
 
 		/**
 		 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
-		 *
-		 * @param {string} pattern
-		 * @param {number} depthLog2
-		 * @returns {string}
 		 */
-		function nested(pattern, depthLog2) {
+		function nested(pattern: string, depthLog2: number) {
 			for (let i = 0; i < depthLog2; i++) {
 				pattern = pattern.replace(/<self>/g, () => '(?:' + pattern + ')');
 			}
@@ -42,10 +38,10 @@ export default {
 		const angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
 
 		const inlineCs = /@/.source +
-				/(?:await\b\s*)?/.source +
-				'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
-				'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
-				/(?![?!\.(\[]|<(?!\/))/.source;
+			/(?:await\b\s*)?/.source +
+			'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
+			'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
+			/(?![?!\.(\[]|<(?!\/))/.source;
 
 		// Note about the above bracket patterns:
 		// They all ignore HTML expressions that might be in the C# code. This is a problem because HTML (like strings and
@@ -61,51 +57,51 @@ export default {
 
 		const tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
 		const tagAttrValue = '(?:' +
-				/"[^"@]*"|'[^'@]*'|[^\s'"@>=]+(?=[\s>])/.source +
-				'|' +
-				'["\'][^"\'@]*(?:(?:' + tagAttrInlineCs + ')[^"\'@]*)+["\']' +
-				')';
+			/"[^"@]*"|'[^'@]*'|[^\s'"@>=]+(?=[\s>])/.source +
+			'|' +
+			'["\'][^"\'@]*(?:(?:' + tagAttrInlineCs + ')[^"\'@]*)+["\']' +
+			')';
 
 		const tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
 		const tagContent = /(?!\d)[^\s>\/=$<%]+/.source + tagAttrs + /\s*\/?>/.source;
 		const tagRegion =
-				/\B@?/.source +
-				'(?:' +
-				/<([a-zA-Z][\w:]*)/.source + tagAttrs + /\s*>/.source +
-				'(?:' +
-				(
-					/[^<]/.source +
-					'|' +
-					// all tags that are not the start tag
-					// eslint-disable-next-line regexp/strict
-					/<\/?(?!\1\b)/.source + tagContent +
-					'|' +
-					// nested start tag
-					nested(
-						// eslint-disable-next-line regexp/strict
-						/<\1/.source + tagAttrs + /\s*>/.source +
-						'(?:' +
-						(
-							/[^<]/.source +
-							'|' +
-							// all tags that are not the start tag
-							// eslint-disable-next-line regexp/strict
-							/<\/?(?!\1\b)/.source + tagContent +
-							'|' +
-							'<self>'
-						) +
-						')*' +
-						// eslint-disable-next-line regexp/strict
-						/<\/\1\s*>/.source,
-						2
-					)
-				) +
-				')*' +
-				// eslint-disable-next-line regexp/strict
-				/<\/\1\s*>/.source +
+			/\B@?/.source +
+			'(?:' +
+			/<([a-zA-Z][\w:]*)/.source + tagAttrs + /\s*>/.source +
+			'(?:' +
+			(
+				/[^<]/.source +
 				'|' +
-				/</.source + tagContent +
-				')';
+				// all tags that are not the start tag
+				// eslint-disable-next-line regexp/strict
+				/<\/?(?!\1\b)/.source + tagContent +
+				'|' +
+				// nested start tag
+				nested(
+					// eslint-disable-next-line regexp/strict
+					/<\1/.source + tagAttrs + /\s*>/.source +
+					'(?:' +
+					(
+						/[^<]/.source +
+						'|' +
+						// all tags that are not the start tag
+						// eslint-disable-next-line regexp/strict
+						/<\/?(?!\1\b)/.source + tagContent +
+						'|' +
+						'<self>'
+					) +
+					')*' +
+					// eslint-disable-next-line regexp/strict
+					/<\/\1\s*>/.source,
+					2
+				)
+			) +
+			')*' +
+			// eslint-disable-next-line regexp/strict
+			/<\/\1\s*>/.source +
+			'|' +
+			/</.source + tagContent +
+			')';
 
 		// Now for the actual language definition(s):
 		//
@@ -144,7 +140,7 @@ export default {
 			}
 		};
 
-		const tag = /** @type {import('../types').GrammarToken} */ (cshtml.tag);
+		const tag = cshtml.tag as GrammarToken;
 		tag.pattern = RegExp(/<\/?/.source + tagContent);
 		// @ts-ignore
 		tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
@@ -161,24 +157,24 @@ export default {
 			'block': {
 				pattern: RegExp(
 					/(^|[^@])@/.source +
-						'(?:' +
-						[
-							// @{ ... }
-							curly,
-							// @code{ ... }
-							/(?:code|functions)\s*/.source + curly,
-							// @for (...) { ... }
-							/(?:for|foreach|lock|switch|using|while)\s*/.source + round + /\s*/.source + curly,
-							// @do { ... } while (...);
-							/do\s*/.source + curly + /\s*while\s*/.source + round + /(?:\s*;)?/.source,
-							// @try { ... } catch (...) { ... } finally { ... }
-							/try\s*/.source + curly + /\s*catch\s*/.source + round + /\s*/.source + curly + /\s*finally\s*/.source + curly,
-							// @if (...) {...} else if (...) {...} else {...}
-							/if\s*/.source + round + /\s*/.source + curly + '(?:' + /\s*else/.source + '(?:' + /\s+if\s*/.source + round + ')?' + /\s*/.source + curly + ')*',
-							// @helper Ident(params) { ... }
-							/helper\s+\w+\s*/.source + round + /\s*/.source + curly,
-						].join('|') +
-						')'
+					'(?:' +
+					[
+						// @{ ... }
+						curly,
+						// @code{ ... }
+						/(?:code|functions)\s*/.source + curly,
+						// @for (...) { ... }
+						/(?:for|foreach|lock|switch|using|while)\s*/.source + round + /\s*/.source + curly,
+						// @do { ... } while (...);
+						/do\s*/.source + curly + /\s*while\s*/.source + round + /(?:\s*;)?/.source,
+						// @try { ... } catch (...) { ... } finally { ... }
+						/try\s*/.source + curly + /\s*catch\s*/.source + round + /\s*/.source + curly + /\s*finally\s*/.source + curly,
+						// @if (...) {...} else if (...) {...} else {...}
+						/if\s*/.source + round + /\s*/.source + curly + '(?:' + /\s*else/.source + '(?:' + /\s+if\s*/.source + round + ')?' + /\s*/.source + curly + ')*',
+						// @helper Ident(params) { ... }
+						/helper\s+\w+\s*/.source + round + /\s*/.source + curly,
+					].join('|') +
+					')'
 				),
 				lookbehind: true,
 				greedy: true,

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import jsx from './prism-jsx';
 import typescript from './prism-typescript';
 
@@ -16,7 +16,7 @@ export default {
 		// This will prevent collisions between TSX tags and TS generic types.
 		// Idea by https://github.com/karlhorky
 		// Discussion: https://github.com/PrismJS/prism/issues/2594#issuecomment-710666928
-		const tag = /** @type {import('../types').GrammarToken} */ (tsx.tag);
+		const tag = tsx.tag as GrammarToken;
 		tag.pattern = RegExp(/(^|[^\w$]|(?=<\/))/.source + '(?:' + tag.pattern.source + ')', tag.pattern.flags);
 		tag.lookbehind = true;
 

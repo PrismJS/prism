@@ -1,11 +1,11 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
 
 export default {
 	id: 'asciidoc',
 	alias: 'adoc',
 	grammar() {
-		const placeholder = /** @type {import('../types').GrammarToken["inside"]} */ (null);
+		const placeholder = null as GrammarToken["inside"];
 
 		const attributes = {
 			pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
@@ -207,12 +207,8 @@ export default {
 
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
-		/**
-		 * @param {(keyof typeof asciidoc)[]} keys
-		 */
-		function copyFromAsciiDoc(...keys) {
-			/** @type {import('../types').Grammar} */
-			const o = {};
+		function copyFromAsciiDoc(...keys: (keyof typeof asciidoc)[]) {
+			const o: Grammar = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}

@@ -119,11 +119,7 @@ export function templating(code: string, hostGrammar: GrammarRef, templateGramma
 	return tokens;
 }
 
-/**
- * @param {GrammarRef} hostGrammar
- * @returns {NonNullable<import('../../types').Grammar[import('../symbols').tokenize]>}
- */
-export function embeddedIn(hostGrammar: GrammarRef): Grammar[typeof tokenize] {
+export function embeddedIn(hostGrammar: GrammarRef): NonNullable<Grammar[typeof tokenize]> {
 	return (code, templateGrammar, Prism) => {
 		return templating(code, hostGrammar, withoutTokenize(templateGrammar), Prism);
 	};

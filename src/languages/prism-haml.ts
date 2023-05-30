@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import ruby from './prism-ruby';
 
@@ -128,8 +128,7 @@ export default {
 			'scss',
 			'textile'
 		];
-		/** @type {import('../types').Grammar} */
-		const all_filters = {};
+		const all_filters: Grammar = {};
 		for (const f of filters) {
 			const { filter, language } = typeof f === 'string' ? { filter: f, language: f } : f;
 			all_filters['filter-' + filter] = {

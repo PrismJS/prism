@@ -4,10 +4,7 @@ import { regexEscape } from '../shared/util';
 export default {
 	id: 'factor',
 	grammar() {
-		/**
-		 * @param {string[]} arr
-		 */
-		function arrToWordsRegExp(arr) {
+		function arrToWordsRegExp(arr: string[]) {
 			return new RegExp(
 				'(^|\\s)(?:' + arr.map(regexEscape).join('|') + ')(?=\\s|$)'
 			);

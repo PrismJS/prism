@@ -1,10 +1,6 @@
 import type { LanguageProto } from "../types";
 
-/**
- * @param {string} lang
- * @param {string} [pattern]
- */
-function createLanguageString(lang, pattern) {
+function createLanguageString(lang: string, pattern?: string) {
 	return {
 		pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang) + ')' + /$[\s\S]*\}/.source, 'm'),
 		greedy: true,

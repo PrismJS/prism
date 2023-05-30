@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarTokens, LanguageProto } from "../types";
 
 export default {
 	id: 'robotframework',
@@ -18,11 +18,7 @@ export default {
 			}
 		};
 
-		/**
-		 * @param {string} name
-		 * @param {import("../types").GrammarTokens} [inside]
-		 */
-		function createSection(name, inside) {
+		function createSection(name: string, inside?: GrammarTokens) {
 			return {
 				pattern: RegExp(/^ ?\*{3}[ \t]*<name>[ \t]*\*{3}(?:.|[\r\n](?!\*{3}))*/.source.replace(/<name>/g, () => name), 'im'),
 				alias: 'section',

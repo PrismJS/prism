@@ -8,19 +8,17 @@ export default {
 
 		/**
 		 * Regular expression for characters that are not allowed in identifiers.
-		 *
-		 * @type {string}
 		 */
 		const nonId = /\s\x00-\x1f\x22-\x2f\x3a-\x3f\x5b-\x5e\x60\x7b-\x7e/.source;
 
 		/**
 		 * Surround a regular expression for IDs with patterns for non-ID sequences.
 		 *
-		 * @param {string} pattern A regular expression for identifiers.
-		 * @param {string} [flags] The regular expression flags.
-		 * @returns {RegExp} A wrapped regular expression for identifiers.
+		 * @param pattern A regular expression for identifiers.
+		 * @param flags The regular expression flags.
+		 * @returns A wrapped regular expression for identifiers.
 		 */
-		function wrapId(pattern, flags) {
+		function wrapId(pattern: string, flags?: string) {
 			return RegExp(pattern.replace(/<nonId>/g, nonId), flags);
 		}
 

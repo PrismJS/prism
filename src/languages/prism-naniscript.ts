@@ -3,13 +3,7 @@ import { getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 
-/** @typedef {import("../core/token").Token} Token */
-
-/**
- * @param {string} input
- * @returns {boolean}
- */
-function isBracketsBalanced(input) {
+function isBracketsBalanced(input: string): boolean {
 	const brackets = '[]{}';
 	const stack = [];
 	for (let i = 0; i < input.length; i++) {

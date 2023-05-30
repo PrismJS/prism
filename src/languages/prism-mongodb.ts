@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
 
@@ -80,7 +80,7 @@ export default {
 			}
 		});
 
-		const string = /** @type {import('../types').GrammarToken} */ (mongodb['string']);
+		const string = mongodb['string'] as GrammarToken;
 		string.inside = {
 			url: {
 				// url pattern

@@ -169,8 +169,7 @@ export default {
 			{ filter: 'sass', language: 'scss' },
 			'stylus'
 		];
-		/** @type {import("../types").GrammarTokens} */
-		const all_filters = {};
+		const all_filters: import("../types").GrammarTokens = {};
 		for (const filterItem of filters) {
 			const { filter, language } = typeof filterItem === 'string' ? { filter: filterItem, language: filterItem } : filterItem;
 			all_filters['filter-' + filter] = {

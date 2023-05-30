@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 
 /**
  * A map from the name of a block to its line prefix.
@@ -15,8 +15,7 @@ export const PREFIXES = {
 export default {
 	id: 'diff',
 	grammar() {
-		/** @type {import("../types").Grammar} */
-		const diff = {
+		const diff: Grammar = {
 			'coord': [
 				// Match all kinds of coord lines (prefixed by "+++", "---" or "***").
 				/^(?:\*{3}|-{3}|\+{3}).*$/m,
@@ -31,7 +30,7 @@ export default {
 
 		// add a token for each prefix
 		Object.keys(PREFIXES).forEach((name) => {
-			const prefix = PREFIXES[/** @type {keyof PREFIXES} */ (name)];
+			const prefix = PREFIXES[name as keyof typeof PREFIXES];
 
 			const alias = [];
 			const mainName = /\w+/.exec(name)?.[0] || name;

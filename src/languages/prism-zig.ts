@@ -3,10 +3,7 @@ import type { LanguageProto } from "../types";
 export default {
 	id: 'zig',
 	grammar() {
-		/**
-		 * @param {string} str
-		 */
-		function literal(str) {
+		function literal(str: string) {
 			return function () { return str; };
 		}
 

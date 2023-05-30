@@ -25,12 +25,7 @@ export default {
 			greedy: true
 		};
 
-		/**
-		 * @param {string} source
-		 * @param {string} flags
-		 * @returns {RegExp}
-		 */
-		function re(source, flags) {
+		function re(source: string, flags?: string) {
 			source = source
 				.replace(/<OPT>/g, () => option)
 				.replace(/<SP>/g, () => space);

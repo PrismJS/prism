@@ -27,12 +27,7 @@ export default {
 			}
 		};
 
-		/**
-		 * @param {string} source
-		 * @param {string} [flags]
-		 * @returns {RegExp}
-		 */
-		function withID(source, flags) {
+		function withID(source: string, flags?: string) {
 			return RegExp(source.replace(/<ID>/g, () => ID), flags);
 		}
 

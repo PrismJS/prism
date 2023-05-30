@@ -14,8 +14,7 @@ export default {
 				/(?!(?:unrestricted|unsigned)\b)/.source + id + /(?:\s*<(?:[^<>]|<[^<>]*>)*>)?/.source +
 				')' + /(?:\s*\?)?/.source;
 
-		/** @type {import("../types").Grammar} */
-		const typeInside = {};
+		const typeInside: import("../types").Grammar = {};
 
 		const webIdl = {
 			'comment': {

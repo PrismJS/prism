@@ -8,8 +8,7 @@ export default {
 		const braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
 		const type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, () => braces);
 
-		/** @type {import("../types").Grammar} */
-		const classNameInside = {};
+		const classNameInside: import("../types").Grammar = {};
 
 		const pascaligo = {
 			'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
@@ -56,8 +55,7 @@ export default {
 			'punctuation': /\(\.|\.\)|[()\[\]:;,.{}]/
 		};
 
-		/** @type {(keyof typeof pascaligo)[]} */
-		const keys = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'];
+		const keys: (keyof typeof pascaligo)[] = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'];
 		keys.forEach((key) => classNameInside[key] = pascaligo[key]);
 
 		return pascaligo;

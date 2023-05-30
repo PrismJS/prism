@@ -1,13 +1,10 @@
 import type { LanguageProto } from "../types";
-import { Token, getTextContent } from '../core/token';
+import { Token, TokenStream, getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
 
-/**
- * @param {import('../core/token.js').TokenStream} tokens
- */
-function walkTokens(tokens) {
+function walkTokens(tokens: TokenStream) {
 	const openedTags = [];
 	for (let i = 0; i < tokens.length; i++) {
 		const token = tokens[i];

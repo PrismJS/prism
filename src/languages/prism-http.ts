@@ -1,15 +1,11 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 
 export default {
 	id: 'http',
 	optional: 'json',
 	grammar({ getOptionalLanguage }) {
-		/**
-		 * @param {string} name
-		 * @returns {RegExp}
-		 */
-		function headerValueOf(name) {
+		function headerValueOf(name: string) {
 			return RegExp('(^(?:' + name + '):[ \t]*(?![ \t]))[^]+', 'i');
 		}
 
@@ -107,19 +103,15 @@ export default {
 		};
 
 		// Declare which types can also be suffixes
-		/** @type {Partial<Record<keyof typeof httpLanguages, boolean>>} */
-		const suffixTypes = {
+		const suffixTypes: Partial<Record<keyof typeof httpLanguages, boolean>> = {
 			'application/json': true,
 			'application/xml': true
 		};
 
 		/**
 		 * Returns a pattern for the given content type which matches it and any type which has it as a suffix.
-		 *
-		 * @param {string} contentType
-		 * @returns {string}
 		 */
-		function getSuffixPattern(contentType) {
+		function getSuffixPattern(contentType: string) {
 			const suffix = contentType.replace(/^[a-z]+\//, '');
 			const suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?![+\\w.-])';
 			return '(?:' + contentType + '|' + suffixPattern + ')';
@@ -127,21 +119,20 @@ export default {
 
 		// Insert each content type parser that has its associated language
 		// currently loaded.
-		/** @type {import('../types').Grammar} */
-		const options = {};
+		const options: Grammar = {};
 		for (const key in httpLanguages) {
-			const contentType = /** @type {keyof typeof httpLanguages} */ (key);
+			const contentType = key as keyof typeof httpLanguages;
 
 			const pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
 			options[contentType.replace(/\//g, '-')] = {
 				pattern: RegExp(
 					'(' + /content-type:\s*/.source + pattern + /(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
-							// This is a little interesting:
-							// The HTTP format spec required 1 empty line before the body to make everything unambiguous.
-							// However, when writing code by hand (e.g. to display on a website) people can forget about this,
-							// so we want to be liberal here. We will allow the empty line to be omitted if the first line of
-							// the body does not start with a [\w-] character (as headers do).
-							/[^ \t\w-][\s\S]*/.source,
+					// This is a little interesting:
+					// The HTTP format spec required 1 empty line before the body to make everything unambiguous.
+					// However, when writing code by hand (e.g. to display on a website) people can forget about this,
+					// so we want to be liberal here. We will allow the empty line to be omitted if the first line of
+					// the body does not start with a [\w-] character (as headers do).
+					/[^ \t\w-][\s\S]*/.source,
 					'i'
 				),
 				lookbehind: true,

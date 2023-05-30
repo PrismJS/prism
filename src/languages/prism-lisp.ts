@@ -8,20 +8,14 @@ export default {
 		/**
 		 * Functions to construct regular expressions
 		 * e.g. (interactive ... or (interactive)
-		 *
-		 * @param {string} name
-		 * @returns {RegExp}
 		 */
-		function simple_form(name) {
+		function simple_form(name: string) {
 			return RegExp(/(\()/.source + '(?:' + name + ')' + /(?=[\s\)])/.source);
 		}
 		/**
 		 * booleans and numbers
-		 *
-		 * @param {string} pattern
-		 * @returns {RegExp}
 		 */
-		function primitive(pattern) {
+		function primitive(pattern: string) {
 			return RegExp(/([\s([])/.source + '(?:' + pattern + ')' + /(?=[\s)])/.source);
 		}
 
@@ -112,8 +106,8 @@ export default {
 				{
 					pattern: RegExp(
 						par +
-								'(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
-								space
+						'(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
+						space
 					),
 					lookbehind: true
 				},

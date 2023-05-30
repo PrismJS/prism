@@ -11,21 +11,15 @@ export default {
 		const tag = /!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/;
 		// https://yaml.org/spec/1.2/spec.html#c-ns-properties(n,c)
 		const properties = '(?:' + tag.source + '(?:[ \t]+' + anchorOrAlias.source + ')?|'
-				+ anchorOrAlias.source + '(?:[ \t]+' + tag.source + ')?)';
-			// https://yaml.org/spec/1.2/spec.html#ns-plain(n,c)
-			// This is a simplified version that doesn't support "#" and multiline keys
-			// All these long scarry character classes are simplified versions of YAML's characters
+			+ anchorOrAlias.source + '(?:[ \t]+' + tag.source + ')?)';
+		// https://yaml.org/spec/1.2/spec.html#ns-plain(n,c)
+		// This is a simplified version that doesn't support "#" and multiline keys
+		// All these long scarry character classes are simplified versions of YAML's characters
 		const plainKey = /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source
 			.replace(/<PLAIN>/g, () => /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/.source);
 		const string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
 
-		/**
-		 *
-		 * @param {string} value
-		 * @param {string} [flags]
-		 * @returns {RegExp}
-		 */
-		function createValuePattern(value, flags) {
+		function createValuePattern(value: string, flags?: string): RegExp {
 			flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 			const pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
 				.replace(/<<prop>>/g, () => properties).replace(/<<value>>/g, () => value);

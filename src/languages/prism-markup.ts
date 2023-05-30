@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import xml from './prism-xml';
 
@@ -7,14 +7,13 @@ import xml from './prism-xml';
  *
  * An example of an inlined language is CSS with `<style>` tags.
  *
- * @param {string} tagName The name of the tag that contains the inlined language. This name will be treated as
+ * @param tagName The name of the tag that contains the inlined language. This name will be treated as
  * case insensitive.
- * @param {string} lang The language key.
- * @returns {import("../types").GrammarToken}
+ * @param lang The language key.
  * @example
  * inlineEmbedded('style', 'css');
  */
-function inlineEmbedded(tagName, lang) {
+function inlineEmbedded(tagName: string, lang: string): GrammarToken {
 	return {
 		pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, () => tagName), 'i'),
 		lookbehind: true,
@@ -44,14 +43,13 @@ function inlineEmbedded(tagName, lang) {
  *
  * An example of an inlined language is CSS with `style` attributes.
  *
- * @param {string} attrName The name of the tag that contains the inlined language. This name will be treated as
+ * @param attrName The name of the tag that contains the inlined language. This name will be treated as
  * case insensitive.
- * @param {string} lang The language key.
- * @returns {import("../types").GrammarToken}
+ * @param lang The language key.
  * @example
  * attributeEmbedded('style', 'css');
  */
-function attributeEmbedded(attrName, lang) {
+function attributeEmbedded(attrName: string, lang: string): GrammarToken {
 	return {
 		pattern: RegExp(
 			/(^|["'\s])/.source + '(?:' + attrName + ')' + /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,
@@ -94,7 +92,7 @@ export default {
 			'script': inlineEmbedded('script', 'javascript'),
 		});
 
-		const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar }} */ (markup.tag);
+		const tag = markup.tag as GrammarToken & { inside: Grammar };
 		insertBefore(tag.inside, 'attr-value', {
 			'special-attr': [
 				attributeEmbedded('style', 'css'),

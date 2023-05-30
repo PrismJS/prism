@@ -12,34 +12,24 @@ export default {
 		 *
 		 * Note: This is a simple text based replacement. Be careful when using backreferences!
 		 *
-		 * @param {string} pattern the given pattern.
-		 * @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
-		 * @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
+		 * @param pattern the given pattern.
+		 * @param replacements a list of replacement which can be inserted into the given pattern.
+		 * @returns the pattern with all placeholders replaced with their corresponding replacements.
 		 * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
 		 */
-		function replace(pattern, replacements) {
+		function replace(pattern: string, replacements: string[]) {
 			return pattern.replace(/<<(\d+)>>/g, (m, index) => {
 				return '(?:' + replacements[+index] + ')';
 			});
 		}
-		/**
-		 * @param {string} pattern
-		 * @param {string[]} replacements
-		 * @param {string} [flags]
-		 * @returns {RegExp}
-		 */
-		function re(pattern, replacements, flags) {
+		function re(pattern: string, replacements: string[], flags?: string) {
 			return RegExp(replace(pattern, replacements), flags || '');
 		}
 
 		/**
 		 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
-		 *
-		 * @param {string} pattern
-		 * @param {number} depthLog2
-		 * @returns {string}
 		 */
-		function nested(pattern, depthLog2) {
+		function nested(pattern: string, depthLog2: number) {
 			for (let i = 0; i < depthLog2; i++) {
 				pattern = pattern.replace(/<<self>>/g, () => '(?:' + pattern + ')');
 			}
@@ -55,10 +45,7 @@ export default {
 			other: 'Adjoint adjoint apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype open operation repeat return self set until use using while within'
 		};
 		// keywords
-		/**
-		 * @param {string} words
-		 */
-		function keywordsToPattern(words) {
+		function keywordsToPattern(words: string) {
 			return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 		}
 		const keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));

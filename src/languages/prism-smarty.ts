@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
@@ -9,7 +9,7 @@ export default {
 	grammar() {
 		const expression = {
 			pattern: /[\s\S]+/,
-			inside: /** @type {import('../types').GrammarToken['inside']} */ (null)
+			inside: null as GrammarToken['inside']
 		};
 
 		const smarty = {

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import javascript from './prism-javascript';
 
@@ -11,7 +11,7 @@ export default {
 			'operator': /\+\+|--|(?:[+\-*\/%^]|&&?|\|\|?|<<?|>>?>?|[!=]=?)=?|[~?@]/
 		});
 
-		const className = /** @type {import('../types').GrammarToken} */(actionscript['class-name']);
+		const className = actionscript['class-name'] as GrammarToken;
 		className.alias = 'function';
 
 		delete actionscript['doc-comment'];

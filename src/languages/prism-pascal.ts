@@ -28,7 +28,7 @@ export default {
 				pattern: /(\basm\b)[\s\S]+?(?=\bend\s*[;[])/i,
 				lookbehind: true,
 				greedy: true,
-				inside: /** @type {import("../types").GrammarToken["inside"]} */ (null) // see below
+				inside: null as import("../types").GrammarToken["inside"] // see below
 			},
 			'keyword': [
 				{

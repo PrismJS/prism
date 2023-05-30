@@ -17,8 +17,7 @@ export default {
 			inside: 'bash'
 		};
 
-		/** @type {import("../types").Grammar} */
-		const commandSubstitutionInside = {
+		const commandSubstitutionInside: import("../types").Grammar = {
 			'variable': /^\$\(|^`|\)$|`$/
 		};
 
@@ -214,8 +213,7 @@ export default {
 		};
 
 		/* Patterns in command substitution. */
-		/** @type {(keyof typeof bash)[]} */
-		const toBeCopied = [
+		const toBeCopied: (keyof typeof bash)[] = [
 			'comment',
 			'function-name',
 			'for-or-select',

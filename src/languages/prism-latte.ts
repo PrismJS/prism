@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
@@ -10,7 +10,7 @@ export default {
 	require: [markup, php],
 	grammar({ extend }) {
 		const markupLatte = extend('markup', {});
-		const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar }} */ (markupLatte.tag);
+		const tag = markupLatte.tag as GrammarToken & { inside: Grammar };
 		insertBefore(tag.inside, 'attr-value', {
 			'n-attr': {
 				pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,

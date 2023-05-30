@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 import { rest } from '../shared/symbols';
 
 export default {
@@ -15,7 +15,7 @@ export default {
 								pattern: /\[|\]/,
 								alias: 'punctuation'
 							},
-							[rest]: /** @type {import('../types').Grammar[rest]} */ (null)
+							[rest]: null as Grammar[typeof rest]
 						}
 					}
 				}

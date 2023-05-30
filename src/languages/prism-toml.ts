@@ -5,10 +5,7 @@ export default {
 	grammar() {
 		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 
-		/**
-		 * @param {string} pattern
-		 */
-		function insertKey(pattern) {
+		function insertKey(pattern: string) {
 			return pattern.replace(/__/g, () => key);
 		}
 

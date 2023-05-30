@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 import { embeddedIn } from '../shared/languages/templating';
 import { rest, tokenize } from '../shared/symbols';
 import markup from './prism-markup';
@@ -28,7 +28,7 @@ export default {
 							pattern: /^\$\{|\}$/,
 							alias: 'punctuation'
 						},
-						[rest]: /** @type {import('../types').Grammar[rest]} */ (null) // see below
+						[rest]: null as Grammar[typeof rest] // see below
 					}
 				}
 			}

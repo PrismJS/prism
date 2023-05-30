@@ -6,22 +6,12 @@ export default {
 	grammar() {
 		// http://avisynth.nl/index.php/The_full_AviSynth_grammar
 
-		/**
-		 * @param {string} pattern
-		 * @param {string[]} replacements
-		 */
-		function replace(pattern, replacements) {
+		function replace(pattern: string, replacements: string[]) {
 			return pattern.replace(/<<(\d+)>>/g, (m, index) => {
 				return replacements[+index];
 			});
 		}
-
-		/**
-		 * @param {string} pattern
-		 * @param {string[]} replacements
-		 * @param {string} [flags]
-		 */
-		function re(pattern, replacements, flags) {
+		function re(pattern: string, replacements: string[], flags?: string) {
 			return RegExp(replace(pattern, replacements), flags || '');
 		}
 

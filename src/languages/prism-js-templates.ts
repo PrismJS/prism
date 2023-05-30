@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
 import { rest, tokenize } from '../shared/symbols';
@@ -8,13 +8,12 @@ import { rest, tokenize } from '../shared/symbols';
  *
  * This will return `undefined` if there is no grammar with the given language id.
  *
- * @param {string} language The language id of the embedded language. E.g. `markdown`.
- * @param {string} tag The regex pattern to match the tag.
- * @returns {import('../types').GrammarToken}
+ * @param language The language id of the embedded language. E.g. `markdown`.
+ * @param tag The regex pattern to match the tag.
  * @example
  * createTemplate('css', /\bcss/.source);
  */
-function createTemplate(language, tag) {
+function createTemplate(language: string, tag: string): GrammarToken {
 	return {
 		pattern: RegExp('((?:' + tag + ')\\s*)' + JS_TEMPLATE.source),
 		lookbehind: true,

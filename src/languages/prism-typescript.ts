@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { Grammar, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import javascript from './prism-javascript';
@@ -8,8 +8,7 @@ export default {
 	require: javascript,
 	alias: 'ts',
 	grammar({ extend }) {
-		/** @type {import('../types').Grammar} */
-		const typeInside = {};
+		const typeInside: Grammar = {};
 
 		const typescript = extend('javascript', {
 			'class-name': {

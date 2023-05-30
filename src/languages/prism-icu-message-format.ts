@@ -8,12 +8,7 @@ export default {
 		// https://unicode-org.github.io/icu-docs/apidoc/released/icu4j/com/ibm/icu/text/MessageFormat.html
 
 
-		/**
-		 * @param {string} source
-		 * @param {number} level
-		 * @returns {string}
-		 */
-		function nested(source, level) {
+		function nested(source: string, level: number): string {
 			if (level <= 0) {
 				return /[]/.source;
 			} else {

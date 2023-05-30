@@ -114,12 +114,6 @@ export function extend(grammar: Grammar, id: string, reDef: Grammar): Grammar {
 	return lang;
 }
 
-/**
- *
- * @param {import('../types').Grammar} grammar
- * @param {string} id
- * @returns {import('../types').Grammar}
- */
 function cloneGrammar(grammar: Grammar, id: string): Grammar {
 	const result: Grammar = {};
 

@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import clike from './prism-clike';
 
@@ -50,7 +50,7 @@ export default {
 							pattern: /^(#\s*include\s*)<[^>]+>/,
 							lookbehind: true
 						},
-						/** @type {import('../types').GrammarToken} */(c['string'])
+						c['string'] as GrammarToken
 					],
 					'char': c['char'],
 					'comment': c['comment'],

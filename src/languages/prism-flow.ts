@@ -1,4 +1,4 @@
-import type { LanguageProto } from "../types";
+import type { GrammarToken, LanguageProto } from "../types";
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import javascript from './prism-javascript';
@@ -36,7 +36,7 @@ export default {
 			}
 		});
 
-		const fnVariable = /** @type {import('../types').GrammarToken} */ (flow['function-variable']);
+		const fnVariable = flow['function-variable'] as GrammarToken;
 		fnVariable.pattern = /(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/i;
 
 		delete flow['parameter'];
