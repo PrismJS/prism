@@ -71,8 +71,6 @@ export default {
 		 *
 		 * These parser serve as validators and as a layer of compatibility to support color formats which the browser
 		 * might not support natively.
-		 *
-		 * @type {((value: string) => (string|undefined))[]}
 		 */
 		const parsers = [
 			parseHexColor,

@@ -68,9 +68,9 @@ export class FileHighlight {
 	 *
 	 * Note: Elements which are already loaded or currently loading will not be touched by this method.
 	 *
-	 * @param {ParentNode} [container=document]
+	 * @param container Defaults to `document`.
 	 */
-	highlight(container = document) {
+	highlight(container: ParentNode = document) {
 		const elements = container.querySelectorAll(SELECTOR);
 
 		for (const element of elements) {

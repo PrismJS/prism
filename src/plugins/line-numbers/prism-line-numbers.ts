@@ -5,15 +5,11 @@ import type { PluginProto } from '../../types';
 
 /**
  * Plugin name which is used as a class name for <pre> which is activating the plugin
- *
- * @type {string}
  */
 const PLUGIN_NAME = 'line-numbers';
 
 /**
  * Regular expression used for determining line breaks
- *
- * @type {RegExp}
  */
 const NEW_LINE_EXP = /\n(?!$)/g;
 
@@ -132,8 +128,6 @@ export class LineNumbers {
 	 * Setting this to `true` will allow the plugin to do certain optimizations for better performance.
 	 *
 	 * Set this to `false` if you use any of the following CSS units: `vh`, `vw`, `vmin`, `vmax`.
-	 *
-	 * @type {boolean}
 	 */
 	assumeViewportIndependence = true;
 

@@ -6,9 +6,6 @@ import { formatHtml, getLeadingSpaces } from './util';
 import type { Prism } from '../../src/core';
 import type { TokenStream } from '../../src/core/token';
 
-/**
- * @param {string[]} languages
- */
 const defaultCreateInstance = createInstance;
 
 type Eol = '\n' | '\r\n';

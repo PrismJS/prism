@@ -731,9 +731,6 @@ async function replaceRegExpProto(execSupplier: (exec: RegExp['exec']) => (this:
 	const newExec = execSupplier(oldExec);
 
 	RegExp.prototype.exec = newExec;
-	/**
-	 * @param {string} input
-	 */
 	RegExp.prototype.test = function (input) {
 		return newExec.call(this, input) !== null;
 	};

@@ -44,7 +44,5 @@ export async function loadLanguages(Prism: Prism, languages: string | readonly s
 
 /**
  * Set this to `true` to prevent all warning messages `loadLanguages` logs.
- *
- * @type {boolean}
  */
 loadLanguages.silent = false;
