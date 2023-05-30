@@ -193,7 +193,7 @@ module.exports = {
 		},
 		{
 			// Core
-			files: ['src/core/**/*.js'],
+			files: ['src/core/**/*.ts'],
 			env: {
 				browser: true,
 				node: true,
@@ -201,14 +201,14 @@ module.exports = {
 		},
 		{
 			// Browser-specific parts
-			files: ['src/auto-start.js'],
+			files: ['src/auto-start.ts'],
 			env: {
 				browser: true
 			},
 		},
 		{
 			// Plugins
-			files: ['src/plugins/**/*.js'],
+			files: ['src/plugins/**/*.ts'],
 			env: {
 				browser: true,
 			},
