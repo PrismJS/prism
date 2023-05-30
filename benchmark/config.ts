@@ -1,28 +1,42 @@
-/**
- * @type {Config}
- *
- * @typedef Config
- * @property {ConfigOptions} options
- * @property {ConfigRemote[]} remotes
- * @property {Object<string, ConfigCase>} cases
- *
- * @typedef ConfigOptions
- * @property {'tokenize' | 'highlight'} testFunction
- * @property {number} maxTime in seconds
- * @property {string} [language] An optional comma separated list of languages than, if defined, will be the only
- * languages for which the benchmark will be run.
- * @property {boolean} [remotesOnly=false] Whether the benchmark will only run with remotes. If `true`, the local
- * project will be ignored
- *
- * @typedef ConfigRemote
- * @property {string} repo
- * @property {string} [branch='master']
- *
- * @typedef ConfigCase
- * @property {string | string[]} [extends]
- * @property {string | string[]} [files]
- */
-const config = {
+export interface Config {
+	options: ConfigOptions;
+	remotes: ConfigRemote[];
+	cases: Record<string, ConfigCase>;
+}
+
+export interface ConfigOptions {
+	testFunction: 'tokenize' | 'highlight';
+	/**
+	 * in seconds
+	 */
+	maxTime: number;
+	/**
+	 * An optional comma separated list of languages than, if defined, will be the only languages for which the
+	 * benchmark will be run
+	 */
+	language?: string;
+	/**
+	 * Whether the benchmark will only run with remotes. If `true`, the local project will be ignored
+	 *
+	 * @default false
+	 */
+	remotesOnly?: boolean;
+}
+
+export interface ConfigRemote {
+	repo: string;
+	/**
+	 * @default 'master'
+	 */
+	branch?: string;
+}
+
+export interface ConfigCase {
+	extends?: string | string[];
+	files?: string | string[];
+}
+
+export const config: Config = {
 	options: {
 		testFunction: 'tokenize',
 		maxTime: 3,
@@ -48,7 +62,7 @@ const config = {
 	cases: {
 		'css': {
 			files: [
-				'../assets/style.css'
+				'../website/assets/style.css'
 			]
 		},
 		'css!+css-extras': { extends: 'css' },
@@ -59,19 +73,19 @@ const config = {
 				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
 				'https://code.jquery.com/jquery-3.4.1.js',
 				'https://code.jquery.com/jquery-3.4.1.min.js',
-				'../assets/vendor/utopia.js'
+				'../website/assets/vendor/utopia.js'
 			]
 		},
 		'json': {
 			files: [
-				'../components.json',
+				'../src/components.json',
 				'../package-lock.json'
 			]
 		},
 		'markup': {
 			files: [
-				'../download.html',
-				'../index.html',
+				'../website/download.html',
+				'../website/index.html',
 				'https://github.com/PrismJS/prism', // the PrismJS/prism GitHub page
 			]
 		},
@@ -100,5 +114,3 @@ const config = {
 		}
 	}
 };
-
-module.exports = config;

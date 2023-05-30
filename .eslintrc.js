@@ -247,11 +247,23 @@ module.exports = {
 			},
 		},
 		{
+			// Benchmark
+			files: [
+				'benchmark/**',
+			],
+			env: {
+				node: true
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./benchmark/tsconfig.json'],
+			},
+		},
+		{
 			// Gulp, Danger, and benchmark
 			files: [
 				'gulpfile.js/**',
 				'dangerfile.js',
-				'benchmark/**',
 			],
 			env: {
 				node: true

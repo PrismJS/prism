@@ -1,19 +1,18 @@
-// @ts-check
+import Benchmark from 'benchmark';
+import fetch from 'cross-fetch';
+import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
+import { gitP } from 'simple-git';
+import { argv } from 'yargs';
+import { parseLanguageNames } from '../tests/helper/test-case';
+import { config as baseConfig } from './config';
+import type { Prism } from '../src/core';
+import type { Config, ConfigOptions } from './config';
+import type { Options, Stats } from 'benchmark';
 
-const Benchmark = require('benchmark');
-const crypto = require('crypto');
-const fs = require('fs');
-const fetch = require('node-fetch').default;
-const path = require('path');
-const simpleGit = require('simple-git');
-const { argv } = require('yargs');
-const { parseLanguageNames } = require('../tests/helper/test-case');
 
-
-/**
- * @param {import("./config").Config} config
- */
-async function runBenchmark(config) {
+async function runBenchmark(config: Config) {
 	const cases = await getCases(config);
 	const candidates = await getCandidates(config);
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
@@ -24,12 +23,13 @@ async function runBenchmark(config) {
 	const estimate = candidates.length * totalNumberOfCaseFiles * config.options.maxTime;
 	console.log(`Estimated duration: ${Math.floor(estimate / 60)}m ${Math.floor(estimate % 60)}s`);
 
-	/**
-	 * @type {Summary[]}
-	 *
-	 * @typedef {{ best: number; worst: number, relative: number[], avgRelative?: number }} Summary
-	 */
-	const totalSummary = Array.from({ length: candidates.length }, () => ({ best: 0, worst: 0, relative: [] }));
+	interface Summary {
+		best: number
+		worst: number
+		relative: number[]
+		avgRelative?: number
+	}
+	const totalSummary: Summary[] = Array.from({ length: candidates.length }, () => ({ best: 0, worst: 0, relative: [] }));
 
 	for (const $case of cases) {
 
@@ -45,12 +45,11 @@ async function runBenchmark(config) {
 
 		// prepare candidates
 		const warmupCode = await fs.promises.readFile($case.files[0].path, 'utf8');
-		/** @type {[string, (code: string) => void][]} */
-		const candidateFunctions = candidates.map(({ name, setup }) => {
-			const fn = setup($case.language, $case.languages);
+		const candidateFunctions = await Promise.all(candidates.map(async ({ name, setup }) => {
+			const fn = await setup($case.language, $case.languages);
 			fn(warmupCode); // warmup
-			return [name, fn];
-		});
+			return [name, fn] as const;
+		}));
 
 
 		// bench all files
@@ -109,55 +108,53 @@ async function runBenchmark(config) {
 		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
 		const best = String(s.best).padStart('best'.length);
 		const worst = String(s.worst).padStart('worst'.length);
-		const relative = ((s.avgRelative / minAvgRelative).toFixed(2) + 'x').padStart('relative'.length);
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		const relative = ((s.avgRelative! / minAvgRelative).toFixed(2) + 'x').padStart('relative'.length);
 
 		console.log(`  ${name}  ${best}  ${worst}  ${relative}`);
 	});
 }
 
-function getConfig() {
-	const base = require('./config');
+function getConfig(): Config {
+	const base = baseConfig;
 
-	const args = /** @type {Record<string, unknown>} */(argv);
+	const args = argv as Record<string, unknown>;
 
 	if (typeof args.testFunction === 'string') {
-		// @ts-ignore
-		base.options.testFunction = args.testFunction;
+		baseConfig.options.testFunction = args.testFunction as ConfigOptions['testFunction'];
 	}
 	if (typeof args.maxTime === 'number') {
-		base.options.maxTime = args.maxTime;
+		baseConfig.options.maxTime = args.maxTime;
 	}
 	if (typeof args.language === 'string') {
-		base.options.language = args.language;
+		baseConfig.options.language = args.language;
 	}
 	if (typeof args.remotesOnly === 'boolean') {
-		base.options.remotesOnly = args.remotesOnly;
+		baseConfig.options.remotesOnly = args.remotesOnly;
 	}
 
 	return base;
 }
 
-/**
- * @param {import("./config").Config} config
- * @returns {Promise<Case[]>}
- *
- * @typedef Case
- * @property {string} id
- * @property {string} language The main language.
- * @property {string[]} languages All languages that have to be loaded.
- * @property {FileInfo[]} files
- */
-async function getCases(config) {
-	/** @type {Map<string, ReadonlySet<FileInfo>>} */
-	const caseFileCache = new Map();
+interface Case {
+	id: string
+	/**
+	 * The main language.
+	 */
+	language: string
+	/**
+	 * All languages that have to be loaded.
+	 */
+	languages: string[]
+	files: FileInfo[]
+}
+async function getCases(config: Config) {
+	const caseFileCache = new Map<string, ReadonlySet<FileInfo>>();
 
 	/**
 	 * Returns all files of the test case with the given id.
-	 *
-	 * @param {string} id
-	 * @returns {Promise<ReadonlySet<FileInfo>>}
 	 */
-	async function getCaseFiles(id) {
+	async function getCaseFiles(id: string) {
 		const cached = caseFileCache.get(id);
 		if (cached) {
 			return cached;
@@ -168,8 +165,7 @@ async function getCases(config) {
 			throw new Error(`Unknown case "${id}"`);
 		}
 
-		/** @type {Set<FileInfo>} */
-		const files = new Set();
+		const files = new Set<FileInfo>();
 		caseFileCache.set(id, files);
 
 		await Promise.all(toArray(caseEntry.files).map(async (uri) => {
@@ -184,22 +180,18 @@ async function getCases(config) {
 
 	/**
 	 * Returns whether the case is enabled by the options provided by the user.
-	 *
-	 * @param {string[]} languages
-	 * @returns {boolean}
 	 */
-	function isEnabled(languages) {
+	function isEnabled(languages: string[]) {
 		if (config.options.language) {
 			// test whether the given languages contain any of the required languages
-			const required = new Set(config.options.language.split(/,/g).filter(Boolean));
+			const required = new Set(config.options.language.split(/,/).filter(Boolean));
 			return languages.some((l) => required.has(l));
 		}
 
 		return true;
 	}
 
-	/** @type {Case[]} */
-	const cases = [];
+	const cases: Case[] = [];
 	for (const id of Object.keys(config.cases)) {
 		const parsed = parseLanguageNames(id);
 
@@ -220,17 +212,16 @@ async function getCases(config) {
 	return cases;
 }
 
-/** @type {Map<string, Promise<FileInfo>>} */
-const fileInfoCache = new Map();
+interface FileInfo {
+	uri: string
+	path: string
+	size: number
+}
+const fileInfoCache = new Map<string, Promise<FileInfo>>();
 /**
  * Returns the path and other information for the given file identifier.
- *
- * @param {string} uri
- * @returns {Promise<FileInfo>}
- *
- * @typedef {{ uri: string, path: string, size: number }} FileInfo
  */
-function getFileInfo(uri) {
+function getFileInfo(uri: string) {
 	let info = fileInfoCache.get(uri);
 	if (info === undefined) {
 		info = getFileInfoUncached(uri);
@@ -238,11 +229,7 @@ function getFileInfo(uri) {
 	}
 	return info;
 }
-/**
- * @param {string} uri
- * @returns {Promise<FileInfo>}
- */
-async function getFileInfoUncached(uri) {
+async function getFileInfoUncached(uri: string): Promise<FileInfo> {
 	const p = await getFilePath(uri);
 	const stat = await fs.promises.stat(p);
 	if (stat.isFile()) {
@@ -257,11 +244,8 @@ async function getFileInfoUncached(uri) {
 }
 /**
  * Returns the local path of the given file identifier.
- *
- * @param {string} uri
- * @returns {Promise<string>}
  */
-async function getFilePath(uri) {
+async function getFilePath(uri: string) {
 	if (/^https:\/\//.test(uri)) {
 		// it's a URL, so let's download the file (if not downloaded already)
 		const downloadDir = path.join(__dirname, 'downloads');
@@ -269,7 +253,8 @@ async function getFilePath(uri) {
 
 		// file path
 		const hash = crypto.createHash('md5').update(uri).digest('hex');
-		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)[0]);
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)![0]);
 
 		if (!fs.existsSync(localPath)) {
 			// download file
@@ -284,24 +269,20 @@ async function getFilePath(uri) {
 	return path.resolve(__dirname, uri);
 }
 
-/**
- * @param {Iterable<[string, () => void]>} candidates
- * @param {import("benchmark").Options} [options]
- * @returns {Result[]}
- *
- * @typedef {{ name: string, stats: import("benchmark").Stats }} Result
- */
-function measureCandidates(candidates, options) {
+interface Result {
+	name: string
+	stats: Stats
+}
+function measureCandidates(candidates: Iterable<[string, () => void]>, options: Options): Result[] {
 	const suite = new Benchmark.Suite('temp name');
 
 	for (const [name, fn] of candidates) {
 		suite.add(name, fn, options);
 	}
 
-	/** @type {Result[]} */
-	const results = [];
+	const results: Result[] = [];
 
-	suite.on('cycle', (event) => {
+	suite.on('cycle', (event: { target: Result }) => {
 		results.push({
 			name: event.target.name,
 			stats: event.target.stats
@@ -311,11 +292,7 @@ function measureCandidates(candidates, options) {
 	return results;
 }
 
-/**
- * @param {Result[]} results
- * @returns {Result | null}
- */
-function getBest(results) {
+function getBest(results: Result[]): Result | null {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => a.stats.mean - b.stats.mean);
 		const best = sorted[0].stats;
@@ -329,11 +306,7 @@ function getBest(results) {
 
 	return null;
 }
-/**
- * @param {Result[]} results
- * @returns {Result | null}
- */
-function getWorst(results) {
+function getWorst(results: Result[]): Result | null {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => b.stats.mean - a.stats.mean);
 		const worst = sorted[0].stats;
@@ -351,20 +324,17 @@ function getWorst(results) {
 
 /**
  * Create a new test function from the given Prism instance.
- *
- * @param {any} Prism
- * @param {string} mainLanguage
- * @param {string} testFunction
- * @returns {(code: string) => void}
  */
-function createTestFunction(Prism, mainLanguage, testFunction) {
+function createTestFunction(Prism: Prism, mainLanguage: string, testFunction: string): (code: string) => void {
 	if (testFunction === 'tokenize') {
 		return (code) => {
-			Prism.tokenize(code, Prism.languages[mainLanguage]);
+			const grammar = Prism.components.getLanguage(mainLanguage);
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			Prism.tokenize(code, grammar!);
 		};
 	} else if (testFunction === 'highlight') {
 		return (code) => {
-			Prism.highlight(code, Prism.languages[mainLanguage], mainLanguage);
+			Prism.highlight(code, mainLanguage);
 		};
 	} else {
 		throw new Error(`Unknown test function "${testFunction}"`);
@@ -372,25 +342,20 @@ function createTestFunction(Prism, mainLanguage, testFunction) {
 
 }
 
-/**
- * @param {import("./config").Config} config
- * @returns {Promise<Candidate[]>}
- *
- * @typedef Candidate
- * @property {string} name
- * @property {(mainLanguage: string, languages: string[]) => (code: string) => void} setup
- */
-async function getCandidates(config) {
-	/** @type {Candidate[]} */
-	const candidates = [];
+interface Candidate {
+	name: string
+	setup(mainLanguage: string, languages: string[]): Promise<(code: string) => void>
+}
+async function getCandidates(config: Config): Promise<Candidate[]> {
+	const candidates: Candidate[] = [];
 
 	// local
 	if (!config.options.remotesOnly) {
-		const localPrismLoader = require('../tests/helper/prism-loader');
+		const localPrismLoader = await import('../tests/helper/prism-loader');
 		candidates.push({
 			name: 'local',
-			setup(mainLanguage, languages) {
-				const Prism = localPrismLoader.createInstance(languages);
+			async setup(mainLanguage, languages) {
+				const Prism = await localPrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
 			}
 		});
@@ -402,10 +367,11 @@ async function getCandidates(config) {
 	const remoteBaseDir = path.join(__dirname, 'remotes');
 	await fs.promises.mkdir(remoteBaseDir, { recursive: true });
 
-	const baseGit = simpleGit.gitP(remoteBaseDir);
+	const baseGit = gitP(remoteBaseDir);
 
 	for (const remote of config.remotes) {
-		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo);
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)![0];
 		const branch = remote.branch || 'master';
 		const remoteName = `${user}@${branch}`;
 		const remoteDir = path.join(remoteBaseDir, `${user}@${branch}`);
@@ -414,18 +380,19 @@ async function getCandidates(config) {
 		if (!fs.existsSync(remoteDir)) {
 			console.log(`Cloning ${remote.repo}`);
 			await baseGit.clone(remote.repo, remoteName);
-			remoteGit = simpleGit.gitP(remoteDir);
+			remoteGit = gitP(remoteDir);
 		} else {
-			remoteGit = simpleGit.gitP(remoteDir);
+			remoteGit = gitP(remoteDir);
 			await remoteGit.fetch('origin', branch); // get latest version of branch
 		}
 		await remoteGit.checkout(branch); // switch to branch
 
-		const remotePrismLoader = require(path.join(remoteDir, 'tests/helper/prism-loader'));
+		// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+		const remotePrismLoader = (await import(path.join(remoteDir, 'tests/helper/prism-loader'))) as typeof import('../tests/helper/prism-loader');
 		candidates.push({
 			name: remoteName,
-			setup(mainLanguage, languages) {
-				const Prism = remotePrismLoader.createInstance(languages);
+			async setup(mainLanguage, languages) {
+				const Prism = await remotePrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
 			}
 		});
@@ -436,12 +403,8 @@ async function getCandidates(config) {
 
 /**
  * A utility function that converts the given optional array-like value into an array.
- *
- * @param {T[] | T | undefined | null} value
- * @returns {readonly T[]}
- * @template T
  */
-function toArray(value) {
+function toArray<T extends {}>(value: T[] | T | undefined | null): readonly T[] {
 	if (Array.isArray(value)) {
 		return value;
 	} else if (value != null) {
@@ -452,4 +415,4 @@ function toArray(value) {
 }
 
 
-runBenchmark(getConfig());
+runBenchmark(getConfig()).catch((error) => console.error(error));
