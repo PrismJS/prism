@@ -260,6 +260,19 @@ module.exports = {
 			},
 		},
 		{
+			// Scripts
+			files: [
+				'scripts/**',
+			],
+			env: {
+				node: true
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./scripts/tsconfig.json'],
+			},
+		},
+		{
 			// Gulp, Danger, and benchmark
 			files: [
 				'gulpfile.js/**',
