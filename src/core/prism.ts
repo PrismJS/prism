@@ -394,7 +394,7 @@ export interface HighlightAllOptions {
 	/**
 	 * An optional callback to be invoked on each element after its highlighting is done.
 	 *
-	 * @see HighlightElementOptions.callback
+	 * @see HighlightElementOptions#callback
 	 */
 	callback?: (element: Element) => void;
 }
