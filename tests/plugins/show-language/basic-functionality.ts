@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import { knownTitles } from '../../../src/shared/meta/title-data';
 import { createTestSuite } from '../../helper/prism-dom-util';
+import { PrismDOM } from '../../helper/prism-loader';
 
 
 describe('Show language', () => {
@@ -9,18 +10,13 @@ describe('Show language', () => {
 		plugins: 'show-language'
 	});
 
-	const titles = /** @type {Record<string, string>} */ (knownTitles);
+	const titles = (knownTitles as Record<string, string>);
 	titles['js'] = 'JavaScript';
 	titles['html'] = 'HTML';
 	titles['svg'] = 'SVG';
 
 
-	/**
-	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
-	 * @param {string} expectedLanguage
-	 * @param {string} code
-	 */
-	function test({ document, Prism }, expectedLanguage, code) {
+	function test({ document, Prism }: PrismDOM<{}>, expectedLanguage: string, code: string) {
 		document.body.innerHTML = code;
 		Prism.highlightAll();
 

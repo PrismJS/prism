@@ -25,14 +25,9 @@ describe('Components', () => {
 	it('- should have unique aliases', async function () {
 		this.timeout(10_000);
 
-		/** @type {Map<string, string>} */
-		const seen = new Map();
+		const seen = new Map<string, string>();
 
-		/**
-		 * @param {string} id
-		 * @param {string} desc
-		 */
-		const add = (id, desc) => {
+		const add = (id: string, desc: string) => {
 			const already = seen.get(id);
 			if (already) {
 				assert.fail(`Expected ${id} to be ${desc} but it is already ${already}`);
@@ -52,25 +47,30 @@ const components = JSON.parse(readFileSync(path.join(__dirname, '../src/componen
 
 describe('components.json', () => {
 
-	/**
-	 * @typedef {Object<string, ComponentCategory>} Components
-	 * @typedef {Object<string, ComponentEntry | string>} ComponentCategory
-	 *
-	 * @typedef ComponentEntry
-	 * @property {string} [title] The title of the component.
-	 * @property {string} [owner] The GitHub user name of the owner.
-	 * @property {boolean} [noCSS=false] Whether the component doesn't have style sheets which should also be loaded.
-	 * @property {Object<string, string>} [aliasTitles] An optional map from an alias to its title.
-	 *
-	 * Aliases which are not in this map will the get title of the component.
-	 */
-
-	/**
-	 * @param {(entry: ComponentEntry, id: string, entries: Object<string, ComponentEntry>) => void} consumeFn
-	 */
-	function forEachEntry(consumeFn) {
-		/** @type {Object<string, ComponentEntry>} */
-		const entries = {};
+	type Components = Record<string, ComponentCategory>;
+	type ComponentCategory = Record<string, ComponentEntry | string>;
+	interface ComponentEntry {
+		/**
+		 * The title of the component.
+		 */
+		title?: string;
+		/**
+		 * The GitHub user name of the owner.
+		 */
+		owner?: string;
+		/**
+		 * Whether the component doesn't have style sheets which should also be loaded.
+		 */
+		noCSS?: boolean;
+		/**
+		 * An optional map from an alias to its title.
+		 *
+		 * Aliases which are not in this map will the get title of the component.
+		 */
+		aliasTitles?: Record<string, string>;
+	}
+	function forEachEntry(consumeFn: (entry: ComponentEntry, id: string, entries: Record<string, ComponentEntry>) => void) {
+		const entries: Record<string, ComponentEntry> = {};
 
 		for (const category in components) {
 			for (const id in components[category]) {
@@ -90,8 +90,7 @@ describe('components.json', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
 				const aliases = new Set(toArray((await getComponent(lang)).alias));
-				/** @type {Record<string, string>} */
-				const aliasTitles = components.languages[lang]?.aliasTitles ?? {};
+				const aliasTitles: Record<string, string> = components.languages[lang]?.aliasTitles ?? {};
 
 				Object.keys(aliasTitles).forEach((id) => {
 					if (!aliases.has(id)) {
@@ -105,8 +104,7 @@ describe('components.json', () => {
 
 	it('- should have a sorted language list', () => {
 		const ignore = new Set(['meta', 'xml', 'markup', 'css', 'clike', 'javascript', 'plain']);
-		/** @type {{ id: string, title: string }[]} */
-		const languages = Object.keys(components.languages).filter((key) => !ignore.has(key)).map((key) => {
+		const languages = Object.keys(components.languages).filter((key) => !ignore.has(key)).map((key): { id: string, title: string } => {
 			return {
 				id: key,
 				title: components.languages[key].title
@@ -116,10 +114,8 @@ describe('components.json', () => {
 		/**
 		 * Transforms the given title into an intermediate representation to allowed for sensible comparisons
 		 * between titles.
-		 *
-		 * @param {string} title
 		 */
-		function transformTitle(title) {
+		function transformTitle(title: string) {
 			return title.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
 		}
 

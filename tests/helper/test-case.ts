@@ -3,16 +3,15 @@ import fs from 'fs';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
 import { formatHtml, getLeadingSpaces } from './util';
-
-/**
- * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
- * @typedef {import("../../src/core/prism").Prism} Prism
- */
+import { Prism } from '../../src/core';
+import { TokenStream } from '../../src/core/token';
 
 /**
  * @param {string[]} languages
  */
 const defaultCreateInstance = createInstance;
+
+type Eol = "\n" | "\r\n";
 
 /**
  * Handles parsing and printing of a test case file.
@@ -31,49 +30,36 @@ const defaultCreateInstance = createInstance;
  * If the file contains more than three parts, the remaining parts are part of the description.
  */
 export class TestCaseFile {
+	code: string
+	expected: string
+	description: string
 	/**
-	 * @param {string} code
-	 * @param {string | undefined} [expected]
-	 * @param {string | undefined} [description]
+	 * The end of line sequence used when printed.
 	 */
-	constructor(code, expected, description) {
+	eol: Eol = "\n"
+	/**
+	 * The number of the first line of `code`.
+	 */
+	codeLineStart: number = NaN
+	/**
+	 * The number of the first line of `expected`.
+	 */
+	expectedLineStart: number = NaN
+	/**
+	 * The number of the first line of `description`.
+	 */
+	descriptionLineStart: number = NaN
+
+	constructor(code: string, expected?: string, description?: string) {
 		this.code = code;
 		this.expected = expected || '';
 		this.description = description || '';
-
-		/**
-		 * The end of line sequence used when printed.
-		 *
-		 * @type {"\n" | "\r\n"}
-		 */
-		this.eol = '\n';
-
-		/**
-		 * The number of the first line of `code`.
-		 *
-		 * @type {number}
-		 */
-		this.codeLineStart = NaN;
-		/**
-		 * The number of the first line of `expected`.
-		 *
-		 * @type {number}
-		 */
-		this.expectedLineStart = NaN;
-		/**
-		 * The number of the first line of `description`.
-		 *
-		 * @type {number}
-		 */
-		this.descriptionLineStart = NaN;
 	}
 
 	/**
 	 * Returns the file content of the given test file.
-	 *
-	 * @returns {string}
 	 */
-	print() {
+	print(): string {
 		const code = this.code.trim();
 		const expected = (this.expected || '').trim();
 		const description = (this.description || '').trim();
@@ -95,10 +81,8 @@ export class TestCaseFile {
 
 	/**
 	 * Writes the given test case file to disk.
-	 *
-	 * @param {string} filePath
 	 */
-	writeToFile(filePath) {
+	writeToFile(filePath: string) {
 		fs.writeFileSync(filePath, this.print(), 'utf-8');
 	}
 
@@ -106,11 +90,8 @@ export class TestCaseFile {
 	 * Parses the given file contents into a test file.
 	 *
 	 * The line ends of the code, expected value, and description are all normalized to CRLF.
-	 *
-	 * @param {string} content
-	 * @returns {TestCaseFile}
 	 */
-	static parse(content) {
+	static parse(content: string): TestCaseFile {
 		const eol = (/\r\n|\n/.exec(content) || ['\n'])[0];
 
 		// normalize line ends to CRLF
@@ -122,7 +103,7 @@ export class TestCaseFile {
 		const description = parts[2] || '';
 
 		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
-		file.eol = /** @type {"\r\n" | "\n"} */ (eol);
+		file.eol = (eol as Eol);
 
 		const codeStartSpaces = getLeadingSpaces(code);
 		const expectedStartSpaces = getLeadingSpaces(expected);
@@ -140,50 +121,27 @@ export class TestCaseFile {
 
 	/**
 	 * Reads the given test case file from disk.
-	 *
-	 * @param {string} filePath
-	 * @returns {TestCaseFile}
 	 */
-	static readFromFile(filePath) {
+	static readFromFile(filePath: string): TestCaseFile {
 		return TestCaseFile.parse(fs.readFileSync(filePath, 'utf8'));
 	}
 }
 
-/**
- * @template T
- * @typedef Runner
- * @property {(Prism: Prism, code: string, language: string) => T} run
- * @property {(actual: T) => string} print
- * @property {(actual: T, expected: string) => boolean} isEqual
- * @property {(actual: T, expected: string, message: (firstDifference: number) => string) => void} assertEqual
- */
 
-/**
- * @implements {Runner<TokenStream>}
- */
-class TokenizeJSONRunner {
-	/**
-	 * @param {Prism} Prism
-	 * @param {string} code
-	 * @param {string} language
-	 * @returns {TokenStream}
-	 */
+interface Runner<T> {
+	run(Prism: Prism, code: string, language: string): T
+	print(actual: T): string
+	isEqual(actual: T, expected: string): boolean
+	assertEqual(actual: T, expected: string, message: (firstDifference: number) => string): void
+}
+const jsonRunner: Runner<TokenStream> = {
 	run(Prism, code, language) {
 		const grammar = Prism.components.getLanguage(language);
 		return Prism.tokenize(code, grammar ?? {});
-	}
-	/**
-	 * @param {TokenStream} actual
-	 * @returns {string}
-	 */
+	},
 	print(actual) {
 		return TokenStreamTransformer.prettyprint(actual, '\t');
-	}
-	/**
-	 * @param {TokenStream} actual
-	 * @param {string} expected
-	 * @returns {boolean}
-	 */
+	},
 	isEqual(actual, expected) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		let simplifiedExpected;
@@ -194,13 +152,7 @@ class TokenizeJSONRunner {
 		}
 
 		return JSON.stringify(simplifiedActual) === JSON.stringify(simplifiedExpected);
-	}
-	/**
-	 * @param {TokenStream} actual
-	 * @param {string} expected
-	 * @param {(firstDifference: number) => string} message
-	 * @returns {void}
-	 */
+	},
 	assertEqual(actual, expected, message) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		const simplifiedExpected = JSON.parse(expected);
@@ -221,63 +173,34 @@ class TokenizeJSONRunner {
 		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex ?? 0));
 	}
 }
-
 /**
- * @implements {Runner<string>}
- */
-class HighlightHTMLRunner {
-	/**
-	 * @param {Prism} Prism
-	 * @param {string} code
-	 * @param {string} language
-	 * @returns {string}
-	 */
+* Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
+* to enable good diffing.
+*/
+function normalizeHtml(html: string) {
+	return html
+		.replace(/</g, '\n<')
+		.replace(/>/g, '>\n')
+		.replace(/[ \t]*[\r\n]\s*/g, '\n')
+		.trim();
+}
+const htmlRunner: Runner<string> = {
 	run(Prism, code, language) {
 		return Prism.highlight(code, language);
-	}
-	/**
-	 * @param {string} actual
-	 * @returns {string}
-	 */
+	},
 	print(actual) {
 		return formatHtml(actual);
-	}
-	/**
-	 * @param {string} actual
-	 * @param {string} expected
-	 * @returns {boolean}
-	 */
+	},
 	isEqual(actual, expected) {
-		return this.normalize(actual) === this.normalize(expected);
-	}
-	/**
-	 * @param {string} actual
-	 * @param {string} expected
-	 * @param {(firstDifference: number) => string} message
-	 * @returns {void}
-	 */
+		return normalizeHtml(actual) === normalizeHtml(expected);
+	},
 	assertEqual(actual, expected, message) {
 		// We don't calculate the index of the first difference because it's difficult.
-		assert.deepEqual(this.normalize(actual), this.normalize(expected), message(0));
-	}
-
-	/**
-	 * Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
-	 * to enable good diffing.
-	 *
-	 * @param {string} html
-	 * @returns {string}
-	 */
-	normalize(html) {
-		return html
-			.replace(/</g, '\n<')
-			.replace(/>/g, '>\n')
-			.replace(/[ \t]*[\r\n]\s*/g, '\n')
-			.trim();
-	}
+		assert.deepEqual(normalizeHtml(actual), normalizeHtml(expected), message(0));
+	},
 }
 
-
+export type UpdateMethod = "none" | "insert" | "update"
 /**
  * Runs the given test case file and asserts the result
  *
@@ -289,31 +212,16 @@ class HighlightHTMLRunner {
  * But it will be ensured, that the additional passed languages will be loaded too.
  *
  * The languages will be loaded in the order they were provided.
- *
- * @param {string} languageIdentifier
- * @param {string} filePath
- * @param {"none" | "insert" | "update"} updateMode
- * @param {(languages: string[]) => Promise<Prism>} [createInstance]
  */
-export async function runTestCase(languageIdentifier, filePath, updateMode, createInstance = defaultCreateInstance) {
+export async function runTestCase(languageIdentifier: string, filePath: string, updateMode: UpdateMethod, createInstance: (languages: string[]) => Promise<Prism> = defaultCreateInstance) {
 	if (/\.html\.test$/i.test(filePath)) {
-		const runner = new HighlightHTMLRunner();
-		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
+		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, htmlRunner, createInstance);
 	} else {
-		const runner = new TokenizeJSONRunner();
-		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
+		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, jsonRunner, createInstance);
 	}
 }
 
-/**
- * @param {string} languageIdentifier
- * @param {string} filePath
- * @param {"none" | "insert" | "update"} updateMode
- * @param {Runner<T>} runner
- * @param {(languages: string[]) => Promise<Prism>} createInstance
- * @template T
- */
-export async function runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance) {
+export async function runTestCaseWithRunner<T>(languageIdentifier: string, filePath: string, updateMode: UpdateMethod, runner: Runner<T>, createInstance: (languages: string[]) => Promise<Prism>) {
 	const testCase = TestCaseFile.readFromFile(filePath);
 	const usedLanguages = parseLanguageNames(languageIdentifier);
 
@@ -333,8 +241,8 @@ export async function runTestCaseWithRunner(languageIdentifier, filePath, update
 
 		if (updateMode === 'none') {
 			throw new Error('This test case doesn\'t have an expected token stream.'
-					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
-					+ ' to automatically add the current token stream.');
+				+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
+				+ ' to automatically add the current token stream.');
 		}
 
 		updateFile();
@@ -376,15 +284,10 @@ export async function runTestCaseWithRunner(languageIdentifier, filePath, update
  *
  * It is either the last language or the language followed by a exclamation mark “!”.
  * There should only be one language with an exclamation mark.
- *
- * @param {string} languageIdentifier
- *
- * @returns {{languages: string[], mainLanguage: string}}
  */
-export function parseLanguageNames(languageIdentifier) {
+export function parseLanguageNames(languageIdentifier: string): { languages: string[], mainLanguage: string } {
 	let languages = languageIdentifier.split('+');
-	/** @type {string | null} */
-	let mainLanguage = null;
+	let mainLanguage: string | null = null;
 
 	languages = languages.map(
 		(language) => {
@@ -412,12 +315,8 @@ export function parseLanguageNames(languageIdentifier) {
  * Returns the index at which the given expected string differs from the given actual string.
  *
  * This will returns `undefined` if the strings are equal.
- *
- * @param {string} expected
- * @param {string} actual
- * @returns {number | undefined}
  */
-function firstDiff(expected, actual) {
+function firstDiff(expected: string, actual: string): number | undefined {
 	let i = 0;
 	let j = 0;
 	while (i < expected.length && j < actual.length) {
@@ -440,13 +339,8 @@ function firstDiff(expected, actual) {
  *
  * In out use case, the `withoutSpaces` string is an unformatted JSON string and the `spacey` string is a formatted JSON
  * string.
- *
- * @param {string} spacey
- * @param {string} withoutSpaces
- * @param {number} withoutSpaceIndex
- * @returns {number | undefined}
  */
-function translateIndexIgnoreSpaces(spacey, withoutSpaces, withoutSpaceIndex) {
+function translateIndexIgnoreSpaces(spacey: string, withoutSpaces: string, withoutSpaceIndex: number): number | undefined {
 	let i = 0;
 	let j = 0;
 	while (i < spacey.length && j < withoutSpaces.length) {

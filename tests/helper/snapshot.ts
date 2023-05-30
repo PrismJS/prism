@@ -6,12 +6,7 @@ use(jestSnapshotPlugin());
 
 export const useSnapshot = Symbol();
 
-/**
- * @param {T} actual
- * @param {T | useSnapshot} expected
- * @template T
- */
-export function assertEqual(actual, expected) {
+export function assertEqual<T>(actual: T, expected: T | typeof useSnapshot) {
 	if (expected === useSnapshot) {
 		expect(actual).toMatchSnapshot();
 	} else {

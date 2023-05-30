@@ -5,20 +5,15 @@ import { loadAllTests } from './helper/test-discovery';
 import { BFS, BFSPathToPrismTokenPath } from './helper/util';
 
 describe('Pattern test coverage', () => {
-	/**
-	 * @type {Map<string, PatternData>}
-	 * @typedef PatternData
-	 * @property {RegExp} pattern
-	 * @property {string} language
-	 * @property {Set<string>} from
-	 * @property {RegExpExecArray[]} matches
-	 */
-	const patterns = new Map();
+	interface PatternData {
+		pattern: RegExp;
+		language: string;
+		from: Set<string>;
+		matches: RegExpExecArray[];
+	}
+	const patterns = new Map<string, PatternData>();
 
-	/**
-	 * @param {string | string[]} languages
-	 */
-	async function createInstance(languages) {
+	async function createInstance(languages: string | string[]) {
 		const Prism = await PrismLoader.createInstance(languages);
 
 		const root = Object.fromEntries([...Prism.components['entries'].keys()].map((id) => [id, Prism.components.getLanguage(id)]));
@@ -151,20 +146,11 @@ describe('Pattern test coverage', () => {
 		}
 	});
 
-	/**
-	 * @param {string} language
-	 * @returns {PatternData[]}
-	 */
-	function getAllOf(language) {
+	function getAllOf(language: string) {
 		return [...patterns.values()].filter((d) => d.language === language);
 	}
 
-	/**
-	 * @param {string} string
-	 * @param {number} maxLength
-	 * @returns {string}
-	 */
-	function short(string, maxLength) {
+	function short(string: string, maxLength: number): string {
 		if (string.length > maxLength) {
 			return string.slice(0, maxLength - 1) + '…';
 		} else {
@@ -175,11 +161,8 @@ describe('Pattern test coverage', () => {
 	/**
 	 * If the given pattern string describes a keyword list, all keyword will be returned. Otherwise, `null` will be
 	 * returned.
-	 *
-	 * @param {RegExp} pattern
-	 * @returns {Set<string> | null}
 	 */
-	function getKeywordList(pattern) {
+	function getKeywordList(pattern: RegExp): Set<string> | null {
 		// Right now, only keyword lists of the form /\b(?:foo|bar)\b/ are supported.
 		// In the future, we might want to convert these regexes to NFAs and iterate all words to cover more complex
 		// keyword lists and even operator and punctuation lists.
@@ -199,11 +182,7 @@ describe('Pattern test coverage', () => {
 		}
 	}
 
-	/**
-	 * @param {Iterable<string>} occurrences
-	 * @returns {{ origin: string; otherOccurrences: string[] }}
-	 */
-	function splitOccurrences(occurrences) {
+	function splitOccurrences(occurrences: Iterable<string>): { origin: string; otherOccurrences: string[] } {
 		const all = [...occurrences];
 		return {
 			origin: all[0],
@@ -211,12 +190,7 @@ describe('Pattern test coverage', () => {
 		};
 	}
 
-	/**
-	 * @param {PatternData} data
-	 * @param {string[]} messageLines
-	 * @returns {string}
-	 */
-	function formatProblem(data, messageLines) {
+	function formatProblem(data: PatternData, messageLines: string[]): string {
 		const { origin, otherOccurrences } = splitOccurrences(data.from);
 
 		const lines = [
@@ -238,11 +212,7 @@ describe('Pattern test coverage', () => {
 	}
 });
 
-/**
- * @param {RegExp} regex
- * @returns {RegExp}
- */
-function makeGlobal(regex) {
+function makeGlobal(regex: RegExp): RegExp {
 	if (regex.global) {
 		return regex;
 	} else {

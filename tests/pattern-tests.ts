@@ -8,14 +8,15 @@ import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { TestCaseFile, parseLanguageNames } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
-import { BFS, BFSPathToPrismTokenPath, parseRegex } from './helper/util';
+import { BFS, BFSPathToPrismTokenPath, LiteralAST, PathItem, parseRegex } from './helper/util';
+import { Prism } from '../src/core';
+import { CapturingGroup, Element, Group, LookaroundAssertion, Node, Pattern } from 'regexpp/ast';
+import { Grammar } from '../src/types';
 
 /**
  * A map from language id to a list of code snippets in that language.
- *
- * @type {Map<string, string[]>}
  */
-const testSnippets = new Map();
+const testSnippets = new Map<string, string[]>();
 const testSuite = loadAllTests();
 for (const [languageIdentifier, files] of testSuite) {
 	const lang = parseLanguageNames(languageIdentifier).mainLanguage;
@@ -56,59 +57,34 @@ for (const lang of getLanguageIds()) {
 
 /**
  * Tests all patterns in the given Prism instance.
- *
- * @param {() => Promise<import('../src/core/prism').Prism | undefined>} getPrism
- * @param {string} mainLanguage
- *
- * @typedef {import("./helper/util").LiteralAST} LiteralAST
- * @typedef {import("regexpp/ast").CapturingGroup} CapturingGroup
- * @typedef {import("regexpp/ast").Element} Element
- * @typedef {import("regexpp/ast").Group} Group
- * @typedef {import("regexpp/ast").LookaroundAssertion} LookaroundAssertion
- * @typedef {import("regexpp/ast").Pattern} Pattern
  */
-function testPatterns(getPrism, mainLanguage) {
+function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: string) {
 
 	/**
 	 * Returns a list of relevant languages in the Prism instance.
 	 *
 	 * The list does not included readonly dependencies and aliases.
-	 *
-	 * @returns {string[]}
 	 */
-	function getRelevantLanguages() {
+	function getRelevantLanguages(): string[] {
 		return [mainLanguage];
 	}
 
-	/**
-	 * Invokes the given function on every pattern in `Prism.languages`.
-	 *
-	 * _Note:_ This will aggregate all errors thrown by the given callback and throw an aggregated error at the end
-	 * of the iteration. You can also append any number of errors per callback using the `reportError` function.
-	 *
-	 * @param {(values: ForEachPatternCallbackValue) => void} callback
-	 *
-	 * @typedef ForEachPatternCallbackValue
-	 * @property {RegExp} pattern
-	 * @property {LiteralAST} ast
-	 * @property {string} tokenPath
-	 * @property {string} name
-	 * @property {any} parent
-	 * @property {boolean} lookbehind Whether the first capturing group of the pattern is a Prism lookbehind group.
-	 * @property {CapturingGroup | undefined} lookbehindGroup
-	 * @property {import('./helper/util').PathItem[]} path
-	 * @property {(message: string) => void} reportError
-	 */
-	async function forEachPattern(callback) {
+	interface ForEachPatternCallbackValue {
+		pattern: RegExp;
+		ast: LiteralAST;
+		tokenPath: string;
+		name: string;
+		parent: any;
+		lookbehind: boolean;
+		lookbehindGroup: CapturingGroup | undefined;
+		path: PathItem[];
+		reportError: (message: string) => void;
+	}
+	async function forEachPattern(callback: (values: ForEachPatternCallbackValue) => void) {
 		const visited = new Set();
-		/** @type {(Error | string)[]} */
-		const errors = [];
+		const errors: (Error | string)[] = [];
 
-		/**
-		 * @param {import('../src/types').Grammar} grammar
-		 * @param {string} rootStr
-		 */
-		function traverse(grammar, rootStr) {
+		function traverse(grammar: Grammar, rootStr: string) {
 			if (visited.has(grammar)) {
 				return;
 			}
@@ -186,17 +162,15 @@ function testPatterns(getPrism, mainLanguage) {
 		}
 	}
 
+	interface ForEachCapturingGroupCallbackValue {
+		group: CapturingGroup;
+		/** Note: Starts at 1. */
+		number: number;
+	}
 	/**
 	 * Invokes the given callback for all capturing groups in the given pattern in left to right order.
-	 *
-	 * @param {Pattern} pattern
-	 * @param {(values: ForEachCapturingGroupCallbackValue) => void} callback
-	 *
-	 * @typedef ForEachCapturingGroupCallbackValue
-	 * @property {CapturingGroup} group
-	 * @property {number} number Note: Starts at 1.
 	 */
-	function forEachCapturingGroup(pattern, callback) {
+	function forEachCapturingGroup(pattern: Pattern, callback: (values: ForEachCapturingGroupCallbackValue) => void) {
 		let number = 0;
 		visitRegExpAST(pattern, {
 			onCapturingGroupEnter(node) {
@@ -286,11 +260,7 @@ function testPatterns(getPrism, mainLanguage) {
 
 	it('- should have nice names and aliases', async () => {
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
-		/**
-		 * @param {string} name
-		 * @param {string} [desc]
-		 */
-		function testName(name, desc = 'token name') {
+		function testName(name: string, desc = 'token name') {
 			if (!niceName.test(name)) {
 				assert.fail(`The ${desc} '${name}' does not match ${niceName}.\n\n`
 					+ `To fix this, choose a name that matches the above regular expression.`);
@@ -369,11 +339,8 @@ function testPatterns(getPrism, mainLanguage) {
 
 /**
  * Returns the first capturing group in the given pattern.
- *
- * @param {Pattern} pattern
- * @returns {CapturingGroup | undefined}
  */
-function getFirstCapturingGroup(pattern) {
+function getFirstCapturingGroup(pattern: Pattern): CapturingGroup | undefined {
 	let cap = undefined;
 
 	try {
@@ -392,11 +359,8 @@ function getFirstCapturingGroup(pattern) {
 
 /**
  * Returns whether the given element will always at the start of the whole match.
- *
- * @param {Element} element
- * @returns {boolean}
  */
-function isFirstMatch(element) {
+function isFirstMatch(element: Element): boolean {
 	const parent = element.parent;
 	switch (parent.type) {
 		case 'Alternative': {
@@ -426,33 +390,22 @@ function isFirstMatch(element) {
 
 /**
  * Returns whether the given node either is or is a child of what is effectively a Kleene star.
- *
- * @param {import("regexpp/ast").Node} node
- * @returns {boolean}
  */
-function underAStar(node) {
+function underAStar(node: Node): boolean {
 	return RAA.getEffectiveMaximumRepetition(node) > 10;
 }
 
-/**
- * @param {Iterable<T>} iter
- * @returns {T | undefined}
- * @template T
- */
-function firstOf(iter) {
+function firstOf<T>(iter: Iterable<T>): T | undefined {
 	const [first] = iter;
 	return first;
 }
 
 /**
  * A set of all safe (non-exponentially backtracking) RegExp literals (string).
- *
- * @type {Set<string | RegExp>}
  */
-const expoSafeRegexes = new Set();
+const expoSafeRegexes = new Set<string | RegExp>();
 
-/** @type {Transformers.CreationOptions} */
-const options = {
+const options: Transformers.CreationOptions = {
 	ignoreOrder: true,
 	ignoreAmbiguity: true
 };
@@ -468,27 +421,15 @@ const transformer = combineTransformers([
 ]);
 
 
-/** @type {Map<string, Map<string, Error | null>>} */
-const resultCache = new Map();
-/**
- * @param {string} cacheName
- * @returns {Map<string, Error | null>}
- */
-function getResultCache(cacheName) {
+const resultCache = new Map<string, Map<string, Error | null>>();
+function getResultCache(cacheName: string) {
 	let cache = resultCache.get(cacheName);
 	if (cache === undefined) {
 		resultCache.set(cacheName, cache = new Map());
 	}
 	return cache;
 }
-/**
- * @param {string} cacheName
- * @param {T} cacheKey
- * @param {(node: T) => void} compute
- * @returns {void}
- * @template {import('regexpp/ast').Node} T
- */
-function withResultCache(cacheName, cacheKey, compute) {
+function withResultCache<T extends Node>(cacheName: string, cacheKey: T, compute: (node: T) => void) {
 	const hasBackRef = RAA.hasSomeDescendant(cacheKey, (n) => n.type === 'Backreference');
 	if (hasBackRef) {
 		compute(cacheKey);
@@ -512,10 +453,7 @@ function withResultCache(cacheName, cacheKey, compute) {
 	}
 }
 
-/**
- * @param {unknown} error
- */
-function asError(error) {
+function asError(error: unknown) {
 	if (error instanceof Error) {
 		return error;
 	} else {
@@ -523,13 +461,7 @@ function asError(error) {
 	}
 }
 
-/**
- * @param {string} path
- * @param {RegExp} pattern
- * @param {LiteralAST} [ast]
- * @returns {void}
- */
-function checkExponentialBacktracking(path, pattern, ast) {
+function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: LiteralAST) {
 	if (expoSafeRegexes.has(pattern)) {
 		// we know that the pattern won't cause exp backtracking because we checked before
 		return;
@@ -547,11 +479,8 @@ function checkExponentialBacktracking(path, pattern, ast) {
 	const parser = JS.Parser.fromAst(ast);
 	/**
 	 * Parses the given element and creates its NFA.
-	 *
-	 * @param {import("refa").JS.ParsableElement} element
-	 * @returns {NFA}
 	 */
-	function toNFA(element) {
+	function toNFA(element: JS.ParsableElement): NFA {
 		const { expression, maxCharacter } = parser.parseElement(element, {
 			maxBackreferenceWords: 1000,
 			backreferences: 'disable'
@@ -563,11 +492,8 @@ function checkExponentialBacktracking(path, pattern, ast) {
 	/**
 	 * Checks whether the alternatives of the given node are disjoint. If the alternatives are not disjoint
 	 * and the give node is a descendant of an effective Kleene star, then an error will be thrown.
-	 *
-	 * @param {CapturingGroup | Group | LookaroundAssertion} node
-	 * @returns {void}
 	 */
-	function checkDisjointAlternatives(node) {
+	function checkDisjointAlternatives(node: CapturingGroup | Group | LookaroundAssertion) {
 		if (!underAStar(node) || node.alternatives.length < 2) {
 			return;
 		}
@@ -677,17 +603,9 @@ function checkExponentialBacktracking(path, pattern, ast) {
 
 /**
  * A set of all safe (non-polynomially backtracking) RegExp literals (string).
- *
- * @type {Set<string | RegExp>}
  */
-const polySafeRegexes = new Set();
-/**
- * @param {string} path
- * @param {RegExp} pattern
- * @param {LiteralAST} [ast]
- * @returns {void}
- */
-function checkPolynomialBacktracking(path, pattern, ast) {
+const polySafeRegexes = new Set<string | RegExp>();
+function checkPolynomialBacktracking(path: string, pattern: RegExp, ast?: LiteralAST) {
 	if (polySafeRegexes.has(pattern)) {
 		// we know that the pattern won't cause poly backtracking because we checked before
 		return;
@@ -760,17 +678,12 @@ function checkPolynomialBacktracking(path, pattern, ast) {
 	polySafeRegexes.add(patternStr);
 }
 
-/**
- * @param {Highlight[]} highlights
- * @param {number} [offset]
- * @returns {string}
- *
- * @typedef Highlight
- * @property {number} start
- * @property {number} end
- * @property {string} [label]
- */
-function highlight(highlights, offset = 0) {
+interface Highlight {
+	start: number;
+	end: number;
+	label?: string;
+}
+function highlight(highlights: Highlight[], offset = 0) {
 	highlights.sort((a, b) => a.start - b.start);
 
 	const lines = [];
@@ -798,20 +711,11 @@ function highlight(highlights, offset = 0) {
 	return lines.join('\n');
 }
 
-/**
- * @param {string} str
- * @param {string} amount
- * @returns {string}
- */
-function indent(str, amount = '    ') {
+function indent(str: string, amount = '    ') {
 	return str.split(/\r?\n/).map((m) => m === '' ? '' : amount + m).join('\n');
 }
 
-/**
- * @param {(exec: RegExp["exec"]) => (this: RegExp, input: string) => RegExpExecArray | null} execSupplier
- * @param {() => Promise<void>} fn
- */
-async function replaceRegExpProto(execSupplier, fn) {
+async function replaceRegExpProto(execSupplier: (exec: RegExp["exec"]) => (this: RegExp, input: string) => RegExpExecArray | null, fn: () => Promise<void>) {
 	const oldExec = RegExp.prototype.exec;
 	const oldTest = RegExp.prototype.test;
 	const newExec = execSupplier(oldExec);

@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import { createTestSuite } from '../../helper/prism-dom-util';
+import { PrismDOM } from '../../helper/prism-loader';
 
 
 describe('Keep Markup', async () => {
@@ -9,12 +10,7 @@ describe('Keep Markup', async () => {
 	});
 
 
-	/**
-	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
-	 * @param {string} html
-	 * @param {string} language
-	 */
-	function highlightInElement({ Prism, document }, html, language = 'none') {
+	function highlightInElement({ Prism, document }: PrismDOM<{}>, html: string, language = 'none') {
 		const pre = document.createElement('pre');
 		pre.className = `language-${language}`;
 		pre.innerHTML = `<code>${html}</code>`;
@@ -25,12 +21,7 @@ describe('Keep Markup', async () => {
 		return code.innerHTML;
 	}
 
-	/**
-	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
-	 * @param {string} html
-	 * @param {string} language
-	 */
-	function keepMarkup(dom, html, language = 'none') {
+	function keepMarkup(dom: PrismDOM<{}>, html: string, language = 'none') {
 		assert.equal(highlightInElement(dom, html, language), html);
 	}
 

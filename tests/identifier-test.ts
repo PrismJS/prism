@@ -2,6 +2,8 @@ import { assert } from 'chai';
 import { toArray } from '../src/shared/util';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
+import { Prism, Token } from '../src/core';
+import { TokenStream } from '../src/core/token';
 
 
 // This is where you can exclude a language from the identifier test.
@@ -13,15 +15,16 @@ import { prettyprint } from './helper/token-stream-transformer';
 //
 // The actual identifiers for all identifier types are defined in the `identifiers` variable.
 
-/**
- * @type {Partial<Record<string, IdentifierTestOptions>>}
- *
- * @typedef IdentifierTestOptions
- * @property {boolean} [word=true]
- * @property {boolean} [number=true]
- * @property {boolean} [template=true]
- */
-const testOptions = {
+interface IdentifierTestOptions {
+	/** @default true */
+	word?: boolean;
+	/** @default true */
+	number?: boolean;
+	/** @default true */
+	template?: boolean;
+}
+
+const testOptions: Partial<Record<string, IdentifierTestOptions>> = {
 	// all of these have a special syntax for tokens of the form __something__
 	'asciidoc': {
 		template: false
@@ -63,8 +66,7 @@ const testOptions = {
 	},
 };
 
-/** @type {Record<keyof IdentifierTestOptions, string[]>} */
-const identifiers = {
+const identifiers: Record<keyof IdentifierTestOptions, string[]> = {
 	word: [
 		'abc',
 		'word',
@@ -112,23 +114,11 @@ for (const lang of getLanguageIds()) {
 	});
 }
 
-/**
- * @param {string} lang
- * @returns {IdentifierTestOptions}
- */
-function getOptions(lang) {
+function getOptions(lang: string): IdentifierTestOptions {
 	return testOptions[lang] || {};
 }
 
-/**
- * @param {string | Token | (string | Token)[]} token
- * @returns {boolean}
- *
- * @typedef Token
- * @property {string} type
- * @property {string | Token | (string | Token)[]} content
- */
-function isNotBroken(token) {
+function isNotBroken(token: string | Token | TokenStream): boolean {
 	if (typeof token === 'string') {
 		return true;
 	} else if (Array.isArray(token)) {
@@ -140,17 +130,9 @@ function isNotBroken(token) {
 
 /**
  * Tests all patterns in the given Prism instance.
- *
- * @param {Promise<import('../src/core/prism').Prism>} getPrism
- * @param {string} lang
  */
-function testLiterals(getPrism, lang) {
-
-	/**
-	 * @param {string[]} identifierElements
-	 * @param {keyof IdentifierTestOptions} identifierType
-	 */
-	async function matchNotBroken(identifierElements, identifierType) {
+function testLiterals(getPrism: Promise<Prism>, lang: string) {
+	async function matchNotBroken(identifierElements: string[], identifierType: keyof IdentifierTestOptions) {
 		const Prism = await getPrism;
 		for (const id of Prism.components['entries'].keys()) {
 			const grammar = Prism.components.getLanguage(id);
@@ -189,7 +171,7 @@ function testLiterals(getPrism, lang) {
 
 	const options = getOptions(lang);
 	for (const key in identifiers) {
-		const identifierType = /** @type {keyof IdentifierTestOptions} */ (key);
+		const identifierType = (key as keyof IdentifierTestOptions);
 		const element = identifiers[identifierType];
 		if (options[identifierType] !== false) {
 			it(`- should not break ${identifierType} identifiers`, async () => {

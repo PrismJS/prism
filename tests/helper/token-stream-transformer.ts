@@ -1,17 +1,14 @@
 import { getLeadingSpaces, getTrailingSpaces } from './util';
 
-/**
- * @typedef TokenStreamItem
- * @property {string} type
- * @property {string | Array<string|TokenStreamItem>} content
- *
- * @typedef {Array<string|TokenStreamItem>} TokenStream
- *
- * @typedef {Array<string | [string, string | SimplifiedTokenStream]>} SimplifiedTokenStream
- *
- * @typedef {Array<PrettyTokenStreamItem>} PrettyTokenStream
- * @typedef {string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream]} PrettyTokenStreamItem
- */
+interface TokenStreamItem {
+	type: string;
+	content: string | (string | TokenStreamItem)[];
+}
+type TokenStream = (string | TokenStreamItem)[];
+type SimplifiedTokenStream = (string | [string, string | SimplifiedTokenStream])[];
+type PrettyTokenStream = PrettyTokenStreamItem[]
+type PrettyTokenStreamItem = string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream];
+
 
 /**
  * Simplifies the token stream to ease the matching with the expected token stream.
@@ -19,20 +16,13 @@ import { getLeadingSpaces, getTrailingSpaces } from './util';
  * * Strings are kept as-is
  * * In arrays each value is transformed individually
  * * Values that are empty (empty arrays or strings only containing whitespace)
- *
- * @param {TokenStream} tokenStream
- * @returns {SimplifiedTokenStream}
  */
-export function simplify(tokenStream) {
+export function simplify(tokenStream: TokenStream): SimplifiedTokenStream {
 	return tokenStream
 		.map(innerSimple)
 		.filter((value) => !(typeof value === 'string' && isBlank(value)));
 
-	/**
-	 * @param {string | TokenStreamItem} value
-	 * @returns {string | [string, string | SimplifiedTokenStream]}
-	 */
-	function innerSimple(value) {
+	function innerSimple(value: string | TokenStreamItem): string | [string, string | SimplifiedTokenStream] {
 		if (typeof value === 'object') {
 			if (Array.isArray(value.content)) {
 				return [value.type, simplify(value.content)];
@@ -45,12 +35,7 @@ export function simplify(tokenStream) {
 	}
 }
 
-/**
- * @param {TokenStream} tokenStream
- * @param {string} [indentation]
- * @returns {string}
- */
-export function prettyprint(tokenStream, indentation) {
+export function prettyprint(tokenStream: TokenStream, indentation?: string): string {
 	return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
 }
 
@@ -61,8 +46,9 @@ export function prettyprint(tokenStream, indentation) {
  * Only if an item is enabled will it appear in the pretty-printed token stream.
  */
 class LineBreakItem {
-	/** @param {number} sourceCount */
-	constructor(sourceCount) {
+	readonly sourceCount: number;
+	enabled: boolean = false;
+	constructor(sourceCount: number) {
 		this.sourceCount = sourceCount;
 		this.enabled = false;
 	}
@@ -73,14 +59,8 @@ class LineBreakItem {
  */
 class GlueItem { }
 
-/**
- * @param {TokenStream} tokenStream
- * @param {number} [level]
- * @returns {PrettyTokenStream}
- */
-function toPrettyTokenStream(tokenStream, level = 0) {
-	/** @type {PrettyTokenStream} */
-	const prettyStream = [];
+function toPrettyTokenStream(tokenStream: TokenStream, level = 0): PrettyTokenStream {
+	const prettyStream: PrettyTokenStream = [];
 	for (const token of tokenStream) {
 		if (typeof token === 'string') {
 			if (isBlank(token)) {
@@ -107,11 +87,7 @@ function toPrettyTokenStream(tokenStream, level = 0) {
 			prettyStream.push(innerSimple(token));
 		}
 	}
-	/**
-	 * @param {TokenStreamItem} value
-	 * @returns {[string, string | PrettyTokenStream]}
-	 */
-	function innerSimple(value) {
+	function innerSimple(value: TokenStreamItem): [string, string | PrettyTokenStream] {
 		if (Array.isArray(value.content)) {
 			return [value.type, toPrettyTokenStream(value.content, level + 1)];
 		} else {
@@ -123,12 +99,7 @@ function toPrettyTokenStream(tokenStream, level = 0) {
 	return prettyStream;
 }
 
-/**
- * @param {PrettyTokenStream} prettyStream
- * @param {number} indentationWidth
- * @returns {void}
- */
-function prettyFormat(prettyStream, indentationWidth) {
+function prettyFormat(prettyStream: PrettyTokenStream, indentationWidth: number): void {
 	// The maximum number of (glued) tokens per line
 	const MAX_TOKEN_PER_LINE = 5;
 	// The maximum number of characters per line
@@ -225,13 +196,7 @@ function prettyFormat(prettyStream, indentationWidth) {
 	}
 }
 
-/**
- * @param {PrettyTokenStream} prettyStream
- * @param {number} [indentationLevel]
- * @param {string} [indentationChar]
- * @returns {string}
- */
-function printPrettyTokenStream(prettyStream, indentationLevel = 1, indentationChar = '    ') {
+function printPrettyTokenStream(prettyStream: PrettyTokenStream, indentationLevel = 1, indentationChar = '    '): string {
 	// can't use tabs because the console will convert one tab to four spaces
 	const indentation = new Array(indentationLevel + 1).join(indentationChar);
 
@@ -289,29 +254,18 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1, indentationC
 
 /**
  * Returns whether the given string is empty or contains only whitespace characters.
- *
- * @param {string} str
- * @returns {boolean}
  */
-function isBlank(str) {
+function isBlank(str: string) {
 	return /^\s*$/.test(str);
 }
-
-/**
- * @param {string} str
- * @returns {number}
- */
-function countLineBreaks(str) {
+function countLineBreaks(str: string) {
 	return str.split(/\r\n?|\n/).length - 1;
 }
 
 /**
  * Trim all line breaks at the start and at the end of the pretty stream.
- *
- * @param {PrettyTokenStream} prettyStream
- * @returns {void}
  */
-function prettyTrimLineBreaks(prettyStream) {
+function prettyTrimLineBreaks(prettyStream: PrettyTokenStream) {
 	let value;
 	while ((value = prettyStream[0])) {
 		if (value instanceof LineBreakItem) {
@@ -332,11 +286,8 @@ function prettyTrimLineBreaks(prettyStream) {
 /**
  * Enables all line breaks in the pretty token stream (but not in nested token stream) that contain at least some
  * number of line breaks in the source token stream.
- *
- * @param {PrettyTokenStream} prettyStream
- * @param {(item: LineBreakItem) => boolean} cond
  */
-function prettyEnableLineBreaks(prettyStream, cond) {
+function prettyEnableLineBreaks(prettyStream: PrettyTokenStream, cond: (item: LineBreakItem) => boolean) {
 	prettyStream.forEach((token) => {
 		if (token instanceof LineBreakItem && cond(token)) {
 			token.enabled = true;
@@ -347,16 +298,10 @@ function prettyEnableLineBreaks(prettyStream, cond) {
 /**
  * Splits the given pretty stream on all items for which `cond` return `true`. The items for which `cond` returns
  * `true` will not be part of any of the created streams. No empty streams will be returned.
- *
- * @param {PrettyTokenStream} prettyStream
- * @param {(item: PrettyTokenStreamItem) => boolean} cond
- * @returns {PrettyTokenStream[]}
  */
-function prettySplit(prettyStream, cond) {
-	/** @type {PrettyTokenStream[]} */
-	const result = [];
-	/** @type {PrettyTokenStream} */
-	let current = [];
+function prettySplit(prettyStream: PrettyTokenStream, cond: (item: PrettyTokenStreamItem) => boolean): PrettyTokenStream[] {
+	const result: PrettyTokenStream[] = [];
+	let current: PrettyTokenStream = [];
 	for (const item of prettyStream) {
 		if (cond(item)) {
 			if (current.length > 0) {
@@ -374,13 +319,7 @@ function prettySplit(prettyStream, cond) {
 	return result;
 }
 
-/**
- * @param {PrettyTokenStream} prettyStream
- * @param {boolean} recursive
- * @param {(item: LineBreakItem) => boolean} cond
- * @returns {boolean}
- */
-function prettySomeLineBreak(prettyStream, recursive, cond) {
+function prettySomeLineBreak(prettyStream: PrettyTokenStream, recursive: boolean, cond: (item: LineBreakItem) => boolean): boolean {
 	for (const item of prettyStream) {
 		if (item instanceof LineBreakItem && cond(item)) {
 			return true;
@@ -390,11 +329,7 @@ function prettySomeLineBreak(prettyStream, recursive, cond) {
 	}
 	return false;
 }
-/**
- * @param {PrettyTokenStream} prettyStream
- * @returns {boolean}
- */
-function prettyContainsNonTriviallyNested(prettyStream) {
+function prettyContainsNonTriviallyNested(prettyStream: PrettyTokenStream) {
 	for (const item of prettyStream) {
 		if (isNested(item) && !isTriviallyNested(item)) {
 			return true;
@@ -402,12 +337,7 @@ function prettyContainsNonTriviallyNested(prettyStream) {
 	}
 	return false;
 }
-/**
- * @param {PrettyTokenStream} prettyStream
- * @param {boolean} recursive
- * @returns {number}
- */
-function prettyCountTokens(prettyStream, recursive) {
+function prettyCountTokens(prettyStream: PrettyTokenStream, recursive: boolean): number {
 	let count = 0;
 	for (const item of prettyStream) {
 		if (isToken(item)) {
@@ -422,12 +352,8 @@ function prettyCountTokens(prettyStream, recursive) {
 
 /**
  * Adds glue between the given tokens in the given stream.
- *
- * @param {PrettyTokenStream} prettyStream
- * @param {string | [string, string | any[]]} prev
- * @param {string | [string, string | any[]]} next
  */
-function prettyGlueTogether(prettyStream, prev, next) {
+function prettyGlueTogether(prettyStream: PrettyTokenStream, prev: string | [string, string | any[]], next: string | [string, string | any[]]) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
 	if (typeof prev !== 'string') {
 		const index = prettyStream.indexOf(prev);
@@ -445,11 +371,8 @@ function prettyGlueTogether(prettyStream, prev, next) {
 }
 /**
  * Glues together all token in the given slice of the given token stream.
- *
- * @param {PrettyTokenStream} prettyStream
- * @param {PrettyTokenStream} slice
  */
-function prettyGlueTogetherAll(prettyStream, slice) {
+function prettyGlueTogetherAll(prettyStream: PrettyTokenStream, slice: PrettyTokenStream) {
 	for (let i = 1, l = slice.length; i < l; i++) {
 		const prev = slice[i - 1];
 		const next = slice[i];
@@ -459,25 +382,12 @@ function prettyGlueTogetherAll(prettyStream, slice) {
 	}
 }
 
-/**
- * @param {PrettyTokenStreamItem} item
- * @returns {item is (string | [string, string | any[]])}
- */
-function isToken(item) {
+function isToken(item: PrettyTokenStreamItem): item is (string | [string, string | any[]]) {
 	return typeof item === 'string' || Array.isArray(item);
 }
-
-/**
- * @param {PrettyTokenStreamItem} item
- * @returns {item is [string, any[]]}
- */
-function isNested(item) {
+function isNested(item: PrettyTokenStreamItem): item is [string, any[]] {
 	return Array.isArray(item) && Array.isArray(item[1]);
 }
-/**
- * @param {PrettyTokenStreamItem} item
- * @returns {item is [string, [string]]}
- */
-function isTriviallyNested(item) {
+function isTriviallyNested(item: PrettyTokenStreamItem): item is [string, [string]] {
 	return isNested(item) && item[1].length === 1 && typeof item[1][0] === 'string';
 }

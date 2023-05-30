@@ -1,36 +1,31 @@
 import * as Prettier from 'prettier';
 import { RegExpParser } from 'regexpp';
+import { Flags, Pattern } from 'regexpp/ast';
 
-/**
- * @typedef {import("regexpp/ast").Pattern} Pattern
- * @typedef {import("regexpp/ast").Flags} Flags
- * @typedef {{ pattern: Pattern, flags: Flags }} LiteralAST
- */
+export interface LiteralAST {
+	pattern: Pattern;
+	flags: Flags;
+}
 
 
 const parser = new RegExpParser();
-/** @type {Map<string, LiteralAST>} */
-const astCache = new Map();
+const astCache = new Map<string, LiteralAST>();
 
-
+export interface PathItem {
+	key: string | null;
+	value: any;
+}
 /**
  * Performs a breadth-first search on the given start element.
- *
- * @param {any} start
- * @param {(path: PathItem[], obj: Record<string, any>) => void} callback
- *
- * @typedef {{ key: string | null, value: any }} PathItem
  */
-export function BFS(start, callback) {
+export function BFS(start: any, callback: (path: PathItem[], obj: Record<string, any>) => void) {
 	const visited = new Set();
-	/** @type {PathItem[][]} */
-	let toVisit = [
+	let toVisit: PathItem[][] = [
 		[{ key: null, value: start }]
 	];
 
 	while (toVisit.length > 0) {
-		/** @type {PathItem[][]} */
-		const newToVisit = [];
+		const newToVisit: PathItem[][] = [];
 
 		for (const path of toVisit) {
 			const obj = path[path.length - 1].value;
@@ -59,12 +54,8 @@ export function BFS(start, callback) {
 /**
  * Given the `BFS` path given to `BFS` callbacks, this will return the Prism language token path of the current
  * value (e.g. `Prism.languages.xml.tag.pattern`).
- *
- * @param {readonly PathItem[]} path
- * @param {string} [root]
- * @returns {string}
  */
-export function BFSPathToPrismTokenPath(path, root = 'Prism.languages') {
+export function BFSPathToPrismTokenPath(path: readonly PathItem[], root: string = 'Prism.languages'): string {
 	let tokenPath = root;
 	for (const { key } of path) {
 		if (!key) {
@@ -82,11 +73,8 @@ export function BFSPathToPrismTokenPath(path, root = 'Prism.languages') {
 
 /**
  * Returns the AST of a given pattern.
- *
- * @param {RegExp} regex
- * @returns {LiteralAST}
  */
-export function parseRegex(regex) {
+export function parseRegex(regex: RegExp): LiteralAST {
 	const key = regex.toString();
 	let literal = astCache.get(key);
 	if (literal === undefined) {
@@ -98,24 +86,14 @@ export function parseRegex(regex) {
 	return literal;
 }
 
-/**
- * @param {string} string
- */
-export function getLeadingSpaces(string) {
+export function getLeadingSpaces(string: string) {
 	return /^\s*/.exec(string)?.[0] ?? '';
 }
-/**
- * @param {string} string
- */
-export function getTrailingSpaces(string) {
+export function getTrailingSpaces(string: string): string {
 	return /\s*$/.exec(string)?.[0] ?? '';
 }
 
-/**
- * @param {string} html
- * @returns {string}
- */
-export function formatHtml(html) {
+export function formatHtml(html: string): string {
 	return Prettier.format(html, {
 		printWidth: 100,
 		tabWidth: 4,

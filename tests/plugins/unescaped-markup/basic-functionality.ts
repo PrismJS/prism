@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import { createTestSuite } from '../../helper/prism-dom-util';
+import { PrismDOM } from '../../helper/prism-loader';
 
 
 describe('Show language', () => {
@@ -8,12 +9,7 @@ describe('Show language', () => {
 		plugins: 'unescaped-markup'
 	});
 
-	/**
-	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
-	 * @param {string} expectedText
-	 * @param {string} code
-	 */
-	function test({ Prism, document }, expectedText, code) {
+	function test({ Prism, document }: PrismDOM<{}>, expectedText: string, code: string) {
 		document.body.innerHTML = code;
 		Prism.highlightAll();
 

@@ -5,11 +5,8 @@ const LANGUAGES_DIR = path.join(__dirname, '..', 'languages');
 
 /**
  * Loads the list of all available tests
- *
- * @param {string} [rootDir]
- * @returns {Map<string, string[]>}
  */
-export function loadAllTests(rootDir = LANGUAGES_DIR) {
+export function loadAllTests(rootDir = LANGUAGES_DIR): Map<string, string[]> {
 	return new Map(getAllDirectories(rootDir).map((language) => {
 		return [language, getAllFiles(path.join(rootDir, language))];
 	}));
@@ -17,12 +14,8 @@ export function loadAllTests(rootDir = LANGUAGES_DIR) {
 
 /**
  * Loads the list of available tests that match the given languages
- *
- * @param {string|string[]} languages
- * @param {string} [rootDir]
- * @returns {Map<string, string[]>}
  */
-export function loadSomeTests(languages, rootDir = LANGUAGES_DIR) {
+export function loadSomeTests(languages: string | string[], rootDir = LANGUAGES_DIR): Map<string, string[]> {
 	return new Map(getSomeDirectories(rootDir, languages).map((language) => {
 		return [language, getAllFiles(path.join(rootDir, language))];
 	}));
@@ -32,11 +25,8 @@ export function loadSomeTests(languages, rootDir = LANGUAGES_DIR) {
 /**
  * Returns a list of all (sub)directories (just the directory names, not full paths)
  * in the given src directory
- *
- * @param {string} src
- * @returns {string[]}
  */
-export function getAllDirectories(src) {
+export function getAllDirectories(src: string): string[] {
 	return fs.readdirSync(src).filter((file) => {
 		return fs.statSync(path.join(src, file)).isDirectory();
 	});
@@ -45,12 +35,8 @@ export function getAllDirectories(src) {
 /**
  * Returns a list of all (sub)directories (just the directory names, not full paths)
  * in the given src directory, matching the given languages
- *
- * @param {string} src
- * @param {string|string[]} languages
- * @returns {string[]}
  */
-export function getSomeDirectories(src, languages) {
+export function getSomeDirectories(src: string, languages: string | string[]): string[] {
 	return fs.readdirSync(src).filter((file) => {
 		return fs.statSync(path.join(src, file)).isDirectory() && directoryMatches(file, languages);
 	});
@@ -58,11 +44,8 @@ export function getSomeDirectories(src, languages) {
 
 /**
  * Returns whether a directory matches one of the given languages.
- *
- * @param {string} directory
- * @param {string|string[]} languages
  */
-export function directoryMatches(directory, languages) {
+export function directoryMatches(directory: string, languages: string | string[]): boolean {
 	if (!Array.isArray(languages)) {
 		languages = [languages];
 	}
@@ -73,11 +56,8 @@ export function directoryMatches(directory, languages) {
 
 /**
  * Returns a list of all full file paths to all files in the given src directory
- *
- * @param {string} src
- * @returns {string[]}
  */
-function getAllFiles(src) {
+function getAllFiles(src: string): string[] {
 	return fs.readdirSync(src)
 		.filter((fileName) => {
 			return path.extname(fileName) === '.test'

@@ -1,35 +1,28 @@
-import { createPrismDOM } from './prism-loader';
+import { KebabToCamelCase } from '../../src/types';
+import { createPrismDOM, PrismDOM, PrismWindow } from './prism-loader';
 import { assertEqual, useSnapshot } from './snapshot';
 import { formatHtml } from './util';
 
-/**
- * @param {import('./prism-loader').PrismWindow<{}>} window
- *
- * @typedef AssertOptions
- * @property {string} [language]
- * @property {string} code
- * @property {boolean} [format]
- * @property {string | useSnapshot} [expected]
- */
-export function createUtil(window) {
+interface AssertOptions {
+	language?: string;
+	code: string;
+	format?: boolean;
+	expected?: string | typeof useSnapshot;
+}
+
+export function createUtil(window: PrismWindow<{}>) {
 	const { Prism, document } = window;
 
 	return {
 		assert: {
-			/**
-			 * @param {AssertOptions} param0
-			 */
-			highlight({ language = 'none', code, format = true, expected = useSnapshot }) {
+			highlight({ language = 'none', code, format = true, expected = useSnapshot }: AssertOptions) {
 				let actual = Prism.highlight(code, language);
 				if (format) {
 					actual = formatHtml(actual);
 				}
 				assertEqual(actual, expected);
 			},
-			/**
-			 * @param {AssertOptions} param0
-			 */
-			highlightElement({ language = 'none', code, format = true, expected = useSnapshot }) {
+			highlightElement({ language = 'none', code, format = true, expected = useSnapshot }: AssertOptions) {
 				const element = document.createElement('code');
 				element.classList.add('language-' + language);
 				element.textContent = code;
@@ -42,10 +35,7 @@ export function createUtil(window) {
 				}
 				assertEqual(actual, expected);
 			},
-			/**
-			 * @param {AssertOptions & { attributes?: Record<string, string> }} param0
-			 */
-			highlightPreElement({ language = 'none', attributes = {}, code, format = false, expected = useSnapshot }) {
+			highlightPreElement({ language = 'none', attributes = {}, code, format = false, expected = useSnapshot }: AssertOptions & { attributes?: Record<string, string> }) {
 				const preElement = document.createElement('pre');
 				for (const key in attributes) {
 					const value = attributes[key];
@@ -69,22 +59,11 @@ export function createUtil(window) {
 	};
 }
 
-/**
- * @typedef {(
- *   import('./prism-loader').PrismDOM<{ plugins: Record<import('../../src/types').KebabToCamelCase<T>, {}> }>
- *   & { util: ReturnType<typeof createUtil> }
- * )} TestSuiteDom
- * @template {string} T
- */
+export type TestSuiteDom<T extends string> = PrismDOM<{ plugins: Record<KebabToCamelCase<T>, {}> }> & { util: ReturnType<typeof createUtil> };
 
-/**
- * @param {{ languages?: string | string[]; plugins?: T | T[] }} options
- * @returns {{
- *   it: (title: string, fn: (dom: TestSuiteDom<T>) => void) => void
- * }}
- * @template {string} T
- */
-export function createTestSuite(options) {
+export function createTestSuite<T extends string>(options: { languages?: string | string[]; plugins?: T | T[] }): {
+	it: (title: string, fn: (dom: TestSuiteDom<T>) => void) => void
+} {
 	return {
 		it: (title, fn) => {
 			it(title, async () => {
@@ -99,7 +78,7 @@ export function createTestSuite(options) {
 					}
 
 					dom.withGlobals(() => {
-						fn(/** @type {any} */({ ...dom, util: createUtil(dom.window) }));
+						fn({ ...dom, util: createUtil(dom.window) } as any);
 					});
 				} finally {
 					dom.window.close();

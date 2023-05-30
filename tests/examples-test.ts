@@ -14,10 +14,9 @@ describe('Examples', () => {
 		// it's just plain text
 		'plain'
 	]);
-	const validFiles = new Set();
+	const validFiles = new Set<string>();
 
-	/** @type {string[]} */
-	const missing = [];
+	const missing: string[] = [];
 	for (const lang of getLanguageIds()) {
 		const file = `prism-${lang}.html`;
 		if (!exampleFiles.has(file)) {
@@ -54,16 +53,11 @@ describe('Examples', () => {
 
 /**
  * Validates the given HTML string of an example file.
- *
- * @param {string} html
  */
-async function validateHTML(html) {
+async function validateHTML(html: string) {
 	const root = await parseHTML(html);
 
-	/**
-	 * @param {TagNode} node
-	 */
-	function checkCodeElements(node) {
+	function checkCodeElements(node: TagNode) {
 		if (node.tagName === 'code') {
 			assert.equal(node.children.length, 1,
 				'A <code> element is only allowed to contain text, no tags. '
@@ -114,33 +108,28 @@ async function validateHTML(html) {
 	}
 }
 
+interface TagNode {
+	type: "tag"
+	tagName: string | null
+	attributes: Record<string, string>
+	children: (TagNode | TextNode)[]
+}
+interface TextNode {
+	type: "text"
+	rawText: string
+}
 /**
  * Parses the given HTML fragment and returns a simple tree of the fragment.
- *
- * @param {string} html
- * @returns {Promise<TagNode>}
- *
- * @typedef TagNode
- * @property {"tag"} type
- * @property {string | null} tagName
- * @property {Object<string, string>} attributes
- * @property {(TagNode | TextNode)[]} children
- *
- * @typedef TextNode
- * @property {"text"} type
- * @property {string} rawText
  */
-function parseHTML(html) {
+function parseHTML(html: string): Promise<TagNode> {
 	return new Promise((resolve, reject) => {
-		/** @type {TagNode} */
-		const tree = {
+		const tree: TagNode = {
 			type: 'tag',
 			tagName: null,
 			attributes: {},
 			children: []
 		};
-		/** @type {TagNode[]} */
-		const stack = [tree];
+		const stack: TagNode[] = [tree];
 
 		const p = new Parser({
 			onerror(err) {
@@ -158,8 +147,7 @@ function parseHTML(html) {
 			},
 
 			onopentag(name, attrs) {
-				/** @type {TagNode} */
-				const newElement = {
+				const newElement: TagNode = {
 					type: 'tag',
 					tagName: name,
 					attributes: attrs,

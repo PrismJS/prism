@@ -1,11 +1,9 @@
 import { assert } from 'chai';
 import { Prism } from '../../src/core/prism';
 import { simplify } from '../helper/token-stream-transformer';
+import { Grammar } from '../../src/types';
 
-/**
- * @param {{ grammar: import('../../src/types').Grammar, code: string, expected: any }} param0
- */
-function testTokens({ grammar, code, expected }) {
+function testTokens({ grammar, code, expected }: { grammar: Grammar, code: string, expected: any }) {
 	const instance = new Prism();
 	instance.components.add({ id: 'test', grammar });
 
