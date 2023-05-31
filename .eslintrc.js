@@ -148,7 +148,7 @@ module.exports = {
 
 	overrides: [
 		{
-			files: ['*.d.ts'],
+			files: ['*.ts'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				tsconfigRootDir: __dirname,
@@ -161,12 +161,39 @@ module.exports = {
 				'plugin:@typescript-eslint/recommended-requiring-type-checking'
 			],
 			rules: {
-				'no-use-before-define': 'off'
+				'no-use-before-define': 'off',
+
+				// I turned this rule off because we use `hasOwnProperty` in a lot of places
+				// TODO: Think about re-enabling this rule
+				'no-prototype-builtins': 'off',
+
+
+				// turning off some regex rules
+				// these are supposed to protect against accidental use but we need those quite often
+				'no-control-regex': 'off',
+				'no-empty-character-class': 'off',
+				'no-useless-escape': 'off',
+
+				// type rules
+				'@typescript-eslint/ban-types': [
+					'error',
+					{
+						'types': {
+							// un-ban a type that's banned by default
+							'{}': false
+						},
+						'extendDefaults': true
+					}
+				],
+				'@typescript-eslint/consistent-type-imports': [
+					'warn',
+					{ disallowTypeAnnotations: true }
+				]
 			}
 		},
 		{
 			// Core
-			files: ['src/core/**/*.js'],
+			files: ['src/core/**/*.ts'],
 			env: {
 				browser: true,
 				node: true,
@@ -174,14 +201,14 @@ module.exports = {
 		},
 		{
 			// Browser-specific parts
-			files: ['src/auto-start.js'],
+			files: ['src/auto-start.ts'],
 			env: {
 				browser: true
 			},
 		},
 		{
 			// Plugins
-			files: ['src/plugins/**/*.js'],
+			files: ['src/plugins/**/*.ts'],
 			env: {
 				browser: true,
 			},
@@ -214,13 +241,42 @@ module.exports = {
 				mocha: true,
 				node: true
 			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./tests/tsconfig.json'],
+			},
+		},
+		{
+			// Benchmark
+			files: [
+				'benchmark/**',
+			],
+			env: {
+				node: true
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./benchmark/tsconfig.json'],
+			},
+		},
+		{
+			// Scripts
+			files: [
+				'scripts/**',
+			],
+			env: {
+				node: true
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./scripts/tsconfig.json'],
+			},
 		},
 		{
 			// Gulp, Danger, and benchmark
 			files: [
 				'gulpfile.js/**',
 				'dangerfile.js',
-				'benchmark/**',
 			],
 			env: {
 				node: true
