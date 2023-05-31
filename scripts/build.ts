@@ -3,6 +3,7 @@ import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import fs from 'fs';
 import { mkdir, readFile, readdir, rm, writeFile, } from 'fs/promises';
+import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
 import { terser as rollupTerser } from 'rollup-plugin-terser';
@@ -11,7 +12,7 @@ import { toArray } from '../src/shared/util';
 import { components } from './components';
 import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
-import type { OutputOptions, Plugin } from 'rollup';
+import type { Plugin, SourceMapInput } from 'rollup';
 
 
 const SRC_DIR = path.join(__dirname, '../src/');
@@ -41,7 +42,7 @@ async function minifyCSS() {
 	for (const id of pluginIds) {
 		const file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.css`);
 		if (fs.existsSync(file)) {
-			input[`plugins/${id}/prism-${id}.css`] = file;
+			input[`plugins/prism-${id}.css`] = file;
 		}
 	}
 
@@ -165,37 +166,43 @@ const dataToInsert = {
 const dataInsertPlugin: Plugin = {
 	name: 'data-insert',
 	async renderChunk(code, chunk) {
-		const placeholderPattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
+		const pattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
 
-		let result = '';
-		let last = 0;
+		// search for placeholders
+		const contained = new Set<string>();
 		let m;
+		while ((m = pattern.exec(code))) {
+			contained.add(m[1]);
+		}
 
-		while ((m = placeholderPattern.exec(code))) {
-			const [, name] = m;
+		if (contained.size === 0) {
+			return null;
+		}
+
+		// fetch placeholder data
+		const dataByName: Record<string, unknown> = {};
+		for (const name of contained) {
 			if (name in dataToInsert) {
-				result += code.slice(last, m.index);
-				last = m.index + m[0].length;
-
-				const data = await dataToInsert[name as keyof typeof dataToInsert]();
-				result += JSON.stringify(data);
+				dataByName[name] = await dataToInsert[name as keyof typeof dataToInsert]();
 			} else {
 				throw new Error(`Unknown placeholder ${name} in ${chunk.fileName}`);
 			}
 		}
 
-		if (last < code.length) {
-			result += code.slice(last);
-		}
-		return result;
+		// replace placeholders
+		const str = new MagicString(code);
+		str.replace(pattern, (_, name: string) => {
+			return JSON.stringify(dataByName[name]);
+		});
+		return toRenderedChunk(str);
 	},
-
 };
 
 const inlineRegexSourcePlugin: Plugin = {
 	name: 'inline-regex-source',
 	renderChunk(code) {
-		return code.replace(
+		const str = new MagicString(code);
+		str.replace(
 			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
 			(m, source: string) => {
 				// escape backslashes
@@ -219,6 +226,7 @@ const inlineRegexSourcePlugin: Plugin = {
 				return "'" + source + "'";
 			}
 		);
+		return toRenderedChunk(str);
 	},
 };
 
@@ -234,12 +242,21 @@ const inlineRegexSourcePlugin: Plugin = {
 const lazyGrammarPlugin: Plugin = {
 	name: 'lazy-grammar',
 	renderChunk(code) {
-		return code.replace(
+		const str = new MagicString(code);
+		str.replace(
 			/^(?<indent>[ \t]+)grammar: (\{[\s\S]*?^\k<indent>\})/m,
 			(m, _, grammar: string) => `\tgrammar: () => (${grammar})`
 		);
+		return toRenderedChunk(str);
 	},
 };
+
+function toRenderedChunk(s: MagicString): { code: string; map: SourceMapInput } {
+	return {
+		code: s.toString(),
+		map: s.generateMap({ hires: true }) as SourceMapInput,
+	};
+}
 
 const terserPlugin = rollupTerser({
 	ecma: 2015,
@@ -271,20 +288,8 @@ async function buildJS() {
 		input[`languages/prism-${id}`] = path.join(SRC_DIR, `languages/prism-${id}.ts`);
 	}
 	for (const id of pluginIds) {
-		input[`plugins/${id}/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
+		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
 	}
-
-	const outputOptions: OutputOptions = {
-		dir: 'dist',
-		chunkFileNames: '_chunks/[name]-[hash].js',
-		validate: true,
-		plugins: [
-			lazyGrammarPlugin,
-			dataInsertPlugin,
-			inlineRegexSourcePlugin,
-			terserPlugin
-		]
-	};
 
 	let bundle;
 	try {
@@ -292,7 +297,36 @@ async function buildJS() {
 			input,
 			plugins: [rollupTypescript({ module: 'esnext' })],
 		});
-		await bundle.write(outputOptions);
+
+		// ESM
+		await bundle.write({
+			dir: 'dist/esm',
+			chunkFileNames: '_chunks/[name]-[hash].js',
+			validate: true,
+			sourcemap: 'hidden',
+			plugins: [
+				lazyGrammarPlugin,
+				dataInsertPlugin,
+				inlineRegexSourcePlugin,
+				terserPlugin
+			]
+		});
+
+		// CommonJS
+		await bundle.write({
+			dir: 'dist/cjs',
+			chunkFileNames: '_chunks/[name]-[hash].js',
+			validate: true,
+			sourcemap: 'hidden',
+			format: 'cjs',
+			exports: 'named',
+			plugins: [
+				lazyGrammarPlugin,
+				dataInsertPlugin,
+				inlineRegexSourcePlugin,
+				terserPlugin
+			]
+		});
 	} finally {
 		await bundle?.close();
 	}
