@@ -63,7 +63,7 @@ export class Registry {
 			forEach(proto.require, register);
 
 			// add plugin namespace
-			if ('plugin' in proto && proto.plugin) {
+			if (proto.plugin) {
 				this.Prism.plugins[kebabToCamelCase(id)] = proto.plugin(this.Prism as never);
 			}
 		};
@@ -73,59 +73,58 @@ export class Registry {
 	}
 
 	private update(changed: ReadonlySet<string>): void {
-		const updateStatus = new Map<string, boolean>();
+		const updateCache = new Map<string, boolean>();
 		const idStack: string[] = [];
 
-		const didUpdate = (id: string): boolean => {
-			let status = updateStatus.get(id);
-			if (status !== undefined) {
-				return status;
+
+		const performUpdateUncached = (id: string): boolean => {
+			// check for circular dependencies
+			const circularStart = idStack.indexOf(id);
+			if (circularStart !== idStack.length - 1) {
+				throw new Error(`Circular dependency ${idStack.slice(circularStart).join(' -> ')} not allowed`);
 			}
 
-			let entry;
-			try {
-				idStack.push(id);
+			// check whether the component is registered
+			const entry = this.entries.get(id);
+			if (!entry) {
+				return false;
+			}
 
-				const circularStart = idStack.indexOf(id);
-				if (circularStart !== idStack.length - 1) {
-					throw new Error(`Circular dependency ${idStack.slice(circularStart).join(' -> ')} not allowed`);
-				}
-
-				entry = this.entries.get(id);
-
-				// eslint-disable-next-line no-use-before-define
-				if (!entry || !shouldRunEffects(entry.proto)) {
-					updateStatus.set(id, status = false);
-					return status;
-				}
-			} finally {
-				idStack.pop();
+			// check whether any dependencies updated
+			if (!shouldRunEffects(entry.proto)) {
+				return false;
 			}
 
 			// reset
 			entry.evaluatedGrammar = undefined;
-			if (entry.evaluatedEffect) {
-				entry.evaluatedEffect();
-			}
+			entry.evaluatedEffect?.();
 
 			// redo effects
-			if (entry.proto.effect) {
-				entry.evaluatedEffect = entry.proto.effect(this.Prism as never);
-			}
+			entry.evaluatedEffect = entry.proto.effect?.(this.Prism as never);
 
-			updateStatus.set(id, status = true);
+			return true;
+		};
+		const performUpdate = (id:string): boolean => {
+			let status = updateCache.get(id);
+			if (status === undefined) {
+				idStack.push(id);
+				status = performUpdateUncached(id);
+				idStack.pop();
+				updateCache.set(id, status);
+			}
 			return status;
 		};
+
 		const shouldRunEffects = (proto: ComponentProto): boolean => {
 			let depsChanged = false;
 
 			forEach(proto.require, ({ id }) => {
-				if (didUpdate(id)) {
+				if (performUpdate(id)) {
 					depsChanged = true;
 				}
 			});
 			forEach(proto.optional, (id) => {
-				if (didUpdate(this.resolveAlias(id))) {
+				if (performUpdate(this.resolveAlias(id))) {
 					depsChanged = true;
 				}
 			});
@@ -133,31 +132,30 @@ export class Registry {
 			return depsChanged || changed.has(proto.id);
 		};
 
-		this.entries.forEach((_, id) => didUpdate(id));
+		this.entries.forEach((_, id) => performUpdate(id));
 	}
 
 	getLanguage(id: string): Grammar | undefined {
 		id = this.resolveAlias(id);
 
 		const entry = this.entries.get(id);
-		if (!entry) {
+		const grammar = entry?.proto.grammar;
+		if (!grammar) {
+			// we do not have the given component registered or the component doesn't define a grammar
 			return undefined;
 		}
+
 		if (entry.evaluatedGrammar) {
+			// use the cached grammar
 			return entry.evaluatedGrammar;
 		}
 
-		if (!('grammar' in entry.proto)) {
-			// languages may require plugins for effects, so we just define that plugins have no grammar
-			return undefined;
-		}
-
-		const grammar = entry.proto.grammar;
 		if (typeof grammar === 'object') {
+			// the grammar is a simple object, so we don't need to evaluate it
 			return entry.evaluatedGrammar = grammar;
 		}
 
-		const required = (id: string) => {
+		const required = (id: string): Grammar => {
 			const grammar = this.getLanguage(id);
 			if (!grammar) {
 				throw new Error(`The language ${id} was not found.`);
@@ -165,12 +163,10 @@ export class Registry {
 			return grammar;
 		};
 
-		entry.evaluatedGrammar = grammar({
+		return entry.evaluatedGrammar = grammar({
 			getLanguage: required,
 			getOptionalLanguage: (id) => this.getLanguage(id),
 			extend: (id, ref) => extend(required(id), id, ref),
 		});
-
-		return entry.evaluatedGrammar;
 	}
 }
