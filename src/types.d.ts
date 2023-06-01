@@ -10,18 +10,18 @@ export interface GrammarOptions {
 }
 export interface ComponentProtoBase<Id extends string = string> {
 	id: Id;
-	require?: LanguageProto | readonly LanguageProto[];
+	require?: ComponentProto | readonly ComponentProto[];
 	optional?: string | readonly string[];
 	alias?: string | readonly string[];
-	// eslint-disable-next-line @typescript-eslint/ban-types
 	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => (() => void);
 }
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
+	plugin?: undefined;
 }
 type PluginType<Name extends string> = Name extends keyof KnownPlugins ? KnownPlugins[Name] : unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
-	// eslint-disable-next-line @typescript-eslint/ban-types
+	grammar?: undefined;
 	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => PluginType<KebabToCamelCase<Id>> & {};
 }
 export type ComponentProto = LanguageProto | PluginProto;
@@ -60,7 +60,6 @@ export type StandardTokenName =
 	| 'url'
 	;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type TokenName = string & {} | StandardTokenName;
 
 /**
