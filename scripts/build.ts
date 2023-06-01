@@ -259,7 +259,7 @@ function toRenderedChunk(s: MagicString): { code: string; map: SourceMapInput } 
 }
 
 const terserPlugin = rollupTerser({
-	ecma: 2015,
+	ecma: 2020,
 	module: true,
 	compress: {
 		passes: 4,
