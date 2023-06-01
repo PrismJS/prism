@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import fs from 'fs';
@@ -6,7 +7,6 @@ import { mkdir, readFile, readdir, rm, writeFile, } from 'fs/promises';
 import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
-import { terser as rollupTerser } from 'rollup-plugin-terser';
 import { webfont } from 'webfont';
 import { toArray } from '../src/shared/util';
 import { components } from './components';
