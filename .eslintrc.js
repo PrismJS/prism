@@ -143,7 +143,9 @@ module.exports = {
 	ignorePatterns: [
 		'vendor/',
 		'node_modules',
-		'dist/'
+		'dist/',
+		'benchmark/downloads/',
+		'benchmark/remotes/',
 	],
 
 	overrides: [
@@ -158,7 +160,8 @@ module.exports = {
 			extends: [
 				'eslint:recommended',
 				'plugin:@typescript-eslint/recommended',
-				'plugin:@typescript-eslint/recommended-requiring-type-checking'
+				'plugin:@typescript-eslint/recommended-requiring-type-checking',
+				'plugin:eslint-comments/recommended'
 			],
 			rules: {
 				'no-use-before-define': 'off',
@@ -167,12 +170,13 @@ module.exports = {
 				// TODO: Think about re-enabling this rule
 				'no-prototype-builtins': 'off',
 
-
 				// turning off some regex rules
 				// these are supposed to protect against accidental use but we need those quite often
 				'no-control-regex': 'off',
 				'no-empty-character-class': 'off',
 				'no-useless-escape': 'off',
+
+				'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
 
 				// type rules
 				'@typescript-eslint/ban-types': [

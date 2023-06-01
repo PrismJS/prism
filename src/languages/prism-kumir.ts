@@ -1,11 +1,10 @@
+/* eslint-disable regexp/no-dupe-characters-character-class */
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'kumir',
 	alias: 'kum',
 	grammar() {
-		/* eslint-disable regexp/no-dupe-characters-character-class */
-
 		/**
 		 * Regular expression for characters that are not allowed in identifiers.
 		 */

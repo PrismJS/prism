@@ -58,6 +58,7 @@
 		"danger": "^10.5.0",
 		"del": "^4.1.1",
 		"eslint": "^8.23.0",
+		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-jsdoc": "^39.3.6",
 		"eslint-plugin-regexp": "^1.9.0",

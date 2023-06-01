@@ -1,11 +1,10 @@
+/* eslint-disable no-misleading-character-class */
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'bsl',
 	alias: 'oscript',
 	grammar() {
-		/* eslint-disable no-misleading-character-class */
-
 		// 1C:Enterprise
 		// https://github.com/Diversus23/
 		//
