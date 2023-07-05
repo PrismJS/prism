@@ -2,14 +2,15 @@
 	"name": "prismjs",
 	"version": "1.29.0",
 	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
-	"main": "prism.js",
+  "type": "module",
+	"main": "dist/core/prism.js",
 	"style": "themes/prism.css",
 	"engines": {
 		"node": ">=14"
 	},
 	"scripts": {
 		"benchmark": "ts-node benchmark/benchmark.ts",
-		"build": "ts-node scripts/build.ts",
+		"build": "ts-node-esm scripts/build.ts && npm run tsc",
 		"prepare": "npm run build",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
@@ -24,7 +25,8 @@
 		"test:plugins": "ts-mocha tests/plugins/**/*.ts",
 		"test:runner": "ts-mocha tests/testrunner-tests.ts",
 		"test": "npm-run-all test:*",
-		"tsc": "tsc && tsc -p tests/tsconfig.json"
+    "typecheck": "tsc --noEmit && tsc -p tests/tsconfig.json --noEmit",
+		"tsc": "tsc"
 	},
 	"repository": {
 		"type": "git",

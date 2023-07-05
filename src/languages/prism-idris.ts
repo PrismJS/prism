@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import haskell from './prism-haskell';
+import { insertBefore } from '../shared/language-util.js';
+import haskell from './prism-haskell.js';
 import type { LanguageProto } from '../types';
 
 export default {

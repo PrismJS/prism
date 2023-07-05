@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import c from './prism-c';
+import { insertBefore } from '../shared/language-util.js';
+import c from './prism-c.js';
 import type { LanguageProto } from '../types';
 
 export default {

@@ -1,0 +1,7 @@
+{
+	"Xrequire": "@babel/register",
+		"Xexperimental-specifier-resolution=node": "",
+	"node-option": [
+		"loader=ts-node/esm"
+	]
+}

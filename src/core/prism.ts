@@ -1,16 +1,16 @@
-import { getLanguage, setLanguage } from '../shared/dom-util';
-import { rest, tokenize } from '../shared/symbols';
-import { htmlEncode } from '../shared/util';
-import { HookState } from './hook-state';
-import { Hooks } from './hooks';
-import { LinkedList } from './linked-list';
-import { Registry } from './registry';
-import { Token } from './token';
+import { getLanguage, setLanguage } from '../shared/dom-util.js';
+import { rest, tokenize } from '../shared/symbols.js';
+import { htmlEncode } from '../shared/util.js';
+import { HookState } from './hook-state.js';
+import { Hooks } from './hooks.js';
+import { LinkedList } from './linked-list.js';
+import { Registry } from './registry.js';
+import { Token } from './token.js';
 import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens } from '../types';
-import type { HookEnvMap } from './hooks';
-import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
-import type { TokenStream } from './token';
+import type { HookEnvMap } from './hooks.js';
+import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list.js';
+import type { TokenStream } from './token.js';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting

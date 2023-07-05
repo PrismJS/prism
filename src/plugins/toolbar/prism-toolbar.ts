@@ -1,6 +1,6 @@
-import { getParentPre } from '../../shared/dom-util';
-import { noop } from '../../shared/util';
-import type { CompleteEnv, HookCallback } from '../../core/hooks';
+import { getParentPre } from '../../shared/dom-util.js';
+import { noop } from '../../shared/util.js';
+import type { CompleteEnv, HookCallback } from '../../core/hooks.js';
 import type { PluginProto } from '../../types';
 
 /**

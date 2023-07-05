@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import javascript from './prism-javascript';
+import { insertBefore } from '../shared/language-util.js';
+import javascript from './prism-javascript.js';
 import type { LanguageProto } from '../types';
 
 export default {

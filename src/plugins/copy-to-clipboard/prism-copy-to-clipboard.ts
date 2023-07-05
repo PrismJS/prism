@@ -1,4 +1,4 @@
-import toolbar from '../toolbar/prism-toolbar';
+import toolbar from '../toolbar/prism-toolbar.js';
 import type { PluginProto } from '../../types';
 
 interface CopyInfo {

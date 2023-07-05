@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import simpleGit from 'simple-git';
-import { components } from './components';
-import { runTask } from './tasks';
+import { components } from './components.js';
+import { runTask } from './tasks.js';
 
 const git = simpleGit(__dirname);
 

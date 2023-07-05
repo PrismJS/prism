@@ -1,5 +1,5 @@
-import { toArray } from '../shared/util';
-import c from './prism-c';
+import { toArray } from '../shared/util.js';
+import c from './prism-c.js';
 import type { LanguageProto } from '../types';
 
 export default {

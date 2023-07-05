@@ -1,8 +1,8 @@
-import { createPrismDOM } from './prism-loader';
-import { assertEqual, useSnapshot } from './snapshot';
-import { formatHtml } from './util';
+import { createPrismDOM } from './prism-loader.js';
+import { assertEqual, useSnapshot } from './snapshot.js';
+import { formatHtml } from './util.js';
 import type { KebabToCamelCase } from '../../src/types';
-import type { PrismDOM, PrismWindow } from './prism-loader';
+import type { PrismDOM, PrismWindow } from './prism-loader.js';
 
 interface AssertOptions {
 	language?: string;

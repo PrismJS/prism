@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util';
-import { toArray } from '../shared/util';
-import clike from './prism-clike';
+import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
+import clike from './prism-clike.js';
 import type { LanguageProto } from '../types';
 
 export default {

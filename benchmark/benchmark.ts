@@ -5,10 +5,10 @@ import fs from 'fs';
 import path from 'path';
 import { gitP } from 'simple-git';
 import { argv } from 'yargs';
-import { parseLanguageNames } from '../tests/helper/test-case';
-import { config as baseConfig } from './config';
-import type { Prism } from '../src/core';
-import type { Config, ConfigOptions } from './config';
+import { parseLanguageNames } from '../tests/helper/test-case.js';
+import { config as baseConfig } from './config.js';
+import type { Prism } from '../src/core.js';
+import type { Config, ConfigOptions } from './config.js';
 import type { Options, Stats } from 'benchmark';
 
 

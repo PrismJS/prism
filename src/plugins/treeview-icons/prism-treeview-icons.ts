@@ -1,4 +1,4 @@
-import treeview from '../../languages/prism-treeview';
+import treeview from '../../languages/prism-treeview.js';
 import type { PluginProto } from '../../types';
 
 export default {

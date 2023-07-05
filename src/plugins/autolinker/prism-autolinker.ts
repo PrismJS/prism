@@ -1,5 +1,5 @@
-import { addHooks } from '../../shared/hooks-util';
-import { tokenizeStrings } from '../../shared/tokenize-strings';
+import { addHooks } from '../../shared/hooks-util.js';
+import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 import type { PluginProto } from '../../types';
 
 export default {

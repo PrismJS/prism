@@ -1,4 +1,4 @@
-import { rest } from '../shared/symbols';
+import { rest } from '../shared/symbols.js';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

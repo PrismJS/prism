@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import clike from './prism-clike';
+import { insertBefore } from '../shared/language-util.js';
+import clike from './prism-clike.js';
 import type { LanguageProto } from '../types';
 
 /**

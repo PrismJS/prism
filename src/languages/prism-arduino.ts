@@ -1,4 +1,4 @@
-import cpp from './prism-cpp';
+import cpp from './prism-cpp.js';
 import type { LanguageProto } from '../types';
 
 export default {

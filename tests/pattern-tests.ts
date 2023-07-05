@@ -3,15 +3,15 @@ import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordS
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import * as scslre from 'scslre';
-import { lazy, toArray } from '../src/shared/util';
-import * as args from './helper/args';
-import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
-import { TestCaseFile, parseLanguageNames } from './helper/test-case';
-import { loadAllTests } from './helper/test-discovery';
-import { BFS, BFSPathToPrismTokenPath, isRegExp, parseRegex } from './helper/util';
-import type { Prism } from '../src/core';
+import { lazy, toArray } from '../src/shared/util.js';
+import * as args from './helper/args.js';
+import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader.js';
+import { TestCaseFile, parseLanguageNames } from './helper/test-case.js';
+import { loadAllTests } from './helper/test-discovery.js';
+import { BFS, BFSPathToPrismTokenPath, isRegExp, parseRegex } from './helper/util.js';
+import type { Prism } from '../src/core.js';
 import type { Grammar, GrammarToken } from '../src/types';
-import type { LiteralAST, PathItem } from './helper/util';
+import type { LiteralAST, PathItem } from './helper/util.js';
 import type { CapturingGroup, Element, Group, LookaroundAssertion, Node, Pattern } from 'regexpp/ast';
 
 /**

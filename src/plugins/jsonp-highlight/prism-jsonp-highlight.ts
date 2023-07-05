@@ -1,5 +1,5 @@
-import { addHooks } from '../../shared/hooks-util';
-import type { Prism } from '../../core';
+import { addHooks } from '../../shared/hooks-util.js';
+import type { Prism } from '../../core.js';
 import type { PluginProto } from '../../types';
 
 function getGlobal(): Record<string, unknown> {

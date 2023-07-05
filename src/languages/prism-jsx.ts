@@ -1,9 +1,9 @@
-import { Token, getTextContent } from '../core/token';
-import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { rest, tokenize } from '../shared/symbols';
-import javascript from './prism-javascript';
-import markup from './prism-markup';
-import type { TokenStream } from '../core/token';
+import { Token, getTextContent } from '../core/token.js';
+import { insertBefore, withoutTokenize } from '../shared/language-util.js';
+import { rest, tokenize } from '../shared/symbols.js';
+import javascript from './prism-javascript.js';
+import markup from './prism-markup.js';
+import type { TokenStream } from '../core/token.js';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 function stringifyToken(token: string | Token | TokenStream | undefined): string {

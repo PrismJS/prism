@@ -1,6 +1,6 @@
-import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
-import markup from './prism-markup';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { rest, tokenize } from '../shared/symbols.js';
+import markup from './prism-markup.js';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {

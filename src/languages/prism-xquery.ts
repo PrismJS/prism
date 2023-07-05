@@ -1,8 +1,8 @@
-import { Token, getTextContent } from '../core/token';
-import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
-import type { TokenStream } from '../core/token';
+import { Token, getTextContent } from '../core/token.js';
+import { withoutTokenize } from '../shared/language-util.js';
+import { tokenize } from '../shared/symbols.js';
+import markup from './prism-markup.js';
+import type { TokenStream } from '../core/token.js';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 function walkTokens(tokens: TokenStream) {

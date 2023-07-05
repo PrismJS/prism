@@ -1,6 +1,6 @@
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
-import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
+import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { rest, tokenize } from '../shared/symbols.js';
 import type { GrammarToken, LanguageProto } from '../types';
 
 /**

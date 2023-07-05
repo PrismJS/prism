@@ -1,6 +1,6 @@
 import type { Grammar, TokenName } from '../types';
-import type { HookState } from './hook-state';
-import type { TokenStream } from './token';
+import type { HookState } from './hook-state.js';
+import type { TokenStream } from './token.js';
 
 export class Hooks {
 	// eslint-disable-next-line func-call-spacing

@@ -1,7 +1,7 @@
-import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
-import javascript from './prism-javascript';
-import markup from './prism-markup';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { tokenize } from '../shared/symbols.js';
+import javascript from './prism-javascript.js';
+import markup from './prism-markup.js';
 import type { LanguageProto } from '../types';
 
 export default {
