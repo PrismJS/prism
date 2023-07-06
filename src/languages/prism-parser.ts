@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import markup from './prism-markup';
+import { insertBefore } from '../shared/language-util.js';
+import markup from './prism-markup.js';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

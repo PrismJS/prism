@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import { createTestSuite } from '../../helper/prism-dom-util';
-import type { PrismDOM } from '../../helper/prism-loader';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
+import type { PrismDOM } from '../../helper/prism-loader.js';
 
 
 describe('Keep Markup', () => {

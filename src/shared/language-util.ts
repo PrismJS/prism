@@ -1,4 +1,4 @@
-import { rest, tokenize } from './symbols';
+import { rest, tokenize } from './symbols.js';
 import type { Grammar, GrammarToken, GrammarTokens } from '../types';
 
 // TODO: Update documentation

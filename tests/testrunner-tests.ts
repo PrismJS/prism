@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import { parseLanguageNames } from './helper/test-case';
-import { simplify } from './helper/token-stream-transformer';
+import { parseLanguageNames } from './helper/test-case.js';
+import { simplify } from './helper/token-stream-transformer.js';
 
 
 describe('The token stream transformer', () => {

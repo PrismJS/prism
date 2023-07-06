@@ -1,4 +1,4 @@
-import { tokenizeStrings } from '../../shared/tokenize-strings';
+import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 import type { PluginProto } from '../../types';
 
 export default {

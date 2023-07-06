@@ -1,5 +1,5 @@
-import { getParentPre } from '../../shared/dom-util';
-import toolbar from '../toolbar/prism-toolbar';
+import { getParentPre } from '../../shared/dom-util.js';
+import toolbar from '../toolbar/prism-toolbar.js';
 import type { PluginProto } from '../../types';
 
 export default {

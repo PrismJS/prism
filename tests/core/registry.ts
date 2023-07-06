@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { Prism } from '../../src/core/prism';
+import { Prism } from '../../src/core/prism.js';
 
 describe('Registry', () => {
 	it('should resolve aliases', () => {

@@ -1,4 +1,4 @@
-import json from './prism-json';
+import json from './prism-json.js';
 import type { LanguageProto } from '../types';
 
 export default {

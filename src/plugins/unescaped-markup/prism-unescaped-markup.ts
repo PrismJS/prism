@@ -1,4 +1,4 @@
-import { addHooks } from '../../shared/hooks-util';
+import { addHooks } from '../../shared/hooks-util.js';
 import type { PluginProto } from '../../types';
 
 export default {

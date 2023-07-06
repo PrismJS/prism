@@ -1,4 +1,4 @@
-import { MARKUP_TAG } from '../shared/languages/patterns';
+import { MARKUP_TAG } from '../shared/languages/patterns.js';
 import type { LanguageProto } from '../types';
 
 export default {

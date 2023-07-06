@@ -1,6 +1,6 @@
-import { getTextContent } from '../core/token';
-import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
+import { getTextContent } from '../core/token.js';
+import { withoutTokenize } from '../shared/language-util.js';
+import { tokenize } from '../shared/symbols.js';
 import type { LanguageProto } from '../types';
 
 export default {

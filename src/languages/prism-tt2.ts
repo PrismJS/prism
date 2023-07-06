@@ -1,8 +1,8 @@
-import { insertBefore } from '../shared/language-util';
-import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
-import clike from './prism-clike';
-import markup from './prism-markup';
+import { insertBefore } from '../shared/language-util.js';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { tokenize } from '../shared/symbols.js';
+import clike from './prism-clike.js';
+import markup from './prism-markup.js';
 import type { LanguageProto } from '../types';
 
 export default {

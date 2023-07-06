@@ -1,7 +1,7 @@
-import { isActive } from '../../shared/dom-util';
-import { combineCallbacks } from '../../shared/hooks-util';
-import { lazy, noop } from '../../shared/util';
-import type { Prism } from '../../core';
+import { isActive } from '../../shared/dom-util.js';
+import { combineCallbacks } from '../../shared/hooks-util.js';
+import { lazy, noop } from '../../shared/util.js';
+import type { Prism } from '../../core.js';
 import type { PluginProto } from '../../types';
 
 const LINE_NUMBERS_CLASS = 'line-numbers';

@@ -1,4 +1,4 @@
-import c from './prism-c';
+import c from './prism-c.js';
 import type { LanguageProto } from '../types';
 
 export default {

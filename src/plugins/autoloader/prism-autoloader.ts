@@ -1,7 +1,7 @@
-import { getParentPre } from '../../shared/dom-util';
-import { resolveAlias } from '../../shared/meta/alias-data';
-import { toArray } from '../../shared/util';
-import type { Prism } from '../../core';
+import { getParentPre } from '../../shared/dom-util.js';
+import { resolveAlias } from '../../shared/meta/alias-data.js';
+import { toArray } from '../../shared/util.js';
+import type { Prism } from '../../core.js';
 import type { ComponentProto, PluginProto } from '../../types';
 
 function getDefaultSrcPath() {

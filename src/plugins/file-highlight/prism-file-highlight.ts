@@ -1,6 +1,6 @@
-import { setLanguage } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
-import type { Prism } from '../../core';
+import { setLanguage } from '../../shared/dom-util.js';
+import { addHooks } from '../../shared/hooks-util.js';
+import type { Prism } from '../../core.js';
 import type { PluginProto } from '../../types';
 
 const FAILURE_MESSAGE = (status: number, message: string) => {

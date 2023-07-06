@@ -1,8 +1,8 @@
-import { insertBefore } from '../shared/language-util';
-import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
-import php from './prism-php';
+import { insertBefore } from '../shared/language-util.js';
+import { embeddedIn } from '../shared/languages/templating.js';
+import { tokenize } from '../shared/symbols.js';
+import markup from './prism-markup.js';
+import php from './prism-php.js';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

@@ -1,4 +1,4 @@
-import { regexEscape } from '../shared/util';
+import { regexEscape } from '../shared/util.js';
 import type { LanguageProto } from '../types';
 
 export default {

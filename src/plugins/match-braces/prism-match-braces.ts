@@ -1,4 +1,4 @@
-import { getParentPre, isActive } from '../../shared/dom-util';
+import { getParentPre, isActive } from '../../shared/dom-util.js';
 import type { PluginProto } from '../../types';
 
 export default {

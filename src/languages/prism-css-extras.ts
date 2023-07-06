@@ -1,4 +1,4 @@
-import cssSelector from './prism-css-selector';
+import cssSelector from './prism-css-selector.js';
 import type { LanguageProto } from '../types';
 
 export default {

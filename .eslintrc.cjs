@@ -15,7 +15,7 @@ module.exports = {
 		'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
 
 		// imports
-		'import/extensions': ['warn', 'never'],
+		'import/extensions': ['warn', 'always'], // "always" is most compatible with default vanilla ES Modules
 		'import/order': [
 			'warn',
 			{

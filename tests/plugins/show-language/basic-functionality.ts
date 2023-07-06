@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import { knownTitles } from '../../../src/shared/meta/title-data';
-import { createTestSuite } from '../../helper/prism-dom-util';
-import type { PrismDOM } from '../../helper/prism-loader';
+import { knownTitles } from '../../../src/shared/meta/title-data.js';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
+import type { PrismDOM } from '../../helper/prism-loader.js';
 
 
 describe('Show language', () => {

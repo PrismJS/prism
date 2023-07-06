@@ -1,7 +1,7 @@
-import { resolveAlias } from './shared/meta/alias-data';
-import { knownLanguages } from './shared/meta/all-languages-data';
-import { toArray } from './shared/util';
-import type { Prism } from './core';
+import { resolveAlias } from './shared/meta/alias-data.js';
+import { knownLanguages } from './shared/meta/all-languages-data.js';
+import { toArray } from './shared/util.js';
+import type { Prism } from './core.js';
 import type { ComponentProto } from './types';
 
 function pathJoin(dir: string, file: string) {

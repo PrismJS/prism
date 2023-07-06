@@ -1,4 +1,4 @@
-import clike from './prism-clike';
+import clike from './prism-clike.js';
 import type { LanguageProto } from '../types';
 
 export default {

@@ -1,4 +1,4 @@
-import { createTestSuite } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
 
 
 describe('Custom class', () => {

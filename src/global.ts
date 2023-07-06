@@ -1,4 +1,4 @@
-import { Prism } from './core/prism';
+import { Prism } from './core/prism.js';
 
 const globalSymbol = Symbol.for('Prism global');
 

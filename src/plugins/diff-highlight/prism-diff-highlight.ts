@@ -1,8 +1,8 @@
-import { Token, getTextContent } from '../../core/token';
-import diff, { PREFIXES } from '../../languages/prism-diff';
-import { addHooks } from '../../shared/hooks-util';
-import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/hooks';
-import type { TokenStream } from '../../core/token';
+import { Token, getTextContent } from '../../core/token.js';
+import diff, { PREFIXES } from '../../languages/prism-diff.js';
+import { addHooks } from '../../shared/hooks-util.js';
+import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/hooks.js';
+import type { TokenStream } from '../../core/token.js';
 import type { PluginProto } from '../../types';
 
 export default {

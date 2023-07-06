@@ -1,11 +1,13 @@
 import { readdirSync } from 'fs';
 import { JSDOM } from 'jsdom';
 import path from 'path';
-import { Prism } from '../../src/core/prism';
-import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
+import { fileURLToPath } from 'url';
+import { Prism } from '../../src/core/prism.js';
+import { isNonNull, lazy, noop, toArray } from '../../src/shared/util.js';
 import type { ComponentProto, LanguageProto, PluginProto } from '../../src/types';
 import type { DOMWindow } from 'jsdom';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.join(__dirname, '../../src');
 
 export const getLanguageIds = lazy(() => {

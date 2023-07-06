@@ -1,7 +1,7 @@
-import { extend } from '../shared/language-util';
-import { forEach, kebabToCamelCase } from '../shared/util';
+import { extend } from '../shared/language-util.js';
+import { forEach, kebabToCamelCase } from '../shared/util.js';
 import type { ComponentProto, Grammar } from '../types';
-import type { Prism } from './prism';
+import type { Prism } from './prism.js';
 
 interface Entry {
 	proto: ComponentProto;

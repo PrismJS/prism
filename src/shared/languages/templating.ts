@@ -1,10 +1,10 @@
-import { getTextContent } from '../../core/token';
-import { withoutTokenize } from '../language-util';
-import type { Prism } from '../../core';
-import type { Registry } from '../../core/registry';
-import type { Token, TokenStream } from '../../core/token';
+import { getTextContent } from '../../core/token.js';
+import { withoutTokenize } from '../language-util.js';
+import type { Prism } from '../../core.js';
+import type { Registry } from '../../core/registry.js';
+import type { Token, TokenStream } from '../../core/token.js';
 import type { Grammar } from '../../types';
-import type { tokenize } from '../symbols';
+import type { tokenize } from '../symbols.js';
 
 
 const placeholderPattern = /___PH\d+___/;

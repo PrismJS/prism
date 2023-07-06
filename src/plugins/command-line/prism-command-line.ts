@@ -1,7 +1,7 @@
-import { getParentPre } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
-import { htmlEncode } from '../../shared/util';
-import type { StateKey } from '../../core/hook-state';
+import { getParentPre } from '../../shared/dom-util.js';
+import { addHooks } from '../../shared/hooks-util.js';
+import { htmlEncode } from '../../shared/util.js';
+import type { StateKey } from '../../core/hook-state.js';
 import type { PluginProto } from '../../types';
 
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;

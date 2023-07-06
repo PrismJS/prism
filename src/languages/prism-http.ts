@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../shared/language-util.js';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {

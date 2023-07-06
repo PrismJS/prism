@@ -1,4 +1,4 @@
-import { getLanguage } from '../../shared/dom-util';
+import { getLanguage } from '../../shared/dom-util.js';
 import type { PluginProto } from '../../types';
 
 type Condition = (value: { element: Element; language: string }) => boolean;

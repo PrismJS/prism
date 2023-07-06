@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
-import ruby from './prism-ruby';
+import { insertBefore } from '../shared/language-util.js';
+import ruby from './prism-ruby.js';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {

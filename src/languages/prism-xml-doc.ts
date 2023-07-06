@@ -1,4 +1,4 @@
-import markup from './prism-markup';
+import markup from './prism-markup.js';
 import type { LanguageProto } from '../types';
 
 export default {

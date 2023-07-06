@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import { Prism } from '../../src/core/prism';
-import { simplify } from '../helper/token-stream-transformer';
+import { Prism } from '../../src/core/prism.js';
+import { simplify } from '../helper/token-stream-transformer.js';
 import type { Grammar } from '../../src/types';
 
 function testTokens({ grammar, code, expected }: { grammar: Grammar, code: string, expected: unknown }) {

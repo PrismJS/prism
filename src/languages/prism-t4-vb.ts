@@ -1,5 +1,5 @@
-import { createT4 } from '../shared/languages/t4-templating';
-import vbnet from './prism-vbnet';
+import { createT4 } from '../shared/languages/t4-templating.js';
+import vbnet from './prism-vbnet.js';
 import type { LanguageProto } from '../types';
 
 export default {
