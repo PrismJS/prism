@@ -1,9 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-	"verbatimModuleSyntax": false, // TODO true
     "noEmit": true,                                   /* Disable emitting files from a compilation. */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
   },
   "include": ["./**/*"]
 }
