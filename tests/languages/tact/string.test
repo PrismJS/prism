@@ -12,7 +12,7 @@
 	["string-literal", [
 		["string", "\"Address\""]
 	]],
-	
+
 	["string-literal", [
 		["string", "\"SomeContractName\""]
 	]]

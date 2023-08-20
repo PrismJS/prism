@@ -13,6 +13,7 @@ message(0x1234) MyMessage {
 
 trait MyTrait {
     get fun traitState(): Int {
+        const CONST_VAL: Int = 42;
         return 0;
     }
 }
@@ -23,11 +24,16 @@ contract MyContract with MyTrait, Ownable? {
     counters: map<Int, Address> /* Address, "Address" */ ;
     map: map<Int as int16, Int as uint32>;
     b: bounced<MyMessage>;
+    c: map<Bool, Cell>;
+    a: map<Slice, String>;
+    d: StringBuilder;
 
     init(owner: Address) {
         self.owner = owner;
     }
     bounced() {}
+    external() {}
+    receive() {}
     virtual fun overrideMe() {}
 }
 
@@ -99,6 +105,13 @@ contract MyContract with MyTrait, Ownable? {
 		["punctuation", ":"],
 		["builtin", "Int"],
 		["punctuation", "{"],
+			["keyword", "const"],
+			["constant", "CONST_VAL"],
+			["punctuation", ":"],
+			["builtin", "Int"],
+			["operator", "="],
+			["number", "42"],
+			["punctuation", ";"],
 			["keyword", "return"],
 			["number", "0"],
 			["punctuation", ";"],
@@ -165,6 +178,32 @@ contract MyContract with MyTrait, Ownable? {
 			["punctuation", ">"]
 		]],
 		["punctuation", ";"],
+		"\r\n    c",
+		["punctuation", ":"],
+		["generics", [
+			["builtin", "map"],
+			["punctuation", "<"],
+			["builtin", "Bool"],
+			["punctuation", ","],
+			["builtin", "Cell"],
+			["punctuation", ">"]
+		]],
+		["punctuation", ";"],
+		"\r\n    a",
+		["punctuation", ":"],
+		["generics", [
+			["builtin", "map"],
+			["punctuation", "<"],
+			["builtin", "Slice"],
+			["punctuation", ","],
+			["builtin", "String"],
+			["punctuation", ">"]
+		]],
+		["punctuation", ";"],
+		"\r\n    d",
+		["punctuation", ":"],
+		["builtin", "StringBuilder"],
+		["punctuation", ";"],
 
 		["keyword", "init"],
 		["punctuation", "("],
@@ -182,6 +221,16 @@ contract MyContract with MyTrait, Ownable? {
 		["punctuation", "}"],
 
 		["keyword", "bounced"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["keyword", "external"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["keyword", "receive"],
 		["punctuation", "("],
 		["punctuation", ")"],
 		["punctuation", "{"],
