@@ -1413,6 +1413,11 @@
 			"require": ["t4-templating", "vbnet"],
 			"owner": "RunDevelopment"
 		},
+		"tact": {
+			"title": "Tact",
+			"alias": "Tact",
+			"owner": "novusnota"
+		},
 		"tap": {
 			"title": "TAP",
 			"owner": "isaacs",

@@ -262,6 +262,7 @@
 		"rq": "sparql",
 		"sclang": "supercollider",
 		"t4": "t4-cs",
+		"Tact": "tact",
 		"trickle": "tremor",
 		"troy": "tremor",
 		"trig": "turtle",
