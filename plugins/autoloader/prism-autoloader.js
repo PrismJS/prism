@@ -192,6 +192,7 @@
 		"gawk": "awk",
 		"sh": "bash",
 		"shell": "bash",
+		"zsh": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
 		"oscript": "bsl",

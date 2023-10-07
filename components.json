@@ -203,10 +203,11 @@
 		},
 		"bash": {
 			"title": "Bash",
-			"alias": ["sh", "shell"],
+			"alias": ["sh", "shell", "zsh"],
 			"aliasTitles": {
 				"sh": "Shell",
-				"shell": "Shell"
+				"shell": "Shell",
+				"zsh": "Zsh"
 			},
 			"owner": "zeitgeist87"
 		},
