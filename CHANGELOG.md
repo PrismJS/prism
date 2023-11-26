@@ -1,6 +1,11 @@
 # Prism Changelog
 
-## 2.0.0 (11-22-2023)
+## 1.29.0-fix.1 (11-26-2023)
+
+- fix: export `Token` in main entrypoint.
+- fix: `manual: true` is now the proper default
+
+## 1.29.0-fix.0 (11-26-2023)
 
 - BREAKING_CHANGE: Convert from UMD to ESM.
 - BREAKING_CHANGE: The autoloader does not currently work. Will require updates to be ESM compatible.

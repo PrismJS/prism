@@ -18,7 +18,7 @@ export const environment = _self;
 
 /**
  * @typedef {object} PrismOptions
- * @property {boolean} [manual=true]
+ * @property {boolean} [manual=false]
  * @property {boolean} [disableWorkerMessageHandler]
  */
 
@@ -47,7 +47,7 @@ export class Prism {
 		this.manual = manual
 
 		if (this.manual == null) {
-			this.manual = false
+			this.manual = true
 		}
 
 		this.plugins = {}

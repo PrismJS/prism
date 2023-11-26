@@ -1,4 +1,4 @@
-import { Prism as OGPrism } from "./prism-core.js"
+import { Prism as OGPrism, Token } from "./prism-core.js"
 import { loader as markupLoader } from "./components/prism-markup.js"
 import { loader as cssLoader } from "./components/prism-css.js"
 import { loader as clikeLoader } from "./components/prism-clike.js"
@@ -18,4 +18,4 @@ class Prism extends OGPrism {
 	}
 }
 
-export { Prism }
+export { Prism, Token }
