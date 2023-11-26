@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['agda']) {
+      return
+    }
 	Prism.languages.agda = {
 		'comment': /\{-[\s\S]*?(?:-\}|$)|--.*/,
 		'string': {
@@ -21,4 +24,4 @@
 		},
 		'keyword': /\b(?:Set|abstract|constructor|data|eta-equality|field|forall|hiding|import|in|inductive|infix|infixl|infixr|instance|let|macro|module|mutual|no-eta-equality|open|overlap|pattern|postulate|primitive|private|public|quote|quoteContext|quoteGoal|quoteTerm|record|renaming|rewrite|syntax|tactic|unquote|unquoteDecl|unquoteDef|using|variable|where|with)\b/,
 	};
-}(Prism));
+}

@@ -1,7 +1,10 @@
-// https://www.graphviz.org/doc/info/lang.html
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['dot']) {
+      return
+    }
 
-(function (Prism) {
-
+	// https://www.graphviz.org/doc/info/lang.html
 	var ID = '(?:' + [
 		// an identifier
 		/[a-zA-Z_\x80-\uFFFF][\w\x80-\uFFFF]*/.source,
@@ -23,10 +26,10 @@
 	};
 
 	/**
-	 * @param {string} source
-	 * @param {string} flags
-	 * @returns {RegExp}
-	 */
+	* @param {string} source
+	* @param {string} flags
+	* @returns {RegExp}
+	*/
 	function withID(source, flags) {
 		return RegExp(source.replace(/<ID>/g, function () { return ID; }), flags);
 	}
@@ -72,5 +75,4 @@
 	};
 
 	Prism.languages.gv = Prism.languages.dot;
-
-}(Prism));
+}

@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['typoscript']) {
+      return
+    }
 	var keywords = /\b(?:ACT|ACTIFSUB|CARRAY|CASE|CLEARGIF|COA|COA_INT|CONSTANTS|CONTENT|CUR|EDITPANEL|EFFECT|EXT|FILE|FLUIDTEMPLATE|FORM|FRAME|FRAMESET|GIFBUILDER|GMENU|GMENU_FOLDOUT|GMENU_LAYERS|GP|HMENU|HRULER|HTML|IENV|IFSUB|IMAGE|IMGMENU|IMGMENUITEM|IMGTEXT|IMG_RESOURCE|INCLUDE_TYPOSCRIPT|JSMENU|JSMENUITEM|LLL|LOAD_REGISTER|NO|PAGE|RECORDS|RESTORE_REGISTER|TEMPLATE|TEXT|TMENU|TMENUITEM|TMENU_LAYERS|USER|USER_INT|_GIFBUILDER|global|globalString|globalVar)\b/;
 
 	Prism.languages.typoscript = {
@@ -76,5 +79,4 @@
 	};
 
 	Prism.languages.tsconfig = Prism.languages.typoscript;
-
-}(Prism));
+}

@@ -1,5 +1,12 @@
-(function (Prism) {
-
+import { loader as clikeLoader } from "./prism-clike.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['groovy']) {
+      return
+    }
+	if (!Prism.languages.clike) {
+		clikeLoader(Prism)
+	}
 	var interpolation = {
 		pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 		lookbehind: true,
@@ -61,5 +68,4 @@
 	});
 
 	interpolation.inside.expression.inside = Prism.languages.groovy;
-
-}(Prism));
+}

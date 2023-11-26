@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
@@ -176,4 +175,4 @@
 	 * Register the toolbar with Prism.
 	 */
 	Prism.hooks.add('complete', hook);
-}());
+}

@@ -1,5 +1,12 @@
-(function (Prism) {
-
+import { loader as clikeLoader } from "./prism-clike.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['java']) {
+      return
+    }
+	if (!Prism.languages.clike) {
+		clikeLoader(Prism)
+	}
 	var keywords = /\b(?:abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|module|native|new|non-sealed|null|open|opens|package|permits|private|protected|provides|public|record(?!\s*[(){}[\]<>=%~.:,;?+\-*/&|^])|requires|return|sealed|short|static|strictfp|super|switch|synchronized|this|throw|throws|to|transient|transitive|try|uses|var|void|volatile|while|with|yield)\b/;
 
 	// full package (optional) + parent classes (optional)
@@ -121,4 +128,4 @@
 			}
 		}
 	});
-}(Prism));
+}

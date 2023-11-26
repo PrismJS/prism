@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['textile']) {
+      return
+    }
+
+	markupLoader(Prism)
+
 	// We don't allow for pipes inside parentheses
 	// to not break table pattern |(. foo |). bar |
 	var modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
@@ -6,9 +15,9 @@
 	// This pattern is necessary to prevent exponential backtracking
 	var parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
 	/**
-	 * @param {string} source
-	 * @param {string} [flags]
-	 */
+	* @param {string} source
+	* @param {string} [flags]
+	*/
 	function withModifier(source, flags) {
 		return RegExp(
 			source
@@ -282,5 +291,4 @@
 	phraseTableInside['footnote'] = nestedPatterns['footnote'];
 	phraseTableInside['acronym'] = nestedPatterns['acronym'];
 	phraseTableInside['mark'] = nestedPatterns['mark'];
-
-}(Prism));
+}

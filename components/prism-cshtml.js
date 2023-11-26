@@ -1,9 +1,20 @@
+import { loader as markupLoader } from "./prism-markup.js"
+import { loader as csharpLoader } from "./prism-csharp.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['cshtml']) {
+      return
+    }
+	if (!Prism.languages.markup) {
+		markupLoader(Prism)
+	}
+	if (!Prism.languages.csharp) {
+		csharpLoader(Prism)
+	}
 // Docs:
 // https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio
 // https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0
-
-(function (Prism) {
-
 	var commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
 	var stringLike =
 		/@(?!")|"(?:[^\r\n\\"]|\\.)*"|@"(?:[^\\"]|""|\\[\s\S])*"(?!")/.source +
@@ -11,12 +22,12 @@
 		/'(?:(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'|(?=[^\\](?!')))/.source;
 
 	/**
-	 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
-	 *
-	 * @param {string} pattern
-	 * @param {number} depthLog2
-	 * @returns {string}
-	 */
+	* Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
+	*
+	* @param {string} pattern
+	* @param {number} depthLog2
+	* @returns {string}
+	*/
 	function nested(pattern, depthLog2) {
 		for (var i = 0; i < depthLog2; i++) {
 			pattern = pattern.replace(/<self>/g, function () { return '(?:' + pattern + ')'; });
@@ -195,5 +206,4 @@
 	});
 
 	Prism.languages.razor = Prism.languages.cshtml;
-
-}(Prism));
+}

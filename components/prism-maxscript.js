@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['maxscript']) {
+      return
+    }
 	var keywords = /\b(?:about|and|animate|as|at|attributes|by|case|catch|collect|continue|coordsys|do|else|exit|fn|for|from|function|global|if|in|local|macroscript|mapped|max|not|of|off|on|or|parameters|persistent|plugin|rcmenu|return|rollout|set|struct|then|throw|to|tool|try|undo|utility|when|where|while|with)\b/i;
 
 
@@ -87,5 +90,4 @@
 		'operator': /[-+*/<>=!]=?|[&^?]|#(?!\()/,
 		'punctuation': /[()\[\]{}.:,;]|#(?=\()|\\$/m
 	};
-
-}(Prism));
+}

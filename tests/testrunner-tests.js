@@ -1,8 +1,6 @@
-'use strict';
-
-const { assert } = require('chai');
-const TokenStreamTransformer = require('./helper/token-stream-transformer');
-const TestCase = require('./helper/test-case');
+import { assert } from "@esm-bundle/chai"
+import * as TokenStreamTransformer from './helper/token-stream-transformer.js'
+import * as TestCase from './helper/test-case.js'
 
 
 describe('The token stream transformer', function () {

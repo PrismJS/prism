@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as javascriptLoader } from "./prism-javascript.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['qml']) {
+      return
+    }
+
+	javascriptLoader(Prism)
 
 	var jsString = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
 	var jsComment = /\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))*\*\//.source;
@@ -57,5 +65,4 @@
 		'keyword': /\b(?:as|import|on)\b/,
 		'punctuation': /[{}[\]:;,]/
 	};
-
-}(Prism));
+}

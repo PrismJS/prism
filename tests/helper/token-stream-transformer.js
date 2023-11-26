@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  * @typedef TokenStreamItem
  * @property {string} type
@@ -14,49 +11,47 @@
  * @typedef {string | LineBreakItem | GlueItem | [string, string | Array]} PrettyTokenStreamItem
  */
 
-module.exports = {
+
+/**
+	* Simplifies the token stream to ease the matching with the expected token stream.
+	*
+	* * Strings are kept as-is
+	* * In arrays each value is transformed individually
+	* * Values that are empty (empty arrays or strings only containing whitespace)
+	*
+	* @param {TokenStream} tokenStream
+	* @returns {SimplifiedTokenStream}
+	*/
+export function simplify(tokenStream) {
+	return tokenStream
+		.map(innerSimple)
+		.filter(value => !(typeof value === 'string' && isBlank(value)));
 
 	/**
-	 * Simplifies the token stream to ease the matching with the expected token stream.
-	 *
-	 * * Strings are kept as-is
-	 * * In arrays each value is transformed individually
-	 * * Values that are empty (empty arrays or strings only containing whitespace)
-	 *
-	 * @param {TokenStream} tokenStream
-	 * @returns {SimplifiedTokenStream}
-	 */
-	simplify: function simplify(tokenStream) {
-		return tokenStream
-			.map(innerSimple)
-			.filter(value => !(typeof value === 'string' && isBlank(value)));
-
-		/**
-		 * @param {string | TokenStreamItem} value
-		 * @returns {string | [string, string | Array]}
-		 */
-		function innerSimple(value) {
-			if (typeof value === 'object') {
-				if (Array.isArray(value.content)) {
-					return [value.type, simplify(value.content)];
-				} else {
-					return [value.type, value.content];
-				}
+		* @param {string | TokenStreamItem} value
+		* @returns {string | [string, string | Array]}
+		*/
+	function innerSimple(value) {
+		if (typeof value === 'object') {
+			if (Array.isArray(value.content)) {
+				return [value.type, simplify(value.content)];
 			} else {
-				return value;
+				return [value.type, value.content];
 			}
+		} else {
+			return value;
 		}
-	},
-
-	/**
-	 * @param {TokenStream} tokenStream
-	 * @param {string} [indentation]
-	 * @returns {string}
-	 */
-	prettyprint(tokenStream, indentation) {
-		return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
 	}
-};
+}
+
+/**
+	* @param {TokenStream} tokenStream
+	* @param {string} [indentation]
+	* @returns {string}
+	*/
+export function prettyprint(tokenStream, indentation) {
+	return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
+}
 
 /**
  * This item indicates that one or multiple line breaks are present between the preceding and following items in the

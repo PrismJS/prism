@@ -1,3 +1,52 @@
+> [!CAUTION]
+> This is a fork of [Prism](https://prismjs.com) intended for ESM.
+> Some things will be slightly different.
+> This project is not associated with PrismJS.
+
+## Why was this fork made?
+
+I wanted to use Prism in a library, however, being a UMD global, I didn't want to interfere
+with other people using the library. I also couldn't get it working with [Web Test Runner]()
+
+## Behaving like the old version
+
+```js
+import { Prism, environment } from "prism-esm"
+
+// {manual: false} turns ON automatic highlighting. Automatic highlighting is disabled by default.
+const prism = new Prism({ manual: false })
+
+// `environment` is basically `globalThis`. In browsers, it refers to `window`.
+environment.Prism = prism
+```
+
+## Loading languages
+
+```js
+import { Prism } from "prism-esm"
+import { loader as RubyLoader } from "prism-esm/components/prism-ruby.js"
+
+const prism = new Prism()
+RubyLoader(prism)
+```
+
+## Plugins
+
+```js
+import { Prism } from "prism-esm"
+import { Plugin as Autolinker } from "prism-esm/plugins/autolinker.js"
+
+const prism = new Prism()
+Autolinker(prism)
+```
+
+## Auto-import languages
+
+This hasn't been set up yet, and probably won't be anytime soon as I currently don't really have a need for it
+and there's quite a lot of complexity around load orders.
+
+### END of fork note
+
 # [Prism](https://prismjs.com/)
 
 [![Build Status](https://github.com/PrismJS/prism/workflows/CI/badge.svg)](https://github.com/PrismJS/prism/actions)

@@ -1,9 +1,13 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['false']) {
+      return
+    }
 	/**
-	 * Based on the manual by Wouter van Oortmerssen.
-	 *
-	 * @see {@link https://github.com/PrismJS/prism/issues/2801#issue-829717504}
-	 */
+	* Based on the manual by Wouter van Oortmerssen.
+	*
+	* @see {@link https://github.com/PrismJS/prism/issues/2801#issue-829717504}
+	*/
 	Prism.languages['false'] = {
 		'comment': {
 			pattern: /\{[^}]*\}/
@@ -29,4 +33,4 @@
 			alias: 'bold'
 		}
 	};
-}(Prism));
+}

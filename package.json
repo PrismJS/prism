@@ -1,12 +1,20 @@
 {
-	"name": "prismjs",
+	"name": "prism-esm",
 	"version": "1.29.0",
-	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
+	"description": "A prism fork intended for ESM",
+	"type": "module",
 	"main": "prism.js",
 	"style": "themes/prism.css",
 	"engines": {
 		"node": ">=6"
 	},
+	"files": [
+		"components/**/*.js",
+		"plugins/**/*",
+		"themes/*.css",
+		"prism.js",
+		"prism-core.js"
+	],
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
 		"build": "gulp",
@@ -22,7 +30,7 @@
 		"test:identifiers": "mocha tests/identifier-test.js",
 		"test:languages": "mocha tests/run.js",
 		"test:patterns": "mocha tests/pattern-tests.js",
-		"test:plugins": "mocha tests/plugins/**/*.js",
+		"test:plugins": "web-test-runner tests/plugins/**/*.js --node-resolve",
 		"test:runner": "mocha tests/testrunner-tests.js",
 		"test": "npm-run-all test:*"
 	},
@@ -38,9 +46,11 @@
 	"license": "MIT",
 	"readmeFilename": "README.md",
 	"devDependencies": {
+		"@esm-bundle/chai": "^4.3.4-fix.0",
 		"@types/node-fetch": "^2.5.5",
+		"@web/test-runner": "^0.18.0",
+		"@web/test-runner-playwright": "^0.11.0",
 		"benchmark": "^2.1.4",
-		"chai": "^4.2.0",
 		"danger": "^10.5.0",
 		"del": "^4.1.1",
 		"docdash": "^1.2.0",
@@ -70,18 +80,19 @@
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
 		"webfont": "^9.0.0",
-		"yargs": "^13.2.2"
+		"yargs": "^17.7.2"
 	},
 	"jspm": {
 		"main": "prism",
 		"registry": "jspm",
 		"jspmPackage": true,
-		"format": "global",
+		"format": "esm",
 		"files": [
 			"components/**/*.js",
 			"plugins/**/*",
 			"themes/*.css",
-			"prism.js"
+			"prism.js",
+			"prism-core.js"
 		]
 	}
 }

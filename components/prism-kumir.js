@@ -1,20 +1,23 @@
-/* eslint-disable regexp/no-dupe-characters-character-class */
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['kumir']) {
+      return
+    }
+	/* eslint-disable regexp/no-dupe-characters-character-class */
 	/**
-	 * Regular expression for characters that are not allowed in identifiers.
-	 *
-	 * @type {string}
-	 */
+	* Regular expression for characters that are not allowed in identifiers.
+	*
+	* @type {string}
+	*/
 	var nonId = /\s\x00-\x1f\x22-\x2f\x3a-\x3f\x5b-\x5e\x60\x7b-\x7e/.source;
 
 	/**
-	 * Surround a regular expression for IDs with patterns for non-ID sequences.
-	 *
-	 * @param {string} pattern A regular expression for identifiers.
-	 * @param {string} [flags] The regular expression flags.
-	 * @returns {RegExp} A wrapped regular expression for identifiers.
-	 */
+	* Surround a regular expression for IDs with patterns for non-ID sequences.
+	*
+	* @param {string} pattern A regular expression for identifiers.
+	* @param {string} [flags] The regular expression flags.
+	* @returns {RegExp} A wrapped regular expression for identifiers.
+	*/
 	function wrapId(pattern, flags) {
 		return RegExp(pattern.replace(/<nonId>/g, nonId), flags);
 	}
@@ -65,10 +68,10 @@
 		],
 
 		/**
-		 * Should be performed after searching for type names because of "таб".
-		 * "таб" is a reserved word, but never used without a preceding type name.
-		 * "НАЗНАЧИТЬ", "Фввод", and "Фвывод" are not reserved words.
-		 */
+		* Should be performed after searching for type names because of "таб".
+		* "таб" is a reserved word, but never used without a preceding type name.
+		* "НАЗНАЧИТЬ", "Фввод", and "Фвывод" are not reserved words.
+		*/
 		'keyword': {
 			pattern: wrapId(/(^|[<nonId>])(?:алг|арг(?:\x20*рез)?|ввод|ВКЛЮЧИТЬ|вс[её]|выбор|вывод|выход|дано|для|до|дс|если|иначе|исп|использовать|кон(?:(?:\x20+|_)исп)?|кц(?:(?:\x20+|_)при)?|надо|нач|нс|нц|от|пауза|пока|при|раза?|рез|стоп|таб|то|утв|шаг)(?=[<nonId>]|$)/.source),
 			lookbehind: true
@@ -91,10 +94,10 @@
 		'punctuation': /:=|[(),:;\[\]]/,
 
 		/**
-		 * Should be performed after searching for
-		 * - numeric constants (because of "+" and "-");
-		 * - punctuation marks (because of ":=" and "=").
-		 */
+		* Should be performed after searching for
+		* - numeric constants (because of "+" and "-");
+		* - punctuation marks (because of ":=" and "=").
+		*/
 		'operator-char': {
 			pattern: /\*\*?|<[=>]?|>=?|[-+/=]/,
 			alias: 'operator'
@@ -102,5 +105,4 @@
 	};
 
 	Prism.languages.kum = Prism.languages.kumir;
-
-}(Prism));
+}

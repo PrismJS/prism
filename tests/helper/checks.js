@@ -80,8 +80,7 @@ function joinEnglishList(a) {
 }
 
 
-module.exports = (Prism) => {
-
+export function coreChecks (Prism) {
 	// The test for Prism.languages.extend has to be able to tell whether an object is a clone, so we mark it with a
 	// special property
 	const oldClone = Prism.util.clone;
@@ -211,5 +210,4 @@ module.exports = (Prism) => {
 
 	testFunction('extend', Prism.languages, extendTest);
 	testFunction('insertBefore', Prism.languages, insertBeforeTest);
-
 };

@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['ignore']) {
+      return
+    }
 	Prism.languages.ignore = {
 		// https://git-scm.com/docs/gitignore
 		'comment': /^#.*/m,
@@ -19,5 +23,4 @@
 	Prism.languages.gitignore = Prism.languages.ignore;
 	Prism.languages.hgignore = Prism.languages.ignore;
 	Prism.languages.npmignore = Prism.languages.ignore;
-
-}(Prism));
+}

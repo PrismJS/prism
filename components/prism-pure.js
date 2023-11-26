@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['pure']) {
+      return
+    }
 	// https://agraef.github.io/pure-docs/pure.html#lexical-matters
 
 	Prism.languages.pure = {
@@ -78,5 +82,4 @@
 	if (Prism.languages.c) {
 		Prism.languages.pure['inline-lang'].inside.rest = Prism.util.clone(Prism.languages.c);
 	}
-
-}(Prism));
+}

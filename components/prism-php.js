@@ -1,11 +1,20 @@
-/**
- * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
- * Modified by Miles Johnson: http://milesj.me
- * Rewritten by Tom Pavelec
- *
- * Supports PHP 5.3 - 8.0
- */
-(function (Prism) {
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['php']) {
+      return
+    }
+
+    markupTemplatingLoader(Prism)
+
+	/**
+ 	* Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
+ 	* Modified by Miles Johnson: http://milesj.me
+ 	* Rewritten by Tom Pavelec
+ 	*
+ 	* Supports PHP 5.3 - 8.0
+ 	*/
 	var comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
 	var constant = [
 		{
@@ -338,5 +347,4 @@
 	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
 	});
-
-}(Prism));
+}

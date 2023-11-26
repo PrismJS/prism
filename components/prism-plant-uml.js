@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['plant-uml']) {
+      return
+    }
 	var variable = /\$\w+|%[a-z]+%/;
 
 	var arrowAttr = /\[[^[\]]*\]/.source;
@@ -99,5 +103,4 @@
 	Prism.languages['plant-uml'].arrow.inside.expression.inside = Prism.languages['plant-uml'];
 
 	Prism.languages['plantuml'] = Prism.languages['plant-uml'];
-
-}(Prism));
+}

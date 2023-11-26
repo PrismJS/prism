@@ -1,13 +1,17 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['odin']) {
+      return
+    }
 	var escapes = /\\(?:["'\\abefnrtv]|0[0-7]{2}|U[\dA-Fa-f]{6}|u[\dA-Fa-f]{4}|x[\dA-Fa-f]{2})/;
 
 	Prism.languages.odin = {
 		/**
-		 * The current implementation supports only 1 level of nesting.
-		 *
-		 * @author Michael Schmidt
-		 * @author edukisto
-		 */
+		* The current implementation supports only 1 level of nesting.
+		*
+		* @author Michael Schmidt
+		* @author edukisto
+		*/
 		'comment': [
 			{
 				pattern: /\/\*(?:[^/*]|\/(?!\*)|\*(?!\/)|\/\*(?:\*(?!\/)|[^*])*(?:\*\/|$))*(?:\*\/|$)/,
@@ -24,8 +28,8 @@
 		],
 
 		/**
-		 * Should be found before strings because of '"'"- and '`'`-like sequences.
-		 */
+		* Should be found before strings because of '"'"- and '`'`-like sequences.
+		*/
 		'char': {
 			pattern: /'(?:\\(?:.|[0Uux][0-9A-Fa-f]{1,6})|[^\n\r'\\])'/,
 			greedy: true,
@@ -68,8 +72,8 @@
 		'keyword': /\b(?:asm|auto_cast|bit_set|break|case|cast|context|continue|defer|distinct|do|dynamic|else|enum|fallthrough|for|foreign|if|import|in|map|matrix|not_in|or_else|or_return|package|proc|return|struct|switch|transmute|typeid|union|using|when|where)\b/,
 
 		/**
-		 * false, nil, true can be used as procedure names. "_" and keywords can't.
-		 */
+		* false, nil, true can be used as procedure names. "_" and keywords can't.
+		*/
 		'procedure-name': {
 			pattern: /\b\w+(?=[ \t]*\()/,
 			alias: 'function'
@@ -96,4 +100,4 @@
 
 		'punctuation': /[(),.:;@\[\]{}]/
 	};
-}(Prism));
+}

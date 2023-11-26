@@ -1,12 +1,18 @@
-/* TODO
-	Handle multiline code after tag
-	    %foo= some |
-			multiline |
-			code |
-*/
+import { loader as rubyLoader } from "./prism-ruby.js"
 
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['haml']) {
+      return
+    }
 
+    rubyLoader(Prism)
+	/* TODO
+		Handle multiline code after tag
+	    	%foo= some |
+				multiline |
+				code |
+	*/
 	Prism.languages.haml = {
 		// Multiline stuff should appear before the rest
 
@@ -145,5 +151,4 @@
 	}
 
 	Prism.languages.insertBefore('haml', 'filter', all_filters);
-
-}(Prism));
+}

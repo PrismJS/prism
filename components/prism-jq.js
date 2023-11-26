@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['jq']) {
+      return
+    }
 	var interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
 	var string = RegExp(/(^|[^\\])"(?:[^"\r\n\\]|\\[^\r\n(]|__)*"/.source.replace(/__/g, function () { return interpolation; }));
 	var stringInterpolation = {
@@ -65,5 +68,4 @@
 	};
 
 	stringInterpolation.interpolation.inside.content.inside = jq;
-
-}(Prism));
+}

@@ -1,7 +1,9 @@
-// https://www.stata.com/manuals/m.pdf
-
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['mata']) {
+      return
+    }
+	// https://www.stata.com/manuals/m.pdf
 	var orgType = /\b(?:(?:col|row)?vector|matrix|scalar)\b/.source;
 	var type = /\bvoid\b|<org>|\b(?:complex|numeric|pointer(?:\s*\([^()]*\))?|real|string|(?:class|struct)\s+\w+|transmorphic)(?:\s*<org>)?/.source
 		.replace(/<org>/g, orgType);
@@ -46,5 +48,4 @@
 		'operator': /\.\.|\+\+|--|&&|\|\||:?(?:[!=<>]=|[+\-*/^<>&|:])|[!?=\\#’`']/,
 		'punctuation': /[()[\]{},;.]/
 	};
-
-}(Prism));
+}

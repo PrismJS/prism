@@ -1,4 +1,15 @@
-(function (Prism) {
+import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
+import { loader as javascriptLoader } from "./prism-javascript.js"
+import { loader as typescriptLoader } from "./prism-typescript.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['jsdoc']) {
+      return
+    }
+
+	javascriptLoader(Prism)
+	typescriptLoader(Prism)
+	javadoclikeLoader(Prism)
 
 	var javascript = Prism.languages.javascript;
 
@@ -74,5 +85,4 @@
 	});
 
 	Prism.languages.javadoclike.addSupport('javascript', Prism.languages.jsdoc);
-
-}(Prism));
+}

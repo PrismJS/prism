@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+import { loader as luaLoader } from "./prism-lua.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['etlua']) {
+      return
+    }
+
+	markupTemplatingLoader(Prism)
+    luaLoader(Prism)
 
 	Prism.languages.etlua = {
 		'delimiter': {
@@ -19,5 +28,4 @@
 	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'etlua');
 	});
-
-}(Prism));
+}

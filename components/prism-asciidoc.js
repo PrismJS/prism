@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['asciidoc']) {
+      return
+    }
 	var attributes = {
 		pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
 		lookbehind: true,
@@ -231,4 +234,4 @@
 	});
 
 	Prism.languages.adoc = Prism.languages.asciidoc;
-}(Prism));
+};

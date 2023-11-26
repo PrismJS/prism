@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
@@ -248,5 +247,4 @@
 		env.plugins = env.plugins || {};
 		env.plugins.lineNumbers = true;
 	});
-
-}());
+}

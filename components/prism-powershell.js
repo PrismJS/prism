@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['powershell']) {
+      return
+    }
 	var powershell = Prism.languages.powershell = {
 		'comment': [
 			{
@@ -54,5 +57,4 @@
 		'boolean': powershell.boolean,
 		'variable': powershell.variable,
 	};
-
-}(Prism));
+}

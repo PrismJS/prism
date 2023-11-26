@@ -1,4 +1,14 @@
-(function (Prism) {
+import { loader as javascriptLoader } from "./prism-javascript.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['js-extras']) {
+      return
+    }
+
+    Prism.languages['js-extras'] = {}
+
+	javascriptLoader(Prism)
 
 	Prism.languages.insertBefore('javascript', 'function-variable', {
 		'method-variable': {
@@ -33,12 +43,12 @@
 	});
 
 	/**
-	 * Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifiers.
-	 *
-	 * @param {string} source
-	 * @param {string} [flags]
-	 * @returns {RegExp}
-	 */
+	* Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifiers.
+	*
+	* @param {string} source
+	* @param {string} [flags]
+	* @returns {RegExp}
+	*/
 	function withId(source, flags) {
 		return RegExp(
 			source.replace(/<ID>/g, function () { return /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/.source; }),
@@ -131,5 +141,4 @@
 
 		inside['maybe-class-name'] = /^[A-Z][\s\S]*/;
 	}
-
-}(Prism));
+}

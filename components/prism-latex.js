@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['latex']) {
+      return
+    }
 	var funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i;
 	var insideEqu = {
 		'equation-command': {
@@ -15,9 +19,9 @@
 			lookbehind: true
 		},
 		/*
-		 * equations can be between $$ $$ or $ $ or \( \) or \[ \]
-		 * (all are multiline)
-		 */
+		* equations can be between $$ $$ or $ $ or \( \) or \[ \]
+		* (all are multiline)
+		*/
 		'equation': [
 			{
 				pattern: /\$\$(?:\\[\s\S]|[^\\$])+\$\$|\$(?:\\[\s\S]|[^\\$])+\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/,
@@ -32,9 +36,9 @@
 			}
 		],
 		/*
-		 * arguments which are keywords or references are highlighted
-		 * as keywords
-		 */
+		* arguments which are keywords or references are highlighted
+		* as keywords
+		*/
 		'keyword': {
 			pattern: /(\\(?:begin|cite|documentclass|end|label|ref|usepackage)(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
 			lookbehind: true
@@ -44,9 +48,9 @@
 			lookbehind: true
 		},
 		/*
-		 * section or chapter headlines are highlighted as bold so that
-		 * they stand out more
-		 */
+		* section or chapter headlines are highlighted as bold so that
+		* they stand out more
+		*/
 		'headline': {
 			pattern: /(\\(?:chapter|frametitle|paragraph|part|section|subparagraph|subsection|subsubparagraph|subsubsection|subsubsubparagraph)\*?(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
 			lookbehind: true,
@@ -61,4 +65,4 @@
 
 	Prism.languages.tex = Prism.languages.latex;
 	Prism.languages.context = Prism.languages.latex;
-}(Prism));
+}

@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['cooklang']) {
+      return
+    }
 	// see https://github.com/cooklang/spec/blob/main/EBNF.md
 
 	var single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
@@ -143,4 +146,4 @@
 			}
 		}
 	};
-}(Prism));
+}

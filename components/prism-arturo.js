@@ -1,4 +1,15 @@
-(function (Prism) {
+import { loader as bashLoader } from "./prism-bash.js"
+import { loader as cssLoader } from "./prism-css.js"
+import { loader as javascriptLoader } from "./prism-javascript.js"
+import { loader as markupLoader } from "./prism-markup.js"
+import { loader as markdownLoader } from "./prism-markdown.js"
+import { loader as sqlLoader } from "./prism-sql.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['arturo']) {
+      return
+    }
+
 	/**
 	 * @param {string} lang
 	 * @param {string} pattern
@@ -102,4 +113,4 @@
 	};
 
 	Prism.languages.art = Prism.languages['arturo'];
-}(Prism));
+};

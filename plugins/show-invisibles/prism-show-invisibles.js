@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined') {
 		return;
 	}
@@ -80,4 +79,4 @@
 	Prism.hooks.add('before-highlight', function (env) {
 		addInvisibles(env.grammar);
 	});
-}());
+}

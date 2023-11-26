@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['yaml']) {
+      return
+    }
 	// https://yaml.org/spec/1.2/spec.html#c-ns-anchor-property
 	// https://yaml.org/spec/1.2/spec.html#c-ns-alias-node
 	var anchorOrAlias = /[*&][^\s[\]{},]+/;
@@ -16,11 +19,11 @@
 	var string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
 
 	/**
-	 *
-	 * @param {string} value
-	 * @param {string} [flags]
-	 * @returns {RegExp}
-	 */
+	*
+	* @param {string} value
+	* @param {string} [flags]
+	* @returns {RegExp}
+	*/
 	function createValuePattern(value, flags) {
 		flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 		var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
@@ -79,5 +82,4 @@
 	};
 
 	Prism.languages.yml = Prism.languages.yaml;
-
-}(Prism));
+}

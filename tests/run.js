@@ -1,10 +1,12 @@
-// @ts-check
 'use strict';
 
-const TestDiscovery = require('./helper/test-discovery');
-const TestCase = require('./helper/test-case');
-const path = require('path');
-const { argv } = require('yargs');
+import * as path from "node:path"
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
+import * as TestDiscovery from './helper/test-discovery.js'
+import * as TestCase from './helper/test-case.js'
+
+const { argv } = yargs(hideBin(process.argv))
 
 const testSuite =
 	(argv.language)

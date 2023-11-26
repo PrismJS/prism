@@ -1,5 +1,13 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
 
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['parser']) {
+      return
+    }
+	if (!Prism.languages.markup) {
+		markupLoader(Prism)
+	}
 	var parser = Prism.languages.parser = Prism.languages.extend('markup', {
 		'keyword': {
 			pattern: /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
@@ -69,5 +77,4 @@
 			alias: 'punctuation'
 		}
 	}, parser['tag'].inside['attr-value']);
-
-}(Prism));
+}

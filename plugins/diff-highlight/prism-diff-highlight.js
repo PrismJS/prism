@@ -1,9 +1,11 @@
-(function () {
+import { loader as diffLoader } from "../../components/prism-diff.js"
 
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined') {
 		return;
 	}
 
+	diffLoader(Prism)
 
 	var LANGUAGE_REGEX = /^diff-([\w-]+)/i;
 	var HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
@@ -86,5 +88,4 @@
 			}
 		}
 	});
-
-}());
+}

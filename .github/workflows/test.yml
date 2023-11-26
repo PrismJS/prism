@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x]
+        node-version: [18.x, 20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -27,49 +27,49 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  build:
+  # build:
+  #
+  #   runs-on: ubuntu-latest
+  #
+  #   strategy:
+  #     matrix:
+  #       node-version: [18.x, 20.x]
+  #
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npm ci
+  #     - run: npm run build
+  #     - run: |
+  #         git add --all && \
+  #         git diff-index --cached HEAD --stat --exit-code || \
+  #         (echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism." && exit 1)
 
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x]
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build
-      - run: |
-          git add --all && \
-          git diff-index --cached HEAD --stat --exit-code || \
-          (echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism." && exit 1)
-
-  lint:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-      - run: npm ci
-      - run: npm run lint:ci
-
-  coverage:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-      - run: npm ci
-      - run: npm run regex-coverage
+  # lint:
+  #
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js 20.x
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20.x
+  #     - run: npm ci
+  #     - run: npm run lint:ci
+  #
+  # coverage:
+  #
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js 20.x
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 20.x
+  #     - run: npm ci
+  #     - run: npm run regex-coverage

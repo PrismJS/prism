@@ -1,22 +1,28 @@
-Prism.languages.ebnf = {
-	'comment': /\(\*[\s\S]*?\*\)/,
-	'string': {
-		pattern: /"[^"\r\n]*"|'[^'\r\n]*'/,
-		greedy: true
-	},
-	'special': {
-		pattern: /\?[^?\r\n]*\?/,
-		greedy: true,
-		alias: 'class-name'
-	},
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['ebnf']) {
+      return
+    }
+	Prism.languages.ebnf = {
+		'comment': /\(\*[\s\S]*?\*\)/,
+		'string': {
+			pattern: /"[^"\r\n]*"|'[^'\r\n]*'/,
+			greedy: true
+		},
+		'special': {
+			pattern: /\?[^?\r\n]*\?/,
+			greedy: true,
+			alias: 'class-name'
+		},
 
-	'definition': {
-		pattern: /^([\t ]*)[a-z]\w*(?:[ \t]+[a-z]\w*)*(?=\s*=)/im,
-		lookbehind: true,
-		alias: ['rule', 'keyword']
-	},
-	'rule': /\b[a-z]\w*(?:[ \t]+[a-z]\w*)*\b/i,
+		'definition': {
+			pattern: /^([\t ]*)[a-z]\w*(?:[ \t]+[a-z]\w*)*(?=\s*=)/im,
+			lookbehind: true,
+			alias: ['rule', 'keyword']
+		},
+		'rule': /\b[a-z]\w*(?:[ \t]+[a-z]\w*)*\b/i,
 
-	'punctuation': /\([:/]|[:/]\)|[.,;()[\]{}]/,
-	'operator': /[-=|*/!]/
-};
+		'punctuation': /\([:/]|[:/]\)|[.,;()[\]{}]/,
+		'operator': /[-=|*/!]/
+	};
+}

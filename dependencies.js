@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @typedef {Object<string, ComponentCategory>} Components
  * @typedef {Object<string, ComponentEntry | string>} ComponentCategory
@@ -17,7 +15,7 @@
  * @property {string | string[]} [modify]
  */
 
-var getLoader = (function () {
+export const getLoader = (function () {
 
 	/**
 	 * A function which does absolutely nothing.
@@ -444,9 +442,4 @@ var getLoader = (function () {
 	}
 
 	return getLoader;
-
 }());
-
-if (typeof module !== 'undefined') {
-	module.exports = getLoader;
-}

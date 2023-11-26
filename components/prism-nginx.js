@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['nginx']) {
+      return
+    }
 	var variable = /\$(?:\w[a-z\d]*(?:_[^\x00-\x1F\s"'\\()$]*)?|\{[^}\s"'\\]+\})/i;
 
 	Prism.languages.nginx = {
@@ -50,5 +53,4 @@
 		},
 		'punctuation': /[{};]/
 	};
-
-}(Prism));
+}

@@ -1,13 +1,14 @@
-const { createUtil, createScopedPrismDom } = require('../../helper/prism-dom-util');
-
+import { Prism as PrismClass } from '../../../prism-core.js'
+import { loader as JavaScriptLoader } from '../../../components/prism-javascript.js'
+import { Plugin as CustomClassPlugin } from '../../../plugins/custom-class/prism-custom-class.js'
+import { createUtil } from '../../helper/prism-dom-util.js';
 
 describe('Custom class', function () {
-	const { Prism, window } = createScopedPrismDom(this, {
-		languages: 'javascript',
-		plugins: 'custom-class'
-	});
-	const util = createUtil(window);
-
+	const Prism = new PrismClass({ manual: false })
+	JavaScriptLoader(Prism)
+	CustomClassPlugin(Prism)
+	window.Prism = Prism
+	const util = createUtil(Prism);
 
 	it('should set prefix', function () {
 		Prism.plugins.customClass.prefix('prism-');
@@ -65,5 +66,4 @@ describe('Custom class', function () {
 			expected: `<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>`
 		});
 	});
-
 });

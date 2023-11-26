@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined') {
 		return;
 	}
@@ -225,5 +224,4 @@
 			env.code = env.element.textContent;
 		}
 	});
-
-}());
+}

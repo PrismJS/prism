@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['cue']) {
+      return
+    }
 	// https://cuelang.org/docs/references/spec/
 
 	// eslint-disable-next-line regexp/strict
@@ -80,5 +83,4 @@
 	};
 
 	Prism.languages.cue['string-literal'].inside.interpolation.inside.expression.inside = Prism.languages.cue;
-
-}(Prism));
+}

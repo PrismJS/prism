@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as schemeLoader } from "./prism-scheme.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['lilypond']) {
+      return
+    }
+
+    schemeLoader(Prism)
 
 	var schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
 	// allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
@@ -65,5 +73,4 @@
 	lilypond['embedded-scheme'].inside['scheme'].inside['embedded-lilypond'].inside['lilypond'].inside = lilypond;
 
 	Prism.languages.ly = lilypond;
-
-}(Prism));
+}

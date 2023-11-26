@@ -1,12 +1,20 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['markup-templating']) {
+      return
+    }
+
+    markupLoader(Prism)
 
 	/**
-	 * Returns the placeholder for the given language id and index.
-	 *
-	 * @param {string} language
-	 * @param {string|number} index
-	 * @returns {string}
-	 */
+	* Returns the placeholder for the given language id and index.
+	*
+	* @param {string} language
+	* @param {string|number} index
+	* @returns {string}
+	*/
 	function getPlaceholder(language, index) {
 		return '___' + language.toUpperCase() + index + '___';
 	}
@@ -14,16 +22,16 @@
 	Object.defineProperties(Prism.languages['markup-templating'] = {}, {
 		buildPlaceholders: {
 			/**
-			 * Tokenize all inline templating expressions matching `placeholderPattern`.
-			 *
-			 * If `replaceFilter` is provided, only matches of `placeholderPattern` for which `replaceFilter` returns
-			 * `true` will be replaced.
-			 *
-			 * @param {object} env The environment of the `before-tokenize` hook.
-			 * @param {string} language The language id.
-			 * @param {RegExp} placeholderPattern The matches of this pattern will be replaced by placeholders.
-			 * @param {(match: string) => boolean} [replaceFilter]
-			 */
+			* Tokenize all inline templating expressions matching `placeholderPattern`.
+			*
+			* If `replaceFilter` is provided, only matches of `placeholderPattern` for which `replaceFilter` returns
+			* `true` will be replaced.
+			*
+			* @param {object} env The environment of the `before-tokenize` hook.
+			* @param {string} language The language id.
+			* @param {RegExp} placeholderPattern The matches of this pattern will be replaced by placeholders.
+			* @param {(match: string) => boolean} [replaceFilter]
+			*/
 			value: function (env, language, placeholderPattern, replaceFilter) {
 				if (env.language !== language) {
 					return;
@@ -55,11 +63,11 @@
 		},
 		tokenizePlaceholders: {
 			/**
-			 * Replace placeholders with proper tokens after tokenizing.
-			 *
-			 * @param {object} env The environment of the `after-tokenize` hook.
-			 * @param {string} language The language id.
-			 */
+			* Replace placeholders with proper tokens after tokenizing.
+			*
+			* @param {object} env The environment of the `after-tokenize` hook.
+			* @param {string} language The language id.
+			*/
 			value: function (env, language) {
 				if (env.language !== language || !env.tokenStack) {
 					return;
@@ -120,5 +128,4 @@
 			}
 		}
 	});
-
-}(Prism));
+}

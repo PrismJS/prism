@@ -1,4 +1,16 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+import { loader as javaLoader } from "./prism-java.js"
+import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['javadoc']) {
+      return
+    }
+
+	markupLoader(Prism)
+	javaLoader(Prism)
+	javadoclikeLoader(Prism)
 
 	var codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
@@ -79,4 +91,4 @@
 	});
 
 	Prism.languages.javadoclike.addSupport('java', Prism.languages.javadoc);
-}(Prism));
+}

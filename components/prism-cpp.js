@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as cLoader } from "./prism-c.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['cpp']) {
+      return
+    }
+	if (!Prism.languages.c) {
+		cLoader(Prism)
+	}
 
 	var keyword = /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
 	var modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(/<keyword>/g, function () { return keyword.source; });
@@ -95,5 +104,4 @@
 		// All untokenized words that are not namespaces should be class names
 		'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
 	}, Prism.languages.cpp['base-clause']);
-
-}(Prism));
+}

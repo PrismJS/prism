@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as rubyLoader } from "./prism-ruby.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['crystal']) {
+      return
+    }
+	if (!Prism.languages.ruby) {
+		rubyLoader(Prism)
+	}
+
 	Prism.languages.crystal = Prism.languages.extend('ruby', {
 		'keyword': [
 			/\b(?:__DIR__|__END_LINE__|__FILE__|__LINE__|abstract|alias|annotation|as|asm|begin|break|case|class|def|do|else|elsif|end|ensure|enum|extend|for|fun|if|ifdef|include|instance_sizeof|lib|macro|module|next|of|out|pointerof|private|protected|ptr|require|rescue|return|select|self|sizeof|struct|super|then|type|typeof|undef|uninitialized|union|unless|until|when|while|with|yield)\b/,
@@ -53,5 +62,4 @@
 			greedy: true
 		}
 	});
-
-}(Prism));
+}

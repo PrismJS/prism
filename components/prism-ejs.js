@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as javascriptLoader } from "./prism-javascript.js"
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['ejs']) {
+      return
+    }
+
+    javascriptLoader(Prism)
+    markupTemplatingLoader(Prism)
 
 	Prism.languages.ejs = {
 		'delimiter': {
@@ -22,5 +31,4 @@
 	});
 
 	Prism.languages.eta = Prism.languages.ejs;
-
-}(Prism));
+}

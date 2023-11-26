@@ -1,7 +1,6 @@
-(function () {
-
-	if (typeof Prism === 'undefined') {
-		return;
+export function Plugin (Prism) {
+	if (typeof Prism === "undefined") {
+		return
 	}
 
 	var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&!$'()*,;@]+(?:\?[\w\-+%~/.:=?&!$'()*,;@]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;@]*)?/;
@@ -72,5 +71,4 @@
 			} catch (e) { /* noop */ }
 		}
 	});
-
-}());
+}

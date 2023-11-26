@@ -1,10 +1,14 @@
-const { assert } = require('chai');
-const getLoader = require('../dependencies');
-const components = require('../components.json');
+import * as fs from "node:fs"
+import * as path from "node:path"
+import * as url from "node:url"
 
+import { assert } from '@esm-bundle/chai'
+import { getLoader } from '../dependencies.js'
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const components = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../components.json'), { encoding: "utf-8" }))
 
 describe('Dependency logic', function () {
-
 	/** @type {import("../dependencies").Components} */
 	const components = {
 		languages: {

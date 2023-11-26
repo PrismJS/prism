@@ -1,13 +1,13 @@
-const { assert } = require('chai');
-const { createScopedPrismDom } = require('../../helper/prism-dom-util');
-
+import { assert } from '@esm-bundle/chai'
+import { Prism as PrismClass } from "../../../prism-core.js"
+import { loader as JavaScriptLoader } from '../../../components/prism-javascript.js'
+import { Plugin as KeepMarkupPlugin } from '../../../plugins/keep-markup/prism-keep-markup.js'
 
 describe('Keep Markup', function () {
-	const { Prism, document } = createScopedPrismDom(this, {
-		languages: 'javascript',
-		plugins: 'keep-markup'
-	});
-
+	const Prism = new PrismClass({ manual: false })
+	JavaScriptLoader(Prism)
+	KeepMarkupPlugin(Prism)
+	window.Prism = Prism
 
 	/**
 	 * @param {string} html

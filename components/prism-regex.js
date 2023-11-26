@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['regex']) {
+      return
+    }
 
 	var specialEscape = {
 		pattern: /\\[\\(){}[\]^$+*?|.]/,
@@ -100,5 +104,4 @@
 			alias: 'keyword'
 		}
 	};
-
-}(Prism));
+}

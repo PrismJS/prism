@@ -1,11 +1,19 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['xml-doc']) {
+      return
+    }
+
+    markupLoader(Prism)
 
 	/**
-	 * If the given language is present, it will insert the given doc comment grammar token into it.
-	 *
-	 * @param {string} lang
-	 * @param {any} docComment
-	 */
+	* If the given language is present, it will insert the given doc comment grammar token into it.
+	*
+	* @param {string} lang
+	* @param {any} docComment
+	*/
 	function insertDocComment(lang, docComment) {
 		if (Prism.languages[lang]) {
 			Prism.languages.insertBefore(lang, 'comment', {
@@ -36,5 +44,4 @@
 	insertDocComment('csharp', slashDocComment);
 	insertDocComment('fsharp', slashDocComment);
 	insertDocComment('vbnet', tickDocComment);
-
-}(Prism));
+}

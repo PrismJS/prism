@@ -1,37 +1,44 @@
-(function (Prism) {
-
+import { loader as clikeLoader } from "./prism-clike.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['qsharp']) {
+      return
+    }
+	if (!Prism.languages.clike) {
+		clikeLoader(Prism)
+	}
 	/**
-	 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
-	 *
-	 * Note: This is a simple text based replacement. Be careful when using backreferences!
-	 *
-	 * @param {string} pattern the given pattern.
-	 * @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
-	 * @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
-	 * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
-	 */
+	* Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
+	*
+	* Note: This is a simple text based replacement. Be careful when using backreferences!
+	*
+	* @param {string} pattern the given pattern.
+	* @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
+	* @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
+	* @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
+	*/
 	function replace(pattern, replacements) {
 		return pattern.replace(/<<(\d+)>>/g, function (m, index) {
 			return '(?:' + replacements[+index] + ')';
 		});
 	}
 	/**
-	 * @param {string} pattern
-	 * @param {string[]} replacements
-	 * @param {string} [flags]
-	 * @returns {RegExp}
-	 */
+	* @param {string} pattern
+	* @param {string[]} replacements
+	* @param {string} [flags]
+	* @returns {RegExp}
+	*/
 	function re(pattern, replacements, flags) {
 		return RegExp(replace(pattern, replacements), flags || '');
 	}
 
 	/**
-	 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
-	 *
-	 * @param {string} pattern
-	 * @param {number} depthLog2
-	 * @returns {string}
-	 */
+	* Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
+	*
+	* @param {string} pattern
+	* @param {number} depthLog2
+	* @returns {string}
+	*/
 	function nested(pattern, depthLog2) {
 		for (var i = 0; i < depthLog2; i++) {
 			pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
@@ -127,6 +134,5 @@
 		}
 	});
 
-}(Prism));
-
-Prism.languages.qs = Prism.languages.qsharp;
+	Prism.languages.qs = Prism.languages.qsharp;
+}

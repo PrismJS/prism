@@ -1,4 +1,14 @@
-(function (Prism) {
+import { loader as clikeLoader } from "./prism-clike.js"
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['tt2']) {
+      return
+    }
+
+	clikeLoader(Prism)
+	markupTemplatingLoader(Prism)
 
 	Prism.languages.tt2 = Prism.languages.extend('clike', {
 		'comment': /#.*|\[%#[\s\S]*?%\]/,
@@ -49,5 +59,4 @@
 	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
 	});
-
-}(Prism));
+}

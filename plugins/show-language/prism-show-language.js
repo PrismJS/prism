@@ -1,13 +1,11 @@
-(function () {
-
+import { Plugin as ToolbarPlugin } from "../toolbar/prism-toolbar.js"
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
 	if (!Prism.plugins.toolbar) {
-		console.warn('Show Languages plugin loaded before Toolbar plugin.');
-
-		return;
+		ToolbarPlugin(Prism)
 	}
 
 	/* eslint-disable */
@@ -321,5 +319,4 @@
 
 		return element;
 	});
-
-}());
+}

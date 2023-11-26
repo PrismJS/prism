@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
@@ -123,5 +122,4 @@
 	Prism.hooks.add('before-all-elements-highlight', function (env) {
 		env.elements = env.elements.filter(combinedFilter);
 	});
-
-}());
+}

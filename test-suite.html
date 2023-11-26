@@ -203,10 +203,18 @@ This is a comment explaining this test case.
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
 <script src="assets/vendor/utopia.js"></script>
-<script src="prism.js"></script>
-<script src="components/prism-bash.js"></script>
-<script src="components.js"></script>
-<script src="assets/code.js"></script>
+
+<script type="module">
+	import { Prism, environment } from "./prism.js"
+	import { loader as bashLoader } from "./components/prism-bash.js"
+	import { components } from "./components.js"
+
+	bashLoader(Prism)
+	environment.components = components
+	environment.Prism = Prism
+</script>
+
+<script type="module" src="assets/code.js"></script>
 
 </body>
 </html>

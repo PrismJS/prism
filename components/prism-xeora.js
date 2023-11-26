@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['xeora']) {
+      return
+    }
+	if (!Prism.languages.markup) {
+		markupLoader(Prism)
+	}
 	Prism.languages.xeora = Prism.languages.extend('markup', {
 		'constant': {
 			pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
@@ -110,5 +118,4 @@
 	}, Prism.languages.xeora['function-block']);
 
 	Prism.languages.xeoracube = Prism.languages.xeora;
-
-}(Prism));
+}

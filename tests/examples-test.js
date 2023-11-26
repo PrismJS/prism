@@ -1,8 +1,10 @@
-const fs = require('fs');
-const { assert } = require('chai');
-const { Parser } = require('htmlparser2');
+import * as fs from "fs"
+import * as url from 'url';
+import { assert } from "@esm-bundle/chai";
+import { Parser } from 'htmlparser2'
 // use the JSON file because this file is less susceptible to merge conflicts
-const { languages } = require('../components.json');
+const { languages } = JSON.parse(fs.readFileSync('./components.json', { encoding: "utf-8" }));
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 
 describe('Examples', function () {

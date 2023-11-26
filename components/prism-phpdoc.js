@@ -1,4 +1,14 @@
-(function (Prism) {
+import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
+import { loader as phpLoader } from "./prism-php.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['phpdoc']) {
+      return
+    }
+
+	javadoclikeLoader(Prism)
+	phpLoader(Prism)
 
 	var typeExpression = /(?:\b[a-zA-Z]\w*|[|\\[\]])+/.source;
 
@@ -23,5 +33,4 @@
 	});
 
 	Prism.languages.javadoclike.addSupport('php', Prism.languages.phpdoc);
-
-}(Prism));
+}

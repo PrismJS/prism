@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['puppet']) {
+      return
+    }
 	Prism.languages.puppet = {
 		'heredoc': [
 			// Matches the content of a quoted heredoc string (subject to interpolation)
@@ -133,4 +137,4 @@
 	];
 	Prism.languages.puppet['heredoc'][0].inside.interpolation = interpolation;
 	Prism.languages.puppet['string'].inside['double-quoted'].inside.interpolation = interpolation;
-}(Prism));
+}

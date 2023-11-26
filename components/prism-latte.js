@@ -1,4 +1,16 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+import { loader as phpLoader } from "./prism-php.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['latte']) {
+      return
+    }
+
+	markupLoader(Prism)
+	markupTemplatingLoader(Prism)
+	phpLoader(Prism)
+
 	Prism.languages.latte = {
 		'comment': /^\{\*[\s\S]*/,
 		'latte-tag': {
@@ -59,5 +71,4 @@
 	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'latte');
 	});
-
-}(Prism));
+}

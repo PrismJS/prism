@@ -1,13 +1,13 @@
-const { assert } = require('chai');
-const { createScopedPrismDom } = require('../../helper/prism-dom-util');
-
+import { assert } from '@esm-bundle/chai'
+import { Prism as PrismClass } from '../../../prism-core.js'
+import { loader as MarkupLoader } from '../../../components/prism-markup.js'
+import { Plugin as UnescapedMarkupPlugin } from '../../../plugins/unescaped-markup/prism-unescaped-markup.js'
 
 describe('Show language', function () {
-	const { Prism, document } = createScopedPrismDom(this, {
-		languages: 'markup',
-		plugins: 'unescaped-markup'
-	});
-
+	const Prism = new PrismClass({ manual: false })
+	MarkupLoader(Prism)
+	UnescapedMarkupPlugin(Prism)
+	window.Prism = Prism
 
 	function test(expectedText, code) {
 		document.body.innerHTML = code;

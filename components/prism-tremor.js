@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['tremor']) {
+      return
+    }
 	Prism.languages.tremor = {
 		'comment': {
 			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
@@ -68,5 +71,4 @@
 
 	Prism.languages.troy = Prism.languages['tremor'];
 	Prism.languages.trickle = Prism.languages['tremor'];
-
-}(Prism));
+}

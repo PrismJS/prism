@@ -1,18 +1,27 @@
-(function (Prism) {
+import { loader as markupLoader } from "./prism-markup.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+
+    if (options?.force !== true && Prism.languages['markdown']) {
+      return
+    }
+
+	markupLoader(Prism)
 
 	// Allow only one line break
 	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
 	/**
-	 * This function is intended for the creation of the bold or italic pattern.
-	 *
-	 * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
-	 *
-	 * _Note:_ Keep in mind that this adds a capturing group.
-	 *
-	 * @param {string} pattern
-	 * @returns {RegExp}
-	 */
+	* This function is intended for the creation of the bold or italic pattern.
+	*
+	* This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
+	*
+	* _Note:_ Keep in mind that this adds a capturing group.
+	*
+	* @param {string} pattern
+	* @returns {RegExp}
+	*/
 	function createInline(pattern) {
 		pattern = pattern.replace(/<inner>/g, function () { return inner; });
 		return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
@@ -23,8 +32,8 @@
 	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
-
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
+
 	Prism.languages.insertBefore('markdown', 'prolog', {
 		'front-matter-block': {
 			pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
@@ -250,6 +259,8 @@
 		}
 	});
 
+
+
 	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
 		['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
 			if (token !== inside) {
@@ -257,6 +268,7 @@
 			}
 		});
 	});
+
 
 	Prism.hooks.add('after-tokenize', function (env) {
 		if (env.language !== 'markdown' && env.language !== 'md') {
@@ -277,18 +289,18 @@
 				}
 
 				/*
-				 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-				 * is optional. But the grammar is defined so that there is only one case we have to handle:
-				 *
-				 * token.content = [
-				 *     <span class="punctuation">```</span>,
-				 *     <span class="code-language">xxxx</span>,
-				 *     '\n', // exactly one new lines (\r or \n or \r\n)
-				 *     <span class="code-block">...</span>,
-				 *     '\n', // exactly one new lines again
-				 *     <span class="punctuation">```</span>
-				 * ];
-				 */
+				* Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+				* is optional. But the grammar is defined so that there is only one case we have to handle:
+				*
+				* token.content = [
+				*     <span class="punctuation">```</span>,
+				*     <span class="code-language">xxxx</span>,
+				*     '\n', // exactly one new lines (\r or \n or \r\n)
+				*     <span class="code-block">...</span>,
+				*     '\n', // exactly one new lines again
+				*     <span class="punctuation">```</span>
+				* ];
+				*/
 
 				var codeLang = token.content[1];
 				var codeBlock = token.content[3];
@@ -319,6 +331,7 @@
 
 		walkTokens(env.tokens);
 	});
+
 
 	Prism.hooks.add('wrap', function (env) {
 		if (env.type !== 'code-block') {
@@ -357,12 +370,12 @@
 	var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
 
 	/**
-	 * A list of known entity names.
-	 *
-	 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
-	 *
-	 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
-	 */
+	* A list of known entity names.
+	*
+	* This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+	*
+	* @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+	*/
 	var KNOWN_ENTITY_NAMES = {
 		'amp': '&',
 		'lt': '<',
@@ -374,11 +387,11 @@
 	var fromCodePoint = String.fromCodePoint || String.fromCharCode;
 
 	/**
-	 * Returns the text content of a given HTML source code string.
-	 *
-	 * @param {string} html
-	 * @returns {string}
-	 */
+	* Returns the text content of a given HTML source code string.
+	*
+	* @param {string} html
+	* @returns {string}
+	*/
 	function textContent(html) {
 		// remove all tags
 		var text = html.replace(tagPattern, '');
@@ -412,4 +425,4 @@
 
 	Prism.languages.md = Prism.languages.markdown;
 
-}(Prism));
+}

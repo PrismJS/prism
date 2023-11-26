@@ -1,8 +1,11 @@
-(function () {
+import { Plugin as ToolbarPlugin } from "../toolbar/prism-toolbar.js"
 
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !document.querySelector) {
 		return;
 	}
+
+	ToolbarPlugin(Prism)
 
 	Prism.plugins.toolbar.registerButton('download-file', function (env) {
 		var pre = env.element.parentNode;
@@ -16,5 +19,4 @@
 		a.href = src;
 		return a;
 	});
-
-}());
+}

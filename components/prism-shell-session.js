@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as bashLoader } from "./prism-bash.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['shell-session']) {
+      return
+    }
+
+    bashLoader(Prism)
 
 	// CAREFUL!
 	// The following patterns are concatenated, so the group referenced by a back reference is non-obvious!
@@ -66,5 +74,4 @@
 	};
 
 	Prism.languages['sh-session'] = Prism.languages['shellsession'] = Prism.languages['shell-session'];
-
-}(Prism));
+}

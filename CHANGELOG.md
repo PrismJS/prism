@@ -1,5 +1,54 @@
 # Prism Changelog
 
+## 2.0.0 (11-22-2023)
+
+- BREAKING_CHANGE: Convert from UMD to ESM.
+- BREAKING_CHANGE: The autoloader does not currently work. Will require updates to be ESM compatible.
+- BREAKING_CHANGE: Prism is now an instantiable ES6 class instead of a UMD global.
+- BREAKING_CHANGE: Components no longer automatically bind to globally scoped Prism instance. Instead, now you import the `loader` and pass in the Prism instance which will add a language to the Prism instance. Like so:
+
+```js
+import { Prism } from "prism-esm"
+import { loader as haskellLoader } from "prism-esm/components/prism-haskell.js"
+
+const prism = new Prism()
+haskellLoader(prism)
+
+// Loaders will check if they've already loaded. If they've been loaded already, they'll no-op.
+// To force a language to reload itself, pass in `{ force: true }`. Like so:
+haskellLoader(prism, { force: true })
+```
+
+- BREAKING_CHANGE: The `manual` flag is no longer read globally. Instead Prism is now a class.
+
+```js
+import { Prism } from "prism-esm"
+new Prism() // Automatic highlighting enabled by default
+new Prism({ manual: true }) // Disable automatic highlighting
+```
+
+- BREAKING_CHANGE: `Prism` no longer automatically binds to the global for it's environment. To restore the behavior, do the following:
+
+```js
+import { Prism, environment } from "prism-esm"
+const prism = new Prism()
+environment.Prism = prism
+```
+
+- BREAKING_CHANGE: `prism/dependencies.js` has been removed. Instead, `loaders` are now responsible for being idempotent.
+- BREAKING_CHANGE: Plugins now export a `Plugin` function to be called on the prism instance. Like so:
+
+```js
+import { Prism } from "prism-esm"
+import { Plugin as FileHighlightPlugin } from "./plugins/file-highlight/prism-file-highlight.js"
+
+const prism = new Prism()
+FileHighlightPlugin(prism)
+```
+
+- BREAKING_CHANGE: Token.stringify now requires a `prism` instance as its final parameter.
+- BREAKING_CHANGE: for users of older Node / Browser versions, the internal clone function has been replaced with `structuredClone()` a polyfill may be necessary for your environment.
+
 ## 1.29.0 (2022-08-23)
 
 ### New components

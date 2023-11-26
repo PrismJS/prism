@@ -1,10 +1,13 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['toml']) {
+      return
+    }
 	var key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 
 	/**
-	 * @param {string} pattern
-	 */
+	* @param {string} pattern
+	*/
 	function insertKey(pattern) {
 		return pattern.replace(/__/g, function () { return key; });
 	}
@@ -46,4 +49,4 @@
 		'boolean': /\b(?:false|true)\b/,
 		'punctuation': /[.,=[\]{}]/
 	};
-}(Prism));
+}

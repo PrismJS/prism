@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['docker']) {
+      return
+    }
 	// Many of the following regexes will contain negated lookaheads like `[ \t]+(?![ \t])`. This is a trick to ensure
 	// that quantifiers behave *atomically*. Atomic quantifiers are necessary to prevent exponential backtracking.
 
@@ -22,10 +25,10 @@
 	};
 
 	/**
-	 * @param {string} source
-	 * @param {string} flags
-	 * @returns {RegExp}
-	 */
+	* @param {string} source
+	* @param {string} flags
+	* @returns {RegExp}
+	*/
 	function re(source, flags) {
 		source = source
 			.replace(/<OPT>/g, function () { return option; })
@@ -94,5 +97,4 @@
 	};
 
 	Prism.languages.dockerfile = Prism.languages.docker;
-
-}(Prism));
+}

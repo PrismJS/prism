@@ -1,10 +1,18 @@
-/**
- * Original by Samuel Flores
- *
- * Adds the following new token classes:
- *     constant, builtin, variable, symbol, regex
- */
-(function (Prism) {
+import { loader as clikeLoader } from "./prism-clike.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['ruby']) {
+      return
+    }
+	if (!Prism.languages.clike) {
+		clikeLoader(Prism)
+	}
+	/**
+ 	* Original by Samuel Flores
+ 	*
+ 	* Adds the following new token classes:
+ 	*     constant, builtin, variable, symbol, regex
+ 	*/
 	Prism.languages.ruby = Prism.languages.extend('clike', {
 		'comment': {
 			pattern: /#.*|^=begin\s[\s\S]*?^=end/m,
@@ -186,4 +194,4 @@
 	});
 
 	Prism.languages.rb = Prism.languages.ruby;
-}(Prism));
+}

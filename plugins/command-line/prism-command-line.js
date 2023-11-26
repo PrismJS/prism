@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
@@ -235,5 +234,4 @@
 		env.element.insertBefore(prompt, env.element.firstChild);
 		commandLine.complete = true;
 	});
-
-}());
+}

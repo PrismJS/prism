@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['gherkin']) {
+      return
+    }
 	var tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|(?:(?!\|).)*/.source;
 
 	Prism.languages.gherkin = {
@@ -81,5 +84,4 @@
 			alias: 'variable'
 		}
 	};
-
-}(Prism));
+}

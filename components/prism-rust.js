@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['rust']) {
+      return
+    }
 	var multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;
 	for (var i = 0; i < 2; i++) {
 		// support 4 levels of nested comments
@@ -124,5 +127,4 @@
 
 	Prism.languages.rust['closure-params'].inside.rest = Prism.languages.rust;
 	Prism.languages.rust['attribute'].inside['string'] = Prism.languages.rust['string'];
-
-}(Prism));
+}

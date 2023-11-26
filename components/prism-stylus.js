@@ -1,4 +1,8 @@
-(function (Prism) {
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['stylus']) {
+      return
+    }
 	var unit = {
 		pattern: /(\b\d+)(?:%|[a-z]+)/,
 		lookbehind: true
@@ -140,4 +144,4 @@
 		'interpolation': inside.interpolation,
 		'punctuation': /[{}()\[\];:.]/
 	};
-}(Prism));
+}

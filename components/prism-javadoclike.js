@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['javadoclike']) {
+      return
+    }
 	var javaDocLike = Prism.languages.javadoclike = {
 		'parameter': {
 			pattern: /(^[\t ]*(?:\/{3}|\*|\/\*\*)\s*@(?:arg|arguments|param)\s+)\w+/m,
@@ -16,11 +19,11 @@
 
 
 	/**
-	 * Adds doc comment support to the given language and calls a given callback on each doc comment pattern.
-	 *
-	 * @param {string} lang the language add doc comment support to.
-	 * @param {(pattern: {inside: {rest: undefined}}) => void} callback the function called with each doc comment pattern as argument.
-	 */
+	* Adds doc comment support to the given language and calls a given callback on each doc comment pattern.
+	*
+	* @param {string} lang the language add doc comment support to.
+	* @param {(pattern: {inside: {rest: undefined}}) => void} callback the function called with each doc comment pattern as argument.
+	*/
 	function docCommentSupport(lang, callback) {
 		var tokenName = 'doc-comment';
 
@@ -60,11 +63,11 @@
 	}
 
 	/**
-	 * Adds doc-comment support to the given languages for the given documentation language.
-	 *
-	 * @param {string[]|string} languages
-	 * @param {Object} docLanguage
-	 */
+	* Adds doc-comment support to the given languages for the given documentation language.
+	*
+	* @param {string[]|string} languages
+	* @param {Object} docLanguage
+	*/
 	function addSupport(languages, docLanguage) {
 		if (typeof languages === 'string') {
 			languages = [languages];
@@ -83,5 +86,4 @@
 	Object.defineProperty(javaDocLike, 'addSupport', { value: addSupport });
 
 	javaDocLike.addSupport(['java', 'javascript', 'php'], javaDocLike);
-
-}(Prism));
+}

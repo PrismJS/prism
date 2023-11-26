@@ -1,5 +1,8 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['diff']) {
+      return
+    }
 	Prism.languages.diff = {
 		'coord': [
 			// Match all kinds of coord lines (prefixed by "+++", "---" or "***").
@@ -14,10 +17,10 @@
 	};
 
 	/**
-	 * A map from the name of a block to its line prefix.
-	 *
-	 * @type {Object<string, string>}
-	 */
+	* A map from the name of a block to its line prefix.
+	*
+	* @type {Object<string, string>}
+	*/
 	var PREFIXES = {
 		'deleted-sign': '-',
 		'deleted-arrow': '<',
@@ -60,5 +63,4 @@
 	Object.defineProperty(Prism.languages.diff, 'PREFIXES', {
 		value: PREFIXES
 	});
-
-}(Prism));
+}

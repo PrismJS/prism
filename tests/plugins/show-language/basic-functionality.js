@@ -1,13 +1,15 @@
-const { assert } = require('chai');
-const { createScopedPrismDom } = require('../../helper/prism-dom-util');
-
+import { assert } from "@esm-bundle/chai"
+import { Prism as PrismClass } from '../../../prism-core.js'
+import { loader as MarkupLoader } from '../../../components/prism-javascript.js'
+import { loader as JavaScriptLoader } from '../../../components/prism-javascript.js'
+import { Plugin as ShowLanguagePlugin } from '../../../plugins/show-language/prism-show-language.js'
 
 describe('Show language', function () {
-	const { Prism, document } = createScopedPrismDom(this, {
-		languages: ['markup', 'javascript'],
-		plugins: 'show-language'
-	});
-
+	const Prism = new PrismClass({ manual: false })
+	MarkupLoader(Prism)
+	JavaScriptLoader(Prism)
+	ShowLanguagePlugin(Prism)
+	window.Prism = Prism
 
 	function test(expectedLanguage, code) {
 		document.body.innerHTML = code;

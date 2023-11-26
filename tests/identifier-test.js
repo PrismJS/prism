@@ -1,9 +1,12 @@
-'use strict';
+import * as url from "node:url"
+import * as fs from "node:fs"
+import * as path from "node:path"
+import { assert } from '@esm-bundle/chai';
+import * as PrismLoader from './helper/prism-loader.js';
+import * as TokenStreamTransformer from './helper/token-stream-transformer.js'
 
-const { assert } = require('chai');
-const PrismLoader = require('./helper/prism-loader');
-const { languages } = require('../components.json');
-const TokenStreamTransformer = require('./helper/token-stream-transformer');
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const { languages } = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../components.json'), { encoding: "utf-8" }));
 
 
 // This is where you can exclude a language from the identifier test.

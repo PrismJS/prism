@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined') {
 		return;
 	}
@@ -91,4 +90,4 @@
 
 		Prism.plugins.dataURIHighlight.processGrammar(env.grammar);
 	});
-}());
+}

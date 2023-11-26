@@ -1,9 +1,12 @@
-(function (Prism) {
-
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['http']) {
+      return
+    }
 	/**
-	 * @param {string} name
-	 * @returns {RegExp}
-	 */
+	* @param {string} name
+	* @returns {RegExp}
+	*/
 	function headerValueOf(name) {
 		return RegExp('(^(?:' + name + '):[ \t]*(?![ \t]))[^]+', 'i');
 	}
@@ -109,11 +112,11 @@
 	};
 
 	/**
-	 * Returns a pattern for the given content type which matches it and any type which has it as a suffix.
-	 *
-	 * @param {string} contentType
-	 * @returns {string}
-	 */
+	* Returns a pattern for the given content type which matches it and any type which has it as a suffix.
+	*
+	* @param {string} contentType
+	* @returns {string}
+	*/
 	function getSuffixPattern(contentType) {
 		var suffix = contentType.replace(/^[a-z]+\//, '');
 		var suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?![+\\w.-])';
@@ -147,5 +150,4 @@
 	if (options) {
 		Prism.languages.insertBefore('http', 'header', options);
 	}
-
-}(Prism));
+}

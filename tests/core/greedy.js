@@ -1,10 +1,7 @@
-'use strict';
-
-const { assert } = require('chai');
-const PrismLoader = require('../helper/prism-loader');
-const TestCase = require('../helper/test-case');
-const TokenStreamTransformer = require('../helper/token-stream-transformer');
-
+import { assert } from '@esm-bundle/chai'
+import * as PrismLoader from '../helper/prism-loader.js'
+import * as TestCase from '../helper/test-case.js'
+import * as TokenStreamTransformer from '../helper/token-stream-transformer.js'
 
 function testTokens({ grammar, code, expected }) {
 	const Prism = PrismLoader.createEmptyPrism();

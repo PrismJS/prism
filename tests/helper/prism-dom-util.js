@@ -1,58 +1,25 @@
-const { assert } = require('chai');
-const PrismLoader = require('./prism-loader');
+import { assert } from '@esm-bundle/chai';
 
 /**
- * @typedef {import("./prism-loader").PrismDOM} PrismDOM
- * @typedef {import("./prism-loader").PrismWindow} PrismWindow
- */
-
-module.exports = {
-	/**
-	 * @param {PrismWindow} window
-	 */
-	createUtil(window) {
-		const { Prism, document } = window;
-
-		const util = {
-			assert: {
-				highlight({ language = 'none', code, expected }) {
-					assert.strictEqual(Prism.highlight(code, Prism.languages[language], language), expected);
-				},
-				highlightElement({ language = 'none', code, expected }) {
-					const element = document.createElement('CODE');
-					element.classList.add('language-' + language);
-					element.textContent = code;
-
-					Prism.highlightElement(element);
-
-					assert.strictEqual(element.innerHTML, expected);
-				}
+	* @param {Prism} Prism
+	*/
+export function createUtil(Prism) {
+	const util = {
+		assert: {
+			highlight({ language = 'none', code, expected }) {
+				assert.strictEqual(Prism.highlight(code, Prism.languages[language], language), expected);
 			},
-		};
+			highlightElement({ language = 'none', code, expected }) {
+				const element = document.createElement('CODE');
+				element.classList.add('language-' + language);
+				element.textContent = code;
 
-		return util;
-	},
+				Prism.highlightElement(element);
 
-	/**
-	 * Creates a Prism DOM instance that will be automatically cleaned up after the given test suite finished.
-	 *
-	 * @param {ReturnType<typeof import('mocha')["suite"]>} suite
-	 * @param {Partial<Record<"languages" | "plugins", string | string[]>>} options
-	 */
-	createScopedPrismDom(suite, options = {}) {
-		const dom = PrismLoader.createPrismDOM();
+				assert.strictEqual(element.innerHTML, expected);
+			}
+		},
+	};
 
-		suite.afterAll(function () {
-			dom.window.close();
-		});
-
-		if (options.languages) {
-			dom.loadLanguages(options.languages);
-		}
-		if (options.plugins) {
-			dom.loadPlugins(options.plugins);
-		}
-
-		return dom;
-	}
-};
+	return util;
+}

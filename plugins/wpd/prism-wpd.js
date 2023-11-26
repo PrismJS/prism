@@ -1,5 +1,4 @@
-(function () {
-
+export function Plugin (Prism) {
 	if (typeof Prism === 'undefined') {
 		return;
 	}
@@ -150,5 +149,4 @@
 
 		return null;
 	}
-
-}());
+}

@@ -1,4 +1,13 @@
-(function (Prism) {
+import { loader as javascriptLoader } from "./prism-javascript.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['flow']) {
+      return
+    }
+	if (!Prism.languages.javascript) {
+		javascriptLoader(Prism)
+	}
+
 	Prism.languages.flow = Prism.languages.extend('javascript', {});
 
 	Prism.languages.insertBefore('flow', 'keyword', {
@@ -32,4 +41,4 @@
 			lookbehind: true
 		}
 	);
-}(Prism));
+}

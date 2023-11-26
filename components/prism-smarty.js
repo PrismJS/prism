@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
+
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['smarty']) {
+      return
+    }
+
+    markupTemplatingLoader(Prism)
 
 	Prism.languages.smarty = {
 		'comment': {
@@ -127,5 +135,4 @@
 	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'smarty');
 	});
-
-}(Prism));
+}

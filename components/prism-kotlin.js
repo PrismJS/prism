@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as clikeLoader } from "./prism-clike.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['kotlin']) {
+      return
+    }
+	if (!Prism.languages.clike) {
+		clikeLoader(Prism)
+	}
 	Prism.languages.kotlin = Prism.languages.extend('clike', {
 		'keyword': {
 			// The lookbehind prevents wrong highlighting of e.g. kotlin.properties.get
@@ -85,4 +93,4 @@
 
 	Prism.languages.kt = Prism.languages.kotlin;
 	Prism.languages.kts = Prism.languages.kotlin;
-}(Prism));
+}

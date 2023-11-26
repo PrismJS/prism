@@ -1,17 +1,24 @@
 // @ts-check
 'use strict';
 
-const { assert } = require('chai');
-const PrismLoader = require('./helper/prism-loader');
-const TestDiscovery = require('./helper/test-discovery');
-const TestCase = require('./helper/test-case');
-const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
-const { languages } = require('../components.json');
-const { visitRegExpAST } = require('regexpp');
-const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers, isDisjointWith } = require('refa');
-const scslre = require('scslre');
-const { argv } = require('yargs');
-const RAA = require('regexp-ast-analysis');
+import { assert } from '@esm-bundle/chai';
+import * as path from "node:path"
+import * as fs from "node:fs"
+import * as url from "node:url"
+import * as PrismLoader from './helper/prism-loader.js'
+import * as TestDiscovery from './helper/test-discovery.js'
+import * as TestCase from './helper/test-case.js'
+import { BFS, BFSPathToPrismTokenPath, parseRegex } from './helper/util.js'
+import { visitRegExpAST } from 'regexpp'
+import { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers, isDisjointWith } from 'refa'
+import scslre from 'scslre'
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
+import RAA from 'regexp-ast-analysis'
+
+const { argv } = yargs(hideBin(process.argv))
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const { languages } = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../components.json'), { encoding: "utf-8" }));
 
 /**
  * A map from language id to a list of code snippets in that language.

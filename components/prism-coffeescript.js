@@ -1,5 +1,12 @@
-(function (Prism) {
-
+import { loader as javascriptLoader } from "./prism-javascript.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['coffeescript']) {
+      return
+    }
+	if (!Prism.languages.javascript) {
+		javascriptLoader(Prism)
+	}
 	// Ignore comments starting with { to privilege string interpolation highlighting
 	var comment = /#(?!\{).+/;
 	var interpolation = {
@@ -93,4 +100,4 @@
 	delete Prism.languages.coffeescript['template-string'];
 
 	Prism.languages.coffee = Prism.languages.coffeescript;
-}(Prism));
+}

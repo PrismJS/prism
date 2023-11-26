@@ -1,4 +1,12 @@
-(function (Prism) {
+import { loader as jsonLoader } from "./prism-json.js"
+export function loader (Prism, options) {
+    if (typeof Prism === 'undefined') return
+    if (options?.force !== true && Prism.languages['json5']) {
+      return
+    }
+	if (!Prism.languages.json) {
+		jsonLoader(Prism)
+	}
 
 	var string = /("|')(?:\\(?:\r\n?|\n|.)|(?!\1)[^\\\r\n])*\1/;
 
@@ -19,5 +27,4 @@
 		},
 		'number': /[+-]?\b(?:NaN|Infinity|0x[a-fA-F\d]+)\b|[+-]?(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+\b)?/
 	});
-
-}(Prism));
+}
