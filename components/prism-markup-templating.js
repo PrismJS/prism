@@ -115,6 +115,7 @@ export function loader (Prism, options) {
 								}
 
 								if (typeof token === 'string') {
+									// @ts-expect-error
 									tokens.splice.apply(tokens, [i, 1].concat(replacement));
 								} else {
 									token.content = replacement;
