@@ -1,6 +1,6 @@
 {
 	"name": "prism-esm",
-	"version": "1.29.0-fix.2",
+	"version": "1.29.0-fix.3",
 	"description": "A prism fork intended for ESM",
 	"type": "module",
 	"main": "prism.js",
