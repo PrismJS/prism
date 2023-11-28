@@ -1,8 +1,9 @@
+// http://avisynth.nl/index.php/The_full_AviSynth_grammar
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-// http://avisynth.nl/index.php/The_full_AviSynth_grammar
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['avisynth']) {

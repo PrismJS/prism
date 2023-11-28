@@ -1,10 +1,11 @@
+import { loader as markupLoader } from "./prism-markup.js"
+import { loader as csharpLoader } from "./prism-csharp.js"
+import { loader as javascriptLoader } from "./prism-javascript.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as markupLoader } from "./prism-markup.js"
-import { loader as csharpLoader } from "./prism-csharp.js"
-import { loader as javascriptLoader } from "./prism-javascript.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['aspnet']) {

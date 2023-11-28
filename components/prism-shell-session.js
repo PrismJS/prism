@@ -1,9 +1,9 @@
+import { loader as bashLoader } from "./prism-bash.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as bashLoader } from "./prism-bash.js"
-
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['shell-session']) {

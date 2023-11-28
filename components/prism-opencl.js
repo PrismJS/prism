@@ -1,8 +1,9 @@
+import { loader as cLoader } from "./prism-c.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as cLoader } from "./prism-c.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['opencl']) {

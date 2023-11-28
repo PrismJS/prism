@@ -1,11 +1,11 @@
-/**
-* @param {import("../prism.js").Prism} Prism
-* @param {import("../prism.js").LoaderOptions} [options]
-*/
 import { loader as markupLoader } from "./prism-markup.js"
 import { loader as javaLoader } from "./prism-java.js"
 import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
 
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['javadoc']) {

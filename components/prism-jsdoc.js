@@ -1,10 +1,11 @@
+import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
+import { loader as javascriptLoader } from "./prism-javascript.js"
+import { loader as typescriptLoader } from "./prism-typescript.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as javadoclikeLoader } from "./prism-javadoclike.js"
-import { loader as javascriptLoader } from "./prism-javascript.js"
-import { loader as typescriptLoader } from "./prism-typescript.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['jsdoc']) {

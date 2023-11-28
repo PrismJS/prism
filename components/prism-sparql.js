@@ -1,8 +1,9 @@
+import { loader as turtleLoader } from "./prism-turtle.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as turtleLoader } from "./prism-turtle.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['sparql']) {

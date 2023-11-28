@@ -1,8 +1,9 @@
+import { loader as rubyLoader } from "./prism-ruby.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as rubyLoader } from "./prism-ruby.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['crystal']) {

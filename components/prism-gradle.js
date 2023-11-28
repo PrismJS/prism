@@ -1,8 +1,9 @@
+import { loader as clikeLoader } from "./prism-clike.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as clikeLoader } from "./prism-clike.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['gradle']) {

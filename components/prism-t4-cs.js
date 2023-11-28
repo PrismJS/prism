@@ -1,10 +1,10 @@
+import { loader as csharpLoader } from "./prism-csharp.js"
+import { loader as t4TemplatingLoader } from "./prism-t4-templating.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as csharpLoader } from "./prism-csharp.js"
-import { loader as t4TemplatingLoader } from "./prism-t4-templating.js"
-
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['t4-cs']) {

@@ -1,10 +1,10 @@
+import { loader as jsxLoader } from "./prism-jsx.js"
+import { loader as typescriptLoader } from "./prism-typescript.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as jsxLoader } from "./prism-jsx.js"
-import { loader as typescriptLoader } from "./prism-typescript.js"
-
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['tsx']) {

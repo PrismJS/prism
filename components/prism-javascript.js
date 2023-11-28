@@ -1,10 +1,10 @@
+import { loader as clikeLoader } from "./prism-clike.js"
+import { loader as markupLoader } from "./prism-markup.js"
+
 /**
 * @param {import("../prism.js").Prism} Prism
 * @param {import("../prism.js").LoaderOptions} [options]
 */
-import { loader as clikeLoader } from "./prism-clike.js"
-import { loader as markupLoader } from "./prism-markup.js"
-
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['javascript']) {
