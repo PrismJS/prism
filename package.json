@@ -1,6 +1,6 @@
 {
 	"name": "prism-esm",
-	"version": "1.29.0-fix.1",
+	"version": "1.29.0-fix.2",
 	"description": "A prism fork intended for ESM",
 	"type": "module",
 	"main": "prism.js",
@@ -94,16 +94,16 @@
 		"registry": "jspm",
 		"jspmPackage": true,
 		"format": "esm",
-	  "files": [
-		  "components/**/*.js",
-		  "components/**/*.d.ts",
-		  "plugins/**/*.js",
-		  "plugins/**/*.d.ts",
-		  "themes/*.css",
-		  "prism.js",
-		  "prism.d.ts",
-		  "prism-core.js",
-		  "prism-core.d.ts"
-	  ]
+		"files": [
+			"components/**/*.js",
+			"components/**/*.d.ts",
+			"plugins/**/*.js",
+			"plugins/**/*.d.ts",
+			"themes/*.css",
+			"prism.js",
+			"prism.d.ts",
+			"prism-core.js",
+			"prism-core.d.ts"
+		]
 	}
 }
