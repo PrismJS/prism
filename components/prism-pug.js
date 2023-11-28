@@ -1,5 +1,10 @@
 import { loader as markupLoader } from "./prism-markup.js"
 import { loader as javascriptLoader } from "./prism-javascript.js"
+
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['pug']) {
@@ -176,7 +181,7 @@ export function loader (Prism, options) {
 		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('<filter_name>', function () { return filter.filter; }), 'm'),
+				pattern: RegExp(filter_pattern.replace('<filter_name>', function () { return /** @type {any} */ (filter).filter; }), 'm'),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as vbnetLoader } from "./prism-vbnet.js"
 import { loader as t4TemplatingLoader } from "./prism-t4-templating.js"
 

@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['dot']) {
@@ -27,7 +31,7 @@ export function loader (Prism, options) {
 
 	/**
 	* @param {string} source
-	* @param {string} flags
+	* @param {string} [flags]
 	* @returns {RegExp}
 	*/
 	function withID(source, flags) {

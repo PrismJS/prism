@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as javaLoader } from "./prism-java.js"
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return

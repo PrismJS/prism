@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as jsxLoader } from "./prism-jsx.js"
 import { loader as typescriptLoader } from "./prism-typescript.js"
 

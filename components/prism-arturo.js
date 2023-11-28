@@ -1,9 +1,7 @@
-import { loader as bashLoader } from "./prism-bash.js"
-import { loader as cssLoader } from "./prism-css.js"
-import { loader as javascriptLoader } from "./prism-javascript.js"
-import { loader as markupLoader } from "./prism-markup.js"
-import { loader as markdownLoader } from "./prism-markdown.js"
-import { loader as sqlLoader } from "./prism-sql.js"
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['arturo']) {
@@ -12,7 +10,7 @@ export function loader (Prism, options) {
 
 	/**
 	 * @param {string} lang
-	 * @param {string} pattern
+	 * @param {string} [pattern]
 	 */
 	var createLanguageString = function (lang, pattern) {
 		return {

@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 // based on https://github.com/microsoft/AL/blob/master/grammar/alsyntax.tmlanguage
 
 export function loader (Prism, options) {

@@ -1,0 +1,21 @@
+{
+  "include": [
+    "prism-core.js",
+    "components/**/*.js",
+    "prism.js"
+  ],
+  "compilerOptions": {
+    "strict": false,
+    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "allowJs": true,
+    "checkJs": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
+  }
+}

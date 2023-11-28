@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['pure']) {
@@ -67,12 +71,14 @@ export function loader (Prism, options) {
 			alias = lang.alias;
 			lang = lang.lang;
 		}
+		// @ts-expect-error
 		if (Prism.languages[alias]) {
 			var o = {};
 			o['inline-lang-' + alias] = {
 				pattern: RegExp(inlineLanguageRe.replace('<lang>', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
+			// @ts-expect-error
 			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);
 			Prism.languages.insertBefore('pure', 'inline-lang', o);
 		}

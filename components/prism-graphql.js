@@ -1,5 +1,9 @@
 // import { loader as markdownLoader } from "./prism-markdown.js"
 
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['graphql']) {
@@ -79,7 +83,7 @@ export function loader (Prism, options) {
 		/**
 	 	* get the graphql token stream that we want to customize
 	 	*
-	 	* @typedef {InstanceType<import("./prism-core")["Token"]>} Token
+	 	* @typedef {InstanceType<import("../prism-core.js")["Token"]>} Token
 	 	* @type {Token[]}
 	 	*/
 		var validTokens = env.tokens.filter(function (token) {

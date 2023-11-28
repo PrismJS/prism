@@ -1,5 +1,13 @@
 import { loader as javascriptLoader } from './prism-javascript.js'
 
+/**
+ * @typedef {import("../prism-core.js").Token} Token
+ */
+
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['js-templates']) {
@@ -119,10 +127,12 @@ export function loader (Prism, options) {
 	* @returns {Token}
 	*/
 	function tokenizeInterpolationExpression(expression) {
+		/**
+		 * @type {import('../prism-core.js').Grammar}
+		 */
 		var tempGrammar = {};
 		tempGrammar['interpolation-punctuation'] = interpolationPunctuationObject;
 
-		/** @type {Array} */
 		var tokens = Prism.tokenize(expression, tempGrammar);
 		if (tokens.length === 3) {
 			/**
@@ -135,6 +145,7 @@ export function loader (Prism, options) {
 			*/
 
 			var args = [1, 1];
+			// @ts-expect-error
 			args.push.apply(args, tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
 
 			tokens.splice.apply(tokens, args);
@@ -164,7 +175,6 @@ export function loader (Prism, options) {
 		// 1. First filter out all interpolations
 
 		// because they might be escaped, we need a lookbehind, so we use Prism
-		/** @type {(Token|string)[]} */
 		var _tokens = Prism.tokenize(code, {
 			'interpolation': {
 				pattern: RegExp(interpolationPattern),
@@ -184,6 +194,8 @@ export function loader (Prism, options) {
 
 				var placeholder;
 				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { /* noop */ }
+
+				// @ts-expect-error
 				placeholderMap[placeholder] = interpolationExpression;
 				return placeholder;
 			}
@@ -237,6 +249,7 @@ export function loader (Prism, options) {
 						}
 
 						if (typeof token === 'string') {
+							// @ts-expect-error
 							tokens.splice.apply(tokens, [i, 1].concat(replacement));
 							i += replacement.length - 1;
 						} else {
@@ -246,6 +259,7 @@ export function loader (Prism, options) {
 				} else {
 					var content = token.content;
 					if (Array.isArray(content)) {
+						// @ts-expect-error
 						walkTokens(content);
 					} else {
 						walkTokens([content]);
@@ -317,8 +331,10 @@ export function loader (Prism, options) {
 					var embedded = content[1];
 					if (content.length === 3 && typeof embedded !== 'string' && embedded.type === 'embedded-code') {
 						// get string content
+						// @ts-expect-error
 						var code = stringContent(embedded);
 
+						// @ts-expect-error
 						var alias = embedded.alias;
 						var language = Array.isArray(alias) ? alias[0] : alias;
 
@@ -331,6 +347,7 @@ export function loader (Prism, options) {
 						content[1] = tokenizeEmbedded(code, grammar, language);
 					}
 				} else {
+					// @ts-expect-error
 					findTemplateStrings(content);
 				}
 			}
@@ -352,6 +369,7 @@ export function loader (Prism, options) {
 		} else if (Array.isArray(value)) {
 			return value.map(stringContent).join('');
 		} else {
+			// @ts-expect-error
 			return stringContent(value.content);
 		}
 	}

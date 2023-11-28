@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as markupLoader } from "./prism-markup.js"
 import { loader as markupTemplatingLoader } from "./prism-markup-templating.js"
 import { loader as phpLoader } from "./prism-php.js"

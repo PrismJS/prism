@@ -81,6 +81,7 @@ export class Prism {
 
 		/**
 		 * This namespace contains all currently loaded languages and the some helper functions to create and modify languages.
+		 * @type {{[key: string]: any}}
 		 */
 		this.languages = {
 			/**
@@ -351,6 +352,19 @@ export class Prism {
 			}
 		}
 
+
+		// Get current script and highlight
+		const script = this.util.currentScript();
+
+		if (script) {
+			this.filename = script.src;
+
+			if (script.hasAttribute('data-manual')) {
+				_.manual = true;
+			}
+		}
+
+
 		if (!_.manual) {
 			// If the document state is "loading", then we'll use DOMContentLoaded.
 			// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
@@ -504,7 +518,7 @@ export class Prism {
 		}
 
 		if (async && _self.Worker) {
-			var worker = new Worker(_.filename);
+			var worker = new Worker(this.filename);
 
 			worker.onmessage = function (evt) {
 				insertHighlightedCode(evt.data);
@@ -664,7 +678,7 @@ export class Token {
 		if (Array.isArray(o)) {
 			var s = '';
 			o.forEach(function (e) {
-				s += _.stringify(e, language, prism);
+				s += _.stringify(/** @type {string} */ (e), language, prism);
 			});
 			return s;
 		}
@@ -717,16 +731,17 @@ class Util {
 	constructor (prism) {
 		this.prism = prism
 	}
+
 	/**
-	 * @template {Token | Token[] | string} T
-	 * @param {T} tokens
-	 * @return {T}
+	 * @param {Token | Token[] | string} tokens
+	 * @return {Token | Token[] | string}
 	 */
 	encode = (tokens) => {
 		if (tokens instanceof Token) {
-			return new Token(tokens.type, this.encode(tokens.content), tokens.alias, this.prism);
+			const content = /** @type {string} */ (tokens.content)
+			return new Token(tokens.type, /** @type {string} */ (this.encode(content)), tokens.alias);
 		} else if (Array.isArray(tokens)) {
-			return tokens.map(this.encode);
+			return tokens.map((token) => /** @type {Token} */ (this.encode(token)));
 		} else {
 			return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 		}
@@ -806,52 +821,12 @@ class Util {
 	*
 	* The main intended use of this function is to clone language definitions.
 	*
-	* @param {T} o
-	* @param {Record<number, any>} [visited]
-	* @returns {T}
 	* @template T
+	* @param {T} o
+	* @returns {T}
 	*/
-	clone (o, visited) {
+	clone (o) {
 		return structuredClone(o)
-		visited = visited || {};
-
-		let cloned
-		let id;
-		switch (this.type(o)) {
-			case 'Object':
-				id = this.objId(o);
-				if (visited[id]) {
-					return visited[id];
-				}
-				cloned = /** @type {Record<string, any>} */ ({});
-
-				visited[id] = cloned;
-
-				for (var key in o) {
-					if (o.hasOwnProperty(key)) {
-						cloned[key] = this.clone(o[key], visited);
-					}
-				}
-
-				return /** @type {any} */ (cloned);
-
-			case 'Array':
-				id = this.objId(o);
-				if (visited[id]) {
-					return visited[id];
-				}
-				cloned = [];
-				visited[id] = cloned;
-
-				(/** @type {Array} */(/** @type {any} */(o))).forEach((v, i) => {
-					cloned[i] = this.clone(v, visited);
-				});
-
-				return /** @type {any} */ (cloned);
-
-			default:
-				return o;
-		}
 	}
 
 	/**
@@ -888,6 +863,48 @@ class Util {
 		}
 		return !!defaultActivation;
 	}
+
+	/**
+		* Returns the script element that is currently executing.
+		*
+		* This does __not__ work for line script element.
+		*
+		* @returns {HTMLScriptElement | null}
+		*/
+	currentScript () {
+		if (typeof document === 'undefined') {
+			return null;
+		}
+		if ('currentScript' in document && 1 < 2 /* hack to trip TS' flow analysis */) {
+			return /** @type {any} */ (document.currentScript);
+		}
+
+		// IE11 workaround
+		// we'll get the src of the current script by parsing IE11's error stack trace
+		// this will not work for inline scripts
+
+		try {
+			throw new Error();
+		} catch (err) {
+			// Get file src url from stack. Specifically works with the format of stack traces in IE.
+			// A stack will look like this:
+			//
+			// Error
+			//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
+			//    at Global code (http://localhost/components/prism-core.js:606:1)
+
+			var src = (/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(err.stack) || [])[1];
+			if (src) {
+				var scripts = document.getElementsByTagName('script');
+				for (var i in scripts) {
+					if (scripts[i].src == src) {
+						return scripts[i];
+					}
+				}
+			}
+			return null;
+		}
+	}
 }
 
 /**
@@ -898,11 +915,6 @@ class Util {
 	* @returns {RegExpExecArray | null}
 	*/
 function matchPattern(pattern, pos, text, lookbehind) {
-	// TODO: this shouldn't be here, but fixes an issue with HTTP identifiers.
-	if (pattern === true) {
-		return null
-	}
-
 	pattern.lastIndex = pos;
 	var match = pattern.exec(text);
 	if (match && lookbehind && match[1]) {
@@ -1077,13 +1089,13 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, prismInstan
 }
 
 /**
-	* @typedef LinkedListNode
-	* @property {T} value
-	* @property {LinkedListNode<T> | null} prev The previous node.
-	* @property {LinkedListNode<T> | null} next The next node.
-	* @template T
-	* @private
-	*/
+ * @template T
+ * @typedef LinkedListNode
+ * @property {T} value
+ * @property {LinkedListNode<T> | null} prev The previous node.
+ * @property {LinkedListNode<T> | null} next The next node.
+ * @private
+ */
 
 /**
 	* @template T
@@ -1181,7 +1193,6 @@ function toArray(list) {
  *
  * Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
  * each another.
- * @global
  * @public
  */
 
@@ -1189,7 +1200,6 @@ function toArray(list) {
  * @typedef Grammar
  * @type {Object<string, RegExp | GrammarToken | Array<RegExp | GrammarToken>>}
  * @property {Grammar} [rest] An optional grammar object that will be appended to this grammar.
- * @global
  * @public
  */
 
@@ -1199,7 +1209,6 @@ function toArray(list) {
  * @callback HighlightCallback
  * @param {Element} element The element successfully highlighted.
  * @returns {void}
- * @global
  * @public
  */
 
@@ -1207,6 +1216,21 @@ function toArray(list) {
  * @callback HookCallback
  * @param {Object<string, any>} env The environment variables of the hook.
  * @returns {void}
- * @global
  * @public
+ */
+
+/**
+ * Options for loading grammars in "./components/*.js"
+ * @typedef {object} LoaderOptions
+ * @property {boolean} [force]
+ */
+
+/**
+ * @typedef {object} TokenStreamItem
+ * @property {string} type
+ * @property {string | Array<string|TokenStreamItem>} content
+ */
+
+/**
+ * @typedef {Array<string|TokenStreamItem>} TokenStream
  */

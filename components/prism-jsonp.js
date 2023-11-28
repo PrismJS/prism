@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as jsonLoader } from "./prism-json.js"
 
 export function loader (Prism, options) {

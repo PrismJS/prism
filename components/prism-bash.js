@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['bash']) {
@@ -229,7 +233,10 @@ export function loader (Prism, options) {
 		'punctuation',
 		'number'
 	];
-	var inside = insideString.variable[1].inside;
+
+
+	var inside = /** @type {any} */ (insideString.variable[1]).inside;
+
 	for (var i = 0; i < toBeCopied.length; i++) {
 		inside[toBeCopied[i]] = Prism.languages.bash[toBeCopied[i]];
 	}

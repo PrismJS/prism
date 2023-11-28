@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 // GitHub: https://github.com/apache/avro
 // Docs: https://avro.apache.org/docs/current/idl.html
 

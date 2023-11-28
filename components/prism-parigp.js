@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['parigp']) {
@@ -19,10 +23,10 @@ export function loader (Prism, options) {
 				'forstep', 'forsubgroup', 'forvec', 'for', 'iferr', 'if',
 				'local', 'my', 'next', 'return', 'until', 'while'
 			];
-			keywords = keywords.map(function (keyword) {
+			const keywordString = keywords.map(function (keyword) {
 				return keyword.split('').join(' *');
 			}).join('|');
-			return RegExp('\\b(?:' + keywords + ')\\b');
+			return RegExp('\\b(?:' + keywordString + ')\\b');
 		}()),
 		'function': /\b\w(?:[\w ]*\w)?(?= *\()/,
 		'number': {

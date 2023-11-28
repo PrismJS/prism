@@ -1,9 +1,5 @@
+// @ts-check
 /**
- * @typedef TokenStreamItem
- * @property {string} type
- * @property {string | Array<string|TokenStreamItem>} content
- *
- * @typedef {Array<string|TokenStreamItem>} TokenStream
  *
  * @typedef {Array<string | [string, string | Array]>} SimplifiedTokenStream
  *
@@ -11,6 +7,10 @@
  * @typedef {string | LineBreakItem | GlueItem | [string, string | Array]} PrettyTokenStreamItem
  */
 
+/**
+ * @typedef {import("../../prism-core.js").TokenStream} TokenStream
+ * @typedef {import("../../prism-core.js").TokenStreamItem} TokenStreamItem
+ */
 
 /**
 	* Simplifies the token stream to ease the matching with the expected token stream.
@@ -52,25 +52,6 @@ export function simplify(tokenStream) {
 export function prettyprint(tokenStream, indentation) {
 	return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
 }
-
-/**
- * This item indicates that one or multiple line breaks are present between the preceding and following items in the
- * source token stream.
- *
- * Only if an item is enabled will it appear in the pretty-printed token stream.
- */
-class LineBreakItem {
-	/** @param {number} sourceCount */
-	constructor(sourceCount) {
-		this.sourceCount = sourceCount;
-		this.enabled = false;
-	}
-}
-/**
- * This item indicates the the preceding and following items are to be printed on the same line in the pretty-printed
- * token stream.
- */
-class GlueItem { }
 
 /**
  * @param {TokenStream} tokenStream
@@ -480,3 +461,22 @@ function isNested(item) {
 function isTriviallyNested(item) {
 	return isNested(item) && item[1].length === 1 && typeof item[1][0] === 'string';
 }
+
+/**
+ * This item indicates that one or multiple line breaks are present between the preceding and following items in the
+ * source token stream.
+ *
+ * Only if an item is enabled will it appear in the pretty-printed token stream.
+ */
+class LineBreakItem {
+	/** @param {number} sourceCount */
+	constructor(sourceCount) {
+		this.sourceCount = sourceCount;
+		this.enabled = false;
+	}
+}
+/**
+ * This item indicates the the preceding and following items are to be printed on the same line in the pretty-printed
+ * token stream.
+ */
+class GlueItem { }

@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['javadoclike']) {
@@ -22,7 +26,7 @@ export function loader (Prism, options) {
 	* Adds doc comment support to the given language and calls a given callback on each doc comment pattern.
 	*
 	* @param {string} lang the language add doc comment support to.
-	* @param {(pattern: {inside: {rest: undefined}}) => void} callback the function called with each doc comment pattern as argument.
+	* @param {(pattern: {inside: {rest?: undefined}}) => void} callback the function called with each doc comment pattern as argument.
 	*/
 	function docCommentSupport(lang, callback) {
 		var tokenName = 'doc-comment';
@@ -85,5 +89,5 @@ export function loader (Prism, options) {
 
 	Object.defineProperty(javaDocLike, 'addSupport', { value: addSupport });
 
-	javaDocLike.addSupport(['java', 'javascript', 'php'], javaDocLike);
+	addSupport(['java', 'javascript', 'php'], javaDocLike);
 }

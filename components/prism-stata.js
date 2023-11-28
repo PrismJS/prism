@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 import { loader as pythonLoader } from "./prism-python.js"
 import { loader as javaLoader } from "./prism-java.js"
 import { loader as mataLoader } from "./prism-mata.js"

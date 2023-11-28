@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['http']) {
@@ -125,13 +129,13 @@ export function loader (Prism, options) {
 
 	// Insert each content type parser that has its associated language
 	// currently loaded.
-	var options;
+	var httpOptions;
 	for (var contentType in httpLanguages) {
 		if (httpLanguages[contentType]) {
-			options = options || {};
+			httpOptions = httpOptions || {};
 
 			var pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
-			options[contentType.replace(/\//g, '-')] = {
+			httpOptions[contentType.replace(/\//g, '-')] = {
 				pattern: RegExp(
 					'(' + /content-type:\s*/.source + pattern + /(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
 					// This is a little interesting:
@@ -147,7 +151,7 @@ export function loader (Prism, options) {
 			};
 		}
 	}
-	if (options) {
-		Prism.languages.insertBefore('http', 'header', options);
+	if (httpOptions) {
+		Prism.languages.insertBefore('http', 'header', httpOptions);
 	}
 }

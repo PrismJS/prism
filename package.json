@@ -10,14 +10,21 @@
 	},
 	"files": [
 		"components/**/*.js",
-		"plugins/**/*",
+		"components/**/*.d.ts",
+		"plugins/**/*.js",
+		"plugins/**/*.d.ts",
 		"themes/*.css",
 		"prism.js",
-		"prism-core.js"
+		"prism.d.ts",
+		"prism-core.js",
+		"prism-core.d.ts"
 	],
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
 		"build": "gulp",
+		"clean": "rimraf prism-core.d.ts && rimraf prism.d.ts && rimraf -g \"./components/**/*.d.ts\"",
+		"build:types": "npm run clean && tsc",
+		"prepublishOnly": "npm run build:types",
 		"start": "http-server -c-1",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
@@ -87,12 +94,16 @@
 		"registry": "jspm",
 		"jspmPackage": true,
 		"format": "esm",
-		"files": [
-			"components/**/*.js",
-			"plugins/**/*",
-			"themes/*.css",
-			"prism.js",
-			"prism-core.js"
-		]
+	  "files": [
+		  "components/**/*.js",
+		  "components/**/*.d.ts",
+		  "plugins/**/*.js",
+		  "plugins/**/*.d.ts",
+		  "themes/*.css",
+		  "prism.js",
+		  "prism.d.ts",
+		  "prism-core.js",
+		  "prism-core.d.ts"
+	  ]
 	}
 }

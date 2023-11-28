@@ -1,3 +1,7 @@
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['naniscript']) {
@@ -115,7 +119,7 @@ export function loader (Prism, options) {
 	};
 	Prism.languages.nani = Prism.languages['naniscript'];
 
-	/** @typedef {InstanceType<import("./prism-core")["Token"]>} Token */
+	/** @typedef {InstanceType<import("../prism-core.js")["Token"]>} Token */
 
 	/**
 	* This hook is used to validate generic-text tokens for balanced brackets.
@@ -166,6 +170,7 @@ export function loader (Prism, options) {
 		} else if (Array.isArray(token)) {
 			return token.map(getTextContent).join('');
 		} else {
+			// @ts-expect-error
 			return getTextContent(token.content);
 		}
 	}

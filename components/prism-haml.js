@@ -1,5 +1,9 @@
 import { loader as rubyLoader } from "./prism-ruby.js"
 
+/**
+* @param {import("../prism.js").Prism} Prism
+* @param {import("../prism.js").LoaderOptions} [options]
+*/
 export function loader (Prism, options) {
     if (typeof Prism === 'undefined') return
     if (options?.force !== true && Prism.languages['haml']) {
@@ -133,7 +137,7 @@ export function loader (Prism, options) {
 		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return /** @type {any} */ (filter).filter; })),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

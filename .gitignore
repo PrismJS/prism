@@ -6,3 +6,6 @@ node_modules
 
 benchmark/remotes/
 benchmark/downloads/
+components/*.d.ts
+prism-core.d.ts
+prism.d.ts
