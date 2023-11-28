@@ -1,5 +1,10 @@
 # Prism Changelog
 
+## 1.29.0-fix.2 (11-28-2023)
+
+- Added `.d.ts` types.
+- Fixed an issue with script tags.
+
 ## 1.29.0-fix.1 (11-26-2023)
 
 - fix: export `Token` in main entrypoint.
