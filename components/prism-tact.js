@@ -35,13 +35,21 @@
 			pattern: /\b[A-Z]\w*\b/,
 		},
 
-		// native FunC functions mapping
-		'attribute': {
-			pattern: /@name/,
-			inside: {
-				'function': /.+/,
+		// mappings to FunC
+		'attribute': [
+			{ // functions
+				pattern: /@name/,
+				inside: {
+					'function': /.+/,
+				},
 			},
-		},
+			{ // contract interfaces
+				pattern: /@interface/,
+				inside: {
+					'function': /.+/,
+				}
+			}
+		],
 
 		'function': {
 			pattern: /\b\w+(?=\()/,
@@ -55,8 +63,14 @@
 			{ // hexadecimal, case-insensitive /i
 				pattern: /\b0x[0-9a-f]+\b/i,
 			},
+			{ // octal, case-insensitive /i
+				pattern: /\b0o[0-7]+\b/i,
+			},
 			{ // decimal integers
 				pattern: /\b\d+\b/,
+			},
+			{ // binary, case-insensitive /i
+				pattern: /\b0b[01]+\b/i,
 			}
 		],
 
@@ -80,7 +94,7 @@
 		],
 
 		'operator': {
-			'pattern': /![!=]?|\*|\/|%|-|\+|==?|[<>]=|<<?|>>?|\|\|?|&&?/,
+			'pattern': /![!=]?|[+\-*/%=]=?|[<>]=|<<?|>>?|\|\|?|&&?/,
 		},
 
 	};

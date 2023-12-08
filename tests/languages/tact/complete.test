@@ -18,9 +18,10 @@ trait MyTrait {
     }
 }
 
+@interface("org.ton.something")
 contract MyContract with MyTrait, Ownable? {
     owner: Address; // comment
-    value: Int as uint32 = 1230;
+    value: Int as uint32 = 0b101010 + 0o77;
     counters: map<Int, Address> /* Address, "Address" */ ;
     map: map<Int as int16, Int as uint32>;
     b: bounced<MyMessage>;
@@ -117,6 +118,15 @@ contract MyContract with MyTrait, Ownable? {
 			["punctuation", ";"],
 		["punctuation", "}"],
 	["punctuation", "}"],
+
+	["attribute", [
+		["function", "@interface"]
+	]],
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"org.ton.something\""]
+	]],
+	["punctuation", ")"],
 	["keyword", "contract"],
 	["class-name", "MyContract"],
 	["keyword", "with"],
@@ -137,7 +147,9 @@ contract MyContract with MyTrait, Ownable? {
 		["keyword", "as"],
 		["keyword", "uint32"],
 		["operator", "="],
-		["number", "1230"],
+		["number", "0b101010"],
+		["operator", "+"],
+		["number", "0o77"],
 		["punctuation", ";"],
 
 		"\r\n    counters",
