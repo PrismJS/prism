@@ -231,18 +231,48 @@
 
 				var start = parseInt(pre.getAttribute('data-start') || '1');
 
+				var rangeStart = null;
+
 				// iterate all line number spans
 				$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
 					var lineNumber = i + start;
-					lineSpan.onclick = function () {
-						var hash = id + '.' + lineNumber;
+					lineSpan.onmousedown = function () {
+						// Set the start of the range
+						rangeStart = lineNumber;
+					};
+
+					lineSpan.onmouseup = function () {
+						var rangeEnd = lineNumber;
+						var currentHashLines = location.hash.substr(1);
+						if (currentHashLines){
+						currentHashLines = currentHashLines.split('.');
+						currentHashLines = currentHashLines[1].split(",");
+						}
+						else currentHashLines = [];
+
+						// Determine the range of lines
+						for (var num = Math.min(rangeStart, rangeEnd); num <= Math.max(rangeStart, rangeEnd); num++) {
+							var hashValue = num.toString();
+							var hashIndex = currentHashLines.indexOf(hashValue);
+
+							if (hashIndex === -1) {
+								// Line number not in hash, add it
+								currentHashLines.push(hashValue);
+							} else {
+								// Line number already in hash, remove it
+								currentHashLines.splice(hashIndex, 1);
+							}
+						}
+
 
 						// this will prevent scrolling since the span is obviously in view
 						scrollIntoView = false;
-						location.hash = hash;
+						location.hash = id + "." + currentHashLines.join(',');
 						setTimeout(function () {
 							scrollIntoView = true;
 						}, 1);
+
+						rangeStart = null; // Reset the range start
 					};
 				});
 			}
