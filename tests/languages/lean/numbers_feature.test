@@ -1,0 +1,39 @@
+3.14159
+42
+3e5
+-3.14159
+-42
+3e-5
+-3e5
+-3e-5
+foo-3e+10bar
+0b1
+0B0101
+0o13
+0O701
+0xabcdef
+0XC0fFEe190
+
+----------------------------------------------------
+
+[
+	["number", "3.14159"],
+	["number", "42"],
+	["number", "3e5"],
+	["number", "-3.14159"],
+	["number", "-42"],
+	["number", "3e-5"],
+	["number", "-3e5"],
+	["number", "-3e-5"],
+	"\r\ntomaz", ["operator", "-"], "3e", ["operator", "+"], "10gomes\r\n",
+	["number", "0b1"],
+	["number", "0B0101"],
+	["number", "0o13"],
+	["number", "0O701"],
+	["number", "0xabcdef"],
+	["number", "0XC0fFEe190"]
+]
+
+----------------------------------------------------
+
+Checks tokenization of numbers (binary, octal, hexadecimal, scientific notation).

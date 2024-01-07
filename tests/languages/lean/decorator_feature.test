@@ -1,0 +1,28 @@
+@[decorator] def f := 2+2 + 3 - 4 ||| false == true = 3
+
+----------------------------------------------------
+
+[
+	["decorator", "@[decorator]"],
+	["keyword", "def"],
+	" f ",
+	["punctuation", ":"],
+	["operator", "="],
+	["number", "2"],
+	["operator", "+"],
+	["number", "2"],
+	["operator", "+"],
+	["number", "3"],
+	["operator", "-"],
+	["number", "4"],
+	["operator", "|||"],
+	["boolean", "false"],
+	["operator", "=="],
+	["boolean", "true"],
+	["operator", "="],
+	["number", "3"]
+]
+
+----------------------------------------------------
+
+Checks tokenization of decorators.

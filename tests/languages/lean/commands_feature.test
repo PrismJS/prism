@@ -1,0 +1,17 @@
+#check Nat
+#eval 1 + 1
+#check_failure f
+#reduce Y
+
+----------------------------------------------------
+
+[
+	["keyword", "#check"], " Nat\r\n",
+	["keyword", "#eval"], ["number", "1"], ["operator", "+"], ["number", "1"],
+	["keyword", "#check_failure"], " f\r\n",
+	["keyword", "#reduce"], " Y"
+]
+
+----------------------------------------------------
+
+Checks tokenization of commands.

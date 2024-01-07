@@ -1,11 +1,27 @@
-blah
+-- foo
+--
+/- bar -/
+/- multi
+line
+comment -/
+/-! Mod doc comment -/
+-- another single line comment
+/-- Documentation
+commentary
+-/
 
----------------------------------------
+----------------------------------------------------
 
 [
-  "blah"
+	["comment", "-- foo"],
+	["comment", "--"],
+	["comment", "/- bar -/"],
+	["comment", "/- multi\r\nline\r\ncomment -/"],
+	["comment", "/-! Mod doc comment -/"],
+	["comment", "-- another single line comment"],
+	["comment", "/-- Documentation\r\ncommentary\r\n-/"]
 ]
 
----------------------------------------
+----------------------------------------------------
 
-tomaz
+Checks for single-line and documentation comments.
