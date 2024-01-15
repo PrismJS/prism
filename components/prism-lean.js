@@ -1,6 +1,6 @@
 // Reference: https://github.com/leanprover/vscode-lean4
-// OBS: progress being tracked at ~/Projects/lean-obsi/vscode-lean4/vscode-lean4/syntaxes/lean4.json
-// TODO: consider operators and numbers in the middle of other strings
+// TODO: Consider operators and numbers in the middle of other strings
+// TODO: String interpolation
 
 (function (Prism) {
 	Prism.languages.lean = {
@@ -22,11 +22,10 @@
 		],
 
 		'keyword': [
-			/\b(?:theorem|show|have|from|suffices|nomatch|def|class|structure|instance|set_option|initialize|builtin_initialize|example|inductive|coinductive|axiom|constant|universe|universes|variable|variables|import|open|export|theory|prelude|renaming|hiding|exposing|do|by|let|extends|mutual|mut|where|rec|syntax|macro_rules|macro|deriving|fun|section|namespace|end|infix|infixl|infixr|postfix|prefix|notation|abbrev|if|then|else|calc|match|with|for|in|unless|try|catch|finally|return|continue|break)\b/,
+			/\b(?:theorem|show|have|from|suffices|nomatch|def|class|structure|instance|set_option|initialize|builtin_initialize|example|inductive|coinductive|axiom|constant|universe|universes|variable|variables|import|open|export|theory|prelude|renaming|hiding|exposing|do|by|let|extends|mutual|mut|where|rec|syntax|macro_rules|macro|deriving|fun|section|namespace|end|infix|infixl|infixr|postfix|prefix|notation|abbrev|if|then|else|calc|match|with|for|in|unless|try|catch|finally|return|continue|break|global|local|scoped|partial|unsafe|private|protected|noncomputable)\b/,
 			/#(print|eval|reduce|check_failure|check)/
 		],
 
-		// Missing modifiers
 		'function-definition': {
 			pattern: /(\b(?:inductive|coinductive|structure|theorem|axiom|abbrev|lemma|def|instance|class|constant)\s+)\w+/,
 			lookbehind: true,
@@ -35,7 +34,7 @@
 
 		'decorator': {
 			pattern: /@\[[^\]\n]*\]/,
-			alias: ['punctuation']
+			alias: 'keyword'
 		},
 
 		'punctuation' : /[()\[\]{},:]/,
@@ -46,9 +45,14 @@
 
 		'important': /\b(sorry|admit)\b/,
 
-		// TODO: string interpolation, embedded unicode
-		'string': []
+		'string': [
+		    /"[^"]*"/,
+		    /'[^']*'/
+		],
 
-		// TODO: quotation (`)
+		'quotation': {
+			pattern: /`[^\s]*/,
+			alias: 'symbol'
+		}
 	};
 }(Prism));

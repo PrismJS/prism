@@ -1,0 +1,12 @@
+`Foo.bar.baz bam
+`Foobar
+
+----------------------------------------------------
+[
+	["quotation", "`Foo.bar.baz"],
+	" bam\r\n",
+	["quotation", "`Foobar"]
+]
+----------------------------------------------------
+
+Checks tokenization of quotations (`)

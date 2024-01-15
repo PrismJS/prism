@@ -1,3 +1,4 @@
+foo314bar
 3.14159
 42
 3e5
@@ -6,7 +7,6 @@
 3e-5
 -3e5
 -3e-5
-foo-3e+10bar
 0b1
 0B0101
 0o13
@@ -17,6 +17,7 @@ foo-3e+10bar
 ----------------------------------------------------
 
 [
+	"foo314bar\r\n",
 	["number", "3.14159"],
 	["number", "42"],
 	["number", "3e5"],
@@ -25,7 +26,6 @@ foo-3e+10bar
 	["number", "3e-5"],
 	["number", "-3e5"],
 	["number", "-3e-5"],
-	"\r\ntomaz", ["operator", "-"], "3e", ["operator", "+"], "10gomes\r\n",
 	["number", "0b1"],
 	["number", "0B0101"],
 	["number", "0o13"],
