@@ -1,9 +1,9 @@
-@[decorator] def f := 2+2 + 3 - 4 ||| false == true = 3
+@[decorator foo.bar] def f := 2+2 + 3 - 4 ||| false == true = 3
 
 ----------------------------------------------------
 
 [
-	["decorator", "@[decorator]"],
+	["decorator", "@[decorator foo.bar]"],
 	["keyword", "def"],
 	" f ",
 	["punctuation", ":"],
