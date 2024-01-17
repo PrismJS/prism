@@ -1,5 +1,4 @@
 // Reference: https://github.com/leanprover/vscode-lean4
-// TODO: Consider operators and numbers in the middle of other strings
 // TODO: String interpolation
 
 (function (Prism) {
@@ -9,7 +8,9 @@
 			/\b0b[01]+\b/i, // Binary
 			/\b0o[0-7]+\b/i, // Octal
 			/\b0x[0-9a-f]+\b/i, // Hexadecimal
-			/-?[0-9]+\.?[0-9]*(e[-+]?[0-9]+)?\b/i // Regular / Scientific notation
+			{ pattern: /(\W)-?\d+(?:\.\d+)?(?:e[-+]?\d+)?\b/i,
+			  lookbehind: true
+			} // Regular / Scientific notation }
 		],
 
 		// OK
@@ -23,7 +24,7 @@
 
 		'keyword': [
 			/\b(?:theorem|show|have|from|suffices|nomatch|def|class|structure|instance|set_option|initialize|builtin_initialize|example|inductive|coinductive|axiom|constant|universe|universes|variable|variables|import|open|export|theory|prelude|renaming|hiding|exposing|do|by|let|extends|mutual|mut|where|rec|syntax|macro_rules|macro|deriving|fun|section|namespace|end|infix|infixl|infixr|postfix|prefix|notation|abbrev|if|then|else|calc|match|with|for|in|unless|try|catch|finally|return|continue|break|global|local|scoped|partial|unsafe|private|protected|noncomputable)\b/,
-			/#(print|eval|reduce|check_failure|check)/
+			/#(?:print|eval|reduce|check_failure|check)/
 		],
 
 		'function-definition': {
@@ -39,11 +40,11 @@
 
 		'punctuation' : /[()\[\]{},:]/,
 
-		'operator' : /(\+|\*|-|\/|:=|>>>|<<<|\^\^\^|&&&|\|\|\||\+\+|\^|%|~~~|<|<=|>|>=|==|=)/,
+		'operator' : /\+|\*|-|\/|:=|>>>|<<<|\^\^\^|&&&|\|\|\||\+\+|\^|%|~~~|<|<=|>|>=|==|=/,
 
-		'boolean' : /\b(true|false)\b/,
+		'boolean' : /\b(?:true|false)\b/,
 
-		'important': /\b(sorry|admit)\b/,
+		'important': /\b(?:sorry|admit)\b/,
 
 		'string': [
 		    /"[^"]*"/,
