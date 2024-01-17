@@ -1,0 +1,60 @@
+<h2>Comments</h2>
+<pre><code>
+-- foo
+--
+/- bar -/
+/- multi
+line
+comment -/
+/-! Mod doc comment -/
+-- another single line comment
+/-- Documentation
+commentary
+-/
+</code></pre>
+
+<h2>Strings</h2>
+<pre><code>
+"foo
+bar
+baz"
+'foo bar baz'
+</pre></code>
+
+<h2>Numbers</h2>
+<pre><code>
+foo314bar
+3.14159
+42
+3e5
+-3.14159
+-42
+3e-5
+-3e5
+-3e-5
+0b1
+0B0101
+0o13
+0O701
+0xabcdef
+0XC0fFEe190
+</code></pre>
+
+<h2>Full example</h2>
+<pre><code>
+partial def String.isSubStrOf (sub : String) (s : String) : Bool :=
+  loop 0
+  where
+    loop i :=
+	  if i + sub.length > s.length then false
+	  else String.substrEq sub 0 s ⟨i⟩ sub.length \/ loop (i + 1)
+
+/-- (Extracted from prelude)
+The notation typeclass for heterogeneous append.
+This enables the notation `a ++ b : γ` where `a : α`, `b : β`.
+-/
+class HAppend (α : Type u) (β : Type v) (γ : outParam (Type w)) where
+  /-- `a ++ b` is the result of concatenation of `a` and `b`, usually read "append".
+  The meaning of this notation is type-dependent. -/
+  hAppend : α → β → γ
+</code></pre>

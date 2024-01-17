@@ -51,7 +51,7 @@
 		],
 
 		'quotation': {
-			pattern: /`[^\s]*/,
+			pattern: /`[^(\s]*/, // Remove `(` to avoid capturing parsers
 			alias: 'symbol'
 		}
 	};
