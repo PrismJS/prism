@@ -14,13 +14,10 @@
 		],
 
 		// OK
-		'comment': [
-			/\/--[^-\/]*-\//, // Doc comment
-			/\/-![^-\/]*-\//, // Mod doc comment
-			/\/-[^-\/]*-\//, // Block comment
-			// OBS: We left single-line for last to give priority to /-- -/
-			/--.*$/m // Single-line comment
-		],
+		'comment': {
+			pattern: /(?:\/--[\s\S]*?-\/)|(?:\/-![\s\S]*?-\/)|(?:\/-[\s\S]*?-\/)|--.*$/m,
+			greedy: true
+		},
 
 		'keyword': [
 			/\b(?:theorem|show|have|from|suffices|nomatch|def|class|structure|instance|set_option|initialize|builtin_initialize|example|inductive|coinductive|axiom|constant|universe|universes|variable|variables|import|open|export|theory|prelude|renaming|hiding|exposing|do|by|let|extends|mutual|mut|where|rec|syntax|macro_rules|macro|deriving|fun|section|namespace|end|infix|infixl|infixr|postfix|prefix|notation|abbrev|if|then|else|calc|match|with|for|in|unless|try|catch|finally|return|continue|break|global|local|scoped|partial|unsafe|private|protected|noncomputable)\b/,

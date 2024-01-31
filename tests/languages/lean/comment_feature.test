@@ -3,11 +3,11 @@
 /- bar -/
 /- multi
 line
-comment -/
+comment-/
 /-! Mod doc comment -/
 -- another single line comment
-/-- Documentation
-commentary
+/-- Documentati q23 # ( *) @ on
+com-mentary
 -/
 
 ----------------------------------------------------
@@ -16,10 +16,10 @@ commentary
 	["comment", "-- foo"],
 	["comment", "--"],
 	["comment", "/- bar -/"],
-	["comment", "/- multi\r\nline\r\ncomment -/"],
+	["comment", "/- multi\r\nline\r\ncomment-/"],
 	["comment", "/-! Mod doc comment -/"],
 	["comment", "-- another single line comment"],
-	["comment", "/-- Documentation\r\ncommentary\r\n-/"]
+	["comment", "/-- Documentati q23 # ( *) @ on\r\ncom-mentary\r\n-/"]
 ]
 
 ----------------------------------------------------
