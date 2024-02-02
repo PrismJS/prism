@@ -38,7 +38,7 @@ var Prism = (function (_self) {
 		 * empty Prism object into the global scope before loading the Prism script like this:
 		 *
 		 * ```js
-		 * window.Prism = window.Prism || {};
+		 * globalThis.Prism = globalThis.Prism || {};
 		 * Prism.manual = true;
 		 * // add a new <script> to load Prism's script
 		 * ```
@@ -60,7 +60,7 @@ var Prism = (function (_self) {
 		 * empty Prism object into the global scope before loading the Prism script like this:
 		 *
 		 * ```js
-		 * window.Prism = window.Prism || {};
+		 * globalThis.Prism = globalThis.Prism || {};
 		 * Prism.disableWorkerMessageHandler = true;
 		 * // Load Prism's script
 		 * ```
