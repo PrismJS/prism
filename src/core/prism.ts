@@ -109,7 +109,7 @@ export class Prism {
 
 			this.hooks.run('after-highlight', env);
 			this.hooks.run('complete', env);
-			callback && callback(env.element);
+			callback?.(env.element);
 		};
 
 		this.hooks.run('before-sanity-check', env);
@@ -122,7 +122,7 @@ export class Prism {
 
 		if (!env.code) {
 			this.hooks.run('complete', env);
-			callback && callback(env.element);
+			callback?.(env.element);
 			return;
 		}
 
