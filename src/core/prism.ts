@@ -7,7 +7,7 @@ import { LinkedList } from './linked-list';
 import { Registry } from './registry';
 import { Token } from './token';
 import type { KnownPlugins } from '../known-plugins';
-import type { Grammar, GrammarToken, GrammarTokens } from '../types';
+import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { HookEnvMap } from './hooks';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { TokenStream } from './token';
@@ -481,8 +481,8 @@ function stringify(o: string | Token | TokenStream, language: string, hooks: Hoo
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
 }
 
-function toGrammarToken(pattern: GrammarToken | RegExp): GrammarToken {
-	if (pattern.exec) {
+function toGrammarToken(pattern: GrammarToken | RegExpLike): GrammarToken {
+	if (!pattern.pattern) {
 		return { pattern };
 	} else {
 		return pattern;

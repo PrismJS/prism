@@ -1,5 +1,5 @@
 import { rest, tokenize } from './symbols';
-import type { Grammar, GrammarToken, GrammarTokens } from '../types';
+import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 
 // TODO: Update documentation
 
@@ -119,8 +119,8 @@ function cloneGrammar(grammar: Grammar, id: string): Grammar {
 
 	const visited = new Map<Grammar, Grammar>();
 
-	function cloneToken(value: GrammarToken | RegExp) {
-		if (value.exec) {
+	function cloneToken(value: GrammarToken | RegExpLike) {
+		if (!value.pattern) {
 			return value;
 		} else {
 			const copy: GrammarToken = { pattern: value.pattern };

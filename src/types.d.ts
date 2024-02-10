@@ -62,6 +62,8 @@ export type StandardTokenName =
 
 export type TokenName = string & {} | StandardTokenName;
 
+export type RegExpLike = RegExp & { readonly pattern?: never; };
+
 /**
  * The expansion of a simple `RegExp` literal to support additional properties.
  */
@@ -69,7 +71,7 @@ export interface GrammarToken {
 	/**
 	 * The regular expression of the token.
 	 */
-	pattern: RegExp
+	pattern: RegExpLike
 	/**
 	 * If `true`, then the first capturing group of `pattern` will (effectively) behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
 	 *
@@ -97,16 +99,9 @@ export interface GrammarToken {
 	 * each another.
 	 */
 	inside?: string | Grammar | null
-	/**
-	 * A property to make the types {@link GrammarToken} and {@link RegExp} non-overlapping.
-	 *
-	 * Since {@link GrammarToken} requires `exec` to be `undefined` and {@link RegExp} requires it to be a function,
-	 * there can be no object that is both a {@link GrammarToken} and a {@link RegExp}.
-	 */
-	readonly exec?: never;
 }
 
-export type GrammarTokens = Partial<Record<TokenName, RegExp | GrammarToken | (RegExp | GrammarToken)[]>>;
+export type GrammarTokens = Partial<Record<TokenName, RegExpLike | GrammarToken | (RegExpLike | GrammarToken)[]>>;
 export interface GrammarSymbols {
 	/**
 	 * An optional grammar object that will be appended to this grammar.
