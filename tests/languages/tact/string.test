@@ -1,0 +1,23 @@
+""
+"Address"
+"SomeContractName"
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "\"\""]
+	]],
+
+	["string-literal", [
+		["string", "\"Address\""]
+	]],
+
+	["string-literal", [
+		["string", "\"SomeContractName\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for double quoted strings (the only type of strings in Tact)
