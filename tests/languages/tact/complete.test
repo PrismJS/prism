@@ -12,8 +12,8 @@ message(0x1234) MyMessage {
 }
 
 trait MyTrait {
+    const CONST_VAL: Int = 42 + true ? 0x1 : 0x2;
     get fun traitState(): Int {
-        const CONST_VAL: Int = 42;
         return 0;
     }
 }
@@ -98,6 +98,19 @@ contract MyContract with MyTrait, Ownable? {
 	["keyword", "trait"],
 	["class-name", "MyTrait"],
 	["punctuation", "{"],
+		["keyword", "const"],
+		["constant", "CONST_VAL"],
+		["punctuation", ":"],
+		["builtin", "Int"],
+		["operator", "="],
+		["number", "42"],
+		["operator", "+"],
+		["boolean", "true"],
+		["punctuation", "?"],
+		["number", "0x1"],
+		["punctuation", ":"],
+		["number", "0x2"],
+		["punctuation", ";"],
 		["keyword", "get"],
 		["keyword", "fun"],
 		["function", "traitState"],
@@ -106,13 +119,6 @@ contract MyContract with MyTrait, Ownable? {
 		["punctuation", ":"],
 		["builtin", "Int"],
 		["punctuation", "{"],
-			["keyword", "const"],
-			["constant", "CONST_VAL"],
-			["punctuation", ":"],
-			["builtin", "Int"],
-			["operator", "="],
-			["number", "42"],
-			["punctuation", ";"],
 			["keyword", "return"],
 			["number", "0"],
 			["punctuation", ";"],

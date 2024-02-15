@@ -61,17 +61,20 @@
 
 		'number': [
 			{ // hexadecimal, case-insensitive /i
-				pattern: /\b0x[0-9a-f]+\b/i,
+				pattern: /\b0x[0-9a-f](?:_?[0-9a-f])*\b/i,
 			},
 			{ // octal, case-insensitive /i
-				pattern: /\b0o[0-7]+\b/i,
-			},
-			{ // decimal integers
-				pattern: /\b\d+\b/,
+				pattern: /\b0o[0-7](?:_?[0-7])*\b/i,
 			},
 			{ // binary, case-insensitive /i
-				pattern: /\b0b[01]+\b/i,
-			}
+				pattern: /\b0b[01](?:_?[01])*\b/i,
+			},
+			{ // decimal integers, starting with 0
+				pattern: /\b0\d*\b/,
+			},
+			{ // other decimal integers
+				pattern: /\b[1-9](?:_?\d)*\b/,
+			},
 		],
 
 		'string': undefined,
