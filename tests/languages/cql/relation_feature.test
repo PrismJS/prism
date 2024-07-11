@@ -1,0 +1,23 @@
+dc.title any fish
+
+dc.title cql.any fish
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "cql.any"],
+		["term", "fish"]
+	]]
+]
+
+----------------------------------------------------
+
+Relations.

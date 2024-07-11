@@ -1,0 +1,49 @@
+dc.title any fish or dc.creator any sanderson
+
+dc.title any fish or (dc.creator any sanderson and dc.identifier = "id:1234567")
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["bool-group", [
+		["boolean", "or"]
+	]],
+	["search-clause", [
+		["index", "dc.creator"],
+		["relation", "any"],
+		["term", "sanderson"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["bool-group", [
+		["boolean", "or"]
+	]],
+	["punctuation", "("],
+	["search-clause", [
+		["index", "dc.creator"],
+		["relation", "any"],
+		["term", "sanderson"]
+	]],
+	["bool-group", [
+		["boolean", "and"]
+	]],
+	["search-clause", [
+		["index", "dc.identifier"],
+		["relation", "="],
+		["term", "\"id:1234567\""]
+	]],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Boolean operators.

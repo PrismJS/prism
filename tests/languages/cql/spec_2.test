@@ -1,0 +1,21 @@
+> dc = "info:srw/context-sets/1/dc-v1.1" dc.title any fish
+
+----------------------------------------------------
+
+[
+	["prefix", [
+		["punctuation", ">"],
+		["prefix", "dc"],
+		["punctuation", "="],
+		["uri", "\"info:srw/context-sets/1/dc-v1.1\""]
+	]],
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]]
+]
+
+----------------------------------------------------
+
+Some examples from SRU CQL spec.
