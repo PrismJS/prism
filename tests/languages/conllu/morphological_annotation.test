@@ -1,0 +1,135 @@
+1	Då	då	ADV	AB	_
+2	var	vara	VERB	VB.PRET.ACT	Tense=Past|Voice=Act
+3	han	han	PRON	PN.UTR.SIN.DEF.NOM	Case=Nom|Definite=Def|Gender=Com|Number=Sing
+4	elva	elva	NUM	RG.NOM	Case=Nom|NumType=Card
+5	år	år	NOUN	NN.NEU.PLU.IND.NOM	Case=Nom|Definite=Ind|Gender=Neut|Number=Plur
+6	.	.	PUNCT	DL.MAD	_
+
+----------------------------------------------------
+
+[
+	["token", [
+		["id", "1"],
+		["form", "Då"],
+		["lemma", "då"],
+		["upos", "ADV"],
+		["xpos", "AB"],
+		["feats", "_"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "var"],
+		["lemma", "vara"],
+		["upos", "VERB"],
+		["xpos", "VB.PRET.ACT"],
+		["feats", [
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Past"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Voice"],
+				["operator", "="],
+				["value", "Act"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "han"],
+		["lemma", "han"],
+		["upos", "PRON"],
+		["xpos", "PN.UTR.SIN.DEF.NOM"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Definite"],
+				["operator", "="],
+				["value", "Def"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gender"],
+				["operator", "="],
+				["value", "Com"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "elva"],
+		["lemma", "elva"],
+		["upos", "NUM"],
+		["xpos", "RG.NOM"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "NumType"],
+				["operator", "="],
+				["value", "Card"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "år"],
+		["lemma", "år"],
+		["upos", "NOUN"],
+		["xpos", "NN.NEU.PLU.IND.NOM"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Definite"],
+				["operator", "="],
+				["value", "Ind"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gender"],
+				["operator", "="],
+				["value", "Neut"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "6"],
+		["form", "."],
+		["lemma", "."],
+		["upos", "PUNCT"],
+		["xpos", "DL.MAD"],
+		["feats", "_"]
+	]]
+]
+
+----------------------------------------------------
+
+Example for morphological annotation.

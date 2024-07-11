@@ -342,6 +342,10 @@
 			"alias": "conc",
 			"owner": "jasontatton"
 		},
+		"conllu": {
+			"title": "CoNLL-U",
+			"owner": "Querela"
+		},
 		"csp": {
 			"title": "Content-Security-Policy",
 			"owner": "ScottHelme"
