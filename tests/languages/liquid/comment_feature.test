@@ -1,11 +1,17 @@
 My name is Wilson Abercrombie{% comment %}, esquire{% endcomment %}.
-
 {% assign verb = "turned" %}
 {% comment %}
 {% assign verb = "converted" %}
 {% endcomment %}
 Anything you put between {% comment %} and {% endcomment %} tags
 is {{ verb }} into a comment.
+# hash fun #
+{% # inline comments %}
+{% liquid
+	# even here, too
+%}
+{% liquid
+	# and here %}
 
 ----------------------------------------------------
 
@@ -20,7 +26,7 @@ is {{ verb }} into a comment.
 		["keyword", "endcomment"],
 		["delimiter", "%}"]
 	]],
-	".\r\n\r\n",
+	".\r\n",
 
 	["liquid", [
 		["delimiter", "{%"],
@@ -57,5 +63,22 @@ is {{ verb }} into a comment.
 		" verb ",
 		["delimiter", "}}"]
 	]],
-	" into a comment."
+	" into a comment.\r\n# hash fun #\r\n",
+
+	["liquid", [
+		["delimiter", "{%"],
+		["comment", "# inline comments "],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"], ["keyword", "liquid"],
+		"\r\n\t# even here", ["punctuation", ","], " too\r\n",
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"], ["keyword", "liquid"],
+		["comment", "# and here "], ["delimiter", "%}"]
+	]]
 ]

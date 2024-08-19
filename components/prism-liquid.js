@@ -1,8 +1,13 @@
 Prism.languages.liquid = {
-	'comment': {
-		pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
-		lookbehind: true
-	},
+	'comment': [
+		{
+			pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
+			lookbehind: true
+		},
+		{
+			pattern: /#.*?(?=\n|%\})/,
+		},
+	],
 	'delimiter': {
 		pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
 		alias: 'punctuation'
