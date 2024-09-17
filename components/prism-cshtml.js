@@ -83,11 +83,13 @@ export function loader (Prism, options) {
 			/[^<]/.source +
 			'|' +
 			// all tags that are not the start tag
+			// @ts-expect-error
 			// eslint-disable-next-line regexp/strict
 			/<\/?(?!\1\b)/.source + tagContent +
 			'|' +
 			// nested start tag
 			nested(
+				// @ts-expect-error
 				// eslint-disable-next-line regexp/strict
 				/<\1/.source + tagAttrs + /\s*>/.source +
 				'(?:' +
@@ -95,18 +97,21 @@ export function loader (Prism, options) {
 					/[^<]/.source +
 					'|' +
 					// all tags that are not the start tag
+					// @ts-expect-error
 					// eslint-disable-next-line regexp/strict
 					/<\/?(?!\1\b)/.source + tagContent +
 					'|' +
 					'<self>'
 				) +
 				')*' +
+				// @ts-expect-error
 				// eslint-disable-next-line regexp/strict
 				/<\/\1\s*>/.source,
 				2
 			)
 		) +
 		')*' +
+		// @ts-expect-error
 		// eslint-disable-next-line regexp/strict
 		/<\/\1\s*>/.source +
 		'|' +

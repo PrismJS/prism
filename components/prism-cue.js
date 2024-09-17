@@ -9,14 +9,19 @@ export function loader (Prism, options) {
     }
 	// https://cuelang.org/docs/references/spec/
 
+	// @ts-expect-error
 	// eslint-disable-next-line regexp/strict
 	var stringEscape = /\\(?:(?!\2)|\2(?:[^()\r\n]|\([^()]*\)))/.source;
+	// @ts-expect-error
 	// eslint-disable-next-line regexp/strict
 	var stringTypes = /"""(?:[^\\"]|"(?!""\2)|<esc>)*"""/.source +
+		// @ts-expect-error
 		// eslint-disable-next-line regexp/strict
 		'|' + /'''(?:[^\\']|'(?!''\2)|<esc>)*'''/.source +
+		// @ts-expect-error
 		// eslint-disable-next-line regexp/strict
 		'|' + /"(?:[^\\\r\n"]|"(?!\2)|<esc>)*"/.source +
+		// @ts-expect-error
 		// eslint-disable-next-line regexp/strict
 		'|' + /'(?:[^\\\r\n']|'(?!\2)|<esc>)*'/.source;
 	var stringLiteral = '(?:' + stringTypes.replace(/<esc>/g, stringEscape) + ')';
@@ -27,6 +32,7 @@ export function loader (Prism, options) {
 			greedy: true
 		},
 		'string-literal': {
+			// @ts-expect-error
 			// eslint-disable-next-line regexp/strict
 			pattern: RegExp(/(^|[^#"'\\])(#*)/.source + stringLiteral + /(?!["'])\2/.source),
 			lookbehind: true,

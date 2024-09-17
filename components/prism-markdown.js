@@ -212,6 +212,7 @@ export function loader (Prism, options) {
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
+			// @ts-expect-error
 			// eslint-disable-next-line regexp/strict
 			pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
 			lookbehind: true,

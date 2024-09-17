@@ -34,6 +34,7 @@ export function loader (Prism, options) {
 						/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
 
 						// q a...a
+						// @ts-expect-error
 						// eslint-disable-next-line regexp/strict
 						/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
 
@@ -71,6 +72,7 @@ export function loader (Prism, options) {
 						/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
 
 						// m a...a
+						// @ts-expect-error
 						// eslint-disable-next-line regexp/strict
 						/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
 
@@ -93,10 +95,12 @@ export function loader (Prism, options) {
 					'(?:' +
 					[
 						// s/.../.../
+						// @ts-expect-error
 						// eslint-disable-next-line regexp/strict
 						/([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
 
 						// s a...a...a
+						// @ts-expect-error
 						// eslint-disable-next-line regexp/strict
 						/([a-zA-Z0-9])(?:(?!\3)[^\\]|\\[\s\S])*\3(?:(?!\3)[^\\]|\\[\s\S])*\3/.source,
 

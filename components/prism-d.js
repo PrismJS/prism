@@ -48,9 +48,11 @@ export function loader (Prism, options) {
 					/\bq"((?!\d)\w+)$[\s\S]*?^\1"/.source,
 
 					// q"//", q"||", etc.
+					// @ts-expect-error
 					// eslint-disable-next-line regexp/strict
 					/\bq"(.)[\s\S]*?\2"/.source,
 
+					// @ts-expect-error
 					// eslint-disable-next-line regexp/strict
 					/(["`])(?:\\[\s\S]|(?!\3)[^\\])*\3[cwd]?/.source
 				].join('|'), 'm'),

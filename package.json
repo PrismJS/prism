@@ -8,6 +8,10 @@
 	"engines": {
 		"node": ">=6"
 	},
+  "exports": {
+    ".": "./prism.js",
+    "./*": "./*"
+  },
 	"files": [
 		"components/**/*.js",
 		"components/**/*.d.ts",
@@ -86,6 +90,7 @@
 		"regexpp": "^3.2.0",
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
+		"typescript": "^5.6.2",
 		"webfont": "^9.0.0",
 		"yargs": "^17.7.2"
 	},
