@@ -1,5 +1,9 @@
 # Prism Changelog
 
+## 1.29.0-fix.6 (09/17/2024)
+
+- Add legitimate exportmaps for CDNs like JSPM.io [#5](https://github.com/KonnorRogers/prism-esm/pull/5)
+
 ## 1.29.0-fix.5 (09/17/2024)
 
 - Fixed subpath exports for CDNs like JSPM.io and TS errors with regexes. [#4](https://github.com/KonnorRogers/prism-esm/pull/4)

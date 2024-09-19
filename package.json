@@ -4,13 +4,18 @@
 	"description": "A prism fork intended for ESM",
 	"type": "module",
 	"main": "prism.js",
+	"module": "prism.js",
 	"style": "themes/prism.css",
 	"engines": {
 		"node": ">=6"
 	},
 	"exports": {
 		".": "./prism.js",
-		"./*": "./*"
+		"./prism.js": "./prism.js",
+		"./prism-core.js": "./prism-core.js",
+    "./components/*": "./components/*",
+    "./plugins/*": "./plugins/*",
+    "./themes/*": "./themes/*"
 	},
 	"files": [
 		"components/**/*.js",
