@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="assets/favicon.png" />
+		<title>Line insert ▲ Prism plugins</title>
+		<base href="../.." />
+		<link rel="stylesheet" href="assets/style.css" />
+		<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+		<link
+			rel="stylesheet"
+			href="plugins/line-numbers/prism-line-numbers.css"
+			data-noprefix
+		/>
+		<link
+			rel="stylesheet"
+			href="plugins/line-insert/prism-line-insert.css"
+			data-noprefix
+		/>
+		<script src="plugins/line-numbers/prism-line-numbers.js"></script>
+		<script src="assets/vendor/prefixfree.min.js"></script>
+
+		<script>
+			var _gaq = [["_setAccount", "UA-33746269-1"], ["_trackPageview"]];
+		</script>
+		<script src="https://www.google-analytics.com/ga.js" async></script>
+	</head>
+	<body>
+		<header data-plugin-header="line-wrap"></header>
+
+		<section class="language-markup">
+			<h1>How to use</h1>
+			<p>
+				This plugin is enabled by default so there is nothing you need
+				to do. That being said, this plugin also does nothing
+				front-facing on its own and is meant to facilitate building
+				custom functionality.
+			</p>
+			<p>
+				Open developer console and inspect any line of code to see that
+				it's wrapped in a div element!
+			</p>
+		</section>
+
+		<section>
+			<h1>Examples</h1>
+			<pre><code class="language-markup" id="foo"></code></pre>
+			<script>
+				document.querySelector("#foo").textContent =
+					document.documentElement.innerHTML;
+			</script>
+
+			<h2>With line numbers</h2>
+			<pre
+				class="line-numbers"
+				data-src="plugins/line-wrap/prism-line-wrap.js"
+			></pre>
+		</section>
+
+		<footer
+			data-src="assets/templates/footer.html"
+			data-type="text/html"
+		></footer>
+
+		<script src="prism.js"></script>
+		<script src="plugins/line-numbers/prism-line-numbers.js"></script>
+		<script src="plugins/line-wrap/prism-line-wrap.js"></script>
+		<script src="assets/vendor/utopia.js"></script>
+		<script src="components.js"></script>
+		<script src="assets/code.js"></script>
+	</body>
+</html>
