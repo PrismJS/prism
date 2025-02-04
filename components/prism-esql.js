@@ -209,7 +209,7 @@ Prism.languages.esql = {
 	},
 
 	// ES|LQ params: "?paramName", "?1", "?"
-	variable: /\?(\w{1,999})?/,
+	variable: /\?\w{1,999}/,
 
 	// Command names
 	command: {
