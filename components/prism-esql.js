@@ -180,7 +180,7 @@ var namedBinaryOperators = [
 Prism.languages.esql = {
 	// Single line comment: // comment
 	comment: {
-		pattern: /(^|[^\\])\/\/.*/,
+		pattern: /\/\/.*/,
 		greedy: true
 	},
 
