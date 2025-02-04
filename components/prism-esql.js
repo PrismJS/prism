@@ -193,12 +193,6 @@ Prism.languages.esql = {
 		]
 	},
 
-	// Single quoted strings: "string"
-	'string': {
-		pattern: /"(?:\\.|[^\\"])*"/,
-		greedy: true
-	},
-
 	// Triple quoted strings: """string"""
 	'triple-quoted-string': {
 		pattern: /"""(?:\\.|[^\\"])*"""/,
@@ -206,6 +200,12 @@ Prism.languages.esql = {
 		alias: [
 			'string',
 		]
+	},
+
+	// Single quoted strings: "string"
+	'string': {
+		pattern: /"(?:\\.|[^\\"])*"/,
+		greedy: true
 	},
 
 	// ES|LQ params: "?paramName", "?1", "?"
@@ -239,17 +239,17 @@ Prism.languages.esql = {
 
 	boolean: /\b(?:false|true)\b/i,
 
-	// Integer	numbers
-	integer: {
-		pattern: /\b\d+\b/,
+	// Floating point numbers (ES|QL "decimals")
+	float: {
+		pattern: /\b(?:\d{1,50}\.{1}\d{0,50}|\.\d{1,50})(?:[eE][+-]?\d+)?\b/,
 		alias: [
 			'number'
 		],
 	},
 
-	// Floating point numbers (ES|QL "decimals")
-	float: {
-		pattern: /\b(?:\d{1,50}\.?\d{0,50}|\.\d{1,50})(?:[eE][+-]?\d+)?\b/,
+	// Integer numbers
+	integer: {
+		pattern: /\b\d+\b/,
 		alias: [
 			'number'
 		],
@@ -264,7 +264,7 @@ Prism.languages.esql = {
 	},
 
 	// General operators
-	operator: /[-+*/%(={2})]/,
+	operator: /-|\+|\*|\||\/|%|==|=|<=|>=|<|>/,
 
 	// Mark "|" and "," and some other symbols as punctuation
 	punctuation: /\||,|\(|\)|\[|\]|\{|\}/,

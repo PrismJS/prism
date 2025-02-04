@@ -1,0 +1,26 @@
+BY
+ASC
+DESC
+FIRST
+LAST
+ON
+WITH
+METADATA
+NULLS
+----------------------------------------------------
+
+[
+        ["keyword", "BY"],
+        ["keyword", "ASC"],
+        ["keyword", "DESC"],
+        ["keyword", "FIRST"],
+        ["keyword", "LAST"],
+        ["keyword", "ON"],
+        ["keyword", "WITH"],
+        ["keyword", "METADATA"],
+        ["keyword", "NULLS"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
