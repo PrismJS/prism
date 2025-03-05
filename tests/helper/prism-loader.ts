@@ -80,7 +80,11 @@ function overwriteProps(target: Record<string, unknown>, source: Record<string, 
 
 	for (const [key, value] of Object.entries(source)) {
 		oldProps.push([key, target[key]]);
-		target[key] = value;
+		// Not all properties are writable in later Node versions.
+		Object.defineProperty(target, key, {
+			value,
+			writable: true,
+		});
 	}
 
 	return () => {
