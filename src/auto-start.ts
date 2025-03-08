@@ -30,7 +30,7 @@ export const PrismConfig = {
 if (typeof document !== 'undefined' && typeof window !== 'undefined') {
 	// Get current script and highlight
 	const script = document.currentScript as HTMLScriptElement | null;
-	if (script && script.hasAttribute('data-manual')) {
+	if (script && script.tagName === 'SCRIPT' && script.hasAttribute('data-manual')) {
 		PrismConfig.manual = true;
 	}
 
@@ -48,7 +48,7 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
 	// See https://github.com/PrismJS/prism/issues/2102
 	// See https://github.com/PrismJS/prism/issues/3535
 	const readyState = document.readyState;
-	if (readyState === 'loading' || readyState === 'interactive' && script && script.defer && !script.async) {
+	if (readyState === 'loading' || readyState === 'interactive' && script && script.tagName === 'SCRIPT' && script.defer && !script.async) {
 		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 	} else {
 		window.requestAnimationFrame(highlightAutomaticallyCallback);
