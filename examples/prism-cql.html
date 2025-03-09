@@ -1,0 +1,60 @@
+<h2>CQL Query</h2>
+
+<pre><code>dc.title any fish</code></pre>
+<pre><code>dc.title any fish or dc.creator any sanderson</code></pre>
+<pre><code>dc.title any fish sortBy dc.date/sort.ascending</code></pre>
+<pre><code>> dc = "info:srw/context-sets/1/dc-v1.1" dc.title any fish</code></pre>
+
+<h2>Search Clause</h2>
+
+<pre><code>dc.title any fish</code></pre>
+<pre><code>fish</code></pre>
+<pre><code>cql.serverChoice = fish</code></pre>
+
+<h2>Search Term</h2>
+
+<pre><code>"fish"</code></pre>
+<pre><code>fish</code></pre>
+<pre><code>"squirrels fish"</code></pre>
+<pre><code>""</code></pre>
+
+<h2>Index Name</h2>
+
+<pre><code>title any fish</code></pre>
+<pre><code>dc.title any fish</code></pre>
+
+<h2>Relation</h2>
+
+<pre><code>dc.title any fish</code></pre>
+<pre><code>dc.title cql.any fish</code></pre>
+
+<h2>Relation Modifiers</h2>
+
+<pre><code>dc.title any/relevant fish</code></pre>
+<pre><code>dc.title any/ relevant /cql.string fish</code></pre>
+<pre><code>dc.title any/rel.algorithm=cori fish</code></pre>
+
+<h2>Boolean Operators</h2>
+
+<pre><code>dc.title any fish or dc.creator any sanderson</code></pre>
+<pre><code>dc.title any fish or (dc.creator any sanderson and dc.identifier = "id:1234567")</code></pre>
+
+<h2>Boolean Modifiers</h2>
+
+<pre><code>dc.title any fish or/rel.combine=sum dc.creator any sanderson</code></pre>
+<pre><code>dc.title any fish prox/unit=word/distance&gt;3 dc.title any squirrel</code></pre>
+
+<h2>Sorting</h2>
+
+<pre><code>"cat" sortBy dc.title</code></pre>
+<pre><code>"dinosaur" sortBy dc.date/sort.descending dc.title/sort.ascending</code></pre>
+
+<h2>Prefix Assignment</h2>
+
+<pre><code>&gt; dc = "http://deepcustard.org/" dc.custardDepth &gt; 10</code></pre>
+<pre><code>&gt; "http://deepcustard.org/" custardDepth &gt; 10</code></pre>
+
+<h2>Case Insensitive</h2>
+
+<pre><code>dC.tiTlE any fish</code></pre>
+<pre><code>dc.TitlE Any/rEl.algOriThm=cori fish soRtbY Dc.TitlE </code></pre>
