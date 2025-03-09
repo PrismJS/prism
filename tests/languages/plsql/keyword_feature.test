@@ -239,6 +239,7 @@ RELIES_ON
 REM
 REMAINDER
 RENAME
+REPLACE
 RESOURCE
 RESULT
 RESULT_CACHE
@@ -580,6 +581,7 @@ ZONE
 	["keyword", "REM"],
 	["keyword", "REMAINDER"],
 	["keyword", "RENAME"],
+	["keyword", "REPLACE"],
 	["keyword", "RESOURCE"],
 	["keyword", "RESULT"],
 	["keyword", "RESULT_CACHE"],
