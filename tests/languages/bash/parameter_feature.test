@@ -1,5 +1,6 @@
 docker run
 --name elk \
+--log-level info \
 -p 5601:5601 \
 --restart=always \
 --privileged \
@@ -14,6 +15,10 @@ easyj/elk:7.12.1
 
 	["parameter", "--name"],
 	" elk ",
+	["punctuation", "\\"],
+
+	["parameter", "--log-level"],
+	" info ",
 	["punctuation", "\\"],
 
 	["parameter", "-p"],
