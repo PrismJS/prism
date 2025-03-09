@@ -1,0 +1,22 @@
+MIN(1, 2)
+ATAN(43)
+
+----------------------------------------------------
+
+[
+	["function", "MIN"],
+	["punctuation", "("],
+	["integer", "1"],
+	["punctuation", ","],
+	["integer", "2"],
+	["punctuation", ")"],
+
+	["function", "ATAN"],
+	["punctuation", "("],
+	["integer", "43"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

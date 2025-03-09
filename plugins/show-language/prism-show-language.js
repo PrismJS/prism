@@ -97,6 +97,7 @@
 		"ejs": "EJS",
 		"etlua": "Embedded Lua templating",
 		"erb": "ERB",
+		"esql": "ES|QL",
 		"excel-formula": "Excel Formula",
 		"xlsx": "Excel Formula",
 		"xls": "Excel Formula",

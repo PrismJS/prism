@@ -1,0 +1,13 @@
+"single quoted"
+"""triple quoted"""
+
+----------------------------------------------------
+
+[
+	["string", "\"single quoted\""],
+	["triple-quoted-string", "\"\"\"triple quoted\"\"\""]
+]
+
+----------------------------------------------------
+
+Checks for strings.

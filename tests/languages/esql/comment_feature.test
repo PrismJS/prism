@@ -1,0 +1,19 @@
+// This is a comment
+/* slash comment */
+/* // comment inside comment */
+/* multiple
+   lines
+   in this comment */
+
+----------------------------------------------------
+
+[
+	["comment", "// This is a comment"],
+	["multiline-comment", "/* slash comment */"],
+	["multiline-comment", "/* // comment inside comment */"],
+	["multiline-comment", "/* multiple\r\n   lines\r\n   in this comment */"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

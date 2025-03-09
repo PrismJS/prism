@@ -1,0 +1,27 @@
+FROM
+ROW
+STATS
+LIMIT
+WHERE
+KEEP
+DROP
+GROK
+EXPLAIN
+
+----------------------------------------------------
+
+[
+	["command", "FROM"],
+	["command", "ROW"],
+	["command", "STATS"],
+	["command", "LIMIT"],
+	["command", "WHERE"],
+	["command", "KEEP"],
+	["command", "DROP"],
+	["command", "GROK"],
+	["command", "EXPLAIN"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
