@@ -1,0 +1,15 @@
+"foo
+bar
+baz"
+'foo bar baz'
+
+----------------------------------------------------
+
+[
+	["string", "\"foo\r\nbar\r\nbaz\""],
+	["string", "'foo bar baz'"]
+]
+
+----------------------------------------------------
+
+Test tokenization of strings.
