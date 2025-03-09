@@ -1,0 +1,43 @@
+""
+"Foobar"
+''
+'Foobar'
+[]
+[Foobar]
+"Foo'bar[]"
+'Foo"bar[]'
+[Foo'bar"]
+arr[1]
+arr[1,2]
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"Foobar\""],
+	["string", "''"],
+	["string", "'Foobar'"],
+	["string", "[]"],
+	["string", "[Foobar]"],
+	["string", "\"Foo'bar[]\""],
+	["string", "'Foo\"bar[]'"],
+	["string", "[Foo'bar\"]"],
+	"\r\narr",
+	["array-accessor", [
+		"[",
+		["number", "1"],
+		"]"
+	]],
+	"\r\narr",
+	["array-accessor", [
+		"[",
+		["number", "1"],
+		",",
+		["number", "2"],
+		"]"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings.

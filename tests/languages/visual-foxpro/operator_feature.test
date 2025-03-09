@@ -1,0 +1,128 @@
+1+2=3
+2-2==0
+4*1>3
+10/2<8
+9%3<=0
+10**2>=100
+10^2>=100
+"A"$"ABC"
+"ABC"#"A"
+1#2
+1<>2
+1!=2
+!.t.
+not.t.
+.t.and.f.
+var.or.var
+this and that
+foo or bar
+foo ;
+foo ;  
+ bar
+
+----------------------------------------------------
+
+[
+	["number", "1"],
+	["operator", "+"],
+	["number", "2"],
+	["operator", "="],
+	["number", "3"],
+
+	["number", "2"],
+	["operator", "-"],
+	["number", "2"],
+	["operator", "="],
+	["operator", "="],
+	["number", "0"],
+
+	["number", "4"],
+	["operator", "*"],
+	["number", "1"],
+	["operator", ">"],
+	["number", "3"],
+
+	["number", "10"],
+	["operator", "/"],
+	["number", "2"],
+	["operator", "<"],
+	["number", "8"],
+
+	["number", "9"],
+	["operator", "%"],
+	["number", "3"],
+	["operator", "<"],
+	["operator", "="],
+	["number", "0"],
+
+	["number", "10"],
+	["operator", "*"],
+	["operator", "*"],
+	["number", "2"],
+	["operator", ">"],
+	["operator", "="],
+	["number", "100"],
+
+	["number", "10"],
+	["operator", "^"],
+	["number", "2"],
+	["operator", ">"],
+	["operator", "="],
+	["number", "100"],
+
+	["string", "\"A\""],
+	["operator", "$"],
+	["string", "\"ABC\""],
+
+	["string", "\"ABC\""],
+	["operator", "#"],
+	["string", "\"A\""],
+
+	["number", "1"],
+	["operator", "#"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "<"],
+	["operator", ">"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "!"],
+	["operator", "="],
+	["number", "2"],
+
+	["keyword", "!"],
+	["boolean", ".t."],
+
+	["keyword", "not"],
+	["boolean", ".t."],
+
+	["boolean", ".t."],
+	["keyword", "and"],
+	["boolean", ".f."],
+
+	"\r\nvar",
+	["punctuation", "."],
+	["keyword", "or"],
+	["punctuation", "."],
+	"var\r\n",
+
+	["keyword", "this"],
+	["keyword", "and"],
+	" that\r\nfoo ",
+	["keyword", "or"],
+	["keyword", "bar"],
+
+	"\r\nfoo ",
+	["operator", ";"],
+
+	"\r\nfoo ",
+	["operator", ";"],
+
+	["keyword", "bar"]
+]
+
+----------------------------------------------------
+
+Checks for operators and type characters.
