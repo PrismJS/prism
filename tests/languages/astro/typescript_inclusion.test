@@ -1,0 +1,8 @@
+---
+interface Props {
+  name: string;
+  greeting?: string;
+}
+const { greeting = 'Hello', name } = Astro.props;
+---
+<h2>{greeting}, {name}!</h2>

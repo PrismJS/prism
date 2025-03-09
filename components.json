@@ -175,6 +175,11 @@
 			"title": "Atmel AVR Assembly",
 			"owner": "cerkit"
 		},
+		"astro": {
+			"title": "Astro",
+			"require": "tsx",
+			"owner": "HynekS"
+		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"

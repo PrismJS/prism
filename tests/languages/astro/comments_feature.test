@@ -1,0 +1,4 @@
+---
+---
+<!-- HTML comment syntax is valid in .astro files -->
+{/* JS comment syntax is also valid */}
