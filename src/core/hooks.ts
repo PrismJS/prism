@@ -21,7 +21,7 @@ export class Hooks {
 	 * @param name The name of the hook.
 	 * @param callback The callback function which is given environment variables.
 	 */
-	add<Name extends string>(name: Name, callback: HookCallback<Name>): () => void {
+	add <Name extends string>(name: Name, callback: HookCallback<Name>): () => void {
 		let hooks = this._all.get(name);
 		if (hooks === undefined) {
 			hooks = [];
@@ -47,7 +47,7 @@ export class Hooks {
 	 * @param name The name of the hook.
 	 * @param env The environment variables of the hook passed to all callbacks registered.
 	 */
-	run<Name extends string>(name: Name, env: HookEnv<Name>): void {
+	run <Name extends string>(name: Name, env: HookEnv<Name>): void {
 		const callbacks = this._all.get(name);
 
 		if (!callbacks || !callbacks.length) {
@@ -59,7 +59,6 @@ export class Hooks {
 		}
 	}
 }
-
 
 /**
  * An interface containing all hooks Prism runs.
@@ -75,17 +74,19 @@ export interface HookEnvMap {
 
 	'before-insert': BeforeInsertEnv;
 	'after-highlight': AfterHighlightEnv;
-	'complete': CompleteEnv;
+	complete: CompleteEnv;
 
 	// Prism.highlight
 	'before-tokenize': BeforeTokenizeEnv;
 	'after-tokenize': AfterTokenizeEnv;
 
 	// stringify
-	'wrap': WrapEnv;
+	wrap: WrapEnv;
 }
 
-export type HookEnv<HookName extends string> = HookName extends keyof HookEnvMap ? HookEnvMap[HookName] : unknown;
+export type HookEnv<HookName extends string> = HookName extends keyof HookEnvMap
+	? HookEnvMap[HookName]
+	: unknown;
 
 export type HookCallback<HookName extends string> = (env: HookEnv<HookName>) => void;
 

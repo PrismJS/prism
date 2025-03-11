@@ -1,4 +1,4 @@
-import * as Prettier from 'prettier';
+import synchronizedPrettier from "@prettier/sync";
 import { RegExpParser } from 'regexpp';
 import type { Flags, Pattern } from 'regexpp/ast';
 
@@ -101,7 +101,7 @@ export function getTrailingSpaces(string: string): string {
 }
 
 export function formatHtml(html: string): string {
-	return Prettier.format(html, {
+	return synchronizedPrettier.format(html, {
 		printWidth: 100,
 		tabWidth: 4,
 		useTabs: true,
