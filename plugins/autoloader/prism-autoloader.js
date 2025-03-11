@@ -272,6 +272,8 @@
 		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
+		"foxpro": "visual-foxpro",
+		"vfp": "visual-foxpro",
 		"webidl": "web-idl",
 		"mathematica": "wolfram",
 		"nb": "wolfram",

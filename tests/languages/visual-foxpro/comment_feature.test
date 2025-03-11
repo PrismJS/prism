@@ -1,0 +1,29 @@
+*
+* Foo "bar"
+* multi-line ;
+  comment
+* multi-line ;  
+  comment
+  && inline comment
+  && multi-line ;
+     inline comment
+*:FooBar
+
+----------------------------------------------------
+
+[
+	["comment", "*"],
+	["comment", "* Foo \"bar\""],
+	["comment", "* multi-line ;\r\n  comment"],
+	["comment", "* multi-line ;  \r\n  comment"],
+	["comment", "&& inline comment"],
+	["comment", "&& multi-line ;\r\n     inline comment"],
+	["label", [
+		["keyword", "*:"],
+		"FooBar"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for comments.
