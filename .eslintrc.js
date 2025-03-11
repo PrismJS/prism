@@ -8,11 +8,11 @@ module.exports = {
 	},
 	parserOptions: {
 		ecmaVersion: 'latest',
-		sourceType: 'module'
+		sourceType: 'module',
 	},
 	rules: {
-		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
-		'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
+		'no-use-before-define': ['error', { functions: false, classes: false }],
+		eqeqeq: ['error', 'always', { null: 'ignore' }],
 
 		// imports
 		'import/extensions': ['warn', 'never'],
@@ -34,8 +34,7 @@ module.exports = {
 		'sort-imports': ['warn', { ignoreDeclarationSort: true }],
 
 		// stylistic rules
-		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
-		'curly': ['warn', 'all'],
+		curly: ['warn', 'all'],
 		'eol-last': 'warn',
 		'no-multiple-empty-lines': ['warn', { max: 2, maxBOF: 0, maxEOF: 0 }],
 		'no-tabs': ['warn', { allowIndentationTabs: true }],
@@ -43,31 +42,26 @@ module.exports = {
 		'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 		'one-var': ['warn', 'never'],
 		'prefer-arrow-callback': 'warn',
-		'prefer-const': ['warn', { 'destructuring': 'all' }],
+		'prefer-const': ['warn', { destructuring: 'all' }],
 		'prefer-spread': 'error',
-		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-		'semi': 'warn',
+		quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+		semi: 'warn',
 		'wrap-iife': 'warn',
 
 		// spaces and indentation
-		'arrow-parens': 'warn',
 		'arrow-spacing': 'warn',
 		'block-spacing': 'warn',
-		'comma-spacing': 'warn',
 		'computed-property-spacing': 'warn',
 		'func-call-spacing': 'warn',
 		'generator-star-spacing': 'warn',
-		'indent': ['warn', 'tab', { SwitchCase: 1 }],
-		'key-spacing': 'warn',
+		indent: ['warn', 'tab', { SwitchCase: 1 }],
 		'keyword-spacing': 'warn',
-		'no-multi-spaces': ['warn', { ignoreEOLComments: true }],
 		'no-trailing-spaces': 'warn',
 		'no-whitespace-before-property': 'warn',
 		'object-curly-spacing': ['warn', 'always'],
 		'rest-spread-spacing': 'warn',
 		'semi-spacing': 'warn',
 		'space-before-blocks': 'warn',
-		'space-before-function-paren': ['warn', { named: 'never' }],
 		'space-in-parens': 'warn',
 		'space-infix-ops': ['warn', { int32Hint: true }],
 		'space-unary-ops': 'warn',
@@ -131,14 +125,14 @@ module.exports = {
 		// these are supposed to protect against accidental use but we need those quite often
 		'no-control-regex': 'off',
 		'no-empty-character-class': 'off',
-		'no-useless-escape': 'off'
+		'no-useless-escape': 'off',
 	},
 	settings: {
 		jsdoc: { mode: 'typescript' },
 		regexp: {
 			// allow alphanumeric and cyrillic ranges
-			allowedCharacterRanges: ['alphanumeric', 'а-я', 'А-Я']
-		}
+			allowedCharacterRanges: ['alphanumeric', 'а-я', 'А-Я'],
+		},
 	},
 	ignorePatterns: [
 		'vendor/',
@@ -161,7 +155,7 @@ module.exports = {
 				'eslint:recommended',
 				'plugin:@typescript-eslint/recommended',
 				'plugin:@typescript-eslint/recommended-requiring-type-checking',
-				'plugin:eslint-comments/recommended'
+				'plugin:eslint-comments/recommended',
 			],
 			rules: {
 				'no-use-before-define': 'off',
@@ -182,18 +176,18 @@ module.exports = {
 				'@typescript-eslint/ban-types': [
 					'error',
 					{
-						'types': {
+						types: {
 							// un-ban a type that's banned by default
-							'{}': false
+							'{}': false,
 						},
-						'extendDefaults': true
-					}
+						extendDefaults: true,
+					},
 				],
 				'@typescript-eslint/consistent-type-imports': [
 					'warn',
-					{ disallowTypeAnnotations: true }
-				]
-			}
+					{ disallowTypeAnnotations: true },
+				],
+			},
 		},
 		{
 			// Core
@@ -207,7 +201,7 @@ module.exports = {
 			// Browser-specific parts
 			files: ['src/auto-start.ts'],
 			env: {
-				browser: true
+				browser: true,
 			},
 		},
 		{
@@ -221,29 +215,29 @@ module.exports = {
 			// The scripts that run on our website
 			files: 'website/assets/*.js',
 			env: {
-				browser: true
+				browser: true,
 			},
 			globals: {
-				'components': true,
-				'getLoader': true,
-				'PrefixFree': true,
-				'Prism': true,
-				'Promise': true,
-				'saveAs': true,
-				'$': true,
-				'$$': true,
-				'$u': true
+				components: true,
+				getLoader: true,
+				PrefixFree: true,
+				Prism: true,
+				Promise: true,
+				saveAs: true,
+				$: true,
+				$$: true,
+				$u: true,
 			},
 			rules: {
-				'no-var': 'off'
-			}
+				'no-var': 'off',
+			},
 		},
 		{
 			// Test files
 			files: 'tests/**',
 			env: {
 				mocha: true,
-				node: true
+				node: true,
 			},
 			parserOptions: {
 				tsconfigRootDir: __dirname,
@@ -252,11 +246,9 @@ module.exports = {
 		},
 		{
 			// Benchmark
-			files: [
-				'benchmark/**',
-			],
+			files: ['benchmark/**'],
 			env: {
-				node: true
+				node: true,
 			},
 			parserOptions: {
 				tsconfigRootDir: __dirname,
@@ -265,11 +257,9 @@ module.exports = {
 		},
 		{
 			// Scripts
-			files: [
-				'scripts/**',
-			],
+			files: ['scripts/**'],
 			env: {
-				node: true
+				node: true,
 			},
 			parserOptions: {
 				tsconfigRootDir: __dirname,
@@ -278,20 +268,17 @@ module.exports = {
 		},
 		{
 			// Gulp, Danger, and benchmark
-			files: [
-				'gulpfile.js/**',
-				'dangerfile.js',
-			],
+			files: ['gulpfile.js/**', 'dangerfile.js'],
 			env: {
-				node: true
+				node: true,
 			},
 		},
 		{
 			// This file
 			files: '.eslintrc.js',
 			env: {
-				node: true
-			}
+				node: true,
+			},
 		},
-	]
+	],
 };

@@ -1,0 +1,17 @@
+{
+	"plugins": [
+		"prettier-plugin-brace-style",
+		"prettier-plugin-space-before-function-paren",
+		"prettier-plugin-merge"
+	],
+	"braceStyle": "stroustrup",
+	"arrowParens": "avoid",
+	"bracketSpacing": true,
+	"endOfLine": "auto",
+	"semi": true,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"useTabs": true,
+	"trailingComma": "all",
+	"printWidth": 100
+}
