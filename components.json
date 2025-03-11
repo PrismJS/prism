@@ -534,6 +534,7 @@
 		},
 		"gherkin": {
 			"title": "Gherkin",
+			"alias": "feature",
 			"owner": "hason"
 		},
 		"git": {
