@@ -1,4 +1,4 @@
-import * as Prettier from 'prettier';
+import synchronizedPrettier from '@prettier/sync';
 import { RegExpParser } from 'regexpp';
 import type { Flags, Pattern } from 'regexpp/ast';
 
@@ -6,7 +6,6 @@ export interface LiteralAST {
 	pattern: Pattern;
 	flags: Flags;
 }
-
 
 const parser = new RegExpParser();
 const astCache = new Map<string, LiteralAST>();
@@ -20,11 +19,11 @@ export interface PathItem {
  * Performs a breadth-first search on the given start element.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function BFS(start: any, callback: (path: PathItem[], obj: Record<string, any>) => void) {
+export function BFS (start: any, callback: (path: PathItem[], obj: Record<string, any>) => void) {
 	const visited = new Set();
 	let toVisit: PathItem[][] = [
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		[{ key: null, value: start }]
+		[{ key: null, value: start }],
 	];
 
 	while (toVisit.length > 0) {
@@ -45,7 +44,10 @@ export function BFS(start: any, callback: (path: PathItem[], obj: Record<string,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					callback(path, obj);
 
-					if (Array.isArray(value) || Object.prototype.toString.call(value) === '[object Object]') {
+					if (
+						Array.isArray(value) ||
+						Object.prototype.toString.call(value) === '[object Object]'
+					) {
 						newToVisit.push([...path]);
 					}
 
@@ -62,16 +64,22 @@ export function BFS(start: any, callback: (path: PathItem[], obj: Record<string,
  * Given the `BFS` path given to `BFS` callbacks, this will return the Prism language token path of the current
  * value (e.g. `Prism.languages.xml.tag.pattern`).
  */
-export function BFSPathToPrismTokenPath(path: readonly PathItem[], root = 'Prism.languages'): string {
+export function BFSPathToPrismTokenPath (
+	path: readonly PathItem[],
+	root = 'Prism.languages'
+): string {
 	let tokenPath = root;
 	for (const { key } of path) {
 		if (!key) {
 			// do nothing
-		} else if (/^\d+$/.test(key)) {
+		}
+		else if (/^\d+$/.test(key)) {
 			tokenPath += `[${key}]`;
-		} else if (/^[a-z]\w*$/i.test(key)) {
+		}
+		else if (/^[a-z]\w*$/i.test(key)) {
 			tokenPath += `.${key}`;
-		} else {
+		}
+		else {
 			tokenPath += `[${JSON.stringify(key)}]`;
 		}
 	}
@@ -81,7 +89,7 @@ export function BFSPathToPrismTokenPath(path: readonly PathItem[], root = 'Prism
 /**
  * Returns the AST of a given pattern.
  */
-export function parseRegex(regex: RegExp): LiteralAST {
+export function parseRegex (regex: RegExp): LiteralAST {
 	const key = regex.toString();
 	let literal = astCache.get(key);
 	if (literal === undefined) {
@@ -93,23 +101,20 @@ export function parseRegex(regex: RegExp): LiteralAST {
 	return literal;
 }
 
-export function getLeadingSpaces(string: string) {
+export function getLeadingSpaces (string: string) {
 	return /^\s*/.exec(string)?.[0] ?? '';
 }
-export function getTrailingSpaces(string: string): string {
+export function getTrailingSpaces (string: string): string {
 	return /\s*$/.exec(string)?.[0] ?? '';
 }
 
-export function formatHtml(html: string): string {
-	return Prettier.format(html, {
-		printWidth: 100,
-		tabWidth: 4,
-		useTabs: true,
+export function formatHtml (html: string): string {
+	return synchronizedPrettier.format(html, {
+		...synchronizedPrettier.resolveConfig('./prettierrc'),
 		htmlWhitespaceSensitivity: 'ignore',
-		filepath: 'fake.html',
 	});
 }
 
-export function isRegExp(value: unknown): value is RegExp {
+export function isRegExp (value: unknown): value is RegExp {
 	return Object.prototype.toString.call(value) === '[object RegExp]';
 }
