@@ -1,18 +1,23 @@
 div.code-toolbar {
 	position: relative;
+
+	/* ensuring position of the elements is in front of everything else so that the scrolling bar isn't blocking anything */
+	z-index: 999;
 }
 
 div.code-toolbar > .toolbar {
 	position: absolute;
 	z-index: 10;
-	top: .3em;
+	bottom: .3em;
 	right: .2em;
 	transition: opacity 0.3s ease-in-out;
 	opacity: 0;
+	margin-right: 0.5em;
 }
 
 div.code-toolbar:hover > .toolbar {
 	opacity: 1;
+	color: black;
 }
 
 /* Separate line b/c rules are thrown out if selector is invalid.
@@ -23,6 +28,9 @@ div.code-toolbar:focus-within > .toolbar {
 
 div.code-toolbar > .toolbar > .toolbar-item {
 	display: inline-block;
+
+	/* controlling padding btwn elements */
+	margin-right: 0.5em; 
 }
 
 div.code-toolbar > .toolbar > .toolbar-item > a {
@@ -46,7 +54,7 @@ div.code-toolbar > .toolbar > .toolbar-item > a,
 div.code-toolbar > .toolbar > .toolbar-item > button,
 div.code-toolbar > .toolbar > .toolbar-item > span {
 	color: #bbb;
-	font-size: .8em;
+	font-size: .75em;
 	padding: 0 .5em;
 	background: #f5f2f0;
 	background: rgba(224, 224, 224, 0.2);
