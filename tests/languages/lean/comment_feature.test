@@ -1,0 +1,27 @@
+-- foo
+--
+/- bar -/
+/- multi
+line
+comment-/
+/-! Mod doc comment -/
+-- another single line comment
+/-- Documentati q23 # ( *) @ on
+com-mentary
+-/
+
+----------------------------------------------------
+
+[
+	["comment", "-- foo"],
+	["comment", "--"],
+	["comment", "/- bar -/"],
+	["comment", "/- multi\r\nline\r\ncomment-/"],
+	["comment", "/-! Mod doc comment -/"],
+	["comment", "-- another single line comment"],
+	["comment", "/-- Documentati q23 # ( *) @ on\r\ncom-mentary\r\n-/"]
+]
+
+----------------------------------------------------
+
+Checks for single-line and documentation comments.

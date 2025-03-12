@@ -840,6 +840,10 @@
 			"require": ["clike", "markup-templating", "php"],
 			"owner": "nette"
 		},
+		"lean": {
+			"title": "Lean",
+			"owner": "tomaz1502"
+		},
 		"less": {
 			"title": "Less",
 			"require": "css",
