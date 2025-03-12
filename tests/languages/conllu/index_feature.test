@@ -1,0 +1,97 @@
+1-2	vámonos	_
+1	vamos	ir
+2	nos	nosotros
+3-4	al	_
+3	a	a
+4	el	el
+5	mar	mar
+
+1	Sue	Sue
+2	likes	like
+3	coffee	coffee
+4	and	and
+5	Bill	Bill
+5.1	likes	like
+6	tea	tea
+
+----------------------------------------------------
+
+[
+	["token", [
+		["id", "1-2"],
+		["form", "vámonos"],
+		["lemma", "_"]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "vamos"],
+		["lemma", "ir"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "nos"],
+		["lemma", "nosotros"]
+	]],
+	["token", [
+		["id", "3-4"],
+		["form", "al"],
+		["lemma", "_"]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "a"],
+		["lemma", "a"]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "el"],
+		["lemma", "el"]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "mar"],
+		["lemma", "mar"]
+	]],
+	["sentence-separator", ""],
+	["token", [
+		["id", "1"],
+		["form", "Sue"],
+		["lemma", "Sue"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "likes"],
+		["lemma", "like"]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "coffee"],
+		["lemma", "coffee"]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "and"],
+		["lemma", "and"]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "Bill"],
+		["lemma", "Bill"]
+	]],
+	["token", [
+		["id", "5.1"],
+		["form", "likes"],
+		["lemma", "like"]
+	]],
+	["token", [
+		["id", "6"],
+		["form", "tea"],
+		["lemma", "tea"]
+	]]
+]
+
+----------------------------------------------------
+
+Testing indexing schemes.
+
+https://universaldependencies.org/format.html

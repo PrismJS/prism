@@ -1,0 +1,122 @@
+# sent_id = 2
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1	2	nsubj	_	_
+
+# sent_id = 3
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1	2	nsubj	_	_
+2	have	have	VERB	VBP	Number=Sing|Person=1|Tense=Pres	0	root	_	_
+
+----------------------------------------------------
+
+[
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "2"]
+		]]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "I"],
+		["lemma", "I"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["sentence-separator", ""],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "3"]
+		]]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "I"],
+		["lemma", "I"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "have"],
+		["lemma", "have"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", "_"],
+		["misc", "_"]
+	]]
+]
+
+----------------------------------------------------
+
+Add sentence separator token.
