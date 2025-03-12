@@ -67,11 +67,30 @@ pre.show-tokens {
 }
 
 .show-tokens .token {
-	border: 1px solid;
-	padding: 6px 1px;
+	border: 2px solid;
+	padding: 4px 5px;
+	display: inline-block;
+	position: relative;
+}
+.show-tokens .token:has(> .token):hover {
+	border-color: cornflowerblue;
+}
+.show-tokens .token:has(> .token):hover::before {
+	content: attr(class);
+	position: absolute;
+	font-size: 60%;
+	left: 0;
+	top: -15px;
+}
+.show-tokens .token:not(:has(> .token)):hover::before {
+	content: attr(class);
+	position: absolute;
+	font-size: 60%;
+	left: 0;
+	bottom: -15px;
 }
 .show-tokens .token > .token {
-	padding: 4px 1px;
+	padding: 3px 1px;
 }
 .show-tokens .token > .token > .token {
 	padding: 2px 1px;
