@@ -1,0 +1,21 @@
+> dc = "http://deepcustard.org/" dc.custardDepth > 10
+
+----------------------------------------------------
+
+[
+	["prefix", [
+		["punctuation", ">"],
+		["prefix", "dc"],
+		["punctuation", "="],
+		["uri", "\"http://deepcustard.org/\""]
+	]],
+	["search-clause", [
+		["index", "dc.custardDepth"],
+		["relation", ">"],
+		["term", "10"]
+	]]
+]
+
+----------------------------------------------------
+
+Prefix assignments.

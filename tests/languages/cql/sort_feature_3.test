@@ -1,0 +1,26 @@
+"dinosaur" sortBy dc.date/sort.descending dc.title/sort.ascending
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["term", "\"dinosaur\""]
+	]],
+	["sortby", [
+		["keyword", "sortBy"],
+		["index", "dc.date"],
+		["sortby-index-modifier", [
+			["punctuation", "/"],
+			["modifier", "sort.descending"]
+		]],
+		["index", "dc.title"],
+		["sortby-index-modifier", [
+			["punctuation", "/"],
+			["modifier", "sort.ascending"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Sorting.

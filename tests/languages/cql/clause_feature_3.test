@@ -1,0 +1,15 @@
+cql.serverChoice = fish
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "cql.serverChoice"],
+		["relation", "="],
+		["term", "fish"]
+	]]
+]
+
+----------------------------------------------------
+
+Search clauses.
