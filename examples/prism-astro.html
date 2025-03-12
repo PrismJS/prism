@@ -1,0 +1,33 @@
+<h2>Full example</h2>
+<pre><code>---
+import Widget from &quot;@astrojs/components/widget&quot;;
+
+// Define some TypeScript code
+const message: string = &quot;Welcome to Astro.js&quot;;
+---
+
+&lt;style&gt;
+  article {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  console.log(&quot;Hello from Astro&quot;);
+&lt;/script&gt;
+
+&lt;article&gt;
+  &lt;h1&gt;{message}&lt;/h1&gt;
+  &lt;p&gt;This is an example demonstrating Astro.js features.&lt;/p&gt;
+  &lt;!-- &quot;slot&quot; behaves similar to &quot;children&quot; in React --&gt;
+  &lt;slot /&gt;
+  &lt;Widget client:load /&gt;
+&lt;/article&gt;</pre></code>
+
+
+
+
+
+
+
