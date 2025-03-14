@@ -491,6 +491,10 @@
 			"require": "clike",
 			"owner": "RunDevelopment"
 		},
+		"fasm": {
+			"title": "Flat Assembler",
+			"owner": "kspalaiologos"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
