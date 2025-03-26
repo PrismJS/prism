@@ -1,6 +1,6 @@
 {
 	"name": "prismjs",
-	"version": "1.29.0",
+	"version": "1.30.0",
 	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
 	"main": "prism.js",
 	"style": "themes/prism.css",
@@ -24,11 +24,12 @@
 		"test:patterns": "mocha tests/pattern-tests.js",
 		"test:plugins": "mocha tests/plugins/**/*.js",
 		"test:runner": "mocha tests/testrunner-tests.js",
-		"test": "npm-run-all test:*"
+		"test": "npm-run-all test:*",
+		"release": "release-it"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/PrismJS/prism.git"
+		"url": "git+https://github.com/PrismJS/prism.git"
 	},
 	"keywords": [
 		"prism",
@@ -67,6 +68,7 @@
 		"refa": "^0.9.1",
 		"regexp-ast-analysis": "^0.2.4",
 		"regexpp": "^3.2.0",
+		"release-it": "^18.1.2",
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
 		"webfont": "^9.0.0",

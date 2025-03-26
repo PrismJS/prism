@@ -1,11 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(https://fonts.googleapis.com/css?family=Arvo);
 
-@font-face {
-	src: url(https://lea.verou.me/logo.otf);
-	font-family: 'LeaVerou';
-}
-
 /*
  Shared styles
  */
@@ -454,10 +449,12 @@ footer {
 		padding: .2em 0;
 	}
 
-#logo:before {
-	content: '☠';
+#logo {
 	float: right;
-	font: 100px/1.6 LeaVerou;
+	margin-block-start: 3.5em;
+	margin-inline-start: .5em;
+	height: 5em;
+	filter: brightness(0) invert(1);
 }
 
 .used-by-logos {
