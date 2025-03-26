@@ -210,6 +210,8 @@
 		"eta": "ejs",
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
+		"FunC": "func",
+		"Func": "func",
 		"gamemakerlanguage": "gml",
 		"po": "gettext",
 		"gni": "gn",

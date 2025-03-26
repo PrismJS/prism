@@ -505,6 +505,10 @@
 			"require": "markup-templating",
 			"owner": "RunDevelopment"
 		},
+		"func": {
+			"alias": ["FunC", "Func"],
+			"owner": "sobolevn"
+		},
 		"gml": {
 			"title": "GameMaker Language",
 			"alias": "gamemakerlanguage",
