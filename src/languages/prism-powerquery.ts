@@ -3,22 +3,22 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'powerquery',
 	alias: ['pq', 'mscript'],
-	grammar() {
+	grammar () {
 		// https://docs.microsoft.com/en-us/powerquery-m/power-query-m-language-specification
 
 		return {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'quoted-identifier': {
 				pattern: /#"(?:[^"\r\n]|"")*"(?!")/,
-				greedy: true
+				greedy: true,
 			},
 			'string': {
 				pattern: /(?:#!)?"(?:[^"\r\n]|"")*"(?!")/,
-				greedy: true
+				greedy: true,
 			},
 			'constant': [
 				/\bDay\.(?:Friday|Monday|Saturday|Sunday|Thursday|Tuesday|Wednesday)\b/,
@@ -37,24 +37,27 @@ export default {
 				/\bRelativePosition\.From(?:End|Start)\b/,
 				/\bTextEncoding\.(?:Ascii|BigEndianUnicode|Unicode|Utf16|Utf8|Windows)\b/,
 				/\b(?:Any|Binary|Date|DateTime|DateTimeZone|Duration|Function|Int16|Int32|Int64|Int8|List|Logical|None|Number|Record|Table|Text|Time)\.Type\b/,
-				/\bnull\b/
+				/\bnull\b/,
 			],
 			'boolean': /\b(?:false|true)\b/,
-			'keyword': /\b(?:and|as|each|else|error|if|in|is|let|meta|not|nullable|optional|or|otherwise|section|shared|then|try|type)\b|#(?:binary|date|datetime|datetimezone|duration|infinity|nan|sections|shared|table|time)\b/,
+			'keyword':
+				/\b(?:and|as|each|else|error|if|in|is|let|meta|not|nullable|optional|or|otherwise|section|shared|then|try|type)\b|#(?:binary|date|datetime|datetimezone|duration|infinity|nan|sections|shared|table|time)\b/,
 			'function': {
 				pattern: /(^|[^#\w.])[a-z_][\w.]*(?=\s*\()/i,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'data-type': {
-				pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time)\b/,
-				alias: 'class-name'
+				pattern:
+					/\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time)\b/,
+				alias: 'class-name',
 			},
 			'number': {
-				pattern: /\b0x[\da-f]+\b|(?:[+-]?(?:\b\d+\.)?\b\d+|[+-]\.\d+|(^|[^.])\B\.\d+)(?:e[+-]?\d+)?\b/i,
-				lookbehind: true
+				pattern:
+					/\b0x[\da-f]+\b|(?:[+-]?(?:\b\d+\.)?\b\d+|[+-]\.\d+|(^|[^.])\B\.\d+)(?:e[+-]?\d+)?\b/i,
+				lookbehind: true,
 			},
 			'operator': /[-+*\/&?@^]|<(?:=>?|>)?|>=?|=>?|\.\.\.?/,
-			'punctuation': /[,;\[\](){}]/
+			'punctuation': /[,;\[\](){}]/,
 		};
-	}
+	},
 } as LanguageProto<'powerquery'>;

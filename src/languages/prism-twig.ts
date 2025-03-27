@@ -10,7 +10,7 @@ export default {
 		'twig-comment': {
 			pattern: /\{#[\s\S]*?#\}/,
 			greedy: true,
-			alias: 'comment'
+			alias: 'comment',
 		},
 		'twig': {
 			pattern: /\{(?:#[\s\S]*?#|%[\s\S]*?%|\{[\s\S]*?\})\}/,
@@ -19,32 +19,33 @@ export default {
 				'tag-name': {
 					pattern: /(^\{%-?\s*)\w+/,
 					lookbehind: true,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				'delimiter': {
 					pattern: /^\{[{%]-?|-?[%}]\}$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 
 				'string': {
 					pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 					inside: {
-						'punctuation': /^['"]|['"]$/
-					}
+						'punctuation': /^['"]|['"]$/,
+					},
 				},
 				'keyword': /\b(?:even|if|odd)\b/,
 				'boolean': /\b(?:false|null|true)\b/,
 				'number': /\b0x[\dA-Fa-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 				'operator': [
 					{
-						pattern: /(\s)(?:and|b-and|b-or|b-xor|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
-						lookbehind: true
+						pattern:
+							/(\s)(?:and|b-and|b-or|b-xor|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
+						lookbehind: true,
 					},
-					/[=<>]=?|!=|\*\*?|\/\/?|\?:?|[-+~%|]/
+					/[=<>]=?|!=|\*\*?|\/\/?|\?:?|[-+~%|]/,
 				],
-				'punctuation': /[()\[\]{}:.,]/
-			}
+				'punctuation': /[()\[\]{}:.,]/,
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'twig'>;

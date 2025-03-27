@@ -1,25 +1,13 @@
 {
-  "name": "prism",
-  "main": [
-      "prism.js",
-      "themes/prism.css"
-  ],
-  "homepage": "http://prismjs.com",
-  "authors": "Lea Verou",
-  "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PrismJS/prism.git"
-  },
-  "ignore": [
-    "**/.*",
-    "assets",
-    "docs",
-    "tests",
-    "benchmark",
-    "CNAME",
-    "*.html",
-    "*.svg"
-  ]
+	"name": "prism",
+	"main": ["prism.js", "themes/prism.css"],
+	"homepage": "http://prismjs.com",
+	"authors": "Lea Verou",
+	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/PrismJS/prism.git"
+	},
+	"ignore": ["**/.*", "assets", "docs", "tests", "benchmark", "CNAME", "*.html", "*.svg"]
 }

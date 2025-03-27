@@ -4,47 +4,48 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'xml',
 	alias: ['ssml', 'atom', 'rss'],
-	grammar() {
+	grammar () {
 		const entity = [
 			{
 				pattern: /&[\da-z]{1,8};/i,
-				alias: 'named-entity'
+				alias: 'named-entity',
 			},
-			/&#x?[\da-f]{1,8};/i
+			/&#x?[\da-f]{1,8};/i,
 		];
 
 		return {
 			'comment': {
 				pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
-				greedy: true
+				greedy: true,
 			},
 			'prolog': {
 				pattern: /<\?[\s\S]+?\?>/,
-				greedy: true
+				greedy: true,
 			},
 			'doctype': {
 				// https://www.w3.org/TR/xml/#NT-doctypedecl
-				pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
+				pattern:
+					/<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
 				greedy: true,
 				inside: {
 					'internal-subset': {
 						pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
 						lookbehind: true,
 						greedy: true,
-						inside: 'xml'
+						inside: 'xml',
 					},
 					'string': {
 						pattern: /"[^"]*"|'[^']*'/,
-						greedy: true
+						greedy: true,
 					},
 					'punctuation': /^<!|>$|[[\]]/,
 					'doctype-tag': /^DOCTYPE/i,
-					'name': /[^\s<>'"]+/
-				}
+					'name': /[^\s<>'"]+/,
+				},
 			},
 			'cdata': {
 				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-				greedy: true
+				greedy: true,
 			},
 			'tag': {
 				pattern: MARKUP_TAG,
@@ -54,8 +55,8 @@ export default {
 						pattern: /^(<\/?)[^\s>\/]+/,
 						lookbehind: true,
 						inside: {
-							'namespace': /^[^\s>\/:]+:/
-						}
+							'namespace': /^[^\s>\/:]+:/,
+						},
 					},
 					'attr-value': {
 						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
@@ -63,35 +64,34 @@ export default {
 							'punctuation': [
 								{
 									pattern: /^=/,
-									alias: 'attr-equals'
+									alias: 'attr-equals',
 								},
 								{
 									pattern: /^(\s*)["']|["']$/,
-									lookbehind: true
-								}
+									lookbehind: true,
+								},
 							],
-							'entity': entity
-						}
+							'entity': entity,
+						},
 					},
 					'punctuation': /^<\/?|\/?>$/,
 					'attr-name': {
 						pattern: /[^\s>\/]+/,
 						inside: {
-							'namespace': /^[^\s>\/:]+:/
-						}
-					}
-
-				}
+							'namespace': /^[^\s>\/:]+:/,
+						},
+					},
+				},
 			},
-			'entity': entity
+			'entity': entity,
 		};
 	},
-	effect(Prism) {
+	effect (Prism) {
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', (env) => {
+		return Prism.hooks.add('wrap', env => {
 			if (env.type === 'entity') {
 				env.attributes['title'] = env.content.replace(/&amp;/, '&');
 			}
 		});
-	}
+	},
 } as LanguageProto<'xml'>;

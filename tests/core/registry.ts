@@ -26,9 +26,9 @@ describe('Registry', () => {
 		components.add({
 			id: 'c',
 			optional: 'b',
-			grammar({ getOptionalLanguage }) {
+			grammar ({ getOptionalLanguage }) {
 				return getOptionalLanguage('b') ?? {};
-			}
+			},
 		});
 
 		assert.strictEqual(components.getLanguage('c'), grammar);

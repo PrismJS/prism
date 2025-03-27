@@ -39,8 +39,8 @@ export default {
 				 * $ git diff --cached
 				 * $ git log -p
 				 */
-				'parameter': /\s--?\w+/
-			}
+				'parameter': /\s--?\w+/,
+			},
 		},
 
 		/*
@@ -68,6 +68,6 @@ export default {
 		 *
 		 *     Add of a new line
 		 */
-		'commit-sha1': /^commit \w{40}$/m
-	}
+		'commit-sha1': /^commit \w{40}$/m,
+	},
 } as LanguageProto<'git'>;

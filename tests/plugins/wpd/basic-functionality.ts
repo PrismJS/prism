@@ -1,10 +1,9 @@
 import { createTestSuite } from '../../helper/prism-dom-util';
 
-
 describe('WPD', () => {
 	const { it } = createTestSuite({
 		languages: ['markup', 'javascript', 'css', 'scss'],
-		plugins: 'wpd'
+		plugins: 'wpd',
 	});
 
 	it('should work with CSS', ({ util }) => {
@@ -53,7 +52,7 @@ pre[class*="language-"] {
 	-ms-hyphens: none;
 	hyphens: none;
 }
-`
+`,
 		});
 	});
 
@@ -80,7 +79,7 @@ pre[class*="language-"] {
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
-`
+`,
 		});
 	});
 
@@ -110,7 +109,7 @@ pre[class*="language-"] {
 	1.32v-17.54l-7.84 10.08-7.97-10.08v17.54H133v-21.2h2.78l7.58 10.06 7.45
 	-10.05h2.8v21.2h-2.4"/>
 </svg>
-`
+`,
 		});
 	});
 });

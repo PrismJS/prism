@@ -1,16 +1,10 @@
 {
-	"plugins": [
-		"plugins/markdown",
-		"./gulpfile.js/docs.js"
-	],
+	"plugins": ["plugins/markdown", "./gulpfile.js/docs.js"],
 	"opts": {
 		"destination": "./docs",
 		"encoding": "utf8",
 		"template": "./node_modules/docdash",
-		"access": [
-			"public",
-			"protected"
-		]
+		"access": ["public", "protected"]
 	},
 	"recurseDepth": 10,
 	"source": {
@@ -19,10 +13,7 @@
 	},
 	"tags": {
 		"allowUnknownTags": true,
-		"dictionaries": [
-			"jsdoc",
-			"closure"
-		]
+		"dictionaries": ["jsdoc", "closure"]
 	},
 	"templates": {
 		"cleverLinks": true,
@@ -39,9 +30,7 @@
 		"wrap": false,
 		"typedefs": true,
 		"private": false,
-		"scripts": [
-			"styles/overwrites.css"
-		],
+		"scripts": ["styles/overwrites.css"],
 		"openGraph": {
 			"title": "Prism generated API documentation",
 			"type": "website",

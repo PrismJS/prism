@@ -8,40 +8,40 @@ export default {
 			{
 				pattern: /# .*/,
 				greedy: true,
-				alias: 'translator-comment'
+				alias: 'translator-comment',
 			},
 			{
 				pattern: /#\..*/,
 				greedy: true,
-				alias: 'extracted-comment'
+				alias: 'extracted-comment',
 			},
 			{
 				pattern: /#:.*/,
 				greedy: true,
-				alias: 'reference-comment'
+				alias: 'reference-comment',
 			},
 			{
 				pattern: /#,.*/,
 				greedy: true,
-				alias: 'flag-comment'
+				alias: 'flag-comment',
 			},
 			{
 				pattern: /#\|.*/,
 				greedy: true,
-				alias: 'previously-untranslated-comment'
+				alias: 'previously-untranslated-comment',
 			},
 			{
 				pattern: /#.*/,
-				greedy: true
+				greedy: true,
 			},
 		],
 		'string': {
 			pattern: /(^|[^\\])"(?:[^"\\]|\\.)*"/,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 		'keyword': /^msg(?:ctxt|id|id_plural|str)\b/m,
 		'number': /\b\d+\b/,
-		'punctuation': /[\[\]]/
-	}
+		'punctuation': /[\[\]]/,
+	},
 } as LanguageProto<'gettext'>;

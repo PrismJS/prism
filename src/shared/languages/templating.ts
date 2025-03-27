@@ -6,16 +6,19 @@ import type { Token, TokenStream } from '../../core/token';
 import type { Grammar } from '../../types';
 import type { tokenize } from '../symbols';
 
-
 const placeholderPattern = /___PH\d+___/;
 
-function getPlaceholder(id: number): string {
+function getPlaceholder (id: number): string {
 	return `___PH${id}___`;
 }
 
 type TokenStack = [number, Token][];
 
-function buildPlaceholders(code: string, grammar: Grammar | undefined, Prism: Prism): { hostCode: string, tokenStack: TokenStack } {
+function buildPlaceholders (
+	code: string,
+	grammar: Grammar | undefined,
+	Prism: Prism
+): { hostCode: string; tokenStack: TokenStack } {
 	if (!grammar) {
 		return { hostCode: code, tokenStack: [] };
 	}
@@ -29,9 +32,11 @@ function buildPlaceholders(code: string, grammar: Grammar | undefined, Prism: Pr
 	for (const token of templateTokens) {
 		if (typeof token === 'string') {
 			hostCode += token;
-		} else if (token.type.startsWith('ignore')) {
+		}
+		else if (token.type.startsWith('ignore')) {
 			hostCode += getTextContent(token.content);
-		} else {
+		}
+		else {
 			if (hasPlaceholderLike) {
 				while (code.includes(getPlaceholder(id))) {
 					id++;
@@ -47,7 +52,7 @@ function buildPlaceholders(code: string, grammar: Grammar | undefined, Prism: Pr
 	return { hostCode, tokenStack };
 }
 
-function insertIntoHostToken(hostTokens: TokenStream, tokenStack: TokenStack) {
+function insertIntoHostToken (hostTokens: TokenStream, tokenStack: TokenStack) {
 	let j = 0;
 
 	const walkTokens = (tokens: TokenStream) => {
@@ -60,7 +65,7 @@ function insertIntoHostToken(hostTokens: TokenStream, tokenStack: TokenStack) {
 			const token = tokens[i];
 			if (typeof token === 'string' || typeof token.content === 'string') {
 				const [id, t] = tokenStack[j];
-				const s = typeof token === 'string' ? token : token.content as string;
+				const s = typeof token === 'string' ? token : (token.content as string);
 				const placeholder = getPlaceholder(id);
 
 				const index = s.indexOf(placeholder);
@@ -82,11 +87,13 @@ function insertIntoHostToken(hostTokens: TokenStream, tokenStack: TokenStack) {
 
 					if (typeof token === 'string') {
 						tokens.splice(i, 1, ...replacement);
-					} else {
+					}
+					else {
 						token.content = replacement;
 					}
 				}
-			} else {
+			}
+			else {
 				walkTokens(token.content);
 			}
 		}
@@ -99,17 +106,24 @@ function insertIntoHostToken(hostTokens: TokenStream, tokenStack: TokenStack) {
 
 type GrammarRef = Grammar | string | undefined | null;
 
-function resolve(ref: GrammarRef, components: Registry): Grammar | undefined {
+function resolve (ref: GrammarRef, components: Registry): Grammar | undefined {
 	if (!ref) {
 		return undefined;
-	} else if (typeof ref === 'string') {
+	}
+	else if (typeof ref === 'string') {
 		return components.getLanguage(ref);
-	} else {
+	}
+	else {
 		return ref;
 	}
 }
 
-export function templating(code: string, hostGrammar: GrammarRef, templateGrammar: GrammarRef, Prism: Prism): TokenStream {
+export function templating (
+	code: string,
+	hostGrammar: GrammarRef,
+	templateGrammar: GrammarRef,
+	Prism: Prism
+): TokenStream {
 	hostGrammar = resolve(hostGrammar, Prism.components);
 	templateGrammar = resolve(templateGrammar, Prism.components);
 
@@ -120,7 +134,7 @@ export function templating(code: string, hostGrammar: GrammarRef, templateGramma
 	return tokens;
 }
 
-export function embeddedIn(hostGrammar: GrammarRef): NonNullable<Grammar[typeof tokenize]> {
+export function embeddedIn (hostGrammar: GrammarRef): NonNullable<Grammar[typeof tokenize]> {
 	return (code, templateGrammar, Prism) => {
 		return templating(code, hostGrammar, withoutTokenize(templateGrammar), Prism);
 	};

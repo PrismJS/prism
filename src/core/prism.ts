@@ -23,7 +23,6 @@ export class Prism {
 	components = new Registry(this);
 	plugins: Partial<Record<string, unknown> & KnownPlugins> = {};
 
-
 	/**
 	 * This is the most high-level function in Prism’s API.
 	 * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism#highlightElement} on
@@ -34,15 +33,17 @@ export class Prism {
 	 * 2. `before-all-elements-highlight`
 	 * 3. All hooks of {@link Prism#highlightElement} for each element.
 	 */
-	highlightAll(options: HighlightAllOptions = {}) {
+	highlightAll (options: HighlightAllOptions = {}) {
 		const { root, async, callback } = options;
 
-		const env: HookEnvMap['before-highlightall'] | HookEnvMap['before-all-elements-highlight'] = {
-			callback,
-			root: root ?? document,
-			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-			state: new HookState()
-		};
+		const env: HookEnvMap['before-highlightall'] | HookEnvMap['before-all-elements-highlight'] =
+			{
+				callback,
+				root: root ?? document,
+				selector:
+					'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+				state: new HookState(),
+			};
 
 		this.hooks.run('before-highlightall', env);
 
@@ -73,7 +74,7 @@ export class Prism {
 	 * @param element The element containing the code.
 	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
 	 */
-	highlightElement(element: Element, options: HighlightElementOptions = {}) {
+	highlightElement (element: Element, options: HighlightElementOptions = {}) {
 		const { async, callback } = options;
 
 		// Find language
@@ -97,7 +98,7 @@ export class Prism {
 			language,
 			grammar,
 			code,
-			state: new HookState()
+			state: new HookState(),
 		};
 
 		const insertHighlightedCode = (highlightedCode: string) => {
@@ -138,8 +139,9 @@ export class Prism {
 				language: env.language,
 				code: env.code,
 				grammar: env.grammar,
-			}).then(insertHighlightedCode, (error) => console.log(error));
-		} else {
+			}).then(insertHighlightedCode, error => console.log(error));
+		}
+		else {
 			insertHighlightedCode(this.highlight(env.code, env.language, { grammar: env.grammar }));
 		}
 	}
@@ -162,15 +164,15 @@ export class Prism {
 	 * @example
 	 * Prism.highlight('var foo = true;', 'javascript');
 	 */
-	highlight(text: string, language: string, options?: HighlightOptions): string {
+	highlight (text: string, language: string, options?: HighlightOptions): string {
 		const languageId = this.components.resolveAlias(language);
 		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 
-		const env: HookEnvMap['before-tokenize'] | HookEnvMap['after-tokenize'] = ({
+		const env: HookEnvMap['before-tokenize'] | HookEnvMap['after-tokenize'] = {
 			code: text,
 			grammar,
-			language
-		});
+			language,
+		};
 		this.hooks.run('before-tokenize', env);
 		if (!env.grammar) {
 			throw new Error('The language "' + env.language + '" has no grammar.');
@@ -205,7 +207,7 @@ export class Prism {
 	 *     }
 	 * });
 	 */
-	tokenize(text: string, grammar: Grammar): TokenStream {
+	tokenize (text: string, grammar: Grammar): TokenStream {
 		const customTokenize = grammar[tokenize];
 		if (customTokenize) {
 			return customTokenize(text, grammar, this);
@@ -225,7 +227,7 @@ export class Prism {
 		return tokenList.toArray();
 	}
 
-	private _matchGrammar(
+	private _matchGrammar (
 		text: string,
 		tokenList: LinkedList<string | Token>,
 		grammar: GrammarTokens,
@@ -255,12 +257,12 @@ export class Prism {
 					patternObj.pattern = pattern = RegExp(pattern.source, pattern.flags + 'g');
 				}
 
-				for ( // iterate the token list and keep track of the current token/string position
+				for (
+					// iterate the token list and keep track of the current token/string position
 					let currentNode = startNode.next, pos = startPos;
 					currentNode.next !== null;
 					pos += currentNode.value.length, currentNode = currentNode.next
 				) {
-
 					if (rematch && pos >= rematch.reach) {
 						break;
 					}
@@ -294,7 +296,9 @@ export class Prism {
 						while (from >= p) {
 							currentNode = currentNode.next;
 							if (currentNode.next === null) {
-								throw new Error('The linked list and the actual text have become de-synced');
+								throw new Error(
+									'The linked list and the actual text have become de-synced'
+								);
 							}
 							p += currentNode.value.length;
 						}
@@ -308,8 +312,14 @@ export class Prism {
 						}
 
 						// find the last node which is affected by this match
-						let k: LinkedListMiddleNode<Token | string> | LinkedListTailNode<Token | string> = currentNode;
-						for (; k.next !== null && (p < to || typeof k.value === 'string'); k = k.next) {
+						let k:
+							| LinkedListMiddleNode<Token | string>
+							| LinkedListTailNode<Token | string> = currentNode;
+						for (
+							;
+							k.next !== null && (p < to || typeof k.value === 'string');
+							k = k.next
+						) {
 							removeCount++;
 							p += k.value.length;
 						}
@@ -318,7 +328,8 @@ export class Prism {
 						// replace with the new match
 						str = text.slice(pos, p);
 						match.index -= pos;
-					} else {
+					}
+					else {
 						match = matchPattern(pattern, 0, str, lookbehind);
 						if (!match) {
 							continue;
@@ -345,7 +356,12 @@ export class Prism {
 
 					tokenList.removeRange(removeFrom, removeCount);
 
-					const wrapped = new Token(token, insideGrammar ? this.tokenize(matchStr, insideGrammar) : matchStr, alias, matchStr);
+					const wrapped = new Token(
+						token,
+						insideGrammar ? this.tokenize(matchStr, insideGrammar) : matchStr,
+						alias,
+						matchStr
+					);
 					currentNode = tokenList.addAfter(removeFrom, wrapped);
 
 					if (after) {
@@ -358,9 +374,16 @@ export class Prism {
 
 						const nestedRematch: RematchOptions = {
 							cause: `${token},${j}`,
-							reach
+							reach,
 						};
-						this._matchGrammar(text, tokenList, grammar, currentNode.prev, pos, nestedRematch);
+						this._matchGrammar(
+							text,
+							tokenList,
+							grammar,
+							currentNode.prev,
+							pos,
+							nestedRematch
+						);
 
 						// the reach might have been extended because of the rematching
 						if (rematch && nestedRematch.reach > rematch.reach) {
@@ -414,11 +437,11 @@ export interface HighlightOptions {
 	grammar?: Grammar;
 }
 
-function assertEnv<T extends keyof HookEnvMap>(env: unknown): asserts env is HookEnvMap[T] {
+function assertEnv<T extends keyof HookEnvMap> (env: unknown): asserts env is HookEnvMap[T] {
 	/* noop */
 }
 
-function matchPattern(pattern: RegExp, pos: number, text: string, lookbehind: boolean) {
+function matchPattern (pattern: RegExp, pos: number, text: string, lookbehind: boolean) {
 	pattern.lastIndex = pos;
 	const match = pattern.exec(text);
 	if (match && lookbehind && match[1]) {
@@ -430,7 +453,6 @@ function matchPattern(pattern: RegExp, pos: number, text: string, lookbehind: bo
 	return match;
 }
 
-
 /**
  * Converts the given token or token stream to an HTML representation.
  *
@@ -441,13 +463,13 @@ function matchPattern(pattern: RegExp, pos: number, text: string, lookbehind: bo
  * @param language The name of current language.
  * @returns The HTML representation of the token or token stream.
  */
-function stringify(o: string | Token | TokenStream, language: string, hooks: Hooks): string {
+function stringify (o: string | Token | TokenStream, language: string, hooks: Hooks): string {
 	if (typeof o === 'string') {
 		return htmlEncode(o);
 	}
 	if (Array.isArray(o)) {
 		let s = '';
-		o.forEach((e) => {
+		o.forEach(e => {
 			s += stringify(e, language, hooks);
 		});
 		return s;
@@ -459,14 +481,15 @@ function stringify(o: string | Token | TokenStream, language: string, hooks: Hoo
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
-		language
+		language,
 	};
 
 	const aliases = o.alias;
 	if (aliases) {
 		if (Array.isArray(aliases)) {
 			env.classes.push(...aliases);
-		} else {
+		}
+		else {
 			env.classes.push(aliases);
 		}
 	}
@@ -475,21 +498,38 @@ function stringify(o: string | Token | TokenStream, language: string, hooks: Hoo
 
 	let attributes = '';
 	for (const name in env.attributes) {
-		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+		attributes +=
+			' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
 	}
 
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
+	return (
+		'<' +
+		env.tag +
+		' class="' +
+		env.classes.join(' ') +
+		'"' +
+		attributes +
+		'>' +
+		env.content +
+		'</' +
+		env.tag +
+		'>'
+	);
 }
 
-function toGrammarToken(pattern: GrammarToken | RegExpLike): GrammarToken {
+function toGrammarToken (pattern: GrammarToken | RegExpLike): GrammarToken {
 	if (!pattern.pattern) {
 		return { pattern };
-	} else {
+	}
+	else {
 		return pattern;
 	}
 }
 
-function resolve(components: Registry, reference: Grammar | string | null | undefined): Grammar | undefined {
+function resolve (
+	components: Registry,
+	reference: Grammar | string | null | undefined
+): Grammar | undefined {
 	if (reference) {
 		if (typeof reference === 'string') {
 			return components.getLanguage(reference);

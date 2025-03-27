@@ -41,7 +41,12 @@ export class Token {
 	 * @param matchedStr A copy of the full string this token was created from.
 	 * @public
 	 */
-	constructor(type: TokenName, content: string | TokenStream, alias?: TokenName | TokenName[], matchedStr = '') {
+	constructor (
+		type: TokenName,
+		content: string | TokenStream,
+		alias?: TokenName | TokenName[],
+		matchedStr = ''
+	) {
 		this.type = type;
 		this.content = content;
 		this.alias = alias;
@@ -51,11 +56,12 @@ export class Token {
 	/**
 	 * Adds the given alias to the list of aliases of this token.
 	 */
-	addAlias(alias: TokenName): void {
+	addAlias (alias: TokenName): void {
 		let aliases = this.alias;
 		if (!aliases) {
 			this.alias = aliases = [];
-		} else if (!Array.isArray(aliases)) {
+		}
+		else if (!Array.isArray(aliases)) {
 			this.alias = aliases = [aliases];
 		}
 		aliases.push(alias);
@@ -73,17 +79,19 @@ export class Token {
  *
  *    The only exception here is the token stream that only contains the empty string and nothing else.
  */
-export type TokenStream = (string | Token)[]
+export type TokenStream = (string | Token)[];
 
 /**
  * Returns the text content of the given token or token stream.
  */
-export function getTextContent(token: string | Token | TokenStream): string {
+export function getTextContent (token: string | Token | TokenStream): string {
 	if (typeof token === 'string') {
 		return token;
-	} else if (Array.isArray(token)) {
+	}
+	else if (Array.isArray(token)) {
 		return token.map(getTextContent).join('');
-	} else {
+	}
+	else {
 		return getTextContent(token.content);
 	}
 }

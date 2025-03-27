@@ -11,7 +11,7 @@ const SRC_DIR = path.join(__dirname, '../../src');
 export const getLanguageIds = lazy(() => {
 	const files = readdirSync(path.join(SRC_DIR, 'languages'));
 	return files
-		.map((f) => {
+		.map(f => {
 			const match = /^prism-([\w-]+)\.[jt]s$/.exec(f);
 			if (!match) {
 				return undefined;
@@ -27,19 +27,20 @@ export const getPluginIds = lazy(() => {
 });
 export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds()]);
 
-async function getComponentUncached(id: string) {
+async function getComponentUncached (id: string) {
 	if (getPluginIds().includes(id)) {
 		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.ts`);
 		const exports = (await import(file)) as { default: PluginProto };
 		return exports.default;
-	} else {
+	}
+	else {
 		const file = path.join(SRC_DIR, 'languages', `prism-${id}.ts`);
 		const exports = (await import(file)) as { default: LanguageProto };
 		return exports.default;
 	}
 }
 const componentCache = new Map<string, Promise<ComponentProto>>();
-export function getComponent(id: string) {
+export function getComponent (id: string) {
 	let promise = componentCache.get(id);
 	if (promise === undefined) {
 		promise = getComponentUncached(id);
@@ -55,7 +56,7 @@ getComponentIds().forEach(getComponent);
 /**
  * Creates a new Prism instance with the given language loaded
  */
-export async function createInstance(languages?: string | string[]) {
+export async function createInstance (languages?: string | string[]) {
 	const instance = new Prism();
 
 	const protos = await Promise.all(toArray(languages).map(getComponent));
@@ -75,7 +76,7 @@ export interface PrismDOM<T> {
 	withGlobals: (fn: () => void) => void;
 }
 
-function overwriteProps(target: Record<string, unknown>, source: Record<string, unknown>) {
+function overwriteProps (target: Record<string, unknown>, source: Record<string, unknown>) {
 	const oldProps: [string, unknown][] = [];
 
 	for (const [key, value] of Object.entries(source)) {
@@ -93,10 +94,10 @@ function overwriteProps(target: Record<string, unknown>, source: Record<string, 
 /**
  * Creates a new JavaScript DOM instance with Prism being loaded.
  */
-export function createPrismDOM(): PrismDOM<{}> {
+export function createPrismDOM (): PrismDOM<{}> {
 	const dom = new JSDOM(``, {
 		runScripts: 'outside-only',
-		url: 'https://example.com/test.html'
+		url: 'https://example.com/test.html',
 	});
 	const window = dom.window;
 
@@ -104,7 +105,7 @@ export function createPrismDOM(): PrismDOM<{}> {
 	window.Prism = instance;
 
 	const withGlobals = (fn: () => void) => {
-		const g = (global as unknown as Record<string, unknown>);
+		const g = global as unknown as Record<string, unknown>;
 		let undo;
 		try {
 			undo = overwriteProps(g, {
@@ -113,10 +114,11 @@ export function createPrismDOM(): PrismDOM<{}> {
 				navigator: window.navigator,
 				location: window.location,
 				getComputedStyle: window.getComputedStyle,
-				setTimeout: noop
+				setTimeout: noop,
 			});
 			fn();
-		} finally {
+		}
+		finally {
 			undo?.();
 		}
 	};
@@ -133,11 +135,11 @@ export function createPrismDOM(): PrismDOM<{}> {
 
 	return {
 		dom,
-		window: (window as PrismWindow<{}>),
+		window: window as PrismWindow<{}>,
 		document: window.document,
 		Prism: window.Prism as never,
 		loadLanguages: load,
 		loadPlugins: load,
-		withGlobals
+		withGlobals,
 	};
 }

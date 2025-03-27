@@ -8,7 +8,7 @@ export default {
 	id: 'markdown',
 	require: markup,
 	alias: 'md',
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		// Allow only one line break
 		const inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
@@ -19,16 +19,18 @@ export default {
 		 *
 		 * _Note:_ Keep in mind that this adds a capturing group.
 		 */
-		function createInline(pattern: string) {
+		function createInline (pattern: string) {
 			pattern = pattern.replace(/<inner>/g, () => inner);
 			return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
 		}
 
-
 		const tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-		const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, () => tableCell);
-		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
-
+		const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(
+			/__/g,
+			() => tableCell
+		);
+		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
+			.source;
 
 		const markdown = extend('markup', {});
 		insertBefore(markdown, 'prolog', {
@@ -41,14 +43,14 @@ export default {
 					'front-matter': {
 						pattern: /\S+(?:\s+\S+)*/,
 						alias: ['yaml', 'language-yaml'],
-						inside: 'yaml'
-					}
-				}
+						inside: 'yaml',
+					},
+				},
 			},
 			'blockquote': {
 				// > ...
 				pattern: /^>(?:[\t ]*>)*/m,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'table': {
 				pattern: RegExp('^' + tableRow + tableLine + '(?:' + tableRow + ')*', 'm'),
@@ -59,17 +61,17 @@ export default {
 						inside: {
 							'table-data': {
 								pattern: RegExp(tableCell),
-								inside: 'markdown'
+								inside: 'markdown',
 							},
-							'punctuation': /\|/
-						}
+							'punctuation': /\|/,
+						},
 					},
 					'table-line': {
 						pattern: RegExp('^(' + tableRow + ')' + tableLine + '$'),
 						lookbehind: true,
 						inside: {
-							'punctuation': /\||:?-{3,}:?/
-						}
+							'punctuation': /\||:?-{3,}:?/,
+						},
 					},
 					'table-header-row': {
 						pattern: RegExp('^' + tableRow + '$'),
@@ -77,19 +79,20 @@ export default {
 							'table-header': {
 								pattern: RegExp(tableCell),
 								alias: 'important',
-								inside: 'markdown'
+								inside: 'markdown',
 							},
-							'punctuation': /\|/
-						}
-					}
-				}
+							'punctuation': /\|/,
+						},
+					},
+				},
 			},
 			'code': [
 				{
 					// Prefixed by 4 spaces or 1 tab and preceded by an empty line
-					pattern: /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
+					pattern:
+						/((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
 					lookbehind: true,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				{
 					// ```optional language
@@ -100,11 +103,11 @@ export default {
 					inside: {
 						'code-block': {
 							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
-							lookbehind: true
+							lookbehind: true,
 						},
 						'code-language': {
 							pattern: /^(```).+/,
-							lookbehind: true
+							lookbehind: true,
 						},
 						'punctuation': /```/,
 						[tokenize](code, grammar, Prism) {
@@ -128,10 +131,11 @@ export default {
 							const codeBlock = tokens[3];
 
 							if (
-								typeof codeLang === 'object' && typeof codeBlock === 'object' &&
-								codeLang.type === 'code-language' && codeBlock.type === 'code-block'
+								typeof codeLang === 'object' &&
+								typeof codeBlock === 'object' &&
+								codeLang.type === 'code-language' &&
+								codeBlock.type === 'code-block'
 							) {
-
 								// this might be a language that Prism does not support
 
 								// do some replacements to support C++, C#, and F#
@@ -145,17 +149,21 @@ export default {
 
 									const grammar = Prism.components.getLanguage(lang);
 									if (grammar) {
-										codeBlock.content = Prism.tokenize(getTextContent(codeBlock), grammar);
-									} else {
+										codeBlock.content = Prism.tokenize(
+											getTextContent(codeBlock),
+											grammar
+										);
+									}
+									else {
 										codeBlock.addAlias('needs-highlighting');
 									}
 								}
 							}
 
 							return tokens;
-						}
-					}
-				}
+						},
+					},
+				},
 			],
 			'title': [
 				{
@@ -167,8 +175,8 @@ export default {
 					pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
 					alias: 'important',
 					inside: {
-						punctuation: /==+$|--+$/
-					}
+						punctuation: /==+$|--+$/,
+					},
 				},
 				{
 					// # title 1
@@ -177,9 +185,9 @@ export default {
 					lookbehind: true,
 					alias: 'important',
 					inside: {
-						punctuation: /^#+|#+$/
-					}
-				}
+						punctuation: /^#+|#+$/,
+					},
+				},
 			],
 			'hr': {
 				// ***
@@ -188,7 +196,7 @@ export default {
 				// -----------
 				pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
 				lookbehind: true,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'list': {
 				// * item
@@ -197,57 +205,64 @@ export default {
 				// 1. item
 				pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
 				lookbehind: true,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'url-reference': {
 				// [id]: http://example.com "Optional title"
 				// [id]: http://example.com 'Optional title'
 				// [id]: http://example.com (Optional title)
 				// [id]: <http://example.com> "Optional title"
-				pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
+				pattern:
+					/!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
 				inside: {
 					'variable': {
 						pattern: /^(!?\[)[^\]]+/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'string': /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
-					'punctuation': /^[\[\]!:]|[<>]/
+					'punctuation': /^[\[\]!:]|[<>]/,
 				},
-				alias: 'url'
+				alias: 'url',
 			},
 			'bold': {
 				// **strong**
 				// __strong__
 
 				// allow one nested instance of italic text using the same delimiter
-				pattern: createInline(/\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/.source),
+				pattern: createInline(
+					/\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/
+						.source
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
 					'content': {
 						pattern: /(^..)[\s\S]+(?=..$)/,
 						lookbehind: true,
-						inside: {} // see below
+						inside: {}, // see below
 					},
-					'punctuation': /\*\*|__/
-				}
+					'punctuation': /\*\*|__/,
+				},
 			},
 			'italic': {
 				// *em*
 				// _em_
 
 				// allow one nested instance of bold text using the same delimiter
-				pattern: createInline(/\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/.source),
+				pattern: createInline(
+					/\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/
+						.source
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
 					'content': {
 						pattern: /(^.)[\s\S]+(?=.$)/,
 						lookbehind: true,
-						inside: {} // see below
+						inside: {}, // see below
 					},
-					'punctuation': /[*_]/
-				}
+					'punctuation': /[*_]/,
+				},
 			},
 			'strike': {
 				// ~~strike through~~
@@ -260,10 +275,10 @@ export default {
 					'content': {
 						pattern: /(^~~?)[\s\S]+(?=\1$)/,
 						lookbehind: true,
-						inside: {} // see below
+						inside: {}, // see below
 					},
-					'punctuation': /~~?/
-				}
+					'punctuation': /~~?/,
+				},
 			},
 			'code-snippet': {
 				// `code`
@@ -271,13 +286,16 @@ export default {
 				pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
 				lookbehind: true,
 				greedy: true,
-				alias: ['code', 'keyword']
+				alias: ['code', 'keyword'],
 			},
 			'url': {
 				// [example](http://example.com "Optional title")
 				// [example][id]
 				// [example] [id]
-				pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
+				pattern: createInline(
+					/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/
+						.source
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -285,37 +303,46 @@ export default {
 					'content': {
 						pattern: /(^\[)[^\]]+(?=\])/,
 						lookbehind: true,
-						inside: {} // see below
+						inside: {}, // see below
 					},
 					'variable': {
 						pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'url': {
 						pattern: /(^\]\()[^\s)]+/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'string': {
 						pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
-						lookbehind: true
-					}
-				}
-			}
+						lookbehind: true,
+					},
+				},
+			},
 		});
 
-		['url', 'bold', 'italic', 'strike'].forEach((token) => {
-			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach((inside) => {
+		['url', 'bold', 'italic', 'strike'].forEach(token => {
+			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
 				if (token !== inside) {
-					((((markdown[token] as GrammarToken).inside as Grammar).content as GrammarToken).inside as Grammar)[inside] = markdown[inside];
+					(
+						(
+							((markdown[token] as GrammarToken).inside as Grammar)
+								.content as GrammarToken
+						).inside as Grammar
+					)[inside] = markdown[inside];
 				}
 			});
 		});
 
 		return markdown;
 	},
-	effect(Prism) {
-		return Prism.hooks.add('wrap', (env) => {
-			if (!Prism.plugins.autoloader || env.type !== 'code-block' || !env.classes.includes('needs-highlighting')) {
+	effect (Prism) {
+		return Prism.hooks.add('wrap', env => {
+			if (
+				!Prism.plugins.autoloader ||
+				env.type !== 'code-block' ||
+				!env.classes.includes('needs-highlighting')
+			) {
 				return;
 			}
 
@@ -333,14 +360,19 @@ export default {
 				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
 				env.attributes['id'] = id;
 
-				Prism.plugins.autoloader.loadLanguages(codeLang).then(() => {
-					const element = document.getElementById(id);
-					if (element) {
-						element.innerHTML = Prism.highlight(element.textContent || '', codeLang);
-					}
-				}, (error) => console.error(error));
+				Prism.plugins.autoloader.loadLanguages(codeLang).then(
+					() => {
+						const element = document.getElementById(id);
+						if (element) {
+							element.innerHTML = Prism.highlight(
+								element.textContent || '',
+								codeLang
+							);
+						}
+					},
+					error => console.error(error)
+				);
 			}
 		});
-
-	}
+	},
 } as LanguageProto<'markdown'>;

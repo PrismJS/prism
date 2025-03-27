@@ -6,32 +6,33 @@ export default {
 		'comment': /(?:⍝|#[! ]).*$/m,
 		'string': {
 			pattern: /'(?:[^'\r\n]|'')*'/,
-			greedy: true
+			greedy: true,
 		},
-		'number': /¯?(?:\d*\.?\b\d+(?:e[+¯]?\d+)?|¯|∞)(?:j¯?(?:(?:\d+(?:\.\d+)?|\.\d+)(?:e[+¯]?\d+)?|¯|∞))?/i,
+		'number':
+			/¯?(?:\d*\.?\b\d+(?:e[+¯]?\d+)?|¯|∞)(?:j¯?(?:(?:\d+(?:\.\d+)?|\.\d+)(?:e[+¯]?\d+)?|¯|∞))?/i,
 		'statement': /:[A-Z][a-z][A-Za-z]*\b/,
 		'system-function': {
 			pattern: /⎕[A-Z]+/i,
-			alias: 'function'
+			alias: 'function',
 		},
 		'constant': /[⍬⌾#⎕⍞]/,
 		'function': /[-+×÷⌈⌊∣|⍳⍸?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⊆⊇⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⍯↗¤→]/,
 		'monadic-operator': {
 			pattern: /[\\\/⌿⍀¨⍨⌶&∥]/,
-			alias: 'operator'
+			alias: 'operator',
 		},
 		'dyadic-operator': {
 			pattern: /[.⍣⍠⍤∘⌸@⌺⍥]/,
-			alias: 'operator'
+			alias: 'operator',
 		},
 		'assignment': {
 			pattern: /←/,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 		'punctuation': /[\[;\]()◇⋄]/,
 		'dfn': {
 			pattern: /[{}⍺⍵⍶⍹∇⍫:]/,
-			alias: 'builtin'
-		}
-	}
+			alias: 'builtin',
+		},
+	},
 } as LanguageProto<'apl'>;

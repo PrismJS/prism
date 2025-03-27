@@ -6,8 +6,10 @@ export default {
 	id: 'lilypond',
 	require: scheme,
 	alias: 'ly',
-	grammar() {
-		let schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
+	grammar () {
+		let schemeExpression =
+			/\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/
+				.source;
 		// allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
 		// For some reason, this can't be 4
 		const recursivenessLog2 = 5;
@@ -16,11 +18,16 @@ export default {
 		}
 		schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
 
-
 		return {
 			'comment': /%(?:(?!\{).*|\{[\s\S]*?%\})/,
 			'embedded-scheme': {
-				pattern: RegExp(/(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(/<expr>/g, () => schemeExpression), 'm'),
+				pattern: RegExp(
+					/(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(
+						/<expr>/g,
+						() => schemeExpression
+					),
+					'm'
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -37,36 +44,37 @@ export default {
 									'lilypond': {
 										pattern: /[\s\S]+/,
 										alias: 'language-lilypond',
-										inside: 'lilypond'
-									}
-								}
+										inside: 'lilypond',
+									},
+								},
 							},
-							[rest]: 'scheme'
-						}
+							[rest]: 'scheme',
+						},
 					},
-					'punctuation': /#/
-				}
+					'punctuation': /#/,
+				},
 			},
 			'string': {
 				pattern: /"(?:[^"\\]|\\.)*"/,
-				greedy: true
+				greedy: true,
 			},
 			'class-name': {
 				pattern: /(\\new\s+)[\w-]+/,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'keyword': {
 				pattern: /\\[a-z][-\w]*/i,
 				inside: {
-					'punctuation': /^\\/
-				}
+					'punctuation': /^\\/,
+				},
 			},
 			'operator': /[=|]|<<|>>/,
 			'punctuation': {
-				pattern: /(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
-				lookbehind: true
+				pattern:
+					/(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
+				lookbehind: true,
 			},
-			'number': /\b\d+(?:\/\d+)?\b/
+			'number': /\b\d+(?:\/\d+)?\b/,
 		};
-	}
+	},
 } as LanguageProto<'lilypond'>;

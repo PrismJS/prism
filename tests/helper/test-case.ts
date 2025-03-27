@@ -47,7 +47,7 @@ export class TestCaseFile {
 	 */
 	descriptionLineStart = NaN;
 
-	constructor(code: string, expected?: string, description?: string) {
+	constructor (code: string, expected?: string, description?: string) {
 		this.code = code;
 		this.expected = expected || '';
 		this.description = description || '';
@@ -56,7 +56,7 @@ export class TestCaseFile {
 	/**
 	 * Returns the file content of the given test file.
 	 */
-	print(): string {
+	print (): string {
 		const code = this.code.trim();
 		const expected = (this.expected || '').trim();
 		const description = (this.description || '').trim();
@@ -64,7 +64,8 @@ export class TestCaseFile {
 		const parts = [code];
 		if (description) {
 			parts.push(expected, description);
-		} else if (expected) {
+		}
+		else if (expected) {
 			parts.push(expected);
 		}
 
@@ -79,7 +80,7 @@ export class TestCaseFile {
 	/**
 	 * Writes the given test case file to disk.
 	 */
-	writeToFile(filePath: string) {
+	writeToFile (filePath: string) {
 		fs.writeFileSync(filePath, this.print(), 'utf-8');
 	}
 
@@ -88,7 +89,7 @@ export class TestCaseFile {
 	 *
 	 * The line ends of the code, expected value, and description are all normalized to CRLF.
 	 */
-	static parse(content: string): TestCaseFile {
+	static parse (content: string): TestCaseFile {
 		const eol = (/\r\n|\n/.exec(content) || ['\n'])[0];
 
 		// normalize line ends to CRLF
@@ -100,7 +101,7 @@ export class TestCaseFile {
 		const description = parts[2] || '';
 
 		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
-		file.eol = (eol as Eol);
+		file.eol = eol as Eol;
 
 		const codeStartSpaces = getLeadingSpaces(code);
 		const expectedStartSpaces = getLeadingSpaces(expected);
@@ -111,7 +112,8 @@ export class TestCaseFile {
 
 		file.codeLineStart = codeStartSpaces.split(/\r\n/).length;
 		file.expectedLineStart = codeLineCount + expectedStartSpaces.split(/\r\n/).length;
-		file.descriptionLineStart = codeLineCount + expectedLineCount + descriptionStartSpaces.split(/\r\n/).length;
+		file.descriptionLineStart =
+			codeLineCount + expectedLineCount + descriptionStartSpaces.split(/\r\n/).length;
 
 		return file;
 	}
@@ -119,38 +121,38 @@ export class TestCaseFile {
 	/**
 	 * Reads the given test case file from disk.
 	 */
-	static readFromFile(filePath: string): TestCaseFile {
+	static readFromFile (filePath: string): TestCaseFile {
 		return TestCaseFile.parse(fs.readFileSync(filePath, 'utf8'));
 	}
 }
 
-
 interface Runner<T> {
-	run(Prism: Prism, code: string, language: string): T
-	print(actual: T): string
-	isEqual(actual: T, expected: string): boolean
-	assertEqual(actual: T, expected: string, message: (firstDifference: number) => string): void
+	run (Prism: Prism, code: string, language: string): T;
+	print (actual: T): string;
+	isEqual (actual: T, expected: string): boolean;
+	assertEqual (actual: T, expected: string, message: (firstDifference: number) => string): void;
 }
 const jsonRunner: Runner<TokenStream> = {
-	run(Prism, code, language) {
+	run (Prism, code, language) {
 		const grammar = Prism.components.getLanguage(language);
 		return Prism.tokenize(code, grammar ?? {});
 	},
-	print(actual) {
+	print (actual) {
 		return TokenStreamTransformer.prettyprint(actual, '\t');
 	},
-	isEqual(actual, expected) {
+	isEqual (actual, expected) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		let simplifiedExpected;
 		try {
 			simplifiedExpected = JSON.parse(expected) as unknown;
-		} catch (error) {
+		}
+		catch (error) {
 			return false;
 		}
 
 		return JSON.stringify(simplifiedActual) === JSON.stringify(simplifiedExpected);
 	},
-	assertEqual(actual, expected, message) {
+	assertEqual (actual, expected, message) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		const simplifiedExpected = JSON.parse(expected) as unknown;
 
@@ -168,13 +170,13 @@ const jsonRunner: Runner<TokenStream> = {
 		const diffIndex = translateIndexIgnoreSpaces(expected, expectedString, difference);
 
 		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex ?? 0));
-	}
+	},
 };
 /**
  * Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
  * to enable good diffing.
  */
-function normalizeHtml(html: string) {
+function normalizeHtml (html: string) {
 	return html
 		.replace(/</g, '\n<')
 		.replace(/>/g, '>\n')
@@ -182,22 +184,22 @@ function normalizeHtml(html: string) {
 		.trim();
 }
 const htmlRunner: Runner<string> = {
-	run(Prism, code, language) {
+	run (Prism, code, language) {
 		return Prism.highlight(code, language);
 	},
-	print(actual) {
+	print (actual) {
 		return formatHtml(actual);
 	},
-	isEqual(actual, expected) {
+	isEqual (actual, expected) {
 		return normalizeHtml(actual) === normalizeHtml(expected);
 	},
-	assertEqual(actual, expected, message) {
+	assertEqual (actual, expected, message) {
 		// We don't calculate the index of the first difference because it's difficult.
 		assert.deepEqual(normalizeHtml(actual), normalizeHtml(expected), message(0));
 	},
 };
 
-export type UpdateMethod = 'none' | 'insert' | 'update'
+export type UpdateMethod = 'none' | 'insert' | 'update';
 /**
  * Runs the given test case file and asserts the result
  *
@@ -210,15 +212,39 @@ export type UpdateMethod = 'none' | 'insert' | 'update'
  *
  * The languages will be loaded in the order they were provided.
  */
-export async function runTestCase(languageIdentifier: string, filePath: string, updateMode: UpdateMethod, createInstance: (languages: string[]) => Promise<Prism> = defaultCreateInstance) {
+export async function runTestCase (
+	languageIdentifier: string,
+	filePath: string,
+	updateMode: UpdateMethod,
+	createInstance: (languages: string[]) => Promise<Prism> = defaultCreateInstance
+) {
 	if (/\.html\.test$/i.test(filePath)) {
-		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, htmlRunner, createInstance);
-	} else {
-		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, jsonRunner, createInstance);
+		await runTestCaseWithRunner(
+			languageIdentifier,
+			filePath,
+			updateMode,
+			htmlRunner,
+			createInstance
+		);
+	}
+	else {
+		await runTestCaseWithRunner(
+			languageIdentifier,
+			filePath,
+			updateMode,
+			jsonRunner,
+			createInstance
+		);
 	}
 }
 
-export async function runTestCaseWithRunner<T>(languageIdentifier: string, filePath: string, updateMode: UpdateMethod, runner: Runner<T>, createInstance: (languages: string[]) => Promise<Prism>) {
+export async function runTestCaseWithRunner<T> (
+	languageIdentifier: string,
+	filePath: string,
+	updateMode: UpdateMethod,
+	runner: Runner<T>,
+	createInstance: (languages: string[]) => Promise<Prism>
+) {
 	const testCase = TestCaseFile.readFromFile(filePath);
 	const usedLanguages = parseLanguageNames(languageIdentifier);
 
@@ -227,7 +253,7 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
 	// the first language is the main language to highlight
 	const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
 
-	function updateFile() {
+	function updateFile () {
 		// change the file
 		testCase.expected = runner.print(actualValue);
 		testCase.writeToFile(filePath);
@@ -237,13 +263,16 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
 		// the test case doesn't have an expected value
 
 		if (updateMode === 'none') {
-			throw new Error('This test case doesn\'t have an expected token stream.'
-				+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
-				+ ' to automatically add the current token stream.');
+			throw new Error(
+				"This test case doesn't have an expected token stream." +
+					' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`' +
+					' to automatically add the current token stream.'
+			);
 		}
 
 		updateFile();
-	} else {
+	}
+	else {
 		// there is an expected value
 
 		if (runner.isEqual(actualValue, testCase.expected)) {
@@ -256,13 +285,14 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
 			return;
 		}
 
-		runner.assertEqual(actualValue, testCase.expected, (diffIndex) => {
+		runner.assertEqual(actualValue, testCase.expected, diffIndex => {
 			const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/);
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			const columnNumber = expectedLines.pop()!.length + 1;
 			const lineNumber = testCase.expectedLineStart + expectedLines.length;
 
-			return testCase.description +
+			return (
+				testCase.description +
 				`\nThe expected token stream differs from the actual token stream.` +
 				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
 				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
@@ -270,11 +300,11 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
 				`\n-----------------------------------------\n` +
 				runner.print(actualValue) +
 				`\n-----------------------------------------\n` +
-				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
+				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`
+			);
 		});
 	}
 }
-
 
 /**
  * Parses the language names and finds the main language.
@@ -282,24 +312,25 @@ export async function runTestCaseWithRunner<T>(languageIdentifier: string, fileP
  * It is either the last language or the language followed by a exclamation mark “!”.
  * There should only be one language with an exclamation mark.
  */
-export function parseLanguageNames(languageIdentifier: string): { languages: string[], mainLanguage: string } {
+export function parseLanguageNames (languageIdentifier: string): {
+	languages: string[];
+	mainLanguage: string;
+} {
 	let languages = languageIdentifier.split('+');
 	let mainLanguage: string | null = null;
 
-	languages = languages.map(
-		(language) => {
-			if (language.includes('!')) {
-				if (mainLanguage) {
-					throw 'There are multiple main languages defined.';
-				}
-
-				mainLanguage = language.replace('!', '');
-				return mainLanguage;
+	languages = languages.map(language => {
+		if (language.includes('!')) {
+			if (mainLanguage) {
+				throw 'There are multiple main languages defined.';
 			}
 
-			return language;
+			mainLanguage = language.replace('!', '');
+			return mainLanguage;
 		}
-	);
+
+		return language;
+	});
 
 	if (!mainLanguage) {
 		mainLanguage = languages[languages.length - 1];
@@ -313,14 +344,15 @@ export function parseLanguageNames(languageIdentifier: string): { languages: str
  *
  * This will returns `undefined` if the strings are equal.
  */
-function firstDiff(expected: string, actual: string): number | undefined {
+function firstDiff (expected: string, actual: string): number | undefined {
 	let i = 0;
 	let j = 0;
 	while (i < expected.length && j < actual.length) {
 		if (expected[i] !== actual[j]) {
 			return i;
 		}
-		i++; j++;
+		i++;
+		j++;
 	}
 
 	if (i === expected.length && j === actual.length) {
@@ -337,7 +369,11 @@ function firstDiff(expected: string, actual: string): number | undefined {
  * In out use case, the `withoutSpaces` string is an unformatted JSON string and the `spacey` string is a formatted JSON
  * string.
  */
-function translateIndexIgnoreSpaces(spacey: string, withoutSpaces: string, withoutSpaceIndex: number): number | undefined {
+function translateIndexIgnoreSpaces (
+	spacey: string,
+	withoutSpaces: string,
+	withoutSpaceIndex: number
+): number | undefined {
 	let i = 0;
 	let j = 0;
 	while (i < spacey.length && j < withoutSpaces.length) {
@@ -347,7 +383,8 @@ function translateIndexIgnoreSpaces(spacey: string, withoutSpaces: string, witho
 		if (j === withoutSpaceIndex) {
 			return i;
 		}
-		i++; j++;
+		i++;
+		j++;
 	}
 	return undefined;
 }

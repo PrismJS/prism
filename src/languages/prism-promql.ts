@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'promql',
-	grammar() {
+	grammar () {
 		// Thanks to: https://github.com/prometheus-community/monaco-promql/blob/master/src/promql/promql.ts
 		// As well as: https://kausal.co/blog/slate-prism-add-new-syntax-promql/
 
@@ -20,19 +20,12 @@ export default {
 			'count_values',
 			'bottomk',
 			'topk',
-			'quantile'
+			'quantile',
 		];
 
 		// PromQL vector matching + the by and without clauses
 		// (https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching)
-		const vectorMatching = [
-			'on',
-			'ignoring',
-			'group_right',
-			'group_left',
-			'by',
-			'without',
-		];
+		const vectorMatching = ['on', 'ignoring', 'group_right', 'group_left', 'by', 'without'];
 
 		// PromQL offset modifier
 		// (https://prometheus.io/docs/prometheus/latest/querying/basics/#offset-modifier)
@@ -43,7 +36,7 @@ export default {
 		return {
 			'comment': {
 				pattern: /(^[ \t]*)#.*/m,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'vector-match': {
 				// Match the comma-separated label lists inside vector matching:
@@ -54,7 +47,7 @@ export default {
 						pattern: /\b[^,]+\b/,
 						alias: 'attr-name',
 					},
-					'punctuation': /[(),]/
+					'punctuation': /[(),]/,
 				},
 			},
 			'context-labels': {
@@ -96,9 +89,10 @@ export default {
 			],
 			'keyword': new RegExp('\\b(?:' + keywords.join('|') + ')\\b', 'i'),
 			'function': /\b[a-z_]\w*(?=\s*\()/i,
-			'number': /[-+]?(?:(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:e[-+]?\d+)?\b|\b(?:0x[0-9a-f]+|nan|inf)\b)/i,
+			'number':
+				/[-+]?(?:(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:e[-+]?\d+)?\b|\b(?:0x[0-9a-f]+|nan|inf)\b)/i,
 			'operator': /[\^*/%+-]|==|!=|<=|<|>=|>|\b(?:and|or|unless)\b/i,
 			'punctuation': /[{};()`,.[\]]/,
 		};
-	}
+	},
 } as LanguageProto<'promql'>;

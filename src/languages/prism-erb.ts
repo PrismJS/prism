@@ -9,19 +9,20 @@ export default {
 	require: [ruby, markup],
 	grammar: {
 		'erb': {
-			pattern: /<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/,
+			pattern:
+				/<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/,
 			inside: {
 				'delimiter': {
 					pattern: /^<%=?|%>$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'ruby': {
 					pattern: /\s*\S[\s\S]*/,
 					alias: 'language-ruby',
-					inside: 'ruby'
-				}
-			}
+					inside: 'ruby',
+				},
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'erb'>;

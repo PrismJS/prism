@@ -6,14 +6,14 @@ export default {
 	id: 'cilkcpp',
 	require: cpp,
 	alias: ['cilk-cpp', 'cilk'],
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const cilkcpp = extend('cpp', {});
 		insertBefore(cilkcpp, 'function', {
 			'parallel-keyword': {
 				pattern: /\bcilk_(?:for|reducer|s(?:cope|pawn|ync))\b/,
-				alias: 'keyword'
-			}
+				alias: 'keyword',
+			},
 		});
 		return cilkcpp;
-	}
+	},
 } as LanguageProto<'cilkcpp'>;

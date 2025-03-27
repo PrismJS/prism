@@ -3,7 +3,7 @@ import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile, } from 'fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile } from 'fs/promises';
 import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
@@ -14,28 +14,31 @@ import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
 import type { Plugin, SourceMapInput } from 'rollup';
 
-
 const SRC_DIR = path.join(__dirname, '../src/');
-const languageIds = fs.readdirSync(path.join(SRC_DIR, 'languages')).map((f) => f.slice('prism-'.length).slice(0, -'.js'.length)).sort();
+const languageIds = fs
+	.readdirSync(path.join(SRC_DIR, 'languages'))
+	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
+	.sort();
 const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
 
-async function loadComponent(id: string) {
+async function loadComponent (id: string) {
 	let file;
 	if (pluginIds.includes(id)) {
 		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
-	} else {
+	}
+	else {
 		file = path.join(SRC_DIR, `languages/prism-${id}.ts`);
 	}
 	const exports = (await import(file)) as { default: ComponentProto };
 	return exports.default;
 }
 
-async function minifyCSS() {
+async function minifyCSS () {
 	const input: Record<string, string> = {};
 
 	const THEMES_DIR = path.join(__dirname, '../themes');
 	const themes = await readdir(THEMES_DIR);
-	for (const theme of themes.filter((f) => /\.css$/i.test(f))) {
+	for (const theme of themes.filter(f => /\.css$/i.test(f))) {
 		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
 	}
 
@@ -50,40 +53,49 @@ async function minifyCSS() {
 
 	const clean = new CleanCSS({});
 
-	await Promise.all(Object.entries(input).map(async ([target, file]) => {
-		const content = await readFile(file, 'utf-8');
-		const output = clean.minify(content);
-		if (output.errors.length > 0) {
-			throw new Error(`CSS minify error:\n${output.errors.join('\n')}`);
-		}
-		for (const warn of output.warnings) {
-			console.warn(`${file}: ${warn}`);
-		}
+	await Promise.all(
+		Object.entries(input).map(async ([target, file]) => {
+			const content = await readFile(file, 'utf-8');
+			const output = clean.minify(content);
+			if (output.errors.length > 0) {
+				throw new Error(`CSS minify error:\n${output.errors.join('\n')}`);
+			}
+			for (const warn of output.warnings) {
+				console.warn(`${file}: ${warn}`);
+			}
 
-		const targetFile = path.join(DIST, target);
-		await mkdir(path.dirname(targetFile), { recursive: true });
-		await writeFile(targetFile, output.styles, 'utf-8');
-	}));
+			const targetFile = path.join(DIST, target);
+			await mkdir(path.dirname(targetFile), { recursive: true });
+			await writeFile(targetFile, output.styles, 'utf-8');
+		})
+	);
 }
 
-async function treeviewIconFont() {
+async function treeviewIconFont () {
 	// List of all icons
 	// Add new icons to the end of the list.
 	const iconList = [
-		'file', 'folder',
-		'image', 'audio', 'video',
-		'text', 'code',
-		'archive', 'pdf',
-		'excel', 'powerpoint', 'word'
+		'file',
+		'folder',
+		'image',
+		'audio',
+		'video',
+		'text',
+		'code',
+		'archive',
+		'pdf',
+		'excel',
+		'powerpoint',
+		'word',
 	];
 	const fontName = 'PrismTreeview';
 
 	// generate the font
 	const result = await webfont({
-		files: iconList.map((n) => `src/plugins/treeview-icons/icons/${n}.svg`),
+		files: iconList.map(n => `src/plugins/treeview-icons/icons/${n}.svg`),
 		formats: ['woff'],
 		fontName,
-		sort: false
+		sort: false,
 	});
 
 	const woff = result.woff!;
@@ -99,10 +111,12 @@ async function treeviewIconFont() {
 	 *
 	 * Use the following escape sequences to refer to a specific icon:
 	 *
-	 * - ${glyphsData.map(({ metadata }) => {
-		const codePoint = metadata!.unicode![0].codePointAt(0)!;
-		return `\\${codePoint.toString(16)} ${metadata!.name}`;
-	}).join('\n\t * - ')}
+	 * - ${glyphsData
+			.map(({ metadata }) => {
+				const codePoint = metadata!.unicode![0].codePointAt(0)!;
+				return `\\${codePoint.toString(16)} ${metadata!.name}`;
+			})
+			.join('\n\t * - ')}
 	 */
 	src: url("data:application/font-woff;base64,${woff.toString('base64')}")
 		format("woff");
@@ -110,7 +124,8 @@ async function treeviewIconFont() {
 `.trim();
 
 	const cssPath = 'src/plugins/treeview-icons/prism-treeview-icons.css';
-	const fontFaceRegex = /\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
+	const fontFaceRegex =
+		/\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
 
 	const css = fs.readFileSync(cssPath, 'utf-8');
 	fs.writeFileSync(cssPath, css.replace(fontFaceRegex, fontFace), 'utf-8');
@@ -118,11 +133,13 @@ async function treeviewIconFont() {
 
 const dataToInsert = {
 	aliases_placeholder: async () => {
-		const data = await Promise.all([...languageIds, ...pluginIds].map(async (id) => {
-			const proto = await loadComponent(id);
-			return { id, alias: toArray(proto.alias) };
-		}));
-		return Object.fromEntries(data.flatMap(({ id, alias }) => alias.map((a) => [a, id])));
+		const data = await Promise.all(
+			[...languageIds, ...pluginIds].map(async id => {
+				const proto = await loadComponent(id);
+				return { id, alias: toArray(proto.alias) };
+			})
+		);
+		return Object.fromEntries(data.flatMap(({ id, alias }) => alias.map(a => [a, id])));
 	},
 	all_languages_placeholder: () => Promise.resolve(languageIds),
 	title_placeholder: async () => {
@@ -138,14 +155,21 @@ const dataToInsert = {
 			}
 		}
 
-		const data = (await Promise.all(languageIds.map(async (id) => {
-			const proto = await loadComponent(id);
-			const title = rawTitles.get(id);
-			if (!title) {
-				throw new Error(`No title for ${id}`);
-			}
-			return [id, ...toArray(proto.alias)].map((name) => ({ name, title: rawTitles.get(id) ?? title }));
-		}))).flat();
+		const data = (
+			await Promise.all(
+				languageIds.map(async id => {
+					const proto = await loadComponent(id);
+					const title = rawTitles.get(id);
+					if (!title) {
+						throw new Error(`No title for ${id}`);
+					}
+					return [id, ...toArray(proto.alias)].map(name => ({
+						name,
+						title: rawTitles.get(id) ?? title,
+					}));
+				})
+			)
+		).flat();
 		data.push({ name: 'none', title: 'Plain text' });
 
 		/**
@@ -153,19 +177,24 @@ const dataToInsert = {
 		 *
 		 * @param name The language id.
 		 */
-		function guessTitle(name: string) {
-			return (name.substring(0, 1).toUpperCase() + name.substring(1)).replace(/s(?=cript)/, 'S');
+		function guessTitle (name: string) {
+			return (name.substring(0, 1).toUpperCase() + name.substring(1)).replace(
+				/s(?=cript)/,
+				'S'
+			);
 		}
 
 		return Object.fromEntries(
-			data.filter(({ name, title }) => guessTitle(name) !== title).map(({ name, title }) => [name, title])
+			data
+				.filter(({ name, title }) => guessTitle(name) !== title)
+				.map(({ name, title }) => [name, title])
 		);
-	}
+	},
 };
 
 const dataInsertPlugin: Plugin = {
 	name: 'data-insert',
-	async renderChunk(code, chunk) {
+	async renderChunk (code, chunk) {
 		const pattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
 
 		// search for placeholders
@@ -184,7 +213,8 @@ const dataInsertPlugin: Plugin = {
 		for (const name of contained) {
 			if (name in dataToInsert) {
 				dataByName[name] = await dataToInsert[name as keyof typeof dataToInsert]();
-			} else {
+			}
+			else {
 				throw new Error(`Unknown placeholder ${name} in ${chunk.fileName}`);
 			}
 		}
@@ -200,7 +230,7 @@ const dataInsertPlugin: Plugin = {
 
 const inlineRegexSourcePlugin: Plugin = {
 	name: 'inline-regex-source',
-	renderChunk(code) {
+	renderChunk (code) {
 		const str = new MagicString(code);
 		str.replace(
 			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
@@ -216,7 +246,8 @@ const inlineRegexSourcePlugin: Plugin = {
 							return '\\\\\\\\'; // escape using 4 backslashes
 						}
 						return '\\\\' + g1;
-					} else {
+					}
+					else {
 						return '[^]';
 					}
 				});
@@ -269,9 +300,9 @@ const terserPlugin = rollupTerser({
 		unsafe_regexp: true,
 	},
 	format: {
-		comments: false
+		comments: false,
 	},
-	keep_classnames: true
+	keep_classnames: true,
 });
 
 async function clean() {
@@ -304,12 +335,7 @@ async function buildJS() {
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
-			plugins: [
-				lazyGrammarPlugin,
-				dataInsertPlugin,
-				inlineRegexSourcePlugin,
-				terserPlugin
-			]
+			plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
 		});
 
 		// CommonJS
@@ -320,14 +346,10 @@ async function buildJS() {
 			sourcemap: 'hidden',
 			format: 'cjs',
 			exports: 'named',
-			plugins: [
-				lazyGrammarPlugin,
-				dataInsertPlugin,
-				inlineRegexSourcePlugin,
-				terserPlugin
-			]
+			plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
 		});
-	} finally {
+	}
+	finally {
 		await bundle?.close();
 	}
 }

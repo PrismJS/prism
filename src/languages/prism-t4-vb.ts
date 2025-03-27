@@ -5,7 +5,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 't4-vb',
 	require: vbnet,
-	grammar() {
+	grammar () {
 		return createT4('vbnet');
-	}
+	},
 } as LanguageProto<'t4-vb'>;

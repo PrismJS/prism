@@ -25,10 +25,9 @@ Please report them as [bugs](https://github.com/PrismJS/prism/issues/new/choose)
 
 If you found a slow regex but are unsure about the worst-case time complexity or its cause, please report it as a vulnerability via email (see below).
 
-
 ## Reporting a Vulnerability
 
-***DO NOT CREATE AN ISSUE*** to report a vulnerability.
+**_DO NOT CREATE AN ISSUE_** to report a vulnerability.
 
 Instead, please send an email to at least one of [Prism's maintainers](MAINTAINERS.md).
 See [Responsible Disclosure](https://en.wikipedia.org/wiki/Responsible_disclosure) for more details.
@@ -45,7 +44,6 @@ See [Responsible Disclosure](https://en.wikipedia.org/wiki/Responsible_disclosur
     At this point, all communication will occur using comments on the advisory and the [temporary private fork](https://docs.github.com/en/code-security/security-advisories/collaborating-in-a-temporary-private-fork-to-resolve-a-security-vulnerability).
 
 3.  After the fix has been merged, we will make a new release and publish the security advisory within one week.
-
 
 [ReDoS]: https://en.wikipedia.org/wiki/ReDoS
 [severity]: https://www.imperva.com/learn/application-security/cve-cvss-vulnerability/

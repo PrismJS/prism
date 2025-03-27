@@ -25,7 +25,7 @@ export class Registry {
 
 	private Prism: Prism;
 
-	constructor(Prism: Prism) {
+	constructor (Prism: Prism) {
 		this.Prism = Prism;
 	}
 
@@ -33,18 +33,18 @@ export class Registry {
 	 * If the given name is a known alias, then the id of the component of the alias will be returned. Otherwise, the
 	 * `name` will be returned as is.
 	 */
-	resolveAlias(name: string): string {
+	resolveAlias (name: string): string {
 		return this.aliasMap.get(name) ?? name;
 	}
 
 	/**
 	 * Returns whether this registry has a component with the given name or alias.
 	 */
-	has(name: string): boolean {
+	has (name: string): boolean {
 		return this.entries.has(this.resolveAlias(name));
 	}
 
-	add(...components: ComponentProto[]): void {
+	add (...components: ComponentProto[]): void {
 		const added = new Set<string>();
 
 		const register = (proto: ComponentProto) => {
@@ -57,7 +57,7 @@ export class Registry {
 			added.add(id);
 
 			// add aliases
-			forEach(proto.alias, (alias) => this.aliasMap.set(alias, id));
+			forEach(proto.alias, alias => this.aliasMap.set(alias, id));
 
 			// dependencies
 			forEach(proto.require, register);
@@ -72,16 +72,17 @@ export class Registry {
 		this.update(added);
 	}
 
-	private update(changed: ReadonlySet<string>): void {
+	private update (changed: ReadonlySet<string>): void {
 		const updateCache = new Map<string, boolean>();
 		const idStack: string[] = [];
-
 
 		const performUpdateUncached = (id: string): boolean => {
 			// check for circular dependencies
 			const circularStart = idStack.indexOf(id);
 			if (circularStart !== idStack.length - 1) {
-				throw new Error(`Circular dependency ${idStack.slice(circularStart).join(' -> ')} not allowed`);
+				throw new Error(
+					`Circular dependency ${idStack.slice(circularStart).join(' -> ')} not allowed`
+				);
 			}
 
 			// check whether the component is registered
@@ -104,7 +105,7 @@ export class Registry {
 
 			return true;
 		};
-		const performUpdate = (id:string): boolean => {
+		const performUpdate = (id: string): boolean => {
 			let status = updateCache.get(id);
 			if (status === undefined) {
 				idStack.push(id);
@@ -123,7 +124,7 @@ export class Registry {
 					depsChanged = true;
 				}
 			});
-			forEach(proto.optional, (id) => {
+			forEach(proto.optional, id => {
 				if (performUpdate(this.resolveAlias(id))) {
 					depsChanged = true;
 				}
@@ -135,7 +136,7 @@ export class Registry {
 		this.entries.forEach((_, id) => performUpdate(id));
 	}
 
-	getLanguage(id: string): Grammar | undefined {
+	getLanguage (id: string): Grammar | undefined {
 		id = this.resolveAlias(id);
 
 		const entry = this.entries.get(id);
@@ -152,7 +153,7 @@ export class Registry {
 
 		if (typeof grammar === 'object') {
 			// the grammar is a simple object, so we don't need to evaluate it
-			return entry.evaluatedGrammar = grammar;
+			return (entry.evaluatedGrammar = grammar);
 		}
 
 		const required = (id: string): Grammar => {
@@ -163,10 +164,10 @@ export class Registry {
 			return grammar;
 		};
 
-		return entry.evaluatedGrammar = grammar({
+		return (entry.evaluatedGrammar = grammar({
 			getLanguage: required,
-			getOptionalLanguage: (id) => this.getLanguage(id),
+			getOptionalLanguage: id => this.getLanguage(id),
 			extend: (id, ref) => extend(required(id), id, ref),
-		});
+		}));
 	}
 }

@@ -6,7 +6,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'bison',
 	require: c,
-	grammar({ extend, getLanguage }) {
+	grammar ({ extend, getLanguage }) {
 		const c = getLanguage('c');
 		const bison = extend('c', {});
 
@@ -23,17 +23,17 @@ export default {
 						inside: {
 							'delimiter': {
 								pattern: /^%?\{|%?\}$/,
-								alias: 'punctuation'
+								alias: 'punctuation',
 							},
 							'bison-variable': {
 								pattern: /[$@](?:<[^\s>]+>)?[\w$]+/,
 								alias: 'variable',
 								inside: {
-									'punctuation': /<|>/
-								}
+									'punctuation': /<|>/,
+								},
 							},
-							[rest]: c
-						}
+							[rest]: c,
+						},
 					},
 					'comment': c.comment,
 					'string': c.string,
@@ -41,13 +41,13 @@ export default {
 					'keyword': /%\w+/,
 					'number': {
 						pattern: /(^|[^@])\b(?:0x[\da-f]+|\d+)/i,
-						lookbehind: true
+						lookbehind: true,
 					},
-					'punctuation': /%[%?]|[|:;\[\]<>]/
-				}
-			}
+					'punctuation': /%[%?]|[|:;\[\]<>]/,
+				},
+			},
 		});
 
 		return bison;
-	}
+	},
 } as LanguageProto<'bison'>;

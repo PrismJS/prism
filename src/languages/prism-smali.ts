@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'smali',
-	grammar() {
+	grammar () {
 		// Test files for the parser itself:
 		// https://github.com/JesusFreke/smali/tree/master/smali/src/test/resources/LexerTest
 
@@ -10,7 +10,7 @@ export default {
 			'comment': /#.*/,
 			'string': {
 				pattern: /"(?:[^\r\n\\"]|\\.)*"|'(?:[^\r\n\\']|\\(?:.|u[\da-fA-F]{4}))'/,
-				greedy: true
+				greedy: true,
 			},
 
 			'class-name': {
@@ -19,76 +19,78 @@ export default {
 				inside: {
 					'class-name': {
 						pattern: /(^L|\/)(?:[\w$]+|`[^`\r\n]*`)$/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'namespace': {
 						pattern: /^(L)(?:(?:\w+|`[^`\r\n]*`)\/)+/,
 						lookbehind: true,
 						inside: {
-							'punctuation': /\//
-						}
+							'punctuation': /\//,
+						},
 					},
-					'builtin': /^L/
-				}
+					'builtin': /^L/,
+				},
 			},
 			'builtin': [
 				{
 					// Reference: https://github.com/JesusFreke/smali/wiki/TypesMethodsAndFields#types
 					pattern: /([();\[])[BCDFIJSVZ]+/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
 					// e.g. .field mWifiOnUid:I
 					pattern: /([\w$>]:)[BCDFIJSVZ]/,
-					lookbehind: true
-				}
+					lookbehind: true,
+				},
 			],
 			'keyword': [
 				{
 					pattern: /(\.end\s+)[\w-]+/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
 					pattern: /(^|[^\w.-])\.(?!\d)[\w-]+/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
-					pattern: /(^|[^\w.-])(?:abstract|annotation|bridge|constructor|enum|final|interface|private|protected|public|runtime|static|synthetic|system|transient)(?![\w.-])/,
-					lookbehind: true
-				}
+					pattern:
+						/(^|[^\w.-])(?:abstract|annotation|bridge|constructor|enum|final|interface|private|protected|public|runtime|static|synthetic|system|transient)(?![\w.-])/,
+					lookbehind: true,
+				},
 			],
 			'function': {
 				pattern: /(^|[^\w.-])(?:\w+|<[\w$-]+>)(?=\()/,
-				lookbehind: true
+				lookbehind: true,
 			},
 
 			'field': {
 				pattern: /[\w$]+(?=:)/,
-				alias: 'variable'
+				alias: 'variable',
 			},
 			'register': {
 				pattern: /(^|[^\w.-])[vp]\d(?![\w.-])/,
 				lookbehind: true,
-				alias: 'variable'
+				alias: 'variable',
 			},
 
 			'boolean': {
 				pattern: /(^|[^\w.-])(?:false|true)(?![\w.-])/,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'number': {
-				pattern: /(^|[^/\w.-])-?(?:NAN|INFINITY|0x(?:[\dA-F]+(?:\.[\dA-F]*)?|\.[\dA-F]+)(?:p[+-]?[\dA-F]+)?|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)[dflst]?(?![\w.-])/i,
-				lookbehind: true
+				pattern:
+					/(^|[^/\w.-])-?(?:NAN|INFINITY|0x(?:[\dA-F]+(?:\.[\dA-F]*)?|\.[\dA-F]+)(?:p[+-]?[\dA-F]+)?|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)[dflst]?(?![\w.-])/i,
+				lookbehind: true,
 			},
 
 			'label': {
 				pattern: /(:)\w+/,
 				lookbehind: true,
-				alias: 'property'
+				alias: 'property',
 			},
 
 			'operator': /->|\.\.|[\[=]/,
-			'punctuation': /[{}(),;:]/
+			'punctuation': /[{}(),;:]/,
 		};
-	}
+	},
 } as LanguageProto<'smali'>;

@@ -10,37 +10,37 @@ export default {
 				// multiline comments eg /* ASDF */
 				pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			{
 				// singleline comments eg // ASDF
 				pattern: /(^|[^\\:])\/\/.*/,
 				lookbehind: true,
-				greedy: true
-			}
+				greedy: true,
+			},
 		],
 
 		'property': [
 			{
 				pattern: /([\r\n][ \t]*)[a-z_]\w*(?=[ \t]*:)/i,
-				lookbehind: true
+				lookbehind: true,
 			},
 			{
 				pattern: /([\r\n][ \t]*)'(?:\\.|\$(?!\{)|[^'\\\r\n$])*'(?=[ \t]*:)/,
 				lookbehind: true,
-				greedy: true
-			}
+				greedy: true,
+			},
 		],
 		'string': [
 			{
 				pattern: /'''[^'][\s\S]*?'''/,
-				greedy: true
+				greedy: true,
 			},
 			{
 				pattern: /(^|[^\\'])'(?:\\.|\$(?!\{)|[^'\\\r\n$])*'/,
 				lookbehind: true,
 				greedy: true,
-			}
+			},
 		],
 		'interpolated-string': {
 			pattern: /(^|[^\\'])'(?:\\.|\$(?:(?!\{)|\{[^{}\r\n]*\})|[^'\\\r\n$])*'/,
@@ -53,19 +53,19 @@ export default {
 						'expression': {
 							pattern: /(^\$\{)[\s\S]+(?=\}$)/,
 							lookbehind: true,
-							inside: 'bicep'
+							inside: 'bicep',
 						},
 						'punctuation': /^\$\{|\}$/,
-					}
+					},
 				},
-				'string': /[\s\S]+/
-			}
+				'string': /[\s\S]+/,
+			},
 		},
 
 		'datatype': {
 			pattern: /(\b(?:output|param)\b[ \t]+\w+[ \t]+)\w+\b/,
 			lookbehind: true,
-			alias: 'class-name'
+			alias: 'class-name',
 		},
 
 		'boolean': /\b(?:false|true)\b/,
@@ -76,7 +76,8 @@ export default {
 		'function': /\b[a-z_]\w*(?=[ \t]*\()/i,
 
 		'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
-		'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
+		'operator':
+			/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
 		'punctuation': /[{}[\];(),.:]/,
-	}
+	},
 } as LanguageProto<'bicep'>;

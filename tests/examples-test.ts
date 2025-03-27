@@ -12,7 +12,7 @@ describe('Examples', () => {
 		// this does alter some languages but it's mainly a library
 		'javadoclike',
 		// it's just plain text
-		'plain'
+		'plain',
 	]);
 	const validFiles = new Set<string>();
 
@@ -23,21 +23,27 @@ describe('Examples', () => {
 			if (!ignore.has(lang)) {
 				missing.push(lang);
 			}
-		} else {
+		}
+		else {
 			validFiles.add(file);
 		}
 	}
 
-	const superfluous = [...exampleFiles].filter((f) => !validFiles.has(f));
+	const superfluous = [...exampleFiles].filter(f => !validFiles.has(f));
 
 	it('- should be available for every language', () => {
-		assert.isEmpty(missing, 'Following languages do not have an example file in ./examples/\n'
-			+ missing.join('\n'));
+		assert.isEmpty(
+			missing,
+			'Following languages do not have an example file in ./examples/\n' + missing.join('\n')
+		);
 	});
 
 	it('- should only be available for registered languages', () => {
-		assert.isEmpty(superfluous, 'Following files are not associated with any language\n'
-			+ superfluous.map((f) => `./examples/${f}`).join('\n'));
+		assert.isEmpty(
+			superfluous,
+			'Following files are not associated with any language\n' +
+				superfluous.map(f => `./examples/${f}`).join('\n')
+		);
 	});
 
 	describe('Validate HTML templates', () => {
@@ -50,31 +56,42 @@ describe('Examples', () => {
 	});
 });
 
-
 /**
  * Validates the given HTML string of an example file.
  */
-async function validateHTML(html: string) {
+async function validateHTML (html: string) {
 	const root = await parseHTML(html);
 
-	function checkCodeElements(node: TagNode) {
+	function checkCodeElements (node: TagNode) {
 		if (node.tagName === 'code') {
-			assert.equal(node.children.length, 1,
-				'A <code> element is only allowed to contain text, no tags. '
-				+ 'Did you perhaps not escape all "<" characters?');
+			assert.equal(
+				node.children.length,
+				1,
+				'A <code> element is only allowed to contain text, no tags. ' +
+					'Did you perhaps not escape all "<" characters?'
+			);
 
 			const child = node.children[0];
 			if (child.type !== 'text') {
 				// throw to help TypeScript's flow analysis
-				throw assert.equal(child.type, 'text', 'The child of a <code> element must be text only.');
+				throw assert.equal(
+					child.type,
+					'text',
+					'The child of a <code> element must be text only.'
+				);
 			}
 
 			const text = child.rawText;
 
 			assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
-			assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/, 'Only certain entities are allowed.');
-		} else {
-			node.children.forEach((n) => {
+			assert.notMatch(
+				text,
+				/&(?!amp;|lt;|gt;)(?:[#\w]+);/,
+				'Only certain entities are allowed.'
+			);
+		}
+		else {
+			node.children.forEach(n => {
 				if (n.type === 'tag') {
 					checkCodeElements(n);
 				}
@@ -85,22 +102,38 @@ async function validateHTML(html: string) {
 	for (const node of root.children) {
 		if (node.type === 'text') {
 			assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
-		} else {
+		}
+		else {
 			// only known tags
-			assert.match(node.tagName ?? '', /^(?:h2|h3|ol|p|pre|ul)$/, 'Only some tags are allowed as top level tags.');
+			assert.match(
+				node.tagName ?? '',
+				/^(?:h2|h3|ol|p|pre|ul)$/,
+				'Only some tags are allowed as top level tags.'
+			);
 
 			// <pre> elements must have only one child, a <code> element
 			if (node.tagName === 'pre') {
-				assert.equal(node.children.length, 1,
-					'<pre> element must have one and only one child node, a <code> element.'
-					+ ' This also means that spaces and line breaks around the <code> element are not allowed.');
+				assert.equal(
+					node.children.length,
+					1,
+					'<pre> element must have one and only one child node, a <code> element.' +
+						' This also means that spaces and line breaks around the <code> element are not allowed.'
+				);
 
 				const child = node.children[0];
 				if (child.type !== 'tag') {
 					// throw to help TypeScript's flow analysis
-					throw assert.equal(child.type, 'tag', 'The child of a <pre> element must be a <code> element.');
+					throw assert.equal(
+						child.type,
+						'tag',
+						'The child of a <pre> element must be a <code> element.'
+					);
 				}
-				assert.equal(child.tagName, 'code', 'The child of a <pre> element must be a <code> element.');
+				assert.equal(
+					child.tagName,
+					'code',
+					'The child of a <pre> element must be a <code> element.'
+				);
 			}
 
 			checkCodeElements(node);
@@ -109,58 +142,60 @@ async function validateHTML(html: string) {
 }
 
 interface TagNode {
-	type: 'tag'
-	tagName: string | null
-	attributes: Record<string, string>
-	children: (TagNode | TextNode)[]
+	type: 'tag';
+	tagName: string | null;
+	attributes: Record<string, string>;
+	children: (TagNode | TextNode)[];
 }
 interface TextNode {
-	type: 'text'
-	rawText: string
+	type: 'text';
+	rawText: string;
 }
 /**
  * Parses the given HTML fragment and returns a simple tree of the fragment.
  */
-function parseHTML(html: string): Promise<TagNode> {
+function parseHTML (html: string): Promise<TagNode> {
 	return new Promise((resolve, reject) => {
 		const tree: TagNode = {
 			type: 'tag',
 			tagName: null,
 			attributes: {},
-			children: []
+			children: [],
 		};
 		const stack: TagNode[] = [tree];
 
-		const p = new Parser({
-			onerror(err) {
-				reject(err);
-			},
-			onend() {
-				resolve(tree);
-			},
+		const p = new Parser(
+			{
+				onerror (err) {
+					reject(err);
+				},
+				onend () {
+					resolve(tree);
+				},
 
-			ontext(data) {
-				stack[stack.length - 1].children.push({
-					type: 'text',
-					rawText: data
-				});
-			},
+				ontext (data) {
+					stack[stack.length - 1].children.push({
+						type: 'text',
+						rawText: data,
+					});
+				},
 
-			onopentag(name, attrs) {
-				const newElement: TagNode = {
-					type: 'tag',
-					tagName: name,
-					attributes: attrs,
-					children: []
-				};
-				stack[stack.length - 1].children.push(newElement);
-				stack.push(newElement);
+				onopentag (name, attrs) {
+					const newElement: TagNode = {
+						type: 'tag',
+						tagName: name,
+						attributes: attrs,
+						children: [],
+					};
+					stack[stack.length - 1].children.push(newElement);
+					stack.push(newElement);
+				},
+				onclosetag () {
+					stack.pop();
+				},
 			},
-			onclosetag() {
-				stack.pop();
-			}
-
-		}, { lowerCaseTags: false });
+			{ lowerCaseTags: false }
+		);
 		p.end(html);
 	});
 }

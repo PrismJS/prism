@@ -6,10 +6,10 @@ import type { GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'smarty',
 	require: markup,
-	grammar() {
+	grammar () {
 		const expression = {
 			pattern: /[\s\S]+/,
-			inside: null as GrammarToken['inside']
+			inside: null as GrammarToken['inside'],
 		};
 
 		const smarty = {
@@ -23,28 +23,28 @@ export default {
 							inside: {
 								'interpolation-punctuation': {
 									pattern: /^[{`]|[`}]$/,
-									alias: 'punctuation'
+									alias: 'punctuation',
 								},
-								'expression': expression
-							}
+								'expression': expression,
+							},
 						},
-						'variable': /\$\w+/
-					}
+						'variable': /\$\w+/,
+					},
 				},
 				{
 					pattern: /'(?:\\.|[^'\\\r\n])*'/,
-					greedy: true
+					greedy: true,
 				},
 			],
 			'keyword': {
 				pattern: /(^\{\/?)[a-z_]\w*\b(?!\()/i,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'delimiter': {
 				pattern: /^\{\/?|\}$/,
 				greedy: true,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'number': /\b0x[\dA-Fa-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 			'variable': [
@@ -52,16 +52,16 @@ export default {
 				/#(?!\d)\w+#/,
 				{
 					pattern: /(\.|->|\w\s*=)(?!\d)\w+\b(?!\()/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
 					pattern: /(\[)(?!\d)\w+(?=\])/,
-					lookbehind: true
-				}
+					lookbehind: true,
+				},
 			],
 			'function': {
 				pattern: /(\|\s*)@?[a-z_]\w*|\b[a-z_]\w*(?=\()/i,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'attr-name': /\b[a-z_]\w*(?=\s*=)/i,
 			'boolean': /\b(?:false|no|off|on|true|yes)\b/,
@@ -69,42 +69,44 @@ export default {
 			'operator': [
 				/[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
 				/\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
-				/\b(?:and|eq|gt?e|gt|lt?e|lt|mod|neq?|not|or)\b/
-			]
+				/\b(?:and|eq|gt?e|gt|lt?e|lt|mod|neq?|not|or)\b/,
+			],
 		};
 
 		expression.inside = smarty;
 
 		const string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
 		const smartyPattern = RegExp(
-			/\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>)*\})*\})*\}/.source
-				.replace(/<str>/g, () => string.source)
+			/\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>)*\})*\})*\}/.source.replace(
+				/<str>/g,
+				() => string.source
+			)
 		);
 
 		return {
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'embedded-php': {
 				pattern: /(\{php\})[\s\S]*?(?=\{\/php\})/,
 				lookbehind: true,
 				greedy: true,
 				alias: ['php', 'language-php'],
-				inside: 'php'
+				inside: 'php',
 			},
 			'smarty-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
 				greedy: true,
-				alias: 'comment'
+				alias: 'comment',
 			},
 			'smarty': {
 				pattern: smartyPattern,
 				greedy: true,
-				inside: smarty
+				inside: smarty,
 			},
-			[tokenize]: embeddedIn('markup')
+			[tokenize]: embeddedIn('markup'),
 		};
-	}
+	},
 } as LanguageProto<'smarty'>;

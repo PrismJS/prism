@@ -9,6 +9,6 @@ export default {
 		'function': /\b[A-Za-z][A-Za-z0-9]*(?=\()/,
 		'number': /\b\d+\b/,
 		'operator': /=|\.\./,
-		'punctuation': /[{}[\];(),:]/
-	}
+		'punctuation': /[{}[\];(),:]/,
+	},
 } as LanguageProto<'nand2tetris-hdl'>;

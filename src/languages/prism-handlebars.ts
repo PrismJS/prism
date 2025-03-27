@@ -14,7 +14,7 @@ export default {
 				'comment': /\{\{![\s\S]*?\}\}/,
 				'delimiter': {
 					pattern: /^\{\{\{?|\}\}\}?$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
 				'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][+-]?\d+)?/,
@@ -22,19 +22,19 @@ export default {
 				'block': {
 					pattern: /^(\s*(?:~\s*)?)[#\/]\S+?(?=\s*(?:~\s*)?$|\s)/,
 					lookbehind: true,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				'brackets': {
 					pattern: /\[[^\]]+\]/,
 					inside: {
 						punctuation: /\[|\]/,
-						variable: /[\s\S]+/
-					}
+						variable: /[\s\S]+/,
+					},
 				},
 				'punctuation': /[!"#%&':()*+,.\/;<=>@\[\\\]^`{|}~]/,
-				'variable': /[^!"#%&'()*+,\/;<=>@\[\\\]^`{|}~\s]+/
-			}
+				'variable': /[^!"#%&'()*+,\/;<=>@\[\\\]^`{|}~\s]+/,
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'handlebars'>;

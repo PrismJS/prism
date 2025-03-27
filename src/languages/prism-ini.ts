@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'ini',
 	grammar: {
-
 		/**
 		 * The component mimics the behavior of the Win32 API parser.
 		 *
@@ -12,7 +11,7 @@ export default {
 
 		'comment': {
 			pattern: /(^[ \f\t\v]*)[#;][^\n\r]*/m,
-			lookbehind: true
+			lookbehind: true,
 		},
 		'section': {
 			pattern: /(^[ \f\t\v]*)\[[^\n\r\]]*\]?/m,
@@ -21,15 +20,15 @@ export default {
 				'section-name': {
 					pattern: /(^\[[ \f\t\v]*)[^ \f\t\v\]]+(?:[ \f\t\v]+[^ \f\t\v\]]+)*/,
 					lookbehind: true,
-					alias: 'selector'
+					alias: 'selector',
 				},
-				'punctuation': /\[|\]/
-			}
+				'punctuation': /\[|\]/,
+			},
 		},
 		'key': {
 			pattern: /(^[ \f\t\v]*)[^ \f\n\r\t\v=]+(?:[ \f\t\v]+[^ \f\n\r\t\v=]+)*(?=[ \f\t\v]*=)/m,
 			lookbehind: true,
-			alias: 'attr-name'
+			alias: 'attr-name',
 		},
 		'value': {
 			pattern: /(=[ \f\t\v]*)[^ \f\n\r\t\v]+(?:[ \f\t\v]+[^ \f\n\r\t\v]+)*/,
@@ -38,10 +37,10 @@ export default {
 			inside: {
 				'inner-value': {
 					pattern: /^("|').+(?=\1$)/,
-					lookbehind: true
-				}
-			}
+					lookbehind: true,
+				},
+			},
 		},
-		'punctuation': /=/
-	}
+		'punctuation': /=/,
+	},
 } as LanguageProto<'ini'>;

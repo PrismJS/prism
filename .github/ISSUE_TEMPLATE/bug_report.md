@@ -4,10 +4,10 @@ about: Create a report to help us improve.
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Information:**
+
 - Prism version: [e.g. 1.14, latest from the download page, etc.]
 - Plugins: [a list of plugins you are using or 'none']
 - Environment: [e.g. Browser, Node, Webpack]

@@ -2,17 +2,18 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'nginx',
-	grammar() {
+	grammar () {
 		const variable = /\$(?:\w[a-z\d]*(?:_[^\x00-\x1F\s"'\\()$]*)?|\{[^}\s"'\\]+\})/i;
 
 		return {
 			'comment': {
 				pattern: /(^|[\s{};])#.*/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'directive': {
-				pattern: /(^|\s)\w(?:[^;{}"'\\\s]|\\.|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\s+(?:#.*(?!.)|(?![#\s])))*?(?=\s*[;{])/,
+				pattern:
+					/(^|\s)\w(?:[^;{}"'\\\s]|\\.|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\s+(?:#.*(?!.)|(?![#\s])))*?(?=\s*[;{])/,
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -23,35 +24,35 @@ export default {
 						inside: {
 							'escape': {
 								pattern: /\\["'\\nrt]/,
-								alias: 'entity'
+								alias: 'entity',
 							},
-							'variable': variable
-						}
+							'variable': variable,
+						},
 					},
 					'comment': {
 						pattern: /(\s)#.*/,
 						lookbehind: true,
-						greedy: true
+						greedy: true,
 					},
 					'keyword': {
 						pattern: /^\S+/,
-						greedy: true
+						greedy: true,
 					},
 
 					// other patterns
 
 					'boolean': {
 						pattern: /(\s)(?:off|on)(?!\S)/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'number': {
 						pattern: /(\s)\d+[a-z]*(?!\S)/i,
-						lookbehind: true
+						lookbehind: true,
 					},
-					'variable': variable
-				}
+					'variable': variable,
+				},
 			},
-			'punctuation': /[{};]/
+			'punctuation': /[{};]/,
 		};
-	}
+	},
 } as LanguageProto<'nginx'>;

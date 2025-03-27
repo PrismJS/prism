@@ -11,7 +11,7 @@ const git = require('simple-git').gitP(__dirname);
  * @param {string} path
  * @returns {Promise<string>}
  */
-function readBaseFile(path) {
+function readBaseFile (path) {
 	return fs.readFile(path, 'utf-8');
 }
 /**
@@ -20,7 +20,7 @@ function readBaseFile(path) {
  * @param {string} path
  * @returns {Promise<string>}
  */
-function readPRFile(path) {
+function readPRFile (path) {
 	return git.show([`pr:${path}`]);
 }
 
@@ -40,7 +40,7 @@ const getChangedFiles = async () => {
 
 const getChangedMinifiedFiles = async () => {
 	const changed = await getChangedFiles();
-	return changed.filter((file) => file.endsWith('.min.js'));
+	return changed.filter(file => file.endsWith('.min.js'));
 };
 
 // https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
@@ -58,7 +58,7 @@ const formatBytes = (bytes, decimals = 2) => {
 	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-const maybePlus = (from, to) => from < to ? '+' : '';
+const maybePlus = (from, to) => (from < to ? '+' : '');
 
 const absDiff = (from, to) => {
 	if (from === to) {
@@ -73,7 +73,7 @@ const percDiff = (from, to) => {
 		return '0%';
 	}
 
-	return `${maybePlus(from, to)}${(100 * (to - from) / (from || to)).toFixed(1)}%`;
+	return `${maybePlus(from, to)}${((100 * (to - from)) / (from || to)).toFixed(1)}%`;
 };
 
 const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
@@ -128,13 +128,13 @@ ${getSummary(rows, totalMasterFileSize, totalFileSize)}
 
 | file | master | pull | size diff | % diff |
 | --- | --- | --- | --- | --- |
-${rows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
+${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
 
 </details>
 `);
 };
 
-run().catch((err) => {
+run().catch(err => {
 	console.error(err);
 	process.exit(1);
 });

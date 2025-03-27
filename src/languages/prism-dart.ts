@@ -5,10 +5,10 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'dart',
 	require: clike,
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const keywords = [
 			/\b(?:async|sync|yield)\*/,
-			/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
+			/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/,
 		];
 
 		// Handles named imports, such as http.Client
@@ -22,10 +22,10 @@ export default {
 				'namespace': {
 					pattern: /^[a-z]\w*(?:\s*\.\s*[a-z]\w*)*(?:\s*\.)?/,
 					inside: {
-						'punctuation': /\./
-					}
+						'punctuation': /\./,
+					},
 				},
-			}
+			},
 		};
 
 		const dart = extend('clike', {
@@ -36,11 +36,12 @@ export default {
 					// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
 					pattern: RegExp(packagePrefix + /[A-Z]\w*(?=\s+\w+\s*[;,=()])/.source),
 					lookbehind: true,
-					inside: className.inside
-				}
+					inside: className.inside,
+				},
 			],
 			'keyword': keywords,
-			'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
+			'operator':
+				/\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/,
 		});
 
 		insertBefore(dart, 'string', {
@@ -55,21 +56,21 @@ export default {
 							'punctuation': /^\$\{?|\}$/,
 							'expression': {
 								pattern: /[\s\S]+/,
-								inside: 'dart'
-							}
-						}
+								inside: 'dart',
+							},
+						},
 					},
-					'string': /[\s\S]+/
-				}
+					'string': /[\s\S]+/,
+				},
 			},
-			'string': undefined
+			'string': undefined,
 		});
 
 		insertBefore(dart, 'class-name', {
 			'metadata': {
 				pattern: /@\w+/,
-				alias: 'function'
-			}
+				alias: 'function',
+			},
 		});
 
 		insertBefore(dart, 'class-name', {
@@ -79,11 +80,11 @@ export default {
 					'class-name': className,
 					'keyword': keywords,
 					'punctuation': /[<>(),.:]/,
-					'operator': /[?&|]/
-				}
+					'operator': /[?&|]/,
+				},
 			},
 		});
 
 		return dart;
-	}
+	},
 } as LanguageProto<'dart'>;

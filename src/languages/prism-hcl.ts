@@ -7,7 +7,7 @@ export default {
 		'heredoc': {
 			pattern: /<<-?(\w+\b)[\s\S]*?^[ \t]*\1/m,
 			greedy: true,
-			alias: 'string'
+			alias: 'string',
 		},
 		'keyword': [
 			{
@@ -16,28 +16,28 @@ export default {
 					'type': {
 						pattern: /(resource|data|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
 						lookbehind: true,
-						alias: 'variable'
-					}
-				}
+						alias: 'variable',
+					},
+				},
 			},
 			{
-				pattern: /(?:backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?=\{)/i,
+				pattern:
+					/(?:backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?=\{)/i,
 				inside: {
 					'type': {
-						pattern: /(backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+/i,
+						pattern:
+							/(backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+/i,
 						lookbehind: true,
-						alias: 'variable'
-					}
-				}
+						alias: 'variable',
+					},
+				},
 			},
-			/[\w-]+(?=\s+\{)/
+			/[\w-]+(?=\s+\{)/,
 		],
-		'property': [
-			/[-\w\.]+(?=\s*=(?!=))/,
-			/"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/,
-		],
+		'property': [/[-\w\.]+(?=\s*=(?!=))/, /"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/],
 		'string': {
-			pattern: /"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+(?!\$)|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
+			pattern:
+				/"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+(?!\$)|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
 			greedy: true,
 			inside: {
 				'interpolation': {
@@ -45,9 +45,10 @@ export default {
 					lookbehind: true,
 					inside: {
 						'type': {
-							pattern: /(\b(?:count|data|local|module|path|self|terraform|var)\b\.)[\w\*]+/i,
+							pattern:
+								/(\b(?:count|data|local|module|path|self|terraform|var)\b\.)[\w\*]+/i,
 							lookbehind: true,
-							alias: 'variable'
+							alias: 'variable',
 						},
 						'keyword': /\b(?:count|data|local|module|path|self|terraform|var)\b/i,
 						'function': /\w+(?=\()/,
@@ -57,12 +58,12 @@ export default {
 						},
 						'number': /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 						'punctuation': /[!\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~?:]/,
-					}
+					},
 				},
-			}
+			},
 		},
 		'number': /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 		'boolean': /\b(?:false|true)\b/i,
 		'punctuation': /[=\[\]{}]/,
-	}
+	},
 } as LanguageProto<'hcl'>;

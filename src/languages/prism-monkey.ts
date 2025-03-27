@@ -5,7 +5,7 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /^#Rem\s[\s\S]*?^#End|'.+/im,
-			greedy: true
+			greedy: true,
 		},
 		'string': {
 			pattern: /"[^"\r\n]*"/,
@@ -15,20 +15,21 @@ export default {
 			pattern: /(^[ \t]*)#.+/m,
 			lookbehind: true,
 			greedy: true,
-			alias: 'property'
+			alias: 'property',
 		},
 
 		'function': /\b\w+(?=\()/,
 		'type-char': {
 			pattern: /\b[?%#$]/,
-			alias: 'class-name'
+			alias: 'class-name',
 		},
 		'number': {
 			pattern: /((?:\.\.)?)(?:(?:\b|\B-\.?|\B\.)\d+(?:(?!\.\.)\.\d*)?|\$[\da-f]+)/i,
-			lookbehind: true
+			lookbehind: true,
 		},
-		'keyword': /\b(?:Abstract|Array|Bool|Case|Catch|Class|Const|Continue|Default|Eachin|Else|ElseIf|End|EndIf|Exit|Extends|Extern|False|Field|Final|Float|For|Forever|Function|Global|If|Implements|Import|Inline|Int|Interface|Local|Method|Module|New|Next|Null|Object|Private|Property|Public|Repeat|Return|Select|Self|Step|Strict|String|Super|Then|Throw|To|True|Try|Until|Void|Wend|While)\b/i,
+		'keyword':
+			/\b(?:Abstract|Array|Bool|Case|Catch|Class|Const|Continue|Default|Eachin|Else|ElseIf|End|EndIf|Exit|Extends|Extern|False|Field|Final|Float|For|Forever|Function|Global|If|Implements|Import|Inline|Int|Interface|Local|Method|Module|New|Next|Null|Object|Private|Property|Public|Repeat|Return|Select|Self|Step|Strict|String|Super|Then|Throw|To|True|Try|Until|Void|Wend|While)\b/i,
 		'operator': /\.\.|<[=>]?|>=?|:?=|(?:[+\-*\/&~|]|\b(?:Mod|Shl|Shr)\b)=?|\b(?:And|Not|Or)\b/i,
-		'punctuation': /[.,:;()\[\]]/
-	}
+		'punctuation': /[.,:;()\[\]]/,
+	},
 } as LanguageProto<'monkey'>;

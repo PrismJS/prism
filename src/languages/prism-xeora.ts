@@ -5,17 +5,17 @@ export default {
 	id: 'xeora',
 	require: markup,
 	alias: 'xeoracube',
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const functionVariable = {
 			pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
 			inside: {
 				'punctuation': {
-					pattern: /[,.|]/
+					pattern: /[,.|]/,
 				},
 				'operator': {
-					pattern: /#+|[-+*~=^@]/
-				}
-			}
+					pattern: /#+|[-+*~=^@]/,
+				},
+			},
 		};
 
 		return extend('markup', {
@@ -23,40 +23,42 @@ export default {
 				pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
 				inside: {
 					'punctuation': {
-						pattern: /\$/
-					}
-				}
+						pattern: /\$/,
+					},
+				},
 			},
 			'variable': {
 				pattern: /\$@?(?:#+|[-+*~=^])?[\w.]+\$/,
 				inside: {
 					'punctuation': {
-						pattern: /[$.]/
+						pattern: /[$.]/,
 					},
 					'operator': {
-						pattern: /#+|[-+*~=^@]/
-					}
-				}
+						pattern: /#+|[-+*~=^@]/,
+					},
+				},
 			},
 			'function-inline': {
-				pattern: /\$F:[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\$/,
+				pattern:
+					/\$F:[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\$/,
 				inside: {
 					'variable': functionVariable,
 					'punctuation': {
-						pattern: /\$\w:|[$:?.,|]/
-					}
+						pattern: /\$\w:|[$:?.,|]/,
+					},
 				},
-				alias: 'function'
+				alias: 'function',
 			},
 			'function-block': {
-				pattern: /\$XF:\{[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\}:XF\$/,
+				pattern:
+					/\$XF:\{[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\}:XF\$/,
 				inside: {
 					'variable': functionVariable,
 					'punctuation': {
-						pattern: /[$:{}?.,|]/
-					}
+						pattern: /[$:{}?.,|]/,
+					},
 				},
-				alias: 'function'
+				alias: 'function',
 			},
 			'directive-inline': {
 				pattern: /\$\w(?:#\d+\+?)?(?:\[[-\w.]+\])?:[-\/\w.]+\$/,
@@ -65,12 +67,12 @@ export default {
 						pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
 						inside: {
 							'tag': {
-								pattern: /#\d/
-							}
-						}
-					}
+								pattern: /#\d/,
+							},
+						},
+					},
 				},
-				alias: 'function'
+				alias: 'function',
 			},
 			'directive-block-open': {
 				pattern: /\$\w+:\{|\$\w(?:#\d+\+?)?(?:\[[-\w.]+\])?:[-\w.]+:\{(?:![A-Z]+)?/,
@@ -79,40 +81,40 @@ export default {
 						pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
 						inside: {
 							'tag': {
-								pattern: /#\d/
-							}
-						}
+								pattern: /#\d/,
+							},
+						},
 					},
 					'attribute': {
 						pattern: /![A-Z]+$/,
 						inside: {
 							'punctuation': {
-								pattern: /!/
-							}
+								pattern: /!/,
+							},
 						},
-						alias: 'keyword'
-					}
+						alias: 'keyword',
+					},
 				},
-				alias: 'function'
+				alias: 'function',
 			},
 			'directive-block-separator': {
 				pattern: /\}:[-\w.]+:\{/,
 				inside: {
 					'punctuation': {
-						pattern: /[:{}]/
-					}
+						pattern: /[:{}]/,
+					},
 				},
-				alias: 'function'
+				alias: 'function',
 			},
 			'directive-block-close': {
 				pattern: /\}:[-\w.]+\$/,
 				inside: {
 					'punctuation': {
-						pattern: /[:{}$]/
-					}
+						pattern: /[:{}$]/,
+					},
 				},
-				alias: 'function'
-			}
+				alias: 'function',
+			},
 		});
-	}
+	},
 } as LanguageProto<'xeora'>;

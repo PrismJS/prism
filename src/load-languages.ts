@@ -4,12 +4,12 @@ import { toArray } from './shared/util';
 import type { Prism } from './core';
 import type { ComponentProto } from './types';
 
-function pathJoin(dir: string, file: string) {
+function pathJoin (dir: string, file: string) {
 	return dir.replace(/\/$/, '') + '/' + file;
 }
 
 const importCache = new Map<string, Promise<unknown>>();
-function importFile<T>(file: string): Promise<T> {
+function importFile<T> (file: string): Promise<T> {
 	let promise = importCache.get(file);
 	if (promise === undefined) {
 		promise = import(file);
@@ -23,23 +23,30 @@ function importFile<T>(file: string): Promise<T> {
  *
  * If no languages are provided, __all__ Prism languages will be loaded.
  */
-export async function loadLanguages(Prism: Prism, languages: string | readonly string[] = knownLanguages, srcPath = '.'): Promise<void> {
+export async function loadLanguages (
+	Prism: Prism,
+	languages: string | readonly string[] = knownLanguages,
+	srcPath = '.'
+): Promise<void> {
 	languages = toArray(languages)
 		.map(resolveAlias)
-		.filter((id) => !Prism.components.has(id));
+		.filter(id => !Prism.components.has(id));
 
-	await Promise.all(languages.map(async (id) => {
-		try {
-			const path = pathJoin(srcPath, `languages/prism-${id}.js`);
-			const exports = await importFile<{ default: ComponentProto }>(path);
-			Prism.components.add(exports.default);
-		} catch (error) {
-			if (!loadLanguages.silent) {
-				// eslint-disable-next-line no-undef
-				console.warn(`Unable to load language ${id}: ${String(error)}`);
+	await Promise.all(
+		languages.map(async id => {
+			try {
+				const path = pathJoin(srcPath, `languages/prism-${id}.js`);
+				const exports = await importFile<{ default: ComponentProto }>(path);
+				Prism.components.add(exports.default);
 			}
-		}
-	}));
+			catch (error) {
+				if (!loadLanguages.silent) {
+					// eslint-disable-next-line no-undef
+					console.warn(`Unable to load language ${id}: ${String(error)}`);
+				}
+			}
+		})
+	);
 }
 
 /**

@@ -1,18 +1,17 @@
 import { assert } from 'chai';
 import { createTestSuite } from '../../helper/prism-dom-util';
 
-
 class DummyClipboard {
 	text = '';
-	readText() {
+	readText () {
 		return Promise.resolve(this.text);
 	}
-	writeText(data: string) {
+	writeText (data: string) {
 		this.text = data;
 		return Promise.resolve();
 	}
 
-	assign(navigator: Navigator) {
+	assign (navigator: Navigator) {
 		(navigator as unknown as Record<string, unknown>).clipboard = this;
 	}
 }
@@ -22,7 +21,6 @@ describe('Copy to Clipboard', () => {
 		languages: 'javascript',
 		plugins: 'copy-to-clipboard',
 	});
-
 
 	it('should work', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
@@ -41,7 +39,11 @@ describe('Copy to Clipboard', () => {
 		assert.strictEqual(clipboard.text, 'foo');
 	});
 
-	it('should copy the current text even after the code block changes its text', ({ Prism, window, document }) => {
+	it('should copy the current text even after the code block changes its text', ({
+		Prism,
+		window,
+		document,
+	}) => {
 		const clipboard = new DummyClipboard();
 		clipboard.assign(window.navigator);
 
@@ -74,5 +76,4 @@ describe('Copy to Clipboard', () => {
 
 		assert.strictEqual(clipboard.text, 'baz');
 	});
-
 });

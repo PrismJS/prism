@@ -7,10 +7,10 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
 	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 	font-size: 1em;
 	text-align: left;
-	text-shadow: 0 -.1em .2em black;
+	text-shadow: 0 -0.1em 0.2em black;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
@@ -34,10 +34,10 @@ pre[class*="language-"],
 
 /* Code blocks */
 pre[class*="language-"] {
-	border-radius: .5em;
-	border: .3em solid hsl(0, 0%, 33%); /* #282A2B */
-	box-shadow: 1px 1px .5em black inset;
-	margin: .5em 0;
+	border-radius: 0.5em;
+	border: 0.3em solid hsl(0, 0%, 33%); /* #282A2B */
+	box-shadow: 1px 1px 0.5em black inset;
+	margin: 0.5em 0;
 	overflow: auto;
 	padding: 1em;
 }
@@ -53,24 +53,28 @@ pre[class*="language-"]::selection {
 }
 
 /* Text Selection colour */
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
 	background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
 	text-shadow: none;
 	background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	border-radius: .3em;
-	border: .13em solid hsl(0, 0%, 33%); /* #545454 */
-	box-shadow: 1px 1px .3em -.1em black inset;
-	padding: .15em .2em .05em;
+	border-radius: 0.3em;
+	border: 0.13em solid hsl(0, 0%, 33%); /* #545454 */
+	box-shadow: 1px 1px 0.3em -0.1em black inset;
+	padding: 0.15em 0.2em 0.05em;
 	white-space: normal;
 }
 
@@ -82,11 +86,11 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 }
 
 .token.punctuation {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 .token.namespace {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 .token.tag,
@@ -155,7 +159,11 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 .line-highlight.line-highlight {
 	background: hsla(0, 0%, 33%, 0.25); /* #545454 */
-	background: linear-gradient(to right, hsla(0, 0%, 33%, .1) 70%, hsla(0, 0%, 33%, 0)); /* #545454 */
+	background: linear-gradient(
+		to right,
+		hsla(0, 0%, 33%, 0.1) 70%,
+		hsla(0, 0%, 33%, 0)
+	); /* #545454 */
 	border-bottom: 1px dashed hsl(0, 0%, 33%); /* #545454 */
 	border-top: 1px dashed hsl(0, 0%, 33%); /* #545454 */
 	margin-top: 0.75em; /* Same as .prism’s padding-top */

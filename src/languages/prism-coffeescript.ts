@@ -6,22 +6,21 @@ export default {
 	id: 'coffeescript',
 	require: javascript,
 	alias: 'coffee',
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		// Ignore comments starting with { to privilege string interpolation highlighting
 		const comment = /#(?!\{).+/;
 		const interpolation = {
 			pattern: /#\{[^}]+\}/,
-			alias: 'variable'
+			alias: 'variable',
 		};
 
 		const coffeescript = extend('javascript', {
 			'comment': comment,
 			'string': [
-
 				// Strings are multiline
 				{
 					pattern: /'(?:\\[\s\S]|[^\\'])*'/,
-					greedy: true
+					greedy: true,
 				},
 
 				{
@@ -29,21 +28,22 @@ export default {
 					pattern: /"(?:\\[\s\S]|[^\\"])*"/,
 					greedy: true,
 					inside: {
-						'interpolation': interpolation
-					}
-				}
+						'interpolation': interpolation,
+					},
+				},
 			],
-			'keyword': /\b(?:and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/,
+			'keyword':
+				/\b(?:and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/,
 			'class-member': {
 				pattern: /@(?!\d)\w+/,
-				alias: 'variable'
-			}
+				alias: 'variable',
+			},
 		});
 
 		insertBefore(coffeescript, 'comment', {
 			'multiline-comment': {
 				pattern: /###[\s\S]+?###/,
-				alias: 'comment'
+				alias: 'comment',
 			},
 
 			// Block regexp can contain comments and interpolation
@@ -52,9 +52,9 @@ export default {
 				alias: 'regex',
 				inside: {
 					'comment': comment,
-					'interpolation': interpolation
-				}
-			}
+					'interpolation': interpolation,
+				},
+			},
 		});
 
 		insertBefore(coffeescript, 'string', {
@@ -63,14 +63,14 @@ export default {
 				inside: {
 					'delimiter': {
 						pattern: /^`|`$/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
 					'script': {
 						pattern: /[\s\S]+/,
 						alias: 'language-javascript',
-						inside: 'javascript'
-					}
-				}
+						inside: 'javascript',
+					},
+				},
 			},
 
 			// Block strings
@@ -78,28 +78,27 @@ export default {
 				{
 					pattern: /'''[\s\S]*?'''/,
 					greedy: true,
-					alias: 'string'
+					alias: 'string',
 				},
 				{
 					pattern: /"""[\s\S]*?"""/,
 					greedy: true,
 					alias: 'string',
 					inside: {
-						'interpolation': interpolation
-					}
-				}
-			]
-
+						'interpolation': interpolation,
+					},
+				},
+			],
 		});
 
 		insertBefore(coffeescript, 'keyword', {
 			// Object property
-			'property': /(?!\d)\w+(?=\s*:(?!:))/
+			'property': /(?!\d)\w+(?=\s*:(?!:))/,
 		});
 
 		delete coffeescript['doc-comment'];
 		delete coffeescript['template-string'];
 
 		return coffeescript;
-	}
+	},
 } as LanguageProto<'coffeescript'>;

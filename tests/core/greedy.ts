@@ -3,7 +3,15 @@ import { Prism } from '../../src/core/prism';
 import { simplify } from '../helper/token-stream-transformer';
 import type { Grammar } from '../../src/types';
 
-function testTokens({ grammar, code, expected }: { grammar: Grammar, code: string, expected: unknown }) {
+function testTokens ({
+	grammar,
+	code,
+	expected,
+}: {
+	grammar: Grammar;
+	code: string;
+	expected: unknown;
+}) {
 	const instance = new Prism();
 	instance.components.add({ id: 'test', grammar });
 
@@ -13,7 +21,6 @@ function testTokens({ grammar, code, expected }: { grammar: Grammar, code: strin
 }
 
 describe('Greedy matching', () => {
-
 	it('should correctly handle tokens with the same name', () => {
 		testTokens({
 			grammar: {
@@ -21,15 +28,15 @@ describe('Greedy matching', () => {
 					/\/\/.*/,
 					{
 						pattern: /\/\*[\s\S]*?(?:\*\/|$)/,
-						greedy: true
-					}
-				]
+						greedy: true,
+					},
+				],
 			},
 			code: '// /*\n/* comment */',
 			expected: [
 				['comment', '// /*'],
-				['comment', '/* comment */']
-			]
+				['comment', '/* comment */'],
+			],
 		});
 	});
 
@@ -41,15 +48,15 @@ describe('Greedy matching', () => {
 					// This pattern has 2 top-level alternatives:  foo  and  (^|[^\\])"[^"]*"
 					pattern: /foo|(^|[^\\])"[^"]*"/,
 					lookbehind: true,
-					greedy: true
-				}
+					greedy: true,
+				},
 			},
 			code: 'foo "bar" \'baz\'',
 			expected: [
 				['b', 'foo'],
 				['b', '"bar"'],
-				['a', "'baz'"]
-			]
+				['a', "'baz'"],
+			],
 		});
 	});
 
@@ -66,7 +73,7 @@ describe('Greedy matching', () => {
 				'c': {
 					pattern: /<[^>\r\n]*>/,
 					greedy: true,
-				}
+				},
 			},
 			code: `<'> '' ''\n<"> "" ""`,
 			expected: [
@@ -78,7 +85,7 @@ describe('Greedy matching', () => {
 				['c', '<">'],
 				['b', '""'],
 				['b', '""'],
-			]
+			],
 		});
 	});
 
@@ -90,15 +97,11 @@ describe('Greedy matching', () => {
 				'a': /a/,
 				'b': {
 					pattern: /^b/,
-					greedy: true
-				}
+					greedy: true,
+				},
 			},
 			code: 'bab',
-			expected: [
-				['b', 'b'],
-				['a', 'a'],
-				'b'
-			]
+			expected: [['b', 'b'], ['a', 'a'], 'b'],
 		});
 	});
 
@@ -108,12 +111,11 @@ describe('Greedy matching', () => {
 			grammar: {
 				'oh-no': {
 					pattern: /$/,
-					greedy: true
-				}
+					greedy: true,
+				},
 			},
 			code: 'foo',
-			expected: ['foo']
+			expected: ['foo'],
 		});
 	});
-
 });

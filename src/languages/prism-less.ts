@@ -5,7 +5,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'less',
 	require: css,
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		/* FIXME :
 		 :extend() is not handled specifically : its highlighting is buggy.
 		 Mixin usage must be inside a ruleset to be highlighted.
@@ -19,26 +19,27 @@ export default {
 				/\/\*[\s\S]*?\*\//,
 				{
 					pattern: /(^|[^\\])\/\/.*/,
-					lookbehind: true
-				}
+					lookbehind: true,
+				},
 			],
 			'atrule': {
 				pattern: /@[\w-](?:\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};\s]|\s+(?!\s))*?(?=\s*\{)/,
 				inside: {
-					'punctuation': /[:()]/
-				}
+					'punctuation': /[:()]/,
+				},
 			},
 			// selectors and mixins are considered the same
 			'selector': {
-				pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};@\s]|\s+(?!\s))*?(?=\s*\{)/,
+				pattern:
+					/(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};@\s]|\s+(?!\s))*?(?=\s*\{)/,
 				inside: {
 					// mixin parameters
-					'variable': /@+[\w-]+/
-				}
+					'variable': /@+[\w-]+/,
+				},
 			},
 
 			'property': /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/,
-			'operator': /[+\-*\/]/
+			'operator': /[+\-*\/]/,
 		});
 
 		insertBefore(less, 'property', {
@@ -47,20 +48,20 @@ export default {
 				{
 					pattern: /@[\w-]+\s*:/,
 					inside: {
-						'punctuation': /:/
-					}
+						'punctuation': /:/,
+					},
 				},
 
 				// Variable usage
-				/@@?[\w-]+/
+				/@@?[\w-]+/,
 			],
 			'mixin-usage': {
 				pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
 				lookbehind: true,
-				alias: 'function'
-			}
+				alias: 'function',
+			},
 		});
 
 		return less;
-	}
+	},
 } as LanguageProto<'less'>;

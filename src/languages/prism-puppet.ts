@@ -3,7 +3,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'puppet',
-	grammar() {
+	grammar () {
 		const interpolation = [
 			{
 				// Allow for one nested level of braces inside interpolation
@@ -16,49 +16,51 @@ export default {
 						lookbehind: true,
 						alias: 'variable',
 						inside: {
-							'punctuation': /::/
-						}
+							'punctuation': /::/,
+						},
 					},
 					'delimiter': {
 						pattern: /^\$/,
-						alias: 'variable'
+						alias: 'variable',
 					},
-					[rest]: 'puppet'
-				}
+					[rest]: 'puppet',
+				},
 			},
 			{
 				pattern: /(^|[^\\])\$(?:::)?\w+(?:::\w+)*/,
 				lookbehind: true,
 				alias: 'variable',
 				inside: {
-					'punctuation': /::/
-				}
-			}
+					'punctuation': /::/,
+				},
+			},
 		];
 
 		return {
 			'heredoc': [
 				// Matches the content of a quoted heredoc string (subject to interpolation)
 				{
-					pattern: /(@\("([^"\r\n\/):]+)"(?:\/[nrts$uL]*)?\).*(?:\r?\n|\r))(?:.*(?:\r?\n|\r(?!\n)))*?[ \t]*(?:\|[ \t]*)?(?:-[ \t]*)?\2/,
+					pattern:
+						/(@\("([^"\r\n\/):]+)"(?:\/[nrts$uL]*)?\).*(?:\r?\n|\r))(?:.*(?:\r?\n|\r(?!\n)))*?[ \t]*(?:\|[ \t]*)?(?:-[ \t]*)?\2/,
 					lookbehind: true,
 					alias: 'string',
 					inside: {
 						// Matches the end tag
 						'punctuation': /(?=\S).*\S(?= *$)/,
-						'interpolation': interpolation
-					}
+						'interpolation': interpolation,
+					},
 				},
 				// Matches the content of an unquoted heredoc string (no interpolation)
 				{
-					pattern: /(@\(([^"\r\n\/):]+)(?:\/[nrts$uL]*)?\).*(?:\r?\n|\r))(?:.*(?:\r?\n|\r(?!\n)))*?[ \t]*(?:\|[ \t]*)?(?:-[ \t]*)?\2/,
+					pattern:
+						/(@\(([^"\r\n\/):]+)(?:\/[nrts$uL]*)?\).*(?:\r?\n|\r))(?:.*(?:\r?\n|\r(?!\n)))*?[ \t]*(?:\|[ \t]*)?(?:-[ \t]*)?\2/,
 					lookbehind: true,
 					greedy: true,
 					alias: 'string',
 					inside: {
 						// Matches the end tag
-						'punctuation': /(?=\S).*\S(?= *$)/
-					}
+						'punctuation': /(?=\S).*\S(?= *$)/,
+					},
 				},
 				// Matches the start tag of heredoc strings
 				{
@@ -67,20 +69,21 @@ export default {
 					inside: {
 						'punctuation': {
 							pattern: /(\().+?(?=\))/,
-							lookbehind: true
-						}
-					}
-				}
+							lookbehind: true,
+						},
+					},
+				},
 			],
 			'multiline-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
 				greedy: true,
-				alias: 'comment'
+				alias: 'comment',
 			},
 			'regex': {
 				// Must be prefixed with the keyword "node" or a non-word char
-				pattern: /((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
+				pattern:
+					/((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -88,10 +91,10 @@ export default {
 					'extended-regex': {
 						pattern: /^\/(?:[^\/\\]|\\[\s\S])+\/[im]*x[im]*$/,
 						inside: {
-							'comment': /#.*/
-						}
-					}
-				}
+							'comment': /#.*/,
+						},
+					},
+				},
 			},
 			'comment': {
 				pattern: /(^|[^\\])#.*/,
@@ -100,41 +103,45 @@ export default {
 			},
 			'string': {
 				// Allow for one nested level of double quotes inside interpolation
-				pattern: /(["'])(?:\$\{(?:[^'"}]|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}|\$(?!\{)|(?!\1)[^\\$]|\\[\s\S])*\1/,
+				pattern:
+					/(["'])(?:\$\{(?:[^'"}]|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}|\$(?!\{)|(?!\1)[^\\$]|\\[\s\S])*\1/,
 				greedy: true,
 				inside: {
 					'double-quoted': {
 						pattern: /^"[\s\S]*"$/,
 						inside: {
-							'interpolation': interpolation
-						}
-					}
-				}
+							'interpolation': interpolation,
+						},
+					},
+				},
 			},
 			'variable': {
 				pattern: /\$(?:::)?\w+(?:::\w+)*/,
 				inside: {
-					'punctuation': /::/
-				}
+					'punctuation': /::/,
+				},
 			},
 			'attr-name': /(?:\b\w+|\*)(?=\s*=>)/,
 			'function': [
 				{
 					pattern: /(\.)(?!\d)\w+/,
-					lookbehind: true
+					lookbehind: true,
 				},
-				/\b(?:contain|debug|err|fail|include|info|notice|realize|require|tag|warning)\b|\b(?!\d)\w+(?=\()/
+				/\b(?:contain|debug|err|fail|include|info|notice|realize|require|tag|warning)\b|\b(?!\d)\w+(?=\()/,
 			],
 			'number': /\b(?:0x[a-f\d]+|\d+(?:\.\d+)?(?:e-?\d+)?)\b/i,
 			'boolean': /\b(?:false|true)\b/,
 			// Includes words reserved for future use
-			'keyword': /\b(?:application|attr|case|class|consumes|default|define|else|elsif|function|if|import|inherits|node|private|produces|type|undef|unless)\b/,
+			'keyword':
+				/\b(?:application|attr|case|class|consumes|default|define|else|elsif|function|if|import|inherits|node|private|produces|type|undef|unless)\b/,
 			'datatype': {
-				pattern: /\b(?:Any|Array|Boolean|Callable|Catalogentry|Class|Collection|Data|Default|Enum|Float|Hash|Integer|NotUndef|Numeric|Optional|Pattern|Regexp|Resource|Runtime|Scalar|String|Struct|Tuple|Type|Undef|Variant)\b/,
-				alias: 'symbol'
+				pattern:
+					/\b(?:Any|Array|Boolean|Callable|Catalogentry|Class|Collection|Data|Default|Enum|Float|Hash|Integer|NotUndef|Numeric|Optional|Pattern|Regexp|Resource|Runtime|Scalar|String|Struct|Tuple|Type|Undef|Variant)\b/,
+				alias: 'symbol',
 			},
-			'operator': /=[=~>]?|![=~]?|<(?:<\|?|[=~|-])?|>[>=]?|->?|~>|\|>?>?|[*\/%+?]|\b(?:and|in|or)\b/,
-			'punctuation': /[\[\]{}().,;]|:+/
+			'operator':
+				/=[=~>]?|![=~]?|<(?:<\|?|[=~|-])?|>[>=]?|->?|~>|\|>?>?|[*\/%+?]|\b(?:and|in|or)\b/,
+			'punctuation': /[\[\]{}().,;]|:+/,
 		};
-	}
+	},
 } as LanguageProto<'puppet'>;

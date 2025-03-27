@@ -3,58 +3,53 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'lolcode',
 	grammar: {
-		'comment': [
-			/\bOBTW\s[\s\S]*?\sTLDR\b/,
-			/\bBTW.+/
-		],
+		'comment': [/\bOBTW\s[\s\S]*?\sTLDR\b/, /\bBTW.+/],
 		'string': {
 			pattern: /"(?::.|[^":])*"/,
 			inside: {
 				'variable': /:\{[^}]+\}/,
-				'symbol': [
-					/:\([a-f\d]+\)/i,
-					/:\[[^\]]+\]/,
-					/:[)>o":]/
-				]
+				'symbol': [/:\([a-f\d]+\)/i, /:\[[^\]]+\]/, /:[)>o":]/],
 			},
-			greedy: true
+			greedy: true,
 		},
 		'number': /(?:\B-)?(?:\b\d+(?:\.\d*)?|\B\.\d+)/,
 		'symbol': {
 			pattern: /(^|\s)(?:A )?(?:BUKKIT|NOOB|NUMBAR|NUMBR|TROOF|YARN)(?=\s|,|$)/,
 			lookbehind: true,
 			inside: {
-				'keyword': /A(?=\s)/
-			}
+				'keyword': /A(?=\s)/,
+			},
 		},
 		'label': {
 			pattern: /((?:^|\s)(?:IM IN YR|IM OUTTA YR) )[a-zA-Z]\w*/,
 			lookbehind: true,
-			alias: 'string'
+			alias: 'string',
 		},
 		'function': {
 			pattern: /((?:^|\s)(?:HOW IZ I|I IZ|IZ) )[a-zA-Z]\w*/,
-			lookbehind: true
+			lookbehind: true,
 		},
 		'keyword': [
 			{
-				pattern: /(^|\s)(?:AN|FOUND YR|GIMMEH|GTFO|HAI|HAS A|HOW IZ I|I HAS A|I IZ|IF U SAY SO|IM IN YR|IM OUTTA YR|IS NOW(?: A)?|ITZ(?: A)?|IZ|KTHX|KTHXBYE|LIEK(?: A)?|MAEK|MEBBE|MKAY|NERFIN|NO WAI|O HAI IM|O RLY\?|OIC|OMG|OMGWTF|R|SMOOSH|SRS|TIL|UPPIN|VISIBLE|WILE|WTF\?|YA RLY|YR)(?=\s|,|$)/,
-				lookbehind: true
+				pattern:
+					/(^|\s)(?:AN|FOUND YR|GIMMEH|GTFO|HAI|HAS A|HOW IZ I|I HAS A|I IZ|IF U SAY SO|IM IN YR|IM OUTTA YR|IS NOW(?: A)?|ITZ(?: A)?|IZ|KTHX|KTHXBYE|LIEK(?: A)?|MAEK|MEBBE|MKAY|NERFIN|NO WAI|O HAI IM|O RLY\?|OIC|OMG|OMGWTF|R|SMOOSH|SRS|TIL|UPPIN|VISIBLE|WILE|WTF\?|YA RLY|YR)(?=\s|,|$)/,
+				lookbehind: true,
 			},
-			/'Z(?=\s|,|$)/
+			/'Z(?=\s|,|$)/,
 		],
 		'boolean': {
 			pattern: /(^|\s)(?:FAIL|WIN)(?=\s|,|$)/,
-			lookbehind: true
+			lookbehind: true,
 		},
 		'variable': {
 			pattern: /(^|\s)IT(?=\s|,|$)/,
-			lookbehind: true
+			lookbehind: true,
 		},
 		'operator': {
-			pattern: /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:ALL|ANY|BIGGR|BOTH|DIFF|EITHER|MOD|PRODUKT|QUOSHUNT|SMALLR|SUM|WON) OF)(?=\s|,|$)/,
-			lookbehind: true
+			pattern:
+				/(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:ALL|ANY|BIGGR|BOTH|DIFF|EITHER|MOD|PRODUKT|QUOSHUNT|SMALLR|SUM|WON) OF)(?=\s|,|$)/,
+			lookbehind: true,
 		},
-		'punctuation': /\.{3}|…|,|!/
-	}
+		'punctuation': /\.{3}|…|,|!/,
+	},
 } as LanguageProto<'lolcode'>;

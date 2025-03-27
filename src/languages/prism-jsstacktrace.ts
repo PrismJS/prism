@@ -5,7 +5,7 @@ export default {
 	grammar: {
 		'error-message': {
 			pattern: /^\S.*/m,
-			alias: 'string'
+			alias: 'string',
 		},
 
 		'stack-frame': {
@@ -13,22 +13,23 @@ export default {
 			lookbehind: true,
 			inside: {
 				'not-my-code': {
-					pattern: /^at[ \t]+(?!\s)(?:node\.js|<unknown>|.*(?:node_modules|\(<anonymous>\)|\(<unknown>|<anonymous>$|\(internal\/|\(node\.js)).*/m,
-					alias: 'comment'
+					pattern:
+						/^at[ \t]+(?!\s)(?:node\.js|<unknown>|.*(?:node_modules|\(<anonymous>\)|\(<unknown>|<anonymous>$|\(internal\/|\(node\.js)).*/m,
+					alias: 'comment',
 				},
 
 				'filename': {
 					pattern: /(\bat\s+(?!\s)|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
 					lookbehind: true,
-					alias: 'url'
+					alias: 'url',
 				},
 
 				'function': {
 					pattern: /(\bat\s+(?:new\s+)?)(?!\s)[_$a-zA-Z\xA0-\uFFFF<][.$\w\xA0-\uFFFF<>]*/,
 					lookbehind: true,
 					inside: {
-						'punctuation': /\./
-					}
+						'punctuation': /\./,
+					},
 				},
 
 				'punctuation': /[()]/,
@@ -37,18 +38,17 @@ export default {
 
 				'alias': {
 					pattern: /\[(?:as\s+)?(?!\s)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\]/,
-					alias: 'variable'
+					alias: 'variable',
 				},
 
 				'line-number': {
 					pattern: /:\d+(?::\d+)?\b/,
 					alias: 'number',
 					inside: {
-						'punctuation': /:/
-					}
+						'punctuation': /:/,
+					},
 				},
-
-			}
-		}
-	}
+			},
+		},
+	},
 } as LanguageProto<'jsstacktrace'>;

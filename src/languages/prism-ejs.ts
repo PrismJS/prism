@@ -11,11 +11,11 @@ export default {
 	grammar: {
 		'ejs-comment': {
 			pattern: /<%#[\s\S]*?%>/,
-			greedy: true
+			greedy: true,
 		},
 		'escape': {
 			pattern: /<%%|%%>/,
-			greedy: true
+			greedy: true,
 		},
 		'ejs': {
 			pattern: /<%(?![%#])[\s\S]*?%>/,
@@ -23,14 +23,14 @@ export default {
 			inside: {
 				'delimiter': {
 					pattern: /^<%[-_=]?|[-_]?%>$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'language-javascript': {
 					pattern: /[\s\S]+/,
-					inside: 'javascript'
-				}
-			}
+					inside: 'javascript',
+				},
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'ejs'>;

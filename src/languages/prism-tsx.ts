@@ -5,7 +5,7 @@ import type { GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'tsx',
 	require: [jsx, typescript],
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const typescript = extend('typescript', {});
 		const tsx = extend('jsx', typescript);
 
@@ -17,9 +17,12 @@ export default {
 		// Idea by https://github.com/karlhorky
 		// Discussion: https://github.com/PrismJS/prism/issues/2594#issuecomment-710666928
 		const tag = tsx.tag as GrammarToken;
-		tag.pattern = RegExp(/(^|[^\w$]|(?=<\/))/.source + '(?:' + tag.pattern.source + ')', tag.pattern.flags);
+		tag.pattern = RegExp(
+			/(^|[^\w$]|(?=<\/))/.source + '(?:' + tag.pattern.source + ')',
+			tag.pattern.flags
+		);
 		tag.lookbehind = true;
 
 		return tsx;
-	}
+	},
 } as LanguageProto<'tsx'>;

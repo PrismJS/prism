@@ -15,51 +15,53 @@ export default {
 				'language-markdown': {
 					pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
 					lookbehind: true,
-					inside: 'markdown'
-				}
-			}
+					inside: 'markdown',
+				},
+			},
 		},
 		'string': {
 			pattern: /"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*"/,
-			greedy: true
+			greedy: true,
 		},
 		'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 		'boolean': /\b(?:false|true)\b/,
 		'variable': /\$[a-z_]\w*/i,
 		'directive': {
 			pattern: /@[a-z_]\w*/i,
-			alias: 'function'
+			alias: 'function',
 		},
 		'attr-name': {
 			pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
-			greedy: true
+			greedy: true,
 		},
 		'atom-input': {
 			pattern: /\b[A-Z]\w*Input\b/,
-			alias: 'class-name'
+			alias: 'class-name',
 		},
 		'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,
 		'constant': /\b[A-Z][A-Z_\d]*\b/,
 		'class-name': {
-			pattern: /(\b(?:enum|implements|interface|on|scalar|type|union)\s+|&\s*|:\s*|\[)[A-Z_]\w*/,
-			lookbehind: true
+			pattern:
+				/(\b(?:enum|implements|interface|on|scalar|type|union)\s+|&\s*|:\s*|\[)[A-Z_]\w*/,
+			lookbehind: true,
 		},
 		'fragment': {
 			pattern: /(\bfragment\s+|\.{3}\s*(?!on\b))[a-zA-Z_]\w*/,
 			lookbehind: true,
-			alias: 'function'
+			alias: 'function',
 		},
 		'definition-mutation': {
 			pattern: /(\bmutation\s+)[a-zA-Z_]\w*/,
 			lookbehind: true,
-			alias: 'function'
+			alias: 'function',
 		},
 		'definition-query': {
 			pattern: /(\bquery\s+)[a-zA-Z_]\w*/,
 			lookbehind: true,
-			alias: 'function'
+			alias: 'function',
 		},
-		'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
+		'keyword':
+			/\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
 		'operator': /[!=|&]|\.{3}/,
 		'property-query': /\w+(?=\s*\()/,
 		'object': /\w+(?=\s*\{)/,
@@ -68,7 +70,7 @@ export default {
 		[tokenize](code, grammar, Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
-			function isToken(token: Token | string): token is Token {
+			function isToken (token: Token | string): token is Token {
 				return typeof token !== 'string';
 			}
 
@@ -77,21 +79,21 @@ export default {
 			 */
 			const validTokens = tokens
 				.filter(isToken)
-				.filter((token) => token.type !== 'comment' && token.type !== 'scalar');
+				.filter(token => token.type !== 'comment' && token.type !== 'scalar');
 
 			let currentIndex = 0;
 
 			/**
 			 * Returns whether the token relative to the current index has the given type.
 			 */
-			function getToken(offset = 0): Token {
+			function getToken (offset = 0): Token {
 				return validTokens[currentIndex + offset];
 			}
 
 			/**
 			 * Returns whether the token relative to the current index has the given type.
 			 */
-			function isTokenType(types: readonly string[], offset = 0): boolean {
+			function isTokenType (types: readonly string[], offset = 0): boolean {
 				for (let i = 0; i < types.length; i++) {
 					const token = getToken(i + offset);
 					if (!token || token.type !== types[i]) {
@@ -108,7 +110,7 @@ export default {
 			 *
 			 * If no closing bracket could be found, `-1` will be returned.
 			 */
-			function findClosingBracket(open: RegExp, close: RegExp): number {
+			function findClosingBracket (open: RegExp, close: RegExp): number {
 				let stackHeight = 1;
 
 				for (let i = currentIndex; i < validTokens.length; i++) {
@@ -118,7 +120,8 @@ export default {
 					if (token.type === 'punctuation' && typeof content === 'string') {
 						if (open.test(content)) {
 							stackHeight++;
-						} else if (close.test(content)) {
+						}
+						else if (close.test(content)) {
 							stackHeight--;
 
 							if (stackHeight === 0) {
@@ -131,7 +134,7 @@ export default {
 				return -1;
 			}
 
-			for (; currentIndex < validTokens.length;) {
+			for (; currentIndex < validTokens.length; ) {
 				const startToken = validTokens[currentIndex++];
 
 				// add special aliases for mutation tokens
@@ -139,7 +142,10 @@ export default {
 					// any array of the names of all input variables (if any)
 					const inputVariables = [];
 
-					if (isTokenType(['definition-mutation', 'punctuation']) && getToken(1).content === '(') {
+					if (
+						isTokenType(['definition-mutation', 'punctuation']) &&
+						getToken(1).content === '('
+					) {
 						// definition
 
 						currentIndex += 2; // skip 'definition-mutation' and 'punctuation'
@@ -161,7 +167,10 @@ export default {
 						currentIndex = definitionEnd + 1;
 					}
 
-					if (isTokenType(['punctuation', 'property-query']) && getToken(0).content === '{') {
+					if (
+						isTokenType(['punctuation', 'property-query']) &&
+						getToken(0).content === '{'
+					) {
 						currentIndex++; // skip opening bracket
 
 						getToken(0).addAlias('property-mutation');
@@ -175,7 +184,10 @@ export default {
 							// give references to input variables a special alias
 							for (let i = currentIndex; i < mutationEnd; i++) {
 								const varToken = validTokens[i];
-								if (varToken.type === 'variable' && inputVariables.includes(varToken.content)) {
+								if (
+									varToken.type === 'variable' &&
+									inputVariables.includes(varToken.content)
+								) {
 									varToken.addAlias('variable-input');
 								}
 							}
@@ -185,6 +197,6 @@ export default {
 			}
 
 			return tokens;
-		}
-	}
+		},
+	},
 } as LanguageProto<'graphql'>;

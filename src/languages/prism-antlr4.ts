@@ -7,7 +7,7 @@ export default {
 		'comment': /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 		'string': {
 			pattern: /'(?:\\.|[^\\'\r\n])*'/,
-			greedy: true
+			greedy: true,
 		},
 		'character-class': {
 			pattern: /\[(?:\\.|[^\\\]\r\n])*\]/,
@@ -17,11 +17,11 @@ export default {
 				'range': {
 					pattern: /([^[]|(?:^|[^\\])(?:\\\\)*\\\[)-(?!\])/,
 					lookbehind: true,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'escape': /\\(?:u(?:[a-fA-F\d]{4}|\{[a-fA-F\d]+\})|[pP]\{[=\w-]+\}|[^\r\nupP])/,
-				'punctuation': /[\[\]]/
-			}
+				'punctuation': /[\[\]]/,
+			},
 		},
 		'action': {
 			pattern: /\{(?:[^{}]|\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*\}/,
@@ -30,40 +30,41 @@ export default {
 				'content': {
 					// this might be C, C++, Python, Java, C#, or any other language ANTLR4 compiles to
 					pattern: /(\{)[\s\S]+(?=\})/,
-					lookbehind: true
+					lookbehind: true,
 				},
-				'punctuation': /[{}]/
-			}
+				'punctuation': /[{}]/,
+			},
 		},
 		'command': {
 			pattern: /(->\s*(?!\s))(?:\s*(?:,\s*)?\b[a-z]\w*(?:\s*\([^()\r\n]*\))?)+(?=\s*;)/i,
 			lookbehind: true,
 			inside: {
 				'function': /\b\w+(?=\s*(?:[,(]|$))/,
-				'punctuation': /[,()]/
-			}
+				'punctuation': /[,()]/,
+			},
 		},
 		'annotation': {
 			pattern: /@\w+(?:::\w+)*/,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 		'label': {
 			pattern: /#[ \t]*\w+/,
-			alias: 'punctuation'
+			alias: 'punctuation',
 		},
-		'keyword': /\b(?:catch|channels|finally|fragment|grammar|import|lexer|locals|mode|options|parser|returns|throws|tokens)\b/,
+		'keyword':
+			/\b(?:catch|channels|finally|fragment|grammar|import|lexer|locals|mode|options|parser|returns|throws|tokens)\b/,
 		'definition': [
 			{
 				pattern: /\b[a-z]\w*(?=\s*:)/,
-				alias: ['rule', 'class-name']
+				alias: ['rule', 'class-name'],
 			},
 			{
 				pattern: /\b[A-Z]\w*(?=\s*:)/,
-				alias: ['token', 'constant']
+				alias: ['token', 'constant'],
 			},
 		],
 		'constant': /\b[A-Z][A-Z_]*\b/,
 		'operator': /\.\.|->|[|~]|[*+?]\??/,
-		'punctuation': /[;:()=]/
-	}
+		'punctuation': /[;:()=]/,
+	},
 } as LanguageProto<'antlr4'>;

@@ -14,5 +14,19 @@
 	"useTabs": true,
 	"trailingComma": "es5",
 	"quoteProps": "preserve",
-	"printWidth": 100
+	"printWidth": 100,
+	"overrides": [
+		{
+			"files": ["*.yml", "*.yaml"],
+			"options": {
+				"tabWidth": 2
+			}
+		},
+		{
+			"files": "*.css",
+			"options": {
+				"singleQuote": false
+			}
+		}
+	]
 }

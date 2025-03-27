@@ -16,7 +16,8 @@ export default {
 			lookbehind: true,
 		},
 		'pattern': {
-			pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
+			pattern:
+				/(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
 			lookbehind: true,
 			inside: {
 				'pattern-name': {
@@ -46,7 +47,8 @@ export default {
 		},
 		'keyword': /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
 		'standard-pattern': {
-			pattern: /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
+			pattern:
+				/\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
 			inside: {
 				'standard-pattern-name': {
 					pattern: /^[a-zA-Z0-9\-.]+/,
@@ -103,7 +105,8 @@ export default {
 		],
 		'field-capture': [
 			{
-				pattern: /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
+				pattern:
+					/([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
 				lookbehind: true,
 				inside: {
 					'field-name': {
@@ -125,6 +128,6 @@ export default {
 			},
 		],
 		'punctuation': /[:;,()]/,
-		'name': /[a-zA-Z0-9\-.]+/
-	}
+		'name': /[a-zA-Z0-9\-.]+/,
+	},
 } as LanguageProto<'nevod'>;

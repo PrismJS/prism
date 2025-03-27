@@ -4,142 +4,146 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'asciidoc',
 	alias: 'adoc',
-	grammar() {
+	grammar () {
 		const placeholder = null as GrammarToken['inside'];
 
 		const attributes = {
-			pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
+			pattern:
+				/(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
 			lookbehind: true,
 			inside: {
 				'quoted': {
 					pattern: /([$`])(?:(?!\1)[^\\]|\\.)*\1/,
 					inside: {
-						'punctuation': /^[$`]|[$`]$/
-					}
+						'punctuation': /^[$`]|[$`]$/,
+					},
 				},
 				'interpreted': {
 					pattern: /'(?:[^'\\]|\\.)*'/,
 					inside: {
 						'punctuation': /^'|'$/,
-						[rest]: placeholder
-					}
+						[rest]: placeholder,
+					},
 				},
 				'string': /"(?:[^"\\]|\\.)*"/,
 				'variable': /\w+(?==)/,
 				'punctuation': /^\[|\]$|,/,
 				'operator': /=/,
 				// The negative look-ahead prevents blank matches
-				'attr-value': /(?!^\s+$).+/
-			}
+				'attr-value': /(?!^\s+$).+/,
+			},
 		};
 
 		const asciidoc = {
 			'comment-block': {
 				pattern: /^(\/{4,})$[\s\S]*?^\1/m,
-				alias: 'comment'
+				alias: 'comment',
 			},
 			'table': {
 				pattern: /^\|={3,}(?:(?:\r?\n|\r(?!\n)).*)*?(?:\r?\n|\r)\|={3,}$/m,
 				inside: {
 					'specifiers': {
-						pattern: /(?:(?:(?:\d+(?:\.\d+)?|\.\d+)[+*](?:[<^>](?:\.[<^>])?|\.[<^>])?|[<^>](?:\.[<^>])?|\.[<^>])[a-z]*|[a-z]+)(?=\|)/,
-						alias: 'attr-value'
+						pattern:
+							/(?:(?:(?:\d+(?:\.\d+)?|\.\d+)[+*](?:[<^>](?:\.[<^>])?|\.[<^>])?|[<^>](?:\.[<^>])?|\.[<^>])[a-z]*|[a-z]+)(?=\|)/,
+						alias: 'attr-value',
 					},
 					'punctuation': {
 						pattern: /(^|[^\\])[|!]=*/,
-						lookbehind: true
+						lookbehind: true,
 					},
-					[rest]: placeholder
-				}
+					[rest]: placeholder,
+				},
 			},
 
 			'passthrough-block': {
 				pattern: /^(\+{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^\++|\++$/,
-					[rest]: placeholder
-				}
+					[rest]: placeholder,
+				},
 			},
 			// Literal blocks and listing blocks
 			'literal-block': {
 				pattern: /^(-{4,}|\.{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/,
-					[rest]: placeholder
-				}
+					[rest]: placeholder,
+				},
 			},
 			// Sidebar blocks, quote blocks, example blocks and open blocks
 			'other-block': {
 				pattern: /^(--|\*{4,}|_{4,}|={4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/,
-					[rest]: placeholder
-				}
+					[rest]: placeholder,
+				},
 			},
 
 			// list-punctuation and list-label must appear before indented-block
 			'list-punctuation': {
 				pattern: /(^[ \t]*)(?:-|\*{1,5}|\.{1,5}|(?:[a-z]|\d+)\.|[xvi]+\))(?= )/im,
 				lookbehind: true,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'list-label': {
 				pattern: /(^[ \t]*)[a-z\d].+(?::{2,4}|;;)(?=\s)/im,
 				lookbehind: true,
-				alias: 'symbol'
+				alias: 'symbol',
 			},
 			'indented-block': {
 				pattern: /((\r?\n|\r)\2)([ \t]+)\S.*(?:(?:\r?\n|\r)\3.+)*(?=\2{2}|$)/,
-				lookbehind: true
+				lookbehind: true,
 			},
 
 			'comment': /^\/\/.*/m,
 			'title': {
-				pattern: /^.+(?:\r?\n|\r)(?:={3,}|-{3,}|~{3,}|\^{3,}|\+{3,})$|^={1,5} .+|^\.(?![\s.]).*/m,
+				pattern:
+					/^.+(?:\r?\n|\r)(?:={3,}|-{3,}|~{3,}|\^{3,}|\+{3,})$|^={1,5} .+|^\.(?![\s.]).*/m,
 				alias: 'important',
 				inside: {
 					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/,
-					[rest]: placeholder
-				}
+					[rest]: placeholder,
+				},
 			},
 			'attribute-entry': {
 				pattern: /^:[^:\r\n]+:(?: .*?(?: \+(?:\r?\n|\r).*?)*)?$/m,
-				alias: 'tag'
+				alias: 'tag',
 			},
 			'attributes': attributes,
 			'hr': {
 				pattern: /^'{3,}$/m,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'page-break': {
 				pattern: /^<{3,}$/m,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'admonition': {
 				pattern: /^(?:CAUTION|IMPORTANT|NOTE|TIP|WARNING):/m,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 			'callout': [
 				{
 					pattern: /(^[ \t]*)<?\d*>/m,
 					lookbehind: true,
-					alias: 'symbol'
+					alias: 'symbol',
 				},
 				{
 					pattern: /<\d+>/,
-					alias: 'symbol'
-				}
+					alias: 'symbol',
+				},
 			],
 			'macro': {
-				pattern: /\b[a-z\d][a-z\d-]*::?(?:[^\s\[\]]*\[(?:[^\]\\"']|(["'])(?:(?!\1)[^\\]|\\.)*\1|\\.)*\])/,
+				pattern:
+					/\b[a-z\d][a-z\d-]*::?(?:[^\s\[\]]*\[(?:[^\]\\"']|(["'])(?:(?!\1)[^\\]|\\.)*\1|\\.)*\])/,
 				inside: {
 					'function': /^[a-z\d-]+(?=:)/,
 					'punctuation': /^::?/,
 					'attributes': {
 						pattern: /(?:\[(?:[^\]\\"']|(["'])(?:(?!\1)[^\\]|\\.)*\1|\\.)*\])/,
-						inside: attributes.inside
-					}
-				}
+						inside: attributes.inside,
+					},
+				},
 			},
 			'inline': {
 				/*
@@ -156,58 +160,59 @@ export default {
 					Those do not have the restrictions of the constrained quotes.
 					They are, in order: __emphasis__, **strong**, ++monospace++, +++passthrough+++, ##unquoted##, $$passthrough$$, ~subscript~, ^superscript^, {attribute-reference}, [[anchor]], [[[bibliography anchor]]], <<xref>>, (((indexes))) and ((indexes))
 					 */
-				pattern: /(^|[^\\])(?:(?:\B\[(?:[^\]\\"']|(["'])(?:(?!\2)[^\\]|\\.)*\2|\\.)*\])?(?:\b_(?!\s)(?: _|[^_\\\r\n]|\\.)+(?:(?:\r?\n|\r)(?: _|[^_\\\r\n]|\\.)+)*_\b|\B``(?!\s).+?(?:(?:\r?\n|\r).+?)*''\B|\B`(?!\s)(?:[^`'\s]|\s+\S)+['`]\B|\B(['*+#])(?!\s)(?: \3|(?!\3)[^\\\r\n]|\\.)+(?:(?:\r?\n|\r)(?: \3|(?!\3)[^\\\r\n]|\\.)+)*\3\B)|(?:\[(?:[^\]\\"']|(["'])(?:(?!\4)[^\\]|\\.)*\4|\\.)*\])?(?:(__|\*\*|\+\+\+?|##|\$\$|[~^]).+?(?:(?:\r?\n|\r).+?)*\5|\{[^}\r\n]+\}|\[\[\[?.+?(?:(?:\r?\n|\r).+?)*\]?\]\]|<<.+?(?:(?:\r?\n|\r).+?)*>>|\(\(\(?.+?(?:(?:\r?\n|\r).+?)*\)?\)\)))/m,
+				pattern:
+					/(^|[^\\])(?:(?:\B\[(?:[^\]\\"']|(["'])(?:(?!\2)[^\\]|\\.)*\2|\\.)*\])?(?:\b_(?!\s)(?: _|[^_\\\r\n]|\\.)+(?:(?:\r?\n|\r)(?: _|[^_\\\r\n]|\\.)+)*_\b|\B``(?!\s).+?(?:(?:\r?\n|\r).+?)*''\B|\B`(?!\s)(?:[^`'\s]|\s+\S)+['`]\B|\B(['*+#])(?!\s)(?: \3|(?!\3)[^\\\r\n]|\\.)+(?:(?:\r?\n|\r)(?: \3|(?!\3)[^\\\r\n]|\\.)+)*\3\B)|(?:\[(?:[^\]\\"']|(["'])(?:(?!\4)[^\\]|\\.)*\4|\\.)*\])?(?:(__|\*\*|\+\+\+?|##|\$\$|[~^]).+?(?:(?:\r?\n|\r).+?)*\5|\{[^}\r\n]+\}|\[\[\[?.+?(?:(?:\r?\n|\r).+?)*\]?\]\]|<<.+?(?:(?:\r?\n|\r).+?)*>>|\(\(\(?.+?(?:(?:\r?\n|\r).+?)*\)?\)\)))/m,
 				lookbehind: true,
 				inside: {
 					'attributes': attributes,
 					'url': {
 						pattern: /^(?:\[\[\[?.+?\]?\]\]|<<.+?>>)$/,
 						inside: {
-							'punctuation': /^(?:\[\[\[?|<<)|(?:\]\]\]?|>>)$/
-						}
+							'punctuation': /^(?:\[\[\[?|<<)|(?:\]\]\]?|>>)$/,
+						},
 					},
 					'attribute-ref': {
 						pattern: /^\{.+\}$/,
 						inside: {
 							'variable': {
 								pattern: /(^\{)[a-z\d,+_-]+/,
-								lookbehind: true
+								lookbehind: true,
 							},
 							'operator': /^[=?!#%@$]|!(?=[:}])/,
-							'punctuation': /^\{|\}$|::?/
-						}
+							'punctuation': /^\{|\}$|::?/,
+						},
 					},
 					'italic': {
 						pattern: /^(['_])[\s\S]+\1$/,
 						inside: {
-							'punctuation': /^(?:''?|__?)|(?:''?|__?)$/
-						}
+							'punctuation': /^(?:''?|__?)|(?:''?|__?)$/,
+						},
 					},
 					'bold': {
 						pattern: /^\*[\s\S]+\*$/,
 						inside: {
-							punctuation: /^\*\*?|\*\*?$/
-						}
+							punctuation: /^\*\*?|\*\*?$/,
+						},
 					},
-					'punctuation': /^(?:``?|\+{1,3}|##?|\$\$|[~^]|\(\(\(?)|(?:''?|\+{1,3}|##?|\$\$|[~^`]|\)?\)\))$/
-				}
+					'punctuation':
+						/^(?:``?|\+{1,3}|##?|\$\$|[~^]|\(\(\(?)|(?:''?|\+{1,3}|##?|\$\$|[~^`]|\)?\)\))$/,
+				},
 			},
 			'replacement': {
 				pattern: /\((?:C|R|TM)\)/,
-				alias: 'builtin'
+				alias: 'builtin',
 			},
 			'entity': /&#?[\da-z]{1,8};/i,
 			'line-continuation': {
 				pattern: /(^| )\+$/m,
 				lookbehind: true,
-				alias: 'punctuation'
-			}
+				alias: 'punctuation',
+			},
 		};
-
 
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
-		function copyFromAsciiDoc(...keys: (keyof typeof asciidoc)[]) {
+		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
 			const o: Grammar = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key];
@@ -215,26 +220,73 @@ export default {
 			return o;
 		}
 
-		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc('macro', 'inline', 'replacement', 'entity');
+		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc(
+			'macro',
+			'inline',
+			'replacement',
+			'entity'
+		);
 
 		asciidoc['passthrough-block'].inside[rest] = copyFromAsciiDoc('macro');
 
 		asciidoc['literal-block'].inside[rest] = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside[rest] = copyFromAsciiDoc('comment-block', 'passthrough-block', 'literal-block', 'other-block', 'list-punctuation', 'indented-block', 'comment', 'title', 'attribute-entry', 'attributes', 'hr', 'page-break', 'admonition', 'list-label', 'callout', 'macro', 'inline', 'replacement', 'entity', 'line-continuation');
+		asciidoc['table'].inside[rest] = copyFromAsciiDoc(
+			'comment-block',
+			'passthrough-block',
+			'literal-block',
+			'other-block',
+			'list-punctuation',
+			'indented-block',
+			'comment',
+			'title',
+			'attribute-entry',
+			'attributes',
+			'hr',
+			'page-break',
+			'admonition',
+			'list-label',
+			'callout',
+			'macro',
+			'inline',
+			'replacement',
+			'entity',
+			'line-continuation'
+		);
 
-		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc('table', 'list-punctuation', 'indented-block', 'comment', 'attribute-entry', 'attributes', 'hr', 'page-break', 'admonition', 'list-label', 'macro', 'inline', 'replacement', 'entity', 'line-continuation');
+		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc(
+			'table',
+			'list-punctuation',
+			'indented-block',
+			'comment',
+			'attribute-entry',
+			'attributes',
+			'hr',
+			'page-break',
+			'admonition',
+			'list-label',
+			'macro',
+			'inline',
+			'replacement',
+			'entity',
+			'line-continuation'
+		);
 
-		asciidoc['title'].inside[rest] = copyFromAsciiDoc('macro', 'inline', 'replacement', 'entity');
+		asciidoc['title'].inside[rest] = copyFromAsciiDoc(
+			'macro',
+			'inline',
+			'replacement',
+			'entity'
+		);
 
 		return asciidoc;
 	},
-	effect(Prism) {
+	effect (Prism) {
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', (env) => {
+		return Prism.hooks.add('wrap', env => {
 			if (env.type === 'entity') {
 				env.attributes['title'] = env.content.replace(/&amp;/, '&');
 			}
 		});
-	}
+	},
 } as LanguageProto<'asciidoc'>;

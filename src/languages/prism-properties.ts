@@ -5,14 +5,15 @@ export default {
 	grammar: {
 		'comment': /^[ \t]*[#!].*$/m,
 		'value': {
-			pattern: /(^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?: *[=:] *(?! )| ))(?:\\(?:\r\n|[\s\S])|[^\\\r\n])+/m,
+			pattern:
+				/(^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?: *[=:] *(?! )| ))(?:\\(?:\r\n|[\s\S])|[^\\\r\n])+/m,
 			lookbehind: true,
-			alias: 'attr-value'
+			alias: 'attr-value',
 		},
 		'key': {
 			pattern: /^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+(?= *[=:]| )/m,
-			alias: 'attr-name'
+			alias: 'attr-name',
 		},
-		'punctuation': /[=:]/
-	}
+		'punctuation': /[=:]/,
+	},
 } as LanguageProto<'properties'>;

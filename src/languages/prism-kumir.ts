@@ -4,7 +4,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'kumir',
 	alias: 'kum',
-	grammar() {
+	grammar () {
 		/**
 		 * Regular expression for characters that are not allowed in identifiers.
 		 */
@@ -17,53 +17,57 @@ export default {
 		 * @param flags The regular expression flags.
 		 * @returns A wrapped regular expression for identifiers.
 		 */
-		function wrapId(pattern: string, flags?: string) {
+		function wrapId (pattern: string, flags?: string) {
 			return RegExp(pattern.replace(/<nonId>/g, nonId), flags);
 		}
 
 		return {
 			'comment': {
-				pattern: /\|.*/
+				pattern: /\|.*/,
 			},
 
 			'prolog': {
 				pattern: /#.*/,
-				greedy: true
+				greedy: true,
 			},
 
 			'string': {
 				pattern: /"[^\n\r"]*"|'[^\n\r']*'/,
-				greedy: true
+				greedy: true,
 			},
 
 			'boolean': {
 				pattern: wrapId(/(^|[<nonId>])(?:да|нет)(?=[<nonId>]|$)/.source),
-				lookbehind: true
+				lookbehind: true,
 			},
 
 			'operator-word': {
 				pattern: wrapId(/(^|[<nonId>])(?:и|или|не)(?=[<nonId>]|$)/.source),
 				lookbehind: true,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 
 			'system-variable': {
 				pattern: wrapId(/(^|[<nonId>])знач(?=[<nonId>]|$)/.source),
 				lookbehind: true,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 
 			'type': [
 				{
-					pattern: wrapId(/(^|[<nonId>])(?:вещ|лит|лог|сим|цел)(?:\x20*таб)?(?=[<nonId>]|$)/.source),
+					pattern: wrapId(
+						/(^|[<nonId>])(?:вещ|лит|лог|сим|цел)(?:\x20*таб)?(?=[<nonId>]|$)/.source
+					),
 					lookbehind: true,
-					alias: 'builtin'
+					alias: 'builtin',
 				},
 				{
-					pattern: wrapId(/(^|[<nonId>])(?:компл|сканкод|файл|цвет)(?=[<nonId>]|$)/.source),
+					pattern: wrapId(
+						/(^|[<nonId>])(?:компл|сканкод|файл|цвет)(?=[<nonId>]|$)/.source
+					),
 					lookbehind: true,
-					alias: 'important'
-				}
+					alias: 'important',
+				},
 			],
 
 			/**
@@ -72,21 +76,31 @@ export default {
 			 * "НАЗНАЧИТЬ", "Фввод", and "Фвывод" are not reserved words.
 			 */
 			'keyword': {
-				pattern: wrapId(/(^|[<nonId>])(?:алг|арг(?:\x20*рез)?|ввод|ВКЛЮЧИТЬ|вс[её]|выбор|вывод|выход|дано|для|до|дс|если|иначе|исп|использовать|кон(?:(?:\x20+|_)исп)?|кц(?:(?:\x20+|_)при)?|надо|нач|нс|нц|от|пауза|пока|при|раза?|рез|стоп|таб|то|утв|шаг)(?=[<nonId>]|$)/.source),
-				lookbehind: true
+				pattern: wrapId(
+					/(^|[<nonId>])(?:алг|арг(?:\x20*рез)?|ввод|ВКЛЮЧИТЬ|вс[её]|выбор|вывод|выход|дано|для|до|дс|если|иначе|исп|использовать|кон(?:(?:\x20+|_)исп)?|кц(?:(?:\x20+|_)при)?|надо|нач|нс|нц|от|пауза|пока|при|раза?|рез|стоп|таб|то|утв|шаг)(?=[<nonId>]|$)/
+						.source
+				),
+				lookbehind: true,
 			},
 
 			/** Should be performed after searching for reserved words. */
 			'name': {
-				// eslint-disable-next-line regexp/no-super-linear-backtracking
-				pattern: wrapId(/(^|[<nonId>])[^\d<nonId>][^<nonId>]*(?:\x20+[^<nonId>]+)*(?=[<nonId>]|$)/.source),
-				lookbehind: true
+				pattern: wrapId(
+					// eslint-disable-next-line regexp/no-super-linear-backtracking
+					/(^|[<nonId>])[^\d<nonId>][^<nonId>]*(?:\x20+[^<nonId>]+)*(?=[<nonId>]|$)/
+						.source
+				),
+				lookbehind: true,
 			},
 
 			/** Should be performed after searching for names. */
 			'number': {
-				pattern: wrapId(/(^|[<nonId>])(?:\B\$[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)(?=[<nonId>]|$)/.source, 'i'),
-				lookbehind: true
+				pattern: wrapId(
+					/(^|[<nonId>])(?:\B\$[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)(?=[<nonId>]|$)/
+						.source,
+					'i'
+				),
+				lookbehind: true,
 			},
 
 			/** Should be performed after searching for words. */
@@ -99,8 +113,8 @@ export default {
 			 */
 			'operator-char': {
 				pattern: /\*\*?|<[=>]?|>=?|[-+/=]/,
-				alias: 'operator'
-			}
+				alias: 'operator',
+			},
 		};
-	}
+	},
 } as LanguageProto<'kumir'>;

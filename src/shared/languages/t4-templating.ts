@@ -1,24 +1,24 @@
 import type { Grammar, GrammarToken } from '../../types';
 
-function createBlock(prefix: string, insideLang: string | Grammar): GrammarToken {
+function createBlock (prefix: string, insideLang: string | Grammar): GrammarToken {
 	return {
 		pattern: RegExp('<#' + prefix + '[\\s\\S]*?#>'),
 		alias: 'block',
 		inside: {
 			'delimiter': {
 				pattern: RegExp('^<#' + prefix + '|#>$'),
-				alias: 'important'
+				alias: 'important',
 			},
 			'content': {
 				pattern: /[\s\S]+/,
 				inside: insideLang,
-				alias: typeof insideLang === 'string' ? 'language-' + insideLang : undefined
-			}
-		}
+				alias: typeof insideLang === 'string' ? 'language-' + insideLang : undefined,
+			},
+		},
 	};
 }
 
-export function createT4(insideLang: string): Grammar {
+export function createT4 (insideLang: string): Grammar {
 	return {
 		'block': {
 			pattern: /<#[\s\S]+?#>/,
@@ -27,16 +27,16 @@ export function createT4(insideLang: string): Grammar {
 					'attr-value': {
 						pattern: /=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+)/,
 						inside: {
-							'punctuation': /^=|^["']|["']$/
-						}
+							'punctuation': /^=|^["']|["']$/,
+						},
 					},
 					'keyword': /\b\w+(?=\s)/,
-					'attr-name': /\b\w+/
+					'attr-name': /\b\w+/,
 				}),
 				'expression': createBlock('=', insideLang),
 				'class-feature': createBlock('\\+', insideLang),
-				'standard': createBlock('', insideLang)
-			}
-		}
+				'standard': createBlock('', insideLang),
+			},
+		},
 	};
 }

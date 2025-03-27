@@ -5,21 +5,21 @@ export default {
 	alias: 'rbnf',
 	grammar: {
 		'string': {
-			pattern: /"[^\r\n"]*"|'[^\r\n']*'/
+			pattern: /"[^\r\n"]*"|'[^\r\n']*'/,
 		},
 		'definition': {
 			pattern: /<[^<>\r\n\t]+>(?=\s*::=)/,
 			alias: ['rule', 'keyword'],
 			inside: {
-				'punctuation': /^<|>$/
-			}
+				'punctuation': /^<|>$/,
+			},
 		},
 		'rule': {
 			pattern: /<[^<>\r\n\t]+>/,
 			inside: {
-				'punctuation': /^<|>$/
-			}
+				'punctuation': /^<|>$/,
+			},
 		},
-		'operator': /::=|[|()[\]{}*+?]|\.{3}/
-	}
+		'operator': /::=|[|()[\]{}*+?]|\.{3}/,
+	},
 } as LanguageProto<'bnf'>;

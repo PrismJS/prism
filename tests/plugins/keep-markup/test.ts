@@ -2,15 +2,17 @@ import { assert } from 'chai';
 import { createTestSuite } from '../../helper/prism-dom-util';
 import type { PrismDOM } from '../../helper/prism-loader';
 
-
 describe('Keep Markup', () => {
 	const { it } = createTestSuite({
 		languages: 'javascript',
-		plugins: 'keep-markup'
+		plugins: 'keep-markup',
 	});
 
-
-	function highlightInElement({ Prism, document }: PrismDOM<{}>, html: string, language = 'none') {
+	function highlightInElement (
+		{ Prism, document }: PrismDOM<{}>,
+		html: string,
+		language = 'none'
+	) {
 		const pre = document.createElement('pre');
 		pre.className = `language-${language}`;
 		pre.innerHTML = `<code>${html}</code>`;
@@ -21,18 +23,18 @@ describe('Keep Markup', () => {
 		return code.innerHTML;
 	}
 
-	function keepMarkup(dom: PrismDOM<{}>, html: string, language = 'none') {
+	function keepMarkup (dom: PrismDOM<{}>, html: string, language = 'none') {
 		assert.equal(highlightInElement(dom, html, language), html);
 	}
 
-	it('should keep <span> markup', (dom) => {
+	it('should keep <span> markup', dom => {
 		keepMarkup(dom, `x<span>a</span>y`);
 	});
-	it('should preserve markup order', (dom) => {
+	it('should preserve markup order', dom => {
 		keepMarkup(dom, `x<a></a><b></b>y`);
 	});
 
-	it('should keep last markup', (dom) => {
+	it('should keep last markup', dom => {
 		keepMarkup(dom, `xy<span>a</span>`);
 		keepMarkup(dom, `xy<a>a</a>`);
 	});

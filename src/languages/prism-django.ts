@@ -18,35 +18,36 @@ export default {
 				'tag': {
 					pattern: /(^\{%[+-]?\s*)\w+/,
 					lookbehind: true,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				'delimiter': {
 					pattern: /^\{[{%][+-]?|[+-]?[}%]\}$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'string': {
 					pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-					greedy: true
+					greedy: true,
 				},
 				'filter': {
 					pattern: /(\|)\w+/,
 					lookbehind: true,
-					alias: 'function'
+					alias: 'function',
 				},
 				'test': {
 					pattern: /(\bis\s+(?:not\s+)?)(?!not\b)\w+/,
 					lookbehind: true,
-					alias: 'function'
+					alias: 'function',
 				},
 				'function': /\b[a-z_]\w+(?=\s*\()/i,
-				'keyword': /\b(?:and|as|by|else|for|if|import|in|is|loop|not|or|recursive|with|without)\b/,
+				'keyword':
+					/\b(?:and|as|by|else|for|if|import|in|is|loop|not|or|recursive|with|without)\b/,
 				'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 				'number': /\b\d+(?:\.\d+)?\b/,
 				'boolean': /[Ff]alse|[Nn]one|[Tt]rue/,
 				'variable': /\b\w+\b/,
-				'punctuation': /[{}[\](),.:;]/
-			}
+				'punctuation': /[{}[\](),.:;]/,
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'django'>;

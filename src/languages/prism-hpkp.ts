@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'hpkp',
-	grammar() {
+	grammar () {
 		/**
 		 * Original by Scott Helme.
 		 *
@@ -11,11 +11,12 @@ export default {
 
 		return {
 			'directive': {
-				pattern: /\b(?:includeSubDomains|max-age|pin-sha256|preload|report-to|report-uri|strict)(?=[\s;=]|$)/i,
-				alias: 'property'
+				pattern:
+					/\b(?:includeSubDomains|max-age|pin-sha256|preload|report-to|report-uri|strict)(?=[\s;=]|$)/i,
+				alias: 'property',
 			},
 			'operator': /=/,
-			'punctuation': /;/
+			'punctuation': /;/,
 		};
-	}
+	},
 } as LanguageProto<'hpkp'>;

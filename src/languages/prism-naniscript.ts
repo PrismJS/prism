@@ -3,7 +3,7 @@ import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
-function isBracketsBalanced(input: string): boolean {
+function isBracketsBalanced (input: string): boolean {
 	const brackets = '[]{}';
 	const stack = [];
 	for (let i = 0; i < input.length; i++) {
@@ -12,7 +12,8 @@ function isBracketsBalanced(input: string): boolean {
 		if (bracketsIndex !== -1) {
 			if (bracketsIndex % 2 === 0) {
 				stack.push(bracketsIndex + 1);
-			} else if (stack.pop() !== bracketsIndex) {
+			}
+			else if (stack.pop() !== bracketsIndex) {
 				return false;
 			}
 		}
@@ -23,18 +24,18 @@ function isBracketsBalanced(input: string): boolean {
 export default {
 	id: 'naniscript',
 	alias: 'nani',
-	grammar() {
+	grammar () {
 		const expressionDef = /\{[^\r\n\[\]{}]*\}/;
 
 		const params = {
 			'quoted-string': {
 				pattern: /"(?:[^"\\]|\\.)*"/,
-				alias: 'operator'
+				alias: 'operator',
 			},
 			'command-param-id': {
 				pattern: /(\s)\w+:/,
 				lookbehind: true,
-				alias: 'property'
+				alias: 'property',
 			},
 			'command-param-value': [
 				{
@@ -50,8 +51,8 @@ export default {
 				{
 					pattern: /\S(?:.*\S)?/,
 					alias: 'operator',
-				}
-			]
+				},
+			],
 		};
 
 		return {
@@ -69,19 +70,19 @@ export default {
 					'value': {
 						pattern: /(^>\w+[\t ]+)(?!\s)[^{}\r\n]+/,
 						lookbehind: true,
-						alias: 'operator'
+						alias: 'operator',
 					},
 					'key': {
 						pattern: /(^>)\w+/,
 						lookbehind: true,
-					}
-				}
+					},
+				},
 			},
 			// # ...
 			'label': {
 				pattern: /^([\t ]*)#[\t ]*\w+[\t ]*$/m,
 				lookbehind: true,
-				alias: 'regex'
+				alias: 'regex',
 			},
 			'command': {
 				pattern: /^([\t ]*)@\w+(?=[\t ]|$).*/m,
@@ -92,13 +93,13 @@ export default {
 					'expression': {
 						pattern: expressionDef,
 						greedy: true,
-						alias: 'selector'
+						alias: 'selector',
 					},
 					'command-params': {
 						pattern: /\s*\S[\s\S]*/,
-						inside: params
+						inside: params,
 					},
-				}
+				},
 			},
 			// Generic is any line that doesn't start with operators: ;>#@
 			'generic-text': {
@@ -111,7 +112,7 @@ export default {
 					'expression': {
 						pattern: expressionDef,
 						greedy: true,
-						alias: 'selector'
+						alias: 'selector',
 					},
 					'inline-command': {
 						pattern: /\[[\t ]*\w[^\r\n\[\]]*\]/,
@@ -121,7 +122,7 @@ export default {
 							'command-params': {
 								pattern: /(^\[[\t ]*\w+\b)[\s\S]+(?=\]$)/,
 								lookbehind: true,
-								inside: params
+								inside: params,
 							},
 							'command-param-name': {
 								pattern: /^(\[[\t ]*)\w+/,
@@ -129,14 +130,14 @@ export default {
 								alias: 'name',
 							},
 							'start-stop-char': /[\[\]]/,
-						}
+						},
 					},
-				}
+				},
 			},
 
 			[tokenize](code, grammar, Prism) {
 				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-				tokens.forEach((token) => {
+				tokens.forEach(token => {
 					if (typeof token !== 'string' && token.type === 'generic-text') {
 						const content = getTextContent(token);
 						if (!isBracketsBalanced(content)) {
@@ -146,7 +147,7 @@ export default {
 					}
 				});
 				return tokens;
-			}
+			},
 		};
-	}
+	},
 } as LanguageProto<'naniscript'>;

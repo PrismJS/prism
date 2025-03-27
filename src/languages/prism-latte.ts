@@ -8,7 +8,7 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'latte',
 	require: [markup, php],
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const markupLatte = extend('markup', {});
 		const tag = markupLatte.tag as GrammarToken & { inside: Grammar };
 		insertBefore(tag.inside, 'attr-value', {
@@ -17,7 +17,7 @@ export default {
 				inside: {
 					'attr-name': {
 						pattern: /^[^\s=]+/,
-						alias: 'important'
+						alias: 'important',
 					},
 					'attr-value': {
 						pattern: /=[\s\S]+/,
@@ -26,16 +26,16 @@ export default {
 								/^=/,
 								{
 									pattern: /^(\s*)["']|["']$/,
-									lookbehind: true
-								}
+									lookbehind: true,
+								},
 							],
 							'php': {
 								pattern: /\S(?:[\s\S]*\S)?/,
-								inside: 'php'
-							}
-						}
+								inside: 'php',
+							},
+						},
 					},
-				}
+				},
 			},
 		});
 
@@ -43,30 +43,31 @@ export default {
 			'latte-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
 				greedy: true,
-				alias: 'comment'
+				alias: 'comment',
 			},
 			'latte': {
-				pattern: /\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/,
+				pattern:
+					/\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/,
 				greedy: true,
 				inside: {
 					'latte-tag': {
 						// https://latte.nette.org/en/tags
 						pattern: /(^\{(?:\/(?=[a-z]))?)(?:[=_]|[a-z]\w*\b(?!\())/i,
 						lookbehind: true,
-						alias: 'important'
+						alias: 'important',
 					},
 					'delimiter': {
 						pattern: /^\{\/?|\}$/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
 					'php': {
 						pattern: /\S(?:[\s\S]*\S)?/,
 						alias: 'language-php',
-						inside: 'php'
-					}
-				}
+						inside: 'php',
+					},
+				},
 			},
-			[tokenize]: embeddedIn(markupLatte)
+			[tokenize]: embeddedIn(markupLatte),
 		};
-	}
+	},
 } as LanguageProto<'latte'>;

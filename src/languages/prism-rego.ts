@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'rego',
-	grammar() {
+	grammar () {
 		// https://www.openpolicyagent.org/docs/latest/policy-reference/
 
 		return {
@@ -10,12 +10,12 @@ export default {
 			'property': {
 				pattern: /(^|[^\\.])(?:"(?:\\.|[^\\"\r\n])*"|`[^`]*`|\b[a-z_]\w*\b)(?=\s*:(?!=))/i,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'string': {
 				pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"|`[^`]*`/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 
 			'keyword': /\b(?:as|default|else|import|not|null|package|set(?=\s*\()|some|with)\b/,
@@ -25,13 +25,13 @@ export default {
 				pattern: /\b[a-z_]\w*\b(?:\s*\.\s*\b[a-z_]\w*\b)*(?=\s*\()/i,
 				inside: {
 					'namespace': /\b\w+\b(?=\s*\.)/,
-					'punctuation': /\./
-				}
+					'punctuation': /\./,
+				},
 			},
 
 			'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 			'operator': /[-+*/%|&]|[<>:=]=?|!=|\b_\b/,
-			'punctuation': /[,;.\[\]{}()]/
+			'punctuation': /[,;.\[\]{}()]/,
 		};
-	}
+	},
 } as LanguageProto<'rego'>;

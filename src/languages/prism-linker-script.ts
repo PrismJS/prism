@@ -7,28 +7,28 @@ export default {
 		'comment': {
 			pattern: /(^|\s)\/\*[\s\S]*?(?:$|\*\/)/,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 		'identifier': {
 			pattern: /"[^"\r\n]*"/,
-			greedy: true
+			greedy: true,
 		},
 
 		'location-counter': {
 			pattern: /\B\.\B/,
-			alias: 'important'
+			alias: 'important',
 		},
 
 		'section': {
 			pattern: /(^|[^\w*])\.\w+\b/,
 			lookbehind: true,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 		'function': /\b[A-Z][A-Z_]*(?=\s*\()/,
 
 		'number': /\b(?:0[xX][a-fA-F0-9]+|\d+)[KM]?\b/,
 
 		'operator': />>=?|<<=?|->|\+\+|--|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?/,
-		'punctuation': /[(){},;]/
-	}
+		'punctuation': /[(){},;]/,
+	},
 } as LanguageProto<'linker-script'>;

@@ -6,16 +6,24 @@ export default {
 	id: 'cpp',
 	require: c,
 	optional: 'opencl-extensions',
-	grammar({ extend, getOptionalLanguage }) {
-		const keyword = /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
-		const modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(/<keyword>/g, () => keyword.source);
+	grammar ({ extend, getOptionalLanguage }) {
+		const keyword =
+			/\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
+		const modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(
+			/<keyword>/g,
+			() => keyword.source
+		);
 
 		const cpp = extend('c', {
 			'class-name': [
 				{
-					pattern: RegExp(/(\b(?:class|concept|enum|struct|typename)\s+)(?!<keyword>)\w+/.source
-						.replace(/<keyword>/g, () => keyword.source)),
-					lookbehind: true
+					pattern: RegExp(
+						/(\b(?:class|concept|enum|struct|typename)\s+)(?!<keyword>)\w+/.source.replace(
+							/<keyword>/g,
+							() => keyword.source
+						)
+					),
+					lookbehind: true,
 				},
 				// This is intended to capture the class name of method implementations like:
 				//   void foo::bar() const {}
@@ -27,15 +35,17 @@ export default {
 				/\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i,
 				// This also intends to capture the class name of method implementations but here the class has template
 				// parameters, so it can't be a namespace (until C++ adds generic namespaces).
-				/\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/
+				/\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/,
 			],
 			'keyword': keyword,
 			'number': {
-				pattern: /(?:\b0b[01']+|\b0x(?:[\da-f']+(?:\.[\da-f']*)?|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+(?:\.[\d']*)?|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]{0,4}/i,
-				greedy: true
+				pattern:
+					/(?:\b0b[01']+|\b0x(?:[\da-f']+(?:\.[\da-f']*)?|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+(?:\.[\d']*)?|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]{0,4}/i,
+				greedy: true,
 			},
-			'operator': />>=?|<<=?|->|--|\+\+|&&|\|\||[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
-			'boolean': /\b(?:false|true)\b/
+			'operator':
+				/>>=?|<<=?|->|--|\+\+|&&|\|\||[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
+			'boolean': /\b(?:false|true)\b/,
 		});
 
 		insertBefore(cpp, 'string', {
@@ -48,7 +58,10 @@ export default {
 						/"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|<[^<>\r\n]*>/.source +
 						'|' +
 						// module name or partition or both
-						/<mod-name>(?:\s*:\s*<mod-name>)?|:\s*<mod-name>/.source.replace(/<mod-name>/g, () => modName) +
+						/<mod-name>(?:\s*:\s*<mod-name>)?|:\s*<mod-name>/.source.replace(
+							/<mod-name>/g,
+							() => modName
+						) +
 						')'
 				),
 				lookbehind: true,
@@ -56,14 +69,14 @@ export default {
 				inside: {
 					'string': /^[<"][\s\S]+/,
 					'operator': /:/,
-					'punctuation': /\./
-				}
+					'punctuation': /\./,
+				},
 			},
 			'raw-string': {
 				pattern: /R"([^()\\ ]{0,16})\([\s\S]*?\)\1"/,
 				alias: 'string',
-				greedy: true
-			}
+				greedy: true,
+			},
 		});
 
 		insertBefore(cpp, 'keyword', {
@@ -74,17 +87,17 @@ export default {
 					'generic': {
 						pattern: /<[\s\S]+/,
 						alias: 'class-name',
-						inside: 'cpp'
-					}
-				}
-			}
+						inside: 'cpp',
+					},
+				},
+			},
 		});
 
 		insertBefore(cpp, 'operator', {
 			'double-colon': {
 				pattern: /::/,
-				alias: 'punctuation'
-			}
+				alias: 'punctuation',
+			},
 		});
 
 		/* OpenCL host API */
@@ -96,20 +109,21 @@ export default {
 		const baseInside = { ...cpp };
 		insertBefore(baseInside, 'double-colon', {
 			// All untokenized words that are not namespaces should be class names
-			'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
+			'class-name': /\b[a-z_]\w*\b(?!\s*::)/i,
 		});
 
 		insertBefore(cpp, 'class-name', {
 			// the base clause is an optional list of parent classes
 			// https://en.cppreference.com/w/cpp/language/class
 			'base-clause': {
-				pattern: /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
+				pattern:
+					/(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
 				lookbehind: true,
 				greedy: true,
-				inside: baseInside
-			}
+				inside: baseInside,
+			},
 		});
 
 		return cpp;
-	}
+	},
 } as LanguageProto<'cpp'>;

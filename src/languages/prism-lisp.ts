@@ -4,18 +4,18 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'lisp',
 	alias: ['emacs', 'elisp', 'emacs-lisp'],
-	grammar() {
+	grammar () {
 		/**
 		 * Functions to construct regular expressions
 		 * e.g. (interactive ... or (interactive)
 		 */
-		function simple_form(name: string) {
+		function simple_form (name: string) {
 			return RegExp(/(\()/.source + '(?:' + name + ')' + /(?=[\s\)])/.source);
 		}
 		/**
 		 * booleans and numbers
 		 */
-		function primitive(pattern: string) {
+		function primitive (pattern: string) {
 			return RegExp(/([\s([])/.source + '(?:' + pattern + ')' + /(?=[\s)])/.source);
 		}
 
@@ -31,20 +31,24 @@ export default {
 		const endpar = '(?=\\))';
 		// End the pattern with look-ahead space
 		const space = '(?=\\s)';
-		const nestedPar = /(?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\))*\))*\))*/.source;
+		const nestedPar =
+			/(?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\))*\))*\))*/
+				.source;
 
 		const arg = {
 			'lisp-marker': RegExp(marker),
 			'varform': {
-				pattern: RegExp(/\(/.source + symbol + /\s+(?=\S)/.source + nestedPar + /\)/.source),
-				inside: 'lisp'
+				pattern: RegExp(
+					/\(/.source + symbol + /\s+(?=\S)/.source + nestedPar + /\)/.source
+				),
+				inside: 'lisp',
 			},
 			'argument': {
 				pattern: RegExp(/(^|[\s(])/.source + symbol),
 				lookbehind: true,
-				alias: 'variable'
+				alias: 'variable',
 			},
-			[rest]: 'lisp'
+			[rest]: 'lisp',
 		};
 
 		const forms = '\\S+(?:\\s+\\S+)*';
@@ -55,31 +59,30 @@ export default {
 			inside: {
 				'rest-vars': {
 					pattern: RegExp('&(?:body|rest)\\s+' + forms),
-					inside: arg
+					inside: arg,
 				},
 				'other-marker-vars': {
 					pattern: RegExp('&(?:aux|optional)\\s+' + forms),
-					inside: arg
+					inside: arg,
 				},
 				'keys': {
 					pattern: RegExp('&key\\s+' + forms + '(?:\\s+&allow-other-keys)?'),
-					inside: arg
+					inside: arg,
 				},
 				'argument': {
 					pattern: RegExp(symbol),
-					alias: 'variable'
+					alias: 'variable',
 				},
-				'punctuation': /[()]/
-			}
+				'punctuation': /[()]/,
+			},
 		};
-
 
 		return {
 			// Three or four semicolons are considered a heading.
 			// See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
 			'heading': {
 				pattern: /;;;.*/,
-				alias: ['comment', 'title']
+				alias: ['comment', 'title'],
 			},
 			'comment': /;.*/,
 			'string': {
@@ -87,65 +90,72 @@ export default {
 				greedy: true,
 				inside: {
 					'argument': /[-A-Z]+(?=[.,\s])/,
-					'symbol': RegExp('`' + symbol + "'")
-				}
+					'symbol': RegExp('`' + symbol + "'"),
+				},
 			},
 			'quoted-symbol': {
 				pattern: RegExp("#?'" + symbol),
-				alias: ['variable', 'symbol']
+				alias: ['variable', 'symbol'],
 			},
 			'lisp-property': {
 				pattern: RegExp(':' + symbol),
-				alias: 'property'
+				alias: 'property',
 			},
 			'splice': {
 				pattern: RegExp(',@?' + symbol),
-				alias: ['symbol', 'variable']
+				alias: ['symbol', 'variable'],
 			},
 			'keyword': [
 				{
 					pattern: RegExp(
 						par +
-						'(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
-						space
+							'(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
+							space
 					),
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
 					pattern: RegExp(
 						par + '(?:append|by|collect|concat|do|finally|for|in|return)' + space
 					),
-					lookbehind: true
+					lookbehind: true,
 				},
 			],
 			'declare': {
 				pattern: simple_form(/declare/.source),
 				lookbehind: true,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 			'interactive': {
 				pattern: simple_form(/interactive/.source),
 				lookbehind: true,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 			'boolean': {
 				pattern: primitive(/nil|t/.source),
-				lookbehind: true
+				lookbehind: true,
 			},
 			'number': {
 				pattern: primitive(/[-+]?\d+(?:\.\d*)?/.source),
-				lookbehind: true
+				lookbehind: true,
 			},
 			'defvar': {
 				pattern: RegExp(par + 'def(?:const|custom|group|var)\\s+' + symbol),
 				lookbehind: true,
 				inside: {
 					keyword: /^def[a-z]+/,
-					variable: RegExp(symbol)
-				}
+					variable: RegExp(symbol),
+				},
 			},
 			'defun': {
-				pattern: RegExp(par + /(?:cl-)?(?:defmacro|defun\*?)\s+/.source + symbol + /\s+\(/.source + nestedPar + /\)/.source),
+				pattern: RegExp(
+					par +
+						/(?:cl-)?(?:defmacro|defun\*?)\s+/.source +
+						symbol +
+						/\s+\(/.source +
+						nestedPar +
+						/\)/.source
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -156,18 +166,20 @@ export default {
 						...arglist,
 						inside: {
 							...arglist.inside,
-							'sublist': arglist
-						}
+							'sublist': arglist,
+						},
 					},
 					'function': {
 						pattern: RegExp('(^\\s)' + symbol),
-						lookbehind: true
+						lookbehind: true,
 					},
-					'punctuation': /[()]/
-				}
+					'punctuation': /[()]/,
+				},
 			},
 			'lambda': {
-				pattern: RegExp(par + 'lambda\\s+\\(\\s*(?:&?' + symbol + '(?:\\s+&?' + symbol + ')*\\s*)?\\)'),
+				pattern: RegExp(
+					par + 'lambda\\s+\\(\\s*(?:&?' + symbol + '(?:\\s+&?' + symbol + ')*\\s*)?\\)'
+				),
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -175,12 +187,12 @@ export default {
 					// See below, this property needs to be defined later so that it can
 					// reference the language object.
 					'arguments': arglist,
-					'punctuation': /[()]/
-				}
+					'punctuation': /[()]/,
+				},
 			},
 			'car': {
 				pattern: RegExp(par + symbol),
-				lookbehind: true
+				lookbehind: true,
 			},
 			'punctuation': [
 				// open paren, brackets, and close paren
@@ -188,9 +200,9 @@ export default {
 				// cons
 				{
 					pattern: /(\s)\.(?=\s)/,
-					lookbehind: true
+					lookbehind: true,
 				},
-			]
+			],
 		};
-	}
+	},
 } as LanguageProto<'lisp'>;

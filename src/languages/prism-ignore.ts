@@ -13,10 +13,10 @@ export default {
 				'operator': /^!|\*\*?|\?/,
 				'regex': {
 					pattern: /(^|[^\\])\[[^\[\]]*\]/,
-					lookbehind: true
+					lookbehind: true,
 				},
-				'punctuation': /\//
-			}
-		}
-	}
+				'punctuation': /\//,
+			},
+		},
+	},
 } as LanguageProto<'ignore'>;

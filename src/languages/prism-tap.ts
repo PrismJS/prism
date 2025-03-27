@@ -15,7 +15,7 @@ export default {
 		'plan': /\b\d+\.\.\d+(?: +#.*)?/,
 		'subtest': {
 			pattern: /# Subtest(?:: .*)?/,
-			greedy: true
+			greedy: true,
 		},
 		'punctuation': /[{}]/,
 		'directive': /#.*/,
@@ -23,7 +23,7 @@ export default {
 			pattern: /(^[ \t]*)---[\s\S]*?[\r\n][ \t]*\.\.\.$/m,
 			lookbehind: true,
 			inside: 'yaml',
-			alias: 'language-yaml'
-		}
-	}
+			alias: 'language-yaml',
+		},
+	},
 } as LanguageProto<'tap'>;

@@ -5,25 +5,27 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /#.*/,
-			greedy: true
+			greedy: true,
 		},
 
 		'char': {
 			pattern: /\B`[^\s`'",.:;#\/\\()<>\[\]{}]\b/,
-			greedy: true
+			greedy: true,
 		},
 		'string': {
 			pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-			greedy: true
+			greedy: true,
 		},
 
 		'regex': {
-			pattern: /(^|[^/])\/(?!\/)(?:\[[^\n\r\]]*\]|\\.|[^/\\\r\n\[])+\/(?=\s*(?:$|[\r\n,.;})]))/,
+			pattern:
+				/(^|[^/])\/(?!\/)(?:\[[^\n\r\]]*\]|\\.|[^/\\\r\n\[])+\/(?=\s*(?:$|[\r\n,.;})]))/,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 
-		'keyword': /(?:=>|->)|\b(?:case|catch|class|else|exit|finally|if|raise|return|switch|try)\b/,
+		'keyword':
+			/(?:=>|->)|\b(?:case|catch|class|else|exit|finally|if|raise|return|switch|try)\b/,
 
 		'builtin': /@|\bSystem\b/,
 
@@ -38,6 +40,6 @@ export default {
 
 		'punctuation': /(?:\.{2,3})|[`,.:;=\/\\()<>\[\]{}]/,
 
-		'reference': /[^\d\s`'",.:;#\/\\()<>\[\]{}][^\s`'",.:;#\/\\()<>\[\]{}]*/
-	}
+		'reference': /[^\d\s`'",.:;#\/\\()<>\[\]{}][^\s`'",.:;#\/\\()<>\[\]{}]*/,
+	},
 } as LanguageProto<'rip'>;

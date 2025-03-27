@@ -19,7 +19,7 @@ export class LinkedList<T> {
 	readonly tail: LinkedListTailNode<T>;
 	length: number;
 
-	constructor() {
+	constructor () {
 		const head: LinkedListHeadNode<T> = { value: null, prev: null, next: null as never };
 		const tail: LinkedListTailNode<T> = { value: null, prev: head, next: null };
 		head.next = tail;
@@ -36,7 +36,10 @@ export class LinkedList<T> {
 	 * @param value
 	 * @returns The added node.
 	 */
-	addAfter(node: LinkedListHeadNode<T> | LinkedListMiddleNode<T>, value: T): LinkedListMiddleNode<T> {
+	addAfter (
+		node: LinkedListHeadNode<T> | LinkedListMiddleNode<T>,
+		value: T
+	): LinkedListMiddleNode<T> {
 		// assumes that node != list.tail && values.length >= 0
 		const next = node.next;
 
@@ -51,7 +54,7 @@ export class LinkedList<T> {
 	/**
 	 * Removes `count` nodes after the given node. The given node will not be removed.
 	 */
-	removeRange(node: LinkedListHeadNode<T> | LinkedListMiddleNode<T>, count: number): void {
+	removeRange (node: LinkedListHeadNode<T> | LinkedListMiddleNode<T>, count: number): void {
 		let next = node.next;
 		let i = 0;
 		for (; i < count && next.next !== null; i++) {
@@ -62,7 +65,7 @@ export class LinkedList<T> {
 		this.length -= i;
 	}
 
-	toArray(): T[] {
+	toArray (): T[] {
 		const array: T[] = [];
 		let node = this.head.next;
 		while (node.next !== null) {

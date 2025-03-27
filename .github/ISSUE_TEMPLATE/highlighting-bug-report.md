@@ -1,14 +1,14 @@
 ---
 name: Highlighting bug report
 about: Does Prism highlight parts of your code incorrectly or is a language feature
-  not supported?
+    not supported?
 title: ''
 labels: language-definitions
 assignees: ''
-
 ---
 
 **Information**
+
 - Language: [e.g. C++, JavaScript, YAML, etc.]
 - Plugins: [a list of plugins you are using or 'none']
 
@@ -26,6 +26,7 @@ A clear and concise description of what is being highlighted incorrectly and how
 <!--
 Please add a link to the [test page](https://prismjs.com/test.html) that reproduces your issue (hover over "Share" and insert the link below).
 -->
+
 [Test page]()
 
 <details>

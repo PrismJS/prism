@@ -12,20 +12,20 @@ export default {
 			inside: {
 				'regex': /\\\\[\[\]{},!?.*]/, // Escape special characters with '\\'
 				'operator': /[!?]|\.\.|\*{1,2}/,
-				'punctuation': /[\[\]{},]/
-			}
+				'punctuation': /[\[\]{},]/,
+			},
 		},
 		'key': {
 			pattern: /(^[ \t]*)[^\s=]+(?=[ \t]*=)/m,
 			lookbehind: true,
-			alias: 'attr-name'
+			alias: 'attr-name',
 		},
 		'value': {
 			pattern: /=.*/,
 			alias: 'attr-value',
 			inside: {
-				'punctuation': /^=/
-			}
-		}
-	}
+				'punctuation': /^=/,
+			},
+		},
+	},
 } as LanguageProto<'editorconfig'>;

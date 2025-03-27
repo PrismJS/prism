@@ -7,7 +7,7 @@ import type { GrammarTokens, LanguageProto } from '../types';
 export default {
 	id: 'pug',
 	require: [markup, javascript],
-	grammar() {
+	grammar () {
 		// TODO:
 		// - Add CSS highlighting inside <style> tags
 		// - Add support for multi-line code blocks
@@ -17,21 +17,21 @@ export default {
 		// - Add support for markup embedded in plain text
 
 		const pug = {
-
 			// Multiline stuff should appear before the rest
 
 			// This handles both single-line and multi-line comments
 			'comment': {
 				pattern: /(^([\t ]*))\/\/.*(?:(?:\r?\n|\r)\2[\t ].+)*/m,
-				lookbehind: true
+				lookbehind: true,
 			},
 
 			// All the tag-related part is in lookbehind
 			// so that it can be highlighted by the "tag" pattern
 			'multiline-script': {
-				pattern: /(^([\t ]*)script\b.*\.[\t ]*)(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/m,
+				pattern:
+					/(^([\t ]*)script\b.*\.[\t ]*)(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/m,
 				lookbehind: true,
-				inside: 'javascript'
+				inside: 'javascript',
 			},
 
 			// See at the end of the file for known filters
@@ -41,24 +41,25 @@ export default {
 				inside: {
 					'filter-name': {
 						pattern: /^:[\w-]+/,
-						alias: 'variable'
+						alias: 'variable',
 					},
 					'text': /\S[\s\S]*/,
-				}
+				},
 			},
 
 			'multiline-plain-text': {
-				pattern: /(^([\t ]*)[\w\-#.]+\.[\t ]*)(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/m,
-				lookbehind: true
+				pattern:
+					/(^([\t ]*)[\w\-#.]+\.[\t ]*)(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/m,
+				lookbehind: true,
 			},
 			'markup': {
 				pattern: /(^[\t ]*)<.+/m,
 				lookbehind: true,
-				inside: 'markup'
+				inside: 'markup',
 			},
 			'doctype': {
 				pattern: /((?:^|\n)[\t ]*)doctype(?: .+)?/,
-				lookbehind: true
+				lookbehind: true,
 			},
 
 			// This handle all conditional and loop keywords
@@ -70,19 +71,19 @@ export default {
 						pattern: /^each .+? in\b/,
 						inside: {
 							'keyword': /\b(?:each|in)\b/,
-							'punctuation': /,/
-						}
+							'punctuation': /,/,
+						},
 					},
 					'branch': {
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
-						alias: 'keyword'
+						alias: 'keyword',
 					},
-					[rest]: 'javascript'
-				}
+					[rest]: 'javascript',
+				},
 			},
 			'keyword': {
 				pattern: /(^[\t ]*)(?:append|block|extends|include|prepend)\b.+/m,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'mixin': [
 				// Declaration
@@ -92,8 +93,8 @@ export default {
 					inside: {
 						'keyword': /^mixin/,
 						'function': /\w+(?=\s*\(|\s*$)/,
-						'punctuation': /[(),.]/
-					}
+						'punctuation': /[(),.]/,
+					},
 				},
 				// Usage
 				{
@@ -102,21 +103,21 @@ export default {
 					inside: {
 						'name': {
 							pattern: /^\+\w+/,
-							alias: 'function'
+							alias: 'function',
 						},
-						[rest]: 'javascript'
-					}
-				}
+						[rest]: 'javascript',
+					},
+				},
 			],
 			'script': {
 				pattern: /(^[\t ]*script(?:(?:&[^(]+)?\([^)]+\))*[\t ]).+/m,
 				lookbehind: true,
-				inside: 'javascript'
+				inside: 'javascript',
 			},
 
 			'plain-text': {
 				pattern: /(^[\t ]*(?!-)[\w\-#.]*[\w\-](?:(?:&[^(]+)?\([^)]+\))*\/?[\t ]).+/m,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'tag': {
 				pattern: /(^[\t ]*)(?!-)[\w\-#.]*[\w\-](?:(?:&[^(]+)?\([^)]+\))*\/?:?/m,
@@ -125,7 +126,7 @@ export default {
 					'attributes': [
 						{
 							pattern: /&[^(]+\([^)]+\)/,
-							inside: 'javascript'
+							inside: 'javascript',
 						},
 						{
 							pattern: /\([^)]+\)/,
@@ -133,29 +134,30 @@ export default {
 								'attr-value': {
 									pattern: /(=\s*(?!\s))(?:\{[^}]*\}|[^,)\r\n]+)/,
 									lookbehind: true,
-									inside: 'javascript'
+									inside: 'javascript',
 								},
 								'attr-name': /[\w-]+(?=\s*!?=|\s*[,)])/,
-								'punctuation': /[!=(),]+/
-							}
-						}
+								'punctuation': /[!=(),]+/,
+							},
+						},
 					],
 					'punctuation': /:/,
 					'attr-id': /#[\w\-]+/,
-					'attr-class': /\.[\w\-]+/
-				}
+					'attr-class': /\.[\w\-]+/,
+				},
 			},
 			'code': [
 				{
 					pattern: /(^[\t ]*(?:-|!?=)).+/m,
 					lookbehind: true,
-					inside: 'javascript'
-				}
+					inside: 'javascript',
+				},
 			],
-			'punctuation': /[.\-!=|]+/
+			'punctuation': /[.\-!=|]+/,
 		};
 
-		const filter_pattern = /(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
+		const filter_pattern =
+			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
 
 		// Non exhaustive list of available filters and associated languages
 		const filters = [
@@ -167,30 +169,36 @@ export default {
 			'livescript',
 			'markdown',
 			{ filter: 'sass', language: 'scss' },
-			'stylus'
+			'stylus',
 		];
 		const all_filters: GrammarTokens = {};
 		for (const filterItem of filters) {
-			const { filter, language } = typeof filterItem === 'string' ? { filter: filterItem, language: filterItem } : filterItem;
+			const { filter, language } =
+				typeof filterItem === 'string'
+					? { filter: filterItem, language: filterItem }
+					: filterItem;
 			all_filters['filter-' + filter] = {
-				pattern: RegExp(filter_pattern.replace('<filter_name>', () => filter), 'm'),
+				pattern: RegExp(
+					filter_pattern.replace('<filter_name>', () => filter),
+					'm'
+				),
 				lookbehind: true,
 				inside: {
 					'filter-name': {
 						pattern: /^:[\w-]+/,
-						alias: 'variable'
+						alias: 'variable',
 					},
 					'text': {
 						pattern: /\S[\s\S]*/,
 						alias: [language, 'language-' + language],
-						inside: language
-					}
-				}
+						inside: language,
+					},
+				},
 			};
 		}
 
 		insertBefore(pug, 'filter', all_filters);
 
 		return pug;
-	}
+	},
 } as LanguageProto<'pug'>;

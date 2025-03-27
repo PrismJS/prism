@@ -6,7 +6,8 @@ export default {
 	grammar: {
 		'string': /"[^"]*"/,
 		'keyword': {
-			pattern: /((?:^|;)\s*)[-A-Z\d]+(?:\s*\[[-\w]+\])?(?:\s*\("[^"]*"(?:,\s*"[^"]*")*\))?(?=\s*=)/,
+			pattern:
+				/((?:^|;)\s*)[-A-Z\d]+(?:\s*\[[-\w]+\])?(?:\s*\("[^"]*"(?:,\s*"[^"]*")*\))?(?=\s*=)/,
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -16,8 +17,8 @@ export default {
 					lookbehind: true,
 					inside: {
 						'punctuation': /^\[|\]$/,
-						'property': /[-\w]+/
-					}
+						'property': /[-\w]+/,
+					},
 				},
 				'sub-key': {
 					pattern: /^(\s*)\S[\s\S]*/,
@@ -25,12 +26,12 @@ export default {
 					inside: {
 						'parameter': {
 							pattern: /"[^"]*"/,
-							alias: 'property'
+							alias: 'property',
 						},
-						'punctuation': /^\(|\)$|,/
-					}
-				}
-			}
+						'punctuation': /^\(|\)$|,/,
+					},
+				},
+			},
 		},
 		'operator': /=/,
 		'tlist': {
@@ -40,18 +41,18 @@ export default {
 				'function': /^TLIST/,
 				'property': {
 					pattern: /^(\s*\(\s*)\w+/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				'string': /"[^"]*"/,
 				'punctuation': /[(),]/,
-				'operator': /-/
-			}
+				'operator': /-/,
+			},
 		},
 		'punctuation': /[;,]/,
 		'number': {
 			pattern: /(^|\s)\d+(?:\.\d+)?(?!\S)/,
-			lookbehind: true
+			lookbehind: true,
 		},
 		'boolean': /NO|YES/,
-	}
+	},
 } as LanguageProto<'pcaxis'>;

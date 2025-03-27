@@ -6,7 +6,6 @@ describe('Autolinker', () => {
 		plugins: 'autolinker',
 	});
 
-
 	it('In JS code', ({ util }) => {
 		util.assert.highlightElement({
 			language: 'javascript',
@@ -20,7 +19,7 @@ describe('Autolinker', () => {
  */
 var foo = 5;
 // And a single line comment http://google.com
-`
+`,
 		});
 	});
 	it('In CSS code', ({ util }) => {
@@ -31,7 +30,7 @@ var foo = 5;
 	src: url(http://lea.verou.me/logo.otf);
 	font-family: 'LeaVerou';
 }
-`
+`,
 		});
 	});
 	it('In HTML code', ({ util }) => {
@@ -42,7 +41,7 @@ var foo = 5;
 Lea Verou http://lea.verou.me or, with Markdown, [Lea Verou](http://lea.verou.me) -->
 <img src="https://prismjs.com/assets/img/spectrum.png" alt="In attributes too!" />
 <p>Autolinking in raw text: http://prismjs.com</p>
-`
+`,
 		});
 	});
 });

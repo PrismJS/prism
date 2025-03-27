@@ -49,7 +49,7 @@ import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types'
  * @param before The key to insert before.
  * @param insert An object containing the key-value pairs to be inserted.
  */
-export function insertBefore(grammar: Grammar, before: string, insert: GrammarTokens) {
+export function insertBefore (grammar: Grammar, before: string, insert: GrammarTokens) {
 	if (!(before in grammar)) {
 		throw new Error(`"${before}" has to be a key of grammar.`);
 	}
@@ -104,7 +104,7 @@ export function insertBefore(grammar: Grammar, before: string, insert: GrammarTo
  *     'color': /\b(?:red|green|blue)\b/
  * });
  */
-export function extend(grammar: Grammar, id: string, reDef: Grammar): Grammar {
+export function extend (grammar: Grammar, id: string, reDef: Grammar): Grammar {
 	const lang = cloneGrammar(grammar, id);
 
 	for (const key in reDef) {
@@ -114,15 +114,16 @@ export function extend(grammar: Grammar, id: string, reDef: Grammar): Grammar {
 	return lang;
 }
 
-function cloneGrammar(grammar: Grammar, id: string): Grammar {
+function cloneGrammar (grammar: Grammar, id: string): Grammar {
 	const result: Grammar = {};
 
 	const visited = new Map<Grammar, Grammar>();
 
-	function cloneToken(value: GrammarToken | RegExpLike) {
+	function cloneToken (value: GrammarToken | RegExpLike) {
 		if (!value.pattern) {
 			return value;
-		} else {
+		}
+		else {
 			const copy: GrammarToken = { pattern: value.pattern };
 			if (value.lookbehind) {
 				copy.lookbehind = value.lookbehind;
@@ -139,26 +140,30 @@ function cloneGrammar(grammar: Grammar, id: string): Grammar {
 			return copy;
 		}
 	}
-	function cloneTokens(value: GrammarTokens[string]) {
+	function cloneTokens (value: GrammarTokens[string]) {
 		if (!value) {
 			return undefined;
-		} else if (Array.isArray(value)) {
+		}
+		else if (Array.isArray(value)) {
 			return value.map(cloneToken);
-		} else {
+		}
+		else {
 			return cloneToken(value);
 		}
 	}
-	function cloneRef(ref: NonNullable<Grammar[typeof rest]>) {
+	function cloneRef (ref: NonNullable<Grammar[typeof rest]>) {
 		if (ref === id) {
 			// self ref
 			return result;
-		} else if (typeof ref === 'string') {
+		}
+		else if (typeof ref === 'string') {
 			return ref;
-		} else {
+		}
+		else {
 			return clone(ref);
 		}
 	}
-	function clone(value: Grammar) {
+	function clone (value: Grammar) {
 		let mapped = visited.get(value);
 		if (mapped === undefined) {
 			mapped = value === grammar ? result : {};
@@ -187,7 +192,7 @@ function cloneGrammar(grammar: Grammar, id: string): Grammar {
 	return clone(grammar);
 }
 
-export function withoutTokenize(grammar: Grammar): Grammar {
+export function withoutTokenize (grammar: Grammar): Grammar {
 	if (!grammar[tokenize]) {
 		return grammar;
 	}
