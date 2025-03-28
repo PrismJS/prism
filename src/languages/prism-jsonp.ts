@@ -5,15 +5,15 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'jsonp',
 	require: json,
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const jsonp = extend('json', {
-			'punctuation': /[{}[\]();,.]/
+			'punctuation': /[{}[\]();,.]/,
 		});
 
 		insertBefore(jsonp, 'punctuation', {
-			'function': /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/
+			'function': /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/,
 		});
 
 		return jsonp;
-	}
+	},
 } as LanguageProto<'jsonp'>;

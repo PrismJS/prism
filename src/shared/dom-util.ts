@@ -5,7 +5,7 @@ const lang = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i;
  *
  * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
  */
-export function getLanguage(element: Element): string {
+export function getLanguage (element: Element): string {
 	let e: Element | null = element;
 	for (; e; e = e.parentElement) {
 		const m = lang.exec(e.className);
@@ -16,11 +16,10 @@ export function getLanguage(element: Element): string {
 	return 'none';
 }
 
-
 /**
  * Sets the Prism `language-xxxx` class of the given element.
  */
-export function setLanguage(element: Element, language: string): void {
+export function setLanguage (element: Element, language: string): void {
 	// remove all `language-xxxx` classes
 	// (this might leave behind a leading space)
 	// eslint-disable-next-line regexp/no-unused-capturing-group
@@ -30,7 +29,6 @@ export function setLanguage(element: Element, language: string): void {
 	// (using `classList` will automatically clean up spaces for us)
 	element.classList.add('language-' + language);
 }
-
 
 /**
  * Returns whether a given class is active for `element`.
@@ -51,15 +49,22 @@ export function setLanguage(element: Element, language: string): void {
  * @param defaultActivation Defaults to `false`.
  * @returns
  */
-export function isActive(element: Element | null, className: string, defaultActivation = false): boolean {
-	return element?.closest(`.${className}, .no-${className}`)?.classList?.contains(className) ?? defaultActivation;
+export function isActive (
+	element: Element | null,
+	className: string,
+	defaultActivation = false
+): boolean {
+	return (
+		element?.closest(`.${className}, .no-${className}`)?.classList?.contains(className) ??
+		defaultActivation
+	);
 }
 
 /**
  * If the parent element of the given element is a `<pre>` element, then if
  * will be returned. Otherwise, `undefined` will be returned.
  */
-export function getParentPre(element: Element): HTMLPreElement | undefined {
+export function getParentPre (element: Element): HTMLPreElement | undefined {
 	const pre = element.parentElement;
 	if (pre && /pre/i.test(pre.nodeName)) {
 		return pre as HTMLPreElement;

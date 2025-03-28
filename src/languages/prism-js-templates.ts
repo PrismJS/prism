@@ -13,7 +13,7 @@ import type { GrammarToken, LanguageProto } from '../types';
  * @example
  * createTemplate('css', /\bcss/.source);
  */
-function createTemplate(language: string, tag: string): GrammarToken {
+function createTemplate (language: string, tag: string): GrammarToken {
 	return {
 		pattern: RegExp('((?:' + tag + ')\\s*)' + JS_TEMPLATE.source),
 		lookbehind: true,
@@ -22,40 +22,45 @@ function createTemplate(language: string, tag: string): GrammarToken {
 		inside: {
 			'template-punctuation': {
 				pattern: /^`|`$/,
-				alias: 'string'
+				alias: 'string',
 			},
 			[language]: {
 				pattern: /[\s\S]+/,
 				inside: {
 					'interpolation': {
-						pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source),
+						pattern: RegExp(
+							/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source
+						),
 						lookbehind: true,
 						inside: {
 							'interpolation-punctuation': {
 								pattern: /^\$\{|\}$/,
-								alias: 'punctuation'
+								alias: 'punctuation',
 							},
-							[rest]: 'javascript'
-						}
+							[rest]: 'javascript',
+						},
 					},
-					[tokenize]: embeddedIn(language)
-				}
-			}
-
-		}
+					[tokenize]: embeddedIn(language),
+				},
+			},
+		},
 	};
 }
 
 export default {
 	id: 'js-templates',
-	grammar() {
+	grammar () {
 		return {
 			'template-string': [
 				// styled-jsx:
 				//   css`a { color: #25F; }`
 				// styled-components:
 				//   styled.h1`color: red;`
-				createTemplate('css', /\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/.source),
+				createTemplate(
+					'css',
+					/\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/
+						.source
+				),
 
 				// html`<p></p>`
 				// div.innerHTML = `<p></p>`
@@ -72,7 +77,7 @@ export default {
 
 				// sql`...`
 				createTemplate('sql', /\bsql/.source),
-			]
+			],
 		};
-	}
+	},
 } as LanguageProto<'js-templates'>;

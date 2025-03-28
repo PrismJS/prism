@@ -14,7 +14,7 @@ export const PREFIXES = {
 
 export default {
 	id: 'diff',
-	grammar() {
+	grammar () {
 		const diff: Grammar = {
 			'coord': [
 				// Match all kinds of coord lines (prefixed by "+++", "---" or "***").
@@ -22,19 +22,20 @@ export default {
 				// Match "@@ ... @@" coord lines in unified diff.
 				/^@@.*@@$/m,
 				// Match coord lines in normal diff (starts with a number).
-				/^\d.*$/m
-			]
+				/^\d.*$/m,
+			],
 
 			// deleted, inserted, unchanged, diff
 		};
 
 		// add a token for each prefix
-		Object.keys(PREFIXES).forEach((name) => {
+		Object.keys(PREFIXES).forEach(name => {
 			const prefix = PREFIXES[name as keyof typeof PREFIXES];
 
 			const alias = [];
 			const mainName = /\w+/.exec(name)?.[0] || name;
-			if (mainName !== name) { // "deleted-sign" -> "deleted"
+			if (mainName !== name) {
+				// "deleted-sign" -> "deleted"
 				alias.push(mainName);
 			}
 			if (name === 'diff') {
@@ -48,12 +49,12 @@ export default {
 					'prefix': {
 						pattern: RegExp(`^[${prefix}]`, 'm'),
 						greedy: true,
-						alias: mainName
-					}
-				}
+						alias: mainName,
+					},
+				},
 			};
 		});
 
 		return diff;
-	}
+	},
 } as LanguageProto<'diff'>;

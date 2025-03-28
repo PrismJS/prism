@@ -6,7 +6,7 @@ import type { GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'wiki',
 	require: markup,
-	grammar({ extend, getLanguage }) {
+	grammar ({ extend, getLanguage }) {
 		const markup = getLanguage('markup');
 		const tag = markup['tag'] as GrammarToken;
 
@@ -14,14 +14,14 @@ export default {
 			'block-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
-				alias: 'comment'
+				alias: 'comment',
 			},
 			'heading': {
 				pattern: /^(=+)[^=\r\n].*?\1/m,
 				inside: {
 					'punctuation': /^=+|=+$/,
-					'important': /.+/
-				}
+					'important': /.+/,
+				},
 			},
 			'emphasis': {
 				// TODO Multi-line
@@ -30,38 +30,35 @@ export default {
 					'bold-italic': {
 						pattern: /(''''').+?(?=\1)/,
 						lookbehind: true,
-						alias: ['bold', 'italic']
+						alias: ['bold', 'italic'],
 					},
 					'bold': {
 						pattern: /(''')[^'](?:.*?[^'])?(?=\1)/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'italic': {
 						pattern: /('')[^'](?:.*?[^'])?(?=\1)/,
-						lookbehind: true
+						lookbehind: true,
 					},
-					'punctuation': /^''+|''+$/
-				}
+					'punctuation': /^''+|''+$/,
+				},
 			},
 			'hr': {
 				pattern: /^-{4,}/m,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'url': [
 				/ISBN +(?:97[89][ -]?)?(?:\d[ -]?){9}[\dx]\b|(?:PMID|RFC) +\d+/i,
-				/\[\[.+?\]\]|\[.+?\]/
+				/\[\[.+?\]\]|\[.+?\]/,
 			],
 			'variable': [
 				/__[A-Z]+__/,
 				// FIXME Nested structures should be handled
 				// {{formatnum:{{#expr:{{{3}}}}}}}
 				/\{{3}.+?\}{3}/,
-				/\{\{.+?\}\}/
+				/\{\{.+?\}\}/,
 			],
-			'symbol': [
-				/^#redirect/im,
-				/~{3,5}/
-			],
+			'symbol': [/^#redirect/im, /~{3,5}/],
 			// Handle table attrs:
 			// {|
 			// ! style="text-align:left;"| Item
@@ -72,12 +69,12 @@ export default {
 				inside: {
 					'table-bar': {
 						pattern: /\|$/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
-					[rest]: tag.inside
-				}
+					[rest]: tag.inside,
+				},
 			},
-			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m
+			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
 		});
 
 		insertBefore(wiki, 'tag', {
@@ -87,12 +84,12 @@ export default {
 				inside: {
 					'tag': {
 						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-						inside: tag.inside
-					}
-				}
-			}
+						inside: tag.inside,
+					},
+				},
+			},
 		});
 
 		return wiki;
-	}
+	},
 } as LanguageProto<'wiki'>;

@@ -4,7 +4,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'xml-doc',
 	require: markup,
-	grammar({ getLanguage }) {
+	grammar ({ getLanguage }) {
 		const tag = getLanguage('markup').tag;
 
 		return {
@@ -13,17 +13,17 @@ export default {
 				greedy: true,
 				alias: 'comment',
 				inside: {
-					'tag': tag
-				}
+					'tag': tag,
+				},
 			},
 			'tick': {
 				pattern: /'''.*/,
 				greedy: true,
 				alias: 'comment',
 				inside: {
-					'tag': tag
-				}
-			}
+					'tag': tag,
+				},
+			},
 		};
-	}
+	},
 } as LanguageProto<'xml-doc'>;

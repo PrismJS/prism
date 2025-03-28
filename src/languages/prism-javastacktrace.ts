@@ -2,30 +2,30 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'javastacktrace',
-	grammar() {
+	grammar () {
 		// Specification:
 		// https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Throwable.html#printStackTrace()
 
 		return {
-
 			// java.sql.SQLException: Violation of unique constraint MY_ENTITY_UK_1: duplicate value(s) for column(s) MY_COLUMN in statement [...]
 			// Caused by: java.sql.SQLException: Violation of unique constraint MY_ENTITY_UK_1: duplicate value(s) for column(s) MY_COLUMN in statement [...]
 			// Caused by: com.example.myproject.MyProjectServletException
 			// Caused by: MidLevelException: LowLevelException
 			// Suppressed: Resource$CloseFailException: Resource ID = 0
 			'summary': {
-				pattern: /^([\t ]*)(?:(?:Caused by:|Suppressed:|Exception in thread "[^"]*")[\t ]+)?[\w$.]+(?::.*)?$/m,
+				pattern:
+					/^([\t ]*)(?:(?:Caused by:|Suppressed:|Exception in thread "[^"]*")[\t ]+)?[\w$.]+(?::.*)?$/m,
 				lookbehind: true,
 				inside: {
 					'keyword': {
 						pattern: /^([\t ]*)(?:(?:Caused by|Suppressed)(?=:)|Exception in thread)/m,
-						lookbehind: true
+						lookbehind: true,
 					},
 
 					// the current thread if the summary starts with 'Exception in thread'
 					'string': {
 						pattern: /^(\s*)"[^"]*"/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'exceptions': {
 						pattern: /^(:?\s*)[\w$.]+(?=:|$)/,
@@ -33,16 +33,16 @@ export default {
 						inside: {
 							'class-name': /[\w$]+$/,
 							'namespace': /\b[a-z]\w*\b/,
-							'punctuation': /\./
-						}
+							'punctuation': /\./,
+						},
 					},
 					'message': {
 						pattern: /(:\s*)\S.*/,
 						lookbehind: true,
-						alias: 'string'
+						alias: 'string',
 					},
-					'punctuation': /:/
-				}
+					'punctuation': /:/,
+				},
 			},
 
 			// at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
@@ -72,7 +72,7 @@ export default {
 				inside: {
 					'keyword': {
 						pattern: /^(\s*)at(?= )/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'source': [
 						// (Main.java:15)
@@ -85,9 +85,9 @@ export default {
 								'punctuation': /:/,
 								'line-number': {
 									pattern: /\b\d+\b/,
-									alias: 'number'
-								}
-							}
+									alias: 'number',
+								},
+							},
 						},
 						// (Unknown Source)
 						// (Native Method)
@@ -96,9 +96,9 @@ export default {
 							pattern: /(\()[^()]*(?=\))/,
 							lookbehind: true,
 							inside: {
-								'keyword': /^(?:Native Method|Unknown Source)$/
-							}
-						}
+								'keyword': /^(?:Native Method|Unknown Source)$/,
+							},
+						},
 					],
 					'class-name': /[\w$]+(?=\.(?:<init>|[\w$]+)\()/,
 					'function': /(?:<init>|[\w$]+)(?=\()/,
@@ -107,8 +107,8 @@ export default {
 						lookbehind: true,
 						alias: 'namespace',
 						inside: {
-							'punctuation': /\./
-						}
+							'punctuation': /\./,
+						},
 					},
 					'module': {
 						pattern: /([\s/])[a-z]\w*(?:\.[a-z]\w*)*(?:@[\w$.+-]*)?(?=\/)/,
@@ -117,19 +117,19 @@ export default {
 							'version': {
 								pattern: /(@)[\s\S]+/,
 								lookbehind: true,
-								alias: 'number'
+								alias: 'number',
 							},
-							'punctuation': /[@.]/
-						}
+							'punctuation': /[@.]/,
+						},
 					},
 					'namespace': {
 						pattern: /(?:\b[a-z]\w*\.)+/,
 						inside: {
-							'punctuation': /\./
-						}
+							'punctuation': /\./,
+						},
 					},
-					'punctuation': /[()/.]/
-				}
+					'punctuation': /[()/.]/,
+				},
 			},
 
 			// ... 32 more
@@ -140,10 +140,9 @@ export default {
 				inside: {
 					'punctuation': /\.{3}/,
 					'number': /\d+/,
-					'keyword': /\b[a-z]+(?: [a-z]+)*\b/
-				}
-			}
-
+					'keyword': /\b[a-z]+(?: [a-z]+)*\b/,
+				},
+			},
 		};
-	}
+	},
 } as LanguageProto<'javastacktrace'>;

@@ -6,16 +6,16 @@ export default {
 		'comment': /;.*|\B\(.*?\)\B/,
 		'string': {
 			pattern: /"(?:""|[^"])*"/,
-			greedy: true
+			greedy: true,
 		},
 		'keyword': /\b[GM]\d+(?:\.\d+)?\b/,
 		'property': /\b[A-Z]/,
 		'checksum': {
 			pattern: /(\*)\d+/,
 			lookbehind: true,
-			alias: 'number'
+			alias: 'number',
 		},
 		// T0:0:0
-		'punctuation': /[:*]/
-	}
+		'punctuation': /[:*]/,
+	},
 } as LanguageProto<'gcode'>;

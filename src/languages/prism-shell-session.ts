@@ -5,7 +5,7 @@ export default {
 	id: 'shell-session',
 	require: bash,
 	alias: ['sh-session', 'shellsession'],
-	grammar() {
+	grammar () {
 		// CAREFUL!
 		// The following patterns are concatenated, so the group referenced by a back reference is non-obvious!
 
@@ -17,7 +17,7 @@ export default {
 
 			// here doc
 			// 2 capturing groups
-			/<<-?\s*(["']?)(\w+)\1\s[\s\S]*?[\r\n]\2/.source
+			/<<-?\s*(["']?)(\w+)\1\s[\s\S]*?[\r\n]\2/.source,
 		].join('|');
 
 		return {
@@ -26,20 +26,21 @@ export default {
 					// user info
 					/^/.source +
 						'(?:' +
-						(
-							// <user> ":" ( <path> )?
-							/[^\s@:$#%*!/\\]+@[^\r\n@:$#%*!/\\]+(?::[^\0-\x1F$#%*?"<>:;|]+)?/.source +
+						// <user> ":" ( <path> )?
+						(/[^\s@:$#%*!/\\]+@[^\r\n@:$#%*!/\\]+(?::[^\0-\x1F$#%*?"<>:;|]+)?/.source +
 							'|' +
 							// <path>
 							// Since the path pattern is quite general, we will require it to start with a special character to
 							// prevent false positives.
-							/[/~.][^\0-\x1F$#%*?"<>@:;|]*/.source
-						) +
+							/[/~.][^\0-\x1F$#%*?"<>@:;|]*/.source) +
 						')?' +
 						// shell symbol
 						/[$#%](?=\s)/.source +
 						// bash command
-						/(?:[^\\\r\n \t'"<$]|[ \t](?:(?!#)|#.*$)|\\(?:[^\r]|\r\n?)|\$(?!')|<(?!<)|<<str>>)+/.source.replace(/<<str>>/g, () => strings),
+						/(?:[^\\\r\n \t'"<$]|[ \t](?:(?!#)|#.*$)|\\(?:[^\r]|\r\n?)|\$(?!')|<(?!<)|<<str>>)+/.source.replace(
+							/<<str>>/g,
+							() => strings
+						),
 					'm'
 				),
 				greedy: true,
@@ -53,22 +54,22 @@ export default {
 						inside: {
 							'user': /^[^\s@:$#%*!/\\]+@[^\r\n@:$#%*!/\\]+/,
 							'punctuation': /:/,
-							'path': /[\s\S]+/
-						}
+							'path': /[\s\S]+/,
+						},
 					},
 					'bash': {
 						pattern: /(^[$#%]\s*)\S[\s\S]*/,
 						lookbehind: true,
 						alias: 'language-bash',
-						inside: 'bash'
+						inside: 'bash',
 					},
 					'shell-symbol': {
 						pattern: /^[$#%]/,
-						alias: 'important'
-					}
-				}
+						alias: 'important',
+					},
+				},
 			},
-			'output': /.(?:.*(?:[\r\n]|.$))*/
+			'output': /.(?:.*(?:[\r\n]|.$))*/,
 		};
-	}
+	},
 } as LanguageProto<'shell-session'>;

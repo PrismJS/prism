@@ -4,7 +4,6 @@ about: Suggest a new language Prism should support.
 title: ''
 labels: language-definitions, new language
 assignees: ''
-
 ---
 
 **Language**

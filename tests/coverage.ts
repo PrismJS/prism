@@ -13,10 +13,15 @@ describe('Pattern test coverage', () => {
 	}
 	const patterns = new Map<string, PatternData>();
 
-	async function createInstance(languages: string | string[]) {
+	async function createInstance (languages: string | string[]) {
 		const Prism = await PrismLoader.createInstance(languages);
 
-		const root = Object.fromEntries([...Prism.components['entries'].keys()].map((id) => [id, Prism.components.getLanguage(id)]));
+		const root = Object.fromEntries(
+			[...Prism.components['entries'].keys()].map(id => [
+				id,
+				Prism.components.getLanguage(id),
+			])
+		);
 
 		BFS(root, (path, object) => {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -34,14 +39,14 @@ describe('Pattern test coverage', () => {
 						pattern: regex,
 						language: path[1].key ?? '',
 						from: new Set(),
-						matches: []
+						matches: [],
 					};
 					patterns.set(patternKey, data);
 				}
 				data.from.add(tokenPath);
 				const { matches } = data;
 
-				regex.exec = (string) => {
+				regex.exec = string => {
 					const match = RegExp.prototype.exec.call(regex, string);
 					if (match) {
 						matches.push(match);
@@ -72,7 +77,8 @@ describe('Pattern test coverage', () => {
 				for (const filePath of files) {
 					try {
 						await runTestCase(languageIdentifier, filePath, 'none', createInstance);
-					} catch (error) {
+					}
+					catch (error) {
 						// we don't case about whether the test succeeds,
 						// we just want to gather usage data
 					}
@@ -85,22 +91,24 @@ describe('Pattern test coverage', () => {
 		for (const language of PrismLoader.getLanguageIds()) {
 			describe(language, () => {
 				it(`- should cover all patterns`, () => {
-					const untested = getAllOf(language).filter((d) => d.matches.length === 0);
+					const untested = getAllOf(language).filter(d => d.matches.length === 0);
 					if (untested.length === 0) {
 						return;
 					}
 
-					const problems = untested.map((data) => {
+					const problems = untested.map(data => {
 						return formatProblem(data, [
-							'This pattern is completely untested. Add test files that match this pattern.'
+							'This pattern is completely untested. Add test files that match this pattern.',
 						]);
 					});
 
-					assert.fail([
-						`${problems.length} pattern(s) are untested:\n`
-						+ 'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
-						...problems
-					].join('\n\n'));
+					assert.fail(
+						[
+							`${problems.length} pattern(s) are untested:\n` +
+								'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
+							...problems,
+						].join('\n\n')
+					);
 				});
 
 				it(`- should exhaustively cover all keywords in keyword lists`, () => {
@@ -126,10 +134,12 @@ describe('Pattern test coverage', () => {
 						});
 
 						if (keywords.size > 0) {
-							problems.push(formatProblem(data, [
-								`Add test files to test all keywords. The following keywords (${keywords.size}/${keywordCount}) are untested:`,
-								...[...keywords].map((k) => `    ${k}`)
-							]));
+							problems.push(
+								formatProblem(data, [
+									`Add test files to test all keywords. The following keywords (${keywords.size}/${keywordCount}) are untested:`,
+									...[...keywords].map(k => `    ${k}`),
+								])
+							);
 						}
 					}
 
@@ -137,24 +147,27 @@ describe('Pattern test coverage', () => {
 						return;
 					}
 
-					assert.fail([
-						`${problems.length} keyword list(s) are not exhaustively tested:\n`
-						+ 'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
-						...problems
-					].join('\n\n'));
+					assert.fail(
+						[
+							`${problems.length} keyword list(s) are not exhaustively tested:\n` +
+								'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
+							...problems,
+						].join('\n\n')
+					);
 				});
 			});
 		}
 	});
 
-	function getAllOf(language: string) {
-		return [...patterns.values()].filter((d) => d.language === language);
+	function getAllOf (language: string) {
+		return [...patterns.values()].filter(d => d.language === language);
 	}
 
-	function short(string: string, maxLength: number): string {
+	function short (string: string, maxLength: number): string {
 		if (string.length > maxLength) {
 			return string.slice(0, maxLength - 1) + '…';
-		} else {
+		}
+		else {
 			return string;
 		}
 	}
@@ -163,7 +176,7 @@ describe('Pattern test coverage', () => {
 	 * If the given pattern string describes a keyword list, all keyword will be returned. Otherwise, `null` will be
 	 * returned.
 	 */
-	function getKeywordList(pattern: RegExp): Set<string> | null {
+	function getKeywordList (pattern: RegExp): Set<string> | null {
 		// Right now, only keyword lists of the form /\b(?:foo|bar)\b/ are supported.
 		// In the future, we might want to convert these regexes to NFAs and iterate all words to cover more complex
 		// keyword lists and even operator and punctuation lists.
@@ -178,12 +191,16 @@ describe('Pattern test coverage', () => {
 				source = source.toUpperCase();
 			}
 			return new Set(source.split(/\|/));
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
 
-	function splitOccurrences(occurrences: Iterable<string>): { origin: string; otherOccurrences: string[] } {
+	function splitOccurrences (occurrences: Iterable<string>): {
+		origin: string;
+		otherOccurrences: string[];
+	} {
 		const all = [...occurrences];
 		return {
 			origin: all[0],
@@ -191,21 +208,16 @@ describe('Pattern test coverage', () => {
 		};
 	}
 
-	function formatProblem(data: PatternData, messageLines: string[]): string {
+	function formatProblem (data: PatternData, messageLines: string[]): string {
 		const { origin, otherOccurrences } = splitOccurrences(data.from);
 
-		const lines = [
-			`${origin}:`,
-			short(String(data.pattern), 100),
-			'',
-			...messageLines,
-		];
+		const lines = [`${origin}:`, short(String(data.pattern), 100), '', ...messageLines];
 
 		if (otherOccurrences.length) {
 			lines.push(
 				'',
 				'Other occurrences of this pattern:',
-				...otherOccurrences.map((o) => `- ${o}`)
+				...otherOccurrences.map(o => `- ${o}`)
 			);
 		}
 
@@ -213,10 +225,11 @@ describe('Pattern test coverage', () => {
 	}
 });
 
-function makeGlobal(regex: RegExp): RegExp {
+function makeGlobal (regex: RegExp): RegExp {
 	if (regex.global) {
 		return regex;
-	} else {
+	}
+	else {
 		return RegExp(regex.source, regex.flags + 'g');
 	}
 }

@@ -1,5 +1,14 @@
 import { assert } from 'chai';
-import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordSets, isDisjointWith, transform } from 'refa';
+import {
+	JS,
+	NFA,
+	Transformers,
+	Words,
+	combineTransformers,
+	getIntersectionWordSets,
+	isDisjointWith,
+	transform,
+} from 'refa';
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import * as scslre from 'scslre';
@@ -12,7 +21,14 @@ import { BFS, BFSPathToPrismTokenPath, isRegExp, parseRegex } from './helper/uti
 import type { Prism } from '../src/core';
 import type { Grammar, GrammarToken } from '../src/types';
 import type { LiteralAST, PathItem } from './helper/util';
-import type { CapturingGroup, Element, Group, LookaroundAssertion, Node, Pattern } from 'regexpp/ast';
+import type {
+	CapturingGroup,
+	Element,
+	Group,
+	LookaroundAssertion,
+	Node,
+	Pattern,
+} from 'regexpp/ast';
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -59,14 +75,13 @@ for (const lang of getLanguageIds()) {
 /**
  * Tests all patterns in the given Prism instance.
  */
-function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: string) {
-
+function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage: string) {
 	/**
 	 * Returns a list of relevant languages in the Prism instance.
 	 *
 	 * The list does not included readonly dependencies and aliases.
 	 */
-	function getRelevantLanguages(): string[] {
+	function getRelevantLanguages (): string[] {
 		return [mainLanguage];
 	}
 
@@ -82,17 +97,17 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		path: PathItem[];
 		reportError: (message: string) => void;
 	}
-	async function forEachPattern(callback: (values: ForEachPatternCallbackValue) => void) {
+	async function forEachPattern (callback: (values: ForEachPatternCallbackValue) => void) {
 		const visited = new Set();
 		const errors: (Error | string)[] = [];
 
-		function traverse(grammar: Grammar, rootStr: string) {
+		function traverse (grammar: Grammar, rootStr: string) {
 			if (visited.has(grammar)) {
 				return;
 			}
 			visited.add(grammar);
 
-			BFS(grammar, (path) => {
+			BFS(grammar, path => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
@@ -103,15 +118,21 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 						let ast;
 						try {
 							ast = parseRegex(value);
-						} catch (error) {
-							throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${asError(error).message}`);
+						}
+						catch (error) {
+							throw new SyntaxError(
+								`Invalid RegExp at ${tokenPath}\n\n${asError(error).message}`
+							);
 						}
 
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-						const lookbehind = key === 'pattern' && !!parent && !!(parent as GrammarToken).lookbehind;
-						const lookbehindGroup = lookbehind ? getFirstCapturingGroup(ast.pattern) : undefined;
+						const lookbehind =
+							key === 'pattern' && !!parent && !!(parent as GrammarToken).lookbehind;
+						const lookbehindGroup = lookbehind
+							? getFirstCapturingGroup(ast.pattern)
+							: undefined;
 						callback({
 							pattern: value,
 							ast,
@@ -122,9 +143,10 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 							path,
 							lookbehind,
 							lookbehindGroup,
-							reportError: (message) => errors.push(message)
+							reportError: message => errors.push(message),
 						});
-					} catch (error) {
+					}
+					catch (error) {
 						errors.push(asError(error));
 					}
 				}
@@ -157,7 +179,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 				return result;
 			};
 
-			for (const snippet of (snippets || [])) {
+			for (const snippet of snippets || []) {
 				Prism.highlight(snippet, lang, { grammar });
 			}
 
@@ -165,7 +187,7 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		}
 
 		if (errors.length > 0) {
-			throw new Error(errors.map((e) => typeof e === 'string' ? e : e.message).join('\n\n'));
+			throw new Error(errors.map(e => (typeof e === 'string' ? e : e.message)).join('\n\n'));
 		}
 	}
 
@@ -177,26 +199,31 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 	/**
 	 * Invokes the given callback for all capturing groups in the given pattern in left to right order.
 	 */
-	function forEachCapturingGroup(pattern: Pattern, callback: (values: ForEachCapturingGroupCallbackValue) => void) {
+	function forEachCapturingGroup (
+		pattern: Pattern,
+		callback: (values: ForEachCapturingGroupCallbackValue) => void
+	) {
 		let number = 0;
 		visitRegExpAST(pattern, {
-			onCapturingGroupEnter(node) {
+			onCapturingGroupEnter (node) {
 				callback({
 					group: node,
-					number: ++number
+					number: ++number,
 				});
-			}
+			},
 		});
 	}
-
 
 	it('- should not match the empty string', async () => {
 		await forEachPattern(({ ast, pattern, tokenPath }) => {
 			// test for empty string
 			const empty = RAA.isPotentiallyZeroLength(ast.pattern.alternatives);
-			assert.isFalse(empty, `${tokenPath}: ${String(pattern)} should not match the empty string.\n\n`
-				+ `Patterns that do match the empty string can potentially cause infinitely many empty tokens. `
-				+ `Make sure that all patterns always consume at least one character.`);
+			assert.isFalse(
+				empty,
+				`${tokenPath}: ${String(pattern)} should not match the empty string.\n\n` +
+					`Patterns that do match the empty string can potentially cause infinitely many empty tokens. ` +
+					`Make sure that all patterns always consume at least one character.`
+			);
 		});
 	});
 
@@ -204,13 +231,17 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		await forEachPattern(({ ast, tokenPath, lookbehind }) => {
 			if (lookbehind) {
 				let hasCapturingGroup = false;
-				forEachCapturingGroup(ast.pattern, () => { hasCapturingGroup = true; });
+				forEachCapturingGroup(ast.pattern, () => {
+					hasCapturingGroup = true;
+				});
 
 				if (!hasCapturingGroup) {
-					assert.fail(`${tokenPath}: The pattern is set to 'lookbehind: true' but does not have a capturing group.\n\n`
-						+ `Prism lookbehind groups use the captured text of the first capturing group to simulate a lookbehind. `
-						+ `Without a capturing group, a lookbehind is not possible.\n`
-						+ `To fix this, either add a capturing group for the lookbehind or remove the 'lookbehind' property.`);
+					assert.fail(
+						`${tokenPath}: The pattern is set to 'lookbehind: true' but does not have a capturing group.\n\n` +
+							`Prism lookbehind groups use the captured text of the first capturing group to simulate a lookbehind. ` +
+							`Without a capturing group, a lookbehind is not possible.\n` +
+							`To fix this, either add a capturing group for the lookbehind or remove the 'lookbehind' property.`
+					);
 				}
 			}
 		});
@@ -219,10 +250,12 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 	it('- should not have lookbehind groups that can be preceded by other some characters', async () => {
 		await forEachPattern(({ tokenPath, lookbehindGroup }) => {
 			if (lookbehindGroup && !isFirstMatch(lookbehindGroup)) {
-				assert.fail(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} might be preceded by some characters.\n\n`
-					+ `Prism assumes that the lookbehind group, if captured, is the first thing matched by the regex. `
-					+ `If characters might precede the lookbehind group (e.g. /a?(b)c/), then Prism cannot correctly apply the lookbehind correctly in all cases.\n`
-					+ `To fix this, either remove the preceding characters or include them in the lookbehind group.`);
+				assert.fail(
+					`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} might be preceded by some characters.\n\n` +
+						`Prism assumes that the lookbehind group, if captured, is the first thing matched by the regex. ` +
+						`If characters might precede the lookbehind group (e.g. /a?(b)c/), then Prism cannot correctly apply the lookbehind correctly in all cases.\n` +
+						`To fix this, either remove the preceding characters or include them in the lookbehind group.`
+				);
 			}
 		});
 	});
@@ -231,10 +264,15 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 		await forEachPattern(({ tokenPath, lookbehindGroup, reportError }) => {
 			if (lookbehindGroup && RAA.isZeroLength(lookbehindGroup)) {
 				const groupContent = lookbehindGroup.raw.substr(1, lookbehindGroup.raw.length - 2);
-				const replacement = lookbehindGroup.alternatives.length === 1 ? groupContent : `(?:${groupContent})`;
-				reportError(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} does not consume characters.\n\n`
-					+ `Therefor it is not necessary to use a lookbehind group.\n`
-					+ `To fix this, replace the lookbehind group with ${replacement} and remove the 'lookbehind' property.`);
+				const replacement =
+					lookbehindGroup.alternatives.length === 1
+						? groupContent
+						: `(?:${groupContent})`;
+				reportError(
+					`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} does not consume characters.\n\n` +
+						`Therefor it is not necessary to use a lookbehind group.\n` +
+						`To fix this, replace the lookbehind group with ${replacement} and remove the 'lookbehind' property.`
+				);
 			}
 		});
 	});
@@ -245,21 +283,30 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 				const isLookbehindGroup = group === lookbehindGroup;
 				if (group.references.length === 0 && !isLookbehindGroup) {
 					const fixes = [];
-					fixes.push(`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`);
-					fixes.push(`Reference this group with a backreference (use '\\${number}' for this).`);
+					fixes.push(
+						`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`
+					);
+					fixes.push(
+						`Reference this group with a backreference (use '\\${number}' for this).`
+					);
 					if (number === 1 && !lookbehindGroup) {
 						if (isFirstMatch(group)) {
 							fixes.push(`Add a 'lookbehind: true' declaration.`);
-						} else {
-							fixes.push(`Add a 'lookbehind: true' declaration. (This group is not a valid lookbehind group because it can be preceded by some characters.)`);
+						}
+						else {
+							fixes.push(
+								`Add a 'lookbehind: true' declaration. (This group is not a valid lookbehind group because it can be preceded by some characters.)`
+							);
 						}
 					}
 
-					reportError(`${tokenPath}: Unused capturing group ${group.raw}.\n\n`
-						+ `Unused capturing groups generally degrade the performance of regular expressions. `
-						+ `They might also be a sign that a backreference is incorrect or that a 'lookbehind: true' declaration in missing.\n`
-						+ `To fix this, do one of the following:\n`
-						+ fixes.map((f) => '- ' + f).join('\n'));
+					reportError(
+						`${tokenPath}: Unused capturing group ${group.raw}.\n\n` +
+							`Unused capturing groups generally degrade the performance of regular expressions. ` +
+							`They might also be a sign that a backreference is incorrect or that a 'lookbehind: true' declaration in missing.\n` +
+							`To fix this, do one of the following:\n` +
+							fixes.map(f => '- ' + f).join('\n')
+					);
 				}
 			});
 		});
@@ -267,20 +314,24 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 
 	it('- should have nice names and aliases', async () => {
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
-		function testName(name: string, desc = 'token name') {
+		function testName (name: string, desc = 'token name') {
 			if (!niceName.test(name)) {
-				assert.fail(`The ${desc} '${name}' does not match ${String(niceName)}.\n\n`
-					+ `To fix this, choose a name that matches the above regular expression.`);
+				assert.fail(
+					`The ${desc} '${name}' does not match ${String(niceName)}.\n\n` +
+						`To fix this, choose a name that matches the above regular expression.`
+				);
 			}
 		}
 
 		await forEachPattern(({ name, parent, tokenPath, path }) => {
 			// token name
 			let offset = 1;
-			if (name === 'pattern') { // regex can be inside an object
+			if (name === 'pattern') {
+				// regex can be inside an object
 				offset++;
 			}
-			if (Array.isArray(path[path.length - 1 - offset].value)) { // regex/regex object can be inside an array
+			if (Array.isArray(path[path.length - 1 - offset].value)) {
+				// regex/regex object can be inside an array
 				offset++;
 			}
 			const patternName = path[path.length - offset].key;
@@ -293,8 +344,9 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 				const alias = (parent as GrammarToken).alias;
 				if (typeof alias === 'string') {
 					testName(alias, `alias of '${tokenPath}'`);
-				} else if (Array.isArray(alias)) {
-					alias.forEach((name) => testName(name, `alias of '${tokenPath}'`));
+				}
+				else if (Array.isArray(alias)) {
+					alias.forEach(name => testName(name, `alias of '${tokenPath}'`));
 				}
 			}
 		});
@@ -303,61 +355,68 @@ function testPatterns(getPrism: () => Promise<Prism | undefined>, mainLanguage: 
 	it('- should not use octal escapes', async () => {
 		await forEachPattern(({ ast, tokenPath, reportError }) => {
 			visitRegExpAST(ast.pattern, {
-				onCharacterEnter(node) {
+				onCharacterEnter (node) {
 					if (/^\\(?:[1-9]|\d{2,})$/.test(node.raw)) {
-						reportError(`${tokenPath}: Octal escape ${node.raw}.\n\n`
-							+ `Octal escapes can be confused with backreferences, so please do not use them.\n`
-							+ `To fix this, use a different escape method. `
-							+ `Note that this could also be an invalid backreference, so be sure to carefully analyse the pattern.`);
+						reportError(
+							`${tokenPath}: Octal escape ${node.raw}.\n\n` +
+								`Octal escapes can be confused with backreferences, so please do not use them.\n` +
+								`To fix this, use a different escape method. ` +
+								`Note that this could also be an invalid backreference, so be sure to carefully analyse the pattern.`
+						);
 					}
-				}
+				},
 			});
 		});
 	});
 
 	it('- should not cause exponential backtracking', async () => {
-		await replaceRegExpProto((exec) => {
-			return function (input) {
-				checkExponentialBacktracking('<Unknown>', this);
-				return exec.call(this, input);
-			};
-		}, async () => {
-			await forEachPattern(({ pattern, ast, tokenPath }) => {
-				checkExponentialBacktracking(tokenPath, pattern, ast);
-			});
-		});
+		await replaceRegExpProto(
+			exec => {
+				return function (input) {
+					checkExponentialBacktracking('<Unknown>', this);
+					return exec.call(this, input);
+				};
+			},
+			async () => {
+				await forEachPattern(({ pattern, ast, tokenPath }) => {
+					checkExponentialBacktracking(tokenPath, pattern, ast);
+				});
+			}
+		);
 	});
 
 	it('- should not cause polynomial backtracking', async () => {
-		await replaceRegExpProto((exec) => {
-			return function (input) {
-				checkPolynomialBacktracking('<Unknown>', this);
-				return exec.call(this, input);
-			};
-		}, async () => {
-			await forEachPattern(({ pattern, ast, tokenPath }) => {
-				checkPolynomialBacktracking(tokenPath, pattern, ast);
-			});
-		});
+		await replaceRegExpProto(
+			exec => {
+				return function (input) {
+					checkPolynomialBacktracking('<Unknown>', this);
+					return exec.call(this, input);
+				};
+			},
+			async () => {
+				await forEachPattern(({ pattern, ast, tokenPath }) => {
+					checkPolynomialBacktracking(tokenPath, pattern, ast);
+				});
+			}
+		);
 	});
-
 }
-
 
 /**
  * Returns the first capturing group in the given pattern.
  */
-function getFirstCapturingGroup(pattern: Pattern): CapturingGroup | undefined {
+function getFirstCapturingGroup (pattern: Pattern): CapturingGroup | undefined {
 	let cap = undefined;
 
 	try {
 		visitRegExpAST(pattern, {
-			onCapturingGroupEnter(node) {
+			onCapturingGroupEnter (node) {
 				cap = node;
 				throw new Error('stop');
-			}
+			},
 		});
-	} catch (error) {
+	}
+	catch (error) {
 		// ignore errors
 	}
 
@@ -367,18 +426,21 @@ function getFirstCapturingGroup(pattern: Pattern): CapturingGroup | undefined {
 /**
  * Returns whether the given element will always at the start of the whole match.
  */
-function isFirstMatch(element: Element): boolean {
+function isFirstMatch (element: Element): boolean {
 	const parent = element.parent;
 	switch (parent.type) {
 		case 'Alternative': {
 			// all elements before this element have to of zero length
-			if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(RAA.isZeroLength)) {
+			if (
+				!parent.elements.slice(0, parent.elements.indexOf(element)).every(RAA.isZeroLength)
+			) {
 				return false;
 			}
 			const grandParent = parent.parent;
 			if (grandParent.type === 'Pattern') {
 				return true;
-			} else {
+			}
+			else {
 				return isFirstMatch(grandParent);
 			}
 		}
@@ -386,7 +448,8 @@ function isFirstMatch(element: Element): boolean {
 		case 'Quantifier':
 			if (parent.max >= 2) {
 				return false;
-			} else {
+			}
+			else {
 				return isFirstMatch(parent);
 			}
 
@@ -398,11 +461,11 @@ function isFirstMatch(element: Element): boolean {
 /**
  * Returns whether the given node either is or is a child of what is effectively a Kleene star.
  */
-function underAStar(node: Node): boolean {
+function underAStar (node: Node): boolean {
 	return RAA.getEffectiveMaximumRepetition(node) > 10;
 }
 
-function firstOf<T>(iter: Iterable<T>): T | undefined {
+function firstOf<T> (iter: Iterable<T>): T | undefined {
 	const [first] = iter;
 	return first;
 }
@@ -414,7 +477,7 @@ const expoSafeRegexes = new Set<string | RegExp>();
 
 const options: Transformers.CreationOptions = {
 	ignoreOrder: true,
-	ignoreAmbiguity: true
+	ignoreAmbiguity: true,
 };
 const transformer = combineTransformers([
 	Transformers.inline(options),
@@ -427,9 +490,8 @@ const transformer = combineTransformers([
 	Transformers.applyAssertions(options),
 ]);
 
-
 const resultCache = new Map<string, Map<string, Error | null>>();
-function getResultCache(cacheName: string) {
+function getResultCache (cacheName: string) {
 	let cache = resultCache.get(cacheName);
 	if (cache === undefined) {
 		cache = new Map();
@@ -437,8 +499,12 @@ function getResultCache(cacheName: string) {
 	}
 	return cache;
 }
-function withResultCache<T extends Node>(cacheName: string, cacheKey: T, compute: (node: T) => void) {
-	const hasBackRef = RAA.hasSomeDescendant(cacheKey, (n) => n.type === 'Backreference');
+function withResultCache<T extends Node> (
+	cacheName: string,
+	cacheKey: T,
+	compute: (node: T) => void
+) {
+	const hasBackRef = RAA.hasSomeDescendant(cacheKey, n => n.type === 'Backreference');
 	if (hasBackRef) {
 		compute(cacheKey);
 		return;
@@ -450,7 +516,8 @@ function withResultCache<T extends Node>(cacheName: string, cacheKey: T, compute
 		try {
 			compute(cacheKey);
 			cached = null;
-		} catch (error) {
+		}
+		catch (error) {
 			cached = asError(error);
 		}
 		cache.set(cacheKey.raw, cached);
@@ -461,15 +528,16 @@ function withResultCache<T extends Node>(cacheName: string, cacheKey: T, compute
 	}
 }
 
-function asError(error: unknown) {
+function asError (error: unknown) {
 	if (error instanceof Error) {
 		return error;
-	} else {
+	}
+	else {
 		return new Error(String(error));
 	}
 }
 
-function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: LiteralAST) {
+function checkExponentialBacktracking (path: string, pattern: RegExp, ast?: LiteralAST) {
 	if (expoSafeRegexes.has(pattern)) {
 		// we know that the pattern won't cause exp backtracking because we checked before
 		return;
@@ -488,20 +556,24 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 	/**
 	 * Parses the given element and creates its NFA.
 	 */
-	function toNFA(element: JS.ParsableElement): NFA {
+	function toNFA (element: JS.ParsableElement): NFA {
 		const { expression, maxCharacter } = parser.parseElement(element, {
 			maxBackreferenceWords: 1000,
-			backreferences: 'disable'
+			backreferences: 'disable',
 		});
 
-		return NFA.fromRegex(transform(transformer, expression), { maxCharacter }, { assertions: 'disable' });
+		return NFA.fromRegex(
+			transform(transformer, expression),
+			{ maxCharacter },
+			{ assertions: 'disable' }
+		);
 	}
 
 	/**
 	 * Checks whether the alternatives of the given node are disjoint. If the alternatives are not disjoint
 	 * and the give node is a descendant of an effective Kleene star, then an error will be thrown.
 	 */
-	function checkDisjointAlternatives(node: CapturingGroup | Group | LookaroundAssertion) {
+	function checkDisjointAlternatives (node: CapturingGroup | Group | LookaroundAssertion) {
 		if (!underAStar(node) || node.alternatives.length < 2) {
 			return;
 		}
@@ -517,19 +589,22 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 				current.withoutEmptyWord();
 
 				if (!isDisjointWith(total, current)) {
-					assert.fail(`${path}: The alternative \`${a.raw}\` is not disjoint with at least one previous alternative.`
-						+ ` This will cause exponential backtracking.`
-						+ `\n\nTo fix this issue, you have to rewrite the ${node.type} \`${node.raw}\`.`
-						+ ` The goal is that all of its alternatives are disjoint.`
-						+ ` This means that if a (sub-)string is matched by the ${node.type}, then only one of its alternatives can match the (sub-)string.`
-						+ `\n\nExample: \`(?:[ab]|\\w|::)+\``
-						+ `\nThe alternatives of the group are not disjoint because the string "a" can be matched by both \`[ab]\` and \`\\w\`.`
-						+ ` In this example, the pattern can easily be fixed because the \`[ab]\` is a subset of the \`\\w\`, so its enough to remove the \`[ab]\` alternative to get \`(?:\\w|::)+\` as the fixed pattern.`
-						+ `\nIn the real world, patterns can be a lot harder to fix.`
-						+ ` If you are trying to make the tests pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway.`
-						+ ` A maintainer will help you.`
-						+ `\n\nFull pattern:\n${String(pattern)}`);
-				} else if (i !== l - 1) {
+					assert.fail(
+						`${path}: The alternative \`${a.raw}\` is not disjoint with at least one previous alternative.` +
+							` This will cause exponential backtracking.` +
+							`\n\nTo fix this issue, you have to rewrite the ${node.type} \`${node.raw}\`.` +
+							` The goal is that all of its alternatives are disjoint.` +
+							` This means that if a (sub-)string is matched by the ${node.type}, then only one of its alternatives can match the (sub-)string.` +
+							`\n\nExample: \`(?:[ab]|\\w|::)+\`` +
+							`\nThe alternatives of the group are not disjoint because the string "a" can be matched by both \`[ab]\` and \`\\w\`.` +
+							` In this example, the pattern can easily be fixed because the \`[ab]\` is a subset of the \`\\w\`, so its enough to remove the \`[ab]\` alternative to get \`(?:\\w|::)+\` as the fixed pattern.` +
+							`\nIn the real world, patterns can be a lot harder to fix.` +
+							` If you are trying to make the tests pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway.` +
+							` A maintainer will help you.` +
+							`\n\nFull pattern:\n${String(pattern)}`
+					);
+				}
+				else if (i !== l - 1) {
 					total.union(current);
 				}
 			}
@@ -539,13 +614,13 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 	visitRegExpAST(ast.pattern, {
 		onCapturingGroupLeave: checkDisjointAlternatives,
 		onGroupLeave: checkDisjointAlternatives,
-		onAssertionLeave(node) {
+		onAssertionLeave (node) {
 			if (node.kind === 'lookahead' || node.kind === 'lookbehind') {
 				checkDisjointAlternatives(node);
 			}
 		},
 
-		onQuantifierLeave(node) {
+		onQuantifierLeave (node) {
 			if (node.max < 10) {
 				return; // not a star
 			}
@@ -580,26 +655,28 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
 					}
 					const word = Words.pickMostReadableWord(exampleWordSet);
 					const example = Words.fromUnicodeToString(word);
-					assert.fail(`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.`
-						+ ` This will cause exponential backtracking.`
-						+ `\n\nTo fix this issue, you have to rewrite the element (let's call it E) of the quantifier.`
-						+ ` The goal is modify E such that it is disjoint with repetitions of itself.`
-						+ ` This means that if a (sub-)string is matched by E, then it must not be possible for E{2}, E{3}, E{4}, etc. to match that (sub-)string.`
-						+ `\n\nExample 1: \`(?:\\w+|::)+\``
-						+ `\nThe problem lies in \`\\w+\` because \`\\w+\` and \`(?:\\w+){2}\` are not disjoint as the string "aa" is fully matched by both.`
-						+ ` In this example, the pattern can easily be fixed by changing \`\\w+\` to \`\\w\`.`
-						+ `\nExample 2: \`(?:\\w|Foo)+\``
-						+ `\nThe problem lies in \`\\w\` and \`Foo\` because the string "Foo" can be matched as either repeating \`\\w\` 3 times or by using the \`Foo\` alternative once.`
-						+ ` In this example, the pattern can easily be fixed because the \`Foo\` alternative is redundant can can be removed.`
-						+ `\nExample 3: \`(?:\\.\\w+(?:<.*?>)?)+\``
-						+ `\nThe problem lies in \`<.*?>\`. The string ".a<>.a<>" can be matched as either \`\\. \\w < . . . . >\` or \`\\. \\w < > \\. \\w < >\`.`
-						+ ` When it comes to exponential backtracking, it doesn't matter whether a quantifier is greedy or lazy.`
-						+ ` This means that the lazy \`.*?\` can jump over \`>\`.`
-						+ ` In this example, the pattern can easily be fixed because we just have to prevent \`.*?\` jumping over \`>\`.`
-						+ ` This can done by replacing \`<.*?>\` with \`<[^\\r\\n>]*>\`.`
-						+ `\n\nIn the real world, patterns can be a lot harder to fix.`
-						+ ` If you are trying to make this test pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway, a maintainer will help you.`
-						+ `\n\nFull pattern:\n${String(pattern)}`);
+					assert.fail(
+						`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.` +
+							` This will cause exponential backtracking.` +
+							`\n\nTo fix this issue, you have to rewrite the element (let's call it E) of the quantifier.` +
+							` The goal is modify E such that it is disjoint with repetitions of itself.` +
+							` This means that if a (sub-)string is matched by E, then it must not be possible for E{2}, E{3}, E{4}, etc. to match that (sub-)string.` +
+							`\n\nExample 1: \`(?:\\w+|::)+\`` +
+							`\nThe problem lies in \`\\w+\` because \`\\w+\` and \`(?:\\w+){2}\` are not disjoint as the string "aa" is fully matched by both.` +
+							` In this example, the pattern can easily be fixed by changing \`\\w+\` to \`\\w\`.` +
+							`\nExample 2: \`(?:\\w|Foo)+\`` +
+							`\nThe problem lies in \`\\w\` and \`Foo\` because the string "Foo" can be matched as either repeating \`\\w\` 3 times or by using the \`Foo\` alternative once.` +
+							` In this example, the pattern can easily be fixed because the \`Foo\` alternative is redundant can can be removed.` +
+							`\nExample 3: \`(?:\\.\\w+(?:<.*?>)?)+\`` +
+							`\nThe problem lies in \`<.*?>\`. The string ".a<>.a<>" can be matched as either \`\\. \\w < . . . . >\` or \`\\. \\w < > \\. \\w < >\`.` +
+							` When it comes to exponential backtracking, it doesn't matter whether a quantifier is greedy or lazy.` +
+							` This means that the lazy \`.*?\` can jump over \`>\`.` +
+							` In this example, the pattern can easily be fixed because we just have to prevent \`.*?\` jumping over \`>\`.` +
+							` This can done by replacing \`<.*?>\` with \`<[^\\r\\n>]*>\`.` +
+							`\n\nIn the real world, patterns can be a lot harder to fix.` +
+							` If you are trying to make this test pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway, a maintainer will help you.` +
+							`\n\nFull pattern:\n${String(pattern)}`
+					);
 				}
 			});
 		},
@@ -613,7 +690,7 @@ function checkExponentialBacktracking(path: string, pattern: RegExp, ast?: Liter
  * A set of all safe (non-polynomially backtracking) RegExp literals (string).
  */
 const polySafeRegexes = new Set<string | RegExp>();
-function checkPolynomialBacktracking(path: string, pattern: RegExp, ast?: LiteralAST) {
+function checkPolynomialBacktracking (path: string, pattern: RegExp, ast?: LiteralAST) {
 	if (polySafeRegexes.has(pattern)) {
 		// we know that the pattern won't cause poly backtracking because we checked before
 		return;
@@ -642,16 +719,25 @@ function checkPolynomialBacktracking(path: string, pattern: RegExp, ast?: Litera
 				const end = Math.max(report.startQuant.end, report.endQuant.end);
 				rangeOffset = start + 1;
 				rangeStr = patternStr.substring(start + 1, end + 1);
-				rangeHighlight = highlight([
-					{ ...report.startQuant, label: 'start' },
-					{ ...report.endQuant, label: 'end' }
-				], -start);
+				rangeHighlight = highlight(
+					[
+						{ ...report.startQuant, label: 'start' },
+						{ ...report.endQuant, label: 'end' },
+					],
+					-start
+				);
 				break;
 			}
 			case 'Self': {
 				rangeOffset = report.parentQuant.start + 1;
-				rangeStr = patternStr.substring(report.parentQuant.start + 1, report.parentQuant.end + 1);
-				rangeHighlight = highlight([{ ...report.quant, label: 'self' }], -report.parentQuant.start);
+				rangeStr = patternStr.substring(
+					report.parentQuant.start + 1,
+					report.parentQuant.end + 1
+				);
+				rangeHighlight = highlight(
+					[{ ...report.quant, label: 'self' }],
+					-report.parentQuant.start
+				);
 				break;
 			}
 			case 'Move': {
@@ -668,17 +754,18 @@ function checkPolynomialBacktracking(path: string, pattern: RegExp, ast?: Litera
 		const fixed = report.fix();
 
 		assert.fail(
-			`${path}: ${report.exponential ? 'Exponential' : 'Polynomial'} backtracking. `
-			+ `By repeating any character that matches ${attackChar}, an attack string can be created.`
-			+ `\n`
-			+ `\n${indent(rangeStr)}`
-			+ `\n${indent(rangeHighlight)}`
-			+ `\n`
-			+ `\nFull pattern:`
-			+ `\n${patternStr}`
-			+ `\n${indent(rangeHighlight, ' '.repeat(rangeOffset))}`
-			+ `\n`
-			+ `\n` + (fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
+			`${path}: ${report.exponential ? 'Exponential' : 'Polynomial'} backtracking. ` +
+				`By repeating any character that matches ${attackChar}, an attack string can be created.` +
+				`\n` +
+				`\n${indent(rangeStr)}` +
+				`\n${indent(rangeHighlight)}` +
+				`\n` +
+				`\nFull pattern:` +
+				`\n${patternStr}` +
+				`\n${indent(rangeHighlight, ' '.repeat(rangeOffset))}` +
+				`\n` +
+				`\n` +
+				(fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
 		);
 	}
 
@@ -691,7 +778,7 @@ interface Highlight {
 	end: number;
 	label?: string;
 }
-function highlight(highlights: Highlight[], offset = 0) {
+function highlight (highlights: Highlight[], offset = 0) {
 	highlights.sort((a, b) => a.start - b.start);
 
 	const lines = [];
@@ -703,7 +790,8 @@ function highlight(highlights: Highlight[], offset = 0) {
 			const end = highlight.end + offset;
 			if (start < l.length) {
 				newHighlights.push(highlight);
-			} else {
+			}
+			else {
 				l += ' '.repeat(start - l.length);
 				l += '^';
 				l += '~'.repeat(end - start - 1);
@@ -719,11 +807,17 @@ function highlight(highlights: Highlight[], offset = 0) {
 	return lines.join('\n');
 }
 
-function indent(str: string, amount = '    ') {
-	return str.split(/\r?\n/).map((m) => m === '' ? '' : amount + m).join('\n');
+function indent (str: string, amount = '    ') {
+	return str
+		.split(/\r?\n/)
+		.map(m => (m === '' ? '' : amount + m))
+		.join('\n');
 }
 
-async function replaceRegExpProto(execSupplier: (exec: RegExp['exec']) => (this: RegExp, input: string) => RegExpExecArray | null, fn: () => Promise<void>) {
+async function replaceRegExpProto (
+	execSupplier: (exec: RegExp['exec']) => (this: RegExp, input: string) => RegExpExecArray | null,
+	fn: () => Promise<void>
+) {
 	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const oldExec = RegExp.prototype.exec;
 	// eslint-disable-next-line @typescript-eslint/unbound-method
@@ -738,7 +832,8 @@ async function replaceRegExpProto(execSupplier: (exec: RegExp['exec']) => (this:
 	let error;
 	try {
 		await fn();
-	} catch (e) {
+	}
+	catch (e) {
 		error = e;
 	}
 

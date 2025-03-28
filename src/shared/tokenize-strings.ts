@@ -7,7 +7,7 @@ import type { TokenStream } from '../core/token';
  * The token stream returned by `tokenize` must have the same text content as
  * the given text.
  */
-export function tokenizeStrings(tokens: TokenStream, tokenize: (code: string) => TokenStream) {
+export function tokenizeStrings (tokens: TokenStream, tokenize: (code: string) => TokenStream) {
 	const wrappedTokenize = (code: string) => {
 		const tokens = tokenize(code);
 		if (tokens.length === 1) {
@@ -27,13 +27,16 @@ export function tokenizeStrings(tokens: TokenStream, tokenize: (code: string) =>
 				const result = wrappedTokenize(token);
 				if (typeof result === 'string') {
 					tokens[i] = result;
-				} else {
+				}
+				else {
 					tokens.splice(i, 1, ...result);
 					i += result.length - 1;
 				}
-			} else if (typeof token.content === 'string') {
+			}
+			else if (typeof token.content === 'string') {
 				token.content = wrappedTokenize(token.content);
-			} else {
+			}
+			else {
 				walkTokens(token.content);
 			}
 		}

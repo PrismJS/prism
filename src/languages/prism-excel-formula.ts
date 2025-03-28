@@ -7,11 +7,11 @@ export default {
 		'comment': {
 			pattern: /(\bN\(\s*)"(?:[^"]|"")*"(?=\s*\))/i,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 		'string': {
 			pattern: /"(?:[^"]|"")*"(?!")/,
-			greedy: true
+			greedy: true,
 		},
 		'reference': {
 			// https://www.ablebits.com/office-addins-blog/2015/12/08/excel-reference-another-sheet-workbook/
@@ -31,20 +31,20 @@ export default {
 				'punctuation': /'/,
 				'sheet': {
 					pattern: /[^[\]]+$/,
-					alias: 'function'
+					alias: 'function',
 				},
 				'file': {
 					pattern: /\[[^[\]]+\]$/,
 					inside: {
-						'punctuation': /[[\]]/
-					}
+						'punctuation': /[[\]]/,
+					},
 				},
-				'path': /[\s\S]+/
-			}
+				'path': /[\s\S]+/,
+			},
 		},
 		'function-name': {
 			pattern: /\b[A-Z]\w*(?=\()/i,
-			alias: 'builtin'
+			alias: 'builtin',
 		},
 		'range': {
 			pattern: /\$?\b(?:[A-Z]+\$?\d+:\$?[A-Z]+\$?\d+|[A-Z]+:\$?[A-Z]+|\d+:\$?\d+)\b/i,
@@ -53,18 +53,18 @@ export default {
 				'operator': /:/,
 				'cell': /\$?[A-Z]+\$?\d+/i,
 				'column': /\$?[A-Z]+/i,
-				'row': /\$?\d+/
-			}
+				'row': /\$?\d+/,
+			},
 		},
 		'cell': {
 			// Excel is case insensitive, so the string "foo1" could be either a variable or a cell.
 			// To combat this, we match cells case insensitive, if the contain at least one "$", and case sensitive otherwise.
 			pattern: /\b[A-Z]+\d+\b|\$[A-Za-z]+\$?\d+\b|\b[A-Za-z]+\$\d+\b/,
-			alias: 'selector'
+			alias: 'selector',
 		},
 		'number': /(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:e[+-]?\d+)?\b/i,
 		'boolean': /\b(?:FALSE|TRUE)\b/i,
 		'operator': /[-+*/^%=&,]|<[=>]?|>=?/,
-		'punctuation': /[[\]();{}|]/
-	}
+		'punctuation': /[[\]();{}|]/,
+	},
 } as LanguageProto<'excel-formula'>;

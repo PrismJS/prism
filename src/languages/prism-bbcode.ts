@@ -5,13 +5,14 @@ export default {
 	alias: 'shortcode',
 	grammar: {
 		'tag': {
-			pattern: /\[\/?[^\s=\]]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'"\]=]+))?(?:\s+[^\s=\]]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'"\]=]+))*\s*\]/,
+			pattern:
+				/\[\/?[^\s=\]]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'"\]=]+))?(?:\s+[^\s=\]]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'"\]=]+))*\s*\]/,
 			inside: {
 				'tag': {
 					pattern: /^\[\/?[^\s=\]]+/,
 					inside: {
-						'punctuation': /^\[\/?/
-					}
+						'punctuation': /^\[\/?/,
+					},
 				},
 				'attr-value': {
 					pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'"\]=]+)/,
@@ -20,14 +21,14 @@ export default {
 							/^=/,
 							{
 								pattern: /^(\s*)["']|["']$/,
-								lookbehind: true
-							}
-						]
-					}
+								lookbehind: true,
+							},
+						],
+					},
 				},
 				'punctuation': /\]/,
-				'attr-name': /[^\s=\]]+/
-			}
-		}
-	}
+				'attr-name': /[^\s=\]]+/,
+			},
+		},
+	},
 } as LanguageProto<'bbcode'>;

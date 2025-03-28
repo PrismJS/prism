@@ -6,54 +6,52 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /#.*/,
-			greedy: true
+			greedy: true,
 		},
 		'multiline-string': {
 			pattern: /"""(?:(?:""?)?(?:[^"\\]|\\.))*"""|'''(?:(?:''?)?(?:[^'\\]|\\.))*'''/,
 			greedy: true,
 			alias: 'string',
 			inside: {
-				'comment': /#.*/
-			}
+				'comment': /#.*/,
+			},
 		},
 		'string': {
 			pattern: /"(?:[^\\"\r\n]|\\.)*"|'(?:[^\\'\r\n]|\\.)*'/,
-			greedy: true
+			greedy: true,
 		},
 		'url': {
 			pattern: /<(?:[^\x00-\x20<>"{}|^`\\]|\\(?:u[\da-fA-F]{4}|U[\da-fA-F]{8}))*>/,
 			greedy: true,
 			inside: {
-				'punctuation': /[<>]/
-			}
+				'punctuation': /[<>]/,
+			},
 		},
 		'function': {
-			pattern: /(?:(?![-.\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:(?:(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+)?/i,
+			pattern:
+				/(?:(?![-.\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:(?:(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+)?/i,
 			inside: {
 				'local-name': {
 					pattern: /([^:]*:)[\s\S]+/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				'prefix': {
 					pattern: /[\s\S]+/,
 					inside: {
-						'punctuation': /:/
-					}
-				}
-			}
+						'punctuation': /:/,
+					},
+				},
+			},
 		},
 		'number': /[+-]?\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 		'punctuation': /[{}.,;()[\]]|\^\^/,
 		'boolean': /\b(?:false|true)\b/,
-		'keyword': [
-			/(?:\ba|@prefix|@base)\b|=/,
-			/\b(?:base|graph|prefix)\b/i
-		],
+		'keyword': [/(?:\ba|@prefix|@base)\b|=/, /\b(?:base|graph|prefix)\b/i],
 		'tag': {
 			pattern: /@[a-z]+(?:-[a-z\d]+)*/i,
 			inside: {
-				'punctuation': /@/
-			}
-		}
-	}
+				'punctuation': /@/,
+			},
+		},
+	},
 } as LanguageProto<'turtle'>;

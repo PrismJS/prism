@@ -3,67 +3,68 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sas',
-	grammar() {
+	grammar () {
 		const stringPattern = /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))/.source;
 
 		const number = /\b(?:\d[\da-f]*x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i;
 		const numericConstant = {
 			pattern: RegExp(stringPattern + '[bx]'),
-			alias: 'number'
+			alias: 'number',
 		};
 
 		const macroVariable = {
-			pattern: /&[a-z_]\w*/i
+			pattern: /&[a-z_]\w*/i,
 		};
 
 		const macroKeyword = {
-			pattern: /((?:^|\s|=|\())%(?:ABORT|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUPCASE|RETURN|RUN|SCAN|SUBSTR|SUPERQ|SYMDEL|SYMEXIST|SYMGLOBL|SYMLOCAL|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+			pattern:
+				/((?:^|\s|=|\())%(?:ABORT|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUPCASE|RETURN|RUN|SCAN|SUBSTR|SUPERQ|SYMDEL|SYMEXIST|SYMGLOBL|SYMLOCAL|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
 			lookbehind: true,
-			alias: 'keyword'
+			alias: 'keyword',
 		};
 
 		const step = {
 			pattern: /(^|\s)(?:proc\s+\w+|data(?!=)|quit|run)\b/i,
 			alias: 'keyword',
-			lookbehind: true
+			lookbehind: true,
 		};
 
 		const comment = [
 			/\/\*[\s\S]*?\*\//,
 			{
 				pattern: /(^[ \t]*|;\s*)\*[^;]*;/m,
-				lookbehind: true
-			}
+				lookbehind: true,
+			},
 		];
 
 		const string = {
 			pattern: RegExp(stringPattern),
-			greedy: true
+			greedy: true,
 		};
 
 		const punctuation = /[$%@.(){}\[\];,\\]/;
 
 		const func = {
 			pattern: /%?\b\w+(?=\()/,
-			alias: 'keyword'
+			alias: 'keyword',
 		};
 
 		const args = {
 			'function': func,
 			'arg-value': {
 				pattern: /(=\s*)[A-Z\.]+/i,
-				lookbehind: true
+				lookbehind: true,
 			},
 			'operator': /=/,
 			'macro-variable': macroVariable,
 			'arg': {
 				pattern: /[A-Z]+/i,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 			'number': number,
 			'numeric-constant': numericConstant,
 			'punctuation': punctuation,
-			'string': string
+			'string': string,
 		};
 
 		const format = {
@@ -73,9 +74,9 @@ export default {
 				'equals': /=/,
 				'format': {
 					pattern: /(?:\w|\$\d)+\.\d?/,
-					alias: 'number'
-				}
-			}
+					alias: 'number',
+				},
+			},
 		};
 
 		const altformat = {
@@ -84,33 +85,45 @@ export default {
 				'keyword': /^(?:format|put)/i,
 				'format': {
 					pattern: /[\w$]+\.\d?/,
-					alias: 'number'
-				}
-			}
+					alias: 'number',
+				},
+			},
 		};
 
 		const globalStatements = {
-			pattern: /((?:^|\s)=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
+			pattern:
+				/((?:^|\s)=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
 			lookbehind: true,
-			alias: 'keyword'
+			alias: 'keyword',
 		};
 
 		const submitStatement = {
 			pattern: /(^|\s)(?:submit(?:\s+(?:load|norun|parseonly))?|endsubmit)\b/i,
 			lookbehind: true,
-			alias: 'keyword'
+			alias: 'keyword',
 		};
 
-		const actionSets = /aStore|accessControl|aggregation|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|cdm|clustering|conditionalRandomFields|configuration|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deduplication|deepLearn|deepNeural|deepRnn|ds2|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gVarCluster|gam|gleam|graphSemiSupLearn|hiddenMarkovModel|hyperGroup|ica|image|iml|kernalPca|langModel|ldaTopic|loadStreams|mbc|mixed|mlTools|modelPublishing|network|neuralNet|nmf|nonParametricBayes|nonlinear|optNetwork|optimization|panel|pca|percentile|phreg|pls|qkb|qlim|quantreg|recommend|regression|reinforcementLearn|robustPca|ruleMining|sampling|sandwich|sccasl|search(?:Analytics)?|sentimentAnalysis|sequence|session(?:Prop)?|severity|simSystem|simple|smartData|sparkEmbeddedProcess|sparseML|spatialreg|spc|stabilityMonitoring|svDataDescription|svm|table|text(?:Filters|Frequency|Mining|Parse|Rule(?:Develop|Score)|Topic|Util)|timeData|transpose|tsInfo|tsReconcile|uniTimeSeries|varReduce/.source;
+		const actionSets =
+			/aStore|accessControl|aggregation|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|cdm|clustering|conditionalRandomFields|configuration|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deduplication|deepLearn|deepNeural|deepRnn|ds2|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gVarCluster|gam|gleam|graphSemiSupLearn|hiddenMarkovModel|hyperGroup|ica|image|iml|kernalPca|langModel|ldaTopic|loadStreams|mbc|mixed|mlTools|modelPublishing|network|neuralNet|nmf|nonParametricBayes|nonlinear|optNetwork|optimization|panel|pca|percentile|phreg|pls|qkb|qlim|quantreg|recommend|regression|reinforcementLearn|robustPca|ruleMining|sampling|sandwich|sccasl|search(?:Analytics)?|sentimentAnalysis|sequence|session(?:Prop)?|severity|simSystem|simple|smartData|sparkEmbeddedProcess|sparseML|spatialreg|spc|stabilityMonitoring|svDataDescription|svm|table|text(?:Filters|Frequency|Mining|Parse|Rule(?:Develop|Score)|Topic|Util)|timeData|transpose|tsInfo|tsReconcile|uniTimeSeries|varReduce/
+				.source;
 
 		const casActions = {
-			pattern: RegExp(/(^|\s)(?:action\s+)?(?:<act>)\.[a-z]+\b[^;]+/.source.replace(/<act>/g, () => actionSets), 'i'),
+			pattern: RegExp(
+				/(^|\s)(?:action\s+)?(?:<act>)\.[a-z]+\b[^;]+/.source.replace(
+					/<act>/g,
+					() => actionSets
+				),
+				'i'
+			),
 			lookbehind: true,
 			inside: {
-				'keyword': RegExp(/(?:<act>)\.[a-z]+\b/.source.replace(/<act>/g, () => actionSets), 'i'),
+				'keyword': RegExp(
+					/(?:<act>)\.[a-z]+\b/.source.replace(/<act>/g, () => actionSets),
+					'i'
+				),
 				'action': {
 					pattern: /(?:action)/i,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				'comment': comment,
 				'function': func,
@@ -120,12 +133,13 @@ export default {
 				'number': number,
 				'numeric-constant': numericConstant,
 				'punctuation': punctuation,
-				'string': string
-			}
+				'string': string,
+			},
 		};
 
 		const keywords = {
-			pattern: /((?:^|\s)=?)(?:after|analysis|and|array|barchart|barwidth|begingraph|by|call|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|continue|data(?==)|define|delete|describe|document|do\s+over|do|dol|drop|dul|else|end(?:comp|source)?|entryTitle|eval(?:uate)?|exec(?:ute)?|exit|file(?:name)?|fill(?:attrs)?|flist|fnc|function(?:list)?|global|goto|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|leave|legendlabel|length|libname|loadactionset|merge|midpoints|name|noobs|nowd|_?null_|ods|options|or|otherwise|out(?:put)?|over(?:lay)?|plot|print|put|raise|ranexp|rannor|rbreak|retain|return|select|session|sessref|set|source|statgraph|sum|summarize|table|temp|terminate|then\s+do|then|title\d?|to|var|when|where|xaxisopts|y2axisopts|yaxisopts)\b/i,
+			pattern:
+				/((?:^|\s)=?)(?:after|analysis|and|array|barchart|barwidth|begingraph|by|call|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|continue|data(?==)|define|delete|describe|document|do\s+over|do|dol|drop|dul|else|end(?:comp|source)?|entryTitle|eval(?:uate)?|exec(?:ute)?|exit|file(?:name)?|fill(?:attrs)?|flist|fnc|function(?:list)?|global|goto|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|leave|legendlabel|length|libname|loadactionset|merge|midpoints|name|noobs|nowd|_?null_|ods|options|or|otherwise|out(?:put)?|over(?:lay)?|plot|print|put|raise|ranexp|rannor|rbreak|retain|return|select|session|sessref|set|source|statgraph|sum|summarize|table|temp|terminate|then\s+do|then|title\d?|to|var|when|where|xaxisopts|y2axisopts|yaxisopts)\b/i,
 			lookbehind: true,
 		};
 
@@ -136,44 +150,59 @@ export default {
 				alias: 'string',
 				inside: {
 					'keyword': {
-						pattern: /^(?:cards|(?:data)?lines)/i
+						pattern: /^(?:cards|(?:data)?lines)/i,
 					},
-					'punctuation': /;/
-				}
+					'punctuation': /;/,
+				},
 			},
 
 			'proc-sql': {
-				pattern: /(^proc\s+(?:fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
+				pattern:
+					/(^proc\s+(?:fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
 				lookbehind: true,
 				inside: {
 					'sql': {
-						pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, () => stringPattern), 'im'),
+						pattern: RegExp(
+							/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(
+								/<str>/g,
+								() => stringPattern
+							),
+							'im'
+						),
 						alias: 'language-sql',
-						inside: 'sql'
+						inside: 'sql',
 					},
 					'global-statements': globalStatements,
 					'sql-statements': {
-						pattern: /(^|\s)(?:disconnect\s+from|begin|commit|exec(?:ute)?|reset|rollback|validate)\b/i,
+						pattern:
+							/(^|\s)(?:disconnect\s+from|begin|commit|exec(?:ute)?|reset|rollback|validate)\b/i,
 						lookbehind: true,
-						alias: 'keyword'
+						alias: 'keyword',
 					},
 					'number': number,
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
-					'string': string
-				}
+					'string': string,
+				},
 			},
 
 			'proc-groovy': {
-				pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
+				pattern:
+					/(^proc\s+groovy(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
 				lookbehind: true,
 				inside: {
 					'comment': comment,
 					'groovy': {
-						pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, () => stringPattern), 'im'),
+						pattern: RegExp(
+							/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(
+								/<str>/g,
+								() => stringPattern
+							),
+							'im'
+						),
 						lookbehind: true,
 						alias: 'language-groovy',
-						inside: 'groovy'
+						inside: 'groovy',
 					},
 					'keyword': keywords,
 					'submit-statement': submitStatement,
@@ -181,20 +210,27 @@ export default {
 					'number': number,
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
-					'string': string
-				}
+					'string': string,
+				},
 			},
 
 			'proc-lua': {
-				pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
+				pattern:
+					/(^proc\s+lua(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|data|quit|run);|(?![\s\S]))/im,
 				lookbehind: true,
 				inside: {
 					'comment': comment,
 					'lua': {
-						pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, () => stringPattern), 'im'),
+						pattern: RegExp(
+							/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(
+								/<str>/g,
+								() => stringPattern
+							),
+							'im'
+						),
 						lookbehind: true,
 						alias: 'language-lua',
-						inside: 'lua'
+						inside: 'lua',
 					},
 					'keyword': keywords,
 					'submit-statement': submitStatement,
@@ -202,12 +238,13 @@ export default {
 					'number': number,
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
-					'string': string
-				}
+					'string': string,
+				},
 			},
 
 			'proc-cas': {
-				pattern: /(^proc\s+cas(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|data);|(?![\s\S]))/im,
+				pattern:
+					/(^proc\s+cas(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|data);|(?![\s\S]))/im,
 				lookbehind: true,
 				inside: {
 					'comment': comment,
@@ -218,17 +255,17 @@ export default {
 							'statement': {
 								pattern: /^saveresult\s+\S+/i,
 								inside: {
-									keyword: /^(?:saveresult)/i
-								}
+									keyword: /^(?:saveresult)/i,
+								},
 							},
-							[rest]: args
-						}
+							[rest]: args,
+						},
 					},
 					'cas-actions': casActions,
 					'statement': {
 						pattern: /((?:^|\s)=?)(?:default|(?:un)?set|on|output|upload)[^;]+/im,
 						lookbehind: true,
-						inside: args
+						inside: args,
 					},
 					'step': step,
 					'keyword': keywords,
@@ -239,14 +276,20 @@ export default {
 					'number': number,
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
-					'string': string
-				}
+					'string': string,
+				},
 			},
 
 			'proc-args': {
-				pattern: RegExp(/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(/<str>/g, () => stringPattern), 'im'),
+				pattern: RegExp(
+					/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(
+						/<str>/g,
+						() => stringPattern
+					),
+					'im'
+				),
 				lookbehind: true,
-				inside: args
+				inside: args,
 			},
 			/*Special keywords within macros*/
 			'macro-keyword': macroKeyword,
@@ -257,32 +300,32 @@ export default {
 				inside: {
 					'function': {
 						pattern: /%(?:BQUOTE|NRBQUOTE|NRQUOTE|NRSTR|QUOTE|STR)/i,
-						alias: 'keyword'
+						alias: 'keyword',
 					},
 					'macro-keyword': macroKeyword,
 					'macro-variable': macroVariable,
 					'escaped-char': {
 						pattern: /%['"()<>=¬^~;,#]/,
 					},
-					'punctuation': punctuation
-				}
+					'punctuation': punctuation,
+				},
 			},
 			'macro-declaration': {
 				pattern: /^%macro[^;]+(?=;)/im,
 				inside: {
 					'keyword': /%macro/i,
-				}
+				},
 			},
 			'macro-end': {
 				pattern: /^%mend[^;]+(?=;)/im,
 				inside: {
 					'keyword': /%mend/i,
-				}
+				},
 			},
 			/*%_zscore(headcir, _lhc, _mhc, _shc, headcz, headcpct, _Fheadcz); */
 			'macro': {
 				pattern: /%_\w+(?=\()/,
-				alias: 'keyword'
+				alias: 'keyword',
 			},
 			'input': {
 				pattern: /\binput\s[-\w\s/*.$&]+;/i,
@@ -293,13 +336,13 @@ export default {
 					},
 					'comment': comment,
 					'number': number,
-					'numeric-constant': numericConstant
-				}
+					'numeric-constant': numericConstant,
+				},
 			},
 			'options-args': {
 				pattern: /(^options)[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
 				lookbehind: true,
-				inside: args
+				inside: args,
 			},
 			'cas-actions': casActions,
 			'comment': comment,
@@ -310,7 +353,7 @@ export default {
 			'datetime': {
 				// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
 				pattern: RegExp(stringPattern + '(?:dt?|t)'),
-				alias: 'number'
+				alias: 'number',
 			},
 			'string': string,
 			'step': step,
@@ -318,12 +361,12 @@ export default {
 			// In SAS Studio syntax highlighting, these operators are styled like keywords
 			'operator-keyword': {
 				pattern: /\b(?:eq|ge|gt|in|le|lt|ne|not)\b/i,
-				alias: 'operator'
+				alias: 'operator',
 			},
 			// Decimal (1.2e23), hexadecimal (0c1x)
 			'number': number,
 			'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?/,
-			'punctuation': punctuation
+			'punctuation': punctuation,
 		};
-	}
+	},
 } as LanguageProto<'sas'>;

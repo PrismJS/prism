@@ -3,29 +3,30 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'typoscript',
 	alias: 'tsconfig',
-	grammar() {
-		const keywords = /\b(?:ACT|ACTIFSUB|CARRAY|CASE|CLEARGIF|COA|COA_INT|CONSTANTS|CONTENT|CUR|EDITPANEL|EFFECT|EXT|FILE|FLUIDTEMPLATE|FORM|FRAME|FRAMESET|GIFBUILDER|GMENU|GMENU_FOLDOUT|GMENU_LAYERS|GP|HMENU|HRULER|HTML|IENV|IFSUB|IMAGE|IMGMENU|IMGMENUITEM|IMGTEXT|IMG_RESOURCE|INCLUDE_TYPOSCRIPT|JSMENU|JSMENUITEM|LLL|LOAD_REGISTER|NO|PAGE|RECORDS|RESTORE_REGISTER|TEMPLATE|TEXT|TMENU|TMENUITEM|TMENU_LAYERS|USER|USER_INT|_GIFBUILDER|global|globalString|globalVar)\b/;
+	grammar () {
+		const keywords =
+			/\b(?:ACT|ACTIFSUB|CARRAY|CASE|CLEARGIF|COA|COA_INT|CONSTANTS|CONTENT|CUR|EDITPANEL|EFFECT|EXT|FILE|FLUIDTEMPLATE|FORM|FRAME|FRAMESET|GIFBUILDER|GMENU|GMENU_FOLDOUT|GMENU_LAYERS|GP|HMENU|HRULER|HTML|IENV|IFSUB|IMAGE|IMGMENU|IMGMENUITEM|IMGTEXT|IMG_RESOURCE|INCLUDE_TYPOSCRIPT|JSMENU|JSMENUITEM|LLL|LOAD_REGISTER|NO|PAGE|RECORDS|RESTORE_REGISTER|TEMPLATE|TEXT|TMENU|TMENUITEM|TMENU_LAYERS|USER|USER_INT|_GIFBUILDER|global|globalString|globalVar)\b/;
 
 		return {
 			'comment': [
 				{
 					// multiline comments /* */
 					pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-					lookbehind: true
+					lookbehind: true,
 				},
 				{
 					// double-slash comments - ignored when backslashes or colon is found in front
 					// also ignored whenever directly after an equal-sign, because it would probably be an url without protocol
 					pattern: /(^|[^\\:= \t]|(?:^|[^= \t])[ \t]+)\/\/.*/,
 					lookbehind: true,
-					greedy: true
+					greedy: true,
 				},
 				{
 					// hash comments - ignored when leading quote is found for hex colors in strings
 					pattern: /(^|[^"'])#.*/,
 					lookbehind: true,
-					greedy: true
-				}
+					greedy: true,
+				},
 			],
 			'function': [
 				{
@@ -49,7 +50,7 @@ export default {
 					inside: {
 						'string': /"[^"\r\n]*"|'[^'\r\n]*'/,
 					},
-				}
+				},
 			],
 			'string': {
 				pattern: /^([^=]*=[< ]?)(?:(?!\]\n).)*/,
@@ -59,7 +60,7 @@ export default {
 					'keyword': keywords,
 					'number': /^\d+$/,
 					'punctuation': /[,|:]/,
-				}
+				},
 			},
 			'keyword': keywords,
 			'number': {
@@ -67,16 +68,16 @@ export default {
 				pattern: /\b\d+\s*[.{=]/,
 				inside: {
 					'operator': /[.{=]/,
-				}
+				},
 			},
 			'tag': {
 				pattern: /\.?[-\w\\]+\.?/,
 				inside: {
 					'punctuation': /\./,
-				}
+				},
 			},
 			'punctuation': /[{}[\];(),.:|]/,
 			'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
 		};
-	}
+	},
 } as LanguageProto<'typoscript'>;

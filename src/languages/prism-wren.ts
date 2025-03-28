@@ -11,14 +11,15 @@ export default {
 			{
 				// support 3 levels of nesting
 				// regex: \/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\/
-				pattern: /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|\/\*(?:[^*/]|\*(?!\/)|\/(?!\*))*\*\/)*\*\/)*\*\//,
-				greedy: true
+				pattern:
+					/\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|\/\*(?:[^*/]|\*(?!\/)|\/(?!\*))*\*\/)*\*\/)*\*\//,
+				greedy: true,
 			},
 			{
 				pattern: /(^|[^\\:])\/\/.*/,
 				lookbehind: true,
-				greedy: true
-			}
+				greedy: true,
+			},
 		],
 
 		// Triple quoted strings are multiline but cannot have interpolation (raw strings)
@@ -26,12 +27,13 @@ export default {
 		'triple-quoted-string': {
 			pattern: /"""[\s\S]*?"""/,
 			greedy: true,
-			alias: 'string'
+			alias: 'string',
 		},
 
 		// A single quote string is multiline and can have interpolation (similar to JS backticks ``)
 		'string-literal': {
-			pattern: /(^|[^\\"])"(?:[^\\"%]|\\[\s\S]|%(?!\()|%\((?:[^()]|\((?:[^()]|\([^)]*\))*\))*\))*"/,
+			pattern:
+				/(^|[^\\"])"(?:[^\\"%]|\\[\s\S]|%(?!\()|%\((?:[^()]|\((?:[^()]|\([^)]*\))*\))*\))*"/,
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -43,23 +45,23 @@ export default {
 						'expression': {
 							pattern: /^(%\()[\s\S]+(?=\)$)/,
 							lookbehind: true,
-							inside: 'wren'
+							inside: 'wren',
 						},
 						'interpolation-punctuation': {
 							pattern: /^%\(|\)$/,
-							alias: 'punctuation'
+							alias: 'punctuation',
 						},
-					}
+					},
 				},
-				'string': /[\s\S]+/
-			}
+				'string': /[\s\S]+/,
+			},
 		},
 
 		// #!/usr/bin/env wren on the first line
 		'hashbang': {
 			pattern: /^#!\/.+/,
 			greedy: true,
-			alias: 'comment'
+			alias: 'comment',
 		},
 
 		// Attributes are special keywords to add meta data to classes
@@ -68,14 +70,14 @@ export default {
 			// #!myvar = true
 			// #attributes are not stored and dismissed at compilation
 			pattern: /#!?[ \t\u3000]*\w+/,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 		'class-name': [
 			{
 				// class definition
 				// class Meta {}
 				pattern: /(\bclass\s+)\w+/,
-				lookbehind: true
+				lookbehind: true,
 			},
 			// A class must always start with an uppercase.
 			// File.read
@@ -87,9 +89,10 @@ export default {
 
 		'null': {
 			pattern: /\bnull\b/,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
-		'keyword': /\b(?:as|break|class|construct|continue|else|for|foreign|if|import|in|is|return|static|super|this|var|while)\b/,
+		'keyword':
+			/\b(?:as|break|class|construct|continue|else|for|foreign|if|import|in|is|return|static|super|this|var|while)\b/,
 		'boolean': /\b(?:false|true)\b/,
 		'number': /\b(?:0x[\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i,
 
@@ -98,5 +101,5 @@ export default {
 
 		'operator': /<<|>>|[=!<>]=?|&&|\|\||[-+*/%~^&|?:]|\.{2,3}/,
 		'punctuation': /[\[\](){}.,;]/,
-	}
+	},
 } as LanguageProto<'wren'>;

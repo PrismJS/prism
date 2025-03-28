@@ -2,19 +2,20 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'regex',
-	grammar() {
+	grammar () {
 		const specialEscape = {
 			pattern: /\\[\\(){}[\]^$+*?|.]/,
-			alias: 'escape'
+			alias: 'escape',
 		};
-		const escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
+		const escape =
+			/\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
 		const charSet = {
 			pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
-			alias: 'class-name'
+			alias: 'class-name',
 		};
 		const charSetWithoutDot = {
 			pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
-			alias: 'class-name'
+			alias: 'class-name',
 		};
 
 		const rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
@@ -24,7 +25,7 @@ export default {
 		const groupName = {
 			pattern: /(<|')[^<>']+(?=[>']$)/,
 			lookbehind: true,
-			alias: 'variable'
+			alias: 'variable',
 		};
 
 		return {
@@ -35,11 +36,11 @@ export default {
 					'char-class-negation': {
 						pattern: /(^\[)\^/,
 						lookbehind: true,
-						alias: 'operator'
+						alias: 'operator',
 					},
 					'char-class-punctuation': {
 						pattern: /^\[|\]$/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
 					'range': {
 						pattern: range,
@@ -47,14 +48,14 @@ export default {
 							'escape': escape,
 							'range-punctuation': {
 								pattern: /-/,
-								alias: 'operator'
-							}
-						}
+								alias: 'operator',
+							},
+						},
 					},
 					'special-escape': specialEscape,
 					'char-set': charSetWithoutDot,
-					'escape': escape
-				}
+					'escape': escape,
+				},
 			},
 			'special-escape': specialEscape,
 			'char-set': charSet,
@@ -62,19 +63,19 @@ export default {
 				{
 					// a backreference which is not an octal escape
 					pattern: /\\(?![123][0-7]{2})[1-9]/,
-					alias: 'keyword'
+					alias: 'keyword',
 				},
 				{
 					pattern: /\\k<[^<>']+>/,
 					alias: 'keyword',
 					inside: {
-						'group-name': groupName
-					}
-				}
+						'group-name': groupName,
+					},
+				},
 			],
 			'anchor': {
 				pattern: /[$^]|\\[ABbGZz]/,
-				alias: 'function'
+				alias: 'function',
 			},
 			'escape': escape,
 			'group': [
@@ -83,25 +84,26 @@ export default {
 					// https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference?view=netframework-4.7.2#grouping-constructs
 
 					// (), (?<name>), (?'name'), (?>), (?:), (?=), (?!), (?<=), (?<!), (?is-m), (?i-m:)
-					pattern: /\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
+					pattern:
+						/\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
 					alias: 'punctuation',
 					inside: {
-						'group-name': groupName
-					}
+						'group-name': groupName,
+					},
 				},
 				{
 					pattern: /\)/,
-					alias: 'punctuation'
-				}
+					alias: 'punctuation',
+				},
 			],
 			'quantifier': {
 				pattern: /(?:[+*?]|\{\d+(?:,\d*)?\})[?+]?/,
-				alias: 'number'
+				alias: 'number',
 			},
 			'alternation': {
 				pattern: /\|/,
-				alias: 'keyword'
-			}
+				alias: 'keyword',
+			},
 		};
-	}
+	},
 } as LanguageProto<'regex'>;

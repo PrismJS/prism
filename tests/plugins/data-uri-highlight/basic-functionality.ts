@@ -1,10 +1,9 @@
 import { createTestSuite } from '../../helper/prism-dom-util';
 
-
 describe('Data-URI Highlight', () => {
 	const { it } = createTestSuite({
 		languages: ['css', 'markup'],
-		plugins: 'data-uri-highlight'
+		plugins: 'data-uri-highlight',
 	});
 
 	it('should set prefix', ({ util }) => {

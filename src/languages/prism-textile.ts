@@ -4,45 +4,45 @@ import type { GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'textile',
 	require: markup,
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		// We don't allow for pipes inside parentheses
 		// to not break table pattern |(. foo |). bar |
 		const modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
 		// Opening and closing parentheses which are not a modifier
 		// This pattern is necessary to prevent exponential backtracking
 		const parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
-		function withModifier(source: string, flags?: string) {
+		function withModifier (source: string, flags?: string) {
 			return RegExp(
 				source
 					.replace(/<MOD>/g, () => '(?:' + modifierRegex + ')')
 					.replace(/<PAR>/g, () => '(?:' + parenthesesRegex + ')'),
-				flags || '');
+				flags || ''
+			);
 		}
 
 		const modifierTokens = {
 			'css': {
 				pattern: /\{[^{}]+\}/,
-				inside: 'css'
+				inside: 'css',
 			},
 			'class-id': {
 				pattern: /(\()[^()]+(?=\))/,
 				lookbehind: true,
-				alias: 'attr-value'
+				alias: 'attr-value',
 			},
 			'lang': {
 				pattern: /(\[)[^\[\]]+(?=\])/,
 				lookbehind: true,
-				alias: 'attr-value'
+				alias: 'attr-value',
 			},
 			// Anything else is punctuation (the first pattern is for row/col spans inside tables)
-			'punctuation': /[\\\/]\d+|\S/
+			'punctuation': /[\\\/]\d+|\S/,
 		};
 
 		const phrase = {
 			pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
 			lookbehind: true,
 			inside: {
-
 				// h1. Header 1
 				'block-tag': {
 					pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
@@ -50,11 +50,11 @@ export default {
 						'modifier': {
 							pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
 						'tag': /^[a-z]\w*/,
-						'punctuation': /\.$/
-					}
+						'punctuation': /\.$/,
+					},
 				},
 
 				// # List item
@@ -65,32 +65,40 @@ export default {
 						'modifier': {
 							pattern: withModifier(/(^[*#]+)<MOD>+/.source),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
-						'punctuation': /^[*#]+/
-					}
+						'punctuation': /^[*#]+/,
+					},
 				},
 
 				// | cell | cell | cell |
 				'table': {
 					// Modifiers can be applied to the row: {color:red}.|1|2|3|
 					// or the cell: |{color:red}.1|2|3|
-					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
+					pattern: withModifier(
+						/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/
+							.source,
+						'm'
+					),
 					inside: {
 						'modifier': {
 							// Modifiers for rows after the first one are
 							// preceded by a pipe and a line feed
-							pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
+							pattern: withModifier(
+								/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source
+							),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
-						'punctuation': /\||^\./
-					}
+						'punctuation': /\||^\./,
+					},
 				},
 
 				'inline': {
-					// eslint-disable-next-line regexp/no-super-linear-backtracking
-					pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
+					pattern: withModifier(
+						// eslint-disable-next-line regexp/no-super-linear-backtracking
+						/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source
+					),
 					lookbehind: true,
 					inside: {
 						// Note: superscripts and subscripts are not handled specifically
@@ -116,7 +124,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
 							lookbehind: true,
-							alias: 'string'
+							alias: 'string',
 						},
 
 						// @code@
@@ -124,7 +132,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
 							lookbehind: true,
-							alias: 'keyword'
+							alias: 'keyword',
 						},
 
 						// +inserted+
@@ -154,10 +162,10 @@ export default {
 						'modifier': {
 							pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
-						'punctuation': /[*_%?@+\-^~]+/
-					}
+						'punctuation': /[*_%?@+\-^~]+/,
+					},
 				},
 
 				// [alias]http://example.com
@@ -166,14 +174,14 @@ export default {
 					inside: {
 						'string': {
 							pattern: /(^\[)[^\]]+(?=\])/,
-							lookbehind: true
+							lookbehind: true,
 						},
 						'url': {
 							pattern: /(^\])\S+$/,
-							lookbehind: true
+							lookbehind: true,
 						},
-						'punctuation': /[\[\]]/
-					}
+						'punctuation': /[\[\]]/,
+					},
 				},
 
 				// "text":http://example.com
@@ -185,42 +193,48 @@ export default {
 						'text': {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
-							lookbehind: true
+							lookbehind: true,
 						},
 						'modifier': {
 							pattern: withModifier(/(^")<MOD>+/.source),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
 						'url': {
 							pattern: /(:).+/,
-							lookbehind: true
+							lookbehind: true,
 						},
-						'punctuation': /[":]/
-					}
+						'punctuation': /[":]/,
+					},
 				},
 
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					pattern: withModifier(
+						/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/
+							.source
+					),
 					inside: {
 						'source': {
-							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							pattern: withModifier(
+								/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/
+									.source
+							),
 							lookbehind: true,
-							alias: 'url'
+							alias: 'url',
 						},
 						'modifier': {
 							pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
 							lookbehind: true,
-							inside: modifierTokens
+							inside: modifierTokens,
 						},
 						'url': {
 							pattern: /(:).+/,
-							lookbehind: true
+							lookbehind: true,
 						},
-						'punctuation': /[!:]/
-					}
+						'punctuation': /[!:]/,
+					},
 				},
 
 				// Footnote[1]
@@ -228,8 +242,8 @@ export default {
 					pattern: /\b\[\d+\]/,
 					alias: 'comment',
 					inside: {
-						'punctuation': /\[|\]/
-					}
+						'punctuation': /\[|\]/,
+					},
 				},
 
 				// CSS(Cascading Style Sheet)
@@ -238,10 +252,10 @@ export default {
 					inside: {
 						'comment': {
 							pattern: /(\()[^()]+(?=\))/,
-							lookbehind: true
+							lookbehind: true,
 						},
-						'punctuation': /[()]/
-					}
+						'punctuation': /[()]/,
+					},
 				},
 
 				// Prism(C)
@@ -249,10 +263,10 @@ export default {
 					pattern: /\b\((?:C|R|TM)\)/,
 					alias: 'comment',
 					inside: {
-						'punctuation': /[()]/
-					}
-				}
-			}
+						'punctuation': /[()]/,
+					},
+				},
+			},
 		};
 
 		const phraseInside = phrase.inside;
@@ -262,7 +276,7 @@ export default {
 			'image': phraseInside['image'],
 			'footnote': phraseInside['footnote'],
 			'acronym': phraseInside['acronym'],
-			'mark': phraseInside['mark']
+			'mark': phraseInside['mark'],
 		};
 
 		// Allow some nesting
@@ -277,13 +291,14 @@ export default {
 		Object.assign(phraseInside['table'].inside, nestedPatterns);
 
 		const textile = extend('markup', {
-			'phrase': phrase
+			'phrase': phrase,
 		});
 
 		// Only allow alpha-numeric HTML tags, not XML tags
 		const tag = textile.tag as GrammarToken;
-		tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+		tag.pattern =
+			/<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 		return textile;
-	}
+	},
 } as LanguageProto<'textile'>;

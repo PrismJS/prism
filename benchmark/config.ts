@@ -40,7 +40,7 @@ export const config: Config = {
 	options: {
 		testFunction: 'tokenize',
 		maxTime: 3,
-		remotesOnly: false
+		remotesOnly: false,
 	},
 
 	remotes: [
@@ -51,7 +51,7 @@ export const config: Config = {
 		 */
 
 		{
-			repo: 'https://github.com/PrismJS/prism.git'
+			repo: 'https://github.com/PrismJS/prism.git',
 		},
 		/*{
 			repo: 'https://github.com/<Your user name>/prism.git',
@@ -61,9 +61,7 @@ export const config: Config = {
 
 	cases: {
 		'css': {
-			files: [
-				'../website/assets/style.css'
-			]
+			files: ['../website/assets/style.css'],
 		},
 		'css!+css-extras': { extends: 'css' },
 		'javascript': {
@@ -73,21 +71,18 @@ export const config: Config = {
 				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
 				'https://code.jquery.com/jquery-3.4.1.js',
 				'https://code.jquery.com/jquery-3.4.1.min.js',
-				'../website/assets/vendor/utopia.js'
-			]
+				'../website/assets/vendor/utopia.js',
+			],
 		},
 		'json': {
-			files: [
-				'../src/components.json',
-				'../package-lock.json'
-			]
+			files: ['../src/components.json', '../package-lock.json'],
 		},
 		'markup': {
 			files: [
 				'../website/download.html',
 				'../website/index.html',
 				'https://github.com/PrismJS/prism', // the PrismJS/prism GitHub page
-			]
+			],
 		},
 		'markup!+css+javascript': { extends: 'markup' },
 		'c': {
@@ -95,22 +90,22 @@ export const config: Config = {
 				'https://raw.githubusercontent.com/git/git/master/remote.h',
 				'https://raw.githubusercontent.com/git/git/master/remote.c',
 				'https://raw.githubusercontent.com/git/git/master/mergesort.c',
-				'https://raw.githubusercontent.com/git/git/master/mergesort.h'
-			]
+				'https://raw.githubusercontent.com/git/git/master/mergesort.h',
+			],
 		},
 		'ruby': {
 			files: [
 				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/base.rb',
 				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/layouts.rb',
 				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/template.rb',
-			]
+			],
 		},
 		'rust': {
 			files: [
 				'https://raw.githubusercontent.com/rust-lang/regex/master/src/utf8.rs',
 				'https://raw.githubusercontent.com/rust-lang/regex/master/src/compile.rs',
-				'https://raw.githubusercontent.com/rust-lang/regex/master/src/lib.rs'
-			]
-		}
-	}
+				'https://raw.githubusercontent.com/rust-lang/regex/master/src/lib.rs',
+			],
+		},
+	},
 };

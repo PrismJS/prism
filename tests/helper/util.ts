@@ -111,6 +111,7 @@ export function getTrailingSpaces (string: string): string {
 export function formatHtml (html: string): string {
 	return synchronizedPrettier.format(html, {
 		...synchronizedPrettier.resolveConfig('./prettierrc'),
+		parser: 'html',
 		htmlWhitespaceSensitivity: 'ignore',
 	});
 }

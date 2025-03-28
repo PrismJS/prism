@@ -14,7 +14,7 @@ const sub = (a, b) => a - b;
 describe('Line Highlight', () => {
 	const { it } = createTestSuite({
 		languages: 'javascript',
-		plugins: 'line-highlight'
+		plugins: 'line-highlight',
 	});
 
 	it('single line', ({ util }) => {

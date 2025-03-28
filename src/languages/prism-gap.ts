@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gap',
-	grammar() {
+	grammar () {
 		// https://www.gap-system.org/Manuals/doc/ref/chap4.html
 		// https://www.gap-system.org/Manuals/doc/ref/chap27.html
 
@@ -14,46 +14,49 @@ export default {
 					'gap': {
 						pattern: /^(gap>).+(?:(?:\r(?:\n|(?!\n))|\n)>.*)*/,
 						lookbehind: true,
-						inside: 'gap'
+						inside: 'gap',
 					},
-					'punctuation': /^gap>/
-				}
+					'punctuation': /^gap>/,
+				},
 			},
 
 			'comment': {
 				pattern: /#.*/,
-				greedy: true
+				greedy: true,
 			},
 			'string': {
-				pattern: /(^|[^\\'"])(?:'(?:[^\r\n\\']|\\.){1,10}'|"(?:[^\r\n\\"]|\\.)*"(?!")|"""[\s\S]*?""")/,
+				pattern:
+					/(^|[^\\'"])(?:'(?:[^\r\n\\']|\\.){1,10}'|"(?:[^\r\n\\"]|\\.)*"(?!")|"""[\s\S]*?""")/,
 				lookbehind: true,
 				greedy: true,
 				inside: {
 					'continuation': {
 						pattern: /([\r\n])>/,
 						lookbehind: true,
-						alias: 'punctuation'
-					}
-				}
+						alias: 'punctuation',
+					},
+				},
 			},
 
-			'keyword': /\b(?:Assert|Info|IsBound|QUIT|TryNextMethod|Unbind|and|atomic|break|continue|do|elif|else|end|fi|for|function|if|in|local|mod|not|od|or|quit|readonly|readwrite|rec|repeat|return|then|until|while)\b/,
+			'keyword':
+				/\b(?:Assert|Info|IsBound|QUIT|TryNextMethod|Unbind|and|atomic|break|continue|do|elif|else|end|fi|for|function|if|in|local|mod|not|od|or|quit|readonly|readwrite|rec|repeat|return|then|until|while)\b/,
 			'boolean': /\b(?:false|true)\b/,
 
 			'function': /\b[a-z_]\w*(?=\s*\()/i,
 
 			'number': {
-				pattern: /(^|[^\w.]|\.\.)(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?(?:_[a-z]?)?(?=$|[^\w.]|\.\.)/,
-				lookbehind: true
+				pattern:
+					/(^|[^\w.]|\.\.)(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?(?:_[a-z]?)?(?=$|[^\w.]|\.\.)/,
+				lookbehind: true,
 			},
 
 			'continuation': {
 				pattern: /([\r\n])>/,
 				lookbehind: true,
-				alias: 'punctuation'
+				alias: 'punctuation',
 			},
 			'operator': /->|[-+*/^~=!]|<>|[<>]=?|:=|\.\./,
-			'punctuation': /[()[\]{},;.:]/
+			'punctuation': /[()[\]{},;.:]/,
 		};
-	}
+	},
 } as LanguageProto<'gap'>;

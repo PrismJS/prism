@@ -4,7 +4,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'bsl',
 	alias: 'oscript',
-	grammar() {
+	grammar () {
 		// 1C:Enterprise
 		// https://github.com/Diversus23/
 		//
@@ -15,40 +15,44 @@ export default {
 				// Strings
 				{
 					pattern: /"(?:[^"]|"")*"(?!")/,
-					greedy: true
+					greedy: true,
 				},
 				// Дата и время
 				// Date & time
 				{
-					pattern: /'(?:[^'\r\n\\]|\\.)*'/
-				}
+					pattern: /'(?:[^'\r\n\\]|\\.)*'/,
+				},
 			],
 			'keyword': [
 				{
 					// RU
-					pattern: /(^|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:пока|для|новый|прервать|попытка|исключение|вызватьисключение|иначе|конецпопытки|неопределено|функция|перем|возврат|конецфункции|если|иначеесли|процедура|конецпроцедуры|тогда|знач|экспорт|конецесли|из|каждого|истина|ложь|по|цикл|конеццикла|выполнить)(?![\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])/i,
-					lookbehind: true
+					pattern:
+						/(^|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:пока|для|новый|прервать|попытка|исключение|вызватьисключение|иначе|конецпопытки|неопределено|функция|перем|возврат|конецфункции|если|иначеесли|процедура|конецпроцедуры|тогда|знач|экспорт|конецесли|из|каждого|истина|ложь|по|цикл|конеццикла|выполнить)(?![\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])/i,
+					lookbehind: true,
 				},
 				{
 					// EN
-					pattern: /\b(?:break|do|each|else|elseif|enddo|endfunction|endif|endprocedure|endtry|except|execute|export|false|for|function|if|in|new|null|procedure|raise|return|then|to|true|try|undefined|val|var|while)\b/i
-				}
+					pattern:
+						/\b(?:break|do|each|else|elseif|enddo|endfunction|endif|endprocedure|endtry|except|execute|export|false|for|function|if|in|new|null|procedure|raise|return|then|to|true|try|undefined|val|var|while)\b/i,
+				},
 			],
 			'number': {
-				pattern: /(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+(?:\.\d*)?|\.\d+)(?:E[+-]?\d+)?/i,
-				lookbehind: true
+				pattern:
+					/(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+(?:\.\d*)?|\.\d+)(?:E[+-]?\d+)?/i,
+				lookbehind: true,
 			},
 			'operator': [
 				/[<>+\-*/]=?|[%=]/,
 				// RU
 				{
-					pattern: /(^|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:и|или|не)(?![\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])/i,
-					lookbehind: true
+					pattern:
+						/(^|[^\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:и|или|не)(?![\w\u0400-\u0484\u0487-\u052f\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])/i,
+					lookbehind: true,
 				},
 				// EN
 				{
-					pattern: /\b(?:and|not|or)\b/i
-				}
+					pattern: /\b(?:and|not|or)\b/i,
+				},
 			],
 			'punctuation': /\(\.|\.\)|[()\[\]:;,.]/,
 			'directive': [
@@ -58,7 +62,7 @@ export default {
 					pattern: /^([ \t]*)&.*/m,
 					lookbehind: true,
 					greedy: true,
-					alias: 'important'
+					alias: 'important',
 				},
 				// Инструкции препроцессора вида:
 				// #Если Сервер Тогда
@@ -72,9 +76,9 @@ export default {
 					pattern: /^([ \t]*)#.*/gm,
 					lookbehind: true,
 					greedy: true,
-					alias: 'important'
-				}
-			]
+					alias: 'important',
+				},
+			],
 		};
-	}
+	},
 } as LanguageProto<'bsl'>;

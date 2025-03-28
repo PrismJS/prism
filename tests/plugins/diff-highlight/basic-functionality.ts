@@ -11,27 +11,27 @@ const jsCode = `
 describe('Diff Highlight', () => {
 	const { it } = createTestSuite({
 		languages: ['javascript'],
-		plugins: 'diff-highlight'
+		plugins: 'diff-highlight',
 	});
 
 	it('should work with language-diff', ({ util }) => {
 		util.assert.highlight({
 			language: 'diff',
-			code: jsCode
+			code: jsCode,
 		});
 	});
 
 	it('should work with language-diff-javascript', ({ util }) => {
 		util.assert.highlight({
 			language: 'diff-javascript',
-			code: jsCode
+			code: jsCode,
 		});
 	});
 
 	it('should work with aliases', ({ util }) => {
 		util.assert.highlight({
 			language: 'diff-js',
-			code: jsCode
+			code: jsCode,
 		});
 	});
 });

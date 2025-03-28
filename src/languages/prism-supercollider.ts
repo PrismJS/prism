@@ -6,21 +6,21 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /\/\/.*|\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\*\//,
-			greedy: true
+			greedy: true,
 		},
 		'string': {
 			pattern: /(^|[^\\])"(?:[^"\\]|\\[\s\S])*"/,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 		'char': {
 			pattern: /\$(?:[^\\\r\n]|\\.)/,
-			greedy: true
+			greedy: true,
 		},
 		'symbol': {
 			pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'|\\\w+/,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 
 		'keyword': /\b(?:_|arg|classvar|const|nil|var|while)\b/,
@@ -28,13 +28,15 @@ export default {
 
 		'label': {
 			pattern: /\b[a-z_]\w*(?=\s*:)/,
-			alias: 'property'
+			alias: 'property',
 		},
 
-		'number': /\b(?:inf|pi|0x[0-9a-fA-F]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(?:pi)?|\d+r[0-9a-zA-Z]+(?:\.[0-9a-zA-Z]+)?|\d+[sb]{1,4}\d*)\b/,
+		'number':
+			/\b(?:inf|pi|0x[0-9a-fA-F]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(?:pi)?|\d+r[0-9a-zA-Z]+(?:\.[0-9a-zA-Z]+)?|\d+[sb]{1,4}\d*)\b/,
 		'class-name': /\b[A-Z]\w*\b/,
 
-		'operator': /\.{2,3}|#(?![[{])|&&|[!=]==?|\+>>|\+{1,3}|-[->]|=>|>>|\?\?|@\|?@|\|(?:@|[!=]=)?\||!\?|<[!=>]|\*{1,2}|<{2,3}\*?|[-!%&/<>?@|=`]/,
-		'punctuation': /[{}()[\].:,;]|#[[{]/
-	}
+		'operator':
+			/\.{2,3}|#(?![[{])|&&|[!=]==?|\+>>|\+{1,3}|-[->]|=>|>>|\?\?|@\|?@|\|(?:@|[!=]=)?\||!\?|<[!=>]|\*{1,2}|<{2,3}\*?|[-!%&/<>?@|=`]/,
+		'punctuation': /[{}()[\].:,;]|#[[{]/,
+	},
 } as LanguageProto<'supercollider'>;

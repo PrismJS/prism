@@ -2,13 +2,12 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'systemd',
-	grammar() {
+	grammar () {
 		// https://www.freedesktop.org/software/systemd/man/systemd.syntax.html
-
 
 		const comment = {
 			pattern: /^[;#].*/m,
-			greedy: true
+			greedy: true,
 		};
 
 		const quotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source;
@@ -23,15 +22,15 @@ export default {
 					'punctuation': /^\[|\]$/,
 					'section-name': {
 						pattern: /[\s\S]+/,
-						alias: 'selector'
+						alias: 'selector',
 					},
-				}
+				},
 			},
 
 			'key': {
 				pattern: /^[^\s=]+(?=[ \t]*=)/m,
 				greedy: true,
-				alias: 'attr-name'
+				alias: 'attr-name',
 			},
 			'value': {
 				// This pattern is quite complex because of two properties:
@@ -42,15 +41,20 @@ export default {
 				pattern: RegExp(
 					/(=[ \t]*(?!\s))/.source +
 						// the value either starts with quotes or not
-						'(?:' + quotesSource + '|(?=[^"\r\n]))' +
+						'(?:' +
+						quotesSource +
+						'|(?=[^"\r\n]))' +
 						// main loop
-						'(?:' + (
-						/[^\s\\]/.source +
+						'(?:' +
+						(/[^\s\\]/.source +
 							// handle spaces separately because of quotes
-							'|' + '[ \t]+(?:(?![ \t"])|' + quotesSource + ')' +
+							'|' +
+							'[ \t]+(?:(?![ \t"])|' +
+							quotesSource +
+							')' +
 							// line continuation
-							'|' + /\\[\r\n]+(?:[#;].*[\r\n]+)*(?![#;])/.source
-					) +
+							'|' +
+							/\\[\r\n]+(?:[#;].*[\r\n]+)*(?![#;])/.source) +
 						')*'
 				),
 				lookbehind: true,
@@ -67,12 +71,12 @@ export default {
 
 					'boolean': {
 						pattern: /^(?:false|no|off|on|true|yes)$/,
-						greedy: true
-					}
-				}
+						greedy: true,
+					},
+				},
 			},
 
-			'punctuation': /=/
+			'punctuation': /=/,
 		};
-	}
+	},
 } as LanguageProto<'systemd'>;

@@ -21,21 +21,22 @@ export default {
 							pattern: /(^\$\{)[\s\S]+(?=\}$)/,
 							lookbehind: true,
 							alias: 'language-dhall',
-							inside: 'dhall'
+							inside: 'dhall',
 						},
-						'punctuation': /\$\{|\}/
-					}
-				}
-			}
+						'punctuation': /\$\{|\}/,
+					},
+				},
+			},
 		},
 		'label': {
 			pattern: /`[^`]*`/,
-			greedy: true
+			greedy: true,
 		},
 		'url': {
 			// https://github.com/dhall-lang/dhall-lang/blob/5fde8ef1bead6fb4e999d3c1ffe7044cd019d63a/standard/dhall.abnf#L596
-			pattern: /\bhttps?:\/\/[\w.:%!$&'*+;=@~-]+(?:\/[\w.:%!$&'*+;=@~-]*)*(?:\?[/?\w.:%!$&'*+;=@~-]*)?/,
-			greedy: true
+			pattern:
+				/\bhttps?:\/\/[\w.:%!$&'*+;=@~-]+(?:\/[\w.:%!$&'*+;=@~-]*)*(?:\?[/?\w.:%!$&'*+;=@~-]*)?/,
+			greedy: true,
 		},
 		'env': {
 			// https://github.com/dhall-lang/dhall-lang/blob/5fde8ef1bead6fb4e999d3c1ffe7044cd019d63a/standard/dhall.abnf#L661
@@ -44,8 +45,8 @@ export default {
 			inside: {
 				'function': /^env/,
 				'operator': /^:/,
-				'variable': /[\s\S]+/
-			}
+				'variable': /[\s\S]+/,
+			},
 		},
 		'hash': {
 			// https://github.com/dhall-lang/dhall-lang/blob/5fde8ef1bead6fb4e999d3c1ffe7044cd019d63a/standard/dhall.abnf#L725
@@ -53,20 +54,22 @@ export default {
 			inside: {
 				'function': /sha256/,
 				'operator': /:/,
-				'number': /[\da-fA-F]{64}/
-			}
+				'number': /[\da-fA-F]{64}/,
+			},
 		},
 
 		// https://github.com/dhall-lang/dhall-lang/blob/5fde8ef1bead6fb4e999d3c1ffe7044cd019d63a/standard/dhall.abnf#L359
-		'keyword': /\b(?:as|assert|else|forall|if|in|let|merge|missing|then|toMap|using|with)\b|\u2200/,
+		'keyword':
+			/\b(?:as|assert|else|forall|if|in|let|merge|missing|then|toMap|using|with)\b|\u2200/,
 		'builtin': /\b(?:None|Some)\b/,
 
 		'boolean': /\b(?:False|True)\b/,
 		'number': /\bNaN\b|-?\bInfinity\b|[+-]?\b(?:0x[\da-fA-F]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/,
-		'operator': /\/\\|\/\/\\\\|&&|\|\||===|[!=]=|\/\/|->|\+\+|::|[+*#@=:?<>|\\\u2227\u2a53\u2261\u2afd\u03bb\u2192]/,
+		'operator':
+			/\/\\|\/\/\\\\|&&|\|\||===|[!=]=|\/\/|->|\+\+|::|[+*#@=:?<>|\\\u2227\u2a53\u2261\u2afd\u03bb\u2192]/,
 		'punctuation': /\.\.|[{}\[\](),./]/,
 
 		// we'll just assume that every capital word left is a type name
-		'class-name': /\b[A-Z]\w*\b/
-	}
+		'class-name': /\b[A-Z]\w*\b/,
+	},
 } as LanguageProto<'dhall'>;

@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cooklang',
-	grammar() {
+	grammar () {
 		// see https://github.com/cooklang/spec/blob/main/EBNF.md
 
 		const single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
@@ -40,9 +40,8 @@ export default {
 					alias: 'operator',
 				},
 				'punctuation': /[{}]/,
-			}
+			},
 		};
-
 
 		return {
 			'comment': {
@@ -51,28 +50,23 @@ export default {
 				pattern: /\[-[\s\S]*?-\]|--.*/,
 				greedy: true,
 			},
-			'meta': { // >> key: value
+			'meta': {
+				// >> key: value
 				pattern: />>.*:.*/,
 				inside: {
-					'property': { // key:
+					'property': {
+						// key:
 						pattern: /(>>\s*)[^\s:](?:[^:]*[^\s:])?/,
 						lookbehind: true,
-					}
-				}
+					},
+				},
 			},
-			'cookware-group': { // #...{...}, #...
-				pattern: new RegExp('#(?:'
-						+ multi_token
-						+ '|'
-						+ single_token_suffix
-						+ ')'
-				),
+			'cookware-group': {
+				// #...{...}, #...
+				pattern: new RegExp('#(?:' + multi_token + '|' + single_token_suffix + ')'),
 				inside: {
 					'cookware': {
-						pattern: new RegExp('(^#)(?:'
-								+ multi_token_infix
-								+ ')'
-						),
+						pattern: new RegExp('(^#)(?:' + multi_token_infix + ')'),
 						lookbehind: true,
 						alias: 'variable',
 					},
@@ -89,21 +83,16 @@ export default {
 								alias: 'number',
 							},
 							'punctuation': /[{}]/,
-						}
-					}
+						},
+					},
 				},
 			},
-			'ingredient-group': { // @...{...}, @...
-				pattern: new RegExp('@(?:'
-						+ multi_token
-						+ '|'
-						+ single_token_suffix
-						+ ')'),
+			'ingredient-group': {
+				// @...{...}, @...
+				pattern: new RegExp('@(?:' + multi_token + '|' + single_token_suffix + ')'),
 				inside: {
 					'ingredient': {
-						pattern: new RegExp('(^@)(?:'
-								+ multi_token_infix
-								+ ')'),
+						pattern: new RegExp('(^@)(?:' + multi_token_infix + ')'),
 						lookbehind: true,
 						alias: 'variable',
 					},
@@ -112,9 +101,10 @@ export default {
 						alias: 'keyword',
 					},
 					'amount-group': amount_group_impl,
-				}
+				},
 			},
-			'timer-group': { // ~timer{...}
+			'timer-group': {
+				// ~timer{...}
 				// eslint-disable-next-line regexp/sort-alternatives
 				pattern: /~(?!\s)[^@#~{}]*\{[^{}]*\}/,
 				inside: {
@@ -123,7 +113,8 @@ export default {
 						lookbehind: true,
 						alias: 'variable',
 					},
-					'duration-group': { // {...}
+					'duration-group': {
+						// {...}
 						pattern: /\{[^{}]*\}/,
 						inside: {
 							'punctuation': /[{}]/,
@@ -137,14 +128,14 @@ export default {
 								pattern: /\d+/,
 								alias: 'number',
 							},
-						}
+						},
 					},
 					'timer-keyword': {
 						pattern: /^~/,
 						alias: 'keyword',
 					},
-				}
-			}
+				},
+			},
 		};
-	}
+	},
 } as LanguageProto<'cooklang'>;

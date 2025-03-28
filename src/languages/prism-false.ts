@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'false',
-	grammar() {
+	grammar () {
 		/**
 		 * Based on the manual by Wouter van Oortmerssen.
 		 *
@@ -10,19 +10,19 @@ export default {
 		 */
 		return {
 			'comment': {
-				pattern: /\{[^}]*\}/
+				pattern: /\{[^}]*\}/,
 			},
 			'string': {
 				pattern: /"[^"]*"/,
-				greedy: true
+				greedy: true,
 			},
 			'character-code': {
 				pattern: /'(?:[^\r]|\r\n?)/,
-				alias: 'number'
+				alias: 'number',
 			},
 			'assembler-code': {
 				pattern: /\d+`/,
-				alias: 'important'
+				alias: 'important',
 			},
 			'number': /\d+/,
 			'operator': /[-!#$%&'*+,./:;=>?@\\^_`|~ßø]/,
@@ -30,8 +30,8 @@ export default {
 			'variable': /[a-z]/,
 			'non-standard': {
 				pattern: /[()<BDO®]/,
-				alias: 'bold'
-			}
+				alias: 'bold',
+			},
 		};
-	}
+	},
 } as LanguageProto<'false'>;

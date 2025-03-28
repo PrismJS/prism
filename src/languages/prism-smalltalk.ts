@@ -5,15 +5,15 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /"(?:""|[^"])*"/,
-			greedy: true
+			greedy: true,
 		},
 		'char': {
 			pattern: /\$./,
-			greedy: true
+			greedy: true,
 		},
 		'string': {
 			pattern: /'(?:''|[^'])*'/,
-			greedy: true
+			greedy: true,
 		},
 		'symbol': /#[\da-z]+|#(?:-|([+\/\\*~<>=@%|&?!])\1?)|#(?=\()/i,
 		'block-arguments': {
@@ -21,23 +21,20 @@ export default {
 			lookbehind: true,
 			inside: {
 				'variable': /:[\da-z]+/i,
-				'punctuation': /\|/
-			}
+				'punctuation': /\|/,
+			},
 		},
 		'temporary-variables': {
 			pattern: /\|[^|]+\|/,
 			inside: {
 				'variable': /[\da-z]+/i,
-				'punctuation': /\|/
-			}
+				'punctuation': /\|/,
+			},
 		},
 		'keyword': /\b(?:new|nil|self|super)\b/,
 		'boolean': /\b(?:false|true)\b/,
-		'number': [
-			/\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/,
-			/\b\d+(?:\.\d+)?(?:e-?\d+)?/
-		],
+		'number': [/\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/, /\b\d+(?:\.\d+)?(?:e-?\d+)?/],
 		'operator': /[<=]=?|:=|~[~=]|\/\/?|\\\\|>[>=]?|[!^+\-*&|,@]/,
-		'punctuation': /[.;:?\[\](){}]/
-	}
+		'punctuation': /[.;:?\[\](){}]/,
+	},
 } as LanguageProto<'smalltalk'>;

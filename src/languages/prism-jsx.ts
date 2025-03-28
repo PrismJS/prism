@@ -6,15 +6,16 @@ import markup from './prism-markup';
 import type { TokenStream } from '../core/token';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
-function stringifyToken(token: string | Token | TokenStream | undefined): string {
+function stringifyToken (token: string | Token | TokenStream | undefined): string {
 	if (!token) {
 		return '';
-	} else {
+	}
+	else {
 		return getTextContent(token);
 	}
 }
 
-function walkTokens(tokens: TokenStream) {
+function walkTokens (tokens: TokenStream) {
 	const openedTags = [];
 	for (let i = 0; i < tokens.length; i++) {
 		const token = tokens[i];
@@ -29,33 +30,46 @@ function walkTokens(tokens: TokenStream) {
 				const firstChild = token.content[0];
 				if (typeof firstChild === 'object' && firstChild.content === '</') {
 					// Closing tag
-					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag)) {
+					if (
+						openedTags.length > 0 &&
+						openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag)
+					) {
 						// Pop matching opening tag
 						openedTags.pop();
 					}
-				} else {
+				}
+				else {
 					const lastChild = token.content[token.content.length - 1];
 					if (typeof lastChild === 'object' && lastChild.content === '/>') {
 						// Autoclosed tag, ignore
-					} else {
+					}
+					else {
 						// Opening tag
 						openedTags.push({
 							tagName: stringifyToken(nestedTag),
-							openedBraces: 0
+							openedBraces: 0,
 						});
 					}
 				}
-			} else if (openedTags.length > 0 && token.type === 'punctuation' && token.content === '{') {
-
+			}
+			else if (
+				openedTags.length > 0 &&
+				token.type === 'punctuation' &&
+				token.content === '{'
+			) {
 				// Here we might have entered a JSX context inside a tag
 				openedTags[openedTags.length - 1].openedBraces++;
-
-			} else if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces > 0 && token.type === 'punctuation' && token.content === '}') {
-
+			}
+			else if (
+				openedTags.length > 0 &&
+				openedTags[openedTags.length - 1].openedBraces > 0 &&
+				token.type === 'punctuation' &&
+				token.content === '}'
+			) {
 				// Here we might have left a JSX context inside a tag
 				openedTags[openedTags.length - 1].openedBraces--;
-
-			} else {
+			}
+			else {
 				notTagNorBrace = true;
 			}
 		}
@@ -91,12 +105,12 @@ function walkTokens(tokens: TokenStream) {
 export default {
 	id: 'jsx',
 	require: [markup, javascript],
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
 		const braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
 		let spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
 
-		function re(source: string, flags?: string) {
+		function re (source: string, flags?: string) {
 			source = source
 				.replace(/<S>/g, () => space)
 				.replace(/<BRACES>/g, () => braces)
@@ -106,25 +120,31 @@ export default {
 
 		spread = re(spread).source;
 
-
 		const javascript = extend('javascript', {});
 		const jsx = extend('markup', javascript);
 
-		const tag = jsx.tag as GrammarToken & { inside: Grammar & { tag: GrammarToken & { inside: Grammar }, 'attr-value': GrammarToken } };
+		const tag = jsx.tag as GrammarToken & {
+			inside: Grammar & {
+				tag: GrammarToken & { inside: Grammar };
+				'attr-value': GrammarToken;
+			};
+		};
 		tag.pattern = re(
-			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
+			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
+				.source
 		);
 
 		tag.inside['tag'].pattern = /^(<\/?)[^\s>\/]*/;
-		tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
+		tag.inside['attr-value'].pattern =
+			/=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
 		tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
 		tag.inside['comment'] = javascript['comment'];
 
 		insertBefore(tag.inside, 'attr-name', {
 			'spread': {
 				pattern: re(/<SPREAD>/.source),
-				inside: 'jsx'
-			}
+				inside: 'jsx',
+			},
 		});
 
 		insertBefore(tag.inside, 'special-attr', {
@@ -135,11 +155,11 @@ export default {
 				inside: {
 					'script-punctuation': {
 						pattern: /^=(?=\{)/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
-					[rest]: 'jsx'
+					[rest]: 'jsx',
 				},
-			}
+			},
 		});
 
 		jsx[tokenize] = (code, grammar, Prism) => {
@@ -149,5 +169,5 @@ export default {
 		};
 
 		return jsx;
-	}
+	},
 } as LanguageProto<'jsx'>;

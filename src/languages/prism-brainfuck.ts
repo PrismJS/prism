@@ -5,21 +5,21 @@ export default {
 	grammar: {
 		'pointer': {
 			pattern: /<|>/,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 		'increment': {
 			pattern: /\+/,
-			alias: 'inserted'
+			alias: 'inserted',
 		},
 		'decrement': {
 			pattern: /-/,
-			alias: 'deleted'
+			alias: 'deleted',
 		},
 		'branching': {
 			pattern: /\[|\]/,
-			alias: 'important'
+			alias: 'important',
 		},
 		'operator': /[.,]/,
-		'comment': /\S+/
-	}
+		'comment': /\S+/,
+	},
 } as LanguageProto<'brainfuck'>;

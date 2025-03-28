@@ -1,10 +1,9 @@
 import { createTestSuite } from '../../helper/prism-dom-util';
 
-
 describe('Custom class', () => {
 	const { it } = createTestSuite({
 		languages: 'javascript',
-		plugins: 'custom-class'
+		plugins: 'custom-class',
 	});
 
 	it('should set prefix', ({ Prism, util }) => {
@@ -26,7 +25,7 @@ describe('Custom class', () => {
 	});
 
 	it('should map class names using a function', ({ Prism, util }) => {
-		Prism.plugins.customClass.map((cls) => {
+		Prism.plugins.customClass.map(cls => {
 			return `${cls}-suffix`;
 		});
 
@@ -41,7 +40,7 @@ describe('Custom class', () => {
 			boolean: 'b',
 			keyword: 'kw',
 			operator: 'op',
-			punctuation: 'p'
+			punctuation: 'p',
 		});
 
 		util.assert.highlight({
@@ -58,5 +57,4 @@ describe('Custom class', () => {
 			code: `var a = true;`,
 		});
 	});
-
 });

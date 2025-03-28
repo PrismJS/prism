@@ -4,7 +4,6 @@ about: Suggest a new feature for Prism.
 title: ''
 labels: enhancement
 assignees: ''
-
 ---
 
 **Motivation**

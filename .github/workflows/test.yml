@@ -2,21 +2,20 @@ name: CI
 
 on:
   push:
-    branches: [ v2 ]
+    branches: [v2]
   pull_request:
-    branches: [ v2 ]
+    branches: [v2]
 
 permissions:
   contents: read
 
 jobs:
   tests:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -28,12 +27,11 @@ jobs:
       - run: npm test
 
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -45,40 +43,37 @@ jobs:
       - run: npm run build
 
   lint:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: npm ci
       - run: npm run lint:ci
 
   type-check:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: npm ci
       - run: npm run tsc
 
   coverage:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: npm ci
       - run: npm run regex-coverage

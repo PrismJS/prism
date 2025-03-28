@@ -2,8 +2,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css-selector',
-	grammar() {
-		const string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+	grammar () {
+		const string =
+			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 		return {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
@@ -18,28 +19,28 @@ export default {
 					'case-sensitivity': {
 						pattern: /(\s)[si]$/i,
 						lookbehind: true,
-						alias: 'keyword'
+						alias: 'keyword',
 					},
 					'namespace': {
 						pattern: /^(\s*)(?:(?!\s)[-*\w\xA0-\uFFFF])*\|(?!=)/,
 						lookbehind: true,
 						inside: {
-							'punctuation': /\|$/
-						}
+							'punctuation': /\|$/,
+						},
 					},
 					'attr-name': {
 						pattern: /^(\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+/,
-						lookbehind: true
+						lookbehind: true,
 					},
 					'attr-value': [
 						string,
 						{
 							pattern: /(=\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+(?=\s*$)/,
-							lookbehind: true
-						}
+							lookbehind: true,
+						},
 					],
-					'operator': /[|~*^$]?=/
-				}
+					'operator': /[|~*^$]?=/,
+				},
 			},
 			'n-th': [
 				{
@@ -47,13 +48,13 @@ export default {
 					lookbehind: true,
 					inside: {
 						'number': /[\dn]+/,
-						'operator': /[+-]/
-					}
+						'operator': /[+-]/,
+					},
 				},
 				{
 					pattern: /(\(\s*)(?:even|odd)(?=\s*\))/i,
-					lookbehind: true
-				}
+					lookbehind: true,
+				},
 			],
 			'combinator': />|\+|~|\|\|/,
 
@@ -63,5 +64,5 @@ export default {
 
 			'punctuation': /[(),]/,
 		};
-	}
+	},
 } as LanguageProto<'css-selector'>;

@@ -5,7 +5,7 @@ export default {
 	grammar: {
 		'comment': {
 			pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
-			greedy: true
+			greedy: true,
 		},
 		'code': {
 			pattern: /`(?:\\.|[^\\`])*`/,
@@ -14,36 +14,38 @@ export default {
 			inside: {
 				'delimiter': {
 					pattern: /^`|`$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'statement': {
 					pattern: /[\s\S]+/,
-					inside: 'mel'
-				}
-			}
+					inside: 'mel',
+				},
+			},
 		},
 		'string': {
 			pattern: /"(?:\\.|[^\\"\r\n])*"/,
-			greedy: true
+			greedy: true,
 		},
 		'variable': /\$\w+/,
 		'number': /\b0x[\da-fA-F]+\b|\b\d+(?:\.\d*)?|\B\.\d+/,
 		'flag': {
 			pattern: /-[^\d\W]\w*/,
-			alias: 'operator'
+			alias: 'operator',
 		},
-		'keyword': /\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
+		'keyword':
+			/\b(?:break|case|continue|default|do|else|float|for|global|if|in|int|matrix|proc|return|string|switch|vector|while)\b/,
 		'function': {
-			pattern: /((?:^|[{;])[ \t]*)[a-z_]\w*\b(?!\s*(?:\.(?!\.)|[[{=]))|\b[a-z_]\w*(?=[ \t]*\()/im,
+			pattern:
+				/((?:^|[{;])[ \t]*)[a-z_]\w*\b(?!\s*(?:\.(?!\.)|[[{=]))|\b[a-z_]\w*(?=[ \t]*\()/im,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 
 		'tensor-punctuation': {
 			pattern: /<<|>>/,
-			alias: 'punctuation'
+			alias: 'punctuation',
 		},
 		'operator': /\+[+=]?|-[-=]?|&&|\|\||[<>]=?|[*\/!=]=?|[%^]/,
-		'punctuation': /[.,:;?\[\](){}]/
-	}
+		'punctuation': /[.,:;?\[\](){}]/,
+	},
 } as LanguageProto<'mel'>;

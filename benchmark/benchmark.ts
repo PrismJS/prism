@@ -11,8 +11,7 @@ import type { Prism } from '../src/core';
 import type { Config, ConfigOptions } from './config';
 import type { Options, Stats } from 'benchmark';
 
-
-async function runBenchmark(config: Config) {
+async function runBenchmark (config: Config) {
 	const cases = await getCases(config);
 	const candidates = await getCandidates(config);
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
@@ -24,50 +23,60 @@ async function runBenchmark(config: Config) {
 	console.log(`Estimated duration: ${Math.floor(estimate / 60)}m ${Math.floor(estimate % 60)}s`);
 
 	interface Summary {
-		best: number
-		worst: number
-		relative: number[]
-		avgRelative?: number
+		best: number;
+		worst: number;
+		relative: number[];
+		avgRelative?: number;
 	}
-	const totalSummary: Summary[] = Array.from({ length: candidates.length }, () => ({ best: 0, worst: 0, relative: [] }));
+	const totalSummary: Summary[] = Array.from({ length: candidates.length }, () => ({
+		best: 0,
+		worst: 0,
+		relative: [],
+	}));
 
 	for (const $case of cases) {
-
 		console.log();
 		console.log(`\x1b[90m${'-'.repeat(60)}\x1b[0m`);
 		console.log();
 		if ($case.id !== $case.language) {
 			console.log(`${$case.id} (${$case.language})`);
-		} else {
+		}
+		else {
 			console.log($case.id);
 		}
 		console.log();
 
 		// prepare candidates
 		const warmupCode = await fs.promises.readFile($case.files[0].path, 'utf8');
-		const candidateFunctions = await Promise.all(candidates.map(async ({ name, setup }) => {
-			const fn = await setup($case.language, $case.languages);
-			fn(warmupCode); // warmup
-			return [name, fn] as const;
-		}));
-
+		const candidateFunctions = await Promise.all(
+			candidates.map(async ({ name, setup }) => {
+				const fn = await setup($case.language, $case.languages);
+				fn(warmupCode); // warmup
+				return [name, fn] as const;
+			})
+		);
 
 		// bench all files
 		for (const caseFile of $case.files) {
-			console.log(`  ${caseFile.uri} \x1b[90m(${Math.round(caseFile.size / 1024)} kB)\x1b[0m`);
+			console.log(
+				`  ${caseFile.uri} \x1b[90m(${Math.round(caseFile.size / 1024)} kB)\x1b[0m`
+			);
 
 			const code = await fs.promises.readFile(caseFile.path, 'utf8');
 
-			const results = measureCandidates(candidateFunctions.map(([name, fn]) => [name, () => fn(code)]), {
-				maxTime: config.options.maxTime,
-				minSamples: 1,
-				delay: 0,
-			});
+			const results = measureCandidates(
+				candidateFunctions.map(([name, fn]) => [name, () => fn(code)]),
+				{
+					maxTime: config.options.maxTime,
+					minSamples: 1,
+					delay: 0,
+				}
+			);
 
 			const min = results.reduce((a, c) => Math.min(a, c.stats.mean), Infinity);
 			const max = results.reduce((a, c) => Math.max(a, c.stats.mean), -Infinity);
-			const minIndex = results.findIndex((x) => x.stats.mean === min);
-			const maxIndex = results.findIndex((x) => x.stats.mean === max);
+			const minIndex = results.findIndex(x => x.stats.mean === min);
+			const maxIndex = results.findIndex(x => x.stats.mean === max);
 
 			totalSummary[minIndex].best++;
 			totalSummary[maxIndex].worst++;
@@ -78,16 +87,21 @@ async function runBenchmark(config: Config) {
 			results.forEach((r, index) => {
 				const name = r.name.padEnd(maxCandidateNameLength, ' ');
 				const mean = (r.stats.mean * 1000).toFixed(2).padStart(8) + 'ms';
-				const r_moe = (100 * r.stats.moe / r.stats.mean).toFixed(0).padStart(3) + '%';
+				const r_moe = ((100 * r.stats.moe) / r.stats.mean).toFixed(0).padStart(3) + '%';
 				const smp = r.stats.sample.length.toString().padStart(4) + 'smp';
 
 				const relativeMean = r.stats.mean / min;
 				totalSummary[index].relative.push(relativeMean);
-				const relative = relativeMean === 1 ? ' '.repeat(5) : (relativeMean.toFixed(2) + 'x').padStart(5);
+				const relative =
+					relativeMean === 1
+						? ' '.repeat(5)
+						: (relativeMean.toFixed(2) + 'x').padStart(5);
 
 				const color = r === best ? '\x1b[32m' : r === worst ? '\x1b[31m' : '\x1b[0m';
 
-				console.log(`  \x1b[90m| ${color}${name} ${mean} ±${r_moe} ${smp} ${relative}\x1b[0m`);
+				console.log(
+					`  \x1b[90m| ${color}${name} ${mean} ±${r_moe} ${smp} ${relative}\x1b[0m`
+				);
 			});
 		}
 	}
@@ -99,23 +113,28 @@ async function runBenchmark(config: Config) {
 	console.log('summary');
 	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst  relative\x1b[0m`);
 
-	totalSummary.forEach((s) => {
+	totalSummary.forEach(s => {
 		s.avgRelative = s.relative.reduce((a, c) => a + c, 0) / s.relative.length;
 	});
-	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative ?? Infinity), Infinity);
+	const minAvgRelative = totalSummary.reduce(
+		(a, c) => Math.min(a, c.avgRelative ?? Infinity),
+		Infinity
+	);
 
 	totalSummary.forEach((s, i) => {
 		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
 		const best = String(s.best).padStart('best'.length);
 		const worst = String(s.worst).padStart('worst'.length);
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const relative = ((s.avgRelative! / minAvgRelative).toFixed(2) + 'x').padStart('relative'.length);
+		const relative = ((s.avgRelative! / minAvgRelative).toFixed(2) + 'x').padStart(
+			'relative'.length
+		);
 
 		console.log(`  ${name}  ${best}  ${worst}  ${relative}`);
 	});
 }
 
-function getConfig(): Config {
+function getConfig (): Config {
 	const base = baseConfig;
 
 	const args = argv as Record<string, unknown>;
@@ -137,24 +156,24 @@ function getConfig(): Config {
 }
 
 interface Case {
-	id: string
+	id: string;
 	/**
 	 * The main language.
 	 */
-	language: string
+	language: string;
 	/**
 	 * All languages that have to be loaded.
 	 */
-	languages: string[]
-	files: FileInfo[]
+	languages: string[];
+	files: FileInfo[];
 }
-async function getCases(config: Config) {
+async function getCases (config: Config) {
 	const caseFileCache = new Map<string, ReadonlySet<FileInfo>>();
 
 	/**
 	 * Returns all files of the test case with the given id.
 	 */
-	async function getCaseFiles(id: string) {
+	async function getCaseFiles (id: string) {
 		const cached = caseFileCache.get(id);
 		if (cached) {
 			return cached;
@@ -168,11 +187,13 @@ async function getCases(config: Config) {
 		const files = new Set<FileInfo>();
 		caseFileCache.set(id, files);
 
-		await Promise.all(toArray(caseEntry.files).map(async (uri) => {
-			files.add(await getFileInfo(uri));
-		}));
+		await Promise.all(
+			toArray(caseEntry.files).map(async uri => {
+				files.add(await getFileInfo(uri));
+			})
+		);
 		for (const extendId of toArray(caseEntry.extends)) {
-			(await getCaseFiles(extendId)).forEach((info) => files.add(info));
+			(await getCaseFiles(extendId)).forEach(info => files.add(info));
 		}
 
 		return files;
@@ -181,11 +202,11 @@ async function getCases(config: Config) {
 	/**
 	 * Returns whether the case is enabled by the options provided by the user.
 	 */
-	function isEnabled(languages: string[]) {
+	function isEnabled (languages: string[]) {
 		if (config.options.language) {
 			// test whether the given languages contain any of the required languages
 			const required = new Set(config.options.language.split(/,/).filter(Boolean));
-			return languages.some((l) => required.has(l));
+			return languages.some(l => required.has(l));
 		}
 
 		return true;
@@ -203,7 +224,7 @@ async function getCases(config: Config) {
 			id,
 			language: parsed.mainLanguage,
 			languages: parsed.languages,
-			files: [...await getCaseFiles(id)].sort((a, b) => a.uri.localeCompare(b.uri)),
+			files: [...(await getCaseFiles(id))].sort((a, b) => a.uri.localeCompare(b.uri)),
 		});
 	}
 
@@ -213,15 +234,15 @@ async function getCases(config: Config) {
 }
 
 interface FileInfo {
-	uri: string
-	path: string
-	size: number
+	uri: string;
+	path: string;
+	size: number;
 }
 const fileInfoCache = new Map<string, Promise<FileInfo>>();
 /**
  * Returns the path and other information for the given file identifier.
  */
-function getFileInfo(uri: string) {
+function getFileInfo (uri: string) {
 	let info = fileInfoCache.get(uri);
 	if (info === undefined) {
 		info = getFileInfoUncached(uri);
@@ -229,23 +250,24 @@ function getFileInfo(uri: string) {
 	}
 	return info;
 }
-async function getFileInfoUncached(uri: string): Promise<FileInfo> {
+async function getFileInfoUncached (uri: string): Promise<FileInfo> {
 	const p = await getFilePath(uri);
 	const stat = await fs.promises.stat(p);
 	if (stat.isFile()) {
 		return {
 			uri,
 			path: p,
-			size: stat.size
+			size: stat.size,
 		};
-	} else {
+	}
+	else {
 		throw new Error(`Unknown file "${uri}"`);
 	}
 }
 /**
  * Returns the local path of the given file identifier.
  */
-async function getFilePath(uri: string) {
+async function getFilePath (uri: string) {
 	if (/^https:\/\//.test(uri)) {
 		// it's a URL, so let's download the file (if not downloaded already)
 		const downloadDir = path.join(__dirname, 'downloads');
@@ -259,7 +281,7 @@ async function getFilePath(uri: string) {
 		if (!fs.existsSync(localPath)) {
 			// download file
 			console.log(`Downloading ${uri}...`);
-			await fs.promises.writeFile(localPath, await fetch(uri).then((r) => r.text()), 'utf8');
+			await fs.promises.writeFile(localPath, await fetch(uri).then(r => r.text()), 'utf8');
 		}
 
 		return localPath;
@@ -270,10 +292,13 @@ async function getFilePath(uri: string) {
 }
 
 interface Result {
-	name: string
-	stats: Stats
+	name: string;
+	stats: Stats;
 }
-function measureCandidates(candidates: Iterable<[string, () => void]>, options: Options): Result[] {
+function measureCandidates (
+	candidates: Iterable<[string, () => void]>,
+	options: Options
+): Result[] {
 	const suite = new Benchmark.Suite('temp name');
 
 	for (const [name, fn] of candidates) {
@@ -282,17 +307,19 @@ function measureCandidates(candidates: Iterable<[string, () => void]>, options: 
 
 	const results: Result[] = [];
 
-	suite.on('cycle', (event: { target: Result }) => {
-		results.push({
-			name: event.target.name,
-			stats: event.target.stats
-		});
-	}).run();
+	suite
+		.on('cycle', (event: { target: Result }) => {
+			results.push({
+				name: event.target.name,
+				stats: event.target.stats,
+			});
+		})
+		.run();
 
 	return results;
 }
 
-function getBest(results: Result[]): Result | null {
+function getBest (results: Result[]): Result | null {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => a.stats.mean - b.stats.mean);
 		const best = sorted[0].stats;
@@ -306,7 +333,7 @@ function getBest(results: Result[]): Result | null {
 
 	return null;
 }
-function getWorst(results: Result[]): Result | null {
+function getWorst (results: Result[]): Result | null {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => b.stats.mean - a.stats.mean);
 		const worst = sorted[0].stats;
@@ -325,28 +352,33 @@ function getWorst(results: Result[]): Result | null {
 /**
  * Create a new test function from the given Prism instance.
  */
-function createTestFunction(Prism: Prism, mainLanguage: string, testFunction: string): (code: string) => void {
+function createTestFunction (
+	Prism: Prism,
+	mainLanguage: string,
+	testFunction: string
+): (code: string) => void {
 	if (testFunction === 'tokenize') {
-		return (code) => {
+		return code => {
 			const grammar = Prism.components.getLanguage(mainLanguage);
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			Prism.tokenize(code, grammar!);
 		};
-	} else if (testFunction === 'highlight') {
-		return (code) => {
+	}
+	else if (testFunction === 'highlight') {
+		return code => {
 			Prism.highlight(code, mainLanguage);
 		};
-	} else {
+	}
+	else {
 		throw new Error(`Unknown test function "${testFunction}"`);
 	}
-
 }
 
 interface Candidate {
-	name: string
-	setup(mainLanguage: string, languages: string[]): Promise<(code: string) => void>
+	name: string;
+	setup (mainLanguage: string, languages: string[]): Promise<(code: string) => void>;
 }
-async function getCandidates(config: Config): Promise<Candidate[]> {
+async function getCandidates (config: Config): Promise<Candidate[]> {
 	const candidates: Candidate[] = [];
 
 	// local
@@ -354,10 +386,10 @@ async function getCandidates(config: Config): Promise<Candidate[]> {
 		const localPrismLoader = await import('../tests/helper/prism-loader');
 		candidates.push({
 			name: 'local',
-			async setup(mainLanguage, languages) {
+			async setup (mainLanguage, languages) {
 				const Prism = await localPrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
-			}
+			},
 		});
 	}
 
@@ -381,20 +413,23 @@ async function getCandidates(config: Config): Promise<Candidate[]> {
 			console.log(`Cloning ${remote.repo}`);
 			await baseGit.clone(remote.repo, remoteName);
 			remoteGit = gitP(remoteDir);
-		} else {
+		}
+		else {
 			remoteGit = gitP(remoteDir);
 			await remoteGit.fetch('origin', branch); // get latest version of branch
 		}
 		await remoteGit.checkout(branch); // switch to branch
 
-		// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-		const remotePrismLoader = (await import(path.join(remoteDir, 'tests/helper/prism-loader'))) as typeof import('../tests/helper/prism-loader');
+		const remotePrismLoader = (await import(
+			path.join(remoteDir, 'tests/helper/prism-loader')
+			// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+		)) as typeof import('../tests/helper/prism-loader');
 		candidates.push({
 			name: remoteName,
-			async setup(mainLanguage, languages) {
+			async setup (mainLanguage, languages) {
 				const Prism = await remotePrismLoader.createInstance(languages);
 				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
-			}
+			},
 		});
 	}
 
@@ -404,15 +439,16 @@ async function getCandidates(config: Config): Promise<Candidate[]> {
 /**
  * A utility function that converts the given optional array-like value into an array.
  */
-function toArray<T extends {}>(value: T[] | T | undefined | null): readonly T[] {
+function toArray<T extends {}> (value: T[] | T | undefined | null): readonly T[] {
 	if (Array.isArray(value)) {
 		return value;
-	} else if (value != null) {
+	}
+	else if (value != null) {
 		return [value];
-	} else {
+	}
+	else {
 		return [];
 	}
 }
 
-
-runBenchmark(getConfig()).catch((error) => console.error(error));
+runBenchmark(getConfig()).catch(error => console.error(error));

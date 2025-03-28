@@ -2,7 +2,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'hsts',
-	grammar() {
+	grammar () {
 		/**
 		 * Original by Scott Helme.
 		 *
@@ -12,10 +12,10 @@ export default {
 		return {
 			'directive': {
 				pattern: /\b(?:includeSubDomains|max-age|preload)(?=[\s;=]|$)/i,
-				alias: 'property'
+				alias: 'property',
 			},
 			'operator': /=/,
-			'punctuation': /;/
+			'punctuation': /;/,
 		};
-	}
+	},
 } as LanguageProto<'hsts'>;

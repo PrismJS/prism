@@ -6,10 +6,10 @@ export default {
 		'comment': /%.*/,
 		'string': {
 			pattern: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-			greedy: true
+			greedy: true,
 		},
 		'keyword': /@(?:attribute|data|end|relation)\b/i,
 		'number': /\b\d+(?:\.\d+)?\b/,
-		'punctuation': /[{},]/
-	}
+		'punctuation': /[{},]/,
+	},
 } as LanguageProto<'arff'>;

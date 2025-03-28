@@ -13,14 +13,14 @@ export default {
 			inside: {
 				'delimiter': {
 					pattern: /^<%[-=]?|-?%>$/,
-					alias: 'punctuation'
+					alias: 'punctuation',
 				},
 				'language-lua': {
 					pattern: /[\s\S]+/,
-					inside: 'lua'
-				}
-			}
+					inside: 'lua',
+				},
+			},
 		},
-		[tokenize]: embeddedIn('markup')
-	}
+		[tokenize]: embeddedIn('markup'),
+	},
 } as LanguageProto<'etlua'>;

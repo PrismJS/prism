@@ -4,23 +4,23 @@ import path from 'path';
 import { forEach, noop, toArray } from '../src/shared/util';
 import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader';
 
-
 describe('Components', () => {
 	it('- should not have redundant optional dependencies', async function () {
 		this.timeout(10_000);
 
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
-			const require = new Set(toArray(proto?.require).map((p) => p.id));
+			const require = new Set(toArray(proto?.require).map(p => p.id));
 
-			forEach(proto?.optional, (opt) => {
+			forEach(proto?.optional, opt => {
 				if (require.has(opt)) {
-					assert.fail(`The optional dependency ${opt} is redundant because ${id} already requires it. Remove the optional dependency.`);
+					assert.fail(
+						`The optional dependency ${opt} is redundant because ${id} already requires it. Remove the optional dependency.`
+					);
 				}
 			});
 		}
 	});
-
 
 	it('- should have unique aliases', async function () {
 		this.timeout(10_000);
@@ -38,12 +38,14 @@ describe('Components', () => {
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
 			add(id, 'a component id');
-			forEach(proto?.alias, (a) => add(a, `an alias of ${id}`));
+			forEach(proto?.alias, a => add(a, `an alias of ${id}`));
 		}
 	});
 });
 
-const components = JSON.parse(readFileSync(path.join(__dirname, '../src/components.json'), 'utf-8')) as Components;
+const components = JSON.parse(
+	readFileSync(path.join(__dirname, '../src/components.json'), 'utf-8')
+) as Components;
 
 type Components = Record<string, ComponentCategory>;
 type ComponentCategory = Record<string, ComponentEntry | string>;
@@ -69,8 +71,13 @@ interface ComponentEntry {
 }
 
 describe('components.json', () => {
-
-	function forEachEntry(consumeFn: (entry: ComponentEntry, id: string, entries: Record<string, ComponentEntry>) => void) {
+	function forEachEntry (
+		consumeFn: (
+			entry: ComponentEntry,
+			id: string,
+			entries: Record<string, ComponentEntry>
+		) => void
+	) {
 		const entries: Record<string, ComponentEntry> = {};
 
 		for (const category in components) {
@@ -91,12 +98,15 @@ describe('components.json', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
 				const aliases = new Set(toArray((await getComponent(lang)).alias));
-				const aliasTitles = (components.languages[lang] as ComponentEntry | undefined)?.aliasTitles ?? {};
+				const aliasTitles =
+					(components.languages[lang] as ComponentEntry | undefined)?.aliasTitles ?? {};
 
-				Object.keys(aliasTitles).forEach((id) => {
+				Object.keys(aliasTitles).forEach(id => {
 					if (!aliases.has(id)) {
 						const titleJson = JSON.stringify(aliasTitles[id]);
-						assert.fail(`The alias '${id}' with the title ${titleJson} is not registered as an alias.`);
+						assert.fail(
+							`The alias '${id}' with the title ${titleJson} is not registered as an alias.`
+						);
 					}
 				});
 			});
@@ -105,19 +115,21 @@ describe('components.json', () => {
 
 	it('- should have a sorted language list', () => {
 		const ignore = new Set(['meta', 'xml', 'markup', 'css', 'clike', 'javascript', 'plain']);
-		const languages = Object.keys(components.languages).filter((key) => !ignore.has(key)).map((key): { id: string, title: string } => {
-			return {
-				id: key,
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-				title: (components.languages[key] as ComponentEntry).title!
-			};
-		});
+		const languages = Object.keys(components.languages)
+			.filter(key => !ignore.has(key))
+			.map((key): { id: string; title: string } => {
+				return {
+					id: key,
+					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+					title: (components.languages[key] as ComponentEntry).title!,
+				};
+			});
 
 		/**
 		 * Transforms the given title into an intermediate representation to allowed for sensible comparisons
 		 * between titles.
 		 */
-		function transformTitle(title: string) {
+		function transformTitle (title: string) {
 			return title.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
 		}
 
@@ -141,7 +153,7 @@ describe('components.json', () => {
 			'owner',
 
 			'noCSS',
-			'option'
+			'option',
 		]);
 
 		forEachEntry((entry, id) => {
@@ -149,7 +161,7 @@ describe('components.json', () => {
 				if (!knownProperties.has(prop)) {
 					assert.fail(
 						`Component "${id}":` +
-						` The property ${JSON.stringify(prop)} is not supported by Prism.`
+							` The property ${JSON.stringify(prop)} is not supported by Prism.`
 					);
 				}
 			}

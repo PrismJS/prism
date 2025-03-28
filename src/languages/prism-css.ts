@@ -5,64 +5,86 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'css',
 	optional: 'css-extras',
-	grammar({ getOptionalLanguage }) {
-		const string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+	grammar ({ getOptionalLanguage }) {
+		const string =
+			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 		const css = {
 			'comment': /\/\*[\s\S]*?\*\//,
 			'atrule': {
-				pattern: RegExp('@[\\w-](?:' + /[^;{\s"']|\s+(?!\s)/.source + '|' + string.source + ')*?' + /(?:;|(?=\s*\{))/.source),
+				pattern: RegExp(
+					'@[\\w-](?:' +
+						/[^;{\s"']|\s+(?!\s)/.source +
+						'|' +
+						string.source +
+						')*?' +
+						/(?:;|(?=\s*\{))/.source
+				),
 				inside: {
 					'rule': /^@[\w-]+/,
 					'selector-function-argument': {
-						pattern: /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
+						pattern:
+							/(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
 						lookbehind: true,
 						alias: 'selector',
-						inside: 'css-selector'
+						inside: 'css-selector',
 					},
 					'keyword': {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
-						lookbehind: true
+						lookbehind: true,
 					},
-					[rest]: 'css'
-				}
+					[rest]: 'css',
+				},
 			},
 			'url': {
 				// https://drafts.csswg.org/css-values-3/#urls
-				pattern: RegExp('\\burl\\((?:' + string.source + '|' + /(?:[^\\\r\n()"']|\\[\s\S])*/.source + ')\\)', 'i'),
+				pattern: RegExp(
+					'\\burl\\((?:' +
+						string.source +
+						'|' +
+						/(?:[^\\\r\n()"']|\\[\s\S])*/.source +
+						')\\)',
+					'i'
+				),
 				greedy: true,
 				inside: {
 					'function': /^url/i,
 					'punctuation': /^\(|\)$/,
 					'string': {
 						pattern: RegExp('^' + string.source + '$'),
-						alias: 'url'
-					}
-				}
+						alias: 'url',
+					},
+				},
 			},
 			'selector': {
-				pattern: RegExp('(^|[{}\\s])[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
+				pattern: RegExp(
+					'(^|[{}\\s])[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' +
+						string.source +
+						')*(?=\\s*\\{)'
+				),
 				lookbehind: true,
-				inside: 'css-selector'
+				inside: 'css-selector',
 			},
 			'string': {
 				pattern: string,
-				greedy: true
+				greedy: true,
 			},
 			'variable': {
-				pattern: /(^|[^-\w\xA0-\uFFFF])--(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*/i,
-				lookbehind: true
+				pattern:
+					/(^|[^-\w\xA0-\uFFFF])--(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*/i,
+				lookbehind: true,
 			},
 			'property': {
-				pattern: /(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
-				lookbehind: true
+				pattern:
+					/(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
+				lookbehind: true,
 			},
 			'important': /!important\b/i,
 			'function': {
 				pattern: /(^|[^-a-z0-9])[-a-z0-9]+(?=\()/i,
-				lookbehind: true
+				lookbehind: true,
 			},
-			'punctuation': /[(){};:,]/
+			'punctuation': /[(){};:,]/,
 		};
 
 		const extras = getOptionalLanguage('css-extras');
@@ -71,5 +93,5 @@ export default {
 		}
 
 		return css;
-	}
+	},
 } as LanguageProto<'css'>;

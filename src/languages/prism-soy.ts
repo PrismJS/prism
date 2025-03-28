@@ -6,7 +6,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'soy',
 	require: markup,
-	grammar() {
+	grammar () {
 		const stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 		const numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
 
@@ -14,7 +14,7 @@ export default {
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'soy': {
 				pattern: /\{\{.+?\}\}|\{.+?\}|\s\/\/.*|\/\*[\s\S]*?\*\//,
@@ -25,32 +25,34 @@ export default {
 						{
 							pattern: /(\s)\/\/.*/,
 							lookbehind: true,
-							greedy: true
-						}
+							greedy: true,
+						},
 					],
 					'command-arg': {
-						pattern: /(\{+\/?\s*(?:alias|call|delcall|delpackage|deltemplate|namespace|template)\s+)\.?[\w.]+/,
+						pattern:
+							/(\{+\/?\s*(?:alias|call|delcall|delpackage|deltemplate|namespace|template)\s+)\.?[\w.]+/,
 						lookbehind: true,
 						alias: 'string',
 						inside: {
-							'punctuation': /\./
-						}
+							'punctuation': /\./,
+						},
 					},
 					'parameter': {
 						pattern: /(\{+\/?\s*@?param\??\s+)\.?[\w.]+/,
 						lookbehind: true,
-						alias: 'variable'
+						alias: 'variable',
 					},
 					'keyword': [
 						{
-							pattern: /(\{+\/?[^\S\r\n]*)(?:\\[nrt]|alias|call|case|css|default|delcall|delpackage|deltemplate|else(?:if)?|fallbackmsg|for(?:each)?|if(?:empty)?|lb|let|literal|msg|namespace|nil|@?param\??|rb|sp|switch|template|xid)/,
-							lookbehind: true
+							pattern:
+								/(\{+\/?[^\S\r\n]*)(?:\\[nrt]|alias|call|case|css|default|delcall|delpackage|deltemplate|else(?:if)?|fallbackmsg|for(?:each)?|if(?:empty)?|lb|let|literal|msg|namespace|nil|@?param\??|rb|sp|switch|template|xid)/,
+							lookbehind: true,
 						},
-						/\b(?:any|as|attributes|bool|css|float|html|in|int|js|list|map|null|number|string|uri)\b/
+						/\b(?:any|as|attributes|bool|css|float|html|in|int|js|list|map|null|number|string|uri)\b/,
 					],
 					'delimiter': {
 						pattern: /^\{+\/?|\/?\}+$/,
-						alias: 'punctuation'
+						alias: 'punctuation',
 					},
 					'property': /\w+(?==)/,
 					'variable': {
@@ -58,30 +60,30 @@ export default {
 						inside: {
 							'string': {
 								pattern: stringPattern,
-								greedy: true
+								greedy: true,
 							},
 							'number': numberPattern,
-							'punctuation': /[\[\].?]/
-						}
+							'punctuation': /[\[\].?]/,
+						},
 					},
 					'string': {
 						pattern: stringPattern,
-						greedy: true
+						greedy: true,
 					},
 					'function': [
 						/\w+(?=\()/,
 						{
 							pattern: /(\|[^\S\r\n]*)\w+/,
-							lookbehind: true
-						}
+							lookbehind: true,
+						},
 					],
 					'boolean': /\b(?:false|true)\b/,
 					'number': numberPattern,
 					'operator': /\?:?|<=?|>=?|==?|!=|[+*/%-]|\b(?:and|not|or)\b/,
-					'punctuation': /[{}()\[\]|.,:]/
-				}
+					'punctuation': /[{}()\[\]|.,:]/,
+				},
 			},
-			[tokenize]: embeddedIn('markup')
+			[tokenize]: embeddedIn('markup'),
 		};
-	}
+	},
 } as LanguageProto<'soy'>;

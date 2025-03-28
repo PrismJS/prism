@@ -5,28 +5,29 @@ export default {
 	grammar: {
 		'comment': /#.*/,
 		'keyword': {
-			'pattern': /(^|\s)(?:(?:external|import)\b|(?:facet|instance of)(?=[ \t]+[\w-]+[ \t]*\{))/,
-			lookbehind: true
+			'pattern':
+				/(^|\s)(?:(?:external|import)\b|(?:facet|instance of)(?=[ \t]+[\w-]+[ \t]*\{))/,
+			lookbehind: true,
 		},
 		'component': {
 			pattern: /[\w-]+(?=[ \t]*\{)/,
-			alias: 'variable'
+			alias: 'variable',
 		},
 		'property': /[\w.-]+(?=[ \t]*:)/,
 		'value': {
 			pattern: /(=[ \t]*(?![ \t]))[^,;]+/,
 			lookbehind: true,
-			alias: 'attr-value'
+			alias: 'attr-value',
 		},
 		'optional': {
 			pattern: /\(optional\)/,
-			alias: 'builtin'
+			alias: 'builtin',
 		},
 		'wildcard': {
 			pattern: /(\.)\*/,
 			lookbehind: true,
-			alias: 'operator'
+			alias: 'operator',
 		},
-		'punctuation': /[{},.;:=]/
-	}
+		'punctuation': /[{},.;:=]/,
+	},
 } as LanguageProto<'roboconf'>;

@@ -13,47 +13,53 @@ export default {
 				'entry-line': [
 					{
 						pattern: /\|-- |├── /,
-						alias: 'line-h'
+						alias: 'line-h',
 					},
 					{
 						pattern: /\| {3}|│ {3}/,
-						alias: 'line-v'
+						alias: 'line-v',
 					},
 					{
 						pattern: /`-- |└── /,
-						alias: 'line-v-last'
+						alias: 'line-v-last',
 					},
 					{
 						pattern: / {4}/,
-						alias: 'line-v-gap'
-					}
+						alias: 'line-v-gap',
+					},
 				],
 				'entry-name': {
 					pattern: /\S(?:.*\S)?/,
 					inside: {
 						'directory-marker': {
 							pattern: /(^|[^\\])\/$/,
-							lookbehind: true
+							lookbehind: true,
 						},
 						'file-marker': {
 							pattern: /(^|[^\\])[=*|]$/,
-							lookbehind: true
+							lookbehind: true,
 						},
 						'symlink': {
 							pattern: / -> /,
-							alias: 'operator'
-						}
-					}
+							alias: 'operator',
+						},
+					},
 				},
 				[tokenize](code, grammar, Prism) {
 					const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 					for (const token of tokens) {
-						if (typeof token === 'string' || token.type !== 'entry-name' || typeof token.content === 'string') {
+						if (
+							typeof token === 'string' ||
+							token.type !== 'entry-name' ||
+							typeof token.content === 'string'
+						) {
 							continue;
 						}
 
-						if (token.content.some((t) => typeof t !== 'string' && t.type === 'symlink')) {
+						if (
+							token.content.some(t => typeof t !== 'string' && t.type === 'symlink')
+						) {
 							continue;
 						}
 
@@ -63,7 +69,8 @@ export default {
 						if (folderPattern.test(text)) {
 							// folder
 							token.addAlias('dir');
-						} else {
+						}
+						else {
 							// file
 
 							const parts = text
@@ -85,8 +92,8 @@ export default {
 					}
 
 					return tokens;
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+	},
 } as LanguageProto<'treeview'>;

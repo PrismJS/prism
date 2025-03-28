@@ -7,7 +7,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'jsdoc',
 	require: [javascript, javadoclike, typescript],
-	grammar({ extend, getLanguage }) {
+	grammar ({ extend, getLanguage }) {
 		const javascript = getLanguage('javascript');
 		const typescript = getLanguage('typescript');
 
@@ -20,23 +20,25 @@ export default {
 				pattern: RegExp(parameterPrefix + /(?:(?!\s)[$\w\xA0-\uFFFF.])+(?=\s|$)/.source),
 				lookbehind: true,
 				inside: {
-					'punctuation': /\./
-				}
-			}
+					'punctuation': /\./,
+				},
+			},
 		});
 
 		insertBefore(jsdoc, 'keyword', {
 			'optional-parameter': {
 				// @param {string} [baz.foo="bar"] foo bar
-				pattern: RegExp(parameterPrefix + /\[(?:(?!\s)[$\w\xA0-\uFFFF.])+(?:=[^[\]]+)?\](?=\s|$)/.source),
+				pattern: RegExp(
+					parameterPrefix + /\[(?:(?!\s)[$\w\xA0-\uFFFF.])+(?:=[^[\]]+)?\](?=\s|$)/.source
+				),
 				lookbehind: true,
 				inside: {
 					'parameter': {
 						pattern: /(^\[)[$\w\xA0-\uFFFF\.]+/,
 						lookbehind: true,
 						inside: {
-							'punctuation': /\./
-						}
+							'punctuation': /\./,
+						},
 					},
 					'code': {
 						pattern: /(=)[\s\S]*(?=\]$)/,
@@ -44,16 +46,21 @@ export default {
 						alias: 'language-javascript',
 						inside: 'javascript',
 					},
-					'punctuation': /[=[\]]/
-				}
+					'punctuation': /[=[\]]/,
+				},
 			},
 			'class-name': [
 				{
-					pattern: RegExp(/(@(?:augments|class|extends|interface|memberof!?|template|this|typedef)\s+(?:<TYPE>\s+)?)[A-Z]\w*(?:\.[A-Z]\w*)*/.source.replace(/<TYPE>/g, () => type)),
+					pattern: RegExp(
+						/(@(?:augments|class|extends|interface|memberof!?|template|this|typedef)\s+(?:<TYPE>\s+)?)[A-Z]\w*(?:\.[A-Z]\w*)*/.source.replace(
+							/<TYPE>/g,
+							() => type
+						)
+					),
 					lookbehind: true,
 					inside: {
-						'punctuation': /\./
-					}
+						'punctuation': /\./,
+					},
 				},
 				{
 					pattern: RegExp('(@[a-z]+\\s+)' + type),
@@ -64,9 +71,9 @@ export default {
 						'boolean': javascript.boolean,
 						'keyword': typescript.keyword,
 						'operator': /=>|\.\.\.|[&|?:*]/,
-						'punctuation': /[.,;=<>{}()[\]]/
-					}
-				}
+						'punctuation': /[.,;=<>{}()[\]]/,
+					},
+				},
 			],
 			'example': {
 				pattern: /(@example\s+(?!\s))(?:[^@\s]|\s+(?!\s))+?(?=\s*(?:\*\s*)?(?:@\w|\*\/))/,
@@ -77,11 +84,11 @@ export default {
 						lookbehind: true,
 						alias: 'language-javascript',
 						inside: 'javascript',
-					}
-				}
-			}
+					},
+				},
+			},
 		});
 
 		return jsdoc;
-	}
+	},
 } as LanguageProto<'jsdoc'>;

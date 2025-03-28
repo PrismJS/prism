@@ -6,7 +6,7 @@ export default {
 	id: 't4-cs',
 	require: csharp,
 	alias: 't4',
-	grammar() {
+	grammar () {
 		return createT4('csharp');
-	}
+	},
 } as LanguageProto<'t4-cs'>;

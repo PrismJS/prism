@@ -3,22 +3,22 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'json',
 	alias: 'webmanifest',
-	grammar() {
+	grammar () {
 		// https://www.json.org/json-en.html
 		return {
 			'property': {
 				pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?=\s*:)/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'string': {
 				pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
 			},
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
-				greedy: true
+				greedy: true,
 			},
 			'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 			'punctuation': /[{}[\],]/,
@@ -26,8 +26,8 @@ export default {
 			'boolean': /\b(?:false|true)\b/,
 			'null': {
 				pattern: /\bnull\b/,
-				alias: 'keyword'
-			}
+				alias: 'keyword',
+			},
 		};
-	}
+	},
 } as LanguageProto<'json'>;

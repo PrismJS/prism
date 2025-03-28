@@ -24,7 +24,7 @@ export const PrismConfig = {
 	 * @default false
 	 * @public
 	 */
-	manual: false
+	manual: false,
 };
 
 if (typeof document !== 'undefined' && typeof window !== 'undefined') {
@@ -48,12 +48,17 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
 	// See https://github.com/PrismJS/prism/issues/2102
 	// See https://github.com/PrismJS/prism/issues/3535
 	const readyState = document.readyState;
-	if (readyState === 'loading' || readyState === 'interactive' && script && script.defer && !script.async) {
+	if (
+		readyState === 'loading' ||
+		(readyState === 'interactive' && script && script.defer && !script.async)
+	) {
 		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
-	} else {
+	}
+	else {
 		window.requestAnimationFrame(highlightAutomaticallyCallback);
 	}
-} else {
+}
+else {
 	PrismConfig.manual = true;
 }
 

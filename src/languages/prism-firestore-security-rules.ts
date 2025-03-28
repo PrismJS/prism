@@ -5,7 +5,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'firestore-security-rules',
 	require: clike,
-	grammar({ extend }) {
+	grammar ({ extend }) {
 		const fsr = extend('clike', {
 			'comment': /\/\/.*/,
 			'keyword': /\b(?:allow|function|if|match|null|return|rules_version|service)\b/,
@@ -16,7 +16,8 @@ export default {
 
 		insertBefore(fsr, 'keyword', {
 			'path': {
-				pattern: /(^|[\s(),])(?:\/(?:[\w\xA0-\uFFFF]+|\{[\w\xA0-\uFFFF]+(?:=\*\*)?\}|\$\([\w\xA0-\uFFFF.]+\)))+/,
+				pattern:
+					/(^|[\s(),])(?:\/(?:[\w\xA0-\uFFFF]+|\{[\w\xA0-\uFFFF]+(?:=\*\*)?\}|\$\([\w\xA0-\uFFFF.]+\)))+/,
 				lookbehind: true,
 				greedy: true,
 				inside: {
@@ -25,11 +26,11 @@ export default {
 						inside: {
 							'operator': /=/,
 							'keyword': /\*\*/,
-							'punctuation': /[.$(){}]/
-						}
+							'punctuation': /[.$(){}]/,
+						},
 					},
-					'punctuation': /\//
-				}
+					'punctuation': /\//,
+				},
 			},
 			'method': {
 				// to make the pattern shorter, the actual method names are omitted
@@ -37,11 +38,11 @@ export default {
 				lookbehind: true,
 				alias: 'builtin',
 				inside: {
-					'punctuation': /,/
-				}
+					'punctuation': /,/,
+				},
 			},
 		});
 
 		return fsr;
-	}
+	},
 } as LanguageProto<'firestore-security-rules'>;

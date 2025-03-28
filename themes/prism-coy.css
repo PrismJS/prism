@@ -8,7 +8,7 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: black;
 	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 	font-size: 1em;
 	text-align: left;
 	white-space: pre;
@@ -30,7 +30,7 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
 	position: relative;
-	margin: .5em 0;
+	margin: 0.5em 0;
 	overflow: visible;
 	padding: 1px;
 }
@@ -39,7 +39,9 @@ pre[class*="language-"] > code {
 	position: relative;
 	z-index: 1;
 	border-left: 10px solid #358ccb;
-	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	box-shadow:
+		-1px 0px 0px 0px #358ccb,
+		0px 0px 0px 1px #dfdfdf;
 	background-color: #fdfdfd;
 	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
 	background-size: 3em 3em;
@@ -68,7 +70,7 @@ pre[class*="language-"] {
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	position: relative;
-	padding: .2em;
+	padding: 0.2em;
 	border-radius: 0.3em;
 	color: #c92c2c;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -78,7 +80,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"]:before,
 pre[class*="language-"]:after {
-	content: '';
+	content: "";
 	display: block;
 	position: absolute;
 	bottom: 0.75em;
@@ -109,11 +111,11 @@ pre[class*="language-"]:after {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #7D8B99;
+	color: #7d8b99;
 }
 
 .token.punctuation {
-	color: #5F6364;
+	color: #5f6364;
 }
 
 .token.property,
@@ -179,7 +181,7 @@ pre[class*="language-"]:after {
 }
 
 .token.namespace {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {
@@ -188,7 +190,6 @@ pre[class*="language-"]:after {
 		bottom: 14px;
 		box-shadow: none;
 	}
-
 }
 
 /* Plugin styles: Line Numbers */
