@@ -7,7 +7,7 @@ import type { ComponentProto, PluginProto } from '../../types';
 function getDefaultSrcPath() {
 	if (typeof document !== 'undefined') {
 		const script = document.currentScript as HTMLScriptElement | null;
-		if (script) {
+		if (script?.tagName === 'SCRIPT') {
 			const autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 			const prismFile = /(^|\/)[\w-]+\.(?:min\.)?m?js(?:\?[^\r\n/]*)?$/i;
 

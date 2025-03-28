@@ -83,7 +83,7 @@ export default {
 
 		if (typeof document !== 'undefined') {
 			const script = document.currentScript;
-			if (script) {
+			if (script?.tagName === 'SCRIPT') {
 				config.filterKnown = script.hasAttribute('data-filter-known');
 
 				let attr;
