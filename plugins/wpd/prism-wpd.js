@@ -6,18 +6,16 @@
 
 	if (Prism.languages.css) {
 		// check whether the selector is an advanced pattern before extending it
-		if (Prism.languages.css.selector.pattern) {
-			Prism.languages.css.selector.inside['pseudo-class'] = /:[\w-]+/;
-			Prism.languages.css.selector.inside['pseudo-element'] = /::[\w-]+/;
-		} else {
+		if (!Prism.languages.css.selector.pattern) {
 			Prism.languages.css.selector = {
-				pattern: Prism.languages.css.selector,
-				inside: {
-					'pseudo-class': /:[\w-]+/,
-					'pseudo-element': /::[\w-]+/
-				}
+				pattern: Prism.languages.css.selector
 			};
 		}
+		if (!Prism.languages.css.selector.inside) {
+			Prism.languages.css.selector.inside = {};
+		}
+		Prism.languages.css.selector.inside['pseudo-class'] = /:[\w-]+/;
+		Prism.languages.css.selector.inside['pseudo-element'] = /::[\w-]+/;
 	}
 
 	if (Prism.languages.markup) {
