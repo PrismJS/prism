@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Netlify Build Hook
-        run: curl -X POST -d "{}" "https://api.netlify.com/build_hooks/67ee8bcdb6033e6afa7eec48?trigger_title=The+Prism+code+has+been+updated"
+        run: curl -X POST -d "{}" "${{ secrets.WEBSITE_BUILD_HOOK_URL }}?trigger_title=The+Prism+code+has+been+updated"
