@@ -1,0 +1,14 @@
+name: Rebuild Website
+
+on:
+  push:
+    branches:
+      # FIXME: Use the main branch when v2 is out
+      - v2
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Build Hook
+        run: curl -X POST -d "{}" "${{ secrets.WEBSITE_BUILD_HOOK_URL }}?trigger_title=The+Prism+code+has+been+updated"
