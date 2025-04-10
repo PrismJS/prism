@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
@@ -7,6 +8,7 @@ import { mkdir, readFile, readdir, rm, writeFile } from 'fs/promises';
 import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
+import { fileURLToPath } from 'url';
 import { webfont } from 'webfont';
 import { toArray } from '../src/shared/util';
 import { components } from './components';
@@ -14,7 +16,10 @@ import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
 import type { Plugin, SourceMapInput } from 'rollup';
 
-const SRC_DIR = path.join(__dirname, '../src/');
+const __filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(__filename);
+
+const SRC_DIR = path.join(dirname, '../src/');
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
 	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
@@ -36,7 +41,7 @@ async function loadComponent (id: string) {
 async function minifyCSS () {
 	const input: Record<string, string> = {};
 
-	const THEMES_DIR = path.join(__dirname, '../themes');
+	const THEMES_DIR = path.join(dirname, '../themes');
 	const themes = await readdir(THEMES_DIR);
 	for (const theme of themes.filter(f => /\.css$/i.test(f))) {
 		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
@@ -49,7 +54,7 @@ async function minifyCSS () {
 		}
 	}
 
-	const DIST = path.join(__dirname, '../dist');
+	const DIST = path.join(dirname, '../dist');
 
 	const clean = new CleanCSS({});
 
@@ -306,13 +311,13 @@ const terserPlugin = rollupTerser({
 });
 
 async function clean() {
-	const outputDir = path.join(__dirname, '../dist');
+	const outputDir = path.join(dirname, '../dist');
 	await rm(outputDir, { recursive: true, force: true });
 }
 
 async function buildJS() {
 	const input: Record<string, string> = {
-		'core': path.join(SRC_DIR, 'core.ts'),
+		'index': path.join(SRC_DIR, 'index.ts'),
 		'shared': path.join(SRC_DIR, 'shared.ts'),
 	};
 	for (const id of languageIds) {
@@ -322,16 +327,36 @@ async function buildJS() {
 		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
 	}
 
-	let bundle;
+	// Using multiple bundles here mostly for convenience.
+	let esmBundle;
+	let cjsBundle;
 	try {
-		bundle = await rollup({
+		esmBundle = await rollup({
 			input,
-			plugins: [rollupTypescript({ module: 'esnext' })],
+			output: { dir: './dist' },
+			plugins: [
+				rollupTypescript({
+					module: 'esnext',
+					compilerOptions: { declaration: true, declarationDir: './dist/esm' },
+				}),
+			],
+		});
+
+		cjsBundle = await rollup({
+			input,
+			output: { dir: './dist' },
+			plugins: [
+				rollupTypescript({
+					module: 'esnext',
+					compilerOptions: { declaration: true, declarationDir: './dist/cjs' },
+				}),
+				commonjs(),
+			],
 		});
 
 		// ESM
-		await bundle.write({
-			dir: 'dist/esm',
+		await esmBundle.write({
+			dir: './dist/esm',
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
@@ -339,8 +364,8 @@ async function buildJS() {
 		});
 
 		// CommonJS
-		await bundle.write({
-			dir: 'dist/cjs',
+		await cjsBundle.write({
+			dir: './dist/cjs',
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
@@ -350,7 +375,8 @@ async function buildJS() {
 		});
 	}
 	finally {
-		await bundle?.close();
+		await esmBundle?.close();
+		await cjsBundle?.close();
 	}
 }
 

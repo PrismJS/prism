@@ -2,14 +2,21 @@
 	"name": "prismjs",
 	"version": "1.29.0",
 	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
-	"main": "prism.js",
+	"type": "module",
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/esm/index.js",
+	"exports": {
+		".": "./dist/esm/index.js",
+		"./shared": "./dist/esm/shared.js",
+		"./languages/*": "./dist/esm/languages/*.js"
+	},
 	"style": "themes/prism.css",
 	"engines": {
 		"node": ">=14"
 	},
 	"scripts": {
-		"benchmark": "ts-node benchmark/benchmark.ts",
-		"build": "ts-node scripts/build.ts",
+		"benchmark": "tsx benchmark/benchmark.ts",
+		"build": "tsx scripts/build.ts",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
 		"lint:ci": "eslint . --max-warnings 0",
@@ -41,6 +48,7 @@
 		"@babel/preset-env": "^7.18.10",
 		"@babel/register": "^7.18.9",
 		"@prettier/sync": "^0.5.2",
+		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-terser": "^0.4.3",
 		"@rollup/plugin-typescript": "^11.1.1",
 		"@types/benchmark": "^2.1.2",
@@ -83,7 +91,7 @@
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
 		"ts-mocha": "^10.0.0",
-		"ts-node": "^10.9.1",
+		"tsx": "^4.19.3",
 		"typescript": "^5.0.4",
 		"webfont": "^11.2.26",
 		"yargs": "^13.2.2"
