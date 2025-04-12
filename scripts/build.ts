@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import commonjs from '@rollup/plugin-commonjs';
+import ts from 'typescript';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile } from 'fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile, copyFile } from 'fs/promises';
 import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
@@ -310,8 +310,46 @@ const terserPlugin = rollupTerser({
 });
 
 async function clean() {
-	const outputDir = path.join(dirname, '../dist');
-	await rm(outputDir, { recursive: true, force: true });
+	const outputDir = path.join(__dirname, '../dist');
+	const typesDir = path.join(__dirname, '../types');
+	await Promise.all([
+		rm(outputDir, { recursive: true, force: true }),
+		rm(typesDir, { recursive: true, force: true }),
+	]);
+}
+
+async function buildTypes() {
+	await mkdir('./types');
+
+	// Copy existing type definitions
+	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
+
+	await Promise.all(
+		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
+	);
+
+	const configPath = ts.findConfigFile('./', ts.sys.fileExists, 'tsconfig.json');
+
+	if (!configPath) {
+		throw new Error('Could not find tsconfig.json');
+	}
+
+	const configFile = ts.readConfigFile(configPath, ts.sys.readFile);
+	const parsedConfig = ts.parseJsonConfigFileContent(configFile.config, ts.sys, './');
+
+	const compilerOptions: ts.CompilerOptions = {
+		...parsedConfig.options,
+		declaration: true,
+		emitDeclarationOnly: true,
+		outDir: './types',
+		rootDir: './src',
+		noEmit: false,
+		noEmitOnError: false,
+	};
+
+	const program = ts.createProgram(parsedConfig.fileNames, compilerOptions);
+
+	program.emit();
 }
 
 async function buildJS() {
@@ -326,36 +364,16 @@ async function buildJS() {
 		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
 	}
 
-	// Using multiple bundles here mostly for convenience.
-	let esmBundle;
-	let cjsBundle;
+	let bundle;
 	try {
-		esmBundle = await rollup({
+		bundle = await rollup({
 			input,
-			output: { dir: './dist' },
-			plugins: [
-				rollupTypescript({
-					module: 'esnext',
-					compilerOptions: { declaration: true, declarationDir: './dist/esm' },
-				}),
-			],
-		});
-
-		cjsBundle = await rollup({
-			input,
-			output: { dir: './dist' },
-			plugins: [
-				rollupTypescript({
-					module: 'esnext',
-					compilerOptions: { declaration: true, declarationDir: './dist/cjs' },
-				}),
-				commonjs(),
-			],
+			plugins: [rollupTypescript({ module: 'esnext' })],
 		});
 
 		// ESM
-		await esmBundle.write({
-			dir: './dist/esm',
+		await bundle.write({
+			dir: 'dist/esm',
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
@@ -363,8 +381,8 @@ async function buildJS() {
 		});
 
 		// CommonJS
-		await cjsBundle.write({
-			dir: './dist/cjs',
+		await bundle.write({
+			dir: 'dist/cjs',
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
@@ -374,9 +392,10 @@ async function buildJS() {
 		});
 	}
 	finally {
-		await esmBundle?.close();
-		await cjsBundle?.close();
+		await bundle?.close();
 	}
 }
 
-runTask(series(clean, parallel(buildJS, series(treeviewIconFont, minifyCSS))));
+runTask(
+	series(clean, parallel(parallel(buildTypes, buildJS), series(treeviewIconFont, minifyCSS)))
+);
