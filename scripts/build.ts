@@ -16,10 +16,9 @@ import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
 import type { Plugin, SourceMapInput } from 'rollup';
 
-const __filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SRC_DIR = path.join(dirname, '../src/');
+const SRC_DIR = path.join(__dirname, '../src/');
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
 	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
@@ -41,7 +40,7 @@ async function loadComponent (id: string) {
 async function minifyCSS () {
 	const input: Record<string, string> = {};
 
-	const THEMES_DIR = path.join(dirname, '../themes');
+	const THEMES_DIR = path.join(__dirname, '../themes');
 	const themes = await readdir(THEMES_DIR);
 	for (const theme of themes.filter(f => /\.css$/i.test(f))) {
 		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
@@ -54,7 +53,7 @@ async function minifyCSS () {
 		}
 	}
 
-	const DIST = path.join(dirname, '../dist');
+	const DIST = path.join(__dirname, '../dist');
 
 	const clean = new CleanCSS({});
 
