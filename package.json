@@ -5,10 +5,23 @@
 	"type": "module",
 	"main": "./dist/cjs/index.js",
 	"module": "./dist/esm/index.js",
+	"types": "./types/index.d.ts",
 	"exports": {
-		".": "./dist/esm/index.js",
-		"./shared": "./dist/esm/shared.js",
-		"./languages/*": "./dist/esm/languages/*.js"
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./dist/esm/index.js",
+			"require": "./dist/cjs/index.js"
+		},
+		"./shared": {
+			"types": "./types/shared.d.ts",
+			"import": "./dist/esm/shared.js",
+			"require": "./dist/cjs/shared.js"
+		},
+		"./languages/*": {
+			"types": "./types/languages/*.d.ts",
+			"import": "./dist/esm/languages/*.js",
+			"require": "./dist/cjs/languages/*.js"
+		}
 	},
 	"style": "themes/prism.css",
 	"engines": {
