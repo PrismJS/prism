@@ -61,7 +61,6 @@
 		"@babel/preset-env": "^7.18.10",
 		"@babel/register": "^7.18.9",
 		"@prettier/sync": "^0.5.2",
-		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-terser": "^0.4.3",
 		"@rollup/plugin-typescript": "^11.1.1",
 		"@types/benchmark": "^2.1.2",
