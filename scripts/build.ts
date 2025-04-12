@@ -397,5 +397,5 @@ async function buildJS() {
 }
 
 runTask(
-	series(clean, parallel(parallel(buildTypes, buildJS), series(treeviewIconFont, minifyCSS)))
+	series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)))
 );
