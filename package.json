@@ -10,6 +10,7 @@
 	"scripts": {
 		"benchmark": "ts-node benchmark/benchmark.ts",
 		"build": "ts-node scripts/build.ts",
+		"prepare": "npm run build",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
 		"lint:ci": "eslint . --max-warnings 0",
