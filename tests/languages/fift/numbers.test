@@ -1,0 +1,75 @@
+7 4 - .
+
+2 3 4 * + .
+2 3 + 4 * .
+
+1 2 3 4 .s
+rot .s
+
+2 3 < .
+2 3 > .
+
+// More complex structure
+{ "true " "false " rot 0= 1+ pick type 2drop } : ?.
+2 3 < ?. 2 3 = ?. 2 3 > ?.
+
+----------------------------------------------------
+
+[
+	["number", "7"], ["number", "4"], ["operator", "-"], ["operator", "."],
+
+	["number", "2"],
+	["number", "3"],
+	["number", "4"],
+	["operator", "*"],
+	["operator", "+"],
+	["operator", "."],
+
+	["number", "2"],
+	["number", "3"],
+	["operator", "+"],
+	["number", "4"],
+	["operator", "*"],
+	["operator", "."],
+
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+	["number", "4"],
+	["operator", ".s"],
+
+	["keyword", "rot"],
+	["operator", ".s"],
+
+	["number", "2"], ["number", "3"], ["operator", "<"], ["operator", "."],
+	["number", "2"], ["number", "3"], ["operator", ">"], ["operator", "."],
+
+	["comment", "// More complex structure"],
+
+	["punctuation", "{"],
+	["string", "\"true \""],
+	["string", "\"false \""],
+	["keyword", "rot"],
+	["operator", "0="],
+	["number", "1"],
+	["operator", "+"],
+	["keyword", "pick"],
+	["keyword", "type"],
+	["keyword", "2drop"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["operator", "?."],
+
+	["number", "2"],
+	["number", "3"],
+	["operator", "<"],
+	["operator", "?."],
+	["number", "2"],
+	["number", "3"],
+	["operator", "="],
+	["operator", "?."],
+	["number", "2"],
+	["number", "3"],
+	["operator", ">"],
+	["operator", "?."]
+]

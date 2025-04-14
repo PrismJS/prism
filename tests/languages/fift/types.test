@@ -1,0 +1,115 @@
+// Tripples
+| 2 , 3 , 9 , .dump
+2 3 9 triple .dump
+
+// Matrix
+1 2 3 triple 4 5 6 triple 7 8 9 triple triple constant Matrix
+Matrix .dump cr
+| 1 "one" pair , 2 "two" pair , 3 "three" pair , .dump
+
+// Lists
+2 3 9 3 tuple .dump cr
+2 3 9 3 list dup .dump space dup .l cr
+"test" swap cons .l cr
+
+// Atoms
+'+ 2 '* 3 4 3 list 3 list .l
+
+----------------------------------------------------
+
+[
+	["comment", "// Tripples"],
+
+	["operator", "|"],
+	["number", "2"],
+	["operator", ","],
+	["number", "3"],
+	["operator", ","],
+	["number", "9"],
+	["operator", ","],
+	["operator", ".dump"],
+
+	["number", "2"],
+	["number", "3"],
+	["number", "9"],
+	["keyword", "triple"],
+	["operator", ".dump"],
+
+	["comment", "// Matrix"],
+
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+	["keyword", "triple"],
+	["number", "4"],
+	["number", "5"],
+	["number", "6"],
+	["keyword", "triple"],
+	["number", "7"],
+	["number", "8"],
+	["number", "9"],
+	["keyword", "triple"],
+	["keyword", "triple"],
+	["keyword", "constant"],
+	["variable", "Matrix"],
+
+	["variable", "Matrix"],
+	["operator", ".dump"],
+	["keyword", "cr"],
+
+	["operator", "|"],
+	["number", "1"],
+	["string", "\"one\""],
+	["keyword", "pair"],
+	["operator", ","],
+	["number", "2"],
+	["string", "\"two\""],
+	["keyword", "pair"],
+	["operator", ","],
+	["number", "3"],
+	["string", "\"three\""],
+	["keyword", "pair"],
+	["operator", ","],
+	["operator", ".dump"],
+
+	["comment", "// Lists"],
+
+	["number", "2"],
+	["number", "3"],
+	["number", "9"],
+	["number", "3"],
+	["keyword", "tuple"],
+	["operator", ".dump"],
+	["keyword", "cr"],
+
+	["number", "2"],
+	["number", "3"],
+	["number", "9"],
+	["number", "3"],
+	["keyword", "list"],
+	["keyword", "dup"],
+	["operator", ".dump"],
+	["keyword", "space"],
+	["keyword", "dup"],
+	["operator", ".l"],
+	["keyword", "cr"],
+
+	["string", "\"test\""],
+	["keyword", "swap"],
+	["keyword", "cons"],
+	["operator", ".l"],
+	["keyword", "cr"],
+
+	["comment", "// Atoms"],
+
+	["symbol", "'+"],
+	["number", "2"],
+	["symbol", "'*"],
+	["number", "3"],
+	["number", "4"],
+	["number", "3"],
+	["keyword", "list"],
+	["number", "3"],
+	["keyword", "list"],
+	["operator", ".l"]
+]

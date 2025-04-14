@@ -1,0 +1,103 @@
+variable 'eval
+{ 'eval @ execute } : eval
+{ dup tuple? {
+  uncons uncons uncons
+  null? not abort"three-element list expected"
+  swap eval swap eval rot
+    dup '+ eq? { drop + } {
+      dup '- eq? { drop - } {
+        '* eq? not abort"unknown operation" *
+      } cond
+    } cond
+  } if
+} 'eval !
+'+ 2 '* 3 4 3 list 3 list dup .l cr eval . cr
+
+----------------------------------------------------
+
+[
+	["keyword", "variable"],
+	["symbol", "'eval"],
+
+	["punctuation", "{"],
+	["symbol", "'eval"],
+	["operator", "@"],
+	["keyword", "execute"],
+	["punctuation", "}"],
+	["operator", ":"],
+	["variable", "eval"],
+
+	["punctuation", "{"],
+	["keyword", "dup"],
+	["operator", "tuple?"],
+	["punctuation", "{"],
+
+	["keyword", "uncons"],
+	["keyword", "uncons"],
+	["keyword", "uncons"],
+
+	["operator", "null?"],
+	["keyword", "not"],
+	["keyword", "abort"],
+	["string", "\"three-element list expected\""],
+
+	["keyword", "swap"],
+	["variable", "eval"],
+	["keyword", "swap"],
+	["variable", "eval"],
+	["keyword", "rot"],
+
+	["keyword", "dup"],
+	["symbol", "'+"],
+	["operator", "eq?"],
+	["punctuation", "{"],
+	["keyword", "drop"],
+	["operator", "+"],
+	["punctuation", "}"],
+	["punctuation", "{"],
+
+	["keyword", "dup"],
+	["symbol", "'-"],
+	["operator", "eq?"],
+	["punctuation", "{"],
+	["keyword", "drop"],
+	["operator", "-"],
+	["punctuation", "}"],
+	["punctuation", "{"],
+
+	["symbol", "'*"],
+	["operator", "eq?"],
+	["keyword", "not"],
+	["keyword", "abort"],
+	["string", "\"unknown operation\""],
+	["operator", "*"],
+
+	["punctuation", "}"],
+	["keyword", "cond"],
+
+	["punctuation", "}"],
+	["keyword", "cond"],
+
+	["punctuation", "}"],
+	["keyword", "if"],
+
+	["punctuation", "}"],
+	["symbol", "'eval"],
+	["operator", "!"],
+
+	["symbol", "'+"],
+	["number", "2"],
+	["symbol", "'*"],
+	["number", "3"],
+	["number", "4"],
+	["number", "3"],
+	["keyword", "list"],
+	["number", "3"],
+	["keyword", "list"],
+	["keyword", "dup"],
+	["operator", ".l"],
+	["keyword", "cr"],
+	["variable", "eval"],
+	["operator", "."],
+	["keyword", "cr"]
+]
