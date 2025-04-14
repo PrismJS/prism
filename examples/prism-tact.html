@@ -1,0 +1,32 @@
+<h2>Full example</h2>
+<pre><code>import "@stdlib/ownable";
+
+struct SampleStruct {
+    message: Int as uint32;
+}
+
+message(0x1234) MyMessage {
+    data: SampleStruct;
+}
+
+trait MyTrait {
+    get fun traitState(): Int {
+        return 0;
+    }
+}
+
+contract MyContract with MyTrait, Ownable? {
+    owner: Address; // comment
+    value: Int as uint32 = 1230;
+    counters: map&lt;Int, Address> /* Address, "Address" */ ;
+    map: map&lt;Int as int16, Int as uint32>;
+    b: bounced&lt;MyMessage>;
+
+    init(owner: Address) {
+        self.owner = owner;
+    }
+    bounced() {}
+    virtual fun overrideMe() {}
+}
+
+mutates get fun noName() { /* Multi-line comment */ }</code></pre>
