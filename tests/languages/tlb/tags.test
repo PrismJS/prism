@@ -1,0 +1,17 @@
+block_info#9bc7a987a
+some#3f5476ca
+some$0101
+some
+some#_
+some$_
+
+----------------------------------------------------
+
+[
+	["variable", "block_info"], ["symbol", "#9bc7a987a"],
+	["variable", "some"], ["symbol", "#3f5476ca"],
+	["variable", "some"], ["symbol", "$0101"],
+	["variable", "some"],
+	["variable", "some"], ["symbol", "#_"],
+	["variable", "some"], ["symbol", "$_"]
+]

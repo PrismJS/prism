@@ -1,0 +1,24 @@
+// This is a simple comment
+
+// This is a 
+// two line comment
+
+8  // This is an inline comment
+
+/*
+ This is a
+ multiline comment
+ */
+
+----------------------------------------------------
+
+[
+	["comment", "// This is a simple comment"],
+
+	["comment", "// This is a "],
+	["comment", "// two line comment"],
+
+	["number", "8"], ["comment", "// This is an inline comment"],
+
+	["comment", "/*\r\n This is a\r\n multiline comment\r\n */"]
+]
