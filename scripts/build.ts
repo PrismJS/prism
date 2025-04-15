@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import ts from 'typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile } from 'fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile, copyFile } from 'fs/promises';
 import MagicString from 'magic-string';
 import path from 'path';
 import { rollup } from 'rollup';
@@ -16,10 +17,9 @@ import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
 import type { Plugin, SourceMapInput } from 'rollup';
 
-const __filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SRC_DIR = path.join(dirname, '../src/');
+const SRC_DIR = path.join(__dirname, '../src/');
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
 	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
@@ -41,7 +41,7 @@ async function loadComponent (id: string) {
 async function minifyCSS () {
 	const input: Record<string, string> = {};
 
-	const THEMES_DIR = path.join(dirname, '../themes');
+	const THEMES_DIR = path.join(__dirname, '../themes');
 	const themes = await readdir(THEMES_DIR);
 	for (const theme of themes.filter(f => /\.css$/i.test(f))) {
 		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
@@ -54,7 +54,7 @@ async function minifyCSS () {
 		}
 	}
 
-	const DIST = path.join(dirname, '../dist');
+	const DIST = path.join(__dirname, '../dist');
 
 	const clean = new CleanCSS({});
 
@@ -311,8 +311,46 @@ const terserPlugin = rollupTerser({
 });
 
 async function clean() {
-	const outputDir = path.join(dirname, '../dist');
-	await rm(outputDir, { recursive: true, force: true });
+	const outputDir = path.join(__dirname, '../dist');
+	const typesDir = path.join(__dirname, '../types');
+	await Promise.all([
+		rm(outputDir, { recursive: true, force: true }),
+		rm(typesDir, { recursive: true, force: true }),
+	]);
+}
+
+async function buildTypes() {
+	await mkdir('./types');
+
+	// Copy existing type definitions
+	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
+
+	await Promise.all(
+		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
+	);
+
+	const configPath = ts.findConfigFile('./', ts.sys.fileExists, 'tsconfig.json');
+
+	if (!configPath) {
+		throw new Error('Could not find tsconfig.json');
+	}
+
+	const configFile = ts.readConfigFile(configPath, ts.sys.readFile);
+	const parsedConfig = ts.parseJsonConfigFileContent(configFile.config, ts.sys, './');
+
+	const compilerOptions: ts.CompilerOptions = {
+		...parsedConfig.options,
+		declaration: true,
+		emitDeclarationOnly: true,
+		outDir: './types',
+		rootDir: './src',
+		noEmit: false,
+		noEmitOnError: false,
+	};
+
+	const program = ts.createProgram(parsedConfig.fileNames, compilerOptions);
+
+	program.emit();
 }
 
 async function buildJS() {
@@ -333,25 +371,12 @@ async function buildJS() {
 	try {
 		esmBundle = await rollup({
 			input,
-			output: { dir: './dist' },
-			plugins: [
-				rollupTypescript({
-					module: 'esnext',
-					compilerOptions: { declaration: true, declarationDir: './dist/esm' },
-				}),
-			],
+			plugins: [rollupTypescript({ module: 'esnext' })],
 		});
 
 		cjsBundle = await rollup({
 			input,
-			output: { dir: './dist' },
-			plugins: [
-				rollupTypescript({
-					module: 'esnext',
-					compilerOptions: { declaration: true, declarationDir: './dist/cjs' },
-				}),
-				commonjs(),
-			],
+			plugins: [rollupTypescript({ module: 'esnext' }), commonjs()],
 		});
 
 		// ESM
@@ -369,8 +394,6 @@ async function buildJS() {
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',
-			format: 'cjs',
-			exports: 'named',
 			plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
 		});
 	}
@@ -380,4 +403,4 @@ async function buildJS() {
 	}
 }
 
-runTask(series(clean, parallel(buildJS, series(treeviewIconFont, minifyCSS))));
+runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS))));
