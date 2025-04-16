@@ -4,12 +4,16 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { gitP } from 'simple-git';
-import { argv } from 'yargs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { parseLanguageNames } from '../tests/helper/test-case';
 import { config as baseConfig } from './config';
 import type { Prism } from '../src/core';
 import type { Config, ConfigOptions } from './config';
 import type { Options, Stats } from 'benchmark';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function runBenchmark (config: Config) {
 	const cases = await getCases(config);
@@ -137,7 +141,7 @@ async function runBenchmark (config: Config) {
 function getConfig (): Config {
 	const base = baseConfig;
 
-	const args = argv as Record<string, unknown>;
+	const args = yargs(hideBin(process.argv)) as unknown as Record<string, unknown>;
 
 	if (typeof args.testFunction === 'string') {
 		baseConfig.options.testFunction = args.testFunction as ConfigOptions['testFunction'];
@@ -404,7 +408,7 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 	for (const remote of config.remotes) {
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)![0];
-		const branch = remote.branch || 'master';
+		const branch = remote.branch || 'main';
 		const remoteName = `${user}@${branch}`;
 		const remoteDir = path.join(remoteBaseDir, `${user}@${branch}`);
 
