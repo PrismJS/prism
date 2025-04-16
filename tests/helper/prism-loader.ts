@@ -107,7 +107,7 @@ export function createPrismDOM (): PrismDOM<{}> {
 	window.Prism = instance;
 
 	const withGlobals = (fn: () => void) => {
-		const g = global as unknown as Record<string, unknown>;
+		const g = global;
 		let undo;
 		try {
 			const globals = {
@@ -131,7 +131,7 @@ export function createPrismDOM (): PrismDOM<{}> {
 		finally {
 			undo?.();
 			// Clean up navigator property
-			delete (g as any).navigator;
+			delete (g as Partial<typeof global>).navigator;
 		}
 	};
 
