@@ -4,6 +4,7 @@ node_modules
 .DS_Store
 .eslintcache
 dist/
+types/
 
 benchmark/remotes/
 benchmark/downloads/
