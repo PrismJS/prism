@@ -381,7 +381,7 @@ async function buildJS() {
 
 		// ESM
 		await esmBundle.write({
-			dir: './dist/esm',
+			dir: './dist/',
 			chunkFileNames: '_chunks/[name]-[hash].js',
 			validate: true,
 			sourcemap: 'hidden',

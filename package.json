@@ -4,22 +4,22 @@
 	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
 	"type": "module",
 	"main": "./dist/cjs/index.js",
-	"module": "./dist/esm/index.js",
+	"module": "./dist/index.js",
 	"types": "./types/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
-			"import": "./dist/esm/index.js",
+			"import": "./dist/index.js",
 			"require": "./dist/cjs/index.js"
 		},
 		"./shared": {
 			"types": "./types/shared.d.ts",
-			"import": "./dist/esm/shared.js",
+			"import": "./dist/shared.js",
 			"require": "./dist/cjs/shared.js"
 		},
 		"./languages/*": {
 			"types": "./types/languages/*.d.ts",
-			"import": "./dist/esm/languages/*.js",
+			"import": "./dist/languages/*.js",
 			"require": "./dist/cjs/languages/*.js"
 		}
 	},
