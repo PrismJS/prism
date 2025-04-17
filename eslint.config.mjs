@@ -1,0 +1,269 @@
+import js from '@eslint/js';
+
+import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
+import tsEslintParser from '@typescript-eslint/parser';
+import { defineConfig } from 'eslint/config';
+import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
+import importPlugin from 'eslint-plugin-import';
+import jsdocPlugin from 'eslint-plugin-jsdoc';
+import prettierPlugin from 'eslint-plugin-prettier';
+import regexpPlugin from 'eslint-plugin-regexp';
+import globals from 'globals';
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig([
+	{
+		ignores: [
+			'benchmark/downloads',
+			'benchmark/remotes',
+			'dist',
+			'node_modules',
+			'types',
+			'website',
+		],
+	},
+	js.configs.recommended,
+	{
+		plugins: {
+			import: importPlugin,
+			jsdoc: jsdocPlugin,
+			regexp: regexpPlugin,
+			prettier: prettierPlugin,
+		},
+		languageOptions: {
+			ecmaVersion: 'latest',
+			sourceType: 'module',
+		},
+		rules: {
+			...prettierPlugin.configs.recommended.rules,
+
+			'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
+			'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
+
+			// imports
+			'import/extensions': ['warn', 'never'],
+			'import/order': [
+				'warn',
+				{
+					groups: [
+						['builtin', 'external'],
+						'internal',
+						'parent',
+						'sibling',
+						'index',
+						'object',
+						'type',
+					],
+					alphabetize: { order: 'asc', caseInsensitive: true },
+				},
+			],
+			'sort-imports': ['warn', { ignoreDeclarationSort: true }],
+
+			// stylistic rules
+			'no-var': 'error',
+			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
+			'one-var': ['warn', 'never'],
+			'prefer-arrow-callback': 'warn',
+			'prefer-const': ['warn', { 'destructuring': 'all' }],
+			'prefer-spread': 'error',
+
+			// JSDoc
+			'jsdoc/check-alignment': 'warn',
+			'jsdoc/check-syntax': 'warn',
+			'jsdoc/check-param-names': 'warn',
+			'jsdoc/require-hyphen-before-param-description': ['warn', 'never'],
+			'jsdoc/check-tag-names': 'warn',
+			'jsdoc/check-types': 'warn',
+			'jsdoc/empty-tags': 'warn',
+			'jsdoc/tag-lines': [1, 'any', { 'startLines': 1 }],
+			'jsdoc/require-param-name': 'warn',
+			'jsdoc/require-property-name': 'warn',
+
+			// regexp
+			'regexp/no-dupe-disjunctions': 'error',
+			'regexp/no-empty-alternative': 'error',
+			'regexp/no-empty-capturing-group': 'error',
+			'regexp/no-empty-lookarounds-assertion': 'error',
+			'regexp/no-lazy-ends': 'error',
+			'regexp/no-obscure-range': 'error',
+			'regexp/no-optional-assertion': 'error',
+			'regexp/no-standalone-backslash': 'error',
+			'regexp/no-super-linear-backtracking': 'error',
+			'regexp/no-unused-capturing-group': 'error',
+			'regexp/no-zero-quantifier': 'error',
+			'regexp/optimal-lookaround-quantifier': 'error',
+
+			'regexp/match-any': 'warn',
+			'regexp/negation': 'warn',
+			'regexp/no-dupe-characters-character-class': 'warn',
+			'regexp/no-trivially-nested-assertion': 'warn',
+			'regexp/no-trivially-nested-quantifier': 'warn',
+			'regexp/no-useless-character-class': 'warn',
+			'regexp/no-useless-flag': 'warn',
+			'regexp/no-useless-lazy': 'warn',
+			'regexp/no-useless-range': 'warn',
+			'regexp/prefer-d': ['warn', { insideCharacterClass: 'ignore' }],
+			'regexp/prefer-plus-quantifier': 'warn',
+			'regexp/prefer-question-quantifier': 'warn',
+			'regexp/prefer-star-quantifier': 'warn',
+			'regexp/prefer-w': 'warn',
+			'regexp/sort-alternatives': 'warn',
+			'regexp/sort-flags': 'warn',
+			'regexp/strict': 'warn',
+
+			// I turned this rule off because we use `hasOwnProperty` in a lot of places
+			// TODO: Think about re-enabling this rule
+			'no-prototype-builtins': 'off',
+			// TODO: Think about re-enabling this rule
+			'no-inner-declarations': 'off',
+			// TODO: Think about re-enabling this rule
+			'no-sparse-arrays': 'off',
+
+			// turning off some regex rules
+			// these are supposed to protect against accidental use but we need those quite often
+			'no-control-regex': 'off',
+			'no-empty-character-class': 'off',
+			'no-useless-escape': 'off',
+		},
+		settings: {
+			jsdoc: { mode: 'typescript' },
+			regexp: {
+				// allow alphanumeric and cyrillic ranges
+				allowedCharacterRanges: ['alphanumeric', 'а-я', 'А-Я'],
+			},
+		},
+	},
+	{
+		files: ['**/*.ts'],
+		plugins: {
+			'@typescript-eslint': tsEslintPlugin,
+			'eslint-comments': eslintCommentsPlugin,
+			'regexp': regexpPlugin,
+		},
+		languageOptions: {
+			parser: tsEslintParser,
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./tsconfig.json'],
+			},
+		},
+		rules: {
+			...eslintCommentsPlugin.configs.recommended.rules,
+			...tsEslintPlugin.configs.recommended.rules,
+			...tsEslintPlugin.configs['recommended-requiring-type-checking'].rules,
+			...regexpPlugin.configs.recommended.rules,
+
+			'no-use-before-define': 'off',
+
+			// I turned this rule off because we use `hasOwnProperty` in a lot of places
+			// TODO: Think about re-enabling this rule
+			'no-prototype-builtins': 'off',
+
+			// turning off some regex rules
+			// these are supposed to protect against accidental use but we need those quite often
+			'no-control-regex': 'off',
+			'no-empty-character-class': 'off',
+			'no-useless-escape': 'off',
+
+			'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
+
+			// Allow {} type
+			'@typescript-eslint/no-empty-object-type': 'off',
+
+			'@typescript-eslint/consistent-type-imports': [
+				'warn',
+				{ disallowTypeAnnotations: true },
+			],
+		},
+	},
+	{
+		// Core
+		files: ['src/core/**/*.ts'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				...globals.node,
+			},
+		},
+	},
+	{
+		// Browser-specific parts
+		files: ['src/auto-start.ts'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+			},
+		},
+	},
+	{
+		// Plugins
+		files: ['src/plugins/**/*.ts'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+			},
+		},
+	},
+	{
+		// Test files
+		files: ['tests/**'],
+		languageOptions: {
+			globals: {
+				...globals.mocha,
+				...globals.node,
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./tests/tsconfig.json'],
+			},
+		},
+	},
+	{
+		// Benchmark
+		files: ['benchmark/**'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./benchmark/tsconfig.json'],
+			},
+		},
+	},
+	{
+		// Scripts
+		files: ['scripts/**'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./scripts/tsconfig.json'],
+			},
+		},
+	},
+	{
+		// Danger
+		files: ['dangerfile.js'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+		},
+	},
+	{
+		// This file
+		files: ['eslint.config.mjs'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+		},
+	},
+]);
