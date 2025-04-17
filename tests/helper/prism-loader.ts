@@ -5,7 +5,9 @@ import { Prism } from '../../src/core/prism';
 import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
 import type { ComponentProto, LanguageProto, PluginProto } from '../../src/types';
 import type { DOMWindow } from 'jsdom';
+import { fileURLToPath } from 'url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.join(__dirname, '../../src');
 
 export const getLanguageIds = lazy(() => {
@@ -105,21 +107,31 @@ export function createPrismDOM (): PrismDOM<{}> {
 	window.Prism = instance;
 
 	const withGlobals = (fn: () => void) => {
-		const g = global as unknown as Record<string, unknown>;
+		const g = global;
 		let undo;
 		try {
-			undo = overwriteProps(g, {
+			const globals = {
 				window,
 				document: window.document,
-				navigator: window.navigator,
 				location: window.location,
 				getComputedStyle: window.getComputedStyle,
 				setTimeout: noop,
+			};
+
+			// Set up navigator separately to make it writable (it's read-only in Node.js)
+			Object.defineProperty(g, 'navigator', {
+				value: window.navigator,
+				configurable: true,
+				writable: true,
 			});
+
+			undo = overwriteProps(g, globals);
 			fn();
 		}
 		finally {
 			undo?.();
+			// Clean up navigator property
+			delete (g as Partial<typeof global>).navigator;
 		}
 	};
 

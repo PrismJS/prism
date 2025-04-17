@@ -26,7 +26,7 @@ export interface ConfigOptions {
 export interface ConfigRemote {
 	repo: string;
 	/**
-	 * @default 'master'
+	 * @default 'main'
 	 */
 	branch?: string;
 }
@@ -47,11 +47,12 @@ export const config: Config = {
 		/**
 		 * This will checkout a specific branch from a given repo.
 		 *
-		 * If no branch is specified, the master branch will be used.
+		 * If no branch is specified, the main branch will be used.
 		 */
 
 		{
 			repo: 'https://github.com/PrismJS/prism.git',
+			branch: 'v2', // TODO: remove this once we have a new version of Prism
 		},
 		/*{
 			repo: 'https://github.com/<Your user name>/prism.git',
@@ -61,7 +62,7 @@ export const config: Config = {
 
 	cases: {
 		'css': {
-			files: ['../website/assets/style.css'],
+			files: ['https://prismjs.com/assets/style.css'],
 		},
 		'css!+css-extras': { extends: 'css' },
 		'javascript': {
@@ -71,7 +72,6 @@ export const config: Config = {
 				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
 				'https://code.jquery.com/jquery-3.4.1.js',
 				'https://code.jquery.com/jquery-3.4.1.min.js',
-				'../website/assets/vendor/utopia.js',
 			],
 		},
 		'json': {
@@ -79,8 +79,8 @@ export const config: Config = {
 		},
 		'markup': {
 			files: [
-				'../website/download.html',
-				'../website/index.html',
+				'https://prismjs.com/download.html',
+				'https://prismjs.com/index.html',
 				'https://github.com/PrismJS/prism', // the PrismJS/prism GitHub page
 			],
 		},

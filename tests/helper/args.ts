@@ -1,6 +1,7 @@
-import { argv } from 'yargs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-const args = argv as {
+const args = yargs(hideBin(process.argv)) as {
 	language?: string | string[];
 	update?: boolean;
 };

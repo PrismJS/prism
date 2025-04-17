@@ -3,8 +3,10 @@ import { readFileSync, readdirSync } from 'fs';
 import { Parser } from 'htmlparser2';
 import path from 'path';
 import { getLanguageIds } from './helper/prism-loader';
+import { fileURLToPath } from 'url';
 
-const EXAMPLES_DIR = path.join(__dirname, '/../website/examples');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const EXAMPLES_DIR = path.join(__dirname, '/../website/examples'); // TODO: move these tests to the website repo
 
 describe('Examples', () => {
 	const exampleFiles = new Set(readdirSync(EXAMPLES_DIR));
