@@ -48,11 +48,11 @@ export default {
 							/\bq"((?!\d)\w+)$[\s\S]*?^\1"/.source,
 
 							// q"//", q"||", etc.
-							// eslint-disable-next-line regexp/strict
-							/\bq"(.)[\s\S]*?\2"/.source,
+							// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+							/\bq"(.)[\s\S]*?\2"/.source, // eslint-disable-line regexp/strict
 
-							// eslint-disable-next-line regexp/strict
-							/(["`])(?:\\[\s\S]|(?!\3)[^\\])*\3[cwd]?/.source,
+							// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+							/(["`])(?:\\[\s\S]|(?!\3)[^\\])*\3[cwd]?/.source, // eslint-disable-line regexp/strict
 						].join('|'),
 						'm'
 					),

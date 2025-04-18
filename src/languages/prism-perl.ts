@@ -32,8 +32,8 @@ export default {
 								/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
 
 								// q a...a
-								// eslint-disable-next-line regexp/strict
-								/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
+								// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+								/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source, // eslint-disable-line regexp/strict
 
 								// q(...)
 								// q{...}
@@ -69,8 +69,8 @@ export default {
 								/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
 
 								// m a...a
-								// eslint-disable-next-line regexp/strict
-								/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
+								// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+								/([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source, // eslint-disable-line regexp/strict
 
 								// m(...)
 								// m{...}
@@ -91,13 +91,13 @@ export default {
 							'(?:' +
 							[
 								// s/.../.../
-								// eslint-disable-next-line regexp/strict
-								/([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2/
+								// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+								/([^a-zA-Z0-9\s{([<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2/ // eslint-disable-line regexp/strict
 									.source,
 
 								// s a...a...a
-								// eslint-disable-next-line regexp/strict
-								/([a-zA-Z0-9])(?:(?!\3)[^\\]|\\[\s\S])*\3(?:(?!\3)[^\\]|\\[\s\S])*\3/
+								// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+								/([a-zA-Z0-9])(?:(?!\3)[^\\]|\\[\s\S])*\3(?:(?!\3)[^\\]|\\[\s\S])*\3/ // eslint-disable-line regexp/strict
 									.source,
 
 								// s(...)(...)

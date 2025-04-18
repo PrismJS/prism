@@ -267,8 +267,8 @@ export default {
 			'strike': {
 				// ~~strike through~~
 				// ~strike~
-				// eslint-disable-next-line regexp/strict
-				pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
+				// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+				pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source), // eslint-disable-line regexp/strict
 				lookbehind: true,
 				greedy: true,
 				inside: {
