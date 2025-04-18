@@ -94,33 +94,33 @@ export default {
 			(/[^<]/.source +
 				'|' +
 				// all tags that are not the start tag
-				// eslint-disable-next-line regexp/strict
-				/<\/?(?!\1\b)/.source +
+				// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+				/<\/?(?!\1\b)/.source + // eslint-disable-line regexp/strict
 				tagContent +
 				'|' +
 				// nested start tag
 				nested(
-					// eslint-disable-next-line regexp/strict
-					/<\1/.source +
+					// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+					/<\1/.source + // eslint-disable-line regexp/strict
 						tagAttrs +
 						/\s*>/.source +
 						'(?:' +
 						(/[^<]/.source +
 							'|' +
 							// all tags that are not the start tag
-							// eslint-disable-next-line regexp/strict
-							/<\/?(?!\1\b)/.source +
+							// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+							/<\/?(?!\1\b)/.source + // eslint-disable-line regexp/strict
 							tagContent +
 							'|' +
 							'<self>') +
 						')*' +
-						// eslint-disable-next-line regexp/strict
-						/<\/\1\s*>/.source,
+						// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+						/<\/\1\s*>/.source, // eslint-disable-line regexp/strict
 					2
 				)) +
 			')*' +
-			// eslint-disable-next-line regexp/strict
-			/<\/\1\s*>/.source +
+			// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+			/<\/\1\s*>/.source + // eslint-disable-line regexp/strict
 			'|' +
 			/</.source +
 			tagContent +

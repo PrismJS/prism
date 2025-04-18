@@ -5,20 +5,20 @@ export default {
 	grammar () {
 		// https://cuelang.org/docs/references/spec/
 
-		// eslint-disable-next-line regexp/strict
-		const stringEscape = /\\(?:(?!\2)|\2(?:[^()\r\n]|\([^()]*\)))/.source;
+		// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+		const stringEscape = /\\(?:(?!\2)|\2(?:[^()\r\n]|\([^()]*\)))/.source; // eslint-disable-line regexp/strict
 		const stringTypes =
-			// eslint-disable-next-line regexp/strict
-			/"""(?:[^\\"]|"(?!""\2)|<esc>)*"""/.source +
+			// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+			/"""(?:[^\\"]|"(?!""\2)|<esc>)*"""/.source + // eslint-disable-line regexp/strict
 			'|' +
-			// eslint-disable-next-line regexp/strict
-			/'''(?:[^\\']|'(?!''\2)|<esc>)*'''/.source +
+			// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+			/'''(?:[^\\']|'(?!''\2)|<esc>)*'''/.source + // eslint-disable-line regexp/strict
 			'|' +
-			// eslint-disable-next-line regexp/strict
-			/"(?:[^\\\r\n"]|"(?!\2)|<esc>)*"/.source +
+			// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+			/"(?:[^\\\r\n"]|"(?!\2)|<esc>)*"/.source + // eslint-disable-line regexp/strict
 			'|' +
-			// eslint-disable-next-line regexp/strict
-			/'(?:[^\\\r\n']|'(?!\2)|<esc>)*'/.source;
+			// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+			/'(?:[^\\\r\n']|'(?!\2)|<esc>)*'/.source; // eslint-disable-line regexp/strict
 		const stringLiteral = '(?:' + stringTypes.replace(/<esc>/g, stringEscape) + ')';
 
 		return {
@@ -27,8 +27,8 @@ export default {
 				greedy: true,
 			},
 			'string-literal': {
-				// eslint-disable-next-line regexp/strict
-				pattern: RegExp(/(^|[^#"'\\])(#*)/.source + stringLiteral + /(?!["'])\2/.source),
+				// @ts-expect-error TS(2532): Ignore the non-existent capturing group error.
+				pattern: RegExp(/(^|[^#"'\\])(#*)/.source + stringLiteral + /(?!["'])\2/.source), // eslint-disable-line regexp/strict
 				lookbehind: true,
 				greedy: true,
 				inside: {

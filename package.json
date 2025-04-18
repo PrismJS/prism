@@ -103,7 +103,7 @@
 		"scslre": "^0.1.6",
 		"simple-git": "^3.3.0",
 		"tsx": "^4.19.3",
-		"typescript": "^5.0.4",
+		"typescript": "^5.8.3",
 		"webfont": "^11.2.26",
 		"yargs": "^17.7.2"
 	},
