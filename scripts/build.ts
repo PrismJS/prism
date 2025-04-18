@@ -15,7 +15,7 @@ import { toArray } from '../src/shared/util';
 import { components } from './components';
 import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';
-import type { Plugin, SourceMapInput } from 'rollup';
+import type { OutputOptions, Plugin, RollupBuild, RollupOptions, SourceMapInput } from 'rollup';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -329,7 +329,7 @@ async function buildTypes() {
 	await mkdir('./types');
 
 	// Copy existing type definitions
-	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
+	const typeFiles = ['types.d.ts', 'known-plugins.d.ts', 'url-imports.d.ts'];
 
 	await Promise.all(
 		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
@@ -371,41 +371,62 @@ async function buildJS() {
 		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
 	}
 
-	// Using multiple bundles here mostly for convenience.
-	let esmBundle;
-	let cjsBundle;
+	const defaultRollupOptions: RollupOptions = {
+		input,
+		// TODO: Remove “v2.” from the URL once Prism v2 is released
+		external: ['https://v2.plugins.prismjs.com/autoloader/prism-autoloader.js'],
+		plugins: [rollupTypescript({ module: 'esnext' })],
+	};
+
+	const defaultOutputOptions: OutputOptions = {
+		dir: './dist',
+		chunkFileNames: '_chunks/[name]-[hash].js',
+		validate: true,
+		sourcemap: 'hidden',
+		plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
+	};
+
+	const bundles: Record<
+		string,
+		{
+			rollupOptions: RollupOptions;
+			outputOptions: OutputOptions;
+			build?: RollupBuild;
+		}
+	> = {
+		esm: {
+			rollupOptions: defaultRollupOptions,
+			outputOptions: defaultOutputOptions,
+		},
+		cjs: {
+			rollupOptions: {
+				...defaultRollupOptions,
+				plugins: [...(defaultRollupOptions.plugins as Plugin[]), commonjs()],
+			},
+			outputOptions: {
+				...defaultOutputOptions,
+				dir: './dist/cjs',
+			},
+		},
+		// global: {
+		// 	rollupOptions: defaultRollupOptions,
+		// 	outputOptions: {
+		// 		...defaultOutputOptions,
+		// 		dir: './dist/global',
+		// 	},
+		// }
+	};
+
 	try {
-		esmBundle = await rollup({
-			input,
-			plugins: [rollupTypescript({ module: 'esnext' })],
-		});
-
-		cjsBundle = await rollup({
-			input,
-			plugins: [rollupTypescript({ module: 'esnext' }), commonjs()],
-		});
-
-		// ESM
-		await esmBundle.write({
-			dir: './dist/',
-			chunkFileNames: '_chunks/[name]-[hash].js',
-			validate: true,
-			sourcemap: 'hidden',
-			plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
-		});
-
-		// CommonJS
-		await cjsBundle.write({
-			dir: './dist/cjs',
-			chunkFileNames: '_chunks/[name]-[hash].js',
-			validate: true,
-			sourcemap: 'hidden',
-			plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
-		});
+		for (const bundle of Object.values(bundles)) {
+			bundle.build = await rollup(bundle.rollupOptions);
+			await bundle.build.write(bundle.outputOptions);
+		}
 	}
 	finally {
-		await esmBundle?.close();
-		await cjsBundle?.close();
+		for (const bundle of Object.values(bundles)) {
+			await bundle.build?.close();
+		}
 	}
 }
 

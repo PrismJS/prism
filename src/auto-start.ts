@@ -1,7 +1,11 @@
-import Prism from './global';
-import autoloader from './plugins/autoloader/prism-autoloader';
+// TODO: Remove “v2.” from the URL once Prism v2 is released
+// eslint-disable-next-line import/extensions
+import autoloader from 'https://v2.plugins.prismjs.com/autoloader/prism-autoloader.js';
 
-Prism.components.add(autoloader);
+import Prism from './global';
+import type { PluginProto } from './types';
+
+Prism.components.add(autoloader as PluginProto<'autoloader'>);
 
 export const PrismConfig = {
 	// TODO: Update docs
