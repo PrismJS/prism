@@ -180,6 +180,7 @@
 		"nasm": "NASM",
 		"neon": "NEON",
 		"nginx": "nginx",
+		"njk": "Nunjucks",
 		"nsis": "NSIS",
 		"objectivec": "Objective-C",
 		"objc": "Objective-C",
