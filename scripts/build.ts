@@ -319,6 +319,12 @@ async function clean() {
 	]);
 }
 
+async function copyComponentsJson () {
+	const from = path.join(SRC_DIR, 'components.json');
+	const to = path.join(__dirname, '../dist/components.json');
+	await copyFile(from, to);
+}
+
 async function buildTypes() {
 	await mkdir('./types');
 
@@ -403,4 +409,4 @@ async function buildJS() {
 	}
 }
 
-runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS))));
+runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)), copyComponentsJson));
