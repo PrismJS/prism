@@ -21,7 +21,9 @@
 			"types": "./types/languages/*.d.ts",
 			"import": "./dist/languages/*.js",
 			"require": "./dist/cjs/languages/*.js"
-		}
+		},
+		"./themes/*": "./dist/themes/*.css",
+		"./components.json": "./dist/components.json"
 	},
 	"style": "themes/prism.css",
 	"engines": {
