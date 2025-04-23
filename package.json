@@ -55,6 +55,10 @@
 	],
 	"author": "Lea Verou",
 	"license": "MIT",
+	"funding": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/prismjs"
+	},
 	"readmeFilename": "README.md",
 	"devDependencies": {
 		"@eslint/js": "^9.24.0",
