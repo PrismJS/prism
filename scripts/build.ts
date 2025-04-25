@@ -329,7 +329,7 @@ async function buildTypes() {
 	await mkdir('./types');
 
 	// Copy existing type definitions
-	const typeFiles = ['types.d.ts', 'known-plugins.d.ts', 'url-imports.d.ts'];
+	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
 
 	await Promise.all(
 		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
@@ -373,8 +373,6 @@ async function buildJS() {
 
 	const defaultRollupOptions: RollupOptions = {
 		input,
-		// TODO: Remove “v2.” from the URL once Prism v2 is released
-		external: ['https://v2.plugins.prismjs.com/autoloader/prism-autoloader.js'],
 		plugins: [rollupTypescript({ module: 'esnext' })],
 	};
 
