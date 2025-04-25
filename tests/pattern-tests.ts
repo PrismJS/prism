@@ -552,7 +552,7 @@ function checkExponentialBacktracking (path: string, pattern: RegExp, ast?: Lite
 		ast = parseRegex(pattern);
 	}
 
-	const parser = JS.Parser.fromAst(ast);
+	const parser = JS.Parser.fromAst(ast as JS.RegexppAst);
 	/**
 	 * Parses the given element and creates its NFA.
 	 */
@@ -581,11 +581,11 @@ function checkExponentialBacktracking (path: string, pattern: RegExp, ast?: Lite
 		withResultCache('disjointAlternatives', node, () => {
 			const alternatives = node.alternatives;
 
-			const total = toNFA(alternatives[0]);
+			const total = toNFA(alternatives[0] as JS.ParsableElement);
 			total.withoutEmptyWord();
 			for (let i = 1, l = alternatives.length; i < l; i++) {
 				const a = alternatives[i];
-				const current = toNFA(a);
+				const current = toNFA(a as JS.ParsableElement);
 				current.withoutEmptyWord();
 
 				if (!isDisjointWith(total, current)) {
@@ -643,7 +643,7 @@ function checkExponentialBacktracking (path: string, pattern: RegExp, ast?: Lite
 				// would actually have to check the intersection `A{p}` and `A{p+1,}` for all p>0. However, in most
 				// cases, the approximation is good enough.
 
-				const nfa = toNFA(node.element);
+				const nfa = toNFA(node.element as JS.ParsableElement);
 				nfa.withoutEmptyWord();
 				const twoStar = nfa.copy();
 				twoStar.quantify(2, Infinity);
@@ -705,7 +705,7 @@ function checkPolynomialBacktracking (path: string, pattern: RegExp, ast?: Liter
 		ast = parseRegex(pattern);
 	}
 
-	const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, { maxReports: 1, reportTypes: { 'Move': false } });
 	if (result.reports.length > 0) {
 		const report = result.reports[0];
 
