@@ -102,7 +102,7 @@
 		"prettier-plugin-merge": "^0.7.3",
 		"prettier-plugin-space-before-function-paren": "^0.0.8",
 		"refa": "^0.9.1",
-		"regexp-ast-analysis": "^0.2.4",
+		"regexp-ast-analysis": "^0.5.1",
 		"regexpp": "^3.2.0",
 		"rollup": "^4.40.0",
 		"scslre": "^0.1.6",
