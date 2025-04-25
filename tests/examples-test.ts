@@ -66,24 +66,16 @@ async function validateHTML (html: string) {
 
 	function checkCodeElements (node: TagNode) {
 		if (node.tagName === 'code') {
-			assert.equal(
-				node.children.length,
-				1,
+			const textNodes = node.children.filter(child => child.type === 'text');
+			const nonTextNodes = node.children.filter(child => child.type !== 'text');
+
+			assert.isEmpty(
+				nonTextNodes,
 				'A <code> element is only allowed to contain text, no tags. ' +
 					'Did you perhaps not escape all "<" characters?'
 			);
 
-			const child = node.children[0];
-			if (child.type !== 'text') {
-				// throw to help TypeScript's flow analysis
-				throw assert.equal(
-					child.type,
-					'text',
-					'The child of a <code> element must be text only.'
-				);
-			}
-
-			const text = child.rawText;
+			const text = textNodes.map(node => (node as TextNode).rawText).join('');
 
 			assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
 			assert.notMatch(
@@ -196,7 +188,10 @@ function parseHTML (html: string): Promise<TagNode> {
 					stack.pop();
 				},
 			},
-			{ lowerCaseTags: false }
+			{
+				lowerCaseTags: false,
+				decodeEntities: false,
+			}
 		);
 		p.end(html);
 	});
