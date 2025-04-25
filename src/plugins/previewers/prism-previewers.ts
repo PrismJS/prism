@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import cssExtras from '../../languages/prism-css-extras';
+import cssExtras from '../../languages/css-extras';
 import { forEach } from '../../shared/util';
 import type { PluginProto } from '../../types';
 

@@ -69,7 +69,7 @@ export class Autoloader {
 			.filter((id) => !isLoaded(this.Prism, id));
 
 		await Promise.all(toLoad.map((id) => {
-			const path = pathJoin(this.srcPath, `languages/prism-${id}.js`);
+			const path = pathJoin(this.srcPath, `languages/${id}.js`);
 
 			let promise = this._importCache.get(path);
 			if (promise === undefined) {

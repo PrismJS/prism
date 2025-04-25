@@ -35,7 +35,7 @@ export async function loadLanguages (
 	await Promise.all(
 		languages.map(async id => {
 			try {
-				const path = pathJoin(srcPath, `languages/prism-${id}.js`);
+				const path = pathJoin(srcPath, `languages/${id}.js`);
 				const exports = await importFile<{ default: ComponentProto }>(path);
 				Prism.components.add(exports.default);
 			}
