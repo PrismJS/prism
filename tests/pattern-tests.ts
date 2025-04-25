@@ -705,7 +705,7 @@ function checkPolynomialBacktracking (path: string, pattern: RegExp, ast?: Liter
 		ast = parseRegex(pattern);
 	}
 
-	const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, { maxReports: 1, reportTypes: { 'Move': false } });
 	if (result.reports.length > 0) {
 		const report = result.reports[0];
 

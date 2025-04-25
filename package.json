@@ -105,7 +105,7 @@
 		"regexp-ast-analysis": "^0.5.1",
 		"regexpp": "^3.2.0",
 		"rollup": "^4.40.0",
-		"scslre": "^0.1.6",
+		"scslre": "^0.3.0",
 		"simple-git": "^3.27.0",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3",
