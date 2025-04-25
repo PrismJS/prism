@@ -19,16 +19,16 @@ function getDefaultSrcPath() {
 				const src = script.src;
 				if (autoloaderFile.test(src)) {
 					// the script is the original autoloader script in the usual Prism project structure
-					return src.replace(autoloaderFile, 'components/');
+					return src.replace(autoloaderFile, '/');
 				} else if (prismFile.test(src)) {
 					// the script is part of a bundle like a custom prism.js from the download page
-					return src.replace(prismFile, '$1components/');
+					return src.replace(prismFile, '$1/');
 				}
 			}
 		}
 	}
 
-	return 'components/';
+	return './';
 }
 
 function pathJoin(dir: string, file: string) {
