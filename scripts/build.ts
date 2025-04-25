@@ -406,13 +406,15 @@ async function buildJS() {
 				dir: './dist/cjs',
 			},
 		},
-		// global: {
-		// 	rollupOptions: defaultRollupOptions,
-		// 	outputOptions: {
-		// 		...defaultOutputOptions,
-		// 		dir: './dist/global',
-		// 	},
-		// }
+		global: {
+			rollupOptions: {
+				...defaultRollupOptions,
+				input: {
+					'prism': path.join(SRC_DIR, 'auto-start.ts'),
+				}
+			},
+			outputOptions: defaultOutputOptions,
+		}
 	};
 
 	try {
