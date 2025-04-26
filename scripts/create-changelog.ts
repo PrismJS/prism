@@ -327,18 +327,6 @@ runTask(async () => {
 			}
 		},
 
-		function changedWebsite (info) {
-			if (
-				info.changes.length > 0 &&
-				info.changes.every(c => {
-					return /[\w-]+\.html$/.test(c.file) || /^(?:assets|docs)\//.test(c.file);
-				})
-			) {
-				addEntry('Other >> Website', info);
-				return true;
-			}
-		},
-
 		function otherChanges (info) {
 			// detect changes of the Github setup
 			// This assumes that .md files are related to GitHub
