@@ -1,7 +1,12 @@
-const { markdown } = require('danger');
-const fs = require('fs').promises;
-const gzipSize = require('gzip-size');
-const git = require('simple-git').gitP(__dirname);
+import { markdown } from 'danger';
+import { gzipSize } from 'gzip-size';
+import { simpleGit } from 'simple-git';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const git = simpleGit({ baseDir: __dirname });
 
 /**
  * Returns the contents of a text file in the base of the PR.
