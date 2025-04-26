@@ -23,7 +23,6 @@ export default defineConfig([
 			'dist',
 			'node_modules',
 			'types',
-			'website',
 		],
 	},
 	js.configs.recommended,
@@ -178,6 +177,9 @@ export default defineConfig([
 				'warn',
 				{ disallowTypeAnnotations: true },
 			],
+
+			'@typescript-eslint/no-unsafe-call': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
 		},
 	},
 	{
