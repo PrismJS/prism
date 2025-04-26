@@ -308,7 +308,6 @@ runTask(async () => {
 						return true;
 					}
 					return [
-						'bower.json',
 						'CNAME',
 						'composer.json',
 						'package.json',
