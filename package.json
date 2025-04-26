@@ -38,7 +38,6 @@
 		"regex-coverage": "mocha tests/coverage.ts",
 		"test:components": "mocha tests/components-test.ts",
 		"test:core": "mocha tests/core/**/*.ts",
-		"test:examples": "mocha tests/examples-test.ts",
 		"test:identifiers": "mocha tests/identifier-test.ts",
 		"test:languages": "mocha tests/run.ts",
 		"test:patterns": "mocha tests/pattern-tests.ts",
