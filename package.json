@@ -1,7 +1,7 @@
 {
 	"name": "prismjs",
 	"version": "1.29.0",
-	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
+	"description": "Lightweight, robust, elegant syntax highlighting.",
 	"type": "module",
 	"main": "./dist/cjs/index.js",
 	"module": "./dist/index.js",
