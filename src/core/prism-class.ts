@@ -1,7 +1,6 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
-import { HookState } from './hook-state';
 import { Hooks } from './hooks';
 import { LinkedList } from './linked-list';
 import { Registry } from './registry';
@@ -78,7 +77,6 @@ export default class Prism {
 			language,
 			grammar,
 			code,
-			state: new HookState(),
 		};
 
 		const insertHighlightedCode = (highlightedCode: string) => {

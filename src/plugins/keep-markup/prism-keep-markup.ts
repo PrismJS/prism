@@ -1,6 +1,5 @@
 import { isActive } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
-import type { StateKey } from '../../core/hook-state';
 import type { PluginProto } from '../../types';
 
 function isElement(child: ChildNode): child is Element {

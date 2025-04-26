@@ -56,4 +56,4 @@ export class Hooks {
 	}
 }
 
-export type HookCallback<HookName extends string> = (env?: Record<string, any>) => void;
+export type HookCallback<HookName extends string> = (env: Record<string, any>) => void;

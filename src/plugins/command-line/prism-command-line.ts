@@ -1,13 +1,10 @@
 import { getParentPre } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
 import { htmlEncode } from '../../shared/util';
-import type { StateKey } from '../../core/hook-state';
 import type { PluginProto } from '../../types';
 
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';
-
-const commandLineKey: StateKey<CommandLineInfo> = 'command-line data';
 
 interface CommandLineInfo {
 	complete?: boolean;
@@ -21,7 +18,7 @@ export default {
 	effect(Prism) {
 		return addHooks(Prism.hooks, {
 			'before-highlight': (env) => {
-				const commandLine = env.state.get(commandLineKey, {});
+				const commandLine = env.commandLine ?? {};
 
 				if (commandLine.complete || !env.code) {
 					commandLine.complete = true;
@@ -110,7 +107,7 @@ export default {
 				env.code = codeLines.join('\n');
 			},
 			'before-insert': (env) => {
-				const commandLine = env.state.get(commandLineKey, {});
+				const commandLine = env.commandLine ?? {};
 				if (commandLine.complete) {
 					return;
 				}
@@ -133,7 +130,7 @@ export default {
 				env.highlightedCode = codeLines.join('\n');
 			},
 			'complete': (env) => {
-				const commandLine = env.state.get(commandLineKey, {});
+				const commandLine = env.commandLine ?? {};
 				if (commandLine.complete) {
 					return;
 				}
