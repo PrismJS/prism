@@ -1,7 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
-import lua from './prism-lua';
-import markup from './prism-markup';
+import lua from './lua';
+import markup from './markup';
 import type { LanguageProto } from '../types';
 
 export default {

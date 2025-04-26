@@ -1,5 +1,5 @@
 import { createT4 } from '../shared/languages/t4-templating';
-import vbnet from './prism-vbnet';
+import vbnet from './vbnet';
 import type { LanguageProto } from '../types';
 
 export default {

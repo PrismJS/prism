@@ -1,4 +1,4 @@
-import haskell, { asciiOperator, infixOperator } from './prism-haskell';
+import haskell, { asciiOperator, infixOperator } from './haskell';
 import type { LanguageProto } from '../types';
 
 export default {

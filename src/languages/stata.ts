@@ -1,6 +1,6 @@
-import java from './prism-java';
-import mata from './prism-mata';
-import python from './prism-python';
+import java from './java';
+import mata from './mata';
+import python from './python';
 import type { LanguageProto } from '../types';
 
 export default {

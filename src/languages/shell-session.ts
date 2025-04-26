@@ -1,4 +1,4 @@
-import bash from './prism-bash';
+import bash from './bash';
 import type { LanguageProto } from '../types';
 
 export default {

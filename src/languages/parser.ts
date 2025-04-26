@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import markup from './prism-markup';
+import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

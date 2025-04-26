@@ -1,4 +1,4 @@
-import javascript from './prism-javascript';
+import javascript from './javascript';
 import type { LanguageProto } from '../types';
 
 export default {

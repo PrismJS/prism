@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import css from './prism-css';
+import css from './css';
 import type { LanguageProto } from '../types';
 
 export default {

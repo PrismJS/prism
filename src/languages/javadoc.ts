@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util';
-import java from './prism-java';
-import javadoclike from './prism-javadoclike';
-import markup from './prism-markup';
+import java from './java';
+import javadoclike from './javadoclike';
+import markup from './markup';
 import type { LanguageProto } from '../types';
 
 export default {

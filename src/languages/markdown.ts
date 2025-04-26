@@ -1,7 +1,7 @@
 import { getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
+import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

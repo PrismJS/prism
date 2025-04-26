@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import haskell from './prism-haskell';
+import haskell from './haskell';
 import type { LanguageProto } from '../types';
 
 export default {

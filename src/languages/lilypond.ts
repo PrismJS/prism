@@ -1,5 +1,5 @@
 import { rest } from '../shared/symbols';
-import scheme from './prism-scheme';
+import scheme from './scheme';
 import type { LanguageProto } from '../types';
 
 export default {

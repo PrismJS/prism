@@ -1,5 +1,5 @@
-import jsx from './prism-jsx';
-import typescript from './prism-typescript';
+import jsx from './jsx';
+import typescript from './typescript';
 import type { GrammarToken, LanguageProto } from '../types';
 
 export default {

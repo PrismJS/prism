@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
-import javascript from './prism-javascript';
-import markup from './prism-markup';
+import javascript from './javascript';
+import markup from './markup';
 import type { GrammarTokens, LanguageProto } from '../types';
 
 export default {

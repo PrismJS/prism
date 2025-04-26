@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import java from './prism-java';
+import java from './java';
 import type { LanguageProto } from '../types';
 
 export default {

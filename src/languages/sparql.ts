@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import turtle from './prism-turtle';
+import turtle from './turtle';
 import type { LanguageProto } from '../types';
 
 export default {

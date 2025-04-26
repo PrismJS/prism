@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { rest } from '../shared/symbols';
 import { toArray } from '../shared/util';
-import clike from './prism-clike';
+import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {

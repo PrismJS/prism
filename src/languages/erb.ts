@@ -1,7 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
-import ruby from './prism-ruby';
+import markup from './markup';
+import ruby from './ruby';
 import type { LanguageProto } from '../types';
 
 export default {

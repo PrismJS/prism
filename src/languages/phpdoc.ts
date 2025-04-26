@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import javadoclike from './prism-javadoclike';
+import javadoclike from './javadoclike';
 import type { LanguageProto } from '../types';
 
 export default {

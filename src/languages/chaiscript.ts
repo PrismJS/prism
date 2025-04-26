@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
-import clike from './prism-clike';
-import cpp from './prism-cpp';
+import clike from './clike';
+import cpp from './cpp';
 import type { LanguageProto } from '../types';
 
 export default {

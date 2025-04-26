@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import ruby from './prism-ruby';
+import ruby from './ruby';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {

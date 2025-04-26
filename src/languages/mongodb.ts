@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import javascript from './prism-javascript';
+import javascript from './javascript';
 import type { GrammarToken, LanguageProto } from '../types';
 
 export default {

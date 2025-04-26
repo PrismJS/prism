@@ -1,6 +1,6 @@
 import { insertBefore } from '../shared/language-util';
-import csharp from './prism-csharp';
-import markup from './prism-markup';
+import csharp from './csharp';
+import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {

@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import sql from './prism-sql';
+import sql from './sql';
 import type { LanguageProto } from '../types';
 
 export default {

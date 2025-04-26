@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import json from './prism-json';
+import json from './json';
 import type { LanguageProto } from '../types';
 
 export default {

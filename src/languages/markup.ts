@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import xml from './prism-xml';
+import xml from './xml';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 /**

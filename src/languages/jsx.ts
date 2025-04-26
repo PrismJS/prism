@@ -1,8 +1,8 @@
 import { Token, getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { rest, tokenize } from '../shared/symbols';
-import javascript from './prism-javascript';
-import markup from './prism-markup';
+import javascript from './javascript';
+import markup from './markup';
 import type { TokenStream } from '../core/token';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 

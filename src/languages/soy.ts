@@ -1,6 +1,6 @@
 import { embeddedIn } from '../shared/languages/templating';
 import { tokenize } from '../shared/symbols';
-import markup from './prism-markup';
+import markup from './markup';
 import type { LanguageProto } from '../types';
 
 export default {

@@ -1,5 +1,5 @@
 import { createT4 } from '../shared/languages/t4-templating';
-import csharp from './prism-csharp';
+import csharp from './csharp';
 import type { LanguageProto } from '../types';
 
 export default {

@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import clike from './prism-clike';
+import clike from './clike';
 import type { GrammarToken, LanguageProto } from '../types';
 
 export default {

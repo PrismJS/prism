@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import cpp from './prism-cpp';
+import cpp from './cpp';
 import type { LanguageProto } from '../types';
 
 export default {

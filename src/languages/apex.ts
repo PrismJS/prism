@@ -1,5 +1,5 @@
-import clike from './prism-clike';
-import sql from './prism-sql';
+import clike from './clike';
+import sql from './sql';
 import type { LanguageProto } from '../types';
 
 export default {

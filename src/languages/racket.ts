@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import scheme from './prism-scheme';
+import scheme from './scheme';
 import type { LanguageProto } from '../types';
 
 export default {

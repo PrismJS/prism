@@ -1,6 +1,6 @@
 import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
-import ruby from './prism-ruby';
+import ruby from './ruby';
 import type { LanguageProto } from '../types';
 
 export default {
