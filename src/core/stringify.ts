@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { htmlEncode } from '../shared/util';
 import type { Hooks } from './hooks';
 import type { Token } from './token';
