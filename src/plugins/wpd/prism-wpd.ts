@@ -1,4 +1,4 @@
-import cssSelector from '../../languages/prism-css-selector';
+import cssSelector from '../../languages/css-selector';
 import type { PluginProto } from '../../types';
 
 const htmlTags = new Set<string>([

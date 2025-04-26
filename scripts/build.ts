@@ -22,7 +22,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.join(__dirname, '../src/');
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
-	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
+	.map(f => f.slice(0, -'.js'.length))
 	.sort();
 const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
 
@@ -32,7 +32,7 @@ async function loadComponent (id: string) {
 		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
 	}
 	else {
-		file = path.join(SRC_DIR, `languages/prism-${id}.ts`);
+		file = path.join(SRC_DIR, `languages/${id}.ts`);
 	}
 	const exports = (await import(file)) as { default: ComponentProto };
 	return exports.default;
@@ -365,7 +365,7 @@ async function buildJS() {
 		'shared': path.join(SRC_DIR, 'shared.ts'),
 	};
 	for (const id of languageIds) {
-		input[`languages/prism-${id}`] = path.join(SRC_DIR, `languages/prism-${id}.ts`);
+		input[`languages/${id}`] = path.join(SRC_DIR, `languages/${id}.ts`);
 	}
 	for (const id of pluginIds) {
 		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);

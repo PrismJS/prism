@@ -14,7 +14,7 @@ export const getLanguageIds = lazy(() => {
 	const files = readdirSync(path.join(SRC_DIR, 'languages'));
 	return files
 		.map(f => {
-			const match = /^prism-([\w-]+)\.[jt]s$/.exec(f);
+			const match = /^([\w-]+)\.[jt]s$/.exec(f);
 			if (!match) {
 				return undefined;
 			}
@@ -36,7 +36,7 @@ async function getComponentUncached (id: string) {
 		return exports.default;
 	}
 	else {
-		const file = path.join(SRC_DIR, 'languages', `prism-${id}.ts`);
+		const file = path.join(SRC_DIR, 'languages', `${id}.ts`);
 		const exports = (await import(file)) as { default: LanguageProto };
 		return exports.default;
 	}

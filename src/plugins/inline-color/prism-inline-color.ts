@@ -1,4 +1,4 @@
-import cssExtras from '../../languages/prism-css-extras';
+import cssExtras from '../../languages/css-extras';
 import { MARKUP_TAG } from '../../shared/languages/patterns';
 import type { PluginProto } from '../../types';
 
