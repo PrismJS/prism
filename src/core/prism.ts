@@ -8,15 +8,15 @@ import { Registry } from './registry';
 import { Token } from './token';
 import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
-import type { HookEnvMap } from './hooks';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { TokenStream } from './token';
+import {highlightAll} from './highlight-all';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  *
  * @license MIT <https://opensource.org/licenses/MIT>
- * @author Lea Verou <https://lea.verou.me>
+ * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
  */
 export class Prism {
 	hooks = new Hooks();
@@ -408,20 +408,6 @@ export interface AsyncHighlightingData {
 }
 export type AsyncHighlighter = (data: AsyncHighlightingData) => Promise<string>;
 
-export interface HighlightAllOptions {
-	/**
-	 * The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
-	 */
-	root?: ParentNode;
-	async?: AsyncHighlighter;
-	/**
-	 * An optional callback to be invoked on each element after its highlighting is done.
-	 *
-	 * @see HighlightElementOptions#callback
-	 */
-	callback?: (element: Element) => void;
-}
-
 export interface HighlightElementOptions {
 	async?: AsyncHighlighter;
 	/**
@@ -538,3 +524,13 @@ function resolve (
 	}
 	return undefined;
 }
+
+/**
+ * Prism singleton.
+ * This will always be available, and will automatically read config options.
+ * This instance of Prism is unique. Even if this module is imported from
+ * different sources, the same Prism instance will be returned.
+ * In global builds, it will also be the Prism global variable.
+ * Any imported plugins and languages will automatically be added to this instance.
+ */
+export default new Prism();
