@@ -1,5 +1,5 @@
-import { HookState } from './hook-state';
-import prism, {Prism} from './prism';
+import Prism from './prism-class';
+import prism from "./prism";
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 
 /**
@@ -13,6 +13,7 @@ import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types'
  * 3. All hooks of {@link Prism#highlightElement} for each element.
  */
 export function highlightAll (this: Prism, options: HighlightAllOptions = {}) {
+	const context = this ?? prism;
 	const { root, async, callback } = options;
 
 	const env: Record<any, any> =
@@ -21,17 +22,16 @@ export function highlightAll (this: Prism, options: HighlightAllOptions = {}) {
 			root: root ?? document,
 			selector:
 				'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-			state: new HookState(),
 		};
 
-	this.hooks.run('before-highlightall', env);
+	context.hooks.run('before-highlightall', env);
 
 	env.elements = [...env.root.querySelectorAll(env.selector)];
 
-	this.hooks.run('before-all-elements-highlight', env);
+	context.hooks.run('before-all-elements-highlight', env);
 
 	for (const element of env.elements) {
-		this.highlightElement(element, { async, callback: env.callback });
+		context.highlightElement(element, { async, callback: env.callback });
 	}
 }
 

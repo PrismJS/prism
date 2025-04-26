@@ -1,4 +1,4 @@
-import globalPrism, { Prism } from './core/prism';
+import globalPrism, { Prism } from './core/prism-class';
 
 declare global {
 	var Prism: Prism | undefined
