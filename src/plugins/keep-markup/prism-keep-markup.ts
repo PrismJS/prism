@@ -77,11 +77,11 @@ export default {
 
 				if (data.length) {
 					// data is an array of all existing tags
-					env.state.set(markupData, data);
+					env.markupData = data;
 				}
 			},
 			'after-highlight': (env) => {
-				const data = env.state.get(markupData, []);
+				const data = env.markupdata ?? [];
 				if (data.length) {
 					type End = [node: Text, pos: number]
 
