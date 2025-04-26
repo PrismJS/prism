@@ -8,7 +8,7 @@ export default {
 	require: clike,
 	grammar ({ extend }) {
 		const vala = extend('clike', {
-			// Classes copied from prism-csharp
+			// Classes copied from csharp
 			'class-name': [
 				{
 					// (Foo bar, Bar baz)

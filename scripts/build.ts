@@ -22,7 +22,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.join(__dirname, '../src/');
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
-	.map(f => f.slice('prism-'.length).slice(0, -'.js'.length))
+	.map(f => f.slice(0, -'.js'.length))
 	.sort();
 const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
 

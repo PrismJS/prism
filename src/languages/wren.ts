@@ -23,7 +23,7 @@ export default {
 		],
 
 		// Triple quoted strings are multiline but cannot have interpolation (raw strings)
-		// Based on prism-python.js
+		// Based on python.js
 		'triple-quoted-string': {
 			pattern: /"""[\s\S]*?"""/,
 			greedy: true,

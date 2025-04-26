@@ -41,9 +41,9 @@
 	},
 	"languages": {
 		"meta": {
-			"path": "components/prism-{id}",
+			"path": "languages/{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}",
+			"examplesPath": "examples/{id}",
 			"addCheckAll": true
 		},
 		"markup": {
