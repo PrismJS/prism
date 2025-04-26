@@ -9,3 +9,6 @@ import Prism from "./prism-class";
  * Any imported plugins and languages will automatically be added to this instance.
  */
 export default new Prism();
+
+/** Re-export Prism class so they can be imported together */
+export { Prism };
