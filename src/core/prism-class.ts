@@ -23,14 +23,7 @@ export default class Prism {
 	plugins: Partial<Record<string, unknown> & KnownPlugins> = {};
 
 	/**
-	 * This is the most high-level function in Prism’s API.
-	 * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism#highlightElement} on
-	 * each one of them.
-	 *
-	 * The following hooks will be run:
-	 * 1. `before-highlightall`
-	 * 2. `before-all-elements-highlight`
-	 * 3. All hooks of {@link Prism#highlightElement} for each element.
+	 * See {@link highlightAll}.
 	 */
 	highlightAll (options: HighlightAllOptions = {}) {
 		return highlightAll.call(this, options);
