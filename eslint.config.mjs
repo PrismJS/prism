@@ -177,6 +177,9 @@ export default defineConfig([
 				'warn',
 				{ disallowTypeAnnotations: true },
 			],
+
+			'@typescript-eslint/no-unsafe-call': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
 		},
 	},
 	{
