@@ -10,7 +10,7 @@ import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { TokenStream } from './token';
-import {highlightAll} from './highlight-all';
+import {highlightAll, HighlightAllOptions} from './highlight-all';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
@@ -34,27 +34,7 @@ export class Prism {
 	 * 3. All hooks of {@link Prism#highlightElement} for each element.
 	 */
 	highlightAll (options: HighlightAllOptions = {}) {
-		const { root, async, callback } = options;
-
-		const env: HookEnvMap['before-highlightall'] | HookEnvMap['before-all-elements-highlight'] =
-			{
-				callback,
-				root: root ?? document,
-				selector:
-					'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-				state: new HookState(),
-			};
-
-		this.hooks.run('before-highlightall', env);
-
-		assertEnv<'before-all-elements-highlight'>(env);
-		env.elements = [...env.root.querySelectorAll(env.selector)];
-
-		this.hooks.run('before-all-elements-highlight', env);
-
-		for (const element of env.elements) {
-			this.highlightElement(element, { async, callback: env.callback });
-		}
+		return highlightAll.call(this, options);
 	}
 
 	/**
@@ -408,16 +388,7 @@ export interface AsyncHighlightingData {
 }
 export type AsyncHighlighter = (data: AsyncHighlightingData) => Promise<string>;
 
-export interface HighlightElementOptions {
-	async?: AsyncHighlighter;
-	/**
-	 * An optional callback to be invoked after the highlighting is done.
-	 * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
-	 *
-	 * @param element The element successfully highlighted.
-	 */
-	callback?: (element: Element) => void;
-}
+
 
 export interface HighlightOptions {
 	grammar?: Grammar;

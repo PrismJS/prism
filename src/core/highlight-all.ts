@@ -1,5 +1,6 @@
 import { HookState } from './hook-state';
 import prism, {Prism} from './prism';
+import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 
 /**
  * This is the most high-level function in Prism’s API.
@@ -47,3 +48,11 @@ export interface HighlightAllOptions {
 	 */
 	callback?: (element: Element) => void;
 }
+
+export interface AsyncHighlightingData {
+	language: string;
+	code: string;
+	grammar: Grammar;
+}
+export type AsyncHighlighter = (data: AsyncHighlightingData) => Promise<string>;
+
