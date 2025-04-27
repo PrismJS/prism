@@ -17,13 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig([
 	{
-		ignores: [
-			'benchmark/downloads',
-			'benchmark/remotes',
-			'dist',
-			'node_modules',
-			'types',
-		],
+		ignores: ['benchmark/downloads', 'benchmark/remotes', 'dist', 'node_modules', 'types'],
 	},
 	js.configs.recommended,
 	{
@@ -180,6 +174,9 @@ export default defineConfig([
 
 			'@typescript-eslint/no-unsafe-call': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-member-access': 'off',
+			'@typescript-eslint/no-unsafe-return': 'off',
 		},
 	},
 	{
