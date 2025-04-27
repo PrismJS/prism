@@ -25,7 +25,7 @@ export function highlight (
 	this: Prism,
 	text: string,
 	language: string,
-	options?: HighlightOptions
+	options: HighlightOptions = {}
 ): string {
 	const prism = this ?? singleton;
 
