@@ -25,12 +25,12 @@ export function highlight (
 	this: Prism,
 	text: string,
 	language: string,
-	options?: HighlightOptions
+	options: HighlightOptions = {}
 ): string {
 	const prism = this ?? singleton;
 
 	const languageId = prism.components.resolveAlias(language);
-	const grammar = options?.grammar ?? prism.components.getLanguage(languageId);
+	const grammar = options.grammar ?? prism.components.getLanguage(languageId);
 
 	const env: Record<string, any> | Record<string, any> = {
 		code: text,
