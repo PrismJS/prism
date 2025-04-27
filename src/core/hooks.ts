@@ -1,6 +1,6 @@
 export class Hooks {
 	// eslint-disable-next-line func-call-spacing
-	private _all = new Map<string, ((env: unknown) => void)[]>();
+	private _all = new Map<string, HookCallback[]>();
 
 	/**
 	 * Adds the given callback to the list of callbacks for the given hook and returns a function that
@@ -17,7 +17,7 @@ export class Hooks {
 	 * @param name The name of the hook.
 	 * @param callback The callback function which is given environment variables.
 	 */
-	add<Name extends string> (name: Name, callback: HookCallback<Name>): () => void {
+	add<Name extends string> (name: Name, callback: HookCallback): () => void {
 		let hooks = this._all.get(name);
 		if (hooks === undefined) {
 			hooks = [];
