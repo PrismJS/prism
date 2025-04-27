@@ -80,7 +80,7 @@ export default {
 				}
 			},
 			'after-highlight': (env) => {
-				const data = env.markupdata ?? [];
+				const data = env.markupData ?? [];
 				if (data.length) {
 					type End = [node: Text, pos: number]
 
