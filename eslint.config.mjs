@@ -3,10 +3,10 @@ import js from '@eslint/js';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsEslintParser from '@typescript-eslint/parser';
 import { defineConfig } from 'eslint/config';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
-import prettierPlugin from 'eslint-plugin-prettier';
 import regexpPlugin from 'eslint-plugin-regexp';
 import globals from 'globals';
 
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig([
+const config = [
 	{
 		ignores: ['benchmark/downloads', 'benchmark/remotes', 'dist', 'node_modules', 'types'],
 	},
@@ -25,17 +25,14 @@ export default defineConfig([
 			import: importPlugin,
 			jsdoc: jsdocPlugin,
 			regexp: regexpPlugin,
-			prettier: prettierPlugin,
 		},
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 		},
 		rules: {
-			...prettierPlugin.configs.recommended.rules,
-
-			'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
-			'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
+			'no-use-before-define': ['warn', { 'functions': false, 'classes': false }],
+			'eqeqeq': ['warn', 'always', { 'null': 'ignore' }],
 
 			// imports
 			'import/extensions': ['warn', 'never'],
@@ -57,12 +54,12 @@ export default defineConfig([
 			'sort-imports': ['warn', { ignoreDeclarationSort: true }],
 
 			// stylistic rules
-			'no-var': 'error',
+			'no-var': 'warn',
 			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 			'one-var': ['warn', 'never'],
 			'prefer-arrow-callback': 'warn',
 			'prefer-const': ['warn', { 'destructuring': 'all' }],
-			'prefer-spread': 'error',
+			'prefer-spread': 'warn',
 
 			// JSDoc
 			'jsdoc/check-alignment': 'warn',
@@ -77,18 +74,18 @@ export default defineConfig([
 			'jsdoc/require-property-name': 'warn',
 
 			// regexp
-			'regexp/no-dupe-disjunctions': 'error',
-			'regexp/no-empty-alternative': 'error',
-			'regexp/no-empty-capturing-group': 'error',
-			'regexp/no-empty-lookarounds-assertion': 'error',
-			'regexp/no-lazy-ends': 'error',
-			'regexp/no-obscure-range': 'error',
-			'regexp/no-optional-assertion': 'error',
-			'regexp/no-standalone-backslash': 'error',
-			'regexp/no-super-linear-backtracking': 'error',
-			'regexp/no-unused-capturing-group': 'error',
-			'regexp/no-zero-quantifier': 'error',
-			'regexp/optimal-lookaround-quantifier': 'error',
+			'regexp/no-dupe-disjunctions': 'warn',
+			'regexp/no-empty-alternative': 'warn',
+			'regexp/no-empty-capturing-group': 'warn',
+			'regexp/no-empty-lookarounds-assertion': 'warn',
+			'regexp/no-lazy-ends': 'warn',
+			'regexp/no-obscure-range': 'warn',
+			'regexp/no-optional-assertion': 'warn',
+			'regexp/no-standalone-backslash': 'warn',
+			'regexp/no-super-linear-backtracking': 'warn',
+			'regexp/no-unused-capturing-group': 'warn',
+			'regexp/no-zero-quantifier': 'warn',
+			'regexp/optimal-lookaround-quantifier': 'warn',
 
 			'regexp/match-any': 'warn',
 			'regexp/negation': 'warn',
@@ -162,7 +159,7 @@ export default defineConfig([
 			'no-empty-character-class': 'off',
 			'no-useless-escape': 'off',
 
-			'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
+			'eslint-comments/disable-enable-pair': ['warn', { allowWholeFile: true }],
 
 			// Allow {} type
 			'@typescript-eslint/no-empty-object-type': 'off',
@@ -265,4 +262,47 @@ export default defineConfig([
 			},
 		},
 	},
-]);
+	eslintConfigPrettier,
+];
+
+export default defineConfig(replaceErrorsWithWarnings(config));
+
+/*
+ * Many recommended ESLint configs (such as those from @typescript-eslint) default to "error" severity for some rules.
+ * However, we want all rules only to warn, not error.
+ * This function recursively traverses the config and downgrades all "error" severities to "warn".
+ * This ensures a consistent linting experience, even when extending third-party configs that use "error" by default.
+ */
+function replaceErrorsWithWarnings (config) {
+	if (Array.isArray(config)) {
+		return config.map(replaceErrorsWithWarnings);
+	}
+
+	if (typeof config === 'object' && config !== null) {
+		const newConfig = { ...config };
+
+		if (newConfig.rules) {
+			newConfig.rules = Object.fromEntries(
+				Object.entries(newConfig.rules).map(([rule, setting]) => {
+					if (setting === 'error' || setting === 2) {
+						return [rule, 'warn'];
+					}
+
+					if (Array.isArray(setting) && (setting[0] === 'error' || setting[0] === 2)) {
+						return [rule, ['warn', ...setting.slice(1)]];
+					}
+
+					return [rule, setting];
+				})
+			);
+		}
+
+		if (newConfig.overrides) {
+			newConfig.overrides = replaceErrorsWithWarnings(newConfig.overrides);
+		}
+
+		return newConfig;
+	}
+
+	return config;
+}
