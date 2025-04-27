@@ -1,4 +1,10 @@
-import Prism from "./prism-class";
+/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
+ */
+import Prism from './prism-class';
 
 /**
  * Prism singleton.
@@ -8,7 +14,8 @@ import Prism from "./prism-class";
  * In global builds, it will also be the Prism global variable.
  * Any imported plugins and languages will automatically be added to this instance.
  */
-export default new Prism();
+const prism = new Prism();
+export default prism;
 
-/** Re-export Prism class so they can be imported together */
+/** See {@link Prism} */
 export { Prism };
