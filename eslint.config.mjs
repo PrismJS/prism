@@ -3,10 +3,10 @@ import js from '@eslint/js';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsEslintParser from '@typescript-eslint/parser';
 import { defineConfig } from 'eslint/config';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
-import prettierPlugin from 'eslint-plugin-prettier';
 import regexpPlugin from 'eslint-plugin-regexp';
 import globals from 'globals';
 
@@ -25,15 +25,12 @@ const config = [
 			import: importPlugin,
 			jsdoc: jsdocPlugin,
 			regexp: regexpPlugin,
-			prettier: prettierPlugin,
 		},
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 		},
 		rules: {
-			...prettierPlugin.configs.recommended.rules,
-
 			'no-use-before-define': ['warn', { 'functions': false, 'classes': false }],
 			'eqeqeq': ['warn', 'always', { 'null': 'ignore' }],
 
@@ -262,6 +259,7 @@ const config = [
 			},
 		},
 	},
+	eslintConfigPrettier,
 ];
 
 export default defineConfig(replaceErrorsWithWarnings(config));

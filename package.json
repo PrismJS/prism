@@ -86,7 +86,6 @@
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-jsdoc": "^50.6.9",
-		"eslint-plugin-prettier": "^5.2.6",
 		"eslint-plugin-regexp": "^2.7.0",
 		"globals": "^16.0.0",
 		"gzip-size": "^7.0.0",
