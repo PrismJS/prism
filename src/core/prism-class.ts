@@ -4,20 +4,17 @@ import { highlightAll, type HighlightAllOptions } from './highlight-all';
 import { highlightElement, type HighlightElementOptions } from './highlight-element';
 import { highlight, type HighlightOptions } from './highlight';
 import { tokenize } from './tokenize';
-import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { TokenStream } from './token';
 
 /**
- * Prism: Lightweight, robust, elegant syntax highlighting
- *
- * @license MIT <https://opensource.org/licenses/MIT>
- * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
+ * Prism class, to create Prism instances with different settings.
+ * In most use cases, you just need the pre-existing Prism instance, see {@link prism}.
  */
 export default class Prism {
 	hooks = new Hooks();
 	components = new Registry(this);
-	plugins: Partial<Record<string, unknown> & KnownPlugins> = {};
+	plugins: Record<string, unknown> = {};
 
 	/**
 	 * See {@link highlightAll}.
