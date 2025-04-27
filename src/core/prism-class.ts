@@ -36,7 +36,7 @@ export default class Prism {
 	/**
 	 * See {@link highlight}
 	 */
-	highlight (text: string, language: string, options?: HighlightOptions): string {
+	highlight (text: string, language: string, options: HighlightOptions = {}): string {
 		return highlight.call(this, text, language, options);
 	}
 
