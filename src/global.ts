@@ -1,7 +1,7 @@
 import globalPrism, { type Prism } from './core/prism';
 
 declare global {
-	var Prism: Prism | undefined
+	const Prism: Prism | undefined;
 }
 
 /**
