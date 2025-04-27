@@ -266,6 +266,12 @@ const config = [
 
 export default defineConfig(replaceErrorsWithWarnings(config));
 
+/*
+ * Many recommended ESLint configs (such as those from @typescript-eslint) default to "error" severity for some rules.
+ * However, we want all rules only to warn, not error.
+ * This function recursively traverses the config and downgrades all "error" severities to "warn".
+ * This ensures a consistent linting experience, even when extending third-party configs that use "error" by default.
+ */
 function replaceErrorsWithWarnings (config) {
 	if (Array.isArray(config)) {
 		return config.map(replaceErrorsWithWarnings);
