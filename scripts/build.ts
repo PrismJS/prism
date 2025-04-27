@@ -329,7 +329,7 @@ async function buildTypes() {
 	await mkdir('./types');
 
 	// Copy existing type definitions
-	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
+	const typeFiles = ['types.d.ts'];
 
 	await Promise.all(
 		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
