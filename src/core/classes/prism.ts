@@ -39,17 +39,19 @@ export default class Prism {
 		this.pluginRegistry = new PluginRegistry(this.config.pluginPath ?? './plugins/');
 
 		// Preload languages
-		if (this.config.languages?.length > 0) {
-			this.languageRegistry.loadAll(this.config.languages);
+		const languages = this.config.languages;
+		if (languages && languages.length > 0) {
+			this.languageRegistry.loadAll(languages);
 		}
 
 		this.languagesReady = this.languageRegistry.ready;
 		this.waitFor.push(this.languagesReady);
 
-		if (this.config.plugins?.length > 0) {
+		const plugins = this.config.plugins;
+		if (plugins && plugins.length > 0) {
 			let pluginsReady = this.languagesReady
 				.then(() => {
-					return this.pluginRegistry.loadAll(this.config.plugins!);
+					return this.pluginRegistry.loadAll(plugins);
 				})
 				.catch(reportError);
 			this.waitFor.push(pluginsReady);
