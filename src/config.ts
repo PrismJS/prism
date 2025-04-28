@@ -2,7 +2,7 @@ const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement: HTMLOrSVGScriptElement | null = document?.currentScript;
 // @ts-ignore
 const globalConfig: Record<string, PrismConfig[keyof PrismConfig]> =
-	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
+	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism.config : {};
 
 function getGlobalSetting (name: string) {
 	let camelCaseName = name.replace(/-([a-z])/g, g => g[1].toUpperCase());
