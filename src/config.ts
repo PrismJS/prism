@@ -24,7 +24,7 @@ function getGlobalSetting (name: string) {
 function getGlobalBooleanSetting (name: string, defaultValue: boolean): boolean {
 	const value = getGlobalSetting(name);
 
-	if (value === null) {
+	if (value === null || value === undefined) {
 		return defaultValue;
 	}
 
@@ -33,7 +33,7 @@ function getGlobalBooleanSetting (name: string, defaultValue: boolean): boolean 
 
 function getGlobalArraySetting (name: string): string[] {
 	const value = getGlobalSetting(name);
-	if (value === null || value === false || value === 'false') {
+	if (value === null || value === undefined || value === false || value === 'false') {
 		return [];
 	}
 	else if (typeof value === 'string') {
