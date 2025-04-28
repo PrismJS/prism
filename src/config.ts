@@ -16,7 +16,7 @@ function getGlobalSetting (name: string) {
 	}
 	else if (hasDOM) {
 		return (
-			scriptElement!.dataset[camelCaseName] ??
+			scriptElement?.dataset[camelCaseName] ??
 			document.querySelector(`[data-prism-${name}]`)?.getAttribute(`data-prism-${name}`)
 		);
 	}
