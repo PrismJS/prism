@@ -319,7 +319,7 @@ async function clean() {
 	]);
 }
 
-async function copyComponentsJson () {
+async function copyComponentsJson() {
 	const from = path.join(SRC_DIR, 'components.json');
 	const to = path.join(__dirname, '../dist/components.json');
 	await copyFile(from, to);
@@ -410,11 +410,11 @@ async function buildJS() {
 			rollupOptions: {
 				...defaultRollupOptions,
 				input: {
-					'prism': path.join(SRC_DIR, 'auto-start.ts'),
-				}
+					'prism': path.join(SRC_DIR, 'global.ts'),
+				},
 			},
 			outputOptions: defaultOutputOptions,
-		}
+		},
 	};
 
 	try {
@@ -430,4 +430,10 @@ async function buildJS() {
 	}
 }
 
-runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)), copyComponentsJson));
+runTask(
+	series(
+		clean,
+		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
+		copyComponentsJson
+	)
+);

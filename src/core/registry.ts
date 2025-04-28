@@ -1,7 +1,8 @@
+// TODO make sure the functionality is covered elsewhere and remove this file
 import { extend } from '../shared/language-util';
 import { forEach, kebabToCamelCase } from '../shared/util';
 import type { ComponentProto, Grammar } from '../types';
-import type Prism from './prism-class';
+import type Prism from './classes/prism';
 
 interface Entry {
 	proto: ComponentProto;

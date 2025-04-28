@@ -1,4 +1,4 @@
-import type { HookCallback, HookEnvMap, Hooks } from '../core/hooks';
+import type { HookCallback, HookEnvMap, Hooks } from '../core/classes/hooks';
 
 /**
  * Returns a single function that calls all the given functions.

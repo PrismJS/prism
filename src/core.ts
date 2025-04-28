@@ -1,2 +1,2 @@
-export { default as Prism } from './core/prism-class';
+export { default as Prism } from './core/classes/prism';
 export { Token } from './core/token';

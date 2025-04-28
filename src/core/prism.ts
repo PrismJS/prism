@@ -4,7 +4,7 @@
  * @license MIT <https://opensource.org/licenses/MIT>
  * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
  */
-import Prism from './prism-class';
+import Prism from './classes/prism';
 
 /**
  * Prism singleton.

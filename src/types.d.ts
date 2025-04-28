@@ -1,4 +1,4 @@
-import type Prism from './core/prism-class';
+import type Prism from './core/classes/prism';
 import type { TokenStream } from './core/token';
 import type { rest, tokenize } from './shared/symbols';
 
@@ -17,6 +17,7 @@ export interface ComponentProtoBase<Id extends string = string> {
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	plugin?: undefined;
+	extends?: LanguageProto;
 }
 type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
@@ -111,7 +112,11 @@ export interface GrammarSymbols {
 	[rest]?: Grammar | string | null;
 	[tokenize]?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 }
-export type Grammar = GrammarTokens & GrammarSymbols;
+export interface GrammarSpecial {
+	$insertBefore?: GrammarTokens;
+	$delete: string[];
+}
+export type Grammar = GrammarTokens & GrammarSymbol & GrammarSpecial;
 
 export interface PlainObject {
 	[key: string]: unknown;

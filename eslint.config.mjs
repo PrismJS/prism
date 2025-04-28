@@ -58,7 +58,7 @@ const config = [
 			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 			'one-var': ['warn', 'never'],
 			'prefer-arrow-callback': 'warn',
-			'prefer-const': ['warn', { 'destructuring': 'all' }],
+			'prefer-const': 'off',
 			'prefer-spread': 'warn',
 
 			// JSDoc
@@ -174,6 +174,7 @@ const config = [
 			'@typescript-eslint/no-unsafe-assignment': 'off',
 			'@typescript-eslint/no-unsafe-member-access': 'off',
 			'@typescript-eslint/no-unsafe-return': 'off',
+			'@typescript-eslint/no-unsafe-argument': 'off',
 		},
 	},
 	{
@@ -188,7 +189,7 @@ const config = [
 	},
 	{
 		// Browser-specific parts
-		files: ['src/auto-start.ts'],
+		files: ['src/global.ts'],
 		languageOptions: {
 			globals: {
 				...globals.browser,

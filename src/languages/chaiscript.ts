@@ -7,6 +7,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'chaiscript',
 	require: [clike, cpp],
+	extends: clike,
 	grammar ({ extend, getLanguage }) {
 		const cpp = getLanguage('cpp');
 

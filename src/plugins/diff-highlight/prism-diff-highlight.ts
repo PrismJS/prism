@@ -1,7 +1,7 @@
 import { Token, getTextContent } from '../../core/token';
 import diff, { PREFIXES } from '../../languages/diff';
 import { addHooks } from '../../shared/hooks-util';
-import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/hooks';
+import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/token';
 import type { PluginProto } from '../../types';
 

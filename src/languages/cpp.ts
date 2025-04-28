@@ -101,6 +101,7 @@ export default {
 		});
 
 		/* OpenCL host API */
+		// TODO this should be done in the opencl-extensions language
 		const extensions = getOptionalLanguage('opencl-extensions');
 		if (extensions) {
 			insertBefore(cpp, 'keyword', extensions);

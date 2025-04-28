@@ -1,5 +1,5 @@
 import { htmlEncode } from '../shared/util';
-import type { Hooks } from './hooks';
+import type { Hooks } from './classes/hooks';
 import type { Token } from './token';
 import type { TokenStream } from './token';
 
