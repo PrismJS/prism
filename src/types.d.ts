@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import type Prism from './core/classes/prism';
 import type { TokenStream } from './core/token';
 import type { rest, tokenize } from './shared/symbols';
@@ -100,7 +101,10 @@ export interface GrammarToken {
 }
 
 export type GrammarTokens = Partial<
-	Record<TokenName, RegExpLike | GrammarToken | (RegExpLike | GrammarToken)[]>
+	Record<
+		TokenName,
+		RegExpLike | GrammarToken | GrammarTokens | (RegExpLike | GrammarToken | GrammarTokens)[]
+	>
 >;
 export interface GrammarSymbols {
 	/**
