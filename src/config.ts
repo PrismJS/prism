@@ -5,6 +5,7 @@ const globalConfig: Record<string, PrismConfig[keyof PrismConfig]> =
 	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism.config : {};
 
 function getGlobalSetting (name: string) {
+	// eslint-disable-next-line regexp/no-unused-capturing-group
 	let camelCaseName = name.replace(/-([a-z])/g, g => g[1].toUpperCase());
 
 	if (camelCaseName in globalConfig) {
