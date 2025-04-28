@@ -15,7 +15,7 @@ export interface ComponentProtoBase<Id extends string = string> {
 	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
-	grammar: Grammar | ((options: GrammarOptions) => Grammar);
+	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
 	plugin?: undefined;
 	extends?: LanguageProto;
 }
