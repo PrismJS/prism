@@ -31,9 +31,11 @@ export default class Prism {
 
 	constructor (config: PrismConfig = {}) {
 		this.config = Object.assign({}, globalDefaults, config);
-		this.config.errorHandler ??= this.config.silent ? () => undefined : console.error;
+		this.config.errorHandler ??= (
+			this.config.silent ? () => undefined : console.error
+		) as PrismConfig['errorHandler'];
 
-		const reportError: (reason: any) => PromiseLike<never> = this.config.errorHandler;
+		const reportError: PrismConfig['errorHandler'] = this.config.errorHandler;
 
 		this.languageRegistry = new LanguageRegistry(this.config.languagePath);
 		this.pluginRegistry = new PluginRegistry(this.config.pluginPath);
