@@ -114,7 +114,7 @@ export interface GrammarSymbols {
 }
 export interface GrammarSpecial {
 	$insertBefore?: GrammarTokens;
-	$delete: string[];
+	$delete?: (string | undefined)[];
 }
 export type Grammar = GrammarTokens & GrammarSymbol & GrammarSpecial;
 
