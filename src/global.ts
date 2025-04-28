@@ -1,7 +1,9 @@
 import globalPrism, { type Prism } from './core/prism';
 
 declare global {
-	const Prism: Prism | undefined;
+	interface globalThis {
+		Prism: Prism | undefined;
+	}
 }
 
 /**
