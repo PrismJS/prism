@@ -51,7 +51,7 @@ export default class Language {
 				delete this.evaluatedGrammar.$insertBefore;
 			}
 
-			if (this.evaluatedGrammar.$delete) {
+			if (this.evaluatedGrammar?.$delete) {
 				for (let key of this.evaluatedGrammar.$delete) {
 					delete this.evaluatedGrammar[key];
 				}
