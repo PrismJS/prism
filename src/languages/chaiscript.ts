@@ -8,7 +8,7 @@ export default {
 	id: 'chaiscript',
 	require: [clike, cpp],
 	extends: clike,
-	grammar ({ extend, getLanguage }) {
+	grammar ({ extend, getLanguage }: GrammarOptions): Grammar {
 		const cpp = getLanguage('cpp');
 
 		const chaiscript = extend('clike', {
