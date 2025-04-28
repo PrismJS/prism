@@ -1,4 +1,4 @@
-import globalDefaults, { type PrismConfig } from './config';
+import globalDefaults, { type PrismConfig } from '../../config';
 import { Hooks } from './hooks';
 import { Registry } from '../registry';
 import { highlightAll, type HighlightAllOptions } from '../highlight-all';
