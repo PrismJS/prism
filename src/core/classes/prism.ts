@@ -35,8 +35,8 @@ export default class Prism {
 
 		const reportError: (reason: any) => PromiseLike<never> = this.config.errorHandler;
 
-		this.languageRegistry = new LanguageRegistry(this.config.languagePath ?? './languages/');
-		this.pluginRegistry = new PluginRegistry(this.config.pluginPath ?? './plugins/');
+		this.languageRegistry = new LanguageRegistry(this.config.languagePath);
+		this.pluginRegistry = new PluginRegistry(this.config.pluginPath);
 
 		// Preload languages
 		const languages = this.config.languages;
