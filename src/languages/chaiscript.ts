@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import clike from './clike';
 import cpp from './cpp';
-import type { LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
