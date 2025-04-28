@@ -1,5 +1,5 @@
 const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
-const scriptElement: HTMLScriptElement = hasDOM && document.currentScript;
+const scriptElement: HTMLOrSVGScriptElement | null = document?.currentScript;
 // @ts-ignore
 const globalConfig: Record<string, PrismConfig[keyof PrismConfig]> =
 	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
@@ -15,7 +15,7 @@ function getGlobalSetting (name: string) {
 	}
 	else if (hasDOM) {
 		return (
-			scriptElement.dataset[camelCaseName] ??
+			scriptElement!.dataset[camelCaseName] ??
 			document.querySelector(`[data-prism-${name}]`)?.getAttribute(`data-prism-${name}`)
 		);
 	}
