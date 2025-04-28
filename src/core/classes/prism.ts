@@ -49,7 +49,7 @@ export default class Prism {
 		if (this.config.plugins?.length > 0) {
 			let pluginsReady = this.languagesReady
 				.then(() => {
-					return this.pluginRegistry.loadAll(this.config.plugins);
+					return this.pluginRegistry.loadAll(this.config.plugins!);
 				})
 				.catch(reportError);
 			this.waitFor.push(pluginsReady);
