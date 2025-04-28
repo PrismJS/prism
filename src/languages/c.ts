@@ -1,13 +1,13 @@
 import { insertBefore } from '../shared/language-util';
 import clike from './clike';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'c',
 	require: clike,
 	extends: clike,
 	optional: 'opencl-extensions',
-	grammar ({ getOptionalLanguage }) {
+	grammar ({ getOptionalLanguage }: GrammarOptions): Grammar {
 		// TODO this should be done in the opencl-extensions language
 		const extensions = getOptionalLanguage('opencl-extensions');
 

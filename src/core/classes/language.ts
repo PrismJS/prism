@@ -41,7 +41,7 @@ export default class Language {
 				this.evaluatedGrammar = grammar.call(this);
 			}
 
-			if (this.evaluatedGrammar.$insertBefore) {
+			if (this.evaluatedGrammar?.$insertBefore) {
 				for (let key in this.evaluatedGrammar.$insertBefore) {
 					const tokens = this.evaluatedGrammar.$insertBefore[key];
 					if (tokens) {
@@ -51,7 +51,7 @@ export default class Language {
 				delete this.evaluatedGrammar.$insertBefore;
 			}
 
-			if (this.evaluatedGrammar.$delete) {
+			if (this.evaluatedGrammar?.$delete) {
 				for (let key of this.evaluatedGrammar.$delete) {
 					delete this.evaluatedGrammar[key];
 				}

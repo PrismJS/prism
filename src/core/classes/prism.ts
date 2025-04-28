@@ -1,4 +1,4 @@
-import globalDefaults, { type PrismConfig } from './config';
+import globalDefaults, { type PrismConfig } from '../../config';
 import { Hooks } from './hooks';
 import { Registry } from '../registry';
 import { highlightAll, type HighlightAllOptions } from '../highlight-all';
@@ -31,25 +31,29 @@ export default class Prism {
 
 	constructor (config: PrismConfig = {}) {
 		this.config = Object.assign({}, globalDefaults, config);
-		this.config.errorHandler ??= this.config.silent ? () => undefined : console.error;
+		this.config.errorHandler ??= (
+			this.config.silent ? () => undefined : console.error
+		) as PrismConfig['errorHandler'];
 
-		const reportError: (reason: any) => PromiseLike<never> = this.config.errorHandler;
+		const reportError: PrismConfig['errorHandler'] = this.config.errorHandler;
 
-		this.languageRegistry = new LanguageRegistry(this.config.languagePath ?? './languages/');
-		this.pluginRegistry = new PluginRegistry(this.config.pluginPath ?? './plugins/');
+		this.languageRegistry = new LanguageRegistry(this.config.languagePath);
+		this.pluginRegistry = new PluginRegistry(this.config.pluginPath);
 
 		// Preload languages
-		if (this.config.languages?.length > 0) {
-			this.languageRegistry.loadAll(this.config.languages);
+		const languages = this.config.languages;
+		if (languages && languages.length > 0) {
+			this.languageRegistry.loadAll(languages);
 		}
 
 		this.languagesReady = this.languageRegistry.ready;
 		this.waitFor.push(this.languagesReady);
 
-		if (this.config.plugins?.length > 0) {
+		const plugins = this.config.plugins;
+		if (plugins && plugins.length > 0) {
 			let pluginsReady = this.languagesReady
 				.then(() => {
-					return this.pluginRegistry.loadAll(this.config.plugins);
+					return this.pluginRegistry.loadAll(plugins);
 				})
 				.catch(reportError);
 			this.waitFor.push(pluginsReady);

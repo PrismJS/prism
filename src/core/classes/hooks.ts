@@ -1,5 +1,4 @@
 export class Hooks {
-	// eslint-disable-next-line func-call-spacing
 	private _all = new Map<string, HookCallback[]>();
 
 	/**

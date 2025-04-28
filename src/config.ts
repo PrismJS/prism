@@ -1,10 +1,11 @@
 const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
-const scriptElement: HTMLScriptElement = hasDOM && document.currentScript;
+const scriptElement: HTMLOrSVGScriptElement | null = hasDOM && document.currentScript;
 // @ts-ignore
-const globalConfig: Record<String, string | string[] | null> =
+const globalConfig: Record<string, PrismConfig[keyof PrismConfig] | null> =
 	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
 
 function getGlobalSetting (name: string) {
+	// eslint-disable-next-line regexp/no-unused-capturing-group
 	let camelCaseName = name.replace(/-([a-z])/g, g => g[1].toUpperCase());
 
 	if (camelCaseName in globalConfig) {
@@ -15,7 +16,7 @@ function getGlobalSetting (name: string) {
 	}
 	else if (hasDOM) {
 		return (
-			scriptElement.dataset[camelCaseName] ??
+			scriptElement?.dataset[camelCaseName] ??
 			document.querySelector(`[data-prism-${name}]`)?.getAttribute(`data-prism-${name}`)
 		);
 	}
@@ -24,7 +25,7 @@ function getGlobalSetting (name: string) {
 function getGlobalBooleanSetting (name: string, defaultValue: boolean): boolean {
 	const value = getGlobalSetting(name);
 
-	if (value === null) {
+	if (value === null || value === undefined) {
 		return defaultValue;
 	}
 
@@ -33,7 +34,7 @@ function getGlobalBooleanSetting (name: string, defaultValue: boolean): boolean 
 
 function getGlobalArraySetting (name: string): string[] {
 	const value = getGlobalSetting(name);
-	if (value === null || value === false || value === 'false') {
+	if (value === null || value === undefined || value === false || value === 'false') {
 		return [];
 	}
 	else if (typeof value === 'string') {
@@ -48,6 +49,8 @@ function getGlobalArraySetting (name: string): string[] {
 
 export interface PrismConfig {
 	manual?: boolean;
+	silent?: boolean;
+	errorHandler?: (reason: any) => PromiseLike<never>;
 	plugins?: string[];
 	languages?: string[];
 	pluginPath?: string;
@@ -56,10 +59,11 @@ export interface PrismConfig {
 
 export const globalDefaults: PrismConfig = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
+	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
-	languagePath: getGlobalSetting('language-path') ?? './languages/',
-	pluginPath: getGlobalSetting('plugin-path') ?? './plugins/',
+	languagePath: (getGlobalSetting('language-path') ?? './languages/') as string,
+	pluginPath: (getGlobalSetting('plugin-path') ?? './plugins/') as string,
 };
 
 export default globalDefaults;

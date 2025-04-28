@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import type Prism from './core/classes/prism';
 import type { TokenStream } from './core/token';
 import type { rest, tokenize } from './shared/symbols';
@@ -15,16 +16,13 @@ export interface ComponentProtoBase<Id extends string = string> {
 	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
-	grammar: Grammar | ((options: GrammarOptions) => Grammar);
+	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
 	plugin?: undefined;
 	extends?: LanguageProto;
 }
-type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar?: undefined;
-	plugin?: (
-		Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }
-	) => PluginType<KebabToCamelCase<Id>> & {};
+	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => {};
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
@@ -103,7 +101,10 @@ export interface GrammarToken {
 }
 
 export type GrammarTokens = Partial<
-	Record<TokenName, RegExpLike | GrammarToken | (RegExpLike | GrammarToken)[]>
+	Record<
+		TokenName,
+		RegExpLike | GrammarToken | GrammarTokens | (RegExpLike | GrammarToken | GrammarTokens)[]
+	>
 >;
 export interface GrammarSymbols {
 	/**
@@ -114,7 +115,7 @@ export interface GrammarSymbols {
 }
 export interface GrammarSpecial {
 	$insertBefore?: GrammarTokens;
-	$delete: string[];
+	$delete?: (string | undefined)[];
 }
 export type Grammar = GrammarTokens & GrammarSymbol & GrammarSpecial;
 

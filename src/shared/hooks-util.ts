@@ -14,7 +14,7 @@ export function combineCallbacks (...callbacks: (() => void)[]): () => void {
 /**
  * TODO: Add description
  */
-export function addHooks (hooks: Hooks, hooksMap: { [K in keyof HookEnvMap]?: HookCallback<K> }) {
+export function addHooks (hooks: Hooks, hooksMap: { [K in keyof HookEnvMap]?: HookCallback }) {
 	const callbacks = [];
 
 	for (const name in hooksMap) {

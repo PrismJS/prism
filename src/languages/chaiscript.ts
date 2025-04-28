@@ -2,13 +2,13 @@ import { insertBefore } from '../shared/language-util';
 import { toArray } from '../shared/util';
 import clike from './clike';
 import cpp from './cpp';
-import type { LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
 	require: [clike, cpp],
 	extends: clike,
-	grammar ({ extend, getLanguage }) {
+	grammar ({ extend, getLanguage }: GrammarOptions): Grammar {
 		const cpp = getLanguage('cpp');
 
 		const chaiscript = extend('clike', {
