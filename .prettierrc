@@ -1,9 +1,20 @@
 {
 	"plugins": [
+		"@trivago/prettier-plugin-sort-imports",
 		"prettier-plugin-brace-style",
 		"prettier-plugin-space-before-function-paren",
 		"prettier-plugin-merge"
 	],
+	"importOrder": [
+		"^(node:|fs|path|os|crypto|stream|http|https|zlib|url|util|assert|buffer|events|child_process|cluster|dns|net|tls|readline|repl|vm|worker_threads)",
+		"^[a-z]",
+		"^@/",
+		"^\\.\\./",
+		"^\\./",
+		"^\\.$"
+	],
+	"importOrderSortSpecifiers": true,
+	"importOrderCaseInsensitive": true,
 	"braceStyle": "stroustrup",
 	"arrowParens": "avoid",
 	"bracketSpacing": true,
