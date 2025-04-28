@@ -58,8 +58,8 @@ export const globalDefaults: PrismConfig = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
-	languagePath: getGlobalSetting('language-path') ?? './languages/',
-	pluginPath: getGlobalSetting('plugin-path') ?? './plugins/',
+	languagePath: (getGlobalSetting('language-path') ?? './languages/') as string,
+	pluginPath: (getGlobalSetting('plugin-path') ?? './plugins/') as string,
 };
 
 export default globalDefaults;
