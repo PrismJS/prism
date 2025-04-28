@@ -7,7 +7,7 @@ export default {
 	require: clike,
 	extends: clike,
 	optional: 'opencl-extensions',
-	grammar ({ getOptionalLanguage }) {
+	grammar ({ getOptionalLanguage }: GrammarOptions): Grammar {
 		// TODO this should be done in the opencl-extensions language
 		const extensions = getOptionalLanguage('opencl-extensions');
 
