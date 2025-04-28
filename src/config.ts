@@ -49,6 +49,8 @@ function getGlobalArraySetting (name: string): string[] {
 
 export interface PrismConfig {
 	manual?: boolean;
+	silent?: boolean;
+	errorHandler?: (reason: any) => PromiseLike<never>;
 	plugins?: string[];
 	languages?: string[];
 	pluginPath?: string;
@@ -57,6 +59,7 @@ export interface PrismConfig {
 
 export const globalDefaults: PrismConfig = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
+	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
 	languagePath: (getGlobalSetting('language-path') ?? './languages/') as string,
