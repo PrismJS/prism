@@ -1,7 +1,7 @@
 const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement: HTMLOrSVGScriptElement | null = document?.currentScript;
 // @ts-ignore
-const globalConfig: Record<string, PrismConfig[keyof PrismConfig]> =
+const globalConfig: Record<string, PrismConfig[keyof PrismConfig] | null> =
 	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism.config : {};
 
 function getGlobalSetting (name: string) {
