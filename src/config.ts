@@ -2,7 +2,7 @@ const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement: HTMLOrSVGScriptElement | null = document?.currentScript;
 // @ts-ignore
 const globalConfig: Record<string, PrismConfig[keyof PrismConfig] | null> =
-	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism.config : {};
+	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
 
 function getGlobalSetting (name: string) {
 	// eslint-disable-next-line regexp/no-unused-capturing-group
