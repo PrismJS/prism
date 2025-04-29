@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import type Prism from './core/classes/prism';
 export type * from './classes/grammar';
 export type * from './classes/language';
