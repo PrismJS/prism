@@ -18,7 +18,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 		if (!this.instances[canonicalId]) {
 			if (this.cache[canonicalId]) {
 				let def = this.cache[canonicalId];
-				let language = new Language(def, this);
+				let language = new Language(def as LanguageProto, this);
 				this.instances[canonicalId] = language;
 			}
 			else {
