@@ -50,7 +50,7 @@ export default class Language {
 		if (typeof grammar === 'function') {
 			grammar = grammar.call(this, {
 				base,
-				getLanguage (id: string) {
+				getLanguage: (id: string) => {
 					return this.registry.get(id);
 				},
 			});
