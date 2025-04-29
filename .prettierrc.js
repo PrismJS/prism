@@ -4,18 +4,18 @@
  */
 export default {
 	plugins: [
-		'@trivago/prettier-plugin-sort-imports',
+		'@ianvs/prettier-plugin-sort-imports',
 		'prettier-plugin-brace-style',
 		'prettier-plugin-space-before-function-paren',
 		'prettier-plugin-merge',
 	],
 	importOrder: [
-		// Node.js built-ins. Accept both “node:module” and “module”.
-		'^(node:|fs|path|os|crypto|stream|http|https|zlib|url|util|assert|buffer|events|child_process|cluster|dns|net|tls|readline|repl|vm|worker_threads)',
-		'^[a-z@]', // Custom modules
+		'<BUILTIN_MODULES>', // Node.js built-in modules
+		'<THIRD_PARTY_MODULES>', // Imports not matched by other special words or groups.
 		'^\\.\\./', // Parent imports
 		'^\\./', // Sibling imports
 		'^\\.$', // Index file
+		'<TYPES>', // Type imports
 	],
 	importOrderSortSpecifiers: true, // Sort named imports { a, b, c }
 	importOrderCaseInsensitive: true,

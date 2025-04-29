@@ -63,11 +63,11 @@
 	"readmeFilename": "README.md",
 	"devDependencies": {
 		"@eslint/js": "^9.24.0",
+		"@ianvs/prettier-plugin-sort-imports": "^4.4.1",
 		"@prettier/sync": "^0.5.2",
 		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^12.1.2",
-		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
 		"@types/benchmark": "^2.1.2",
 		"@types/chai": "^5.2.1",
 		"@types/clean-css": "^4.2.11",
