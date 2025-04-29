@@ -1,5 +1,5 @@
 const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
-const scriptElement: HTMLOrSVGScriptElement | null = hasDOM && document.currentScript;
+const scriptElement: HTMLOrSVGScriptElement | null = hasDOM ? document.currentScript : null;
 // @ts-ignore
 const globalConfig: Record<string, PrismConfig[keyof PrismConfig] | null> =
 	globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
