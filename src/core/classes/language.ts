@@ -1,4 +1,4 @@
-import { extend, insertBefore } from '../../shared/language-util';
+import { extend, cloneGrammar, insertBefore } from '../../shared/language-util';
 import type LanguageRegistry from './language-registry';
 import type { LanguageProto, Grammar } from '../../types';
 
@@ -39,35 +39,18 @@ export default class Language {
 		if (!this.evaluatedGrammar) {
 			// Evaluate grammar
 			const def = this.def;
-			const grammar = this.def.grammar;
 
-			// TODO extends should also be able to
-			let baseGrammar = def.extends ? { ...def.extends } : {};
+			let { id, grammar } = def;
 
-			if (typeof grammar === 'object') {
-				// the grammar is a simple object, so we don't need to evaluate it
-				this.evaluatedGrammar = Object.assign(baseGrammar, grammar);
-			}
-			else if (typeof grammar === 'function') {
-				this.evaluatedGrammar = grammar.call(this, { base: def.extends });
+			if (typeof grammar === 'function') {
+				grammar = grammar.call(this);
 			}
 
-			if (this.evaluatedGrammar?.$insertBefore) {
-				for (let key in this.evaluatedGrammar.$insertBefore) {
-					const tokens = this.evaluatedGrammar.$insertBefore[key];
-					if (tokens) {
-						insertBefore(this.evaluatedGrammar, key, tokens);
-					}
-				}
-				delete this.evaluatedGrammar.$insertBefore;
+			if (def.base) {
+				grammar = extend(def.base, id, grammar);
 			}
 
-			if (this.evaluatedGrammar?.$delete) {
-				for (let key of this.evaluatedGrammar.$delete) {
-					delete this.evaluatedGrammar[key];
-				}
-				delete this.evaluatedGrammar.$delete;
-			}
+			this.evaluatedGrammar = grammar;
 		}
 
 		return this.evaluatedGrammar;

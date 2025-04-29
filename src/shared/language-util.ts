@@ -51,6 +51,7 @@ import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types'
  */
 export function insertBefore (grammar: Grammar, before: string, insert: GrammarTokens) {
 	if (!(before in grammar)) {
+		// TODO support deep keys
 		throw new Error(`"${before}" has to be a key of grammar.`);
 	}
 
@@ -91,9 +92,9 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  * Therefore, it is encouraged to order overwriting tokens according to the positions of the overwritten tokens.
  * Furthermore, all non-overwriting tokens should be placed after the overwriting ones.
  *
- * @param grammar The grammar of the language to extend.
+ * @param base The grammar of the language to extend.
  * @param id The id of the language to extend.
- * @param reDef The new tokens to append.
+ * @param grammar The new tokens to append.
  * @returns The new language created.
  * @example
  * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
@@ -104,17 +105,48 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  *     'color': /\b(?:red|green|blue)\b/
  * });
  */
-export function extend (grammar: Grammar, id: string, reDef: Grammar): Grammar {
-	const lang = cloneGrammar(grammar, id);
+export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
+	const lang = cloneGrammar(base, id);
 
-	for (const key in reDef) {
-		lang[key] = reDef[key];
+	for (const key in grammar) {
+		if (['$insertBefore', '$delete'].includes(key)) {
+			// ignore special keys
+			continue;
+		}
+
+		lang[key] = grammar[key];
+	}
+
+	if (grammar.$insertBefore) {
+		if (lang.$insertBefore) {
+			// base also had $insertBefore
+			Object.assign(lang.$insertBefore, grammar.$insertBefore);
+		}
+		else {
+			for (let key in grammar.$insertBefore) {
+				insertBefore(lang, key, grammar.$insertBefore[key]);
+			}
+			delete lang.$insertBefore;
+		}
+	}
+
+	if (grammar.$delete) {
+		if (lang.$delete) {
+			// base also had $delete
+			lang.$delete.push(...grammar.$delete);
+		}
+		else {
+			for (let key of grammar.$delete) {
+				delete lang[key];
+			}
+			delete lang.$delete;
+		}
 	}
 
 	return lang;
 }
 
-function cloneGrammar (grammar: Grammar, id: string): Grammar {
+export function cloneGrammar (grammar: Grammar, id: string): Grammar {
 	const result: Grammar = {};
 
 	const visited = new Map<Grammar, Grammar>();
