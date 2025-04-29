@@ -109,7 +109,7 @@ export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
 	const lang = cloneGrammar(base, id);
 
 	for (const key in grammar) {
-		if (['$insertBefore', '$delete'].includes(key)) {
+		if (['$insertBefore', '$delete', '$merge'].includes(key)) {
 			// ignore special keys
 			continue;
 		}
@@ -123,10 +123,7 @@ export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
 			Object.assign(lang.$insertBefore, grammar.$insertBefore);
 		}
 		else {
-			for (let key in grammar.$insertBefore) {
-				insertBefore(lang, key, grammar.$insertBefore[key]);
-			}
-			delete lang.$insertBefore;
+			lang.$insertBefore = { ...grammar.$insertBefore };
 		}
 	}
 
@@ -136,14 +133,98 @@ export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
 			lang.$delete.push(...grammar.$delete);
 		}
 		else {
-			for (let key of grammar.$delete) {
-				delete lang[key];
-			}
-			delete lang.$delete;
+			lang.$delete = [...grammar.$delete];
+		}
+	}
+
+	if (grammar.$merge) {
+		if (lang.$merge) {
+			// base also had $merge
+			Object.assign(lang.$merge, grammar.$merge);
+		}
+		else {
+			lang.$merge = { ...grammar.$merge };
 		}
 	}
 
 	return lang;
+}
+
+export function resolveGrammar (grammar: Grammar) {
+	if (grammar.$insertBefore) {
+		for (const key in grammar.$insertBefore) {
+			const tokens = grammar.$insertBefore[key];
+			if (tokens) {
+				insertBefore(grammar, key, tokens);
+			}
+		}
+		delete grammar.$insertBefore;
+	}
+
+	if (grammar.$delete) {
+		for (const key of grammar.$delete) {
+			// TODO support deep keys
+			delete grammar[key];
+		}
+		delete grammar.$delete;
+	}
+
+	if (grammar.$merge) {
+		for (const key in grammar.$merge) {
+			const tokens = grammar.$merge[key];
+
+			if (grammar[key]) {
+				deepMerge(grammar[key], tokens);
+			}
+			else {
+				grammar[key] = tokens;
+			}
+		}
+
+		delete grammar.$merge;
+	}
+}
+
+/**
+ * Recursively merges two objects.
+ * If the objects have the same key, the value of the second object will be used.
+ * If the value is an object, it will be merged recursively.
+ * If the value is an array, it will be merged into a new array.
+ * @param dest
+ * @param source
+ */
+function deepMerge (dest: object, source: object) {
+	if (dest === source) {
+		return dest;
+	}
+
+	for (const key in source) {
+		const value1 = dest[key];
+		const value2 = source[key];
+
+		if (value1 === undefined) {
+			dest[key] = value2;
+		}
+		else if (value2 === undefined) {
+			continue;
+		}
+		else if (Array.isArray(value1)) {
+			if (Array.isArray(value2)) {
+				dest[key] = [...value1, ...value2];
+			}
+			else {
+				dest[key].push(value2);
+			}
+		}
+		else if (typeof value1 === 'object' && typeof value2 === 'object') {
+			deepMerge(value1, value2);
+		}
+		else {
+			dest[key] = value2;
+		}
+	}
+
+	return dest;
 }
 
 export function cloneGrammar (grammar: Grammar, id: string): Grammar {

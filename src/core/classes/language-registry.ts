@@ -1,26 +1,32 @@
-import Language from './language';
-import ComponentRegistry, { type ComponentRegistryOptions } from './registry';
+import Language, { type LanguageLike } from './language';
+import ComponentRegistry from './registry';
 import type { LanguageProto } from '../../types';
+export { type ComponentProtoBase } from './registry';
 
-export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
+export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 	aliases: Record<string, string> = {};
 	instances: Record<string, Language> = {};
 
-	add (id: string, language: LanguageProto) {
-		super.add(id, language);
-
-		this.instances[id] ??= new Language(language, this);
+	add (id: string, def: LanguageProto) {
+		super.add(id, def);
+		this.instances[id] ??= new Language(def, this);
 	}
 
-	get (id: string): LanguageProto | null {
-		if (this.cache[id]) {
-			return this.cache[id];
+	/** Get resolved language or null if it doesn't exist */
+	get (id: string): Language | null {
+		let canonicalId = this.aliases[id] ?? id;
+
+		if (!this.instances[canonicalId]) {
+			if (this.cache[canonicalId]) {
+				let def = this.cache[canonicalId];
+				let language = new Language(def, this);
+				this.instances[canonicalId] = language;
+			}
+			else {
+				return null;
+			}
 		}
 
-		if (this.aliases[id]) {
-			return this.cache[this.aliases[id]];
-		}
-
-		return null;
+		return this.instances[canonicalId];
 	}
 }

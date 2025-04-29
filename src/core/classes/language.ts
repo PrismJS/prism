@@ -1,6 +1,7 @@
-import { extend, cloneGrammar, insertBefore } from '../../shared/language-util';
+import { extend, cloneGrammar, resolveGrammar } from '../../shared/language-util';
 import type LanguageRegistry from './language-registry';
-import type { LanguageProto, Grammar } from '../../types';
+import type { ComponentProtoBase } from './language-registry';
+import type { Grammar, GrammarOptions } from '../../grammar';
 
 export default class Language {
 	def: LanguageProto;
@@ -24,8 +25,12 @@ export default class Language {
 		return Array.isArray(this.def.alias) ? this.def.alias : [this.def.alias];
 	}
 
-	get base () {
-		return this.def.base ?? null;
+	get base (): Language | null {
+		if (!this.def.base) {
+			return null;
+		}
+
+		return this.registry.get(this.def.base.id) ?? null;
 	}
 
 	get extends () {
@@ -36,37 +41,56 @@ export default class Language {
 	}
 
 	get grammar (): Grammar {
-		if (!this.evaluatedGrammar) {
-			// Evaluate grammar
-			const def = this.def;
+		// Lazily evaluate grammar
+		const def = this.def;
 
-			let { id, grammar } = def;
+		let { id, grammar } = def;
+		let base = this.base;
 
-			if (typeof grammar === 'function') {
-				grammar = grammar.call(this);
-			}
-
-			if (def.base) {
-				grammar = extend(def.base, id, grammar);
-			}
-
-			this.evaluatedGrammar = grammar;
+		if (typeof grammar === 'function') {
+			grammar = grammar.call(this, {
+				base,
+				getLanguage (id: string) {
+					return this.registry.get(id);
+				},
+			});
 		}
 
-		return this.evaluatedGrammar;
+		if (base) {
+			grammar = extend(base, id, grammar);
+		}
+
+		if (def.grammar === grammar) {
+			// We need these to be separate so that any code modifying them doesn't affect other instances
+			grammar = cloneGrammar(grammar, id);
+		}
+
+		// This will replace the getter with a writable property
+		return (this.grammar = grammar);
+	}
+
+	set grammar (grammar: Grammar) {
+		Object.defineProperty(this, 'grammar', { value: grammar, writable: true });
 	}
 
 	get effect () {
 		return this.def.effect;
 	}
 
-	getLanguage (id: string): Grammar | undefined {
-		// TODO implement this or eliminate the need for it
-		return this.registry.get(id);
+	get resolvedGrammar () {
+		return (this.resolvedGrammar = resolveGrammar(this.grammar));
 	}
 
-	getOptionalLanguage (id: string): Grammar | undefined {
-		// TODO implement this or eliminate the need for it
-		return this.registry.get(id);
+	set resolvedGrammar (resolvedGrammar: Grammar) {
+		Object.defineProperty(this, 'resolvedGrammar', { value: resolvedGrammar, writable: true });
 	}
 }
+
+export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
+	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
+	plugin?: undefined;
+	base?: LanguageLike;
+	extends?: string | readonly string[];
+}
+
+export type LanguageLike = Language | LanguageProto;
