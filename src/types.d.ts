@@ -1,10 +1,24 @@
-import type Prism from './core/classes/prism';
-export type * from './classes/grammar';
-export type * from './classes/language';
-export type * from './classes/registry';
-export type * from './classes/plugin-registry';
-export type * from './classes/language-registry';
-export type * from './util/types';
+export type { Prism } from './core/classes/prism';
+
+export type {
+	GrammarOptions,
+	StandardTokenName,
+	TokenName,
+	RegExpLike,
+	GrammarToken,
+	GrammarTokens,
+	GrammarSymbols,
+	GrammarSpecial,
+	Grammar,
+} from './grammar';
+
+export type { LanguageProto, LanguageLike } from './classes/language';
+
+export type { ComponentRegistryOptions, ComponentProtoBase } from './classes/registry';
+
+export type { PluginProto } from './classes/plugin-registry';
+
+export type { KebabToCamelCase } from './util/types';
 
 export type ComponentProto = LanguageProto | PluginProto;
 
