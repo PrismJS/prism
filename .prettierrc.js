@@ -17,8 +17,6 @@ export default {
 		'^\\.$', // Index file
 		'<TYPES>', // Type imports
 	],
-	importOrderSortSpecifiers: true, // Sort named imports { a, b, c }
-	importOrderCaseInsensitive: true,
 	braceStyle: 'stroustrup',
 	arrowParens: 'avoid',
 	bracketSpacing: true,
