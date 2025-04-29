@@ -4,7 +4,7 @@
  */
 export default {
 	plugins: [
-		'@ianvs/prettier-plugin-sort-imports',
+		'@ianvs/prettier-plugin-sort-imports', // Consider https://www.npmjs.com/package/prettier-plugin-organize-imports as an alternative
 		'prettier-plugin-brace-style',
 		'prettier-plugin-space-before-function-paren',
 		'prettier-plugin-merge',
