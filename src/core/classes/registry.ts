@@ -1,9 +1,18 @@
 import { allSettled } from '../../util';
+import type { KebabToCamelCase } from '../../util/types';
 
 export interface ComponentRegistryOptions {
 	/** Path to the components */
 	path: string;
 	preload?: string[];
+}
+
+export interface ComponentProtoBase<Id extends string = string> {
+	id: Id;
+	require?: ComponentProto | readonly ComponentProto[];
+	optional?: string | readonly string[];
+	alias?: string | readonly string[];
+	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 
 export default class Registry<T> {

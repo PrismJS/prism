@@ -1,6 +1,5 @@
-import Language, { type LanguageLike } from './language';
+import Language, { type LanguageLike, type LanguageProto } from './language';
 import ComponentRegistry from './registry';
-import type { LanguageProto } from '../../types';
 export { type ComponentProtoBase } from './registry';
 
 export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
