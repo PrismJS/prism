@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { rest } from '../shared/symbols';
 import clike from './clike';
 import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
 
@@ -11,16 +11,24 @@ export default {
 		// TODO this should be done in the opencl-extensions language
 		const extensions = getOptionalLanguage('opencl-extensions');
 
+		const string: GrammarToken = {
+			// https://en.cppreference.com/w/c/language/string_literal
+			pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
+			greedy: true,
+		};
+		const comment: GrammarToken = {
+			pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
+			greedy: true,
+		};
+		const char: GrammarToken = {
+			// https://en.cppreference.com/w/c/language/character_constant
+			pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
+			greedy: true,
+		};
+
 		return {
-			'comment': {
-				pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
-				greedy: true,
-			},
-			'string': {
-				// https://en.cppreference.com/w/c/language/string_literal
-				pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
-				greedy: true,
-			},
+			comment,
+			string,
 			'class-name': {
 				pattern:
 					/(\b(?:enum|struct)\s+(?:__attribute__\s*\(\([\s\S]*?\)\)\s*)?)\w+|\b[a-z]\w*_t\b/,
@@ -34,11 +42,7 @@ export default {
 			'operator': />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?/,
 			$insertBefore: {
 				'string': {
-					'char': {
-						// https://en.cppreference.com/w/c/language/character_constant
-						pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
-						greedy: true,
-					},
+					char,
 				},
 				'macro': {
 					// allow for multiline macro definitions
@@ -55,10 +59,10 @@ export default {
 								pattern: /^(#\s*include\s*)<[^>]+>/,
 								lookbehind: true,
 							},
-							c['string'] as GrammarToken,
+							string,
 						],
-						'char': c['char'],
-						'comment': c['comment'],
+						'char': char,
+						'comment': comment,
 						'macro-name': [
 							{
 								pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
@@ -80,7 +84,7 @@ export default {
 						'punctuation': /##|\\(?=[\r\n])/,
 						'expression': {
 							pattern: /\S[\s\S]*/,
-							inside: c,
+							inside: { [rest]: 'c' },
 						},
 					},
 				},
