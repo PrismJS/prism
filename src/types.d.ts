@@ -18,7 +18,8 @@ export interface ComponentProtoBase<Id extends string = string> {
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
 	plugin?: undefined;
-	extends?: LanguageProto;
+	base?: LanguageProto;
+	extends?: string | readonly string[];
 }
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar?: undefined;

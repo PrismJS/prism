@@ -6,10 +6,6 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	aliases: Record<string, string> = {};
 	instances: Record<string, Language> = {};
 
-	constructor (options: ComponentRegistryOptions) {
-		super(options);
-	}
-
 	add (id: string, language: LanguageProto) {
 		super.add(id, language);
 

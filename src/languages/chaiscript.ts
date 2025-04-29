@@ -7,7 +7,7 @@ import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 export default {
 	id: 'chaiscript',
 	require: [clike, cpp],
-	extends: clike,
+	base: clike,
 	grammar ({ extend, getLanguage }: GrammarOptions): Grammar {
 		const cpp = getLanguage('cpp');
 

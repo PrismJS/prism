@@ -5,7 +5,7 @@ import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../ty
 export default {
 	id: 'c',
 	require: clike,
-	extends: clike,
+	base: clike,
 	optional: 'opencl-extensions',
 	grammar ({ getOptionalLanguage }: GrammarOptions): Grammar {
 		// TODO this should be done in the opencl-extensions language

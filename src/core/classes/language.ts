@@ -24,6 +24,17 @@ export default class Language {
 		return Array.isArray(this.def.alias) ? this.def.alias : [this.def.alias];
 	}
 
+	get base () {
+		return this.def.base ?? null;
+	}
+
+	get extends () {
+		if (!this.def.extends) {
+			return [];
+		}
+		return Array.isArray(this.def.extends) ? this.def.extends : [this.def.extends];
+	}
+
 	get grammar (): Grammar {
 		if (!this.evaluatedGrammar) {
 			// Evaluate grammar
@@ -38,7 +49,7 @@ export default class Language {
 				this.evaluatedGrammar = Object.assign(baseGrammar, grammar);
 			}
 			else if (typeof grammar === 'function') {
-				this.evaluatedGrammar = grammar.call(this);
+				this.evaluatedGrammar = grammar.call(this, { base: def.extends });
 			}
 
 			if (this.evaluatedGrammar?.$insertBefore) {
