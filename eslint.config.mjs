@@ -5,7 +5,6 @@ import tsEslintParser from '@typescript-eslint/parser';
 import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
-import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
 import globals from 'globals';
@@ -22,7 +21,6 @@ const config = [
 	js.configs.recommended,
 	{
 		plugins: {
-			import: importPlugin,
 			jsdoc: jsdocPlugin,
 			regexp: regexpPlugin,
 		},
@@ -33,25 +31,6 @@ const config = [
 		rules: {
 			'no-use-before-define': ['warn', { 'functions': false, 'classes': false }],
 			'eqeqeq': ['warn', 'always', { 'null': 'ignore' }],
-
-			// imports
-			'import/extensions': ['warn', 'never'],
-			'import/order': [
-				'warn',
-				{
-					groups: [
-						['builtin', 'external'],
-						'internal',
-						'parent',
-						'sibling',
-						'index',
-						'object',
-						'type',
-					],
-					alphabetize: { order: 'asc', caseInsensitive: true },
-				},
-			],
-			'sort-imports': ['warn', { ignoreDeclarationSort: true }],
 
 			// stylistic rules
 			'no-var': 'warn',
