@@ -7,10 +7,7 @@ export default {
 	require: clike,
 	base: clike,
 	optional: 'opencl-extensions',
-	grammar ({ getOptionalLanguage }: GrammarOptions): Grammar {
-		// TODO this should be done in the opencl-extensions language
-		const extensions = getOptionalLanguage('opencl-extensions');
-
+	grammar (): Grammar {
 		const string: GrammarToken = {
 			// https://en.cppreference.com/w/c/language/string_literal
 			pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
@@ -93,9 +90,8 @@ export default {
 					'constant':
 						/\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/,
 				},
-				'keyword': extensions,
 			},
-			$delete: ['boolean', extensions ? 'type-opencl-host-cpp' : undefined],
+			$delete: ['boolean'],
 		};
 	},
 } as LanguageProto<'c'>;
