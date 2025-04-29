@@ -57,7 +57,7 @@ export default class Language {
 		}
 
 		if (base) {
-			grammar = extend(base, id, grammar);
+			grammar = extend(base.grammar, id, grammar);
 		}
 
 		if (def.grammar === grammar) {
