@@ -1,5 +1,5 @@
+import type { ComponentProto, KebabToCamelCase, Prism } from '../../types';
 import { allSettled } from '../../util';
-import type { KebabToCamelCase } from '../../util/types';
 
 export interface ComponentRegistryOptions {
 	/** Path to the components */
