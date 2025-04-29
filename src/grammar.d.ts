@@ -120,9 +120,9 @@ export type Grammar = GrammarTokens & GrammarSymbols & GrammarSpecial;
 type GrammarTokensDepth = 5;
 
 // Helper to build a tuple of length N
-type BuildTuple<L extends number, T extends unknown[] = []> = T['length'] extends L
+type BuildTuple<N extends number, T extends unknown[] = []> = T['length'] extends N
 	? T
-	: BuildTuple<L, [unknown, ...T]>;
+	: BuildTuple<N, [unknown, ...T]>;
 
 /**
  * Helper to generate a decrement tuple
