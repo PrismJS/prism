@@ -1,5 +1,5 @@
 import { rest, tokenize } from './symbols';
-import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
+import type { Grammar, GrammarToken, GrammarTokens, PlainObject, RegExpLike } from '../types';
 
 // TODO: Update documentation
 
@@ -155,7 +155,7 @@ export function resolveGrammar (grammar: Grammar) {
 		for (const key in grammar.$insertBefore) {
 			const tokens = grammar.$insertBefore[key];
 			if (tokens) {
-				insertBefore(grammar, key, tokens);
+				insertBefore(grammar, key, tokens as GrammarTokens);
 			}
 		}
 		delete grammar.$insertBefore;
@@ -164,7 +164,7 @@ export function resolveGrammar (grammar: Grammar) {
 	if (grammar.$delete) {
 		for (const key of grammar.$delete) {
 			// TODO support deep keys
-			delete grammar[key];
+			delete grammar[key as string];
 		}
 		delete grammar.$delete;
 	}
@@ -174,7 +174,7 @@ export function resolveGrammar (grammar: Grammar) {
 			const tokens = grammar.$merge[key];
 
 			if (grammar[key]) {
-				deepMerge(grammar[key], tokens);
+				deepMerge(grammar[key] as PlainObject, tokens as PlainObject);
 			}
 			else {
 				grammar[key] = tokens;
@@ -193,7 +193,7 @@ export function resolveGrammar (grammar: Grammar) {
  * @param dest
  * @param source
  */
-function deepMerge (dest: object, source: object) {
+function deepMerge (dest: PlainObject, source: PlainObject) {
 	if (dest === source) {
 		return dest;
 	}
@@ -213,11 +213,11 @@ function deepMerge (dest: object, source: object) {
 				dest[key] = [...value1, ...value2];
 			}
 			else {
-				dest[key].push(value2);
+				(dest[key] as unknown[]).push(value2);
 			}
 		}
-		else if (typeof value1 === 'object' && typeof value2 === 'object') {
-			deepMerge(value1, value2);
+		else if (typeof value1 === 'object' && typeof value2 === 'object' && value1 != null && value2 != null) {
+			deepMerge(value1 as PlainObject, value2 as PlainObject);
 		}
 		else {
 			dest[key] = value2;
@@ -258,10 +258,10 @@ export function cloneGrammar (grammar: Grammar, id: string): Grammar {
 			return undefined;
 		}
 		else if (Array.isArray(value)) {
-			return value.map(cloneToken);
+			return (value as Array<RegExpLike | GrammarToken>).map(cloneToken);
 		}
 		else {
-			return cloneToken(value);
+			return cloneToken(value as RegExpLike | GrammarToken);
 		}
 	}
 	function cloneRef (ref: NonNullable<Grammar[typeof rest]>) {

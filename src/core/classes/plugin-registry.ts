@@ -1,6 +1,5 @@
 import ComponentRegistry, { type ComponentProtoBase } from './registry';
-import type Prism from './prism';
-import type { KebabToCamelCase } from '../../util/types';
+import type { KebabToCamelCase, Prism } from '../../types';
 
 export default class PluginRegistry extends ComponentRegistry<PluginProto> {}
 
