@@ -1,8 +1,7 @@
-import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 import csharp from './csharp';
 import markup from './markup';
-import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'aspnet',
@@ -36,7 +35,8 @@ export default {
 			$merge: {
 				'tag': {
 					// Regexp copied from markup, with a negative look-ahead added
-					pattern: /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/,
+					pattern:
+						/<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/,
 					inside: {
 						'attr-value': {
 							inside: {
@@ -45,11 +45,11 @@ export default {
 										// match directives of attribute value foo="<% Bar %>"
 										'directive': self['directive'],
 									},
-								}
-							}
-						}
-					}
-				}
+								},
+							},
+						},
+					},
+				},
 			},
 			$insertBefore: {
 				'comment': {
@@ -66,7 +66,7 @@ export default {
 						alias: ['asp', 'script'],
 						inside: 'csharp',
 					},
-				}
+				},
 			},
 		};
 	},
