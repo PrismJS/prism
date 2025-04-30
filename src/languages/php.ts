@@ -5,6 +5,7 @@ import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'php',
+	require: markup,
 	base: markup,
 	optional: 'php-extras',
 	grammar (): Grammar {
