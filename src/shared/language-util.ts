@@ -183,6 +183,8 @@ export function resolveGrammar (grammar: Grammar) {
 
 		delete grammar.$merge;
 	}
+
+	return grammar;
 }
 
 /**

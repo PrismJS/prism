@@ -11,23 +11,33 @@ export interface ComponentProtoBase<Id extends string = string> {
 	id: Id;
 	require?: ComponentProto | readonly ComponentProto[];
 	optional?: string | readonly string[];
-	alias?: string | readonly string[];
 	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 
-export default class Registry<T> {
+export default class Registry<T extends ComponentProto> extends EventTarget {
+	static type: string = 'unknown';
+
 	/** All imported components */
 	cache: Record<string, T> = {};
 
 	/** All components that are currently being loaded */
-	loading: Record<string, Promise<T | null>> = {};
-	loadingList: Promise<T | null>[] = [];
+	loading: Record<string, Promise<T>> = {};
+
+	/**
+	 * Same data as in loading, but as an array, used for aggregate promises.
+	 * IMPORTANT: Do NOT overwrite this array, only modify its contents.
+	 */
+	private loadingList: Promise<T | null>[] = [];
+
 	ready: Promise<(T | null)[]>;
 
-	options: ComponentRegistryOptions;
+	/** Path to the components, used for loading */
 	path: string;
 
+	options: ComponentRegistryOptions;
+
 	constructor (options: ComponentRegistryOptions) {
+		super();
 		this.options = options;
 		let { path, preload } = options;
 		path = path.endsWith('/') ? path : path + '/';
@@ -40,8 +50,48 @@ export default class Registry<T> {
 		this.ready = allSettled(this.loadingList);
 	}
 
-	add (id: string, component: T) {
+	/**
+	 * Returns the component if it is already loaded or a promise that resolves when it is loaded,
+	 * without triggering a load like `load()` would.
+	 * @param id
+	 * @returns
+	 */
+	async whenDefined (id: string): Promise<T> {
+		if (this.cache[id]) {
+			// Already loaded
+			return this.cache[id];
+		}
+
+		if (this.loading[id] !== undefined) {
+			// Already loading
+			return this.loading[id];
+		}
+
+		let Self = this.constructor as typeof Registry;
+		return new Promise(resolve => {
+			// @ts-expect-error TS complains that this is not an EventListener because its param is a CustomEvent
+			let handler : EventListener = (e: CustomEvent) => {
+				if (e.detail.id === id) {
+					resolve(e.detail.component);
+					this.removeEventListener('add', handler);
+				}
+			};
+			this.addEventListener('add' + Self.type, handler);
+		});
+	}
+
+	/**
+	 * Add a component to the registry.
+	 * @param id - Component id
+	 * @param def - Component
+	 * @param options - Options
+	 * @returns true if the component was added, false if it was already present
+	 */
+	add (def: T, id: string = def.id,  options?: { force?: boolean }): boolean {
+		let Self = this.constructor as typeof Registry;
+
 		if (typeof this.loading[id] !== 'undefined') {
+			// If it was loading, remove it from the loading list
 			let index = this.loadingList.indexOf(this.loading[id]);
 			if (index > -1) {
 				this.loadingList.splice(index, 1);
@@ -50,7 +100,16 @@ export default class Registry<T> {
 			delete this.loading[id];
 		}
 
-		this.cache[id] = component;
+		if (!this.cache[id] || options?.force) {
+			this.cache[id] = def;
+
+			this.dispatchEvent(new CustomEvent('add', { detail: { id, type: Self.type, component: def } }));
+			this.dispatchEvent(new CustomEvent('add' + Self.type, { detail: { id, component: def } }));
+
+			return true;
+		}
+
+		return false;
 	}
 
 	has (id: string): boolean {
@@ -74,7 +133,7 @@ export default class Registry<T> {
 		let loadingComponent = import(this.path + id)
 			.then(m => {
 				let component = m.default ?? m;
-				this.add(id, component);
+				this.add(component, id);
 				return component;
 			})
 			.catch(console.error);

@@ -337,6 +337,7 @@ export default {
 		return markdown;
 	},
 	effect (Prism) {
+		// Highlight code blocks in markdown
 		return Prism.hooks.add('wrap', env => {
 			if (
 				!Prism.plugins.autoloader ||

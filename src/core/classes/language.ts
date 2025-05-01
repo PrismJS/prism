@@ -2,15 +2,80 @@ import { extend, cloneGrammar, resolveGrammar } from '../../shared/language-util
 import type LanguageRegistry from './language-registry';
 import type { ComponentProtoBase } from './language-registry';
 import type { Grammar, GrammarOptions } from '../../grammar';
+import List from './list';
+import { defineLazyProperty } from '../../util/objects';
 
-export default class Language {
+export default class Language extends EventTarget {
 	def: LanguageProto;
 	registry: LanguageRegistry;
 	evaluatedGrammar?: Grammar;
+	require: List<LanguageLike> = new List();
+	optional: List<string> = new List();
+	languages : Record<string, Language | Promise<Language>> = {};
 
 	constructor (def: LanguageProto, registry: LanguageRegistry) {
+		super();
 		this.def = def;
 		this.registry = registry;
+
+		if (this.def.base) {
+			this.require.add(this.def.base);
+		}
+		if (this.def.require) {
+			this.require.addAll(this.def.require);
+		}
+
+		for (let def of this.require) {
+			let language = this.registry.peek(def);
+			if (language) {
+				// Already resolved
+				this.languages[def.id] = language;
+			}
+			else {
+				this.registry.add(def);
+				defineLazyProperty(this.languages, def.id, () => {
+					return this.registry.get(def.id)!;
+				});
+			}
+		}
+
+		if (this.def.optional) {
+			this.optional.addAll(this.def.optional);
+
+			if (this.optional.size > 0) {
+				for (let optionalLanguageId of this.optional) {
+					if (!this.registry.has(optionalLanguageId)) {
+						this.registry.whenDefined(optionalLanguageId).then(() => {
+							// TODO
+						});
+					}
+				}
+			}
+		}
+		if (this.def.extends) {
+			this.optional.addAll(this.def.extends);
+		}
+
+		for (let id of this.optional) {
+			let language = this.registry.peek(def);
+			if (language) {
+				this.languages[id] = language;
+			}
+			else {
+				this.registry.whenDefined(id).then(def => {
+					defineLazyProperty(this.languages, id, () => {
+						return this.registry.get(def);
+					});
+				});
+
+			}
+		}
+
+		defineLazyProperty(this, 'resolvedGrammar', () => resolveGrammar(this.grammar));
+	}
+
+	resolve() {
+
 	}
 
 	get id () {
@@ -50,6 +115,7 @@ export default class Language {
 		if (typeof grammar === 'function') {
 			grammar = grammar.call(this, {
 				base,
+				languages: this.languages,
 				getLanguage: (id: string) => {
 					return this.registry.get(id);
 				},
@@ -87,6 +153,7 @@ export default class Language {
 }
 
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
+	alias?: string | readonly string[];
 	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
 	plugin?: undefined;
 	base?: LanguageLike;
