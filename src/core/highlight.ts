@@ -32,7 +32,7 @@ export function highlight (
 	const languageId = prism.components.resolveAlias(language);
 	const grammar = options.grammar ?? prism.components.getLanguage(languageId);
 
-	const env: Record<string, any> | Record<string, any> = {
+	const env: Record<string, any> = {
 		code: text,
 		grammar,
 		language,

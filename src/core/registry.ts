@@ -168,8 +168,8 @@ export class Registry {
 
 		return (entry.evaluatedGrammar = grammar({
 			getLanguage: required,
-			getOptionalLanguage: id => this.getLanguage(id),
-			extend: (id, ref) => extend(required(id), id, ref),
+			getOptionalLanguage: (id: string) => this.getLanguage(id),
+			extend: (id: string, ref: Grammar) => extend(required(id), id, ref),
 		}));
 	}
 }

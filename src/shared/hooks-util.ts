@@ -1,4 +1,4 @@
-import type { HookCallback, HookEnvMap, Hooks } from '../core/classes/hooks';
+import type { HookCallback, Hooks } from '../core/classes/hooks';
 
 /**
  * Returns a single function that calls all the given functions.
@@ -14,12 +14,12 @@ export function combineCallbacks (...callbacks: (() => void)[]): () => void {
 /**
  * TODO: Add description
  */
-export function addHooks (hooks: Hooks, hooksMap: { [K in keyof HookEnvMap]?: HookCallback }) {
+export function addHooks (hooks: Hooks, hooksMap: Record<string, HookCallback>) {
 	const callbacks = [];
 
 	for (const name in hooksMap) {
 		if (Object.hasOwnProperty.call(hooksMap, name)) {
-			const hook = hooksMap[name as keyof HookEnvMap];
+			const hook = hooksMap[name];
 			if (hook) {
 				callbacks.push(hooks.add(name as never, hook as never));
 			}
