@@ -1,11 +1,11 @@
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'cfscript',
 	base: clike,
 	alias: 'cfc',
-	grammar () {
+	grammar (): Grammar {
 		// https://cfdocs.org/script
 		return {
 			'comment': [

@@ -1,13 +1,13 @@
 import { toArray } from '../util/iterables';
 import clike from './clike';
 import cpp from './cpp';
-import type { GrammarOptions, LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
 	require: cpp,
 	base: clike,
-	grammar ({ languages }: GrammarOptions) {
+	grammar ({ languages }: GrammarOptions): Grammar {
 		return {
 			'string': {
 				pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'/,

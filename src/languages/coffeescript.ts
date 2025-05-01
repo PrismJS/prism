@@ -1,11 +1,11 @@
 import javascript from './javascript';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'coffeescript',
 	base: javascript,
 	alias: 'coffee',
-	grammar () {
+	grammar (): Grammar {
 		// Ignore comments starting with { to privilege string interpolation highlighting
 		const comment = /#(?!\{).+/;
 		const interpolation = {
