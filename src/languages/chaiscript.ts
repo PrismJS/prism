@@ -1,16 +1,13 @@
-import { insertBefore } from '../shared/language-util';
 import { toArray } from '../util/iterables';
 import clike from './clike';
 import cpp from './cpp';
-import type { Grammar, GrammarOptions, LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto, Languages } from '../types';
 
 export default {
 	id: 'chaiscript',
-	require: [clike, cpp],
+	require: cpp,
 	base: clike,
-	grammar ({ extend, getLanguage }: GrammarOptions): Grammar {
-		const cpp = getLanguage('cpp');
-
+	grammar ({ languages }) {
 		return {
 			'string': {
 				pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'/,
@@ -31,7 +28,7 @@ export default {
 			],
 			'keyword':
 				/\b(?:attr|auto|break|case|catch|class|continue|def|default|else|finally|for|fun|global|if|return|switch|this|try|var|while)\b/,
-			'number': [...toArray(cpp.number), /\b(?:Infinity|NaN)\b/],
+			'number': [...toArray(languages.cpp.number), /\b(?:Infinity|NaN)\b/],
 			'operator': />>=?|<<=?|\|\||&&|:[:=]?|--|\+\+|[=!<>+\-*/%|&^]=?|[?~]|`[^`\r\n]{1,4}`/,
 			$insertBefore: {
 				'operator': {

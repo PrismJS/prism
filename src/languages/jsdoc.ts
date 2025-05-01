@@ -7,10 +7,7 @@ export default {
 	id: 'jsdoc',
 	require: [javascript, typescript],
 	base: javadoclike,
-	grammar ({ getLanguage }: GrammarOptions): Grammar {
-		const javascript = getLanguage('javascript');
-		const typescript = getLanguage('typescript');
-
+	grammar ({ languages }: GrammarOptions): Grammar {
 		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
 
@@ -65,13 +62,17 @@ export default {
 						{
 							pattern: RegExp('(@[a-z]+\\s+)' + type),
 							lookbehind: true,
-							inside: {
-								'string': javascript.string,
-								'number': javascript.number,
-								'boolean': javascript.boolean,
-								'keyword': typescript.keyword,
-								'operator': /=>|\.\.\.|[&|?:*]/,
-								'punctuation': /[.,;=<>{}()[\]]/,
+							get inside () { // Lazily evaluated
+								let { javascript, typescript } = languages;
+								delete this.inside;
+								return (this.inside = {
+									'string': javascript.string,
+									'number': javascript.number,
+									'boolean': javascript.boolean,
+									'keyword': typescript.keyword,
+									'operator': /=>|\.\.\.|[&|?:*]/,
+									'punctuation': /[.,;=<>{}()[\]]/,
+								});
 							},
 						},
 					],

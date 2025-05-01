@@ -1,7 +1,7 @@
 import { extend, cloneGrammar, resolveGrammar } from '../../shared/language-util';
 import type LanguageRegistry from './language-registry';
 import type { ComponentProtoBase } from './language-registry';
-import type { Grammar, GrammarOptions } from '../../grammar';
+import type { Grammar, GrammarOptions } from '../../types';
 import List from './list';
 import { defineLazyProperty } from '../../util/objects';
 
@@ -11,7 +11,7 @@ export default class Language extends EventTarget {
 	evaluatedGrammar?: Grammar;
 	require: List<LanguageLike> = new List();
 	optional: List<string> = new List();
-	languages : Record<string, Language | Promise<Language>> = {};
+	languages : Languages = {};
 
 	constructor (def: LanguageProto, registry: LanguageRegistry) {
 		super();
@@ -160,4 +160,5 @@ export interface LanguageProto<Id extends string = string> extends ComponentProt
 	extends?: string | readonly string[];
 }
 
+export type Languages = Record<string, Language>;
 export type LanguageLike = Language | LanguageProto;

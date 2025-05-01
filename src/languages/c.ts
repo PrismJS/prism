@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 import clike from './clike';
-import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'c',

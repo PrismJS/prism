@@ -3,8 +3,8 @@ import type { rest, tokenize } from './shared/symbols';
 
 export type { Prism } from './core/classes/prism';
 
-import type { Language, LanguageProto, LanguageLike } from './classes/language';
-export type { Language, LanguageProto, LanguageLike };
+import type { Language, Languages, LanguageProto, LanguageLike } from './classes/language';
+export type { Language, Languages, LanguageProto, LanguageLike };
 
 export type { ComponentRegistryOptions, ComponentProtoBase } from './classes/registry';
 
@@ -23,7 +23,8 @@ export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
-	readonly languages: Record<string, Language>;
+	readonly base: Language;
+	readonly languages: Languages;
 }
 
 export type StandardTokenName =

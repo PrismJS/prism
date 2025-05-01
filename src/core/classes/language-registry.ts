@@ -1,12 +1,12 @@
-import Language, { type LanguageLike, type LanguageProto } from './language';
+import Language, { type LanguageLike, type LanguageProto, type Languages } from './language';
 import ComponentRegistry from './registry';
 export { type ComponentProtoBase } from './registry';
 
 export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 	static type: string = 'language';
 	aliases: Record<string, string> = {};
-	instances: Record<string, Language> = {};
-	defs = new Map<LanguageProto, Language>();
+	instances: Languages = {};
+	defs = new WeakMap<LanguageProto, Language>();
 
 	/**
 	 * Add a language definition to the registry.
