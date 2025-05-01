@@ -1,11 +1,12 @@
 import { readdirSync } from 'fs';
-import { JSDOM } from 'jsdom';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { JSDOM } from 'jsdom';
 import { Prism } from '../../src/core/prism';
-import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
+import { isNonNull, lazy, noop } from '../../src/shared/util';
+import { toArray } from '../../src/util/iterables';
 import type { ComponentProto, LanguageProto, PluginProto } from '../../src/types';
 import type { DOMWindow } from 'jsdom';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.join(__dirname, '../../src');
