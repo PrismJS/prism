@@ -1,12 +1,12 @@
-import { insertBefore } from '../shared/language-util';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'birb',
 	require: clike,
-	grammar ({ extend }) {
-		const birb = extend('clike', {
+	base: clike,
+	grammar () {
+		return {
 			'string': {
 				pattern: /r?("|')(?:\\.|(?!\1)[^\\])*\1/,
 				greedy: true,
@@ -21,16 +21,15 @@ export default {
 				/\b(?:assert|break|case|class|const|default|else|enum|final|follows|for|grab|if|nest|new|next|noSeeb|return|static|switch|throw|var|void|while)\b/,
 			'operator': /\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?|:/,
 			'variable': /\b[a-z_]\w*\b/,
-		});
-
-		insertBefore(birb, 'function', {
-			'metadata': {
-				pattern: /<\w+>/,
-				greedy: true,
-				alias: 'symbol',
+			$insertBefore: {
+				'function': {
+					'metadata': {
+						pattern: /<\w+>/,
+						greedy: true,
+						alias: 'symbol',
+					},
+				},
 			},
-		});
-
-		return birb;
+		};
 	},
 } as LanguageProto<'birb'>;
