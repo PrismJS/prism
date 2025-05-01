@@ -156,7 +156,6 @@ function _matchGrammar (
 					}
 				}
 
-				// eslint-disable-next-line no-redeclare
 				const from = match.index;
 				const matchStr = match[0];
 				const before = str.slice(0, from);
