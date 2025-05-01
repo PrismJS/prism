@@ -1,12 +1,12 @@
 import clike from './clike';
-import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'c',
 	require: clike,
 	base: clike,
 	optional: 'opencl-extensions',
-	grammar (): Grammar {
+	grammar () {
 		const string: GrammarToken = {
 			// https://en.cppreference.com/w/c/language/string_literal
 			pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
