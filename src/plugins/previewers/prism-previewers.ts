@@ -187,7 +187,6 @@ export class PreviewerCollection {
 }
 
 // TODO: Filthy hack to be able to load this script
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Prism = { languages: {} as Record<string, any> };
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */

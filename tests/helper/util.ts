@@ -12,13 +12,11 @@ const astCache = new Map<string, LiteralAST>();
 
 export interface PathItem {
 	key: string | null;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	value: any;
+		value: any;
 }
 /**
  * Performs a breadth-first search on the given start element.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function BFS (start: any, callback: (path: PathItem[], obj: Record<string, any>) => void) {
 	const visited = new Set();
 	let toVisit: PathItem[][] = [
