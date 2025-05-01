@@ -363,7 +363,7 @@ function createTestFunction (
 	if (testFunction === 'tokenize') {
 		return code => {
 			const grammar = Prism.components.getLanguage(mainLanguage);
-			Prism.tokenize(code, grammar);
+			Prism.tokenize(code, grammar!);
 		};
 	}
 	else if (testFunction === 'highlight') {
