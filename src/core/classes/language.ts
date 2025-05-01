@@ -106,7 +106,7 @@ export default class Language extends EventTarget {
 		// Lazily evaluate grammar
 		const def = this.def;
 
-		let { id, grammar } = def;
+		let { grammar } = def;
 		let base = this.base;
 
 		if (typeof grammar === 'function') {
