@@ -3,7 +3,6 @@ import type { GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'bison',
-	require: c,
 	base: c,
 	grammar ({ base }: GrammarOptions) {
 		return {

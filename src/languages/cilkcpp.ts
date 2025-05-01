@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cilkcpp',
-	require: cpp,
 	base: cpp,
 	alias: ['cilk-cpp', 'cilk'],
 	grammar () {

@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'actionscript',
-	require: javascript,
 	base: javascript,
 	grammar () {
 		return {

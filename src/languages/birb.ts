@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'birb',
-	require: clike,
 	base: clike,
 	grammar () {
 		return {

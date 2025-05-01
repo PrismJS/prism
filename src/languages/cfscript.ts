@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cfscript',
-	require: clike,
 	base: clike,
 	alias: 'cfc',
 	grammar () {

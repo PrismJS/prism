@@ -3,7 +3,6 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'arduino',
-	require: cpp,
 	base: cpp,
 	alias: 'ino',
 	grammar () {

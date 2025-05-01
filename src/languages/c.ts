@@ -3,7 +3,6 @@ import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'c',
-	require: clike,
 	base: clike,
 	optional: 'opencl-extensions',
 	grammar () {
