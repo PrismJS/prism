@@ -1,11 +1,11 @@
 import { insertBefore } from '../shared/language-util';
 import markup from './markup';
-import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'velocity',
 	require: markup,
-	grammar ({ extend }) {
+	grammar ({ extend }: GrammarOptions) {
 		const velocity = extend('markup', {});
 
 		const vel = {
@@ -79,7 +79,7 @@ export default {
 		(
 			(((velocity['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
 				.inside as Grammar
-		)$rest = velocity;
+		).$rest = velocity;
 
 		return velocity;
 	},
