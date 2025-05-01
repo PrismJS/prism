@@ -1,12 +1,11 @@
-import { insertBefore } from '../shared/language-util';
 import c from './c';
-import type { LanguageProto } from '../types';
+import type { GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'bison',
 	require: c,
 	base: c,
-	grammar ({ base }) {
+	grammar ({ base }: GrammarOptions) {
 		return {
 			$insertBefore: {
 				'comment': {
