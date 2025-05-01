@@ -22,7 +22,7 @@ export default class Language extends EventTarget {
 			this.require.add(this.def.base);
 		}
 		if (this.def.require) {
-			this.require.addAll(this.def.require);
+			this.require.addAll(this.def.require as LanguageProto | readonly LanguageProto[]);
 		}
 
 		for (let def of this.require) {

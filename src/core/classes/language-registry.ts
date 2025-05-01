@@ -1,10 +1,10 @@
 import Language from './language';
 import ComponentRegistry from './registry';
-import type { LanguageLike, LanguageProto, Languages } from './language';
+import type { LanguageProto, Languages } from './language';
 
 export { type ComponentProtoBase } from './registry';
 
-export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
+export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	static type: string = 'language';
 	aliases: Record<string, string> = {};
 	instances: Languages = {};
@@ -50,7 +50,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 		}
 
 		id = this.aliases[id] ?? id;
-		def ??= this.cache[id] as LanguageProto;
+		def ??= this.cache[id];
 
 		return { id, def };
 	}
