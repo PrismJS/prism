@@ -35,51 +35,22 @@ export function isNonNull<T> (value: T): value is T & {} {
 	return value != null;
 }
 
+declare global {
+	interface RegExpConstructor {
+		/**
+		 * Escapes special characters in a string for use in a regular expression.
+		 * @param str The string to escape.
+		 */
+		escape(str: string): string;
+	}
+}
+
 /**
  * Escapes all special regex characters in the given string.
  */
-export function regexEscape (string: string): string {
-	return string.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isReadonlyArray: (arg: unknown) => arg is readonly any[] = Array.isArray;
-
-/**
- * Converts the given value to an array.
- *
- * If the given value is already an error, it will be returned as is.
- */
-export function toArray<T extends {}> (value: T | readonly T[] | undefined | null): readonly T[] {
-	if (isReadonlyArray(value)) {
-		return value;
-	}
-	else if (value == null) {
-		return [];
-	}
-	else {
-		return [value];
-	}
-}
-
-/**
- * Invokes the given callback for all elements of the given value.
- *
- * If the given value is an array, the callback will be invokes for all elements. If the given value is `null` or
- * `undefined`, the callback will not be invoked. In all other cases, the callback will be invoked with the given
- * value as parameter.
- */
-export function forEach<T extends {}> (
-	value: null | undefined | T | readonly T[],
-	callbackFn: (value: T, index: number) => void
-): void {
-	if (Array.isArray(value)) {
-		value.forEach(callbackFn);
-	}
-	else if (value != null) {
-		callbackFn(value as T, 0);
-	}
-}
+export const regexEscape : (string: string) => string = RegExp.escape.bind(RegExp) ?? ((str: string) => {
+	return str.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
+})
 
 export function capitalize<T extends string> (string: T): Capitalize<T> {
 	// This is the internal implementation of `Capitalize<T>` by TS.

@@ -12,6 +12,7 @@ import type { Prism } from '../src/core';
 import type { Config, ConfigOptions } from './config';
 import type { Options, Stats } from 'benchmark';
 import { fileURLToPath } from 'url';
+import {toArray} from "../src/util/iterables";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -440,19 +441,6 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 	return candidates;
 }
 
-/**
- * A utility function that converts the given optional array-like value into an array.
- */
-function toArray<T extends {}> (value: T[] | T | undefined | null): readonly T[] {
-	if (Array.isArray(value)) {
-		return value;
-	}
-	else if (value != null) {
-		return [value];
-	}
-	else {
-		return [];
-	}
-}
+
 
 runBenchmark(getConfig()).catch(error => console.error(error));
