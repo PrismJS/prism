@@ -161,7 +161,7 @@ export default {
 			},
 		});
 
-		jsx$tokenize = (code, grammar, Prism) => {
+		jsx.$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;
