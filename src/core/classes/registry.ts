@@ -70,14 +70,13 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 
 		let Self = this.constructor as typeof Registry;
 		return new Promise(resolve => {
-			// @ts-expect-error TS complains that this is not an EventListener because its param is a CustomEvent
-			let handler: EventListener = (e: CustomEvent) => {
+			let handler = (e: CustomEvent<{ id: string; type?: string; component: T }>) => {
 				if (e.detail.id === id) {
 					resolve(e.detail.component);
-					this.removeEventListener('add', handler);
+					this.removeEventListener('add', handler as EventListener);
 				}
 			};
-			this.addEventListener('add' + Self.type, handler);
+			this.addEventListener('add' + Self.type, handler as EventListener);
 		});
 	}
 
