@@ -1,5 +1,6 @@
 import type { TokenStream } from './core/token';
 
+import type { Prism } from './core/classes/prism';
 export type { Prism } from './core/classes/prism';
 
 import type { Language, Languages, LanguageProto, LanguageLike } from './classes/language';
@@ -7,6 +8,7 @@ export type { Language, Languages, LanguageProto, LanguageLike };
 
 export type { ComponentRegistryOptions, ComponentProtoBase } from './classes/registry';
 
+import type { PluginProto } from './classes/plugin-registry';
 export type { PluginProto } from './classes/plugin-registry';
 
 export type { KebabToCamelCase } from './util/types';
@@ -19,7 +21,7 @@ export interface PlainObject {
 
 
 export interface GrammarOptions {
-	readonly getLanguage: (id: string) => Grammar;
+	readonly getLanguage: (id: string) => Language;
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
 	readonly base: Language;

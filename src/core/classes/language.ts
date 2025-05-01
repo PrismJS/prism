@@ -26,13 +26,13 @@ export default class Language extends EventTarget {
 		}
 
 		for (let def of this.require) {
-			let language = this.registry.peek(def);
+			let language = this.registry.peek(def as LanguageProto);
 			if (language) {
 				// Already resolved
 				this.languages[def.id] = language;
 			}
 			else {
-				this.registry.add(def);
+				this.registry.add(def as LanguageProto);
 				defineLazyProperty(this.languages, def.id, () => {
 					return this.registry.get(def.id)!;
 				});
@@ -64,7 +64,7 @@ export default class Language extends EventTarget {
 			else {
 				this.registry.whenDefined(id).then(def => {
 					defineLazyProperty(this.languages, id, () => {
-						return this.registry.get(def);
+						return this.registry.get(def as LanguageProto) as Language;
 					});
 				});
 			}
@@ -116,7 +116,7 @@ export default class Language extends EventTarget {
 				getLanguage: (id: string) => {
 					return this.registry.get(id);
 				},
-			});
+			} as GrammarOptions);
 		}
 
 		if (base) {
@@ -125,11 +125,11 @@ export default class Language extends EventTarget {
 
 		if (def.grammar === grammar) {
 			// We need these to be separate so that any code modifying them doesn't affect other instances
-			grammar = deepClone(grammar, id);
+			grammar = deepClone(grammar);
 		}
 
 		// This will replace the getter with a writable property
-		return (this.grammar = grammar);
+		return (this.grammar = grammar as Grammar);
 	}
 
 	set grammar (grammar: Grammar) {

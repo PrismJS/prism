@@ -1,18 +1,18 @@
-import Benchmark from 'benchmark';
-import fetch from 'cross-fetch';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import Benchmark from 'benchmark';
+import fetch from 'cross-fetch';
 import { gitP } from 'simple-git';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import { toArray } from '../src/util/iterables';
 import { parseLanguageNames } from '../tests/helper/test-case';
 import { config as baseConfig } from './config';
-import type { Prism } from '../src/core';
+import type { Prism } from '../src/types';
 import type { Config, ConfigOptions } from './config';
 import type { Options, Stats } from 'benchmark';
-import { fileURLToPath } from 'url';
-import {toArray} from "../src/util/iterables";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -130,7 +130,6 @@ async function runBenchmark (config: Config) {
 		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
 		const best = String(s.best).padStart('best'.length);
 		const worst = String(s.worst).padStart('worst'.length);
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const relative = ((s.avgRelative! / minAvgRelative).toFixed(2) + 'x').padStart(
 			'relative'.length
 		);
@@ -280,8 +279,7 @@ async function getFilePath (uri: string) {
 
 		// file path
 		const hash = crypto.createHash('md5').update(uri).digest('hex');
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)![0]);
+		const localPath = path.resolve(downloadDir, hash + '-' + /[-.\w]*$/.exec(uri)![0]);
 
 		if (!fs.existsSync(localPath)) {
 			// download file
@@ -365,8 +363,7 @@ function createTestFunction (
 	if (testFunction === 'tokenize') {
 		return code => {
 			const grammar = Prism.components.getLanguage(mainLanguage);
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			Prism.tokenize(code, grammar!);
+			Prism.tokenize(code, grammar);
 		};
 	}
 	else if (testFunction === 'highlight') {
@@ -407,7 +404,6 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 	const baseGit = gitP(remoteBaseDir);
 
 	for (const remote of config.remotes) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)![0];
 		const branch = remote.branch || 'main';
 		const remoteName = `${user}@${branch}`;
@@ -440,7 +436,5 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 
 	return candidates;
 }
-
-
 
 runBenchmark(getConfig()).catch(error => console.error(error));

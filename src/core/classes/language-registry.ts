@@ -1,5 +1,7 @@
-import Language, { type LanguageLike, type LanguageProto, type Languages } from './language';
+import Language from './language';
 import ComponentRegistry from './registry';
+import type { LanguageLike, LanguageProto, Languages } from './language';
+
 export { type ComponentProtoBase } from './registry';
 
 export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
@@ -31,7 +33,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 		return added;
 	}
 
-	#resolveIdOrDef (idOrDef: string | LanguageProto): {id: string, def: LanguageProto} {
+	#resolveIdOrDef (idOrDef: string | LanguageProto): { id: string; def: LanguageProto } {
 		let id: string;
 		let def: LanguageProto;
 
@@ -43,6 +45,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 			id = idOrDef;
 		}
 		else {
+			// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 			throw new Error('Invalid argument type: ' + idOrDef);
 		}
 
@@ -55,9 +58,10 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageLike> {
 	/**
 	 * Get resolved language, language definition or null if it doesn't exist.
 	 * If definition is loaded but not yet resolved, it will NOT be resolved. Use {@link get} for that.
-	 * @param idOrDef - Language id or definition
+	 *
+	 * @param idOrDef Language id or definition
 	 */
-	peek(idOrDef: string | LanguageProto): Language | null {
+	peek (idOrDef: string | LanguageProto): Language | null {
 		let { id, def } = this.#resolveIdOrDef(idOrDef);
 
 		if (this.defs.has(def)) {

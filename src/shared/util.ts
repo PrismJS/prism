@@ -39,18 +39,21 @@ declare global {
 	interface RegExpConstructor {
 		/**
 		 * Escapes special characters in a string for use in a regular expression.
+		 *
 		 * @param str The string to escape.
 		 */
-		escape(str: string): string;
+		escape (str: string): string;
 	}
 }
 
 /**
  * Escapes all special regex characters in the given string.
  */
-export const regexEscape : (string: string) => string = RegExp.escape.bind(RegExp) ?? ((str: string) => {
-	return str.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
-})
+export const regexEscape: (string: string) => string =
+	RegExp.escape.bind(RegExp) ??
+	((str: string) => {
+		return str.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
+	});
 
 export function capitalize<T extends string> (string: T): Capitalize<T> {
 	// This is the internal implementation of `Capitalize<T>` by TS.

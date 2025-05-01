@@ -1,5 +1,5 @@
 import { allSettled } from '../../util';
-import type { ComponentProto, KebabToCamelCase, Prism } from '../../types';
+import type { ComponentProto } from '../../types';
 
 export interface ComponentRegistryOptions {
 	/** Path to the components */
@@ -9,6 +9,7 @@ export interface ComponentRegistryOptions {
 
 export interface ComponentProtoBase<Id extends string = string> {
 	id: Id;
+	// FIXME: This is a circular type dependency: ComponentProto -> ComponentProtoBase -> Registry -> ComponentProto
 	require?: ComponentProto | readonly ComponentProto[];
 	optional?: string | readonly string[];
 }
@@ -52,6 +53,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	/**
 	 * Returns the component if it is already loaded or a promise that resolves when it is loaded,
 	 * without triggering a load like `load()` would.
+	 *
 	 * @param id
 	 * @returns
 	 */
@@ -81,9 +83,11 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 
 	/**
 	 * Add a component to the registry.
-	 * @param id - Component id
-	 * @param def - Component
-	 * @param options - Options
+	 *
+	 * @param def Component
+	 * @param id Component id
+	 * @param options Options
+	 * @param options.force Force add the component even if it is already present
 	 * @returns true if the component was added, false if it was already present
 	 */
 	add (def: T, id: string = def.id, options?: { force?: boolean }): boolean {

@@ -1,6 +1,6 @@
 import { toArray } from './iterables';
 
-export function defineLazyProperty<T, K extends string | number | symbol> (
+export function defineLazyProperty<T extends object, K extends keyof T> (
 	obj: T,
 	key: K,
 	getter: () => T[K]
@@ -20,7 +20,7 @@ export function defineLazyProperty<T, K extends string | number | symbol> (
 	});
 }
 
-export function defineSimpleProperty<T, K extends string | number | symbol> (
+export function defineSimpleProperty<T extends object, K extends keyof T> (
 	obj: T,
 	key: K,
 	value: T[K]
@@ -33,15 +33,13 @@ export function defineSimpleProperty<T, K extends string | number | symbol> (
 	});
 }
 
-/**
- * @typedef { string | number | Symbol } Property
- */
+type Property = string | number | symbol;
 
-export function isPlainObject (obj) {
+export function isPlainObject (obj: unknown) {
 	return isObject(obj, 'Object');
 }
 
-export function isObject (obj, type) {
+export function isObject (obj: unknown, type: string) {
 	if (!obj || typeof obj !== 'object') {
 		return false;
 	}
@@ -53,7 +51,7 @@ export function isObject (obj, type) {
 export interface MergeOptions {
 	emptyValues?: any[];
 	containers?: string[];
-	isContainer?: (value: any, key?: string | number | Symbol, parent?: any) => boolean;
+	isContainer?: (value: any, key?: Property, parent?: any) => boolean;
 	mergeArrays?: boolean;
 }
 

@@ -1,5 +1,5 @@
 import { deepClone, deepMerge } from '../util/objects';
-import type { Grammar, GrammarToken, GrammarTokens, PlainObject, RegExpLike } from '../types';
+import type { Grammar, GrammarTokens } from '../types';
 
 // TODO: Update documentation
 
@@ -106,7 +106,7 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  * });
  */
 export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
-	const lang = deepClone(base, id);
+	const lang = deepClone(base);
 
 	for (const key in grammar) {
 		if (typeof key !== 'string' || key.startsWith('$')) {
@@ -162,7 +162,7 @@ export function resolveGrammar (grammar: Grammar) {
 			const tokens = grammar.$merge[key];
 
 			if (grammar[key]) {
-				deepMerge(grammar[key] as PlainObject, tokens as PlainObject);
+				deepMerge(grammar[key], tokens);
 			}
 			else {
 				grammar[key] = tokens;
