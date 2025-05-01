@@ -73,9 +73,7 @@ export default class Language extends EventTarget {
 		defineLazyProperty(this, 'resolvedGrammar', () => resolveGrammar(this.grammar));
 	}
 
-	resolve() {
-
-	}
+	resolve () {}
 
 	get id () {
 		return this.def.id;
@@ -136,10 +134,6 @@ export default class Language extends EventTarget {
 
 	set grammar (grammar: Grammar) {
 		Object.defineProperty(this, 'grammar', { value: grammar, writable: true });
-	}
-
-	get effect () {
-		return this.def.effect;
 	}
 
 	get resolvedGrammar () {

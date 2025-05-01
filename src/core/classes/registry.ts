@@ -1,5 +1,5 @@
-import type { ComponentProto, KebabToCamelCase, Prism } from '../../types';
 import { allSettled } from '../../util';
+import type { ComponentProto, KebabToCamelCase, Prism } from '../../types';
 
 export interface ComponentRegistryOptions {
 	/** Path to the components */
@@ -11,7 +11,6 @@ export interface ComponentProtoBase<Id extends string = string> {
 	id: Id;
 	require?: ComponentProto | readonly ComponentProto[];
 	optional?: string | readonly string[];
-	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 
 export default class Registry<T extends ComponentProto> extends EventTarget {
@@ -70,7 +69,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 		let Self = this.constructor as typeof Registry;
 		return new Promise(resolve => {
 			// @ts-expect-error TS complains that this is not an EventListener because its param is a CustomEvent
-			let handler : EventListener = (e: CustomEvent) => {
+			let handler: EventListener = (e: CustomEvent) => {
 				if (e.detail.id === id) {
 					resolve(e.detail.component);
 					this.removeEventListener('add', handler);
@@ -87,7 +86,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	 * @param options - Options
 	 * @returns true if the component was added, false if it was already present
 	 */
-	add (def: T, id: string = def.id,  options?: { force?: boolean }): boolean {
+	add (def: T, id: string = def.id, options?: { force?: boolean }): boolean {
 		let Self = this.constructor as typeof Registry;
 
 		if (typeof this.loading[id] !== 'undefined') {
@@ -103,8 +102,12 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 		if (!this.cache[id] || options?.force) {
 			this.cache[id] = def;
 
-			this.dispatchEvent(new CustomEvent('add', { detail: { id, type: Self.type, component: def } }));
-			this.dispatchEvent(new CustomEvent('add' + Self.type, { detail: { id, component: def } }));
+			this.dispatchEvent(
+				new CustomEvent('add', { detail: { id, type: Self.type, component: def } })
+			);
+			this.dispatchEvent(
+				new CustomEvent('add' + Self.type, { detail: { id, component: def } })
+			);
 
 			return true;
 		}

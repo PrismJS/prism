@@ -1,14 +1,18 @@
-import globalDefaults, { type PrismConfig } from '../../config';
-import { Hooks } from './hooks';
+import globalDefaults from '../../config';
+import { allSettled, documentReady, nextTick } from '../../util';
+import { highlight } from '../highlight';
+import { highlightAll } from '../highlight-all';
+import { highlightElement } from '../highlight-element';
 import { Registry } from '../registry';
-import { highlightAll, type HighlightAllOptions } from '../highlight-all';
-import { highlightElement, type HighlightElementOptions } from '../highlight-element';
-import { highlight, type HighlightOptions } from '../highlight';
 import { tokenize } from '../tokenize';
-import { nextTick, documentReady, allSettled } from '../../util';
-import PluginRegistry from './plugin-registry';
+import { Hooks } from './hooks';
 import LanguageRegistry from './language-registry';
+import PluginRegistry from './plugin-registry';
+import type { PrismConfig } from '../../config';
 import type { Grammar, LanguageProto, PluginProto } from '../../types';
+import type { HighlightOptions } from '../highlight';
+import type { HighlightAllOptions } from '../highlight-all';
+import type { HighlightElementOptions } from '../highlight-element';
 import type { TokenStream } from '../token';
 
 /**
@@ -83,10 +87,6 @@ export default class Prism {
 	 */
 	async loadLanguage (id: string): Promise<LanguageProto | null> {
 		let language = await this.languageRegistry.load(id);
-
-		if (language?.effect) {
-			language.effect(this);
-		}
 
 		return language;
 	}

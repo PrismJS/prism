@@ -1,10 +1,11 @@
 import { rest, tokenize as tokenizer } from '../shared/symbols';
 import { LinkedList } from './linked-list';
-import singleton, { type Prism } from './prism';
+import singleton from './prism';
 import { Token } from './token';
-import type { Registry } from './registry';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
+import type { Prism } from './prism';
+import type { Registry } from './registry';
 import type { TokenStream } from './token';
 
 /**
