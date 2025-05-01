@@ -1,13 +1,11 @@
-import { getTextContent } from '../core/token';
-import { insertBefore, withoutTokenize } from '../shared/language-util';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'markdown',
-	require: markup,
+	base: markup,
 	alias: 'md',
-	grammar ({ extend }) {
+	grammar () {
 		// Allow only one line break
 		const inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
@@ -31,8 +29,7 @@ export default {
 		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
 			.source;
 
-		const markdown = extend('markup', {});
-		insertBefore(markdown, 'prolog', {
+		let markdown = {
 			'front-matter-block': {
 				pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 				lookbehind: true,
@@ -97,70 +94,18 @@ export default {
 					// ```optional language
 					// code block
 					// ```
-					pattern: /^```[\s\S]*?^```$/m,
-					greedy: true,
+					pattern:
+						/^```(?<codeLanguage>[a-z-]+).+(?:\n|\r\n?)(?<codeBlock>[\s\S]*)?(?:\n|\r\n?)```$/i,
 					inside: {
 						'code-block': {
-							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
-							lookbehind: true,
-						},
-						'code-language': {
-							pattern: /^(```).+/,
-							lookbehind: true,
+							$language: groups => {
+								let ret = groups.codeLanguage;
+								// do some replacements to support C++, C#, and F#
+								ret = ret.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
+								return ret;
+							},
 						},
 						'punctuation': /```/,
-						$tokenize(code, grammar, Prism) {
-							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-
-							/*
-							 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-							 * is optional. But the grammar is defined so that there is only one case we have to handle:
-							 *
-							 * token.content = [
-							 *     <span class="punctuation">```</span>,
-							 *     <span class="code-language">xxxx</span>,
-							 *     '\n', // exactly one new lines (\r or \n or \r\n)
-							 *     <span class="code-block">...</span>,
-							 *     '\n', // exactly one new lines again
-							 *     <span class="punctuation">```</span>
-							 * ];
-							 */
-
-							const codeLang = tokens[1];
-							const codeBlock = tokens[3];
-
-							if (
-								typeof codeLang === 'object' &&
-								typeof codeBlock === 'object' &&
-								codeLang.type === 'code-language' &&
-								codeBlock.type === 'code-block'
-							) {
-								// this might be a language that Prism does not support
-
-								// do some replacements to support C++, C#, and F#
-								const lang = getTextContent(codeLang.content)
-									.replace(/\b#/g, 'sharp')
-									.replace(/\b\+\+/g, 'pp');
-								// only use the first word
-								const langName = /[a-z][\w-]*/i.exec(lang)?.[0].toLowerCase();
-								if (langName) {
-									codeBlock.addAlias('language-' + langName);
-
-									const grammar = Prism.components.getLanguage(lang);
-									if (grammar) {
-										codeBlock.content = Prism.tokenize(
-											getTextContent(codeBlock),
-											grammar
-										);
-									}
-									else {
-										codeBlock.addAlias('needs-highlighting');
-									}
-								}
-							}
-
-							return tokens;
-						},
 					},
 				},
 			],
@@ -318,61 +263,21 @@ export default {
 					},
 				},
 			},
-		});
+		};
 
 		['url', 'bold', 'italic', 'strike'].forEach(token => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
-				if (token !== inside) {
-					(
-						(
-							((markdown[token] as GrammarToken).inside as Grammar)
-								.content as GrammarToken
-						).inside as Grammar
-					)[inside] = markdown[inside];
+				if (token === inside) {
+					return;
 				}
+
+				(
+					(((markdown[token] as GrammarToken).inside as Grammar).content as GrammarToken)
+						.inside as Grammar
+				)[inside] = markdown[inside];
 			});
 		});
 
-		return markdown;
-	},
-	effect (Prism) {
-		// Highlight code blocks in markdown
-		return Prism.hooks.add('wrap', env => {
-			if (
-				!Prism.plugins.autoloader ||
-				env.type !== 'code-block' ||
-				!env.classes.includes('needs-highlighting')
-			) {
-				return;
-			}
-
-			let codeLang = '';
-			for (let i = 0, l = env.classes.length; i < l; i++) {
-				const cls = env.classes[i];
-				const match = /language-(.+)/.exec(cls);
-				if (match) {
-					codeLang = match[1];
-					break;
-				}
-			}
-
-			if (codeLang && codeLang !== 'none' && typeof document !== 'undefined') {
-				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
-				env.attributes['id'] = id;
-
-				Prism.plugins.autoloader.loadLanguages(codeLang).then(
-					() => {
-						const element = document.getElementById(id);
-						if (element) {
-							element.innerHTML = Prism.highlight(
-								element.textContent || '',
-								codeLang
-							);
-						}
-					},
-					error => console.error(error)
-				);
-			}
-		});
+		return { $insertBefore: { 'prolog': markdown } };
 	},
 } as LanguageProto<'markdown'>;

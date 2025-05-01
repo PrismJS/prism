@@ -8,8 +8,7 @@ function createLanguageString (lang: string, pattern?: string) {
 			'embedded': {
 				pattern: /(^\{!\w+\b)[\s\S]+(?=\}$)/,
 				lookbehind: true,
-				alias: 'language-' + lang,
-				inside: lang,
+				$language: lang,
 			},
 			'string': /[\s\S]+/,
 		},

@@ -66,9 +66,7 @@ export default {
 						alias: 'punctuation',
 					},
 					'script': {
-						pattern: /[\s\S]+/,
-						alias: 'language-javascript',
-						inside: 'javascript',
+						$language: 'javascript',
 					},
 				},
 			},
