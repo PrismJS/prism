@@ -135,3 +135,5 @@ export default class Prism {
 		return tokenize.call(this, text, grammar);
 	}
 }
+
+export type { Prism };
