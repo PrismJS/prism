@@ -50,7 +50,7 @@ declare global {
  * Escapes all special regex characters in the given string.
  */
 export const regexEscape: (string: string) => string =
-	RegExp.escape.bind(RegExp) ??
+	RegExp.escape?.bind(RegExp) ??
 	((str: string) => {
 		return str.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
 	});
