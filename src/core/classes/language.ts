@@ -153,5 +153,6 @@ export interface LanguageProto<Id extends string = string> extends ComponentProt
 	extends?: string | readonly string[];
 }
 
+export type { Language };
 export type Languages = Record<string, Language>;
 export type LanguageLike = Language | LanguageProto;
