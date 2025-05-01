@@ -64,7 +64,7 @@ export default {
 			'punctuation': /[.,:;(){}]/,
 		};
 
-		inform7['string'].inside['substitution'].inside$rest = {
+		inform7['string'].inside['substitution'].inside.$rest = {
 			...inform7,
 			'text': {
 				pattern: /\S(?:\s*\S)*/,

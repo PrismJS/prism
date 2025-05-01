@@ -68,7 +68,7 @@ export default {
 			'punctuation': /[,;.:()[\]{}]/,
 		};
 
-		stringInterpolation.inside.interpolation.inside$rest = ftl;
+		stringInterpolation.inside.interpolation.inside.$rest = ftl;
 
 		return {
 			'ftl-comment': {
