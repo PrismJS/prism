@@ -9,7 +9,6 @@ export interface ComponentRegistryOptions {
 
 export interface ComponentProtoBase<Id extends string = string> {
 	id: Id;
-	// FIXME: This is a circular type dependency: ComponentProto -> ComponentProtoBase -> Registry -> ComponentProto
 	require?: ComponentProto | readonly ComponentProto[];
 	optional?: string | readonly string[];
 }
