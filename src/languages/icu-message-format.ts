@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -81,7 +80,7 @@ export default {
 											'number': /\S+/,
 										},
 									},
-									[rest]: 'icu-message-format',
+									$rest: 'icu-message-format',
 								},
 							},
 							'plural-style': {

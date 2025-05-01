@@ -1,5 +1,4 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';
 
@@ -359,7 +358,7 @@ export default {
 					},
 				},
 			},
-			[tokenize]: (code, grammar, Prism) => {
+			$tokenize: (code, grammar, Prism) => {
 				if (!/<\?/.test(code)) {
 					return Prism.tokenize(code, php);
 				}

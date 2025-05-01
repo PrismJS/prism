@@ -1,6 +1,5 @@
 import { Token, getTextContent } from '../core/token';
 import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
 import markup from './markup';
 import type { TokenStream } from '../core/token';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
@@ -184,7 +183,7 @@ export default {
 			inside: 'xquery',
 		};
 
-		xquery[tokenize] = (code, grammar, Prism) => {
+		xquery$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;

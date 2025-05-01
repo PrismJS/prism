@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import c from './c';
 import type { LanguageProto } from '../types';
 
@@ -32,7 +31,7 @@ export default {
 											'punctuation': /<|>/,
 										},
 									},
-									[rest]: base,
+									$rest: base,
 								},
 							},
 							'comment': base.comment,

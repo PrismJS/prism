@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import clike from './clike';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
@@ -81,7 +80,7 @@ export default {
 						'punctuation': /##|\\(?=[\r\n])/,
 						'expression': {
 							pattern: /\S[\s\S]*/,
-							inside: { [rest]: 'c' },
+							inside: { $rest: 'c' },
 						},
 					},
 				},

@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
@@ -70,7 +69,7 @@ export default {
 								pattern: /^\$\(?|\)$/,
 								alias: 'punctuation',
 							},
-							[rest]: vala,
+							$rest: vala,
 						},
 					},
 					'string': /[\s\S]+/,

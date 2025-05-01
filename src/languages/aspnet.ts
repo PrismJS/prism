@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import csharp from './csharp';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';
@@ -18,7 +17,7 @@ export default {
 							/<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
 						alias: 'tag',
 					},
-					[rest]: self['tag'].inside,
+					$rest: self['tag'].inside,
 				},
 			},
 			'directive': {
@@ -29,7 +28,7 @@ export default {
 						pattern: /<%\s*?[$=%#:]{0,2}|%>/,
 						alias: 'tag',
 					},
-					[rest]: 'csharp',
+					$rest: 'csharp',
 				},
 			},
 			$merge: {

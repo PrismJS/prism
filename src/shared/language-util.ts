@@ -1,4 +1,4 @@
-import { rest, tokenize } from './symbols';
+import { deepClone, deepMerge } from '../util/objects';
 import type { Grammar, GrammarToken, GrammarTokens, PlainObject, RegExpLike } from '../types';
 
 // TODO: Update documentation
@@ -106,10 +106,10 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  * });
  */
 export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
-	const lang = cloneGrammar(base, id);
+	const lang = deepClone(base, id);
 
 	for (const key in grammar) {
-		if (['$insertBefore', '$delete', '$merge'].includes(key)) {
+		if (typeof key !== 'string' || key.startsWith('$')) {
 			// ignore special keys
 			continue;
 		}
@@ -118,13 +118,7 @@ export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
 	}
 
 	if (grammar.$insertBefore) {
-		if (lang.$insertBefore) {
-			// base also had $insertBefore
-			Object.assign(lang.$insertBefore, grammar.$insertBefore);
-		}
-		else {
-			lang.$insertBefore = { ...grammar.$insertBefore };
-		}
+		lang.$insertBefore = Object.assign(lang.$insertBefore ?? {}, grammar.$insertBefore);
 	}
 
 	if (grammar.$delete) {
@@ -138,13 +132,7 @@ export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
 	}
 
 	if (grammar.$merge) {
-		if (lang.$merge) {
-			// base also had $merge
-			Object.assign(lang.$merge, grammar.$merge);
-		}
-		else {
-			lang.$merge = { ...grammar.$merge };
-		}
+		lang.$merge = Object.assign(lang.$merge ?? {}, grammar.$merge);
 	}
 
 	return lang;
@@ -187,132 +175,12 @@ export function resolveGrammar (grammar: Grammar) {
 	return grammar;
 }
 
-/**
- * Recursively merges two objects.
- * If the objects have the same key, the value of the second object will be used.
- * If the value is an object, it will be merged recursively.
- * If the value is an array, it will be merged into a new array.
- * @param dest
- * @param source
- */
-function deepMerge (dest: PlainObject, source: PlainObject) {
-	if (dest === source) {
-		return dest;
-	}
-
-	for (const key in source) {
-		const value1 = dest[key];
-		const value2 = source[key];
-
-		if (value1 === undefined) {
-			dest[key] = value2;
-		}
-		else if (value2 === undefined) {
-			continue;
-		}
-		else if (Array.isArray(value1)) {
-			if (Array.isArray(value2)) {
-				dest[key] = [...value1, ...value2];
-			}
-			else {
-				(dest[key] as unknown[]).push(value2);
-			}
-		}
-		else if (typeof value1 === 'object' && typeof value2 === 'object' && value1 != null && value2 != null) {
-			deepMerge(value1 as PlainObject, value2 as PlainObject);
-		}
-		else {
-			dest[key] = value2;
-		}
-	}
-
-	return dest;
-}
-
-export function cloneGrammar (grammar: Grammar, id: string): Grammar {
-	const result: Grammar = {};
-
-	const visited = new Map<Grammar, Grammar>();
-
-	function cloneToken (value: GrammarToken | RegExpLike) {
-		if (!value.pattern) {
-			return value;
-		}
-		else {
-			const copy: GrammarToken = { pattern: value.pattern };
-			if (value.lookbehind) {
-				copy.lookbehind = value.lookbehind;
-			}
-			if (value.greedy) {
-				copy.greedy = value.greedy;
-			}
-			if (value.alias) {
-				copy.alias = Array.isArray(value.alias) ? [...value.alias] : value.alias;
-			}
-			if (value.inside) {
-				copy.inside = cloneRef(value.inside);
-			}
-			return copy;
-		}
-	}
-	function cloneTokens (value: GrammarTokens[string]) {
-		if (!value) {
-			return undefined;
-		}
-		else if (Array.isArray(value)) {
-			return (value as Array<RegExpLike | GrammarToken>).map(cloneToken);
-		}
-		else {
-			return cloneToken(value as RegExpLike | GrammarToken);
-		}
-	}
-	function cloneRef (ref: NonNullable<Grammar[typeof rest]>) {
-		if (ref === id) {
-			// self ref
-			return result;
-		}
-		else if (typeof ref === 'string') {
-			return ref;
-		}
-		else {
-			return clone(ref);
-		}
-	}
-	function clone (value: Grammar) {
-		let mapped = visited.get(value);
-		if (mapped === undefined) {
-			mapped = value === grammar ? result : {};
-			visited.set(value, mapped);
-
-			// tokens
-			for (const [key, tokens] of Object.entries(value)) {
-				mapped[key] = cloneTokens(tokens);
-			}
-
-			// rest
-			const r = value[rest];
-			if (r != null) {
-				mapped[rest] = cloneRef(r);
-			}
-
-			// tokenize
-			const t = value[tokenize];
-			if (t) {
-				mapped[tokenize] = t;
-			}
-		}
-		return mapped;
-	}
-
-	return clone(grammar);
-}
-
 export function withoutTokenize (grammar: Grammar): Grammar {
-	if (!grammar[tokenize]) {
+	if (!grammar.$tokenize) {
 		return grammar;
 	}
 
 	const copy = { ...grammar };
-	delete copy[tokenize];
+	delete copy.$tokenize;
 	return copy;
 }

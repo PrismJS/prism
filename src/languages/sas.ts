@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -258,7 +257,7 @@ export default {
 									keyword: /^(?:saveresult)/i,
 								},
 							},
-							[rest]: args,
+							$rest: args,
 						},
 					},
 					'cas-actions': casActions,

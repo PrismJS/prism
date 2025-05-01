@@ -1,6 +1,5 @@
 import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
-import { rest } from '../shared/symbols';
 import { toArray } from '../util/iterables';
 import clike from './clike';
 import type { LanguageProto } from '../types';
@@ -188,7 +187,7 @@ export default {
 									pattern: /^\$\{|\}$/,
 									alias: 'punctuation',
 								},
-								[rest]: 'javascript',
+								$rest: 'javascript',
 							},
 						},
 						'string': /[\s\S]+/,

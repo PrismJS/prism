@@ -1,6 +1,5 @@
 import { getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
@@ -110,7 +109,7 @@ export default {
 							lookbehind: true,
 						},
 						'punctuation': /```/,
-						[tokenize](code, grammar, Prism) {
+						$tokenize(code, grammar, Prism) {
 							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 							/*

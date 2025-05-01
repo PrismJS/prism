@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import css from './css';
 import type { LanguageProto } from '../types';
 
@@ -16,7 +15,7 @@ export default {
 				pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
 				inside: {
 					'rule': /@[\w-]+/,
-					[rest]: 'scss',
+					$rest: 'scss',
 				},
 			},
 			// url, compassified

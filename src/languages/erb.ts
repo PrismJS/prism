@@ -1,5 +1,4 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import markup from './markup';
 import ruby from './ruby';
 import type { LanguageProto } from '../types';
@@ -23,6 +22,6 @@ export default {
 				},
 			},
 		},
-		[tokenize]: embeddedIn('markup'),
+		$tokenize: embeddedIn('markup'),
 	},
 } as LanguageProto<'erb'>;

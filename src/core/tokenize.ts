@@ -36,10 +36,10 @@ export function tokenize (this: Prism, text: string, grammar: Grammar): TokenStr
 		return customTokenize(text, grammar, prism);
 	}
 
-	let restGrammar = resolve(prism.components, grammar[rest]);
+	let restGrammar = resolve(prism.components, grammar.$rest);
 	while (restGrammar) {
 		grammar = { ...grammar, ...restGrammar };
-		restGrammar = resolve(prism.components, restGrammar[rest]);
+		restGrammar = resolve(prism.components, restGrammar.$rest);
 	}
 
 	const tokenList = new LinkedList<string | Token>();

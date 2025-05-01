@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -33,7 +32,7 @@ export default {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true,
 					},
-					[rest]: 'css',
+					$rest: 'css',
 				},
 			},
 			'url': {

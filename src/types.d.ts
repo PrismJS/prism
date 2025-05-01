@@ -1,5 +1,4 @@
 import type { TokenStream } from './core/token';
-import type { rest, tokenize } from './shared/symbols';
 
 export type { Prism } from './core/classes/prism';
 
@@ -107,21 +106,18 @@ export interface GrammarToken {
 
 export type GrammarTokens = GrammarTokensRec<GrammarTokensDepth>;
 
-export interface GrammarSymbols {
+export interface GrammarSpecial {
 	/**
 	 * An optional grammar object that will be appended to this grammar.
 	 */
-	[rest]?: Grammar | string | null;
-	[tokenize]?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
-}
-
-export interface GrammarSpecial {
+	$rest?: Grammar | string | null;
+	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 	$insertBefore?: GrammarTokens;
 	$delete?: (string | undefined)[];
 	$merge?: GrammarTokens;
 }
 
-export type Grammar = GrammarTokens & GrammarSymbols & GrammarSpecial;
+export type Grammar = GrammarTokens & GrammarSpecial;
 
 /**
  * Recursive type helpers for GrammarTokens

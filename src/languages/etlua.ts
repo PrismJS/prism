@@ -1,5 +1,4 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import lua from './lua';
 import markup from './markup';
 import type { LanguageProto } from '../types';
@@ -21,6 +20,6 @@ export default {
 				},
 			},
 		},
-		[tokenize]: embeddedIn('markup'),
+		$tokenize: embeddedIn('markup'),
 	},
 } as LanguageProto<'etlua'>;

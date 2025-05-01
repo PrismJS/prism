@@ -1,6 +1,5 @@
 import { Token, getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { rest, tokenize } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/token';
@@ -157,12 +156,12 @@ export default {
 						pattern: /^=(?=\{)/,
 						alias: 'punctuation',
 					},
-					[rest]: 'jsx',
+					$rest: 'jsx',
 				},
 			},
 		});
 
-		jsx[tokenize] = (code, grammar, Prism) => {
+		jsx$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;

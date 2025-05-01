@@ -1,9 +1,9 @@
-import { extend, cloneGrammar, resolveGrammar } from '../../shared/language-util';
+import { extend, resolveGrammar } from '../../shared/language-util';
+import { deepClone, defineLazyProperty } from '../../util/objects';
+import List from './list';
+import type { Grammar, GrammarOptions } from '../../types';
 import type LanguageRegistry from './language-registry';
 import type { ComponentProtoBase } from './language-registry';
-import type { Grammar, GrammarOptions } from '../../types';
-import List from './list';
-import { defineLazyProperty } from '../../util/objects';
 
 export default class Language extends EventTarget {
 	def: LanguageProto;
@@ -11,7 +11,7 @@ export default class Language extends EventTarget {
 	evaluatedGrammar?: Grammar;
 	require: List<LanguageLike> = new List();
 	optional: List<string> = new List();
-	languages : Languages = {};
+	languages: Languages = {};
 
 	constructor (def: LanguageProto, registry: LanguageRegistry) {
 		super();
@@ -67,7 +67,6 @@ export default class Language extends EventTarget {
 						return this.registry.get(def);
 					});
 				});
-
 			}
 		}
 
@@ -128,7 +127,7 @@ export default class Language extends EventTarget {
 
 		if (def.grammar === grammar) {
 			// We need these to be separate so that any code modifying them doesn't affect other instances
-			grammar = cloneGrammar(grammar, id);
+			grammar = deepClone(grammar, id);
 		}
 
 		// This will replace the getter with a writable property

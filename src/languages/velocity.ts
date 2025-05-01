@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
@@ -71,7 +70,7 @@ export default {
 							'punctuation': /[{}]/,
 						},
 					},
-					[rest]: vel,
+					$rest: vel,
 				},
 			},
 			'variable': vel['variable'],
@@ -80,7 +79,7 @@ export default {
 		(
 			(((velocity['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
 				.inside as Grammar
-		)[rest] = velocity;
+		)$rest = velocity;
 
 		return velocity;
 	},
