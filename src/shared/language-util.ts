@@ -93,7 +93,6 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  * Furthermore, all non-overwriting tokens should be placed after the overwriting ones.
  *
  * @param base The grammar of the language to extend.
- * @param id The id of the language to extend.
  * @param grammar The new tokens to append.
  * @returns The new language created.
  * @example
@@ -105,7 +104,7 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  *     'color': /\b(?:red|green|blue)\b/
  * });
  */
-export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
+export function extend (base: Grammar, grammar: Grammar): Grammar {
 	const lang = deepClone(base);
 
 	for (const key in grammar) {

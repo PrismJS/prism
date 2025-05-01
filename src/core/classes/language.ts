@@ -120,7 +120,7 @@ export default class Language extends EventTarget {
 		}
 
 		if (base) {
-			grammar = extend(base.grammar, id, grammar);
+			grammar = extend(base.grammar, grammar);
 		}
 
 		if (def.grammar === grammar) {
