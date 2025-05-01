@@ -57,7 +57,7 @@ export default class Language extends EventTarget {
 		}
 
 		for (let id of this.optional) {
-			let language = this.registry.peek(def);
+			let language = this.registry.peek(id);
 			if (language) {
 				this.languages[id] = language;
 			}
