@@ -43,8 +43,8 @@ export function extend (base: Grammar, grammar: Grammar): Grammar {
 	if (grammar.$insertBefore) {
 		lang.$insertBefore = Object.assign(lang.$insertBefore ?? {}, grammar.$insertBefore);
 	}
-	i
-	f (grammar.$insertAfter) {
+
+	if (grammar.$insertAfter) {
 		lang.$insertAfter = Object.assign(lang.$insertAfter ?? {}, grammar.$insertAfter);
 	}
 
