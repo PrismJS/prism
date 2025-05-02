@@ -94,6 +94,8 @@ export default {
 	id: 'markup',
 	base: xml,
 	alias: ['html', 'svg', 'mathml'],
+	media: 'text/html',
+	extensions: ['html', 'htm', 'xhtml', 'svg'],
 	grammar () {
 		return {
 			$insertBefore: {

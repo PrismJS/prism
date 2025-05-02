@@ -6,6 +6,8 @@ export const MARKUP_TAG =
 export default {
 	id: 'xml',
 	alias: ['ssml', 'atom', 'rss'],
+	media: ['application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml'],
+	extensions: ['xml', 'xsl', 'xsd', 'wsdl', 'svg', 'rss', 'atom'],
 	grammar () {
 		const entity = [
 			{

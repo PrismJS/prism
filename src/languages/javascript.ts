@@ -13,6 +13,8 @@ export default {
 	id: 'javascript',
 	base: clike,
 	alias: 'js',
+	media: ['text/javascript', 'application/javascript'],
+	extensions: ['js', 'mjs', 'cjs'],
 	grammar (): Grammar {
 		return {
 			'class-name': [

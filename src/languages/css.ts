@@ -2,6 +2,8 @@ import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'css',
+	media: 'text/css',
+	extensions: ['css', 'postcss'],
 	grammar (): Grammar {
 		const string =
 			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;

@@ -163,6 +163,8 @@ export default class Language extends EventTarget {
 }
 
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
+	media?: string | readonly string[];
+	extensions?: string | readonly string[];
 	alias?: string | readonly string[];
 	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
 	plugin?: undefined;
