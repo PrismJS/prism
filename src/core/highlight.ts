@@ -44,7 +44,7 @@ export function highlight (
 		throw new Error('The language "' + env.language + '" has no grammar.');
 	}
 
-	env.tokens = prism.tokenize(env.code, env.grammar);
+	env.tokens = prism.tokenize(env.code, env.grammar.grammar);
 	prism.hooks.run('after-tokenize', env);
 
 	return stringify(env.tokens, env.language, prism.hooks);
