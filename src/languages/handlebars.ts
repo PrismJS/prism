@@ -1,6 +1,6 @@
 import { embeddedIn } from '../shared/languages/templating';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'handlebars',
@@ -34,6 +34,6 @@ export default {
 				'variable': /[^!"#%&'()*+,\/;<=>@\[\\\]^`{|}~\s]+/,
 			},
 		},
-		$tokenize: embeddedIn('markup'),
+		$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 	},
 } as LanguageProto<'handlebars'>;

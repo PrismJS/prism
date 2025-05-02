@@ -1,12 +1,11 @@
-import { insertBefore } from '../shared/language-util';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'd',
-	require: clike,
-	grammar ({ extend }) {
-		const d = extend('clike', {
+	base: clike,
+	grammar (): Grammar {
+		return {
 			'comment': [
 				{
 					// Shebang
@@ -82,27 +81,24 @@ export default {
 
 			'operator':
 				/\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/,
-		});
-
-		insertBefore(d, 'string', {
-			// Characters
-			// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
-			'char': /'(?:\\(?:\W|\w+)|[^\\])'/,
-		});
-
-		insertBefore(d, 'keyword', {
-			'property': /\B@\w*/,
-		});
-
-		insertBefore(d, 'function', {
-			'register': {
-				// Iasm registers
-				pattern:
-					/\b(?:[ABCD][LHX]|E?(?:BP|DI|SI|SP)|[BS]PL|CR[0234]|[ECSDGF]S|[DS]IL|DR[012367]|E[ABCD]X|X?MM[0-7]|R(?:1[0-5]|[89])[BWD]?|R[ABCD]X|R[BS]P|R[DS]I|TR[3-7]|XMM(?:1[0-5]|[89])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
-				alias: 'variable',
+			$insertBefore: {
+				'string': {
+					// Characters
+					// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
+					'char': /'(?:\\(?:\W|\w+)|[^\\])'/,
+				},
+				'keyword': {
+					'property': /\B@\w*/,
+				},
+				'function': {
+					'register': {
+						// Iasm registers
+						pattern:
+							/\b(?:[ABCD][LHX]|E?(?:BP|DI|SI|SP)|[BS]PL|CR[0234]|[ECSDGF]S|[DS]IL|DR[012367]|E[ABCD]X|X?MM[0-7]|R(?:1[0-5]|[89])[BWD]?|R[ABCD]X|R[BS]P|R[DS]I|TR[3-7]|XMM(?:1[0-5]|[89])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
+						alias: 'variable',
+					},
+				},
 			},
-		});
-
-		return d;
+		};
 	},
 } as LanguageProto<'d'>;

@@ -1,5 +1,5 @@
 import { deepClone, deepMerge } from '../util/objects';
-import type { Grammar, GrammarToken, GrammarTokens, PlainObject, RegExpLike } from '../types';
+import type { Grammar, GrammarTokens } from '../types';
 
 // TODO: Update documentation
 
@@ -93,7 +93,6 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  * Furthermore, all non-overwriting tokens should be placed after the overwriting ones.
  *
  * @param base The grammar of the language to extend.
- * @param id The id of the language to extend.
  * @param grammar The new tokens to append.
  * @returns The new language created.
  * @example
@@ -105,8 +104,8 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
  *     'color': /\b(?:red|green|blue)\b/
  * });
  */
-export function extend (base: Grammar, id: string, grammar: Grammar): Grammar {
-	const lang = deepClone(base, id);
+export function extend (base: Grammar, grammar: Grammar): Grammar {
+	const lang = deepClone(base);
 
 	for (const key in grammar) {
 		if (typeof key !== 'string' || key.startsWith('$')) {
@@ -162,7 +161,7 @@ export function resolveGrammar (grammar: Grammar) {
 			const tokens = grammar.$merge[key];
 
 			if (grammar[key]) {
-				deepMerge(grammar[key] as PlainObject, tokens as PlainObject);
+				deepMerge(grammar[key], tokens);
 			}
 			else {
 				grammar[key] = tokens;

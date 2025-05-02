@@ -1,5 +1,5 @@
 import { allSettled } from '../../util';
-import type { ComponentProto, KebabToCamelCase, Prism } from '../../types';
+import type { ComponentProto } from '../../types';
 
 export interface ComponentRegistryOptions {
 	/** Path to the components */
@@ -20,7 +20,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	cache: Record<string, T> = {};
 
 	/** All components that are currently being loaded */
-	loading: Record<string, Promise<T>> = {};
+	loading: Record<string, Promise<T | null>> = {};
 
 	/**
 	 * Same data as in loading, but as an array, used for aggregate promises.
@@ -52,10 +52,11 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	/**
 	 * Returns the component if it is already loaded or a promise that resolves when it is loaded,
 	 * without triggering a load like `load()` would.
+	 *
 	 * @param id
 	 * @returns
 	 */
-	async whenDefined (id: string): Promise<T> {
+	async whenDefined (id: string): Promise<T | null> {
 		if (this.cache[id]) {
 			// Already loaded
 			return this.cache[id];
@@ -68,22 +69,23 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 
 		let Self = this.constructor as typeof Registry;
 		return new Promise(resolve => {
-			// @ts-expect-error TS complains that this is not an EventListener because its param is a CustomEvent
-			let handler: EventListener = (e: CustomEvent) => {
+			let handler = (e: CustomEvent<{ id: string; type?: string; component: T }>) => {
 				if (e.detail.id === id) {
 					resolve(e.detail.component);
-					this.removeEventListener('add', handler);
+					this.removeEventListener('add', handler as EventListener);
 				}
 			};
-			this.addEventListener('add' + Self.type, handler);
+			this.addEventListener('add' + Self.type, handler as EventListener);
 		});
 	}
 
 	/**
 	 * Add a component to the registry.
-	 * @param id - Component id
-	 * @param def - Component
-	 * @param options - Options
+	 *
+	 * @param def Component
+	 * @param id Component id
+	 * @param options Options
+	 * @param options.force Force add the component even if it is already present
 	 * @returns true if the component was added, false if it was already present
 	 */
 	add (def: T, id: string = def.id, options?: { force?: boolean }): boolean {
@@ -135,11 +137,14 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 
 		let loadingComponent = import(this.path + id)
 			.then(m => {
-				let component = m.default ?? m;
+				let component: T = m.default ?? m;
 				this.add(component, id);
 				return component;
 			})
-			.catch(console.error);
+			.catch(error => {
+				console.error(error);
+				return null;
+			});
 
 		this.loading[id] = loadingComponent;
 		this.loadingList.push(loadingComponent);

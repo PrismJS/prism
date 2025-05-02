@@ -27,6 +27,10 @@ const config = [
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
+			globals: {
+				...globals.browser,
+				...globals.node,
+			},
 		},
 		rules: {
 			'no-use-before-define': ['warn', { 'functions': false, 'classes': false }],
@@ -155,16 +159,6 @@ const config = [
 			'@typescript-eslint/no-unsafe-return': 'off',
 			'@typescript-eslint/no-unsafe-argument': 'off',
 			'@typescript-eslint/no-floating-promises': 'off',
-		},
-	},
-	{
-		// Core
-		files: ['src/core/**/*.ts'],
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.node,
-			},
 		},
 	},
 	{

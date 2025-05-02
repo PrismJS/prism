@@ -1,6 +1,6 @@
 import { embeddedIn } from '../shared/languages/templating';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'soy',
@@ -82,7 +82,7 @@ export default {
 					'punctuation': /[{}()\[\]|.,:]/,
 				},
 			},
-			$tokenize: embeddedIn('markup'),
+			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 		};
 	},
 } as LanguageProto<'soy'>;

@@ -9,11 +9,12 @@ import { Hooks } from './hooks';
 import LanguageRegistry from './language-registry';
 import PluginRegistry from './plugin-registry';
 import type { PrismConfig } from '../../config';
-import type { Grammar, LanguageProto, PluginProto } from '../../types';
+import type { Grammar, PluginProto } from '../../types';
 import type { HighlightOptions } from '../highlight';
 import type { HighlightAllOptions } from '../highlight-all';
 import type { HighlightElementOptions } from '../highlight-element';
 import type { TokenStream } from '../token';
+import type { LanguageLike } from './language';
 
 /**
  * Prism class, to create Prism instances with different settings.
@@ -41,8 +42,8 @@ export default class Prism {
 
 		const reportError: PrismConfig['errorHandler'] = this.config.errorHandler;
 
-		this.languageRegistry = new LanguageRegistry(this.config.languagePath);
-		this.pluginRegistry = new PluginRegistry(this.config.pluginPath);
+		this.languageRegistry = new LanguageRegistry({ path: this.config.languagePath as string });
+		this.pluginRegistry = new PluginRegistry({ path: this.config.pluginPath as string });
 
 		// Preload languages
 		const languages = this.config.languages;
@@ -85,7 +86,7 @@ export default class Prism {
 	/**
 	 * Load a language by its ID.
 	 */
-	async loadLanguage (id: string): Promise<LanguageProto | null> {
+	async loadLanguage (id: string): Promise<LanguageLike | null> {
 		let language = await this.languageRegistry.load(id);
 
 		return language;
@@ -134,3 +135,5 @@ export default class Prism {
 		return tokenize.call(this, text, grammar);
 	}
 }
+
+export type { Prism };

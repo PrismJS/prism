@@ -1,11 +1,10 @@
 import javascript from './javascript';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'actionscript',
-	require: javascript,
 	base: javascript,
-	grammar () {
+	grammar (): Grammar {
 		return {
 			'keyword':
 				/\b(?:as|break|case|catch|class|const|default|delete|do|dynamic|each|else|extends|final|finally|for|function|get|if|implements|import|in|include|instanceof|interface|internal|is|namespace|native|new|null|override|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|use|var|void|while|with)\b/,

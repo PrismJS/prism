@@ -22,17 +22,17 @@ export default class Language extends EventTarget {
 			this.require.add(this.def.base);
 		}
 		if (this.def.require) {
-			this.require.addAll(this.def.require);
+			this.require.addAll(this.def.require as LanguageProto | readonly LanguageProto[]);
 		}
 
 		for (let def of this.require) {
-			let language = this.registry.peek(def);
+			let language = this.registry.peek(def as LanguageProto);
 			if (language) {
 				// Already resolved
 				this.languages[def.id] = language;
 			}
 			else {
-				this.registry.add(def);
+				this.registry.add(def as LanguageProto);
 				defineLazyProperty(this.languages, def.id, () => {
 					return this.registry.get(def.id)!;
 				});
@@ -57,14 +57,14 @@ export default class Language extends EventTarget {
 		}
 
 		for (let id of this.optional) {
-			let language = this.registry.peek(def);
+			let language = this.registry.peek(id);
 			if (language) {
 				this.languages[id] = language;
 			}
 			else {
 				this.registry.whenDefined(id).then(def => {
 					defineLazyProperty(this.languages, id, () => {
-						return this.registry.get(def);
+						return this.registry.get(def as LanguageProto) as Language;
 					});
 				});
 			}
@@ -106,7 +106,7 @@ export default class Language extends EventTarget {
 		// Lazily evaluate grammar
 		const def = this.def;
 
-		let { id, grammar } = def;
+		let { grammar } = def;
 		let base = this.base;
 
 		if (typeof grammar === 'function') {
@@ -116,20 +116,20 @@ export default class Language extends EventTarget {
 				getLanguage: (id: string) => {
 					return this.registry.get(id);
 				},
-			});
+			} as GrammarOptions);
 		}
 
 		if (base) {
-			grammar = extend(base.grammar, id, grammar);
+			grammar = extend(base.grammar, grammar);
 		}
 
 		if (def.grammar === grammar) {
 			// We need these to be separate so that any code modifying them doesn't affect other instances
-			grammar = deepClone(grammar, id);
+			grammar = deepClone(grammar);
 		}
 
 		// This will replace the getter with a writable property
-		return (this.grammar = grammar);
+		return (this.grammar = grammar as Grammar);
 	}
 
 	set grammar (grammar: Grammar) {
@@ -153,5 +153,6 @@ export interface LanguageProto<Id extends string = string> extends ComponentProt
 	extends?: string | readonly string[];
 }
 
+export type { Language };
 export type Languages = Record<string, Language>;
 export type LanguageLike = Language | LanguageProto;

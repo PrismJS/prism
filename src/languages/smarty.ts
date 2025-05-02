@@ -1,6 +1,6 @@
 import { embeddedIn } from '../shared/languages/templating';
 import markup from './markup';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'smarty',
@@ -105,7 +105,7 @@ export default {
 				greedy: true,
 				inside: smarty,
 			},
-			$tokenize: embeddedIn('markup'),
+			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 		};
 	},
 } as LanguageProto<'smarty'>;

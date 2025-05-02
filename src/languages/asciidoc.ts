@@ -212,25 +212,25 @@ export default {
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
 		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
-			const o: Grammar = {};
+			const o: Record<string, unknown> = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}
-			return o;
+			return o as Grammar;
 		}
 
-		attributes.inside['interpreted'].inside$rest = copyFromAsciiDoc(
+		attributes.inside['interpreted'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',
 			'entity'
 		);
 
-		asciidoc['passthrough-block'].inside$rest = copyFromAsciiDoc('macro');
+		asciidoc['passthrough-block'].inside.$rest = copyFromAsciiDoc('macro');
 
-		asciidoc['literal-block'].inside$rest = copyFromAsciiDoc('callout');
+		asciidoc['literal-block'].inside.$rest = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside$rest = copyFromAsciiDoc(
+		asciidoc['table'].inside.$rest = copyFromAsciiDoc(
 			'comment-block',
 			'passthrough-block',
 			'literal-block',
@@ -253,7 +253,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['other-block'].inside$rest = copyFromAsciiDoc(
+		asciidoc['other-block'].inside.$rest = copyFromAsciiDoc(
 			'table',
 			'list-punctuation',
 			'indented-block',
@@ -271,7 +271,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['title'].inside$rest = copyFromAsciiDoc(
+		asciidoc['title'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',

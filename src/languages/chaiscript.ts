@@ -1,13 +1,13 @@
 import { toArray } from '../util/iterables';
 import clike from './clike';
 import cpp from './cpp';
-import type { Grammar, GrammarOptions, LanguageProto, Languages } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
 	require: cpp,
 	base: clike,
-	grammar ({ languages }) {
+	grammar ({ languages }: GrammarOptions): Grammar {
 		return {
 			'string': {
 				pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'/,
@@ -41,33 +41,32 @@ export default {
 				},
 				'string': {
 					'string-interpolation': {
-				pattern:
-					/(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'interpolation': {
 						pattern:
-							/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/,
+							/(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,
 						lookbehind: true,
+						greedy: true,
 						inside: {
-							'interpolation-expression': {
-								pattern: /(^\$\{)[\s\S]+(?=\}$)/,
+							'interpolation': {
+								pattern:
+									/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/,
 								lookbehind: true,
-								inside: 'chaiscript',
+								inside: {
+									'interpolation-expression': {
+										pattern: /(^\$\{)[\s\S]+(?=\}$)/,
+										lookbehind: true,
+										inside: 'chaiscript',
+									},
+									'interpolation-punctuation': {
+										pattern: /^\$\{|\}$/,
+										alias: 'punctuation',
+									},
+								},
 							},
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'punctuation',
-							},
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
 			},
-		},
-			},
-		}
-
+		};
 	},
 } as LanguageProto<'chaiscript'>;

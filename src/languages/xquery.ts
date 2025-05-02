@@ -183,7 +183,7 @@ export default {
 			inside: 'xquery',
 		};
 
-		xquery$tokenize = (code, grammar, Prism) => {
+		xquery.$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;

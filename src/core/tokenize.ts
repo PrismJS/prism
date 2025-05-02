@@ -1,4 +1,3 @@
-import { rest, tokenize as tokenizer } from '../shared/symbols';
 import { LinkedList } from './linked-list';
 import singleton from './prism';
 import { Token } from './token';
@@ -32,7 +31,7 @@ import type { TokenStream } from './token';
  */
 export function tokenize (this: Prism, text: string, grammar: Grammar): TokenStream {
 	const prism = this ?? singleton;
-	const customTokenize = grammar[tokenizer];
+	const customTokenize = grammar.$tokenize;
 	if (customTokenize) {
 		return customTokenize(text, grammar, prism);
 	}
@@ -66,7 +65,10 @@ function _matchGrammar (
 			continue;
 		}
 
-		const patterns = Array.isArray(tokenValue) ? tokenValue : [tokenValue];
+		const patterns = (Array.isArray(tokenValue) ? tokenValue : [tokenValue]) as (
+			| RegExpLike
+			| GrammarToken
+		)[];
 
 		for (let j = 0; j < patterns.length; ++j) {
 			if (rematch && rematch.cause === `${token},${j}`) {

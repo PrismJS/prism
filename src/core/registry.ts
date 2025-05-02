@@ -1,6 +1,7 @@
 // TODO make sure the functionality is covered elsewhere and remove this file
 import { extend } from '../shared/language-util';
-import { forEach, kebabToCamelCase } from '../shared/util';
+import { kebabToCamelCase } from '../shared/util';
+import { forEach } from '../util/iterables';
 import type { ComponentProto, Grammar } from '../types';
 import type Prism from './classes/prism';
 
@@ -167,8 +168,8 @@ export class Registry {
 
 		return (entry.evaluatedGrammar = grammar({
 			getLanguage: required,
-			getOptionalLanguage: id => this.getLanguage(id),
-			extend: (id, ref) => extend(required(id), id, ref),
+			getOptionalLanguage: (id: string) => this.getLanguage(id),
+			extend: (id: string, ref: Grammar) => extend(required(id), ref),
 		}));
 	}
 }

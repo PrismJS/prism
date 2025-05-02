@@ -75,8 +75,8 @@ export default {
 			'punctuation': /[{}()\[\];:,]/,
 		};
 
-		inside['interpolation'].inside$rest = inside;
-		inside['func'].inside$rest = inside;
+		inside['interpolation'].inside.$rest = inside;
+		inside['func'].inside.$rest = inside;
 
 		return {
 			'atrule-declaration': {

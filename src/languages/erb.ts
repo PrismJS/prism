@@ -1,7 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating';
 import markup from './markup';
 import ruby from './ruby';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'erb',
@@ -22,6 +22,6 @@ export default {
 				},
 			},
 		},
-		$tokenize: embeddedIn('markup'),
+		$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 	},
 } as LanguageProto<'erb'>;
