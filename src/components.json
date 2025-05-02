@@ -896,10 +896,6 @@
 			"title": "PHPDoc",
 			"owner": "RunDevelopment"
 		},
-		"php-extras": {
-			"title": "PHP Extras",
-			"owner": "milesj"
-		},
 		"plant-uml": {
 			"title": "PlantUML",
 			"owner": "RunDevelopment"

@@ -4,9 +4,7 @@ import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'php',
-	require: markup,
 	base: markup,
-	optional: 'php-extras',
 	grammar (): Grammar {
 		/**
 		 * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
@@ -52,6 +50,19 @@ export default {
 				inside: 'phpdoc',
 			},
 			'comment': comment,
+			'this': {
+				pattern: /\$this\b/,
+				alias: 'keyword',
+			},
+			'global':
+				/\$(?:GLOBALS|HTTP_RAW_POST_DATA|_(?:COOKIE|ENV|FILES|GET|POST|REQUEST|SERVER|SESSION)|argc|argv|http_response_header|php_errormsg)\b/,
+			'scope': {
+				pattern: /\b[\w\\]+::/,
+				inside: {
+					'keyword': /\b(?:parent|self|static)\b/,
+					'punctuation': /::|\\/,
+				},
+			},
 			'variable': /\$+(?:\w+\b|(?=\{))/,
 			'package': {
 				pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
