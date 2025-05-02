@@ -4,6 +4,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'fsharp',
+	alias: 'f#',
 	require: clike,
 	optional: 'xml-doc',
 	grammar ({ extend, getOptionalLanguage }) {

@@ -36,7 +36,7 @@ export default {
 	require: clike,
 	optional: 'xml-doc',
 	alias: ['cs', 'dotnet'],
-	grammar ({ extend, getOptionalLanguage }) {
+	alias: ['c#', 'cs', 'dotnet'],
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 		const keywordKinds = {
 			// keywords which represent a return or variable type

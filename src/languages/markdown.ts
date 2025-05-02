@@ -98,12 +98,7 @@ export default {
 						/^```(?<codeLanguage>[a-z-]+).+(?:\n|\r\n?)(?<codeBlock>[\s\S]*)?(?:\n|\r\n?)```$/i,
 					inside: {
 						'code-block': {
-							$language: groups => {
-								let ret = groups.codeLanguage;
-								// do some replacements to support C++, C#, and F#
-								ret = ret.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
-								return ret;
-							},
+							$language: groups => groups.codeLanguage,
 						},
 						'punctuation': /```/,
 					},
