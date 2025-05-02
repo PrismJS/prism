@@ -5,6 +5,7 @@ import type { Grammar, GrammarTokens } from '../types';
 /**
  * Apply a patch to a grammar to modify it.
  * The patch and the grammar may be the same object.
+ *
  * @param grammar
  * @param patch
  * @returns
@@ -18,7 +19,7 @@ export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Gramm
 				// Deep key
 				const path = key.split('/');
 				const lastKey = path.pop();
-				let obj = path.reduce((acc, key) => acc?.[key], grammar);
+				let obj = path.reduce((acc, key) => acc?.[key] as Grammar, grammar);
 
 				if (obj) {
 					insertBefore(obj, lastKey as string, tokens as GrammarTokens);
@@ -39,7 +40,7 @@ export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Gramm
 				// Deep key
 				const path = key.split('/');
 				const lastKey = path.pop();
-				let obj = path.reduce((acc, key) => acc?.[key], grammar);
+				let obj = path.reduce((acc, key) => acc?.[key] as Grammar, grammar);
 
 				if (obj) {
 					insertAfter(obj, lastKey as string, tokens as GrammarTokens);
