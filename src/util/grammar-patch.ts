@@ -2,10 +2,10 @@ import { insertBefore } from './insert-before';
 import { deepMerge } from './objects';
 import type { Grammar, GrammarTokens } from '../types';
 
-export function resolveGrammar (grammar: Grammar) {
-	if (grammar.$insertBefore) {
-		for (const key in grammar.$insertBefore) {
-			const tokens = grammar.$insertBefore[key];
+export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Grammar {
+	if (patch.$insertBefore) {
+		for (const key in patch.$insertBefore) {
+			const tokens = patch.$insertBefore[key];
 			if (tokens) {
 				insertBefore(grammar, key, tokens as GrammarTokens);
 			}
@@ -13,17 +13,17 @@ export function resolveGrammar (grammar: Grammar) {
 		delete grammar.$insertBefore;
 	}
 
-	if (grammar.$delete) {
-		for (const key of grammar.$delete) {
+	if (patch.$delete) {
+		for (const key of patch.$delete) {
 			// TODO support deep keys
 			delete grammar[key as string];
 		}
 		delete grammar.$delete;
 	}
 
-	if (grammar.$merge) {
-		for (const key in grammar.$merge) {
-			const tokens = grammar.$merge[key];
+	if (patch.$merge) {
+		for (const key in patch.$merge) {
+			const tokens = patch.$merge[key];
 
 			if (grammar[key]) {
 				deepMerge(grammar[key], tokens);

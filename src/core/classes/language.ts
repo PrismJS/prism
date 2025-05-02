@@ -1,6 +1,6 @@
 import { extend } from '../../util/extend';
+import { grammarPatch } from '../../util/grammar-patch';
 import { deepClone, defineLazyProperty } from '../../util/objects';
-import { resolveGrammar } from '../../util/resolve-grammar';
 import List from './list';
 import type { Grammar, GrammarOptions } from '../../types';
 import type LanguageRegistry from './language-registry';
@@ -87,7 +87,7 @@ export default class Language extends EventTarget {
 			);
 		}
 
-		defineLazyProperty(this, 'resolvedGrammar', () => resolveGrammar(this.grammar));
+		defineLazyProperty(this, 'resolvedGrammar', () => grammarPatch(this.grammar));
 	}
 
 	resolve () {}
@@ -154,7 +154,7 @@ export default class Language extends EventTarget {
 	}
 
 	get resolvedGrammar () {
-		return (this.resolvedGrammar = resolveGrammar(this.grammar));
+		return (this.resolvedGrammar = grammarPatch(this.grammar));
 	}
 
 	set resolvedGrammar (resolvedGrammar: Grammar) {
