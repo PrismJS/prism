@@ -103,7 +103,7 @@ export default {
 					'style': inlineEmbedded('style', 'css'),
 					'script': inlineEmbedded('script', 'javascript'),
 				},
-				'tag/attr-value': {
+				'tag/inside/attr-value': {
 					'special-attr': [
 						attributeEmbedded('style', 'css'),
 						// add attribute support for all DOM events.
