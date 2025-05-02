@@ -42,8 +42,8 @@ export default class Prism {
 
 		const reportError: PrismConfig['errorHandler'] = this.config.errorHandler;
 
-		this.languageRegistry = new LanguageRegistry({ path: this.config.languagePath as string });
-		this.pluginRegistry = new PluginRegistry({ path: this.config.pluginPath as string });
+		this.languageRegistry = new LanguageRegistry({ path: this.config.languagePath as string, preload: this.config.languages });
+		this.pluginRegistry = new PluginRegistry({ path: this.config.pluginPath as string, preload: this.config.plugins });
 
 		// Preload languages
 		const languages = this.config.languages;
