@@ -44,24 +44,6 @@ export default class Language extends EventTarget {
 		}
 
 		for (let def of this.require) {
-			Object.defineProperty(this.languages, def.id, {
-				enumerable: true,
-				configurable: true,
-				get: () => {
-					let language = this.registry.peek(def as LanguageProto);
-					if (language) {
-						// Already resolved
-						this.languages[def.id] = language;
-					}
-					else {
-						this.registry.add(def as LanguageProto);
-						defineLazyProperty(this.languages, def.id, () => {
-							return this.registry.getLanguage(def.id)!;
-						});
-					}
-				},
-			});
-
 			defineLazyProperty(this.languages, def.id, () => {
 				let language = this.registry.peek(def as LanguageProto);
 				if (language) {
