@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
+import { insertBefore } from '../util/insert-before';
 import { toArray } from '../util/iterables';
 import clike from './clike';
 import type { LanguageProto } from '../types';

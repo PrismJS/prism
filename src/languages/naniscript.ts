@@ -1,5 +1,5 @@
 import { getTextContent } from '../core/token';
-import { withoutTokenize } from '../shared/language-util';
+import { withoutTokenize } from '../util/without-tokenize';
 import type { LanguageProto } from '../types';
 
 function isBracketsBalanced (input: string): boolean {
@@ -134,7 +134,7 @@ export default {
 				},
 			},
 
-			$tokenize(code, grammar, Prism) {
+			$tokenize (code, grammar, Prism) {
 				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 				tokens.forEach(token => {
 					if (typeof token !== 'string' && token.type === 'generic-text') {

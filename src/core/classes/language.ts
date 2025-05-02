@@ -1,5 +1,6 @@
-import { extend, resolveGrammar } from '../../shared/language-util';
+import { extend } from '../../util/extend';
 import { deepClone, defineLazyProperty } from '../../util/objects';
+import { resolveGrammar } from '../../util/resolve-grammar';
 import List from './list';
 import type { Grammar, GrammarOptions } from '../../types';
 import type LanguageRegistry from './language-registry';

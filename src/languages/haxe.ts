@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/insert-before';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 

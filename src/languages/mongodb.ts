@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/insert-before';
 import javascript from './javascript';
 import type { GrammarToken, LanguageProto } from '../types';
 

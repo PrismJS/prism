@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import ts from 'typescript';
+import fs from 'fs';
+import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
-import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile, copyFile } from 'fs/promises';
 import MagicString from 'magic-string';
-import path from 'path';
 import { rollup } from 'rollup';
-import { fileURLToPath } from 'url';
+import ts from 'typescript';
 import { webfont } from 'webfont';
 import { toArray } from '../src/util/iterables';
 import { components } from './components';

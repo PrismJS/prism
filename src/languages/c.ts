@@ -4,7 +4,6 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 export default {
 	id: 'c',
 	base: clike,
-	optional: 'opencl-extensions',
 	grammar (): Grammar {
 		const string: GrammarToken = {
 			// https://en.cppreference.com/w/c/language/string_literal

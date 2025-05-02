@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
+import { insertBefore } from '../util/insert-before';
 import markup from './markup';
 import php from './php';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';

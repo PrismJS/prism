@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/insert-before';
 import javadoclike from './javadoclike';
 import type { LanguageProto } from '../types';
 

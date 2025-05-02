@@ -1,4 +1,4 @@
-import { withoutTokenize } from '../shared/language-util';
+import { withoutTokenize } from '../util/without-tokenize';
 import type { Token } from '../core';
 import type { LanguageProto } from '../types';
 
@@ -66,7 +66,7 @@ export default {
 		'object': /\w+(?=\s*\{)/,
 		'punctuation': /[!(){}\[\]:=,]/,
 		'property': /\w+/,
-		$tokenize(code, grammar, Prism) {
+		$tokenize (code, grammar, Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 			function isToken (token: Token | string): token is Token {

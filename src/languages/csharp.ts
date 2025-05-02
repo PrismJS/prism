@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/insert-before';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
@@ -112,7 +112,7 @@ export default {
 		const regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 		const verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
 
-		const csharp = extend('clike', {
+		const csharp = {
 			'string': [
 				{
 					pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
@@ -198,7 +198,7 @@ export default {
 				/(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
 			'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
 			'punctuation': /\?\.?|::|[{}[\];(),.:]/,
-		});
+		};
 
 		insertBefore(csharp, 'number', {
 			'range': {

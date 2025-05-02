@@ -1,6 +1,6 @@
 // TODO make sure the functionality is covered elsewhere and remove this file
-import { extend } from '../shared/language-util';
 import { kebabToCamelCase } from '../shared/util';
+import { extend } from '../util/extend';
 import { forEach } from '../util/iterables';
 import type { ComponentProto, Grammar } from '../types';
 import type Prism from './classes/prism';
