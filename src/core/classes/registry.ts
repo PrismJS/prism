@@ -135,7 +135,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 			return this.loading[id];
 		}
 
-		let loadingComponent = import(this.path + id)
+		let loadingComponent = import(this.path + id + '.js')
 			.then(m => {
 				let component: T = m.default ?? m;
 				this.add(component, id);
