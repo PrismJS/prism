@@ -99,7 +99,7 @@ export interface CloneOptions {
 }
 
 export function deepClone (obj: any, options: CloneOptions = {}) {
-	if (!obj) {
+	if (!obj || typeof obj !== 'object') {
 		return obj;
 	}
 
