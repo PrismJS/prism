@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import turtle from './turtle';
 import type { LanguageProto } from '../types';
 

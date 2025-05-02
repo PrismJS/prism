@@ -1,5 +1,5 @@
 import { getTextContent, Token } from '../core/token';
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import { withoutTokenize } from '../util/without-tokenize';
 import javascript from './javascript';
 import markup from './markup';

@@ -28,28 +28,14 @@ import type { Grammar, GrammarTokens } from '../types';
  * });
  * ```
  *
- * ## Special cases
- *
- * If the grammars of `grammar` and `insert` have tokens with the same name, the tokens in `grammar`'s grammar
- * will be ignored.
- *
- * This behavior can be used to insert tokens after `before`:
- *
- * ```js
- * insertBefore(markup, 'comment', {
- *     'comment': markup.comment,
- *     // tokens after 'comment'
- * });
- * ```
- *
  * @param grammar The grammar to be modified.
- * @param before The key to insert before.
+ * @param beforeKey The key to insert before.
  * @param insert An object containing the key-value pairs to be inserted.
  */
-export function insertBefore (grammar: Grammar, before: string, insert: GrammarTokens) {
-	if (!(before in grammar)) {
+export function insertBefore (grammar: Grammar, beforeKey: string, insert: GrammarTokens) {
+	if (!(beforeKey in grammar)) {
 		// TODO support deep keys
-		throw new Error(`"${before}" has to be a key of grammar.`);
+		throw new Error(`"${beforeKey}" has to be a key of grammar.`);
 	}
 
 	const grammarEntries = Object.entries(grammar);
@@ -61,7 +47,7 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
 
 	// insert keys again
 	for (const [key, value] of grammarEntries) {
-		if (key === before) {
+		if (key === beforeKey) {
 			for (const insertKey of Object.keys(insert)) {
 				grammar[insertKey] = insert[insertKey];
 			}
@@ -70,6 +56,34 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
 		// Do not insert tokens which also occur in `insert`. See #1525
 		if (!insert.hasOwnProperty(key)) {
 			grammar[key] = value;
+		}
+	}
+}
+
+export function insertAfter (grammar: Grammar, afterKey: string, insert: GrammarTokens) {
+	if (!(afterKey in grammar)) {
+		// TODO support deep keys
+		throw new Error(`"${afterKey}" has to be a key of grammar.`);
+	}
+
+	const grammarEntries = Object.entries(grammar);
+
+	// delete all keys in `grammar`
+	for (const [key] of grammarEntries) {
+		delete grammar[key];
+	}
+
+	// insert keys again
+	for (const [key, value] of grammarEntries) {
+		// Do not insert tokens which also occur in `insert`. See #1525
+		if (!insert.hasOwnProperty(key)) {
+			grammar[key] = value;
+		}
+
+		if (key === afterKey) {
+			for (const insertKey of Object.keys(insert)) {
+				grammar[insertKey] = insert[insertKey];
+			}
 		}
 	}
 }

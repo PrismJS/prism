@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import { toArray } from '../util/iterables';
 import javascript from './javascript';
 import type { Grammar, LanguageProto } from '../types';

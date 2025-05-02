@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import markup from './markup';
 import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
 

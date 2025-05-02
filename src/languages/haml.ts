@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import ruby from './ruby';
 import type { Grammar, LanguageProto } from '../types';
 

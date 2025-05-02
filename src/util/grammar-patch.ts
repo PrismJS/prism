@@ -1,16 +1,55 @@
-import { insertBefore } from './insert-before';
+import { insertAfter, insertBefore } from './insert';
 import { deepMerge } from './objects';
 import type { Grammar, GrammarTokens } from '../types';
 
+/**
+ * Apply a patch to a grammar to modify it.
+ * The patch and the grammar may be the same object.
+ * @param grammar
+ * @param patch
+ * @returns
+ */
 export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Grammar {
 	if (patch.$insertBefore) {
 		for (const key in patch.$insertBefore) {
 			const tokens = patch.$insertBefore[key];
-			if (tokens) {
+
+			if (key?.includes('/')) {
+				// Deep key
+				const path = key.split('/');
+				const lastKey = path.pop();
+				let obj = path.reduce((acc, key) => acc?.[key], grammar);
+
+				if (obj) {
+					insertBefore(obj, lastKey as string, tokens as GrammarTokens);
+				}
+			}
+			else if (tokens) {
 				insertBefore(grammar, key, tokens as GrammarTokens);
 			}
 		}
 		delete grammar.$insertBefore;
+	}
+
+	if (patch.$insertAfter) {
+		for (const key in patch.$insertAfter) {
+			const tokens = patch.$insertAfter[key];
+
+			if (key?.includes('/')) {
+				// Deep key
+				const path = key.split('/');
+				const lastKey = path.pop();
+				let obj = path.reduce((acc, key) => acc?.[key], grammar);
+
+				if (obj) {
+					insertAfter(obj, lastKey as string, tokens as GrammarTokens);
+				}
+			}
+			else if (tokens) {
+				insertAfter(grammar, key, tokens as GrammarTokens);
+			}
+		}
+		delete grammar.$insertAfter;
 	}
 
 	if (patch.$delete) {

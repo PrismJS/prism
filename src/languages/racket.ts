@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import scheme from './scheme';
 import type { LanguageProto } from '../types';
 

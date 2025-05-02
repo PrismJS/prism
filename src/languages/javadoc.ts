@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/insert-before';
+import { insertBefore } from '../util/insert';
 import java from './java';
 import javadoclike from './javadoclike';
 import markup from './markup';
