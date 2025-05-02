@@ -34,9 +34,8 @@ function nested (pattern: string, depthLog2: number) {
 export default {
 	id: 'csharp',
 	require: clike,
-	optional: 'xml-doc',
-	alias: ['cs', 'dotnet'],
 	alias: ['c#', 'cs', 'dotnet'],
+	grammar ({ languages }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 		const keywordKinds = {
 			// keywords which represent a return or variable type
@@ -111,6 +110,45 @@ export default {
 		const character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
 		const regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 		const verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
+
+		// attributes
+		const regularStringOrCharacter = regularString + '|' + character;
+		const regularStringCharacterOrComment = replace(
+			/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>/.source,
+			[regularStringOrCharacter]
+		);
+		const roundExpression = nested(
+			replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]),
+			2
+		);
+
+		// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/#attribute-targets
+		const attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/
+			.source;
+		const attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
+
+		// string interpolation
+		const formatString = /:[^}\r\n]+/.source;
+		// multi line
+		const mInterpolationRound = nested(
+			replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]),
+			2
+		);
+		const mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
+			mInterpolationRound,
+			formatString,
+		]);
+		// single line
+		const sInterpolationRound = nested(
+			replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [
+				regularStringOrCharacter,
+			]),
+			2
+		);
+		const sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
+			sInterpolationRound,
+			formatString,
+		]);
 
 		const csharp = {
 			'string': [
@@ -198,204 +236,205 @@ export default {
 				/(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
 			'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
 			'punctuation': /\?\.?|::|[{}[\];(),.:]/,
-		};
-
-		insertBefore(csharp, 'number', {
-			'range': {
-				pattern: /\.\./,
-				alias: 'operator',
-			},
-		});
-
-		insertBefore(csharp, 'punctuation', {
-			'named-parameter': {
-				pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
-				lookbehind: true,
-				alias: 'punctuation',
-			},
-		});
-
-		insertBefore(csharp, 'class-name', {
-			'namespace': {
-				// namespace Foo.Bar {}
-				// using Foo.Bar;
-				pattern: re(/(\b(?:namespace|using)\s+)<<0>>(?:\s*\.\s*<<0>>)*(?=\s*[;{])/.source, [
-					name,
-				]),
-				lookbehind: true,
-				inside: {
-					'punctuation': /\./,
+			$insertBefore: {
+				'string': {
+					'interpolation-string': [
+						{
+							pattern: re(
+								/(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source,
+								[mInterpolation]
+							),
+							lookbehind: true,
+							greedy: true,
+							inside: createInterpolationInside(mInterpolation, mInterpolationRound),
+						},
+						{
+							pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [
+								sInterpolation,
+							]),
+							lookbehind: true,
+							greedy: true,
+							inside: createInterpolationInside(sInterpolation, sInterpolationRound),
+						},
+					],
+					'char': {
+						pattern: RegExp(character),
+						greedy: true,
+					},
 				},
-			},
-			'type-expression': {
-				// default(Foo), typeof(Foo<Bar>), sizeof(int)
-				pattern: re(
-					/(\b(?:default|sizeof|typeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/
-						.source,
-					[nestedRound]
-				),
-				lookbehind: true,
-				alias: 'class-name',
-				inside: typeInside,
-			},
-			'return-type': {
-				// Foo<Bar> ForBar(); Foo IFoo.Bar() => 0
-				// int this[int index] => 0; T IReadOnlyList<T>.this[int index] => this[index];
-				// int Foo => 0; int Foo { get; set } = 0;
-				pattern: re(/<<0>>(?=\s+(?:<<1>>\s*(?:=>|[({]|\.\s*this\s*\[)|this\s*\[))/.source, [
-					typeExpression,
-					identifier,
-				]),
-				inside: typeInside,
-				alias: 'class-name',
-			},
-			'constructor-invocation': {
-				// new List<Foo<Bar[]>> { }
-				pattern: re(/(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
-				lookbehind: true,
-				inside: typeInside,
-				alias: 'class-name',
-			},
-			/*'explicit-implementation': {
+				'comment': {
+					'doc-comment': {
+						pattern: /\/\/\/.*/,
+						greedy: true,
+						alias: 'comment',
+						inside: {
+							// TODO use helper
+							get 'tag'() {
+								if (languages.markup) {
+									delete this['tag'];
+									return (this['tag'] = languages.markup['tag']);
+								}
+								return undefined;
+							},
+						},
+					},
+				},
+				'number': {
+					'range': {
+						pattern: /\.\./,
+						alias: 'operator',
+					},
+				},
+				'punctuation': {
+					'named-parameter': {
+						pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
+						lookbehind: true,
+						alias: 'punctuation',
+					},
+				},
+				'class-name': {
+					'namespace': {
+						// namespace Foo.Bar {}
+						// using Foo.Bar;
+						pattern: re(
+							/(\b(?:namespace|using)\s+)<<0>>(?:\s*\.\s*<<0>>)*(?=\s*[;{])/.source,
+							[name]
+						),
+						lookbehind: true,
+						inside: {
+							'punctuation': /\./,
+						},
+					},
+					'type-expression': {
+						// default(Foo), typeof(Foo<Bar>), sizeof(int)
+						pattern: re(
+							/(\b(?:default|sizeof|typeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/
+								.source,
+							[nestedRound]
+						),
+						lookbehind: true,
+						alias: 'class-name',
+						inside: typeInside,
+					},
+					'return-type': {
+						// Foo<Bar> ForBar(); Foo IFoo.Bar() => 0
+						// int this[int index] => 0; T IReadOnlyList<T>.this[int index] => this[index];
+						// int Foo => 0; int Foo { get; set } = 0;
+						pattern: re(
+							/<<0>>(?=\s+(?:<<1>>\s*(?:=>|[({]|\.\s*this\s*\[)|this\s*\[))/.source,
+							[typeExpression, identifier]
+						),
+						inside: typeInside,
+						alias: 'class-name',
+					},
+					'constructor-invocation': {
+						// new List<Foo<Bar[]>> { }
+						pattern: re(/(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
+						lookbehind: true,
+						inside: typeInside,
+						alias: 'class-name',
+					},
+					/*'explicit-implementation': {
 					// int IFoo<Foo>.Bar => 0; void IFoo<Foo<Foo>>.Foo<T>();
 					pattern: replace(/\b<<0>>(?=\.<<1>>)/, className, methodOrPropertyDeclaration),
 					inside: classNameInside,
 					alias: 'class-name'
 				},*/
-			'generic-method': {
-				// foo<Bar>()
-				pattern: re(/<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
-				inside: {
-					'function': re(/^<<0>>/.source, [name]),
-					'generic': {
-						pattern: RegExp(generic),
-						alias: 'class-name',
-						inside: typeInside,
-					},
-				},
-			},
-			'type-list': {
-				// The list of types inherited or of generic constraints
-				// class Foo<F> : Bar, IList<FooBar>
-				// where F : Bar, IList<int>
-				pattern: re(
-					/\b((?:<<0>>\s+<<1>>|record\s+<<1>>\s*<<5>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>|<<1>>\s*<<5>>|<<6>>)(?:\s*,\s*(?:<<3>>|<<4>>|<<6>>))*(?=\s*(?:where|[{;]|=>|$))/
-						.source,
-					[
-						typeDeclarationKeywords,
-						genericName,
-						name,
-						typeExpression,
-						keywords.source,
-						nestedRound,
-						/\bnew\s*\(\s*\)/.source,
-					]
-				),
-				lookbehind: true,
-				inside: {
-					'record-arguments': {
-						pattern: re(/(^(?!new\s*\()<<0>>\s*)<<1>>/.source, [
-							genericName,
-							nestedRound,
-						]),
-						lookbehind: true,
-						greedy: true,
-						inside: 'csharp',
-					},
-					'keyword': keywords,
-					'class-name': {
-						pattern: RegExp(typeExpression),
-						greedy: true,
-						inside: typeInside,
-					},
-					'punctuation': /[,()]/,
-				},
-			},
-			'preprocessor': {
-				pattern: /(^[\t ]*)#.*/m,
-				lookbehind: true,
-				alias: 'property',
-				inside: {
-					// highlight preprocessor directives as keywords
-					'directive': {
-						pattern:
-							/(#)\b(?:define|elif|else|endif|endregion|error|if|line|nullable|pragma|region|undef|warning)\b/,
-						lookbehind: true,
-						alias: 'keyword',
-					},
-				},
-			},
-		});
-
-		// attributes
-		const regularStringOrCharacter = regularString + '|' + character;
-		const regularStringCharacterOrComment = replace(
-			/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>/.source,
-			[regularStringOrCharacter]
-		);
-		const roundExpression = nested(
-			replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]),
-			2
-		);
-
-		// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/#attribute-targets
-		const attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/
-			.source;
-		const attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
-
-		insertBefore(csharp, 'class-name', {
-			'attribute': {
-				// Attributes
-				// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
-				pattern: re(
-					/((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/
-						.source,
-					[attrTarget, attr]
-				),
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'target': {
-						pattern: re(/^<<0>>(?=\s*:)/.source, [attrTarget]),
-						alias: 'keyword',
-					},
-					'attribute-arguments': {
-						pattern: re(/\(<<0>>*\)/.source, [roundExpression]),
-						inside: 'csharp',
-					},
-					'class-name': {
-						pattern: RegExp(identifier),
+					'generic-method': {
+						// foo<Bar>()
+						pattern: re(/<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
 						inside: {
-							'punctuation': /\./,
+							'function': re(/^<<0>>/.source, [name]),
+							'generic': {
+								pattern: RegExp(generic),
+								alias: 'class-name',
+								inside: typeInside,
+							},
 						},
 					},
-					'punctuation': /[:,]/,
-				},
-			},
-		});
+					'type-list': {
+						// The list of types inherited or of generic constraints
+						// class Foo<F> : Bar, IList<FooBar>
+						// where F : Bar, IList<int>
+						pattern: re(
+							/\b((?:<<0>>\s+<<1>>|record\s+<<1>>\s*<<5>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>|<<1>>\s*<<5>>|<<6>>)(?:\s*,\s*(?:<<3>>|<<4>>|<<6>>))*(?=\s*(?:where|[{;]|=>|$))/
+								.source,
+							[
+								typeDeclarationKeywords,
+								genericName,
+								name,
+								typeExpression,
+								keywords.source,
+								nestedRound,
+								/\bnew\s*\(\s*\)/.source,
+							]
+						),
+						lookbehind: true,
+						inside: {
+							'record-arguments': {
+								pattern: re(/(^(?!new\s*\()<<0>>\s*)<<1>>/.source, [
+									genericName,
+									nestedRound,
+								]),
+								lookbehind: true,
+								greedy: true,
+								inside: 'csharp',
+							},
+							'keyword': keywords,
+							'class-name': {
+								pattern: RegExp(typeExpression),
+								greedy: true,
+								inside: typeInside,
+							},
+							'punctuation': /[,()]/,
+						},
+					},
+					'preprocessor': {
+						pattern: /(^[\t ]*)#.*/m,
+						lookbehind: true,
+						alias: 'property',
+						inside: {
+							// highlight preprocessor directives as keywords
+							'directive': {
+								pattern:
+									/(#)\b(?:define|elif|else|endif|endregion|error|if|line|nullable|pragma|region|undef|warning)\b/,
+								lookbehind: true,
+								alias: 'keyword',
+							},
+						},
+					},
 
-		// string interpolation
-		const formatString = /:[^}\r\n]+/.source;
-		// multi line
-		const mInterpolationRound = nested(
-			replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]),
-			2
-		);
-		const mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
-			mInterpolationRound,
-			formatString,
-		]);
-		// single line
-		const sInterpolationRound = nested(
-			replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [
-				regularStringOrCharacter,
-			]),
-			2
-		);
-		const sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
-			sInterpolationRound,
-			formatString,
-		]);
+					'attribute': {
+						// Attributes
+						// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
+						pattern: re(
+							/((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/
+								.source,
+							[attrTarget, attr]
+						),
+						lookbehind: true,
+						greedy: true,
+						inside: {
+							'target': {
+								pattern: re(/^<<0>>(?=\s*:)/.source, [attrTarget]),
+								alias: 'keyword',
+							},
+							'attribute-arguments': {
+								pattern: re(/\(<<0>>*\)/.source, [roundExpression]),
+								inside: 'csharp',
+							},
+							'class-name': {
+								pattern: RegExp(identifier),
+								inside: {
+									'punctuation': /\./,
+								},
+							},
+							'punctuation': /[:,]/,
+						},
+					},
+				},
+			}, // end of $insertBefore
+		};
 
 		function createInterpolationInside (interpolation: string, interpolationRound: string) {
 			return {
@@ -425,36 +464,6 @@ export default {
 			};
 		}
 
-		insertBefore(csharp, 'string', {
-			'interpolation-string': [
-				{
-					pattern: re(
-						/(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source,
-						[mInterpolation]
-					),
-					lookbehind: true,
-					greedy: true,
-					inside: createInterpolationInside(mInterpolation, mInterpolationRound),
-				},
-				{
-					pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [
-						sInterpolation,
-					]),
-					lookbehind: true,
-					greedy: true,
-					inside: createInterpolationInside(sInterpolation, sInterpolationRound),
-				},
-			],
-			'char': {
-				pattern: RegExp(character),
-				greedy: true,
-			},
-		});
-
-		insertBefore(csharp, 'comment', {
-			'doc-comment': getOptionalLanguage('xml-doc')?.slash,
-		});
-
 		return csharp;
 	},
-} as LanguageProto<'csharp'>;
+} satisfies LanguageProto<'csharp'>;

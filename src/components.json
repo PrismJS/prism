@@ -1297,10 +1297,6 @@
 			},
 			"owner": "freakmaxi"
 		},
-		"xml-doc": {
-			"title": "XML doc (.net)",
-			"owner": "RunDevelopment"
-		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
 			"owner": "Golmote"
