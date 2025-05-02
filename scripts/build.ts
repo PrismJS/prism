@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import fs from 'fs';
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
