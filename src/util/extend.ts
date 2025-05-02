@@ -1,5 +1,5 @@
 import { deepClone } from './objects';
-import type { Grammar } from '../types';
+import type { Grammar, GrammarSpecial } from '../types';
 
 /**
  * Creates a deep copy of the language with the given id and appends the given tokens.
@@ -42,6 +42,34 @@ export function extend (base: Grammar, grammar: Grammar): Grammar {
 
 	if (grammar.$insertBefore) {
 		lang.$insertBefore = Object.assign(lang.$insertBefore ?? {}, grammar.$insertBefore);
+	}
+	i
+	f (grammar.$insertAfter) {
+		lang.$insertAfter = Object.assign(lang.$insertAfter ?? {}, grammar.$insertAfter);
+	}
+
+	if (grammar.$insert) {
+		// Syntactic sugar for $insertBefore/$insertAfter
+		for (let tokenName in grammar.$insert) {
+			let def = grammar.$insert[tokenName] as Grammar;
+			let { $before, $after, ...token } = def;
+			let relToken = $before || $after;
+			let all = $before ? '$insertBefore' : '$insertAfter';
+			lang[all] ??= {};
+
+			if (Array.isArray(relToken)) {
+				// Insert in multiple places
+				for (let t of relToken) {
+					lang[all][t][tokenName] = token;
+				}
+			}
+			else if (relToken) {
+				lang[all][relToken][tokenName] = token;
+			}
+			else {
+				lang[tokenName] = token;
+			}
+		}
 	}
 
 	if (grammar.$delete) {

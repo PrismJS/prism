@@ -1,14 +1,14 @@
+import type { Language, LanguageLike, LanguageProto, Languages } from './core/classes/language';
+import type { PluginProto } from './core/classes/plugin-registry';
+import type { Prism } from './core/classes/prism';
 import type { TokenStream } from './core/token';
 
-import type { Prism } from './core/classes/prism';
 export type { Prism } from './core/classes/prism';
 
-import type { Language, Languages, LanguageProto, LanguageLike } from './core/classes/language';
 export type { Language, Languages, LanguageProto, LanguageLike };
 
 export type { ComponentRegistryOptions, ComponentProtoBase } from './core/classes/registry';
 
-import type { PluginProto } from './core/classes/plugin-registry';
 export type { PluginProto };
 
 export type { KebabToCamelCase } from './util/types';
@@ -18,7 +18,6 @@ export type ComponentProto = LanguageProto | PluginProto;
 export interface PlainObject {
 	[key: string]: unknown;
 }
-
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Language;
@@ -72,7 +71,7 @@ export interface GrammarToken {
 	/**
 	 * The regular expression of the token.
 	 */
-	pattern: RegExpLike;
+	pattern: RegExp;
 
 	/**
 	 * If `true`, then the first capturing group of `pattern` will (effectively) behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
@@ -114,9 +113,17 @@ export interface GrammarSpecial {
 	 */
 	$rest?: Grammar | string | null;
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
+	$insert?: GrammarTokens;
+	$before?: TokenName | TokenName[];
+	$after?: TokenName | TokenName[];
 	$insertBefore?: GrammarTokens;
-	$delete?: (string | undefined)[];
+	$insertAfter?: GrammarTokens;
+	$delete?: TokenName[];
 	$merge?: GrammarTokens;
+}
+
+export interface GrammarLanguageReference {
+	$language: string | ((any) => string);
 }
 
 export type Grammar = GrammarTokens & GrammarSpecial;

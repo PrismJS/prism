@@ -1,4 +1,3 @@
-import { deepClone, deepMerge } from './objects';
 import type { Grammar, GrammarTokens } from '../types';
 
 /**

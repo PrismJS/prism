@@ -79,8 +79,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	 * Get resolved language or null if it doesn't exist
 	 * If definition is loaded but not yet resolved, it will be resolved and returned.
 	 */
-	// FIXME: This method overrides the get() method from the base class (ComponentRegistry), but it has a different signature. TS complains about it.
-	get (idOrDef: string | LanguageProto): Language | null {
+	getLanguage (idOrDef: string | LanguageProto): Language | null {
 		let languageOrDef = this.peek(idOrDef);
 
 		if (languageOrDef instanceof Language) {

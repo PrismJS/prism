@@ -26,20 +26,6 @@ export default class Language extends EventTarget {
 			this.require.addAll(this.def.require as LanguageProto | readonly LanguageProto[]);
 		}
 
-		for (let def of this.require) {
-			let language = this.registry.peek(def as LanguageProto);
-			if (language) {
-				// Already resolved
-				this.languages[def.id] = language;
-			}
-			else {
-				this.registry.add(def as LanguageProto);
-				defineLazyProperty(this.languages, def.id, () => {
-					return this.registry.get(def.id)!;
-				});
-			}
-		}
-
 		if (this.def.optional) {
 			this.optional.addAll(this.def.optional);
 
@@ -57,18 +43,48 @@ export default class Language extends EventTarget {
 			this.optional.addAll(this.def.extends);
 		}
 
+		for (let def of this.require) {
+			Object.defineProperty(this.languages, def.id, {
+				enumerable: true,
+				configurable: true,
+				get: () => {
+					let language = this.registry.peek(def as LanguageProto);
+					if (language) {
+						// Already resolved
+						this.languages[def.id] = language;
+					}
+					else {
+						this.registry.add(def as LanguageProto);
+						defineLazyProperty(this.languages, def.id, () => {
+							return this.registry.getLanguage(def.id)!;
+						});
+					}
+				},
+			});
+
+			defineLazyProperty(this.languages, def.id, () => {
+				let language = this.registry.peek(def as LanguageProto);
+				if (language) {
+					// Already resolved
+					return language;
+				}
+				else {
+					this.registry.add(def as LanguageProto);
+					return this.registry.getLanguage(def.id)!;
+				}
+			});
+		}
+
 		for (let id of this.optional) {
 			let language = this.registry.peek(id);
-			if (language) {
-				this.languages[id] = language;
-			}
-			else {
-				this.registry.whenDefined(id).then(def => {
-					defineLazyProperty(this.languages, id, () => {
-						return this.registry.get(def as LanguageProto) as Language;
-					});
-				});
-			}
+			defineLazyProperty(
+				this.languages,
+				id,
+				() => {
+					return this.registry.getLanguage(id)!;
+				},
+				language ?? this.registry.whenDefined(id)
+			);
 		}
 
 		defineLazyProperty(this, 'resolvedGrammar', () => resolveGrammar(this.grammar));
@@ -93,7 +109,7 @@ export default class Language extends EventTarget {
 			return null;
 		}
 
-		return this.registry.get(this.def.base.id) ?? null;
+		return this.registry.getLanguage(this.def.base.id) ?? null;
 	}
 
 	get extends () {
@@ -115,7 +131,7 @@ export default class Language extends EventTarget {
 				base,
 				languages: this.languages,
 				getLanguage: (id: string) => {
-					return this.registry.get(id);
+					return this.languages[id] ?? this.registry.getLanguage(id);
 				},
 			} as GrammarOptions);
 		}

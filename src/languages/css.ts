@@ -1,14 +1,12 @@
-import { insertBefore } from '../util/insert-before';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'css',
-	optional: 'css-extras',
-	grammar ({ getOptionalLanguage }) {
+	grammar (): Grammar {
 		const string =
 			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
-		const css = {
+		return {
 			'comment': /\/\*[\s\S]*?\*\//,
 			'atrule': {
 				pattern: RegExp(
@@ -85,12 +83,5 @@ export default {
 			},
 			'punctuation': /[(){};:,]/,
 		};
-
-		const extras = getOptionalLanguage('css-extras');
-		if (extras) {
-			insertBefore(css, 'function', extras);
-		}
-
-		return css;
 	},
 } as LanguageProto<'css'>;

@@ -38,6 +38,7 @@ export default {
 								},
 							},
 							'code': {
+								// TODO $language
 								pattern: /(=)[\s\S]*(?=\]$)/,
 								lookbehind: true,
 								alias: 'language-javascript',
@@ -62,7 +63,8 @@ export default {
 						{
 							pattern: RegExp('(@[a-z]+\\s+)' + type),
 							lookbehind: true,
-							get inside () { // Lazily evaluated
+							get inside () {
+								// Lazily evaluated
 								let { javascript, typescript } = languages;
 								delete this.inside;
 								return (this.inside = {
@@ -81,6 +83,7 @@ export default {
 							/(@example\s+(?!\s))(?:[^@\s]|\s+(?!\s))+?(?=\s*(?:\*\s*)?(?:@\w|\*\/))/,
 						lookbehind: true,
 						inside: {
+							// TODO $language
 							'code': {
 								pattern: /^([\t ]*(?:\*\s*)?)\S.*$/m,
 								lookbehind: true,

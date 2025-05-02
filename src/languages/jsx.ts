@@ -10,9 +10,8 @@ function stringifyToken (token: string | Token | TokenStream | undefined): strin
 	if (!token) {
 		return '';
 	}
-	else {
-		return getTextContent(token);
-	}
+
+	return getTextContent(token);
 }
 
 function walkTokens (tokens: TokenStream) {
