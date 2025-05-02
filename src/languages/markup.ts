@@ -92,30 +92,28 @@ function attributeEmbedded (attrName: string, lang: string): GrammarToken {
 
 export default {
 	id: 'markup',
-	require: xml,
+	base: xml,
 	alias: ['html', 'svg', 'mathml'],
-	grammar ({ extend }) {
-		const markup = extend('xml', {});
-
-		insertBefore(markup, 'cdata', {
-			'style': inlineEmbedded('style', 'css'),
-			'script': inlineEmbedded('script', 'javascript'),
-		});
-
-		const tag = markup.tag as GrammarToken & { inside: Grammar };
-		insertBefore(tag.inside, 'attr-value', {
-			'special-attr': [
-				attributeEmbedded('style', 'css'),
-				// add attribute support for all DOM events.
-				// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
-				attributeEmbedded(
-					/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
-						.source,
-					'javascript'
-				),
-			],
-		});
-
-		return markup;
+	grammar () {
+		return {
+			$insertBefore: {
+				'cdata': {
+					'style': inlineEmbedded('style', 'css'),
+					'script': inlineEmbedded('script', 'javascript'),
+				},
+				'tag/attr-value': {
+					'special-attr': [
+						attributeEmbedded('style', 'css'),
+						// add attribute support for all DOM events.
+						// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
+						attributeEmbedded(
+							/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
+								.source,
+							'javascript'
+						),
+					],
+				},
+			},
+		};
 	},
 } as LanguageProto<'markup'>;

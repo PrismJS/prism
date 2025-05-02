@@ -1,5 +1,7 @@
-import { MARKUP_TAG } from '../shared/languages/patterns';
 import type { LanguageProto } from '../types';
+
+export const MARKUP_TAG =
+	/<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/;
 
 export default {
 	id: 'xml',
@@ -86,4 +88,4 @@ export default {
 			'entity': entity,
 		};
 	},
-} as LanguageProto<'xml'>;
+} satisfies LanguageProto<'xml'>;

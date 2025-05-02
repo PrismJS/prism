@@ -1,7 +1,8 @@
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
+import javascript, { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from './javascript';
 import type { GrammarToken, LanguageProto } from '../types';
 
+// TODO use $language
 /**
  * Creates a new pattern to match a template string with a special tag.
  *
@@ -48,6 +49,8 @@ function createTemplate (language: string, tag: string): GrammarToken {
 
 export default {
 	id: 'js-templates',
+	require: javascript,
+	extends: 'javascript',
 	grammar () {
 		return {
 			'template-string': [
