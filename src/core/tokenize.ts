@@ -4,7 +4,7 @@ import { Token } from './token';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { Prism } from './prism';
-import type { Registry } from './registry';
+import type LanguageRegistry from './classes/language-registry';
 import type { TokenStream } from './token';
 
 /**
@@ -36,10 +36,10 @@ export function tokenize (this: Prism, text: string, grammar: Grammar): TokenStr
 		return customTokenize(text, grammar, prism);
 	}
 
-	let restGrammar = resolve(prism.components, grammar.$rest);
+	let restGrammar = resolve(prism.languageRegistry, grammar.$rest);
 	while (restGrammar) {
 		grammar = { ...grammar, ...restGrammar };
-		restGrammar = resolve(prism.components, restGrammar.$rest);
+		restGrammar = resolve(prism.languageRegistry, restGrammar.$rest);
 	}
 
 	const tokenList = new LinkedList<string | Token>();
@@ -77,7 +77,7 @@ function _matchGrammar (
 
 			const patternObj = toGrammarToken(patterns[j]);
 			let { pattern, lookbehind = false, greedy = false, alias, inside } = patternObj;
-			const insideGrammar = resolve(this.components, inside);
+			const insideGrammar = resolve(this.languageRegistry, inside);
 
 			if (greedy && !pattern.global) {
 				// Without the global flag, lastIndex won't work
@@ -240,12 +240,12 @@ function toGrammarToken (pattern: GrammarToken | RegExpLike): GrammarToken {
 }
 
 function resolve (
-	components: Registry,
+	languageRegistry: LanguageRegistry,
 	reference: Grammar | string | null | undefined
 ): Grammar | undefined {
 	if (reference) {
 		if (typeof reference === 'string') {
-			return components.getLanguage(reference);
+			return languageRegistry.getLanguage(reference)?.grammar;
 		}
 		return reference;
 	}

@@ -1,12 +1,12 @@
 import csharp from './csharp';
 import markup from './markup';
-import type { Grammar, LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'aspnet',
 	require: csharp,
 	base: markup,
-	grammar (): Grammar {
+	grammar ({ base }: GrammarOptions): Grammar {
 		return {
 			'page-directive': {
 				pattern: /<%\s*@.*%>/,
@@ -17,7 +17,7 @@ export default {
 							/<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
 						alias: 'tag',
 					},
-					$rest: self['tag'].inside,
+					$rest: base['tag'].inside,
 				},
 			},
 			'directive': {
@@ -42,7 +42,7 @@ export default {
 								$insertBefore: {
 									'punctuation': {
 										// match directives of attribute value foo="<% Bar %>"
-										'directive': self['directive'],
+										'directive': base['directive'],
 									},
 								},
 							},
@@ -58,7 +58,7 @@ export default {
 					},
 				},
 				// script runat="server" contains csharp, not javascript
-				['script' in self ? 'script' : 'tag']: {
+				['script' in base ? 'script' : 'tag']: {
 					'asp-script': {
 						pattern: /(<script(?=.*runat=['"]?server\b)[^>]*>)[\s\S]*?(?=<\/script>)/i,
 						lookbehind: true,

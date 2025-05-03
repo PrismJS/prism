@@ -30,7 +30,7 @@ export function highlight (
 	const prism = this ?? singleton;
 
 	const languageId = prism.components.resolveAlias(language);
-	const grammar = options.grammar ?? prism.components.getLanguage(languageId);
+	const grammar = options.grammar ?? prism.languageRegistry.getLanguage(languageId);
 
 	const env: Record<string, any> = {
 		code: text,
@@ -44,7 +44,7 @@ export function highlight (
 		throw new Error('The language "' + env.language + '" has no grammar.');
 	}
 
-	env.tokens = prism.tokenize(env.code, env.grammar);
+	env.tokens = prism.tokenize(env.code, env.grammar.resolvedGrammar);
 	prism.hooks.run('after-tokenize', env);
 
 	return stringify(env.tokens, env.language, prism.hooks);

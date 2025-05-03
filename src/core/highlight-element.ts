@@ -31,7 +31,7 @@ export function highlightElement (
 	// Find language
 	const language = getLanguage(element);
 	const languageId = prism.components.resolveAlias(language);
-	const grammar = prism.components.getLanguage(languageId);
+	const grammar = prism.languageRegistry.getLanguage(languageId);
 
 	// Set language on the element, if not present
 	setLanguage(element, language);

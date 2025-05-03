@@ -57,7 +57,7 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 
 	/**
 	 * Get resolved language, language definition or null if it doesn't exist.
-	 * If definition is loaded but not yet resolved, it will NOT be resolved. Use {@link get} for that.
+	 * If definition is loaded but not yet resolved, it will NOT be resolved. Use {@link getLanguage} for that.
 	 *
 	 * @param idOrDef Language id or definition
 	 */

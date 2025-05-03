@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import fs from 'fs';
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
@@ -14,7 +13,7 @@ import { webfont } from 'webfont';
 import { toArray } from '../src/util/iterables';
 import { components } from './components';
 import { parallel, runTask, series } from './tasks';
-import type { ComponentProto } from '../src/types';
+import type { ComponentProto, LanguageProto } from '../src/types';
 import type { OutputOptions, Plugin, RollupBuild, RollupOptions, SourceMapInput } from 'rollup';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -141,7 +140,7 @@ const dataToInsert = {
 		const data = await Promise.all(
 			[...languageIds, ...pluginIds].map(async id => {
 				const proto = await loadComponent(id);
-				return { id, alias: toArray(proto.alias) };
+				return { id, alias: toArray((proto as LanguageProto).alias) };
 			})
 		);
 		return Object.fromEntries(data.flatMap(({ id, alias }) => alias.map(a => [a, id])));
@@ -163,7 +162,7 @@ const dataToInsert = {
 		const data = (
 			await Promise.all(
 				languageIds.map(async id => {
-					const proto = await loadComponent(id);
+					const proto = (await loadComponent(id)) as LanguageProto;
 					const title = rawTitles.get(id);
 					if (!title) {
 						throw new Error(`No title for ${id}`);
