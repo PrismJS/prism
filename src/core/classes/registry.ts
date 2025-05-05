@@ -13,6 +13,12 @@ export interface ComponentProtoBase<Id extends string = string> {
 	optional?: string | readonly string[];
 }
 
+export interface AddEventPayload<T extends ComponentProto> {
+	id: string;
+	type?: string;
+	component: T;
+}
+
 export default class Registry<T extends ComponentProto> extends EventTarget {
 	static type: string = 'unknown';
 
@@ -46,7 +52,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 			void this.loadAll(preload);
 		}
 
-		this.ready = allSettled(this.loadingList);
+		this.ready = allSettled(this.loadingList) as Promise<T[]>;
 	}
 
 	/**
@@ -69,7 +75,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 
 		let Self = this.constructor as typeof Registry;
 		return new Promise(resolve => {
-			let handler = (e: CustomEvent<{ id: string; type?: string; component: T }>) => {
+			let handler = (e: CustomEvent<AddEventPayload<T>>) => {
 				if (e.detail.id === id) {
 					resolve(e.detail.component);
 					this.removeEventListener('add', handler as EventListener);
@@ -105,10 +111,10 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 			this.cache[id] = def;
 
 			this.dispatchEvent(
-				new CustomEvent('add', { detail: { id, type: Self.type, component: def } })
+				new CustomEvent<AddEventPayload<T>>('add', { detail: { id, type: Self.type, component: def } })
 			);
 			this.dispatchEvent(
-				new CustomEvent('add' + Self.type, { detail: { id, component: def } })
+				new CustomEvent<AddEventPayload<T>>('add' + Self.type, { detail: { id, component: def } })
 			);
 
 			return true;
@@ -146,8 +152,8 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 				return null;
 			});
 
-		this.loading[id] = loadingComponent;
-		this.loadingList.push(loadingComponent);
+		this.loading[id] = loadingComponent as Promise<T>;
+		this.loadingList.push(loadingComponent as Promise<T>);
 		return loadingComponent;
 	}
 
