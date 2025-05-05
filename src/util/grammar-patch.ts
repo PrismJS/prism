@@ -19,7 +19,7 @@ export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Gramm
 				// Deep key
 				let path = key.split('/');
 				const lastKey = path.pop();
-				path = path.flatMap(key => [key, 'insert']); // add `insert` after each key
+				path = path.flatMap(key => [key, 'inside']); // add `inside` after each key
 				let obj = path.reduce((acc, key) => acc?.[key] as Grammar, grammar);
 
 				if (obj) {
@@ -41,7 +41,7 @@ export function grammarPatch (grammar: Grammar, patch: Grammar = grammar): Gramm
 				// Deep key
 				let path = key.split('/');
 				const lastKey = path.pop();
-				path = path.flatMap(key => [key, 'insert']); // add `insert` after each key
+				path = path.flatMap(key => [key, 'inside']); // add `inside` after each key
 				let obj = path.reduce((acc, key) => acc?.[key] as Grammar, grammar);
 
 				if (obj) {
