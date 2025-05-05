@@ -9,10 +9,10 @@ import type { ComponentProtoBase } from './language-registry';
 export default class Language extends EventTarget {
 	def: LanguageProto;
 	registry: LanguageRegistry;
-	evaluatedGrammar?: Grammar;
+	resolvedGrammar?: Grammar;
 	require: List<LanguageLike> = new List();
 	optional: List<string> = new List();
-	languages: Languages = {};
+	languages: LanguageGrammars = {};
 
 	constructor (def: LanguageProto, registry: LanguageRegistry) {
 		super();
@@ -48,24 +48,24 @@ export default class Language extends EventTarget {
 				let language = this.registry.peek(def as LanguageProto);
 				if (language) {
 					// Already resolved
-					return language;
+					return language.resolvedGrammar;
 				}
 				else {
 					this.registry.add(def as LanguageProto);
-					return this.registry.getLanguage(def.id)!;
+					return this.registry.getLanguage(def.id)!.resolvedGrammar;
 				}
 			});
 		}
 
 		for (let id of this.optional) {
-			let language = this.registry.peek(id);
+			// TODO we need to update the grammar
 			defineLazyProperty(
 				this.languages,
 				id,
 				() => {
-					return this.registry.getLanguage(id)!;
+					return this.registry.getLanguage(id)!.resolvedGrammar;
 				},
-				language ?? this.registry.whenDefined(id)
+				this.registry.peek(id) ?? this.registry.whenDefined(id)
 			);
 		}
 
@@ -110,10 +110,16 @@ export default class Language extends EventTarget {
 
 		if (typeof grammar === 'function') {
 			grammar = grammar.call(this, {
-				base,
+				get base () {
+					return base?.resolvedGrammar;
+				},
 				languages: this.languages,
 				getLanguage: (id: string) => {
-					return this.languages[id] ?? this.registry.getLanguage(id);
+					let language = this.languages[id] ?? this.registry.getLanguage(id);
+					return language?.resolvedGrammar;
+				},
+				whenDefined: (id: string) => {
+					return this.registry.whenDefined(id);
 				},
 			} as GrammarOptions);
 		}
@@ -134,26 +140,19 @@ export default class Language extends EventTarget {
 	set grammar (grammar: Grammar) {
 		Object.defineProperty(this, 'grammar', { value: grammar, writable: true });
 	}
-
-	get resolvedGrammar () {
-		return (this.resolvedGrammar = grammarPatch(this.grammar));
-	}
-
-	set resolvedGrammar (resolvedGrammar: Grammar) {
-		Object.defineProperty(this, 'resolvedGrammar', { value: resolvedGrammar, writable: true });
-	}
 }
 
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	media?: string | readonly string[];
 	extensions?: string | readonly string[];
 	alias?: string | readonly string[];
-	grammar: Grammar | ((options?: GrammarOptions) => Grammar);
+	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	plugin?: undefined;
 	base?: LanguageLike;
-	extends?: string | readonly string[];
+	extends?: string | LanguageLike | readonly (string | LanguageLike)[];
 }
 
 export type { Language };
 export type Languages = Record<string, Language>;
+export type LanguageGrammars = Record<string, Grammar>;
 export type LanguageLike = Language | LanguageProto;

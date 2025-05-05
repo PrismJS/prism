@@ -7,6 +7,18 @@ export default {
 	require: csharp,
 	base: markup,
 	grammar ({ base }: GrammarOptions): Grammar {
+		const directive = {
+			pattern: /<%.*%>/,
+			alias: 'tag',
+			inside: {
+				'directive': {
+					pattern: /<%\s*?[$=%#:]{0,2}|%>/,
+					alias: 'tag',
+				},
+				$rest: 'csharp',
+			},
+		};
+
 		return {
 			'page-directive': {
 				pattern: /<%\s*@.*%>/,
@@ -20,17 +32,7 @@ export default {
 					$rest: base['tag'].inside,
 				},
 			},
-			'directive': {
-				pattern: /<%.*%>/,
-				alias: 'tag',
-				inside: {
-					'directive': {
-						pattern: /<%\s*?[$=%#:]{0,2}|%>/,
-						alias: 'tag',
-					},
-					$rest: 'csharp',
-				},
-			},
+			'directive': directive,
 			$merge: {
 				'tag': {
 					// Regexp copied from markup, with a negative look-ahead added
@@ -42,7 +44,7 @@ export default {
 								$insertBefore: {
 									'punctuation': {
 										// match directives of attribute value foo="<% Bar %>"
-										'directive': base['directive'],
+										'directive': directive,
 									},
 								},
 							},

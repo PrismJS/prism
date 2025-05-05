@@ -20,15 +20,15 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	cache: Record<string, T> = {};
 
 	/** All components that are currently being loaded */
-	loading: Record<string, Promise<T | null>> = {};
+	loading: Record<string, Promise<T>> = {};
 
 	/**
 	 * Same data as in loading, but as an array, used for aggregate promises.
 	 * IMPORTANT: Do NOT overwrite this array, only modify its contents.
 	 */
-	private loadingList: Promise<T | null>[] = [];
+	private loadingList: Promise<T>[] = [];
 
-	ready: Promise<(T | null)[]>;
+	ready: Promise<T[]>;
 
 	/** Path to the components, used for loading */
 	path: string;
@@ -56,7 +56,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	 * @param id
 	 * @returns
 	 */
-	async whenDefined (id: string): Promise<T | null> {
+	async whenDefined (id: string): Promise<T> {
 		if (this.cache[id]) {
 			// Already loaded
 			return this.cache[id];

@@ -1,9 +1,11 @@
+import css from './css';
 import cssSelector from './css-selector';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css-extras',
 	require: cssSelector,
+	extends: css,
 	grammar () {
 		const unit = {
 			pattern: /(\b\d+)(?:%|[a-z]+(?![\w-]))/,

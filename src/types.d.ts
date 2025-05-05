@@ -1,11 +1,17 @@
-import type { Language, LanguageLike, LanguageProto, Languages } from './core/classes/language';
+import type {
+	Language,
+	LanguageGrammars,
+	LanguageLike,
+	LanguageProto,
+	Languages,
+} from './core/classes/language';
 import type { PluginProto } from './core/classes/plugin-registry';
 import type { Prism } from './core/classes/prism';
 import type { TokenStream } from './core/token';
 
 export type { Prism } from './core/classes/prism';
 
-export type { Language, Languages, LanguageProto, LanguageLike };
+export type { Language, Languages, LanguageGrammars, LanguageProto, LanguageLike };
 
 export type { ComponentRegistryOptions, ComponentProtoBase } from './core/classes/registry';
 
@@ -20,11 +26,10 @@ export interface PlainObject {
 }
 
 export interface GrammarOptions {
-	readonly getLanguage: (id: string) => Language;
-	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
-	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
-	readonly base: Language;
-	readonly languages: Languages;
+	readonly getLanguage: (id: string) => Grammar;
+	readonly base?: Grammar;
+	readonly languages: LanguageGrammars;
+	readonly whenDefined: (id: string) => Promise<Language>;
 }
 
 export type StandardTokenName =

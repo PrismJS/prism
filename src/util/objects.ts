@@ -126,3 +126,24 @@ export function deepClone (obj: any, options: CloneOptions = {}) {
 	_clones.set(obj, ret);
 	return ret;
 }
+
+/**
+ * Like Object.assign() but preserves accessors
+ * @param target
+ * @param sources
+ */
+export function betterAssign (target, ...sources) {
+	for (const source of sources) {
+		let descriptors = Object.getOwnPropertyDescriptors(source);
+		for (const key in descriptors) {
+			if (Object.hasOwn(target, key)) {
+				continue;
+			}
+
+			const descriptor = descriptors[key];
+			Object.defineProperty(target, key, descriptor);
+		}
+	}
+
+	return target;
+}

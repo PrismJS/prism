@@ -1,4 +1,4 @@
-import { deepClone } from './objects';
+import { betterAssign, deepClone } from './objects';
 import type { Grammar, GrammarSpecial } from '../types';
 
 /**
@@ -41,11 +41,11 @@ export function extend (base: Grammar, grammar: Grammar): Grammar {
 	}
 
 	if (grammar.$insertBefore) {
-		lang.$insertBefore = Object.assign(lang.$insertBefore ?? {}, grammar.$insertBefore);
+		lang.$insertBefore = betterAssign(lang.$insertBefore ?? {}, grammar.$insertBefore);
 	}
 
 	if (grammar.$insertAfter) {
-		lang.$insertAfter = Object.assign(lang.$insertAfter ?? {}, grammar.$insertAfter);
+		lang.$insertAfter = betterAssign(lang.$insertAfter ?? {}, grammar.$insertAfter);
 	}
 
 	if (grammar.$insert) {
@@ -83,7 +83,7 @@ export function extend (base: Grammar, grammar: Grammar): Grammar {
 	}
 
 	if (grammar.$merge) {
-		lang.$merge = Object.assign(lang.$merge ?? {}, grammar.$merge);
+		lang.$merge = betterAssign(lang.$merge ?? {}, grammar.$merge);
 	}
 
 	return lang;
