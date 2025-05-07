@@ -11,7 +11,7 @@ export default class Language extends EventTarget {
 	registry: LanguageRegistry;
 	resolvedGrammar?: Grammar;
 	require: List<LanguageLike> = new List();
-	optional: List<string> = new List();
+	optional: List<string | LanguageLike> = new List();
 	languages: LanguageGrammars = {};
 
 	constructor (def: LanguageProto, registry: LanguageRegistry) {
@@ -31,8 +31,8 @@ export default class Language extends EventTarget {
 
 			if (this.optional.size > 0) {
 				for (let optionalLanguageId of this.optional) {
-					if (!this.registry.has(optionalLanguageId)) {
-						this.registry.whenDefined(optionalLanguageId).then(() => {
+					if (!this.registry.has(optionalLanguageId as string)) {
+						this.registry.whenDefined(optionalLanguageId as string).then(() => {
 							// TODO
 						});
 					}
@@ -48,22 +48,22 @@ export default class Language extends EventTarget {
 				let language = this.registry.peek(def as LanguageProto);
 				if (language) {
 					// Already resolved
-					return language.resolvedGrammar;
+					return language.resolvedGrammar as Grammar;
 				}
 				else {
 					this.registry.add(def as LanguageProto);
-					return this.registry.getLanguage(def.id)!.resolvedGrammar;
+					return this.registry.getLanguage(def.id)!.resolvedGrammar as Grammar;
 				}
 			});
 		}
 
-		for (let id of this.optional) {
+		for (let id of this.optional as List<string>) {
 			// TODO we need to update the grammar
 			defineLazyProperty(
 				this.languages,
 				id,
 				() => {
-					return this.registry.getLanguage(id)!.resolvedGrammar;
+					return this.registry.getLanguage(id)!.resolvedGrammar as Grammar;
 				},
 				this.registry.peek(id) ?? this.registry.whenDefined(id)
 			);
@@ -116,12 +116,12 @@ export default class Language extends EventTarget {
 				languages: this.languages,
 				getLanguage: (id: string) => {
 					let language = this.languages[id] ?? this.registry.getLanguage(id);
-					return language?.resolvedGrammar;
+					return language?.resolvedGrammar as Grammar;
 				},
 				whenDefined: (id: string) => {
-					return this.registry.whenDefined(id);
+					return this.registry.whenDefined(id) as unknown as Promise<Language>;
 				},
-			} as GrammarOptions);
+			});
 		}
 
 		if (base) {

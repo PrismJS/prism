@@ -31,68 +31,14 @@ import type { Grammar, GrammarTokens } from '../types';
  *
  * @param grammar The grammar to be modified.
  * @param beforeKey The key to insert before.
- * @param insert An object containing the key-value pairs to be inserted.
+ * @param tokens An object containing the key-value pairs to be inserted.
  */
-export function insertBefore (grammar: Grammar, beforeKey: string, insert: GrammarTokens) {
-	if (!(beforeKey in grammar)) {
-		// TODO support deep keys
-		throw new Error(`"${beforeKey}" has to be a key of grammar.`);
-	}
-
-	const descriptors = Object.getOwnPropertyDescriptors(grammar);
-	const insertDescriptors = Object.getOwnPropertyDescriptors(insert);
-
-	// delete all keys in `grammar`
-	for (const key in descriptors) {
-		if (Object.hasOwn(descriptors, key)) {
-			delete grammar[key];
-		}
-	}
-
-	// insert keys again
-	for (const key in descriptors) {
-		if (key === beforeKey) {
-			for (const insertKey in insertDescriptors) {
-				Object.defineProperty(grammar, insertKey, insertDescriptors[insertKey]);
-			}
-		}
-
-		// Do not insert tokens which also occur in `insert`. See #1525
-		if (!Object.hasOwn(insert, key)) {
-			Object.defineProperty(grammar, key, descriptors[key]);
-		}
-	}
+export function insertBefore (grammar: Grammar, beforeKey: string, tokens: GrammarTokens) {
+	insert(grammar, beforeKey, tokens, 'before');
 }
 
-export function insertAfter (grammar: Grammar, afterKey: string, insert: GrammarTokens) {
-	if (!(afterKey in grammar)) {
-		// TODO support deep keys
-		throw new Error(`"${afterKey}" has to be a key of grammar.`);
-	}
-
-	const descriptors = Object.getOwnPropertyDescriptors(grammar);
-	const insertDescriptors = Object.getOwnPropertyDescriptors(insert);
-
-	// delete all keys in `grammar`
-	for (const key in descriptors) {
-		if (Object.hasOwn(descriptors, key)) {
-			delete grammar[key];
-		}
-	}
-
-	// insert keys again
-	for (const key in descriptors) {
-		// Do not insert tokens which also occur in `insert`. See #1525
-		if (!Object.hasOwn(insert, key)) {
-			Object.defineProperty(grammar, key, descriptors[key]);
-		}
-
-		if (key === afterKey) {
-			for (const insertKey in insertDescriptors) {
-				Object.defineProperty(grammar, insertKey, insertDescriptors[insertKey]);
-			}
-		}
-	}
+export function insertAfter (grammar: Grammar, afterKey: string, tokens: GrammarTokens) {
+	insert(grammar, afterKey, tokens);
 }
 
 export function insert (
