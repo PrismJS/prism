@@ -60,7 +60,6 @@ export function highlight (
 		throw new Error(`No language definition found for ${env.languageId}.`);
 	}
 
-	env = env as unknown as HookEnv['after-tokenize'];
 	env.tokens = tokenize.call(prism, env.code, env.language!.resolvedGrammar);
 	prism.hooks.run('after-tokenize', env);
 
