@@ -59,8 +59,9 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 
 		id = this.aliases[id] ?? id;
 		def ??= this.cache[id];
+		let language = this.instances[id];
 
-		return { id, def };
+		return { id, def, language };
 	}
 
 	/**
