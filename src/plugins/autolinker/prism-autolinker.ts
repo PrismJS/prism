@@ -1,4 +1,3 @@
-import { addHooks } from '../../shared/hooks-util';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
@@ -23,7 +22,7 @@ export default {
 			'email-link': email
 		};
 
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'after-tokenize': (env) => {
 				tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, links));
 			},

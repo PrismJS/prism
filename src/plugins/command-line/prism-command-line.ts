@@ -1,5 +1,4 @@
 import { getParentPre } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
 import { htmlEncode } from '../../shared/util';
 import type { PluginProto } from '../../types';
 
@@ -16,7 +15,7 @@ interface CommandLineInfo {
 export default {
 	id: 'command-line',
 	effect(Prism) {
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlight': (env) => {
 				const commandLine = env.commandLine ?? {};
 

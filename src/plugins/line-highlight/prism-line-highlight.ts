@@ -1,5 +1,5 @@
 import { isActive } from '../../shared/dom-util';
-import { combineCallbacks } from '../../shared/hooks-util';
+import { combineCallbacks } from '../../util/combine-callbacks';
 import { lazy, noop } from '../../shared/util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';

@@ -1,5 +1,4 @@
 import { isActive } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
 import type { PluginProto } from '../../types';
 
 function isElement(child: ChildNode): child is Element {
@@ -20,7 +19,7 @@ export default {
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
 	effect(Prism) {
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlight': (env) => {
 				if (!env.element.children.length) {
 					return;

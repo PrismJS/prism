@@ -1,5 +1,9 @@
+/**
+ * A class for managing hooks for deep extensibility.
+ * Inspired https://www.npmjs.com/package/blissful-hooks
+ */
 export class Hooks {
-	private _all = new Map<string, HookCallback[]>();
+	private _all: Record<keyof HookEnv, HookCallback[]> = {};
 
 	/**
 	 * Adds the given callback to the list of callbacks for the given hook and returns a function that
@@ -16,22 +20,56 @@ export class Hooks {
 	 * @param name The name of the hook.
 	 * @param callback The callback function which is given environment variables.
 	 */
-	add<Name extends string> (name: Name, callback: HookCallback): () => void {
-		let hooks = this._all.get(name);
-		if (hooks === undefined) {
-			hooks = [];
-			this._all.set(name, hooks);
+	add<Name extends keyof HookEnv> (
+		name: Name | Name[] | MultipleHooks<Name>,
+		callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	): () => void {
+		if (Array.isArray(name)) {
+			// One function, multiple hooks
+			for (let n of name) {
+				this.add(n, callback);
+			}
 		}
-		const list = hooks;
+		else if (typeof name === 'object') {
+			// Multiple hooks
+			let hooks = name;
 
-		list.push(callback as never);
+			for (let name in hooks) {
+				this.add(name, hooks[name]);
+			}
+		}
+		else {
+			let hooks = (this._all[name] ??= []);
+			hooks.push(callback as never);
+		}
 
 		return () => {
-			const index = list.indexOf(callback as never);
-			if (index !== -1) {
-				list.splice(index, 1);
-			}
+			this.remove(name, callback);
 		};
+	}
+
+	remove<Name extends keyof HookEnv> (
+		name: Name | Name[] | MultipleHooks<Name>,
+		callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	): void {
+		if (Array.isArray(name)) {
+			// Multiple hook names, same callback
+			for (let n of name) {
+				this.remove(n, callback);
+			}
+		}
+		else if (typeof name === 'object') {
+			// Map of hook names to callbacks
+			for (let n in name) {
+				this.remove(n, callback);
+			}
+		}
+		else {
+			const index = this._all[name]?.indexOf(callback as never);
+			if (index > -1) {
+				this._all[name].splice(index, 1);
+			}
+		}
 	}
 
 	/**
@@ -42,17 +80,25 @@ export class Hooks {
 	 * @param name The name of the hook.
 	 * @param env The environment variables of the hook passed to all callbacks registered.
 	 */
-	run<Name extends string> (name: Name, env: Record<string, any>): void {
-		const callbacks = this._all.get(name);
+	run<Name extends keyof HookEnv> (name: Name, env: HookEnv[Name]): void {
+		const callbacks = this._all[name];
+		const context = env?.this ?? env?.context ?? env;
 
 		if (!callbacks || !callbacks.length) {
 			return;
 		}
 
 		for (const callback of callbacks) {
-			callback(env);
+			callback.call(context, env);
 		}
 	}
 }
 
-export type HookCallback = (env: Record<string, any>) => void;
+export interface BaseHookEnv {
+	context?: object;
+}
+export interface HookEnv extends BaseHookEnv, Record<string, any> {}
+
+export type HookCallback<T extends keyof HookEnv = string> = (env: HookEnv[T]) => void;
+
+export type MultipleHooks<T extends keyof HookEnv> = { [K in T]?: HookCallback<K> };
