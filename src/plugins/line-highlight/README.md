@@ -68,7 +68,7 @@ If line numbers are also enabled for a code block and the `<pre>` element has an
 
 [Linking example](#play.50-55,60)
 
-## Compatible with [Line numbers](/line-numbers)
+## Compatible with [Line numbers](../line-numbers)
 
 <pre class="line-numbers" data-src="../line-numbers/index.html" data-line="1" data-start="-5" style="white-space: pre-wrap"></pre>
 

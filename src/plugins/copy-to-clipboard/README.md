@@ -15,7 +15,7 @@ resources:
 
 # How to use
 
-The plugin depends on the Prism [Toolbar](/toolbar) plugin. In addition to including the plugin file with your PrismJS build, ensure it is loaded before the plugin.
+The plugin depends on the Prism [Toolbar](../toolbar) plugin. In addition to including the plugin file with your PrismJS build, ensure it is loaded before the plugin.
 
 </section>
 

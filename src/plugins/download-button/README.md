@@ -13,7 +13,7 @@ resources:
 
 # How to use
 
-Use the `data-src` and `data-download-link` attribute on a `<pre>` elements similar to [Autoloader](/autoloader), like so:
+Use the `data-src` and `data-download-link` attribute on a `<pre>` elements similar to [Autoloader](../autoloader), like so:
 
 ```html
 <pre data-src="myfile.js" data-download-link></pre>

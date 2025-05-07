@@ -122,7 +122,7 @@ The result looks like this:
 
 </pre>
 
-It is also compatible with the [keep-markup](/keep-markup) plugin:
+It is also compatible with the [keep-markup](../keep-markup) plugin:
 
 <pre><code class="language-css">
 

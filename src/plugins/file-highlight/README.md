@@ -28,7 +28,7 @@ Use the `data-range` attribute to display only a selected range of lines from th
 
 Lines start at 1, so `"1,5"` will display line 1 up to and including line 5. It's also possible to specify just a single line (e.g. `"5"` for just line 5) and open ranges (e.g. `"3,"` for all lines starting at line 3). Negative integers can be used to specify the n-th last line, e.g. `-2` for the second last line.
 
-When `data-range` is used in conjunction with the [Line Numbers plugin](/line-numbers), this plugin will add the proper `data-start` according to the specified range. This behavior can be overridden by setting the `data-start` attribute manually.
+When `data-range` is used in conjunction with the [Line Numbers plugin](../line-numbers), this plugin will add the proper `data-start` according to the specified range. This behavior can be overridden by setting the `data-start` attribute manually.
 
 Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.
 

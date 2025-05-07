@@ -68,7 +68,7 @@ And later in your HTML:
 <pre class="language-javascript" data-jsonp="…"></pre>
 ```
 
-Finally, unlike like the [File Highlight](/file-highlight) plugin, you _do_ need to supply the appropriate `class` with the language to highlight. This could have been auto-detected, but since you're not actually linking to a file it's not always possible (see below in the example using GitHub status). Furthermore, if you're linking to files with a `.xaml` extension for example, this plugin then needs to somehow map that to highlight as `markup`, which just means more bloat. You know what you're trying to highlight, just say so. 🙂
+Finally, unlike like the [File Highlight](../file-highlight) plugin, you _do_ need to supply the appropriate `class` with the language to highlight. This could have been auto-detected, but since you're not actually linking to a file it's not always possible (see below in the example using GitHub status). Furthermore, if you're linking to files with a `.xaml` extension for example, this plugin then needs to somehow map that to highlight as `markup`, which just means more bloat. You know what you're trying to highlight, just say so. 🙂
 
 ## Caveat for Gists
 

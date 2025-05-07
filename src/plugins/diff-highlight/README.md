@@ -17,7 +17,7 @@ You can add the `diff-highlight` class to your code block to indicate changes us
 
 ## Autoloader
 
-The [Autoloader plugin](/autoloader) understands the `language-diff-xxxx` format and will ensure that the language definitions for both Diff and the code language are loaded.
+The [Autoloader plugin](../autoloader) understands the `language-diff-xxxx` format and will ensure that the language definitions for both Diff and the code language are loaded.
 
 </section>
 

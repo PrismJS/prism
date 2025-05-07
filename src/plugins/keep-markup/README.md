@@ -27,7 +27,7 @@ However, you can deactivate the plugin for certain code element by adding the `n
 
 ## Double highlighting
 
-Some plugins (e.g. [Autoloader](/autoloader)) need to re-highlight code blocks. This is a problem for Keep Markup because it will keep the markup of the first highlighting pass resulting in a lot of unnecessary DOM nodes and causing problems for themes and other plugins.
+Some plugins (e.g. [Autoloader](../autoloader)) need to re-highlight code blocks. This is a problem for Keep Markup because it will keep the markup of the first highlighting pass resulting in a lot of unnecessary DOM nodes and causing problems for themes and other plugins.
 
 This problem can be fixed by adding a `drop-tokens` class to a code block or any of its ancestors. If `drop-tokens` is present, Keep Markup will ignore all `span.token`{ .language-css } elements created by Prism.
 
