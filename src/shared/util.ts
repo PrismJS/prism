@@ -18,10 +18,7 @@ export function lazy<T> (supplier: () => T): () => T {
 }
 
 export function htmlEncode (text: string): string {
-	return text
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/\u00a0/g, ' ');
+	return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('\u00a0', ' ');
 }
 
 /**
