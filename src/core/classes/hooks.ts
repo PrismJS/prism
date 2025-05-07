@@ -35,7 +35,7 @@ export class Hooks {
 			let hooks = name;
 
 			for (let name in hooks) {
-				this.add(name, hooks[name]);
+				this.add(name, hooks[name as string]);
 			}
 		}
 		else {
