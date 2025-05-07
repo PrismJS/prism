@@ -1,3 +1,4 @@
+import { HookEnv, HookCallback } from '../../core/classes/hooks';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
@@ -24,7 +25,7 @@ export default {
 
 		return Prism.hooks.add({
 			'after-tokenize': (env) => {
-				tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, links));
+				tokenizeStrings(env.tokens!, (code) => Prism.tokenize(code, links));
 			},
 			'wrap': (env) => {
 				if (env.type.endsWith('-link')) {

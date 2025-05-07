@@ -1,5 +1,40 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Grammar, GrammarToken, TokenName } from '../types';
+import type { Grammar, GrammarToken } from '../types';
+
+type StandardTokenName =
+	| 'atrule'
+	| 'attr-name'
+	| 'attr-value'
+	| 'bold'
+	| 'boolean'
+	| 'builtin'
+	| 'cdata'
+	| 'char'
+	| 'class-name'
+	| 'comment'
+	| 'constant'
+	| 'deleted'
+	| 'doctype'
+	| 'entity'
+	| 'function'
+	| 'important'
+	| 'inserted'
+	| 'italic'
+	| 'keyword'
+	| 'namespace'
+	| 'number'
+	| 'operator'
+	| 'prolog'
+	| 'property'
+	| 'punctuation'
+	| 'regex'
+	| 'selector'
+	| 'string'
+	| 'symbol'
+	| 'tag'
+	| 'url';
+
+export type TokenName = (string & {}) | StandardTokenName;
 
 export class Token {
 	/**
@@ -77,7 +112,7 @@ export class Token {
  * 1. No adjacent strings.
  * 2. No empty strings.
  *
- *    The only exception here is the token stream that only contains the empty string and nothing else.
+ * The only exception here is the token stream that only contains the empty string and nothing else.
  */
 export type TokenStream = (string | Token)[];
 

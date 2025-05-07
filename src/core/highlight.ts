@@ -1,10 +1,26 @@
-import { Token } from './token';
-import singleton, { type Prism } from './prism';
+import singleton from './prism';
 import { stringify } from './stringify';
-import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
+import { tokenize } from './tokenize';
+import type { HookEnv } from './classes/hooks';
+import type { LanguageLike, LanguageProto } from './classes/language';
+import type { Prism } from './prism';
+import type { Token, TokenStream } from './token';
+
+declare module './classes/hooks' {
+	interface HookEnv {
+		'before-tokenize': {
+			code: string;
+			languageId?: string;
+			languageDef?: LanguageProto<string>;
+			language?: any;
+			languageReady?: Promise<any>;
+		};
+		'after-tokenize': HookEnv['before-tokenize'] & { tokens?: TokenStream };
+	}
+}
 
 /**
- * Low-level function, only use if you know what you’re doing. It accepts a string of text as input
+ * Low-level function, only use if you know what you're doing. It accepts a string of text as input
  * and the language definitions to use, and returns a string with the HTML produced.
  *
  * The following hooks will be run:
@@ -24,32 +40,31 @@ import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types'
 export function highlight (
 	this: Prism,
 	text: string,
-	language: string,
+	languageRef: string | LanguageLike,
 	options: HighlightOptions = {}
 ): string {
 	const prism = this ?? singleton;
 
-	const languageId = prism.components.resolveAlias(language);
-	const grammar = options.grammar ?? prism.languageRegistry.getLanguage(languageId);
+	const { id, def, language } = prism.languageRegistry.resolveRef(languageRef);
 
-	const env: Record<string, any> = {
+	let env: HookEnv['after-tokenize'] = {
 		code: text,
-		grammar,
+		languageId: id,
+		languageDef: def,
 		language,
 	};
 
 	prism.hooks.run('before-tokenize', env);
 
-	if (!env.grammar) {
-		throw new Error('The language "' + env.language + '" has no grammar.');
+	if (!env.language) {
+		throw new Error(`No language definition found for ${env.languageId}.`);
 	}
 
-	env.tokens = prism.tokenize(env.code, env.grammar.resolvedGrammar);
+	env = env as unknown as HookEnv['after-tokenize'];
+	env.tokens = tokenize.call(prism, env.code, env.language!.resolvedGrammar);
 	prism.hooks.run('after-tokenize', env);
 
 	return stringify(env.tokens, env.language, prism.hooks);
 }
 
-export interface HighlightOptions {
-	grammar?: Grammar;
-}
+export interface HighlightOptions {}

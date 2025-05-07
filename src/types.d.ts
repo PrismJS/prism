@@ -7,7 +7,9 @@ import type {
 } from './core/classes/language';
 import type { PluginProto } from './core/classes/plugin-registry';
 import type { Prism } from './core/classes/prism';
-import type { TokenStream } from './core/token';
+import type { Token, TokenName, TokenStream } from './core/token';
+
+export type { Token, TokenName, TokenStream };
 
 export type { Prism } from './core/classes/prism';
 
@@ -31,41 +33,6 @@ export interface GrammarOptions {
 	readonly languages: LanguageGrammars;
 	readonly whenDefined: (id: string) => Promise<Language>;
 }
-
-export type StandardTokenName =
-	| 'atrule'
-	| 'attr-name'
-	| 'attr-value'
-	| 'bold'
-	| 'boolean'
-	| 'builtin'
-	| 'cdata'
-	| 'char'
-	| 'class-name'
-	| 'comment'
-	| 'constant'
-	| 'deleted'
-	| 'doctype'
-	| 'entity'
-	| 'function'
-	| 'important'
-	| 'inserted'
-	| 'italic'
-	| 'keyword'
-	| 'namespace'
-	| 'number'
-	| 'operator'
-	| 'prolog'
-	| 'property'
-	| 'punctuation'
-	| 'regex'
-	| 'selector'
-	| 'string'
-	| 'symbol'
-	| 'tag'
-	| 'url';
-
-export type TokenName = (string & {}) | StandardTokenName;
 
 export type RegExpLike = RegExp & { readonly pattern?: never };
 

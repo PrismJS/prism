@@ -2,9 +2,9 @@ import { LinkedList } from './linked-list';
 import singleton from './prism';
 import { Token } from './token';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
+import type LanguageRegistry from './classes/language-registry';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { Prism } from './prism';
-import type LanguageRegistry from './classes/language-registry';
 import type { TokenStream } from './token';
 
 /**

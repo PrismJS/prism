@@ -1,6 +1,6 @@
 import { Token, getTextContent } from '../../core/token';
 import diff, { PREFIXES } from '../../languages/diff';
-import type { BeforeSanityCheckEnv, BeforeTokenizeEnv } from '../../core/classes/hooks';
+import type { HookEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/token';
 import type { PluginProto } from '../../types';
 
@@ -10,10 +10,10 @@ export default {
 	effect(Prism) {
 		const LANGUAGE_REGEX = /^diff-([\w-]+)/i;
 
-		const setMissingGrammar = (env: BeforeSanityCheckEnv | BeforeTokenizeEnv) => {
-			const lang = env.language;
-			if (LANGUAGE_REGEX.test(lang) && !env.grammar) {
-				env.grammar = Prism.components.getLanguage('diff');
+		const setMissingGrammar = (env: HookEnv) => {
+			if (env.languageId.startsWith('diff-') && !env.language) {
+				env.language = Prism.languageRegistry.getLanguage('diff');
+				env.languageReady = Prism.languageRegistry.load('diff');
 			}
 		};
 

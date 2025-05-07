@@ -33,20 +33,28 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 		return added;
 	}
 
-	#resolveIdOrDef (idOrDef: string | LanguageProto): { id: string; def: LanguageProto } {
+	resolveRef (ref: string | LanguageProto | Language): {
+		id: string;
+		def: LanguageProto;
+		language?: Language;
+	} {
+		if (ref instanceof Language) {
+			return { id: ref.id, def: ref.def, language: ref };
+		}
+
 		let id: string;
 		let def: LanguageProto;
 
-		if (typeof idOrDef === 'object') {
-			def = idOrDef;
+		if (typeof ref === 'object') {
+			def = ref;
 			id = def.id;
 		}
-		else if (typeof idOrDef === 'string') {
-			id = idOrDef;
+		else if (typeof ref === 'string') {
+			id = ref;
 		}
 		else {
 			// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-			throw new Error('Invalid argument type: ' + idOrDef);
+			throw new Error('Invalid argument type: ' + ref);
 		}
 
 		id = this.aliases[id] ?? id;
@@ -59,10 +67,14 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	 * Get resolved language, language definition or null if it doesn't exist.
 	 * If definition is loaded but not yet resolved, it will NOT be resolved. Use {@link getLanguage} for that.
 	 *
-	 * @param idOrDef Language id or definition
+	 * @param ref Language id or definition
 	 */
-	peek (idOrDef: string | LanguageProto): Language | null {
-		let { id, def } = this.#resolveIdOrDef(idOrDef);
+	peek (ref: string | LanguageProto | Language): Language | null {
+		let { id, def, language } = this.resolveRef(ref);
+
+		if (language) {
+			return language;
+		}
 
 		if (this.defs.has(def)) {
 			return this.defs.get(def) ?? null;
@@ -79,14 +91,14 @@ export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	 * Get resolved language or null if it doesn't exist
 	 * If definition is loaded but not yet resolved, it will be resolved and returned.
 	 */
-	getLanguage (idOrDef: string | LanguageProto): Language | null {
-		let languageOrDef = this.peek(idOrDef);
+	getLanguage (ref: string | LanguageProto | Language): Language | null {
+		let languageOrDef = this.peek(ref);
 
 		if (languageOrDef instanceof Language) {
 			return languageOrDef;
 		}
 
-		let { id, def } = this.#resolveIdOrDef(idOrDef);
+		let { id, def } = this.resolveRef(ref);
 
 		if (!this.cache[id]) {
 			return null;

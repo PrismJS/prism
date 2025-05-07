@@ -1,7 +1,19 @@
 import { htmlEncode } from '../shared/util';
-import type { Hooks } from './classes/hooks';
-import type { Token } from './token';
-import type { TokenStream } from './token';
+import type { HookEnv, Hooks } from './classes/hooks';
+import type { Token, TokenName, TokenStream } from './token';
+
+declare module './classes/hooks' {
+	interface HookEnv {
+		'wrap': {
+			type: TokenName;
+			languageId: string;
+			content: string;
+			tag: string;
+			classes: string[];
+			attributes: Record<string, string>;
+		};
+	}
+}
 
 /**
  * Converts the given token or token stream to an HTML representation.
@@ -10,28 +22,29 @@ import type { TokenStream } from './token';
  * 1. `wrap`: On each {@link Token}.
  *
  * @param o The token or token stream to be converted.
- * @param language The name of current language.
+ * @param languageId The name of current language.
  * @returns The HTML representation of the token or token stream.
  */
-function stringify (o: string | Token | TokenStream, language: string, hooks: Hooks): string {
+function stringify (o: string | Token | TokenStream, languageId: string, hooks: Hooks): string {
 	if (typeof o === 'string') {
 		return htmlEncode(o);
 	}
+
 	if (Array.isArray(o)) {
 		let s = '';
 		o.forEach(e => {
-			s += stringify(e, language, hooks);
+			s += stringify(e, languageId, hooks);
 		});
 		return s;
 	}
 
-	const env: Record<string, any> & { classes: string[]; attributes: Record<string, string> } = {
+	const env: HookEnv['wrap'] = {
 		type: o.type,
-		content: stringify(o.content, language, hooks),
+		content: stringify(o.content, languageId, hooks),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
-		language,
+		languageId,
 	};
 
 	const aliases = o.alias;
