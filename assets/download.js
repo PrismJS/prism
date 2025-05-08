@@ -12,7 +12,7 @@
 
 	var fileSizesPromise = new Promise(function (resolve) {
 		$u.xhr({
-			url: "file-sizes.json",
+			url: 'file-sizes.json',
 			callback: function (xhr) {
 				if (xhr.status < 400) {
 					resolve(JSON.parse(xhr.responseText));
@@ -301,13 +301,12 @@
 
 	function getFileSize(category, id, filepath) {
 		return fileSizesPromise.then(function (fileSizes) {
-			let type = filepath.match(/\.(js|css)$/)[1];
-			let version = /\.min\./.test(filepath) ? "minified" : "dev";
+			var type = filepath.match(/\.(css|js)$/)[1];
+			var version = /\.min\./.test(filepath) ? 'minified' : 'dev';
 
-			if (category === "core") {
+			if (category === 'core') {
 				return fileSizes.core.js[version];
-			}
-			else {
+			} else {
 				return fileSizes[category][id][type][version];
 			}
 		});
