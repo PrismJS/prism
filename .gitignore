@@ -6,3 +6,13 @@ node_modules
 
 benchmark/remotes/
 benchmark/downloads/
+
+# Generated files
+
+file-sizes.json
+components.js
+prism.js
+plugins/**/*.min.js
+plugins/**/*.min.css
+themes/*.min.css
+components/*.min.js
