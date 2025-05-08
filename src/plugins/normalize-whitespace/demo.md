@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 <body>
 <section id="main" class="language-javascript">
 
