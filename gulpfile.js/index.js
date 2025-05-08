@@ -41,41 +41,41 @@ async function calculateFileSizes() {
 		languages: {},
 		plugins: {}
 	};
-	const data = await componentsPromise;
+	const components = await componentsPromise;
 
 	// Core
-	const devPath = data.core.meta.path;
+	const devPath = components.core.meta.path;
 	const minPath = devPath.replace(/\.js$/, ".min.js");
 	const dev = await getFileSize(devPath);
 	const minified = await getFileSize(minPath);
 	ret.core.js = { dev, minified };
 
-	for (const component of ["themes", "languages", "plugins"]) {
-		const meta = data[component].meta;
+	for (const category of ["themes", "languages", "plugins"]) {
+		const meta = components[category].meta;
 
-		for (const id of Object.keys(data[component])) {
+		for (const id of Object.keys(components[category])) {
 			if (id === "meta") {
 				continue;
 			}
 
-			ret[component][id] = {};
+			ret[category][id] = {};
 
 			for (const ext of ["js", "css"]) {
 				if (
-					ext === "css" && (component === "languages" || data[component][id].noCSS) ||
-					component === "themes" && ext === "js"
+					ext === "css" && (category === "languages" || components[category][id].noCSS) ||
+					category === "themes" && ext === "js"
 				) {
 					continue;
 				}
 
 				let path = meta.path.replaceAll("{id}", id);
-				if (component === "themes") {
+				if (category === "themes") {
 					path = path.replace(".css", "");
 				}
 
 				const dev = await getFileSize(`${path}.${ext}`);
 				const minified = await getFileSize(`${path}.min.${ext}`);
-				ret[component][id][ext] = { dev, minified };
+				ret[category][id][ext] = { dev, minified };
 			}
 		}
 	}
