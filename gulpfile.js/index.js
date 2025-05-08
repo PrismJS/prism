@@ -68,7 +68,7 @@ async function calculateFileSizes() {
 					continue;
 				}
 
-				let path = meta.path.replaceAll("{id}", id);
+				let path = meta.path.replace(/\{id\}/g, id);
 				if (category === "themes") {
 					path = path.replace(".css", "");
 				}
