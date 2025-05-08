@@ -7,7 +7,7 @@ resources:
   - https://dev.prismjs.com/components.js
   - https://prismjs.com/assets/vendor/jszip.min.js
   - https://prismjs.com/assets/vendor/FileSaver.min.js
-  - ./demo.js
+  - ./script.js
 ---
 
 <style>
