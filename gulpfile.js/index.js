@@ -45,32 +45,32 @@ async function calculateFileSizes() {
 
 	// Core
 	const devPath = components.core.meta.path;
-	const minPath = devPath.replace(/\.js$/, ".min.js");
+	const minPath = devPath.replace(/\.js$/, '.min.js');
 	const dev = await getFileSize(devPath);
 	const minified = await getFileSize(minPath);
 	ret.core.js = { dev, minified };
 
-	for (const category of ["themes", "languages", "plugins"]) {
+	for (const category of ['themes', 'languages', 'plugins']) {
 		const meta = components[category].meta;
 
 		for (const id of Object.keys(components[category])) {
-			if (id === "meta") {
+			if (id === 'meta') {
 				continue;
 			}
 
 			ret[category][id] = {};
 
-			for (const ext of ["js", "css"]) {
+			for (const ext of ['js', 'css']) {
 				if (
-					ext === "css" && (category === "languages" || components[category][id].noCSS) ||
-					category === "themes" && ext === "js"
+					ext === 'css' && (category === 'languages' || components[category][id].noCSS) ||
+					category === 'themes' && ext === 'js'
 				) {
 					continue;
 				}
 
 				let path = meta.path.replace(/\{id\}/g, id);
-				if (category === "themes") {
-					path = path.replace(".css", "");
+				if (category === 'themes') {
+					path = path.replace('.css', '');
 				}
 
 				const dev = await getFileSize(`${path}.${ext}`);
@@ -80,7 +80,7 @@ async function calculateFileSizes() {
 		}
 	}
 
-	await fs.promises.writeFile(paths.fileSizes, JSON.stringify(ret, null, "\t"));
+	await fs.promises.writeFile(paths.fileSizes, JSON.stringify(ret, null, '\t'));
 }
 
 function inlineRegexSource() {
