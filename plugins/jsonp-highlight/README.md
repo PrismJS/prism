@@ -3,7 +3,6 @@ title: JSONP Highlight
 description: Fetch content with JSONP and highlight some interesting content (e.g. GitHub/Gists or Bitbucket API).
 owner: nauzilus
 noCSS: true
-resources: ./demo.js { defer }
 ---
 
 <section class="language-markup">
@@ -112,3 +111,13 @@ Registered adapter (as above, but without explicitly declaring the `data-adapter
 <pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/prism"></pre>
 
 </section>
+
+<script defer>
+	function dump_json (x) {
+		return `using dump_json: ${JSON.stringify(x, null, 2)}`;
+	}
+
+	Prism.plugins.jsonphighlight.registerAdapter(
+		x => `using registerAdapter: ${JSON.stringify(x, null, 2)}`
+	);
+</script>

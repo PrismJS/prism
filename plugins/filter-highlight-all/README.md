@@ -3,9 +3,7 @@ title: Filter highlightAll
 description: Filters the elements the `highlightAll` and `highlightAllUnder` methods actually highlight.
 owner: RunDevelopment
 noCSS: true
-resources:
-  - components/prism-typescript.js
-  - ./demo.js { defer }
+resources: components/prism-typescript.js
 ---
 
 <style>
@@ -105,3 +103,14 @@ Prism will ignore these blocks, so you can even define your own static highlight
 }</code></pre>
 
 </section>
+
+<script defer>
+	// elements with a .no-highlight class will be ignored
+	Prism.plugins.filterHighlightAll.reject.addSelector('code.no-highlight');
+	Prism.plugins.filterHighlightAll.reject.addSelector('pre.no-highlight > code');
+
+	// don't highlight CSS code
+	Prism.plugins.filterHighlightAll.add(env => {
+		return env.language !== 'css';
+	});
+</script>
