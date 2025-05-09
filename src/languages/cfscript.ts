@@ -1,14 +1,13 @@
-import { insertBefore } from '../shared/language-util';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'cfscript',
-	require: clike,
+	base: clike,
 	alias: 'cfc',
-	grammar ({ extend }) {
+	grammar (): Grammar {
 		// https://cfdocs.org/script
-		const cfscript = extend('clike', {
+		return {
 			'comment': [
 				{
 					pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
@@ -42,19 +41,17 @@ export default {
 					/\b(?:any|array|binary|boolean|date|guid|numeric|query|string|struct|uuid|void|xml)\b/,
 				alias: 'builtin',
 			},
-		});
-
-		insertBefore(cfscript, 'keyword', {
-			// This must be declared before keyword because we use "function" inside the lookahead
-			'function-variable': {
-				pattern:
-					/[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
-				alias: 'function',
+			$insertBefore: {
+				'keyword': {
+					// This must be declared before keyword because we use "function" inside the lookahead
+					'function-variable': {
+						pattern:
+							/[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
+						alias: 'function',
+					},
+				},
 			},
-		});
-
-		delete cfscript['class-name'];
-
-		return cfscript;
+			$delete: ['class-name'],
+		};
 	},
 } as LanguageProto<'cfscript'>;

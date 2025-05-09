@@ -27,6 +27,10 @@ const config = [
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
+			globals: {
+				...globals.browser,
+				...globals.node,
+			},
 		},
 		rules: {
 			'no-use-before-define': ['warn', { 'functions': false, 'classes': false }],
@@ -37,7 +41,7 @@ const config = [
 			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 			'one-var': ['warn', 'never'],
 			'prefer-arrow-callback': 'warn',
-			'prefer-const': ['warn', { 'destructuring': 'all' }],
+			'prefer-const': 'off',
 			'prefer-spread': 'warn',
 
 			// JSDoc
@@ -150,21 +154,16 @@ const config = [
 
 			'@typescript-eslint/no-unsafe-call': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
-		},
-	},
-	{
-		// Core
-		files: ['src/core/**/*.ts'],
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.node,
-			},
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-member-access': 'off',
+			'@typescript-eslint/no-unsafe-return': 'off',
+			'@typescript-eslint/no-unsafe-argument': 'off',
+			'@typescript-eslint/no-floating-promises': 'off',
 		},
 	},
 	{
 		// Browser-specific parts
-		files: ['src/auto-start.ts'],
+		files: ['src/global.ts'],
 		languageOptions: {
 			globals: {
 				...globals.browser,

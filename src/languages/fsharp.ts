@@ -1,13 +1,23 @@
-import { insertBefore } from '../shared/language-util';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'fsharp',
+	alias: 'f#',
 	require: clike,
-	optional: 'xml-doc',
-	grammar ({ extend, getOptionalLanguage }) {
-		const fsharp = extend('clike', {
+	optional: 'markup',
+	grammar ({ languages }) {
+		return {
+			'doc-comment': {
+				pattern: /\/\/\/.*/,
+				greedy: true,
+				alias: 'comment',
+				inside: {
+					get 'tag'() {
+						return languages.markup?.tag;
+					},
+				},
+			},
 			'comment': [
 				{
 					pattern: /(^|[^\\])\(\*(?!\))[\s\S]*?\*\)/,
@@ -43,54 +53,50 @@ export default {
 			],
 			'operator':
 				/([<>~&^])\1\1|([*.:<>&])\2|<-|->|[!=:]=|<?\|{1,3}>?|\??(?:<=|>=|<>|[-+*/%=<>])\??|[!?^&]|~[+~-]|:>|:\?>?/,
-		});
-		insertBefore(fsharp, 'keyword', {
-			'preprocessor': {
-				pattern: /(^[\t ]*)#.*/m,
-				lookbehind: true,
-				alias: 'property',
-				inside: {
-					'directive': {
-						pattern: /(^#)\b(?:else|endif|if|light|line|nowarn)\b/,
-						lookbehind: true,
-						alias: 'keyword',
+			$insert: {
+				'preprocessor': {
+					$before: 'keyword',
+					pattern: /(^[\t ]*)#.*/m,
+					lookbehind: true,
+					alias: 'property',
+					inside: {
+						'directive': {
+							pattern: /(^#)\b(?:else|endif|if|light|line|nowarn)\b/,
+							lookbehind: true,
+							alias: 'keyword',
+						},
 					},
 				},
-			},
-		});
-		insertBefore(fsharp, 'punctuation', {
-			'computation-expression': {
-				pattern: /\b[_a-z]\w*(?=\s*\{)/i,
-				alias: 'keyword',
-			},
-		});
-		insertBefore(fsharp, 'string', {
-			'annotation': {
-				pattern: /\[<.+?>\]/,
-				greedy: true,
-				inside: {
-					'punctuation': /^\[<|>\]$/,
-					'class-name': {
-						pattern: /^\w+$|(^|;\s*)[A-Z]\w*(?=\()/,
-						lookbehind: true,
-					},
-					'annotation-content': {
-						pattern: /[\s\S]+/,
-						inside: 'fsharp',
+
+				'computation-expression': {
+					$before: 'punctuation',
+					pattern: /\b[_a-z]\w*(?=\s*\{)/i,
+					alias: 'keyword',
+				},
+
+				'annotation': {
+					$before: 'string',
+					pattern: /\[<.+?>\]/,
+					greedy: true,
+					inside: {
+						'punctuation': /^\[<|>\]$/,
+						'class-name': {
+							pattern: /^\w+$|(^|;\s*)[A-Z]\w*(?=\()/,
+							lookbehind: true,
+						},
+						'annotation-content': {
+							pattern: /[\s\S]+/,
+							inside: 'fsharp',
+						},
 					},
 				},
+				'char': {
+					$before: 'string',
+					pattern:
+						/'(?:[^\\']|\\(?:.|\d{3}|x[a-fA-F\d]{2}|u[a-fA-F\d]{4}|U[a-fA-F\d]{8}))'B?/,
+					greedy: true,
+				},
 			},
-			'char': {
-				pattern:
-					/'(?:[^\\']|\\(?:.|\d{3}|x[a-fA-F\d]{2}|u[a-fA-F\d]{4}|U[a-fA-F\d]{8}))'B?/,
-				greedy: true,
-			},
-		});
-
-		insertBefore(fsharp, 'comment', {
-			'doc-comment': getOptionalLanguage('xml-doc')?.slash,
-		});
-
-		return fsharp;
+		};
 	},
 } as LanguageProto<'fsharp'>;

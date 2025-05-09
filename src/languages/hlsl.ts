@@ -1,4 +1,4 @@
-import { toArray } from '../shared/util';
+import { toArray } from '../util/iterables';
 import c from './c';
 import type { LanguageProto } from '../types';
 

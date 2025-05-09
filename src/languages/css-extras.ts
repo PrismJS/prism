@@ -1,9 +1,11 @@
+import css from './css';
 import cssSelector from './css-selector';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'css-extras',
 	require: cssSelector,
+	extends: css,
 	grammar () {
 		const unit = {
 			pattern: /(\b\d+)(?:%|[a-z]+(?![\w-]))/,
@@ -33,6 +35,7 @@ export default {
 					lookbehind: true,
 				},
 				{
+					// TODO update this for newer color functions
 					pattern:
 						/\b(?:hsl|rgb)\(\s*\d{1,3}\s*,\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*\)\B|\b(?:hsl|rgb)a\(\s*\d{1,3}\s*,\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*,\s*(?:0|0?\.\d+|1)\s*\)\B/i,
 					inside: {

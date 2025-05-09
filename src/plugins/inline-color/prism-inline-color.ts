@@ -1,8 +1,8 @@
 import cssExtras from '../../languages/css-extras';
-import { MARKUP_TAG } from '../../shared/languages/patterns';
 import type { PluginProto } from '../../types';
 
-const HTML_TAG = RegExp(MARKUP_TAG, 'g');
+export const HTML_TAG =
+	/<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
 
 // a regex to validate hexadecimal colors
 const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;

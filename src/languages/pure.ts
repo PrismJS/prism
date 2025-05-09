@@ -1,5 +1,4 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
+import { insertBefore } from '../util/insert';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -33,7 +32,7 @@ export default {
 						alias: 'punctuation',
 					},
 					// C is the default inline language
-					[rest]: 'c',
+					$rest: 'c',
 				},
 			},
 			'string': {
@@ -41,7 +40,7 @@ export default {
 				greedy: true,
 			},
 			'number': {
-				// The look-behind prevents wrong highlighting of the .. operator
+				// The lookbehind prevents wrong highlighting of the .. operator
 				pattern:
 					/((?:\.\.)?)(?:\b(?:inf|nan)\b|\b0x[\da-f]+|(?:\b(?:0b)?\d+(?:\.\d+)?|\B\.\d+)(?:e[+-]?\d+)?L?)/i,
 				lookbehind: true,
@@ -87,7 +86,7 @@ export default {
 					),
 					inside: {
 						...pure['inline-lang'].inside,
-						[rest]: alias,
+						$rest: alias,
 					},
 				},
 			});

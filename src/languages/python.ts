@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -28,7 +27,7 @@ export default {
 							pattern: /![sra](?=[:}]$)/,
 							alias: 'punctuation',
 						},
-						[rest]: 'python',
+						$rest: 'python',
 					},
 				},
 				'string': /[\s\S]+/,

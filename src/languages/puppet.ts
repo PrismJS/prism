@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -23,7 +22,7 @@ export default {
 						pattern: /^\$/,
 						alias: 'variable',
 					},
-					[rest]: 'puppet',
+					$rest: 'puppet',
 				},
 			},
 			{

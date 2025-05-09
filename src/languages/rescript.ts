@@ -1,5 +1,4 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
+import { insertBefore } from '../util/insert';
 import type { LanguageProto } from '../types';
 
 export default {
@@ -60,7 +59,7 @@ export default {
 								pattern: /^\$\{|\}$/,
 								alias: 'tag',
 							},
-							[rest]: 'rescript',
+							$rest: 'rescript',
 						},
 					},
 					'string': /[\s\S]+/,

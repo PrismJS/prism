@@ -159,7 +159,7 @@ export default {
 		});
 	},
 	effect(Prism) {
-		const Normalizer = Prism.plugins.normalizeWhitespace;
+		const Normalizer = Prism.plugins.normalizeWhitespace as NormalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', (env) => {
 			if (!env.code) {
@@ -208,7 +208,7 @@ export default {
 				}
 			}
 
-			if (!env.element.children.length || !Prism.components.has('keep-markup')) {
+			if (!env.element.children.length || !Prism.plugins['keep-markup']) {
 				env.code = before + env.code + after;
 				env.code = Normalizer.normalize(env.code, settings);
 			} else {

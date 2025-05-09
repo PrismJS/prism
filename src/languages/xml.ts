@@ -1,9 +1,13 @@
-import { MARKUP_TAG } from '../shared/languages/patterns';
 import type { LanguageProto } from '../types';
+
+export const MARKUP_TAG =
+	/<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/;
 
 export default {
 	id: 'xml',
 	alias: ['ssml', 'atom', 'rss'],
+	media: ['application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml'],
+	extensions: ['xml', 'xsl', 'xsd', 'wsdl', 'svg', 'rss', 'atom'],
 	grammar () {
 		const entity = [
 			{
@@ -86,12 +90,4 @@ export default {
 			'entity': entity,
 		};
 	},
-	effect (Prism) {
-		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', env => {
-			if (env.type === 'entity') {
-				env.attributes['title'] = env.content.replace(/&amp;/, '&');
-			}
-		});
-	},
-} as LanguageProto<'xml'>;
+} satisfies LanguageProto<'xml'>;
