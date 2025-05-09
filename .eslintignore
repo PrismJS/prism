@@ -1,0 +1,1 @@
+postinstall.js # in the script, we use syntax that this version of ESLint can't parse
