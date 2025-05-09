@@ -1,5 +1,6 @@
 ---
 layout: null
+eleventyExcludeFromCollections: true
 ---
 
 <body>
