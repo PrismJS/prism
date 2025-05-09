@@ -1,0 +1,57 @@
+dc.title any fish or/rel.combine=sum dc.creator any sanderson
+
+dc.title any fish prox/unit=word/distance>3 dc.title any squirrel
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["bool-group", [
+		["boolean", "or"],
+		["boolean-modifier", [
+			["punctuation", "/"],
+			["modifier", "rel.combine"],
+			["comparitor", "="],
+			["value", "sum"]
+		]]
+	]],
+	["search-clause", [
+		["index", "dc.creator"],
+		["relation", "any"],
+		["term", "sanderson"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["bool-group", [
+		["boolean", "prox"],
+		["boolean-modifier", [
+			["punctuation", "/"],
+			["modifier", "unit"],
+			["comparitor", "="],
+			["value", "word"]
+		]],
+		["boolean-modifier", [
+			["punctuation", "/"],
+			["modifier", "distance"],
+			["comparitor", ">"],
+			["value", "3"]
+		]]
+	]],
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "squirrel"]
+	]]
+]
+
+----------------------------------------------------
+
+Boolean modifiers.

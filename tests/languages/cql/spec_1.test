@@ -1,0 +1,45 @@
+dc.title any fish
+dc.title any fish or dc.creator any sanderson
+dc.title any fish sortBy dc.date/sort.ascending
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["bool-group", [
+		["boolean", "or"]
+	]],
+	["search-clause", [
+		["index", "dc.creator"],
+		["relation", "any"],
+		["term", "sanderson"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["sortby", [
+		["keyword", "sortBy"],
+		["index", "dc.date"],
+		["sortby-index-modifier", [
+			["punctuation", "/"],
+			["modifier", "sort.ascending"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Some examples from SRU CQL spec.

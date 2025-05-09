@@ -1,0 +1,19 @@
+> "http://deepcustard.org/" custardDepth > 10
+
+----------------------------------------------------
+
+[
+	["prefix", [
+		["punctuation", ">"],
+		["uri", "\"http://deepcustard.org/\""]
+	]],
+	["search-clause", [
+		["index", "custardDepth"],
+		["relation", ">"],
+		["term", "10"]
+	]]
+]
+
+----------------------------------------------------
+
+Prefix assignments.
