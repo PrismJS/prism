@@ -130,7 +130,7 @@ a:hover {
 
 </section>
 
-<script defer>
+<script>
 	async function getZip (files, elt) {
 		let process = async () => {
 			elt.setAttribute('data-progress', Math.round((i / l) * 100));
@@ -163,30 +163,33 @@ a:hover {
 		return response.text();
 	}
 
-	document.querySelector('.download-grammars').addEventListener('click', async ({ target }) => {
-		let btn = target;
-		if (btn.classList.contains('loading')) {
-			return;
-		}
-		btn.classList.add('loading');
-		btn.setAttribute('data-progress', 0);
+	addEventListener("DOMContentLoaded", async () => {
+		let components = await (await fetch('/components.json')).json();
 
-		let files = [];
-		for (let id in components.languages) {
-			if (id === 'meta') {
-				continue;
+		document.querySelector('.download-grammars').addEventListener('click', async ({ target }) => {
+			let btn = target;
+			if (btn.classList.contains('loading')) {
+				return;
 			}
-			let basepath =
-				'https://dev.prismjs.com/' + components.languages.meta.path.replace(/\{id}/g, id);
-			let basename = basepath.substring(basepath.lastIndexOf('/') + 1);
-			files.push([basename + '.js', basepath + '.js']);
-			files.push([basename + '.min.js', basepath + '.min.js']);
-		}
+			btn.classList.add('loading');
+			btn.setAttribute('data-progress', 0);
 
-		let zip = await getZip(files, btn);
-		btn.classList.remove('loading');
+			let files = [];
+			for (let id in components.languages) {
+				if (id === 'meta') {
+					continue;
+				}
+				let basepath = components.languages.meta.path.replace(/\{id}/g, id);
+				let basename = basepath.substring(basepath.lastIndexOf('/') + 1);
+				files.push([basename + '.js', basepath + '.js']);
+				files.push([basename + '.min.js', basepath + '.min.js']);
+			}
 
-		let blob = await zip.generateAsync({ type: 'blob' });
-		saveAs(blob, 'prism-components.zip');
+			let zip = await getZip(files, btn);
+			btn.classList.remove('loading');
+
+			let blob = await zip.generateAsync({ type: 'blob' });
+			saveAs(blob, 'prism-components.zip');
+		});
 	});
 </script>
