@@ -1,0 +1,15 @@
+min max sum
+average stddev
+every any
+
+----------------------------------------------------
+
+[
+	["builtin", "min"], ["builtin", "max"], ["builtin", "sum"],
+	["builtin", "average"],	["builtin", "stddev"],
+	["builtin", "every"], ["builtin", "any"]
+]
+
+----------------------------------------------------
+
+Checks for builtins.
