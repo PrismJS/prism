@@ -5,7 +5,7 @@ owner: LeaVerou
 noCSS: true
 resources:
   - ../line-numbers/prism-line-numbers.css
-  - ../line-numbers/prism-line-numbers.js { type="module" }
+  - ../line-numbers/prism-line-numbers.js
 ---
 
 <section class="language-markup">

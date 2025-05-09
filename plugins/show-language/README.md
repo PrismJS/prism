@@ -6,7 +6,7 @@ require: toolbar
 noCSS: true
 resources:
   - ../toolbar/prism-toolbar.css
-  - ../toolbar/prism-toolbar.js { type="module" }
+  - ../toolbar/prism-toolbar.js
 ---
 
 <section>

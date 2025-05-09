@@ -5,7 +5,7 @@ owner: zeitgeist87
 optional: unescaped-markup
 noCSS: true
 body_classes: language-markup
-resources: ../keep-markup/prism-keep-markup.js { type="module" }
+resources: ../keep-markup/prism-keep-markup.js
 ---
 
 <style type="text/css">

@@ -2,7 +2,7 @@
 title: Match braces
 description: Highlights matching braces.
 owner: RunDevelopment
-resources: ../autoloader/prism-autoloader.js { type="module" }
+resources: ../autoloader/prism-autoloader.js
 ---
 
 <section class="language-markup">
