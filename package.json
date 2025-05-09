@@ -25,7 +25,8 @@
 		"test:plugins": "mocha tests/plugins/**/*.js",
 		"test:runner": "mocha tests/testrunner-tests.js",
 		"test": "npm-run-all test:*",
-		"release": "release-it"
+		"release": "release-it",
+		"postinstall": "npm run build"
 	},
 	"repository": {
 		"type": "git",
