@@ -4,7 +4,7 @@ description: Automatically loads the needed languages to highlight the code bloc
 owner: Golmote
 noCSS: true
 resources:
-  - components.js
+  - /components.js
   - https://prismjs.com/assets/vendor/jszip.min.js
   - https://prismjs.com/assets/vendor/FileSaver.min.js
 ---
