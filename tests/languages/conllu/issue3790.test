@@ -1,0 +1,151 @@
+# sent_id = 2
+# text = I have no clue.
+# is a normal comment allowed?
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1	2	nsubj	_	_
+2	have	have	VERB	VBP	Number=Sing|Person=1|Tense=Pres	0	root	_	_
+3	no	no	DET	DT	PronType=Neg	4	det	_	_
+4	clue	clue	NOUN	NN	Number=Sing	2	obj	_	SpaceAfter=No
+5	.	.	PUNCT	.	_	2	punct	_	_
+
+----------------------------------------------------
+
+[
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "2"]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text"],
+			["operator", "="],
+			["value", "I have no clue."]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		" is a normal comment allowed?\r"
+	]],
+	["token", [
+		["id", "1"],
+		["form", "I"],
+		["lemma", "I"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "have"],
+		["lemma", "have"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "no"],
+		["lemma", "no"],
+		["upos", "DET"],
+		["xpos", "DT"],
+		["feats", [
+			["feature", [
+				["key", "PronType"],
+				["operator", "="],
+				["value", "Neg"]
+			]]
+		]],
+		["head", "4"],
+		["deprel", "det"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "clue"],
+		["lemma", "clue"],
+		["upos", "NOUN"],
+		["xpos", "NN"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "obj"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "SpaceAfter"],
+				["operator", "="],
+				["value", "No"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "."],
+		["lemma", "."],
+		["upos", "PUNCT"],
+		["xpos", "."],
+		["feats", "_"],
+		["head", "2"],
+		["deprel", "punct"],
+		["deps", "_"],
+		["misc", "_"]
+	]]
+]
+
+----------------------------------------------------
+
+Language feature request.
