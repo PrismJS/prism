@@ -10,13 +10,12 @@
 
 	var dependencies = {};
 
-	var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-	var treePromise = new Promise(function (resolve) {
+	var fileSizesPromise = new Promise(function (resolve) {
 		$u.xhr({
-			url: treeURL,
+			url: 'file-sizes.json',
 			callback: function (xhr) {
 				if (xhr.status < 400) {
-					resolve(JSON.parse(xhr.responseText).tree);
+					resolve(JSON.parse(xhr.responseText));
 				}
 			}
 		});
@@ -300,12 +299,15 @@
 			getFilesSizes();
 		};
 
-	function getFileSize(filepath) {
-		return treePromise.then(function (tree) {
-			for (var i = 0, l = tree.length; i < l; i++) {
-				if (tree[i].path === filepath) {
-					return tree[i].size;
-				}
+	function getFileSize(category, id, filepath) {
+		return fileSizesPromise.then(function (fileSizes) {
+			var type = filepath.match(/\.(css|js)$/)[1];
+			var version = /\.min\./.test(filepath) ? 'minified' : 'dev';
+
+			if (category === 'core') {
+				return fileSizes.core.js[version];
+			} else {
+				return fileSizes[category][id][type][version];
 			}
 		});
 	}
@@ -328,7 +330,7 @@
 					if (!file.size) {
 
 						(function (category, id) {
-							getFileSize(filepath).then(function (size) {
+							getFileSize(category, id, filepath).then(function (size) {
 								if (size) {
 									file.size = size;
 									distro.size += file.size;

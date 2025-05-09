@@ -30,6 +30,59 @@ const componentsPromise = new Promise((resolve, reject) => {
 	});
 });
 
+// Helper to get file size in bytes, or 0 if not found
+const getFileSize = path =>
+	fs.promises.stat(path).then(stat => stat.size).catch(() => 0);
+
+async function calculateFileSizes() {
+	const ret = {
+		core: {},
+		themes: {},
+		languages: {},
+		plugins: {}
+	};
+	const components = await componentsPromise;
+
+	// Core
+	const devPath = components.core.meta.path;
+	const minPath = devPath.replace(/\.js$/, '.min.js');
+	const dev = await getFileSize(devPath);
+	const minified = await getFileSize(minPath);
+	ret.core.js = { dev, minified };
+
+	for (const category of ['themes', 'languages', 'plugins']) {
+		const meta = components[category].meta;
+
+		for (const id of Object.keys(components[category])) {
+			if (id === 'meta') {
+				continue;
+			}
+
+			ret[category][id] = {};
+
+			for (const ext of ['js', 'css']) {
+				if (
+					ext === 'css' && (category === 'languages' || components[category][id].noCSS) ||
+					category === 'themes' && ext === 'js'
+				) {
+					continue;
+				}
+
+				let path = meta.path.replace(/\{id\}/g, id);
+				if (category === 'themes') {
+					path = path.replace('.css', '');
+				}
+
+				const dev = await getFileSize(`${path}.${ext}`);
+				const minified = await getFileSize(`${path}.min.${ext}`);
+				ret[category][id][ext] = { dev, minified };
+			}
+		}
+	}
+
+	await fs.promises.writeFile(paths.fileSizes, JSON.stringify(ret, null, '\t'));
+}
+
 function inlineRegexSource() {
 	return replace(
 		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
@@ -297,7 +350,7 @@ const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins, minifyP
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
-	default: series(parallel(components, plugins, minifyThemes, componentsJsonToJs, build), docs),
+	default: series(parallel(components, plugins, minifyThemes, componentsJsonToJs, build), calculateFileSizes, docs),
 	linkify,
 	changes
 };

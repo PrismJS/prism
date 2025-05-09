@@ -3,6 +3,7 @@
 module.exports = {
 	componentsFile: 'components.json',
 	componentsFileJS: 'components.js',
+	fileSizes: 'file-sizes.json',
 	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
 	themes: ['themes/*.css', '!themes/*.min.css'],
 	main: [
