@@ -25,13 +25,13 @@ export class Prism {
 
 	/**
 	 * This is the most high-level function in Prism’s API.
-	 * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism#highlightElement} on
+	 * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism.highlightElement} on
 	 * each one of them.
 	 *
 	 * The following hooks will be run:
 	 * 1. `before-highlightall`
 	 * 2. `before-all-elements-highlight`
-	 * 3. All hooks of {@link Prism#highlightElement} for each element.
+	 * 3. All hooks of {@link Prism.highlightElement} for each element.
 	 */
 	highlightAll (options: HighlightAllOptions = {}) {
 		const { root, async, callback } = options;
@@ -63,7 +63,7 @@ export class Prism {
 	 * The following hooks will be run:
 	 * 1. `before-sanity-check`
 	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism#highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
 	 * 4. `before-insert`
 	 * 5. `after-highlight`
 	 * 6. `complete`
@@ -162,7 +162,13 @@ export class Prism {
 	 * Usually a language definition like `Prism.languages.markup`.
 	 * @returns The highlighted HTML.
 	 * @example
-	 * Prism.highlight('var foo = true;', 'javascript');
+	 * import { Prism } from './src/core/prism';
+	 * import javascript from './src/languages/prism-javascript';
+	 * const prism = new Prism();
+	 * prism.components.add(javascript);
+	 * prism.highlight('var foo = true;', 'javascript')
+	 * // Returns:
+	 * `<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>`
 	 */
 	highlight (text: string, language: string, options?: HighlightOptions): string {
 		const languageId = this.components.resolveAlias(language);
@@ -199,14 +205,22 @@ export class Prism {
 	 * Usually a language definition like `Prism.languages.markup`.
 	 * @returns An array of strings and tokens, a token stream.
 	 * @example
-	 * let code = `var foo = 0;`;
-	 * let tokens = Prism.tokenize(code, Prism.getLanguage('javascript'));
-	 * tokens.forEach(token => {
-	 *     if (token instanceof Token && token.type === 'number') {
-	 *         console.log(`Found numeric literal: ${token.content}`);
-	 *     }
+	 * import { Token } from './src/core';
+	 * import { Prism } from './src/core/prism';
+	 * import javascript from './src/languages/prism-javascript';
+	 *
+	 * const prism = new Prism();
+	 * prism.components.add(javascript);
+	 *
+	 * const tokens = prism.tokenize(`var foo = 0;`, prism.components.getLanguage('javascript')!);
+	 * tokens.forEach((token: Token | string) => {
+	 *   if (token instanceof Token && token.type === 'number') {
+	 *     console.log(`Found numeric literal: ${token.content}`);
+	 *   }
 	 * });
+	 * // Logs: Found numeric literal: 0
 	 */
+
 	tokenize (text: string, grammar: Grammar): TokenStream {
 		const customTokenize = grammar[tokenize];
 		if (customTokenize) {
