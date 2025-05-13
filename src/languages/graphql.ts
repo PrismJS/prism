@@ -14,7 +14,7 @@ export default {
 				greedy: true,
 				alias: 'string',
 				inside: {
-					// TODO use $language
+					// TODO we should be able to do this in one step
 					'language-markdown': {
 						pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
 						lookbehind: true,

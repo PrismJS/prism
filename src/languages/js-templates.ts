@@ -2,7 +2,6 @@ import { embeddedIn } from '../shared/languages/templating';
 import javascript, { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from './javascript';
 import type { GrammarToken, LanguageProto } from '../types';
 
-// TODO use $language
 /**
  * Creates a new pattern to match a template string with a special tag.
  *
@@ -52,6 +51,7 @@ export default {
 	require: javascript,
 	extends: 'javascript',
 	grammar () {
+		// TODO use function with groups
 		return {
 			'template-string': [
 				// styled-jsx:

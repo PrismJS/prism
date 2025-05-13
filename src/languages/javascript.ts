@@ -193,7 +193,6 @@ export default {
 										pattern: /^\$\{|\}$/,
 										alias: 'punctuation',
 									},
-									// TODO $language?
 									$rest: 'javascript',
 								},
 							},

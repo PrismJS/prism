@@ -38,10 +38,8 @@ export default {
 								},
 							},
 							'code': {
-								// TODO $language
 								pattern: /(=)[\s\S]*(?=\]$)/,
 								lookbehind: true,
-								alias: 'language-javascript',
 								inside: 'javascript',
 							},
 							'punctuation': /[=[\]]/,
@@ -83,11 +81,9 @@ export default {
 							/(@example\s+(?!\s))(?:[^@\s]|\s+(?!\s))+?(?=\s*(?:\*\s*)?(?:@\w|\*\/))/,
 						lookbehind: true,
 						inside: {
-							// TODO $language
 							'code': {
 								pattern: /^([\t ]*(?:\*\s*)?)\S.*$/m,
 								lookbehind: true,
-								alias: 'language-javascript',
 								inside: 'javascript',
 							},
 						},

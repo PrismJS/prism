@@ -107,7 +107,7 @@ export default {
 							/(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
 						lookbehind: true,
 						greedy: true,
-						inside: { $language: '$self' },
+						inside: '$self',
 					},
 				},
 			}, // end $insertBefore

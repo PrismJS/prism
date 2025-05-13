@@ -62,9 +62,7 @@ export default {
 								pattern: /^`|`$/,
 								alias: 'punctuation',
 							},
-							'script': {
-								$language: 'javascript',
-							},
+							'script': 'javascript',
 						},
 					},
 

@@ -94,10 +94,6 @@ export interface GrammarSpecial {
 	$merge?: GrammarTokens;
 }
 
-export interface GrammarLanguageReference {
-	$language: string | ((any) => string);
-}
-
 export type Grammar = GrammarTokens & GrammarSpecial;
 
 /**

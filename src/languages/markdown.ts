@@ -97,9 +97,7 @@ export default {
 					pattern:
 						/^```(?<codeLanguage>[a-z-]+).+(?:\n|\r\n?)(?<codeBlock>[\s\S]*)?(?:\n|\r\n?)```$/i,
 					inside: {
-						'code-block': {
-							$language: groups => groups.codeLanguage,
-						},
+						'code-block': groups => groups.codeLanguage,
 						'punctuation': /```/,
 					},
 				},

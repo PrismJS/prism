@@ -33,7 +33,7 @@ export default {
 				pattern: /((?:[=,({:]|\breturn)\s*)\[[^\[\]]*\]/i,
 				lookbehind: true,
 				greedy: true,
-				$language: 'sql',
+				$inside: 'sql',
 			},
 
 			'annotation': {
