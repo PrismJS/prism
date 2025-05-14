@@ -1,66 +1,60 @@
 <h2>Full example</h2>
-<pre><code>extends BaseClass
-class_name MyClass, "res://path/to/optional/icon.svg"
+<pre><code>@icon("res://my_class_icon.png")
+class_name MyClass
+extends Node3D
+## GDScript class example
+##
+## This class contains sample code for the GDScript language,
+## showcasing most of the language's highligthing possibilities.
 
-# Member Variables
+signal my_signal
+signal another_signal(node: Node)
 
-var a = 5
-var s = "Hello"
-var arr = [1, 2, 3]
-var dict = {"key": "value", 2:3}
-var typed_var: int
-var inferred_type := "String"
+enum CustomAttribute {
+	ZERO,
+	ONE,
+	TWO,
+	FIVE = 5,
+}
 
-# Constants
+const DEFAULT_LENGTH := 10
 
-const ANSWER = 42
-const THE_NAME = "Charly"
+@export var editor_variable := 0
+@export_range(1, 5) var ranged_variable := 2
 
-# Enums
+var attributes: Dictionary[String, CustomAttribute] = {}
+var node_path := ^"my/node/path"
+var string_name := &"string_name"
 
-enum {UNIT_NEUTRAL, UNIT_ENEMY, UNIT_ALLY}
-enum Named {THING_1, THING_2, ANOTHER_THING = -1}
+@onready var label: Label = $Path/To/Label
+@onready var button: Button = %Button
 
-# Built-in Vector Types
 
-var v2 = Vector2(1, 2)
-var v3 = Vector3(1, 2, 3)
+func _ready() -> void:
+	var args := OS.get_cmdline_args()
+	if not args.is_empty():
+		return
+	elif "--headless" in args or editor_variable != 0:
+		push_error("Cannot initialize scene")
+		return
+	move_node(ranged_variable)
+	var inner_object := InnerClass.new(CustomAttribute.ZERO)
+	print("Initialized object with %s" % [inner_object.inner_var])
 
-# Function
 
-func some_function(param1, param2):
-	var local_var = 5
+func move_node(value: int) -> void:
+	position = Vector3.ONE * value * randf()
+	# NOTE: Alternative syntax "(%.2f/%+-5.1f/%.2f)" % [position.x, position.y, position.z].
+	print("Moved to ({x}/{y}/{z} &lt;{v}>)".format({
+		"x": "%.2f" % [position.x],
+		"y": "%+-5.1f" % [position.y],
+		"z": "%.2f" % [position.z],
+		"v": value,
+	}))
 
-	if param1 &lt; local_var:
-		print(param1)
-	elif param2 > 5:
-		print(param2)
-	else:
-		print("Fail!")
 
-	for i in range(20):
-		print(i)
-
-	while param2 != 0:
-		param2 -= 1
-
-	var local_var2 = param1 + 3
-	return local_var2
-
-# Functions override functions with the same name on the base/parent class.
-# If you still want to call them, use '.' (like 'super' in other languages).
-
-func something(p1, p2):
-	.something(p1, p2)
-
-# Inner Class
-
-class Something:
-	var a = 10
-
-# Constructor
-
-func _init():
-	print("Constructed!")
-	var lv = Something.new()
-	print(lv.a)</code></pre>
+class InnerClass extends RefCounted:
+	var inner_var: Variant = null
+	
+	func _init(init_var: Variant) -> void:
+		inner_var = init_var</code></pre>
