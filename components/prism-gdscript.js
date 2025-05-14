@@ -1,27 +1,258 @@
+const commentCritical = /(?:ALERT|ATTENTION|CAUTION|CRITICAL|DANGER|SECURITY)/;
+const commentWarning = /(?:BUG|DEPRECATED|FIXME|HACK|TASK|TBD|TODO|WARNING)/;
+const commentNotice = /(?:INFO|NOTE|NOTICE|TEST|TESTING)/;
+const builtinTypes = /\b(?:bool|int|float|String|Vector2|Vector2i|Rect2|Rect2i|Transform2D|Vector3|Vector3i|Vector4|Vector4i|Plane|AABB|Quaternion|Basis|Transform3D|Projection|Color|RID|Object|Callable|Signal|StringName|NodePath|Dictionary|Array|PackedByteArray|PackedInt32Array|PackedInt64Array|PackedFloat32Array|PackedFloat64Array|PackedStringArray|PackedVector2Array|PackedVector3Array|PackedColorArray|PackedVector4Array|Variant|void)\b/;
+const builtinObjectList = [
+  "AABB", "AcceptDialog", "AESContext", "AnimatableBody2D", "AnimatableBody3D", "AnimatedSprite2D", "AnimatedSprite3D", "AnimatedTexture", "AnimationLibrary", "AnimationMixer",
+  "AnimationNodeAdd2", "AnimationNodeAdd3", "AnimationNodeAnimation", "AnimationNodeBlend2", "AnimationNodeBlend3", "AnimationNodeBlendSpace1D", "AnimationNodeBlendSpace2D", "AnimationNodeBlendTree", "AnimationNodeExtension", "AnimationNodeOneShot",
+  "AnimationNodeOutput", "AnimationNodeStateMachinePlayback", "AnimationNodeStateMachineTransition", "AnimationNodeStateMachine", "AnimationNodeSub2", "AnimationNodeSync", "AnimationNodeTimeScale", "AnimationNodeTimeSeek", "AnimationNodeTransition", "AnimationNode",
+  "AnimationPlayer", "AnimationRootNode", "AnimationTree", "Animation", "Area2D", "Area3D", "ArrayMesh", "ArrayOccluder3D", "Array", "AspectRatioContainer",
+  "AStar2D", "AStar3D", "AStarGrid2D", "AtlasTexture", "AudioBusLayout", "AudioEffectAmplify", "AudioEffectBandLimitFilter", "AudioEffectBandPassFilter", "AudioEffectCapture", "AudioEffectChorus",
+  "AudioEffectCompressor", "AudioEffectDelay", "AudioEffectDistortion", "AudioEffectEQ10", "AudioEffectEQ21", "AudioEffectEQ6", "AudioEffectEQ", "AudioEffectFilter", "AudioEffectHardLimiter", "AudioEffectHighPassFilter",
+  "AudioEffectHighShelfFilter", "AudioEffectInstance", "AudioEffectLimiter", "AudioEffectLowPassFilter", "AudioEffectLowShelfFilter", "AudioEffectNotchFilter", "AudioEffectPanner", "AudioEffectPhaser", "AudioEffectPitchShift", "AudioEffectRecord",
+  "AudioEffectReverb", "AudioEffectSpectrumAnalyzerInstance", "AudioEffectSpectrumAnalyzer", "AudioEffectStereoEnhance", "AudioEffect", "AudioListener2D", "AudioListener3D", "AudioSamplePlayback", "AudioSample", "AudioServer",
+  "AudioStreamGeneratorPlayback", "AudioStreamGenerator", "AudioStreamInteractive", "AudioStreamMicrophone", "AudioStreamMP3", "AudioStreamOggVorbis", "AudioStreamPlaybackInteractive", "AudioStreamPlaybackOggVorbis", "AudioStreamPlaybackPlaylist", "AudioStreamPlaybackPolyphonic",
+  "AudioStreamPlaybackResampled", "AudioStreamPlaybackSynchronized", "AudioStreamPlayback", "AudioStreamPlayer2D", "AudioStreamPlayer3D", "AudioStreamPlayer", "AudioStreamPlaylist", "AudioStreamPolyphonic", "AudioStreamRandomizer", "AudioStreamSynchronized",
+  "AudioStreamWAV", "AudioStream", "BackBufferCopy", "BaseButton", "BaseMaterial3D", "Basis", "BitMap", "Bone2D", "BoneAttachment3D", "BoneMap",
+  "bool", "BoxContainer", "BoxMesh", "BoxOccluder3D", "BoxShape3D", "ButtonGroup", "Button", "Callable", "CallbackTweener", "Camera2D",
+  "Camera3D", "CameraAttributesPhysical", "CameraAttributesPractical", "CameraAttributes", "CameraFeed", "CameraServer", "CameraTexture", "CanvasGroup", "CanvasItemMaterial", "CanvasItem",
+  "CanvasLayer", "CanvasModulate", "CanvasTexture", "CapsuleMesh", "CapsuleShape2D", "CapsuleShape3D", "CenterContainer", "CharacterBody2D", "CharacterBody3D", "CharFXTransform",
+  "CheckBox", "CheckButton", "CircleShape2D", "ClassDB", "CodeEdit", "CodeHighlighter", "CollisionObject2D", "CollisionObject3D", "CollisionPolygon2D", "CollisionPolygon3D",
+  "CollisionShape2D", "CollisionShape3D", "ColorPalette", "ColorPickerButton", "ColorPicker", "ColorRect", "Color", "CompositorEffect", "Compositor", "CompressedCubemapArray",
+  "CompressedCubemap", "CompressedTexture2DArray", "CompressedTexture2D", "CompressedTexture3D", "CompressedTextureLayered", "ConcavePolygonShape2D", "ConcavePolygonShape3D", "ConeTwistJoint3D", "ConfigFile", "ConfirmationDialog",
+  "Container", "Control", "ConvexPolygonShape2D", "ConvexPolygonShape3D", "CPUParticles2D", "CPUParticles3D", "CryptoKey", "Crypto", "CSGBox3D", "CSGCombiner3D",
+  "CSGCylinder3D", "CSGMesh3D", "CSGPolygon3D", "CSGPrimitive3D", "CSGShape3D", "CSGSphere3D", "CSGTorus3D", "CSharpScript", "CubemapArray", "Cubemap",
+  "Curve2D", "Curve3D", "CurveTexture", "Curve", "CurveXYZTexture", "CylinderMesh", "CylinderShape3D", "DampedSpringJoint2D", "Decal", "Dictionary",
+  "DirAccess", "DirectionalLight2D", "DirectionalLight3D", "DisplayServer", "DTLSServer", "EditorCommandPalette", "EditorContextMenuPlugin", "EditorDebuggerPlugin", "EditorDebuggerSession", "EditorExportPlatformAndroid",
+  "EditorExportPlatformExtension", "EditorExportPlatformIOS", "EditorExportPlatformLinuxBSD", "EditorExportPlatformMacOS", "EditorExportPlatformPC", "EditorExportPlatformWeb", "EditorExportPlatformWindows", "EditorExportPlatform", "EditorExportPlugin", "EditorExportPreset",
+  "EditorFeatureProfile", "EditorFileDialog", "EditorFileSystemDirectory", "EditorFileSystemImportFormatSupportQuery", "EditorFileSystem", "EditorImportPlugin", "EditorInspectorPlugin", "EditorInspector", "EditorInterface", "EditorNode3DGizmoPlugin",
+  "EditorNode3DGizmo", "EditorPaths", "EditorPlugin", "EditorProperty", "EditorResourceConversionPlugin", "EditorResourcePicker", "EditorResourcePreviewGenerator", "EditorResourcePreview", "EditorResourceTooltipPlugin", "EditorSceneFormatImporterBlend",
+  "EditorSceneFormatImporterFBX2GLTF", "EditorSceneFormatImporterGLTF", "EditorSceneFormatImporterUFBX", "EditorSceneFormatImporter", "EditorScenePostImportPlugin", "EditorScenePostImport", "EditorScriptPicker", "EditorScript", "EditorSelection", "EditorSettings",
+  "EditorSpinSlider", "EditorSyntaxHighlighter", "EditorToaster", "EditorTranslationParserPlugin", "EditorUndoRedoManager", "EditorVCSInterface", "EncodedObjectAsID", "ENetConnection", "ENetMultiplayerPeer", "ENetPacketPeer",
+  "EngineDebugger", "EngineProfiler", "Engine", "Environment", "Expression", "ExternalTexture", "FastNoiseLite", "FBXDocument", "FBXState", "FileAccess",
+  "FileDialog", "FileSystemDock", "float", "FlowContainer", "FogMaterial", "FogVolume", "FoldableContainer", "FoldableGroup", "FontFile", "FontVariation",
+  "Font", "FramebufferCacheRD", "GDExtensionManager", "GDExtension", "GDScriptSyntaxHighlighter", "@GDScript", "GDScript", "Generic6DOFJoint3D", "Geometry2D", "Geometry3D",
+  "GeometryInstance3D", "@GlobalScope", "GLTFAccessor", "GLTFAnimation", "GLTFBufferView", "GLTFCamera", "GLTFDocumentExtensionConvertImporterMesh", "GLTFDocumentExtension", "GLTFDocument", "GLTFLight",
+  "GLTFMesh", "GLTFNode", "GLTFObjectModelProperty", "GLTFPhysicsBody", "GLTFPhysicsShape", "GLTFSkeleton", "GLTFSkin", "GLTFSpecGloss", "GLTFState", "GLTFTextureSampler",
+  "GLTFTexture", "GPUParticles2D", "GPUParticles3D", "GPUParticlesAttractor3D", "GPUParticlesAttractorBox3D", "GPUParticlesAttractorSphere3D", "GPUParticlesAttractorVectorField3D", "GPUParticlesCollision3D", "GPUParticlesCollisionBox3D", "GPUParticlesCollisionHeightField3D",
+  "GPUParticlesCollisionSDF3D", "GPUParticlesCollisionSphere3D", "GradientTexture1D", "GradientTexture2D", "Gradient", "GraphEdit", "GraphElement", "GraphFrame", "GraphNode", "GridContainer",
+  "GridMapEditorPlugin", "GridMap", "GrooveJoint2D", "HashingContext", "HBoxContainer", "HeightMapShape3D", "HFlowContainer", "HingeJoint3D", "HMACContext", "HScrollBar",
+  "HSeparator", "HSlider", "HSplitContainer", "HTTPClient", "HTTPRequest", "ImageFormatLoaderExtension", "ImageFormatLoader", "ImageTexture3D", "ImageTextureLayered", "ImageTexture",
+  "Image", "ImmediateMesh", "ImporterMeshInstance3D", "ImporterMesh", "InputEventAction", "InputEventFromWindow", "InputEventGesture", "InputEventJoypadButton", "InputEventJoypadMotion", "InputEventKey",
+  "InputEventMagnifyGesture", "InputEventMIDI", "InputEventMouseButton", "InputEventMouseMotion", "InputEventMouse", "InputEventPanGesture", "InputEventScreenDrag", "InputEventScreenTouch", "InputEventShortcut", "InputEventWithModifiers",
+  "InputEvent", "InputMap", "Input", "InstancePlaceholder", "IntervalTweener", "int", "IP", "ItemList", "JavaClassWrapper", "JavaClass",
+  "JavaObject", "JavaScriptBridge", "JavaScriptObject", "JNISingleton", "Joint2D", "Joint3D", "JSONRPC", "JSON", "KinematicCollision2D", "KinematicCollision3D",
+  "Label3D", "LabelSettings", "Label", "Light2D", "Light3D", "LightmapGIData", "LightmapGI", "LightmapperRD", "Lightmapper", "LightmapProbe",
+  "LightOccluder2D", "Line2D", "LineEdit", "LinkButton", "Logger", "LookAtModifier3D", "MainLoop", "MarginContainer", "Marker2D", "Marker3D",
+  "Marshalls", "Material", "MenuBar", "MenuButton", "MeshConvexDecompositionSettings", "MeshDataTool", "MeshInstance2D", "MeshInstance3D", "MeshLibrary", "MeshTexture",
+  "Mesh", "MethodTweener", "MissingNode", "MissingResource", "MobileVRInterface", "MovieWriter", "MultiMeshInstance2D", "MultiMeshInstance3D", "MultiMesh", "MultiplayerAPIExtension",
+  "MultiplayerAPI", "MultiplayerPeerExtension", "MultiplayerPeer", "MultiplayerSpawner", "MultiplayerSynchronizer", "Mutex", "NativeMenu", "NavigationAgent2D", "NavigationAgent3D", "NavigationLink2D",
+  "NavigationLink3D", "NavigationMeshGenerator", "NavigationMeshSourceGeometryData2D", "NavigationMeshSourceGeometryData3D", "NavigationMesh", "NavigationObstacle2D", "NavigationObstacle3D", "NavigationPathQueryParameters2D", "NavigationPathQueryParameters3D", "NavigationPathQueryResult2D",
+  "NavigationPathQueryResult3D", "NavigationPolygon", "NavigationRegion2D", "NavigationRegion3D", "NavigationServer2D", "NavigationServer3D", "NinePatchRect", "Node2D", "Node3DGizmo", "Node3D",
+  "NodePath", "Node", "NoiseTexture2D", "NoiseTexture3D", "Noise", "Object", "Occluder3D", "OccluderInstance3D", "OccluderPolygon2D", "OfflineMultiplayerPeer",
+  "OggPacketSequencePlayback", "OggPacketSequence", "OmniLight3D", "OpenXRActionBindingModifier", "OpenXRActionMap", "OpenXRActionSet", "OpenXRAction", "OpenXRAnalogThresholdModifier", "OpenXRAPIExtension", "OpenXRBindingModifierEditor",
+  "OpenXRBindingModifier", "OpenXRCompositionLayerCylinder", "OpenXRCompositionLayerEquirect", "OpenXRCompositionLayerQuad", "OpenXRCompositionLayer", "OpenXRDpadBindingModifier", "OpenXRExtensionWrapperExtension", "OpenXRExtensionWrapper", "OpenXRFutureExtension", "OpenXRFutureResult",
+  "OpenXRHand", "OpenXRHapticBase", "OpenXRHapticVibration", "OpenXRInteractionProfileEditorBase", "OpenXRInteractionProfileEditor", "OpenXRInteractionProfileMetadata", "OpenXRInteractionProfile", "OpenXRInterface", "OpenXRIPBindingModifier", "OpenXRIPBinding",
+  "OpenXRVisibilityMask", "OptimizedTranslation", "OptionButton", "ORMMaterial3D", "OS", "PackedByteArray", "PackedColorArray", "PackedDataContainerRef", "PackedDataContainer", "PackedFloat32Array",
+  "PackedFloat64Array", "PackedInt32Array", "PackedInt64Array", "PackedScene", "PackedStringArray", "PackedVector2Array", "PackedVector3Array", "PackedVector4Array", "PacketPeerDTLS", "PacketPeerExtension",
+  "PacketPeerStream", "PacketPeerUDP", "PacketPeer", "PanelContainer", "Panel", "PanoramaSkyMaterial", "Parallax2D", "ParallaxBackground", "ParallaxLayer", "ParticleProcessMaterial",
+  "Path2D", "Path3D", "PathFollow2D", "PathFollow3D", "PCKPacker", "Performance", "PhysicalBone2D", "PhysicalBone3D", "PhysicalBoneSimulator3D", "PhysicalSkyMaterial",
+  "PhysicsBody2D", "PhysicsBody3D", "PhysicsDirectBodyState2DExtension", "PhysicsDirectBodyState2D", "PhysicsDirectBodyState3DExtension", "PhysicsDirectBodyState3D", "PhysicsDirectSpaceState2DExtension", "PhysicsDirectSpaceState2D", "PhysicsDirectSpaceState3DExtension", "PhysicsDirectSpaceState3D",
+  "PhysicsMaterial", "PhysicsPointQueryParameters2D", "PhysicsPointQueryParameters3D", "PhysicsRayQueryParameters2D", "PhysicsRayQueryParameters3D", "PhysicsServer2DExtension", "PhysicsServer2DManager", "PhysicsServer2D", "PhysicsServer3DExtension", "PhysicsServer3DManager",
+  "PhysicsServer3DRenderingServerHandler", "PhysicsServer3D", "PhysicsShapeQueryParameters2D", "PhysicsShapeQueryParameters3D", "PhysicsTestMotionParameters2D", "PhysicsTestMotionParameters3D", "PhysicsTestMotionResult2D", "PhysicsTestMotionResult3D", "PinJoint2D", "PinJoint3D",
+  "PlaceholderCubemapArray", "PlaceholderCubemap", "PlaceholderMaterial", "PlaceholderMesh", "PlaceholderTexture2DArray", "PlaceholderTexture2D", "PlaceholderTexture3D", "PlaceholderTextureLayered", "PlaneMesh", "Plane",
+  "PointLight2D", "PointMesh", "Polygon2D", "PolygonOccluder3D", "PolygonPathFinder", "PopupMenu", "PopupPanel", "Popup", "PortableCompressedTexture2D", "PrimitiveMesh",
+  "PrismMesh", "ProceduralSkyMaterial", "ProgressBar", "Projection", "ProjectSettings", "PropertyTweener", "QuadMesh", "QuadOccluder3D", "Quaternion", "RandomNumberGenerator",
+  "Range", "RayCast2D", "RayCast3D", "RDAttachmentFormat", "RDFramebufferPass", "RDPipelineColorBlendStateAttachment", "RDPipelineColorBlendState", "RDPipelineDepthStencilState", "RDPipelineMultisampleState", "RDPipelineRasterizationState",
+  "RDPipelineSpecializationConstant", "RDSamplerState", "RDShaderFile", "RDShaderSource", "RDShaderSPIRV", "RDTextureFormat", "RDTextureView", "RDUniform", "RDVertexAttribute", "Rect2i",
+  "Rect2", "RectangleShape2D", "RefCounted", "ReferenceRect", "ReflectionProbe", "RegExMatch", "RegEx", "RemoteTransform2D", "RemoteTransform3D", "RenderDataExtension",
+  "RenderDataRD", "RenderData", "RenderingDevice", "RenderingServer", "RenderSceneBuffersConfiguration", "RenderSceneBuffersExtension", "RenderSceneBuffersRD", "RenderSceneBuffers", "RenderSceneDataExtension", "RenderSceneDataRD",
+  "RenderSceneData", "ResourceFormatLoader", "ResourceFormatSaver", "ResourceImporterBitMap", "ResourceImporterBMFont", "ResourceImporterCSVTranslation", "ResourceImporterDynamicFont", "ResourceImporterImageFont", "ResourceImporterImage", "ResourceImporterLayeredTexture",
+  "ResourceImporterMP3", "ResourceImporterOBJ", "ResourceImporterOggVorbis", "ResourceImporterScene", "ResourceImporterShaderFile", "ResourceImporterSVG", "ResourceImporterTextureAtlas", "ResourceImporterTexture", "ResourceImporterWAV", "ResourceImporter",
+  "ResourceLoader", "ResourcePreloader", "ResourceSaver", "ResourceUID", "Resource", "RetargetModifier3D", "RibbonTrailMesh", "RichTextEffect", "RichTextLabel", "RID",
+  "RigidBody2D", "RigidBody3D", "RootMotionView", "SceneMultiplayer", "SceneReplicationConfig", "SceneState", "SceneTreeTimer", "SceneTree", "ScriptBacktrace", "ScriptCreateDialog",
+  "ScriptEditorBase", "ScriptEditor", "ScriptExtension", "ScriptLanguageExtension", "ScriptLanguage", "Script", "ScrollBar", "ScrollContainer", "SegmentShape2D", "Semaphore",
+  "SeparationRayShape2D", "SeparationRayShape3D", "Separator", "ShaderGlobalsOverride", "ShaderIncludeDB", "ShaderInclude", "ShaderMaterial", "Shader", "Shape2D", "Shape3D",
+  "ShapeCast2D", "ShapeCast3D", "Shortcut", "Signal", "Skeleton2D", "Skeleton3D", "SkeletonIK3D", "SkeletonModification2DCCDIK", "SkeletonModification2DFABRIK", "SkeletonModification2DJiggle",
+  "SkeletonModification2DLookAt", "SkeletonModification2DPhysicalBones", "SkeletonModification2DStackHolder", "SkeletonModification2DTwoBoneIK", "SkeletonModification2D", "SkeletonModificationStack2D", "SkeletonModifier3D", "SkeletonProfileHumanoid", "SkeletonProfile", "SkinReference",
+  "Skin", "Sky", "SliderJoint3D", "Slider", "SoftBody3D", "SphereMesh", "SphereOccluder3D", "SphereShape3D", "SpinBox", "SplitContainer",
+  "SpotLight3D", "SpringArm3D", "SpringBoneCollision3D", "SpringBoneCollisionCapsule3D", "SpringBoneCollisionPlane3D", "SpringBoneCollisionSphere3D", "SpringBoneSimulator3D", "Sprite2D", "Sprite3D", "SpriteBase3D",
+  "SpriteFrames", "StandardMaterial3D", "StaticBody2D", "StaticBody3D", "StatusIndicator", "StreamPeerBuffer", "StreamPeerExtension", "StreamPeerGZIP", "StreamPeerTCP", "StreamPeerTLS",
+  "StreamPeer", "StringName", "String", "StyleBoxEmpty", "StyleBoxFlat", "StyleBoxLine", "StyleBoxTexture", "StyleBox", "SubtweenTweener", "SubViewportContainer",
+  "SubViewport", "SurfaceTool", "SVGTexture", "SyntaxHighlighter", "SystemFont", "TabBar", "TabContainer", "TCPServer", "TextEdit", "TextLine",
+  "TextMesh", "TextParagraph", "TextServerAdvanced", "TextServerDummy", "TextServerExtension", "TextServerFallback", "TextServerManager", "TextServer", "Texture2DArrayRD", "Texture2DArray",
+  "Texture2DRD", "Texture2D", "Texture3DRD", "Texture3D", "TextureButton", "TextureCubemapArrayRD", "TextureCubemapRD", "TextureLayeredRD", "TextureLayered", "TextureProgressBar",
+  "TextureRect", "Texture", "ThemeDB", "Theme", "Thread", "TileData", "TileMapLayer", "TileMapPattern", "TileMap", "TileSetAtlasSource",
+  "TileSetScenesCollectionSource", "TileSetSource", "TileSet", "Timer", "Time", "TLSOptions", "TorusMesh", "TouchScreenButton", "Transform2D", "Transform3D",
+  "TranslationDomain", "TranslationServer", "Translation", "TreeItem", "Tree", "TriangleMesh", "TubeTrailMesh", "Tweener", "Tween", "UDPServer",
+  "UndoRedo", "UniformSetCacheRD", "UPNPDevice", "UPNP", "Variant", "VBoxContainer", "Vector2i", "Vector2", "Vector3i", "Vector3",
+  "Vector4i", "Vector4", "VehicleBody3D", "VehicleWheel3D", "VFlowContainer", "VideoStreamPlayback", "VideoStreamPlayer", "VideoStreamTheora", "VideoStream", "ViewportTexture",
+  "Viewport", "VisibleOnScreenEnabler2D", "VisibleOnScreenEnabler3D", "VisibleOnScreenNotifier2D", "VisibleOnScreenNotifier3D", "VisualInstance3D", "VisualShaderNodeBillboard", "VisualShaderNodeBooleanConstant", "VisualShaderNodeBooleanParameter", "VisualShaderNodeClamp",
+  "VisualShaderNodeColorConstant", "VisualShaderNodeColorFunc", "VisualShaderNodeColorOp", "VisualShaderNodeColorParameter", "VisualShaderNodeComment", "VisualShaderNodeCompare", "VisualShaderNodeConstant", "VisualShaderNodeCubemapParameter", "VisualShaderNodeCubemap", "VisualShaderNodeCurveTexture",
+  "VisualShaderNodeCurveXYZTexture", "VisualShaderNodeCustom", "VisualShaderNodeDerivativeFunc", "VisualShaderNodeDeterminant", "VisualShaderNodeDistanceFade", "VisualShaderNodeDotProduct", "VisualShaderNodeExpression", "VisualShaderNodeFaceForward", "VisualShaderNodeFloatConstant", "VisualShaderNodeFloatFunc",
+  "VisualShaderNodeFloatOp", "VisualShaderNodeFloatParameter", "VisualShaderNodeFrame", "VisualShaderNodeFresnel", "VisualShaderNodeGlobalExpression", "VisualShaderNodeGroupBase", "VisualShaderNodeIf", "VisualShaderNodeInput", "VisualShaderNodeIntConstant", "VisualShaderNodeIntFunc",
+  "VisualShaderNodeIntOp", "VisualShaderNodeIntParameter", "VisualShaderNodeIs", "VisualShaderNodeLinearSceneDepth", "VisualShaderNodeMix", "VisualShaderNodeMultiplyAdd", "VisualShaderNodeOuterProduct", "VisualShaderNodeOutput", "VisualShaderNodeParameterRef", "VisualShaderNodeParameter",
+  "VisualShaderNodeParticleAccelerator", "VisualShaderNodeParticleBoxEmitter", "VisualShaderNodeParticleConeVelocity", "VisualShaderNodeParticleEmitter", "VisualShaderNodeParticleEmit", "VisualShaderNodeParticleMeshEmitter", "VisualShaderNodeParticleMultiplyByAxisAngle", "VisualShaderNodeParticleOutput", "VisualShaderNodeParticleRandomness", "VisualShaderNodeParticleRingEmitter",
+  "VisualShaderNodeParticleSphereEmitter", "VisualShaderNodeProximityFade", "VisualShaderNodeRandomRange", "VisualShaderNodeRemap", "VisualShaderNodeReroute", "VisualShaderNodeResizableBase", "VisualShaderNodeRotationByAxis", "VisualShaderNodeSample3D", "VisualShaderNodeScreenNormalWorldSpace", "VisualShaderNodeScreenUVToSDF",
+  "VisualShaderNodeSDFRaymarch", "VisualShaderNodeSDFToScreenUV", "VisualShaderNodeSmoothStep", "VisualShaderNodeStep", "VisualShaderNodeSwitch", "VisualShaderNodeTexture2DArrayParameter", "VisualShaderNodeTexture2DArray", "VisualShaderNodeTexture2DParameter", "VisualShaderNodeTexture3DParameter", "VisualShaderNodeTexture3D",
+  "VisualShaderNodeTextureParameterTriplanar", "VisualShaderNodeTextureParameter", "VisualShaderNodeTextureSDFNormal", "VisualShaderNodeTextureSDF", "VisualShaderNodeTexture", "VisualShaderNodeTransformCompose", "VisualShaderNodeTransformConstant", "VisualShaderNodeTransformDecompose", "VisualShaderNodeTransformFunc", "VisualShaderNodeTransformOp",
+  "VisualShaderNodeTransformParameter", "VisualShaderNodeTransformVecMult", "VisualShaderNodeUIntConstant", "VisualShaderNodeUIntFunc", "VisualShaderNodeUIntOp", "VisualShaderNodeUIntParameter", "VisualShaderNodeUVFunc", "VisualShaderNodeUVPolarCoord", "VisualShaderNodeVaryingGetter", "VisualShaderNodeVaryingSetter",
+  "VisualShaderNodeVarying", "VisualShaderNodeVec2Constant", "VisualShaderNodeVec2Parameter", "VisualShaderNodeVec3Constant", "VisualShaderNodeVec3Parameter", "VisualShaderNodeVec4Constant", "VisualShaderNodeVec4Parameter", "VisualShaderNodeVectorBase", "VisualShaderNodeVectorCompose", "VisualShaderNodeVectorDecompose",
+  "VisualShaderNodeVectorDistance", "VisualShaderNodeVectorFunc", "VisualShaderNodeVectorLen", "VisualShaderNodeVectorOp", "VisualShaderNodeVectorRefract", "VisualShaderNodeWorldPositionFromDepth", "VisualShaderNode", "VisualShader", "VoxelGIData", "VoxelGI",
+  "VScrollBar", "VSeparator", "VSlider", "VSplitContainer", "WeakRef", "WebRTCDataChannelExtension", "WebRTCDataChannel", "WebRTCMultiplayerPeer", "WebRTCPeerConnectionExtension", "WebRTCPeerConnection",
+  "WebSocketMultiplayerPeer", "WebSocketPeer", "WebXRInterface", "Window", "WorkerThreadPool", "World2D", "World3D", "WorldBoundaryShape2D", "WorldBoundaryShape3D", "WorldEnvironment",
+  "X509Certificate", "XMLParser", "XRAnchor3D", "XRBodyModifier3D", "XRBodyTracker", "XRCamera3D", "XRController3D", "XRControllerTracker", "XRFaceModifier3D", "XRFaceTracker",
+  "XRHandModifier3D", "XRHandTracker", "XRInterfaceExtension", "XRInterface", "XRNode3D", "XROrigin3D", "XRPose", "XRPositionalTracker", "XRServer", "XRTracker",
+  "XRVRS", "ZIPPacker", "ZIPReader"
+]
+const builtinObjects = RegExp("\\b(?:" + builtinObjectList.join("|") + ")\\b");
+const stringPlaceholders = /(?:\{\w+\}|%%|%(?:\+?[0-]?(?:\d+|\*)?(?:\.(?:\d+|\*))?[cdfosvxX]))/;
+
+
 Prism.languages.gdscript = {
-	'comment': /#.*/,
+	'doc-comment': {
+		pattern: /##.*$/m,
+		alias: 'comment',
+		greedy: true,
+		inside: {
+			'comment-critical': commentCritical,
+			'comment-warning': commentWarning,
+			'comment-notice': commentNotice,
+		},
+	},
+	'comment': {
+		pattern: /#.*$/m,
+		greedy: true,
+		inside: {
+			'comment-critical': commentCritical,
+			'comment-warning': commentWarning,
+			'comment-notice': commentNotice,
+		},
+	},
+	'node-path': {
+		pattern: /\^("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')/,
+		greedy: true,
+		alias: 'string',
+	},
+	'string-name': {
+		pattern: /&("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')/,
+		greedy: true,
+		alias: 'string',
+	},
 	'string': {
-		pattern: /@?(?:("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')|"""(?:[^\\]|\\[\s\S])*?""")/,
-		greedy: true
+		pattern: /(?:r?("|')(?:(?!\1)[^\n\\]|\\[\s\S])*\1(?!"|')|r?"""(?:[^\\]|\\[\s\S])*?"""|r?'''(?:[^\\]|\\[\s\S])*?''')/,
+		greedy: true,
+		inside: {
+			'placeholder': stringPlaceholders,
+		},
 	},
-	'class-name': {
-		// class_name Foo, extends Bar, class InnerClass
-		// export(int) var baz, export(int, 0) var i
-		// as Node
-		// const FOO: int = 9, var bar: bool = true
-		// func add(reference: Item, amount: int) -> Item:
-		pattern: /(^(?:class|class_name|extends)[ \t]+|^export\([ \t]*|\bas[ \t]+|(?:\b(?:const|var)[ \t]|[,(])[ \t]*\w+[ \t]*:[ \t]*|->[ \t]*)[a-zA-Z_]\w*/m,
-		lookbehind: true
+	'variable': {
+		pattern: /[$%][a-zA-Z]\w*(?:\/\w+)*/,
+		greedy: true,
 	},
-	'keyword': /\b(?:and|as|assert|break|breakpoint|class|class_name|const|continue|elif|else|enum|export|extends|for|func|if|in|is|master|mastersync|match|not|null|onready|or|pass|preload|puppet|puppetsync|remote|remotesync|return|self|setget|signal|static|tool|var|while|yield)\b/,
-	'function': /\b[a-z_]\w*(?=[ \t]*\()/i,
-	'variable': /\$\w+/,
-	'number': [
-		/\b0b[01_]+\b|\b0x[\da-fA-F_]+\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.[\d_]+)(?:e[+-]?[\d_]+)?\b/,
-		/\b(?:INF|NAN|PI|TAU)\b/
+	'setget': {
+		pattern: /\b(?:set|get)\b/,
+		alias: 'function',
+	},
+	'typed-array': {
+		pattern: /Array[ \t]*\[[ \t]*[a-zA-Z]\w*[ \t]*\]/,
+		inside: {
+			'builtin-type': {
+				pattern: builtinTypes,
+				alias: 'class-name',
+			},
+			'builtin-object': {
+				pattern: builtinObjects,
+				alias: 'class-name',
+			},
+			'class-name': /[a-zA-Z]\w*/,
+			'punctuation': /[\[\]]/
+		},
+	},
+	'typed-dict': {
+		pattern: /Dictionary[ \t]*\[[ \t]*[a-zA-Z]\w*[ \t]*,[ \t]*[a-zA-Z]\w*[ \t]*\]/,
+		inside: {
+			'builtin-type': {
+				pattern: builtinTypes,
+				alias: 'class-name',
+			},
+			'builtin-object': {
+				pattern: builtinObjects,
+				alias: 'class-name',
+			},
+			'class-name': /[a-zA-Z]\w*/,
+			'punctuation': /[\[\],]/
+		},
+	},
+	'builtin-type': {
+		pattern: builtinTypes,
+		alias: 'class-name',
+	},
+	'builtin-object': {
+		pattern: builtinObjects,
+		alias: 'class-name',
+	},
+	'class-name': [
+		{
+			pattern: /((?:class|class_name|extends)[ \t]+|\bas[ \t]+|\b[ \t]*:[ \t]*)[a-zA-Z]\w*/,
+			lookbehind: true,
+		},
+		{
+			pattern: /(\bas[ \t]+|\b[ \t]*:[ \t]*)[a-zA-Z]\w*/,
+			lookbehind: true,
+		},
+		{
+			pattern: /(\)[ \t]*->[ \t]*)[a-zA-Z]\w*/,
+			lookbehind: true,
+		},
 	],
-	'constant': /\b[A-Z][A-Z_\d]*\b/,
-	'boolean': /\b(?:false|true)\b/,
-	'operator': /->|:=|&&|\|\||<<|>>|[-+*/%&|!<>=]=?|[~^]/,
-	'punctuation': /[.:,;()[\]{}]/
+	'signal': {
+		pattern: /(signal[ \t]+)[a-zA-Z_]\w*/,
+		lookbehind: true,
+		alias: 'property',
+	},
+	'function-definition': {
+		pattern: /(func\s+)[a-zA-Z_]\w*/,
+		lookbehind: true,
+		alias: 'function',
+	},
+	'operator-word': {
+		pattern: /\b(?:and|as|in|is|not|or)\b/,
+		alias: 'operator',
+	},
+	'keyword': /\b(?:class|class_name|const|enum|extends|func|namespace|signal|static|trait|var|await|breakpoint|self|super|yield)\b/,
+	'control-flow': {
+		pattern: /\b(?:break|continue|elif|else|for|if|match|pass|return|when|while)\b/,
+		alias: 'keyword',
+	},
+	'builtin': /\b(?:abs|absf|absi|acos|acosh|angle_difference|asin|asinh|atan|atan2|atanh|bezier_derivative|bezier_interpolate|bytes_to_var|bytes_to_var_with_objects|ceil|ceilf|ceili|clamp|clampf|clampi|cos|cosh|cubic_interpolate|cubic_interpolate_angle|cubic_interpolate_angle_in_time|cubic_interpolate_in_time|db_to_linear|deg_to_rad|ease|error_string|exp|floor|floorf|floori|fmod|fposmod|hash|instance_from_id|inverse_lerp|is_equal_approx|is_finite|is_inf|is_instance_id_valid|is_instance_valid|is_nan|is_same|is_zero_approx|lerp|lerp_angle|lerpf|linear_to_db|log|max|maxf|maxi|min|minf|mini|move_toward|nearest_po2|pingpong|posmod|pow|print|print_rich|print_verbose|printerr|printraw|prints|printt|push_error|push_warning|rad_to_deg|rand_from_seed|randf|randf_range|randfn|randi|randi_range|randomize|remap|rid_allocate_id|rid_from_int64|rotate_toward|round|roundf|roundi|seed|sign|signf|signi|sin|sinh|smoothstep|snapped|snappedf|snappedi|sqrt|step_decimals|str|str_to_var|tan|tanh|type_convert|type_string|typeof|var_to_bytes|var_to_bytes_with_objects|var_to_str|weakref|wrap|wrapf|wrapi|Color8|assert|char|convert|dict_to_inst|get_stack|inst_to_dict|is_instance_of|len|load|preload|print_debug|print_stack|range|type_exists)\b/,
+	'builtin-pseudo': {
+		pattern: /\b(?:false|null|true)\b/,
+		alias: 'boolean',
+	},
+	'builtin-number': {
+		pattern: /\b(?:INF|NAN|PI|TAU)\b/,
+		alias: 'keyword',
+	},
+	'decorator': /@(?:export|export_category|export_color_no_alpha|export_custom|export_dir|export_enum|export_exp_easing|export_file|export_flags|export_flags_2d_navigation|export_flags_2d_physics|export_flags_2d_render|export_flags_3d_navigation|export_flags_3d_physics|export_flags_3d_render|export_flags_avoidance|export_global_dir|export_global_file|export_group|export_multiline|export_node_path|export_placeholder|export_range|export_storage|export_subgroup|export_tool_button|icon|onready|rpc|static_unload|tool|warning_ignore|warning_ignore_restore|warning_ignore_start)\b/,
+	'number-hex': {
+		pattern: /-?0[xX](?:[a-fA-F0-9]|(?<=[a-fA-F0-9])_)+/,
+		alias: 'number',
+	},
+	'number-bin': {
+		pattern: /-?0[bB](?:[01]|(?<=[01])_)+/,
+		alias: 'number',
+	},
+	'number': [
+		/-?(?:(?:\d|(?<=\d)_)+\.(?:\d|(?<=\d)_)*|(?:\d|(?<=\d)_)*\.(?:\d|(?<=\d)_)+)(?:[eE][+-]?(?:\d|(?<=\d)_)+)?|-?(?:\d|(?<=\d)_)+[eE][+-]?(?:\d|(?<=\d)_)+/,
+		/(?:\b|-)(?:\d|(?<=\d)_)+j?/,
+	],
+	'function': /\b[a-zA-Z_]\w*(?=[ \t]*\()/,
+	'property': {
+		pattern: /(\.)[a-zA-Z_]\w*/,
+		lookbehind: true,
+	},
+	'constant': /\b[A-Z_][A-Z_\d]*\b(?![\.\()])/,
+	'operator': /(?::=|!=|==|>=|<=|<<|>>|&&|\+=|-=|\*=|\/=|%=|&=|\|=|\|\||->|[-~+/*%=<>&^!|$])/,
+	'punctuation': /[.[\]{}:(),;]/,
 };

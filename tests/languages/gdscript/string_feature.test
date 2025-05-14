@@ -7,25 +7,58 @@
 "baz"
 """
 
-@"foo"
-@'bar'
-@"""baz"""
+r"foo"
+^"bar"
+&"baz"
+
+"A {placeholder} and {0}"
+"We have %+05d elements in this %s"
+"right-padded %-9.2f"
+"%*.*v %+-4o %% %x"
 
 ----------------------------------------------------
 
 [
-	["string", "\"foo\""],
-	["string", "'bar'"],
-	["string", "\"\\\"'foo'\\\"\""],
-	["string", "'\"\\'bar\\'\"'"],
+	["string", ["\"foo\""]],
+	["string", ["'bar'"]],
+	["string", ["\"\\\"'foo'\\\"\""]],
+	["string", ["'\"\\'bar\\'\"'"]],
 
-	["string", "\"\"\"\r\n\"baz\"\r\n\"\"\""],
+	["string", ["\"\"\"\r\n\"baz\"\r\n\"\"\""]],
 
-	["string", "@\"foo\""],
-	["string", "@'bar'"],
-	["string", "@\"\"\"baz\"\"\""]
+	["string", ["r\"foo\""]],
+	["node-path", "^\"bar\""],
+	["string-name", "&\"baz\""],
+	
+	["string", [
+		"\"A ",
+		["placeholder", "{placeholder}"],
+		" and ",
+		["placeholder", "{0}"],
+		"\""
+	]],
+	["string", [
+		"\"We have ",
+		["placeholder", "%+05d"],
+		" elements in this ",
+		["placeholder", "%s"],
+		"\""
+	]],
+	["string", [
+		"\"right-padded ",
+		["placeholder", "%-9.2f"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["placeholder", "%*.*v"],
+		["placeholder", "%+-4o"],
+		["placeholder", "%%"],
+		["placeholder", "%x"],
+		"\""
+	]]
 ]
 
 ----------------------------------------------------
 
-Checks for strings.
+Checks for strings and placeholders.

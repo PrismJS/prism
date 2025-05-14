@@ -1,6 +1,7 @@
 and
 as
 assert
+await
 break
 breakpoint
 class
@@ -10,82 +11,75 @@ continue
 elif
 else
 enum
-export
 extends
 for
 func
+get
 if
 in
 is
-master
-mastersync
 match
+namespace
 not
 null
-onready
 or
 pass
 preload
-puppet
-puppetsync
-remote
-remotesync
 return
 self
-setget
+set
 signal
 static
-tool
+super
+trait
 var
+when
 while
 yield
 
 ----------------------------------------------------
 
 [
-	["keyword", "and"],
-	["keyword", "as"],
-	["keyword", "assert"],
-	["keyword", "break"],
+	["operator-word", "and"],
+	["operator-word", "as"],
+	["builtin", "assert"],
+	["keyword", "await"],
+	["control-flow", "break"],
 	["keyword", "breakpoint"],
 	["keyword", "class"],
 	["keyword", "class_name"],
 	["keyword", "const"],
-	["keyword", "continue"],
-	["keyword", "elif"],
-	["keyword", "else"],
+	["control-flow", "continue"],
+	["control-flow", "elif"],
+	["control-flow", "else"],
 	["keyword", "enum"],
-	["keyword", "export"],
 	["keyword", "extends"],
-	["keyword", "for"],
+	["control-flow", "for"],
 	["keyword", "func"],
-	["keyword", "if"],
-	["keyword", "in"],
-	["keyword", "is"],
-	["keyword", "master"],
-	["keyword", "mastersync"],
-	["keyword", "match"],
-	["keyword", "not"],
-	["keyword", "null"],
-	["keyword", "onready"],
-	["keyword", "or"],
-	["keyword", "pass"],
-	["keyword", "preload"],
-	["keyword", "puppet"],
-	["keyword", "puppetsync"],
-	["keyword", "remote"],
-	["keyword", "remotesync"],
-	["keyword", "return"],
+	["setget", "get"],
+	["control-flow", "if"],
+	["operator-word", "in"],
+	["operator-word", "is"],
+	["control-flow", "match"],
+	["keyword", "namespace"],
+	["operator-word", "not"],
+	["builtin-pseudo", "null"],
+	["operator-word", "or"],
+	["control-flow", "pass"],
+	["builtin", "preload"],
+	["control-flow", "return"],
 	["keyword", "self"],
-	["keyword", "setget"],
+	["setget", "set"],
 	["keyword", "signal"],
 	["keyword", "static"],
-	["keyword", "tool"],
+	["keyword", "super"],
+	["keyword", "trait"],
 	["keyword", "var"],
-	["keyword", "while"],
+	["control-flow", "when"],
+	["control-flow", "while"],
 	["keyword", "yield"]
 ]
 
 ----------------------------------------------------
 
-Checks for keywords.
+Checks for keywords and control-flow keywords.
