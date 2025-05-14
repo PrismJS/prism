@@ -3,15 +3,15 @@ extends Bar
 
 class InnerClass:
 
-export(int) var baz
-export(int, 0) var i
-
 return foo as Node
 
 const FOO: int = 9
 var bar: bool = true
 
 func add(reference: Item, amount: int) -> Item:
+
+Array[MyClass]
+Dictionary[FirstClass, SecondClass]
 
 ----------------------------------------------------
 
@@ -21,40 +21,24 @@ func add(reference: Item, amount: int) -> Item:
 
 	["keyword", "class"], ["class-name", "InnerClass"], ["punctuation", ":"],
 
-	["keyword", "export"],
-	["punctuation", "("],
-	["class-name", "int"],
-	["punctuation", ")"],
-	["keyword", "var"],
-	" baz\r\n",
-
-	["keyword", "export"],
-	["punctuation", "("],
-	["class-name", "int"],
-	["punctuation", ","],
-	["number", "0"],
-	["punctuation", ")"],
-	["keyword", "var"],
-	" i\r\n\r\n",
-
-	["keyword", "return"], " foo ", ["keyword", "as"], ["class-name", "Node"],
+	["control-flow", "return"], " foo ", ["operator-word", "as"], ["builtin-object", "Node"],
 
 	["keyword", "const"],
 	["constant", "FOO"],
 	["punctuation", ":"],
-	["class-name", "int"],
+	["builtin-type", "int"],
 	["operator", "="],
 	["number", "9"],
 
 	["keyword", "var"],
 	" bar",
 	["punctuation", ":"],
-	["class-name", "bool"],
+	["builtin-type", "bool"],
 	["operator", "="],
-	["boolean", "true"],
+	["builtin-pseudo", "true"],
 
 	["keyword", "func"],
-	["function", "add"],
+	["function-definition", "add"],
 	["punctuation", "("],
 	"reference",
 	["punctuation", ":"],
@@ -62,11 +46,26 @@ func add(reference: Item, amount: int) -> Item:
 	["punctuation", ","],
 	" amount",
 	["punctuation", ":"],
-	["class-name", "int"],
+	["builtin-type", "int"],
 	["punctuation", ")"],
 	["operator", "->"],
 	["class-name", "Item"],
-	["punctuation", ":"]
+	["punctuation", ":"],
+	
+	["typed-array", [
+		["builtin-type", "Array"],
+		["punctuation", "["],
+		["class-name", "MyClass"],
+		["punctuation", "]"]
+	]],
+	["typed-dict", [
+		["builtin-type", "Dictionary"],
+		["punctuation", "["],
+		["class-name", "FirstClass"],
+		["punctuation", ","],
+		["class-name", "SecondClass"],
+		["punctuation", "]"]
+	]]
 ]
 
 ----------------------------------------------------
