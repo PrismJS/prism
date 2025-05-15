@@ -19,7 +19,7 @@ export interface AddEventPayload<T extends ComponentProto> {
 	component: T;
 }
 
-export default class Registry<T extends ComponentProto> extends EventTarget {
+export default class ComponentRegistry<T extends ComponentProto> extends EventTarget {
 	static type: string = 'unknown';
 
 	/** All imported components */
@@ -73,7 +73,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 			return this.loading[id];
 		}
 
-		let Self = this.constructor as typeof Registry;
+		let Self = this.constructor as typeof ComponentRegistry;
 		return new Promise(resolve => {
 			let handler = (e: CustomEvent<AddEventPayload<T>>) => {
 				if (e.detail.id === id) {
@@ -95,7 +95,7 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 	 * @returns true if the component was added, false if it was already present
 	 */
 	add (def: T, id: string = def.id, options?: { force?: boolean }): boolean {
-		let Self = this.constructor as typeof Registry;
+		let Self = this.constructor as typeof ComponentRegistry;
 
 		if (typeof this.loading[id] !== 'undefined') {
 			// If it was loading, remove it from the loading list
@@ -111,10 +111,14 @@ export default class Registry<T extends ComponentProto> extends EventTarget {
 			this.cache[id] = def;
 
 			this.dispatchEvent(
-				new CustomEvent<AddEventPayload<T>>('add', { detail: { id, type: Self.type, component: def } })
+				new CustomEvent<AddEventPayload<T>>('add', {
+					detail: { id, type: Self.type, component: def },
+				})
 			);
 			this.dispatchEvent(
-				new CustomEvent<AddEventPayload<T>>('add' + Self.type, { detail: { id, component: def } })
+				new CustomEvent<AddEventPayload<T>>('add' + Self.type, {
+					detail: { id, component: def },
+				})
 			);
 
 			return true;

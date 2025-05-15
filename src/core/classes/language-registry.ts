@@ -1,8 +1,8 @@
+import ComponentRegistry from './component-registry';
 import Language from './language';
-import ComponentRegistry from './registry';
 import type { LanguageProto, Languages } from './language';
 
-export { type ComponentProtoBase } from './registry';
+export { type ComponentProtoBase } from './component-registry';
 
 export default class LanguageRegistry extends ComponentRegistry<LanguageProto> {
 	static type: string = 'language';

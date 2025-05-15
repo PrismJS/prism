@@ -15,7 +15,10 @@ export type { Prism } from './core/classes/prism';
 
 export type { Language, Languages, LanguageGrammars, LanguageProto, LanguageLike };
 
-export type { ComponentRegistryOptions, ComponentProtoBase } from './core/classes/registry';
+export type {
+	ComponentRegistryOptions,
+	ComponentProtoBase,
+} from './core/classes/component-registry';
 
 export type { PluginProto };
 
