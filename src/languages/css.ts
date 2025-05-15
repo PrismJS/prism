@@ -1,15 +1,14 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'css',
-	optional: 'css-extras',
-	grammar ({ getOptionalLanguage }) {
+	media: 'text/css',
+	extensions: ['css', 'postcss'],
+	grammar (): Grammar {
 		const string =
 			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
-		const css = {
+		return {
 			'comment': /\/\*[\s\S]*?\*\//,
 			'atrule': {
 				pattern: RegExp(
@@ -33,7 +32,7 @@ export default {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true,
 					},
-					[rest]: 'css',
+					$rest: 'css',
 				},
 			},
 			'url': {
@@ -86,12 +85,5 @@ export default {
 			},
 			'punctuation': /[(){};:,]/,
 		};
-
-		const extras = getOptionalLanguage('css-extras');
-		if (extras) {
-			insertBefore(css, 'function', extras);
-		}
-
-		return css;
 	},
 } as LanguageProto<'css'>;

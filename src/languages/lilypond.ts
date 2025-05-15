@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import scheme from './scheme';
 import type { LanguageProto } from '../types';
 
@@ -48,7 +47,7 @@ export default {
 									},
 								},
 							},
-							[rest]: 'scheme',
+							$rest: 'scheme',
 						},
 					},
 					'punctuation': /#/,

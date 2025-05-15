@@ -90,8 +90,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		ast: LiteralAST;
 		tokenPath: string;
 		name: string;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		parent: any;
+				parent: any;
 		lookbehind: boolean;
 		lookbehindGroup: CapturingGroup | undefined;
 		path: PathItem[];

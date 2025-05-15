@@ -1,62 +1,56 @@
-import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import clike from './clike';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'tt2',
-	require: [clike, markup],
-	grammar ({ extend }) {
-		const tt2 = extend('clike', {
+	require: markup,
+	base: clike,
+	grammar (): Grammar {
+		return {
 			'comment': /#.*|\[%#[\s\S]*?%\]/,
 			'keyword':
 				/\b(?:BLOCK|CALL|CASE|CATCH|CLEAR|DEBUG|DEFAULT|ELSE|ELSIF|END|FILTER|FINAL|FOREACH|GET|IF|IN|INCLUDE|INSERT|LAST|MACRO|META|NEXT|PERL|PROCESS|RAWPERL|RETURN|SET|STOP|SWITCH|TAGS|THROW|TRY|UNLESS|USE|WHILE|WRAPPER)\b/,
 			'punctuation': /[[\]{},()]/,
-		});
-
-		insertBefore(tt2, 'number', {
-			'operator': /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|not|or)\b/,
-			'variable': {
-				pattern: /\b[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*\b/i,
+			'tt2': {
+				pattern: /\[%[\s\S]+?%\]/,
+				inside: 'tt2',
 			},
-		});
-
-		insertBefore(tt2, 'keyword', {
-			'delimiter': {
-				pattern: /^(?:\[%|%%)-?|-?%\]$/,
-				alias: 'punctuation',
-			},
-		});
-
-		insertBefore(tt2, 'string', {
-			'single-quoted-string': {
-				pattern: /'[^\\']*(?:\\[\s\S][^\\']*)*'/,
-				greedy: true,
-				alias: 'string',
-			},
-			'double-quoted-string': {
-				pattern: /"[^\\"]*(?:\\[\s\S][^\\"]*)*"/,
-				greedy: true,
-				alias: 'string',
-				inside: {
+			$insertBefore: {
+				'number': {
+					'operator': /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|not|or)\b/,
 					'variable': {
-						pattern: /\$(?:[a-z]\w*(?:\.(?:\d+|\$?[a-z]\w*))*)/i,
+						pattern: /\b[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*\b/i,
+					},
+				},
+				'keyword': {
+					'delimiter': {
+						pattern: /^(?:\[%|%%)-?|-?%\]$/,
+						alias: 'punctuation',
+					},
+				},
+				'string': {
+					'single-quoted-string': {
+						pattern: /'[^\\']*(?:\\[\s\S][^\\']*)*'/,
+						greedy: true,
+						alias: 'string',
+					},
+					'double-quoted-string': {
+						pattern: /"[^\\"]*(?:\\[\s\S][^\\"]*)*"/,
+						greedy: true,
+						alias: 'string',
+						inside: {
+							'variable': {
+								pattern: /\$(?:[a-z]\w*(?:\.(?:\d+|\$?[a-z]\w*))*)/i,
+							},
+						},
 					},
 				},
 			},
-		});
-
-		// The different types of TT2 strings "replace" the C-like standard string
-		delete tt2.string;
-
-		return {
-			'tt2': {
-				pattern: /\[%[\s\S]+?%\]/,
-				inside: tt2,
-			},
-			[tokenize]: embeddedIn('markup'),
-		};
+			// The different types of TT2 strings "replace" the C-like standard string
+			$delete: ['string'],
+			$tokenize: embeddedIn('markup'),
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'tt2'>;

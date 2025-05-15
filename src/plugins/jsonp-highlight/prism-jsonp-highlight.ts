@@ -1,4 +1,3 @@
-import { addHooks } from '../../shared/hooks-util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
 
@@ -254,7 +253,7 @@ export default {
 		};
 		const UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
 
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlightall': (env) => {
 				env.selector += ', ' + SELECTOR;
 			},

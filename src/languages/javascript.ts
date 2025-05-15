@@ -1,17 +1,22 @@
-import { insertBefore } from '../shared/language-util';
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
-import { rest } from '../shared/symbols';
-import { toArray } from '../shared/util';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
+
+export const JS_TEMPLATE_INTERPOLATION = /\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/;
+export const JS_TEMPLATE = RegExp(
+	/`(?:\\[\s\S]|<i>|[^\\`$]|\$(?!\{))*`/.source.replace(
+		'<i>',
+		() => JS_TEMPLATE_INTERPOLATION.source
+	)
+);
 
 export default {
 	id: 'javascript',
-	require: clike,
-	optional: 'js-templates',
+	base: clike,
 	alias: 'js',
-	grammar ({ extend, getOptionalLanguage }) {
-		const javascript = extend('clike', {
+	media: ['text/javascript', 'application/javascript'],
+	extensions: ['js', 'mjs', 'cjs'],
+	grammar (): Grammar {
+		return {
 			'class-name': [
 				{
 					pattern: /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,
@@ -82,137 +87,135 @@ export default {
 			},
 			'operator':
 				/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
-		});
 
-		insertBefore(javascript, 'comment', {
-			'doc-comment': {
-				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
-				greedy: true,
-				inside: 'jsdoc',
-			},
-		});
+			$insertBefore: {
+				'comment': {
+					'doc-comment': {
+						pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
+						greedy: true,
+						inside: 'jsdoc',
+					},
+				},
 
-		insertBefore(javascript, 'keyword', {
-			'regex': {
-				pattern: RegExp(
-					// lookbehind
-					// eslint-disable-next-line regexp/no-dupe-characters-character-class
-					/((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)/.source +
-						// Regex pattern:
-						// There are 2 regex patterns here. The RegExp set notation proposal added support for nested character
-						// classes if the `v` flag is present. Unfortunately, nested CCs are both context-free and incompatible
-						// with the only syntax, so we have to define 2 different regex patterns.
-						/\//.source +
-						'(?:' +
-						/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/.source +
-						'|' +
-						// `v` flag syntax. This supports 3 levels of nested character classes.
-						/(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/
-							.source +
-						')' +
-						// lookahead
-						/(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/.source
-				),
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'regex-source': {
-						pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+				'keyword': {
+					'regex': {
+						pattern: RegExp(
+							// lookbehind
+							// eslint-disable-next-line regexp/no-dupe-characters-character-class
+							/((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)/.source +
+								// Regex pattern:
+								// There are 2 regex patterns here. The RegExp set notation proposal added support for nested character
+								// classes if the `v` flag is present. Unfortunately, nested CCs are both context-free and incompatible
+								// with the only syntax, so we have to define 2 different regex patterns.
+								/\//.source +
+								'(?:' +
+								/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/
+									.source +
+								'|' +
+								// `v` flag syntax. This supports 3 levels of nested character classes.
+								/(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/
+									.source +
+								')' +
+								// lookahead
+								/(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/
+									.source
+						),
 						lookbehind: true,
-						alias: 'language-regex',
-						inside: 'regex',
-					},
-					'regex-delimiter': /^\/|\/$/,
-					'regex-flags': /^[a-z]+$/,
-				},
-			},
-			// This must be declared before keyword because we use "function" inside the look-forward
-			'function-variable': {
-				pattern:
-					/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
-				alias: 'function',
-			},
-			'parameter': [
-				{
-					pattern:
-						/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
-					lookbehind: true,
-					inside: 'javascript',
-				},
-				{
-					pattern:
-						/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
-					lookbehind: true,
-					inside: 'javascript',
-				},
-				{
-					pattern: /(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
-					lookbehind: true,
-					inside: 'javascript',
-				},
-				{
-					pattern:
-						/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
-					lookbehind: true,
-					inside: 'javascript',
-				},
-			],
-			'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
-		});
-
-		const jsTemplates = getOptionalLanguage('js-templates')?.['template-string'];
-
-		insertBefore(javascript, 'string', {
-			'hashbang': {
-				pattern: /^#!.*/,
-				greedy: true,
-				alias: 'comment',
-			},
-			'template-string': [
-				...toArray(jsTemplates),
-				{
-					pattern: JS_TEMPLATE,
-					greedy: true,
-					inside: {
-						'template-punctuation': {
-							pattern: /^`|`$/,
-							alias: 'string',
-						},
-						'interpolation': {
-							pattern: RegExp(
-								/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source
-							),
-							lookbehind: true,
-							inside: {
-								'interpolation-punctuation': {
-									pattern: /^\$\{|\}$/,
-									alias: 'punctuation',
-								},
-								[rest]: 'javascript',
+						greedy: true,
+						inside: {
+							'regex-source': {
+								pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+								lookbehind: true,
+								alias: 'language-regex',
+								inside: 'regex',
 							},
+							'regex-delimiter': /^\/|\/$/,
+							'regex-flags': /^[a-z]+$/,
 						},
-						'string': /[\s\S]+/,
+					},
+					// This must be declared before keyword because we use "function" inside the look-forward
+					'function-variable': {
+						pattern:
+							/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
+						alias: 'function',
+					},
+					'parameter': [
+						{
+							pattern:
+								/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
+							lookbehind: true,
+							inside: 'javascript',
+						},
+						{
+							pattern:
+								/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
+							lookbehind: true,
+							inside: 'javascript',
+						},
+						{
+							pattern:
+								/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
+							lookbehind: true,
+							inside: 'javascript',
+						},
+						{
+							pattern:
+								/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
+							lookbehind: true,
+							inside: 'javascript',
+						},
+					],
+					'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
+				},
+
+				'string': {
+					'hashbang': {
+						pattern: /^#!.*/,
+						greedy: true,
+						alias: 'comment',
+					},
+					'template-string': {
+						pattern: JS_TEMPLATE,
+						greedy: true,
+						inside: {
+							'template-punctuation': {
+								pattern: /^`|`$/,
+								alias: 'string',
+							},
+							'interpolation': {
+								pattern: RegExp(
+									/((?:^|[^\\])(?:\\{2})*)/.source +
+										JS_TEMPLATE_INTERPOLATION.source
+								),
+								lookbehind: true,
+								inside: {
+									'interpolation-punctuation': {
+										pattern: /^\$\{|\}$/,
+										alias: 'punctuation',
+									},
+									$rest: 'javascript',
+								},
+							},
+							'string': /[\s\S]+/,
+						},
+					},
+					'string-property': {
+						pattern:
+							/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
+						lookbehind: true,
+						greedy: true,
+						alias: 'property',
 					},
 				},
-			],
-			'string-property': {
-				pattern:
-					/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
-				lookbehind: true,
-				greedy: true,
-				alias: 'property',
+				'operator': {
+					'literal-property': {
+						pattern:
+							/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
+						lookbehind: true,
+						alias: 'property',
+					},
+				},
 			},
-		});
-
-		insertBefore(javascript, 'operator', {
-			'literal-property': {
-				pattern:
-					/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
-				lookbehind: true,
-				alias: 'property',
-			},
-		});
-
-		return javascript;
+		};
 	},
-} as LanguageProto<'javascript'>;
+} satisfies LanguageProto<'javascript'>;

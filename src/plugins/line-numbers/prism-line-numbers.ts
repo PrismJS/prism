@@ -1,5 +1,5 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
-import { combineCallbacks } from '../../shared/hooks-util';
+import { combineCallbacks } from '../../util/combine-callbacks';
 import { isNonNull, noop } from '../../shared/util';
 import type { PluginProto } from '../../types';
 

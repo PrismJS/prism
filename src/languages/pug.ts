@@ -1,5 +1,4 @@
-import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
+import { insertBefore } from '../util/insert';
 import javascript from './javascript';
 import markup from './markup';
 import type { GrammarTokens, LanguageProto } from '../types';
@@ -78,7 +77,7 @@ export default {
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 						alias: 'keyword',
 					},
-					[rest]: 'javascript',
+					$rest: 'javascript',
 				},
 			},
 			'keyword': {
@@ -105,7 +104,7 @@ export default {
 							pattern: /^\+\w+/,
 							alias: 'function',
 						},
-						[rest]: 'javascript',
+						$rest: 'javascript',
 					},
 				},
 			],

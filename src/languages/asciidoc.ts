@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
@@ -22,14 +21,14 @@ export default {
 					pattern: /'(?:[^'\\]|\\.)*'/,
 					inside: {
 						'punctuation': /^'|'$/,
-						[rest]: placeholder,
+						$rest: placeholder,
 					},
 				},
 				'string': /"(?:[^"\\]|\\.)*"/,
 				'variable': /\w+(?==)/,
 				'punctuation': /^\[|\]$|,/,
 				'operator': /=/,
-				// The negative look-ahead prevents blank matches
+				// The negative lookahead prevents blank matches
 				'attr-value': /(?!^\s+$).+/,
 			},
 		};
@@ -51,7 +50,7 @@ export default {
 						pattern: /(^|[^\\])[|!]=*/,
 						lookbehind: true,
 					},
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 
@@ -59,7 +58,7 @@ export default {
 				pattern: /^(\+{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^\++|\++$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			// Literal blocks and listing blocks
@@ -67,7 +66,7 @@ export default {
 				pattern: /^(-{4,}|\.{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			// Sidebar blocks, quote blocks, example blocks and open blocks
@@ -75,7 +74,7 @@ export default {
 				pattern: /^(--|\*{4,}|_{4,}|={4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 
@@ -102,7 +101,7 @@ export default {
 				alias: 'important',
 				inside: {
 					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			'attribute-entry': {
@@ -147,7 +146,7 @@ export default {
 			},
 			'inline': {
 				/*
-					The initial look-behind prevents the highlighting of escaped quoted text.
+					The initial lookbehind prevents the highlighting of escaped quoted text.
 
 					Quoted text can be multi-line but cannot span an empty line.
 					All quoted text can have attributes before [foobar, 'foobar', baz="bar"].
@@ -213,25 +212,25 @@ export default {
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
 		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
-			const o: Grammar = {};
+			const o: Record<string, unknown> = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}
-			return o;
+			return o as Grammar;
 		}
 
-		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc(
+		attributes.inside['interpreted'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',
 			'entity'
 		);
 
-		asciidoc['passthrough-block'].inside[rest] = copyFromAsciiDoc('macro');
+		asciidoc['passthrough-block'].inside.$rest = copyFromAsciiDoc('macro');
 
-		asciidoc['literal-block'].inside[rest] = copyFromAsciiDoc('callout');
+		asciidoc['literal-block'].inside.$rest = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['table'].inside.$rest = copyFromAsciiDoc(
 			'comment-block',
 			'passthrough-block',
 			'literal-block',
@@ -254,7 +253,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['other-block'].inside.$rest = copyFromAsciiDoc(
 			'table',
 			'list-punctuation',
 			'indented-block',
@@ -272,7 +271,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['title'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['title'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',
@@ -280,13 +279,5 @@ export default {
 		);
 
 		return asciidoc;
-	},
-	effect (Prism) {
-		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', env => {
-			if (env.type === 'entity') {
-				env.attributes['title'] = env.content.replace(/&amp;/, '&');
-			}
-		});
 	},
 } as LanguageProto<'asciidoc'>;

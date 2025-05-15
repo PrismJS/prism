@@ -1,6 +1,6 @@
 import { getParentPre } from '../../shared/dom-util';
 import { resolveAlias } from '../../shared/meta/alias-data';
-import { toArray } from '../../shared/util';
+import { toArray } from '../../util/iterables';
 import type { Prism } from '../../core';
 import type { ComponentProto, PluginProto } from '../../types';
 

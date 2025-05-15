@@ -1,6 +1,6 @@
-import { Token, getTextContent } from '../core/token';
-import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { rest, tokenize } from '../shared/symbols';
+import { getTextContent, Token } from '../core/token';
+import { insertBefore } from '../util/insert';
+import { withoutTokenize } from '../util/without-tokenize';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/token';
@@ -10,9 +10,8 @@ function stringifyToken (token: string | Token | TokenStream | undefined): strin
 	if (!token) {
 		return '';
 	}
-	else {
-		return getTextContent(token);
-	}
+
+	return getTextContent(token);
 }
 
 function walkTokens (tokens: TokenStream) {
@@ -157,12 +156,12 @@ export default {
 						pattern: /^=(?=\{)/,
 						alias: 'punctuation',
 					},
-					[rest]: 'jsx',
+					$rest: 'jsx',
 				},
 			},
 		});
 
-		jsx[tokenize] = (code, grammar, Prism) => {
+		jsx.$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;

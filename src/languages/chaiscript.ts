@@ -1,16 +1,14 @@
-import { insertBefore } from '../shared/language-util';
-import { toArray } from '../shared/util';
+import { toArray } from '../util/iterables';
 import clike from './clike';
 import cpp from './cpp';
-import type { LanguageProto } from '../types';
+import type { Grammar, GrammarOptions, LanguageProto } from '../types';
 
 export default {
 	id: 'chaiscript',
-	require: [clike, cpp],
-	grammar ({ extend, getLanguage }) {
-		const cpp = getLanguage('cpp');
-
-		const chaiscript = extend('clike', {
+	require: cpp,
+	base: clike,
+	grammar ({ languages }: GrammarOptions): Grammar {
+		return {
 			'string': {
 				pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'/,
 				lookbehind: true,
@@ -30,47 +28,45 @@ export default {
 			],
 			'keyword':
 				/\b(?:attr|auto|break|case|catch|class|continue|def|default|else|finally|for|fun|global|if|return|switch|this|try|var|while)\b/,
-			'number': [...toArray(cpp.number), /\b(?:Infinity|NaN)\b/],
+			'number': [...toArray(languages.cpp.number), /\b(?:Infinity|NaN)\b/],
 			'operator': />>=?|<<=?|\|\||&&|:[:=]?|--|\+\+|[=!<>+\-*/%|&^]=?|[?~]|`[^`\r\n]{1,4}`/,
-		});
-
-		insertBefore(chaiscript, 'operator', {
-			'parameter-type': {
-				// e.g. def foo(int x, Vector y) {...}
-				pattern: /([,(]\s*)\w+(?=\s+\w)/,
-				lookbehind: true,
-				alias: 'class-name',
-			},
-		});
-
-		insertBefore(chaiscript, 'string', {
-			'string-interpolation': {
-				pattern:
-					/(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern:
-							/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/,
+			$insertBefore: {
+				'operator': {
+					'parameter-type': {
+						// e.g. def foo(int x, Vector y) {...}
+						pattern: /([,(]\s*)\w+(?=\s+\w)/,
 						lookbehind: true,
+						alias: 'class-name',
+					},
+				},
+				'string': {
+					'string-interpolation': {
+						pattern:
+							/(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,
+						lookbehind: true,
+						greedy: true,
 						inside: {
-							'interpolation-expression': {
-								pattern: /(^\$\{)[\s\S]+(?=\}$)/,
+							'interpolation': {
+								pattern:
+									/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/,
 								lookbehind: true,
-								inside: 'chaiscript',
+								inside: {
+									'interpolation-expression': {
+										pattern: /(^\$\{)[\s\S]+(?=\}$)/,
+										lookbehind: true,
+										inside: 'chaiscript',
+									},
+									'interpolation-punctuation': {
+										pattern: /^\$\{|\}$/,
+										alias: 'punctuation',
+									},
+								},
 							},
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'punctuation',
-							},
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
 			},
-		});
-
-		return chaiscript;
+		};
 	},
 } as LanguageProto<'chaiscript'>;

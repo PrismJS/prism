@@ -1,9 +1,8 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'elixir',
-	grammar () {
+	grammar (): Grammar {
 		const stringInside = {
 			'interpolation': {
 				pattern: /#\{[^}]+\}/,
@@ -12,7 +11,7 @@ export default {
 						pattern: /^#\{|\}$/,
 						alias: 'punctuation',
 					},
-					[rest]: 'elixir',
+					$rest: 'elixir',
 				},
 			},
 		};

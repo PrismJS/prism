@@ -1,5 +1,6 @@
 import type { LanguageProto } from '../types';
 
+// TODO use function with groups
 function createLanguageString (lang: string, pattern?: string) {
 	return {
 		pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang) + ')' + /$[\s\S]*\}/.source, 'm'),
@@ -8,8 +9,7 @@ function createLanguageString (lang: string, pattern?: string) {
 			'embedded': {
 				pattern: /(^\{!\w+\b)[\s\S]+(?=\}$)/,
 				lookbehind: true,
-				alias: 'language-' + lang,
-				inside: lang,
+				$inside: lang,
 			},
 			'string': /[\s\S]+/,
 		},

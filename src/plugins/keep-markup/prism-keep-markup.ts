@@ -1,6 +1,4 @@
 import { isActive } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
-import type { StateKey } from '../../core/hook-state';
 import type { PluginProto } from '../../types';
 
 function isElement(child: ChildNode): child is Element {
@@ -21,7 +19,7 @@ export default {
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
 	effect(Prism) {
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlight': (env) => {
 				if (!env.element.children.length) {
 					return;
@@ -77,11 +75,11 @@ export default {
 
 				if (data.length) {
 					// data is an array of all existing tags
-					env.state.set(markupData, data);
+					env.markupData = data;
 				}
 			},
 			'after-highlight': (env) => {
-				const data = env.state.get(markupData, []);
+				const data = env.markupData ?? [];
 				if (data.length) {
 					type End = [node: Text, pos: number]
 

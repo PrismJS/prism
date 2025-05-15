@@ -1,6 +1,5 @@
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
+import javascript, { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from './javascript';
 import type { GrammarToken, LanguageProto } from '../types';
 
 /**
@@ -37,10 +36,10 @@ function createTemplate (language: string, tag: string): GrammarToken {
 								pattern: /^\$\{|\}$/,
 								alias: 'punctuation',
 							},
-							[rest]: 'javascript',
+							$rest: 'javascript',
 						},
 					},
-					[tokenize]: embeddedIn(language),
+					$tokenize: embeddedIn(language),
 				},
 			},
 		},
@@ -49,7 +48,10 @@ function createTemplate (language: string, tag: string): GrammarToken {
 
 export default {
 	id: 'js-templates',
+	require: javascript,
+	extends: 'javascript',
 	grammar () {
+		// TODO use function with groups
 		return {
 			'template-string': [
 				// styled-jsx:

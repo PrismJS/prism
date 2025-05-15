@@ -5,6 +5,5 @@
  */
 
 export { getLanguage, setLanguage, isActive } from './shared/dom-util';
-export { extend, insertBefore } from './shared/language-util';
-export { rest, tokenize } from './shared/symbols';
+export { extend, insertBefore } from './util/language-util';
 export { templating, embeddedIn } from './shared/languages/templating';

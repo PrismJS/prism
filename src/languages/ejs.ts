@@ -1,8 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'ejs',
@@ -31,6 +30,6 @@ export default {
 				},
 			},
 		},
-		[tokenize]: embeddedIn('markup'),
+		$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 	},
 } as LanguageProto<'ejs'>;

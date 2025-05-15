@@ -1,10 +1,10 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/insert';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'http',
 	optional: 'json',
-	grammar ({ getOptionalLanguage }) {
+	grammar ({ languages }) {
 		function headerValueOf (name: string) {
 			return RegExp('(^(?:' + name + '):[ \t]*(?![ \t]))[^]+', 'i');
 		}
@@ -93,9 +93,10 @@ export default {
 		};
 
 		// Create a mapping of Content-Type headers to language definitions
+		// TODO use actual language metadata instead of hardcoding this
 		const httpLanguages = {
 			'application/javascript': 'javascript',
-			'application/json': getOptionalLanguage('json') || 'javascript',
+			'application/json': languages.json || 'javascript',
 			'application/xml': 'xml',
 			'text/xml': 'xml',
 			'text/html': 'html',
@@ -148,4 +149,4 @@ export default {
 
 		return http;
 	},
-} as LanguageProto<'http'>;
+} satisfies LanguageProto<'http'>;

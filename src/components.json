@@ -896,10 +896,6 @@
 			"title": "PHPDoc",
 			"owner": "RunDevelopment"
 		},
-		"php-extras": {
-			"title": "PHP Extras",
-			"owner": "milesj"
-		},
 		"plant-uml": {
 			"title": "PlantUML",
 			"owner": "RunDevelopment"
@@ -1296,10 +1292,6 @@
 				"xeoracube": "XeoraCube"
 			},
 			"owner": "freakmaxi"
-		},
-		"xml-doc": {
-			"title": "XML doc (.net)",
-			"owner": "RunDevelopment"
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",

@@ -1,12 +1,11 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'ftl',
 	require: markup,
-	grammar () {
+	grammar (): Grammar {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
 		// FTL expression with 4 levels of nesting supported
@@ -40,7 +39,7 @@ export default {
 							pattern: /^\$\{|\}$/,
 							alias: 'punctuation',
 						},
-						[rest]: null as Grammar[typeof rest], // see below
+						$rest: null as Grammar['$rest'], // see below
 					},
 				},
 			},
@@ -69,7 +68,7 @@ export default {
 			'punctuation': /[,;.:()[\]{}]/,
 		};
 
-		stringInterpolation.inside.interpolation.inside[rest] = ftl;
+		stringInterpolation.inside.interpolation.inside.$rest = ftl as Grammar;
 
 		return {
 			'ftl-comment': {
@@ -97,7 +96,7 @@ export default {
 						alias: 'ftl',
 						inside: ftl,
 					},
-				},
+				} as Grammar,
 			},
 			'ftl-interpolation': {
 				pattern: RegExp(
@@ -113,9 +112,9 @@ export default {
 						alias: 'ftl',
 						inside: ftl,
 					},
-				},
+				} as Grammar,
 			},
-			[tokenize]: embeddedIn('markup'),
-		};
+			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
+		} as Grammar;
 	},
 } as LanguageProto<'ftl'>;

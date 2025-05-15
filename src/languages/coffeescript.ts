@@ -1,12 +1,11 @@
-import { insertBefore } from '../shared/language-util';
 import javascript from './javascript';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'coffeescript',
-	require: javascript,
+	base: javascript,
 	alias: 'coffee',
-	grammar ({ extend }) {
+	grammar (): Grammar {
 		// Ignore comments starting with { to privilege string interpolation highlighting
 		const comment = /#(?!\{).+/;
 		const interpolation = {
@@ -14,7 +13,7 @@ export default {
 			alias: 'variable',
 		};
 
-		const coffeescript = extend('javascript', {
+		return {
 			'comment': comment,
 			'string': [
 				// Strings are multiline
@@ -38,67 +37,58 @@ export default {
 				pattern: /@(?!\d)\w+/,
 				alias: 'variable',
 			},
-		});
-
-		insertBefore(coffeescript, 'comment', {
-			'multiline-comment': {
-				pattern: /###[\s\S]+?###/,
-				alias: 'comment',
-			},
-
-			// Block regexp can contain comments and interpolation
-			'block-regex': {
-				pattern: /\/{3}[\s\S]*?\/{3}/,
-				alias: 'regex',
-				inside: {
-					'comment': comment,
-					'interpolation': interpolation,
-				},
-			},
-		});
-
-		insertBefore(coffeescript, 'string', {
-			'inline-javascript': {
-				pattern: /`(?:\\[\s\S]|[^\\`])*`/,
-				inside: {
-					'delimiter': {
-						pattern: /^`|`$/,
-						alias: 'punctuation',
+			$insertBefore: {
+				'comment': {
+					'multiline-comment': {
+						pattern: /###[\s\S]+?###/,
+						alias: 'comment',
 					},
-					'script': {
-						pattern: /[\s\S]+/,
-						alias: 'language-javascript',
-						inside: 'javascript',
+
+					// Block regexp can contain comments and interpolation
+					'block-regex': {
+						pattern: /\/{3}[\s\S]*?\/{3}/,
+						alias: 'regex',
+						inside: {
+							'comment': comment,
+							'interpolation': interpolation,
+						},
 					},
 				},
-			},
-
-			// Block strings
-			'multiline-string': [
-				{
-					pattern: /'''[\s\S]*?'''/,
-					greedy: true,
-					alias: 'string',
-				},
-				{
-					pattern: /"""[\s\S]*?"""/,
-					greedy: true,
-					alias: 'string',
-					inside: {
-						'interpolation': interpolation,
+				'string': {
+					'inline-javascript': {
+						pattern: /`(?:\\[\s\S]|[^\\`])*`/,
+						inside: {
+							'delimiter': {
+								pattern: /^`|`$/,
+								alias: 'punctuation',
+							},
+							'script': 'javascript',
+						},
 					},
+
+					// Block strings
+					'multiline-string': [
+						{
+							pattern: /'''[\s\S]*?'''/,
+							greedy: true,
+							alias: 'string',
+						},
+						{
+							pattern: /"""[\s\S]*?"""/,
+							greedy: true,
+							alias: 'string',
+							inside: {
+								'interpolation': interpolation,
+							},
+						},
+					],
 				},
-			],
-		});
-
-		insertBefore(coffeescript, 'keyword', {
-			// Object property
-			'property': /(?!\d)\w+(?=\s*:(?!:))/,
-		});
-
-		delete coffeescript['doc-comment'];
-		delete coffeescript['template-string'];
-
-		return coffeescript;
+				'keyword': {
+					// Object property
+					'property': /(?!\d)\w+(?=\s*:(?!:))/,
+				},
+			},
+			$delete: ['doc-comment', 'template-string'],
+		};
 	},
 } as LanguageProto<'coffeescript'>;

@@ -1,20 +1,19 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import ts from 'typescript';
+import fs from 'fs';
+import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
-import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile, copyFile } from 'fs/promises';
 import MagicString from 'magic-string';
-import path from 'path';
 import { rollup } from 'rollup';
-import { fileURLToPath } from 'url';
+import ts from 'typescript';
 import { webfont } from 'webfont';
-import { toArray } from '../src/shared/util';
+import { toArray } from '../src/util/iterables';
 import { components } from './components';
 import { parallel, runTask, series } from './tasks';
-import type { ComponentProto } from '../src/types';
+import type { ComponentProto, LanguageProto } from '../src/types';
 import type { OutputOptions, Plugin, RollupBuild, RollupOptions, SourceMapInput } from 'rollup';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -141,7 +140,7 @@ const dataToInsert = {
 		const data = await Promise.all(
 			[...languageIds, ...pluginIds].map(async id => {
 				const proto = await loadComponent(id);
-				return { id, alias: toArray(proto.alias) };
+				return { id, alias: toArray((proto as LanguageProto).alias) };
 			})
 		);
 		return Object.fromEntries(data.flatMap(({ id, alias }) => alias.map(a => [a, id])));
@@ -163,7 +162,7 @@ const dataToInsert = {
 		const data = (
 			await Promise.all(
 				languageIds.map(async id => {
-					const proto = await loadComponent(id);
+					const proto = (await loadComponent(id)) as LanguageProto;
 					const title = rawTitles.get(id);
 					if (!title) {
 						throw new Error(`No title for ${id}`);
@@ -319,7 +318,7 @@ async function clean() {
 	]);
 }
 
-async function copyComponentsJson () {
+async function copyComponentsJson() {
 	const from = path.join(SRC_DIR, 'components.json');
 	const to = path.join(__dirname, '../dist/components.json');
 	await copyFile(from, to);
@@ -329,7 +328,7 @@ async function buildTypes() {
 	await mkdir('./types');
 
 	// Copy existing type definitions
-	const typeFiles = ['types.d.ts', 'known-plugins.d.ts'];
+	const typeFiles = ['types.d.ts'];
 
 	await Promise.all(
 		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
@@ -410,11 +409,11 @@ async function buildJS() {
 			rollupOptions: {
 				...defaultRollupOptions,
 				input: {
-					'prism': path.join(SRC_DIR, 'auto-start.ts'),
-				}
+					'prism': path.join(SRC_DIR, 'global.ts'),
+				},
 			},
 			outputOptions: defaultOutputOptions,
-		}
+		},
 	};
 
 	try {
@@ -430,4 +429,10 @@ async function buildJS() {
 	}
 }
 
-runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)), copyComponentsJson));
+runTask(
+	series(
+		clean,
+		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
+		copyComponentsJson
+	)
+);
