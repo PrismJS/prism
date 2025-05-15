@@ -4,7 +4,7 @@ import { highlight } from '../highlight';
 import { highlightAll } from '../highlight-all';
 import { highlightElement } from '../highlight-element';
 import { Registry } from '../registry';
-import { tokenize } from '../tokenize';
+import { tokenize } from '../tokenize/tokenize';
 import { Hooks } from './hooks';
 import LanguageRegistry from './language-registry';
 import PluginRegistry from './plugin-registry';

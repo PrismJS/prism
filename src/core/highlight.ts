@@ -1,6 +1,6 @@
 import singleton from './prism';
 import { stringify } from './stringify';
-import { tokenize } from './tokenize';
+import { tokenize } from './tokenize/tokenize';
 import type { HookEnv } from './classes/hooks';
 import type { LanguageLike, LanguageProto } from './classes/language';
 import type { Prism } from './prism';
