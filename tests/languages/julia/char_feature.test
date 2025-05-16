@@ -16,16 +16,13 @@ A'b''
 	["char", "'\\''"],
 	["char", "'\\u2200'"],
 	["char", "'\\x80'"],
-	["char", "'\\xe2\\x88'"],
+	["operator", "'"],
+	["operator", "\\"],
+	["operator", "xe2\\"],
+	"x88",
+	["operator", "'"],
 	["char", "'∀'"],
 
 	["comment", "# not a character"],
-
-	"\r\nA",
-	["operator", "'"],
-	"b\r\nA",
-	["operator", "'"],
-	"b",
-	["operator", "'"],
-	["operator", "'"]
+	"\r\nA'b\r\nA", ["char", "'b'"], ["operator", "'"]
 ]
