@@ -2,7 +2,6 @@ import { LinkedList } from '../linked-list';
 import singleton from '../prism';
 import { _matchGrammar } from './match';
 import type { Grammar } from '../../types';
-import type LanguageRegistry from '../classes/language-registry';
 import type { Token, TokenStream } from '../classes/token';
 import type { Prism } from '../prism';
 
