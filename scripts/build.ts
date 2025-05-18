@@ -140,7 +140,7 @@ const dataToInsert = {
 		const data = await Promise.all(
 			[...languageIds, ...pluginIds].map(async id => {
 				const proto = await loadComponent(id);
-				return { id, alias: toArray((proto as LanguageProto).alias) };
+				return { id, alias: toArray((proto as LanguageProto)?.alias) };
 			})
 		);
 		return Object.fromEntries(data.flatMap(({ id, alias }) => alias.map(a => [a, id])));
@@ -167,7 +167,7 @@ const dataToInsert = {
 					if (!title) {
 						throw new Error(`No title for ${id}`);
 					}
-					return [id, ...toArray(proto.alias)].map(name => ({
+					return [id, ...toArray(proto?.alias)].map(name => ({
 						name,
 						title: rawTitles.get(id) ?? title,
 					}));
