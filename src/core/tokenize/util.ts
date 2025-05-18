@@ -19,14 +19,14 @@ export function resolve (
 	}
 
 	if (typeof ret === 'object' && ret.$rest) {
-		let restGrammar = resolve(ret.$rest, prism) ?? {};
+		let restGrammar = resolve.call(prism, ret.$rest) ?? {};
 
 		if (typeof restGrammar === 'object') {
 			ret = { ...ret, ...restGrammar };
 		}
 	}
 
-	return ret;
+	return ret as Grammar | undefined | Function;
 }
 
 export function tokenizeByNamedGroups (match: RegExpExecArray): ({ type; content } | string)[] {

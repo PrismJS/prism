@@ -2,7 +2,7 @@ import { Token } from '../classes/token';
 import singleton from '../prism';
 import { tokenize } from './tokenize';
 import { resolve, tokenizeByNamedGroups } from './util';
-import type { GrammarToken, GrammarTokens, RegExpLike, TokenStream } from '../../types';
+import type { Grammar, GrammarToken, GrammarTokens, RegExpLike, TokenStream } from '../../types';
 import type {
 	LinkedList,
 	LinkedListHeadNode,
@@ -22,7 +22,7 @@ export function _matchGrammar (
 ): void {
 	const prism = this ?? singleton;
 
-	grammar = resolve.call(prism, grammar);
+	grammar = resolve.call(prism, grammar) as Grammar;
 
 	for (const token in grammar) {
 		const tokenValue = grammar[token];
@@ -155,7 +155,7 @@ export function _matchGrammar (
 				tokenList.removeRange(removeFrom, removeCount);
 				let byGroups = match.groups ? tokenizeByNamedGroups(match) : null;
 
-				if (byGroups?.length > 1) {
+				if (byGroups && byGroups.length > 1) {
 					content = byGroups.map(arg => {
 						let content = typeof arg === 'string' ? arg : arg.content;
 						let type = typeof arg === 'string' ? undefined : arg.type;
@@ -180,7 +180,7 @@ export function _matchGrammar (
 					});
 				}
 				else if (insideGrammar) {
-					content = tokenize.call(prism, content, insideGrammar);
+					content = tokenize.call(prism, content as string, insideGrammar as Grammar);
 				}
 
 				const wrapped = new Token(token, content, alias, matchStr);

@@ -49,16 +49,19 @@ export class Deferred<T> extends Promise<T> {
 	}
 }
 
-export function defer<T> (): Promise<T> & {
+type DeferredPromise<T> = Promise<T> & {
 	resolve: (value: T) => void;
 	reject: (reason?: any) => void;
-} {
-	let res, rej;
+};
 
-	let promise = new Promise((resolve, reject) => {
+export function defer<T> (): DeferredPromise<T> {
+	let res!: (value: T) => void;
+	let rej!: (reason?: any) => void;
+
+	let promise = new Promise<T>((resolve, reject) => {
 		res = resolve;
 		rej = reject;
-	});
+	}) as DeferredPromise<T>;
 
 	promise.resolve = res;
 	promise.reject = rej;
