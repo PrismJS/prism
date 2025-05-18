@@ -81,7 +81,7 @@ export function _matchGrammar (
 				}
 
 				let removeCount = 1; // this is the to parameter of removeBetween
-				let match;
+				let match: RegExpExecArray | null = null;
 
 				if (greedy) {
 					match = matchPattern(pattern, pos, text, lookbehind);
@@ -180,7 +180,7 @@ export function _matchGrammar (
 					});
 				}
 				else if (insideGrammar) {
-					content = tokenize.call(prism, content as string, insideGrammar as Grammar);
+					content = tokenize.call(prism, content, insideGrammar as Grammar);
 				}
 
 				const wrapped = new Token(token, content, alias, matchStr);
