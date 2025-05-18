@@ -1,21 +1,22 @@
 import { assert } from 'chai';
 import {
-	JS,
-	NFA,
-	Transformers,
-	Words,
 	combineTransformers,
 	getIntersectionWordSets,
 	isDisjointWith,
+	JS,
+	NFA,
 	transform,
+	Transformers,
+	Words,
 } from 'refa';
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import * as scslre from 'scslre';
-import { lazy, toArray } from '../src/shared/util';
+import { lazy } from '../src/shared/util';
+import { toArray } from '../src/util/iterables';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
-import { TestCaseFile, parseLanguageNames } from './helper/test-case';
+import { parseLanguageNames, TestCaseFile } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
 import { BFS, BFSPathToPrismTokenPath, isRegExp, parseRegex } from './helper/util';
 import type { Prism } from '../src/core';
@@ -90,7 +91,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		ast: LiteralAST;
 		tokenPath: string;
 		name: string;
-				parent: any;
+		parent: any;
 		lookbehind: boolean;
 		lookbehindGroup: CapturingGroup | undefined;
 		path: PathItem[];
@@ -704,7 +705,10 @@ function checkPolynomialBacktracking (path: string, pattern: RegExp, ast?: Liter
 		ast = parseRegex(pattern);
 	}
 
-	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, { maxReports: 1, reportTypes: { 'Move': false } });
+	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, {
+		maxReports: 1,
+		reportTypes: { 'Move': false },
+	});
 	if (result.reports.length > 0) {
 		const report = result.reports[0];
 
