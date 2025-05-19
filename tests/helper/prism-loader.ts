@@ -60,8 +60,12 @@ getComponentIds().forEach(getComponent);
  * Creates a new Prism instance with the given language loaded
  */
 export async function createInstance (languages?: string | string[]) {
-	const instance = new Prism({ languages: toArray(languages) as string[], languagePath: path.join(SRC_DIR, 'languages') });
-	await instance.languagesReady;
+	const instance = new Prism();
+
+	const protos = await Promise.all(toArray(languages).map(getComponent));
+	protos.filter(Boolean).forEach(proto => {
+		instance.languageRegistry.add(proto as LanguageProto);
+	});
 
 	return instance;
 }
@@ -137,12 +141,18 @@ export function createPrismDOM (): PrismDOM<{}> {
 	/**
 	 * Loads the given languages or plugins.
 	 */
-	const load = async (ids: string | string[], type: 'languages' | 'plugins' = 'languages') => {
-		let registry = instance[type === 'languages' ? 'languageRegistry' : 'pluginRegistry'];
+	const load = async (languagesOrPlugins: string | string[]) => {
+		const protos = await Promise.all(toArray(languagesOrPlugins).map(getComponent));
 		withGlobals(() => {
-			registry.loadAll(toArray(ids) as string[]);
+			protos.filter(Boolean).forEach(proto => {
+				if (proto.grammar) {
+					instance.languageRegistry.add(proto);
+				}
+				else {
+					instance.pluginRegistry.add(proto);
+				}
+			});
 		});
-		await registry.ready;
 	};
 
 	return {
@@ -150,8 +160,8 @@ export function createPrismDOM (): PrismDOM<{}> {
 		window: window as PrismWindow<{}>,
 		document: window.document,
 		Prism: window.Prism as never,
-		loadLanguages: async (ids: string | string[]) => await load(ids),
-		loadPlugins: async (ids: string | string[]) => await load(ids, 'plugins'),
+		loadLanguages: load,
+		loadPlugins: load,
 		withGlobals,
 	};
 }
