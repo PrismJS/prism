@@ -159,8 +159,8 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		}
 
 		// static analysis
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languageRegistry.cache)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (grammar) {
 				traverse(grammar, id);
 			}
@@ -169,7 +169,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		// dynamic analysis
 		for (const lang of getRelevantLanguages()) {
 			const snippets = testSnippets.get(lang);
-			const grammar = Prism.components.getLanguage(lang);
+			const grammar = Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method
 			const oldTokenize = Prism.tokenize;
