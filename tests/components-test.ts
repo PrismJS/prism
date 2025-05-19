@@ -1,8 +1,9 @@
-import { assert } from 'chai';
 import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { forEach, noop, toArray } from '../src/shared/util';
+import { assert } from 'chai';
+import { noop } from '../src/shared/util';
+import { forEach, toArray } from '../src/util/iterables';
 import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -100,7 +101,7 @@ describe('components.json', () => {
 	describe('- should have valid alias titles', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
-				const aliases = new Set(toArray((await getComponent(lang)).alias));
+				const aliases = new Set(toArray((await getComponent(lang))?.alias));
 				const aliasTitles =
 					(components.languages[lang] as ComponentEntry | undefined)?.aliasTitles ?? {};
 
