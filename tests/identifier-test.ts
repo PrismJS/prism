@@ -122,8 +122,8 @@ function testLiterals (getPrism: Promise<Prism>, lang: string) {
 		identifierType: keyof IdentifierTestOptions
 	) {
 		const Prism = await getPrism;
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languageRegistry.cache)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (!grammar) {
 				continue;
 			}

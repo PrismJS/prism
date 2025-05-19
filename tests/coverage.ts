@@ -17,9 +17,9 @@ describe('Pattern test coverage', () => {
 		const Prism = await PrismLoader.createInstance(languages);
 
 		const root = Object.fromEntries(
-			[...Prism.components['entries'].keys()].map(id => [
+			Object.keys(Prism.languageRegistry.cache).map(id => [
 				id,
-				Prism.components.getLanguage(id),
+				Prism.languageRegistry.getLanguage(id)?.resolvedGrammar,
 			])
 		);
 
