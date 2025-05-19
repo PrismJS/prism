@@ -60,10 +60,8 @@ getComponentIds().forEach(getComponent);
  * Creates a new Prism instance with the given language loaded
  */
 export async function createInstance (languages?: string | string[]) {
-	const instance = new Prism();
-
-	const protos = await Promise.all(toArray(languages).map(getComponent));
-	instance.components.add(...protos);
+	const instance = new Prism({ languages: toArray(languages) as string[], languagePath: path.join(SRC_DIR, 'languages') });
+	await instance.languagesReady;
 
 	return instance;
 }
@@ -139,11 +137,12 @@ export function createPrismDOM (): PrismDOM<{}> {
 	/**
 	 * Loads the given languages or plugins.
 	 */
-	const load = async (languagesOrPlugins: string | string[]) => {
-		const protos = await Promise.all(toArray(languagesOrPlugins).map(getComponent));
+	const load = async (ids: string | string[], type: 'languages' | 'plugins' = 'languages') => {
+		let registry = instance[type === 'languages' ? 'languageRegistry' : 'pluginRegistry'];
 		withGlobals(() => {
-			instance.components.add(...protos);
+			registry.loadAll(toArray(ids) as string[]);
 		});
+		await registry.ready;
 	};
 
 	return {
@@ -151,8 +150,8 @@ export function createPrismDOM (): PrismDOM<{}> {
 		window: window as PrismWindow<{}>,
 		document: window.document,
 		Prism: window.Prism as never,
-		loadLanguages: load,
-		loadPlugins: load,
+		loadLanguages: async (ids: string | string[]) => await load(ids),
+		loadPlugins: async (ids: string | string[]) => await load(ids, 'plugins'),
 		withGlobals,
 	};
 }

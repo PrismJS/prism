@@ -3,8 +3,8 @@ import fs from 'fs';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
 import { formatHtml, getLeadingSpaces } from './util';
-import type { Prism } from '../../src/core';
-import type { TokenStream } from '../../src/core/token';
+import type { Prism } from '../../src/types';
+import type { TokenStream } from '../../src/types';
 
 const defaultCreateInstance = createInstance;
 
@@ -134,7 +134,7 @@ interface Runner<T> {
 }
 const jsonRunner: Runner<TokenStream> = {
 	run (Prism, code, language) {
-		const grammar = Prism.components.getLanguage(language);
+		const grammar = Prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
 		return Prism.tokenize(code, grammar ?? {});
 	},
 	print (actual) {
