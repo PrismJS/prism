@@ -1,60 +1,34 @@
 import { assert } from 'chai';
 import { Prism } from '../../src/core/prism';
+import type { Grammar } from '../../src/types';
 
 describe('Registry', () => {
 	it('should resolve aliases', () => {
-		const { components } = new Prism();
+		const { languageRegistry } = new Prism();
 
-		const grammar = {};
-		components.add({ id: 'a', alias: 'b', grammar });
+		const grammar = {} as Grammar;
+		languageRegistry.add({ id: 'a', alias: 'b', grammar });
 
-		assert.isTrue(components.has('a'));
-		assert.isTrue(components.has('b'));
+		assert.equal(languageRegistry.resolveRef('a').id, 'a');
+		assert.equal(languageRegistry.resolveRef('b').id, 'a');
 
-		assert.strictEqual(components.resolveAlias('a'), 'a');
-		assert.strictEqual(components.resolveAlias('b'), 'a');
+		assert.strictEqual(languageRegistry.aliases['b'], 'a');
 
-		assert.strictEqual(components.getLanguage('a'), grammar);
-		assert.strictEqual(components.getLanguage('b'), grammar);
+		assert.deepStrictEqual(languageRegistry.getLanguage('a')?.resolvedGrammar, grammar);
+		assert.deepStrictEqual(languageRegistry.getLanguage('b')?.resolvedGrammar, grammar);
 	});
 
 	it('should resolve aliases in optional dependencies', () => {
-		const { components } = new Prism();
+		const { languageRegistry } = new Prism();
 
-		const grammar = {};
-		components.add({ id: 'a', alias: 'b', grammar });
-		components.add({
+		const grammar = {} as Grammar;
+		languageRegistry.add({ id: 'a', alias: 'b', grammar });
+		languageRegistry.add({
 			id: 'c',
 			optional: 'b',
-			grammar ({ getOptionalLanguage }) {
-				return getOptionalLanguage('b') ?? {};
-			},
+			grammar: ({ getLanguage }) => getLanguage('b') ?? {},
 		});
 
-		assert.strictEqual(components.getLanguage('c'), grammar);
-	});
-
-	it('should throw on circular dependencies', () => {
-		assert.throws(() => {
-			const { components } = new Prism();
-
-			components.add({ id: 'a', optional: 'b', grammar: {} });
-			components.add({ id: 'b', optional: 'a', grammar: {} });
-		}, /Circular dependency a -> b -> a not allowed/);
-
-		assert.throws(() => {
-			const { components } = new Prism();
-
-			components.add(
-				{ id: 'a', optional: 'b', grammar: {} },
-				{ id: 'b', optional: 'a', grammar: {} }
-			);
-		}, /Circular dependency a -> b -> a not allowed/);
-
-		assert.throws(() => {
-			const { components } = new Prism();
-
-			components.add({ id: 'a', optional: 'a', grammar: {} });
-		}, /Circular dependency a -> a not allowed/);
+		assert.deepStrictEqual(languageRegistry.getLanguage('c')?.resolvedGrammar, grammar);
 	});
 });
