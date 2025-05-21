@@ -98,7 +98,7 @@
 							if (size === 'cover') {
 								size = 'farthest-corner';
 							} else if (size === 'contain') {
-								size = 'clothest-side';
+								size = 'closest-side';
 							}
 						}
 
