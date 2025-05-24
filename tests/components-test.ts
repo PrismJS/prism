@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { noop } from '../src/shared/util';
 import { forEach, toArray } from '../src/util/iterables';
 import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader';
+import type { LanguageProto } from '../src/types';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -42,7 +43,7 @@ describe('Components', () => {
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
 			add(id, 'a component id');
-			forEach(proto?.alias, a => add(a, `an alias of ${id}`));
+			forEach((proto as LanguageProto)?.alias, a => add(a, `an alias of ${id}`));
 		}
 	});
 });
@@ -101,7 +102,7 @@ describe('components.json', () => {
 	describe('- should have valid alias titles', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
-				const aliases = new Set(toArray((await getComponent(lang))?.alias));
+				const aliases = new Set(toArray(((await getComponent(lang)) as LanguageProto)?.alias));
 				const aliasTitles =
 					(components.languages[lang] as ComponentEntry | undefined)?.aliasTitles ?? {};
 
@@ -124,7 +125,6 @@ describe('components.json', () => {
 			.map((key): { id: string; title: string } => {
 				return {
 					id: key,
-					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 					title: (components.languages[key] as ComponentEntry).title!,
 				};
 			});
