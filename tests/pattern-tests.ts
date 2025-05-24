@@ -108,7 +108,6 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 			visited.add(grammar);
 
 			BFS(grammar, path => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
@@ -125,9 +124,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 							);
 						}
 
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const lookbehind =
 							key === 'pattern' && !!parent && !!(parent as GrammarToken).lookbehind;
 						const lookbehindGroup = lookbehind
@@ -138,7 +135,6 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 							ast,
 							tokenPath,
 							name: key,
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							parent,
 							path,
 							lookbehind,
@@ -282,7 +278,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
 				if (group.references.length === 0 && !isLookbehindGroup) {
-					const fixes = [];
+					const fixes: string[] = [];
 					fixes.push(
 						`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`
 					);
@@ -406,7 +402,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
  * Returns the first capturing group in the given pattern.
  */
 function getFirstCapturingGroup (pattern: Pattern): CapturingGroup | undefined {
-	let cap = undefined;
+	let cap: CapturingGroup | undefined = undefined;
 
 	try {
 		visitRegExpAST(pattern, {
@@ -416,7 +412,7 @@ function getFirstCapturingGroup (pattern: Pattern): CapturingGroup | undefined {
 			},
 		});
 	}
-	catch (error) {
+	catch (error) { // eslint-disable-line @typescript-eslint/no-unused-vars
 		// ignore errors
 	}
 
@@ -784,9 +780,9 @@ interface Highlight {
 function highlight (highlights: Highlight[], offset = 0) {
 	highlights.sort((a, b) => a.start - b.start);
 
-	const lines = [];
+	const lines: string[] = [];
 	while (highlights.length > 0) {
-		const newHighlights = [];
+		const newHighlights: Highlight[] = [];
 		let l = '';
 		for (const highlight of highlights) {
 			const start = highlight.start + offset;
