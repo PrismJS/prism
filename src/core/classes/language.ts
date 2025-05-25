@@ -89,7 +89,16 @@ export default class Language extends EventTarget {
 			return null;
 		}
 
-		return this.registry.getLanguage(this.def.base.id) ?? null;
+		let base = this.def.base;
+		let language = this.registry.peek(base);
+		if (language) {
+			// Already resolved
+			return language;
+		}
+		else {
+			this.registry.add(base as LanguageProto);
+			return this.registry.getLanguage(base.id);
+		}
 	}
 
 	get extends () {
@@ -114,7 +123,7 @@ export default class Language extends EventTarget {
 				languages: this.languages,
 				getLanguage: (id: string) => {
 					let language = this.languages[id] ?? this.registry.getLanguage(id);
-					return language?.resolvedGrammar as Grammar;
+					return language?.resolvedGrammar as Grammar ?? language;
 				},
 				whenDefined: (id: string) => {
 					return this.registry.whenDefined(id) as unknown as Promise<Language>;
