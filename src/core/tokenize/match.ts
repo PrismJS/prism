@@ -50,7 +50,7 @@ export function _matchGrammar (
 				// Without the global flag, lastIndex won't work
 				flagsToAdd += 'g';
 			}
-			if (pattern.source.includes('(?<') && pattern.hasIndices === false) {
+			if (pattern.source?.includes('(?<') && pattern.hasIndices === false) {
 				// Has named groups, we need to be able to capture their indices
 				flagsToAdd += 'd';
 			}
