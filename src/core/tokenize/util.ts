@@ -20,6 +20,7 @@ export function resolve (
 
 	if (typeof ret === 'object' && ret.$rest) {
 		let restGrammar = resolve.call(prism, ret.$rest) ?? {};
+		delete ret.$rest;
 
 		if (typeof restGrammar === 'object') {
 			ret = { ...ret, ...restGrammar };
