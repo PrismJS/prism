@@ -10,7 +10,7 @@ export function resolve (
 	let ret = reference ?? undefined;
 
 	if (typeof ret === 'string') {
-		ret = prism.languageRegistry.getLanguage(ret)?.grammar;
+		ret = prism.languageRegistry.getLanguage(ret)?.resolvedGrammar;
 	}
 
 	if (typeof ret === 'function' && ret.length === 0) {
