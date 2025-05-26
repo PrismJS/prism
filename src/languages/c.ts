@@ -37,48 +37,48 @@ export default {
 			$insertBefore: {
 				'string': {
 					char,
-				},
-				'macro': {
-					// allow for multiline macro definitions
-					// spaces after the # character compile fine with gcc
-					pattern:
-						/(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
-					lookbehind: true,
-					greedy: true,
-					alias: 'property',
-					inside: {
-						'string': [
-							{
-								// highlight the path of the include statement as a string
-								pattern: /^(#\s*include\s*)<[^>]+>/,
+					'macro': {
+						// allow for multiline macro definitions
+						// spaces after the # character compile fine with gcc
+						pattern:
+							/(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
+						lookbehind: true,
+						greedy: true,
+						alias: 'property',
+						inside: {
+							'string': [
+								{
+									// highlight the path of the include statement as a string
+									pattern: /^(#\s*include\s*)<[^>]+>/,
+									lookbehind: true,
+								},
+								string,
+							],
+							'char': char,
+							'comment': comment,
+							'macro-name': [
+								{
+									pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
+									lookbehind: true,
+								},
+								{
+									pattern: /(^#\s*define\s+)\w+\b(?=\()/i,
+									lookbehind: true,
+									alias: 'function',
+								},
+							],
+							// highlight macro directives as keywords
+							'directive': {
+								pattern: /^(#\s*)[a-z]+/,
 								lookbehind: true,
+								alias: 'keyword',
 							},
-							string,
-						],
-						'char': char,
-						'comment': comment,
-						'macro-name': [
-							{
-								pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
-								lookbehind: true,
+							'directive-hash': /^#/,
+							'punctuation': /##|\\(?=[\r\n])/,
+							'expression': {
+								pattern: /\S[\s\S]*/,
+								inside: { $rest: 'c' },
 							},
-							{
-								pattern: /(^#\s*define\s+)\w+\b(?=\()/i,
-								lookbehind: true,
-								alias: 'function',
-							},
-						],
-						// highlight macro directives as keywords
-						'directive': {
-							pattern: /^(#\s*)[a-z]+/,
-							lookbehind: true,
-							alias: 'keyword',
-						},
-						'directive-hash': /^#/,
-						'punctuation': /##|\\(?=[\r\n])/,
-						'expression': {
-							pattern: /\S[\s\S]*/,
-							inside: { $rest: 'c' },
 						},
 					},
 				},
