@@ -11,11 +11,8 @@ export default {
 				pattern: /'''.*/,
 				greedy: true,
 				alias: 'comment',
-				// TODO do better
-				get inside () {
-					if (languages.markup) {
-						return languages.markup.tag;
-					}
+				inside: {
+					'tag': languages.markup?.tag,
 				},
 			},
 			'comment': [
