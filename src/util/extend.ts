@@ -64,7 +64,7 @@ export function extend (base: Grammar, grammar: Grammar): Grammar {
 				}
 			}
 			else if (relToken) {
-				lang[all][relToken][tokenName] = token;
+				(lang[all][relToken] ??= {})[tokenName] = token;
 			}
 			else {
 				lang[tokenName] = token;
