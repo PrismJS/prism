@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
@@ -33,7 +32,7 @@ function nested (pattern: string, depthLog2: number) {
 
 export default {
 	id: 'csharp',
-	require: clike,
+	base: clike,
 	alias: ['c#', 'cs', 'dotnet'],
 	grammar ({ languages }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
