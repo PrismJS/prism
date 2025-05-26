@@ -4,7 +4,7 @@ import type { LanguageProto } from '../types';
 export default {
 	id: 'fsharp',
 	alias: 'f#',
-	require: clike,
+	base: clike,
 	optional: 'markup',
 	grammar ({ languages }) {
 		return {
