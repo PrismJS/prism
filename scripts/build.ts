@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import ts from 'typescript';
+import fs from 'fs';
+import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
 import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
-import fs from 'fs';
-import { mkdir, readFile, readdir, rm, writeFile, copyFile } from 'fs/promises';
 import MagicString from 'magic-string';
-import path from 'path';
 import { rollup } from 'rollup';
-import { fileURLToPath } from 'url';
+import ts from 'typescript';
 import { webfont } from 'webfont';
 import { toArray } from '../src/shared/util';
 import { components } from './components';
@@ -20,11 +19,17 @@ import type { OutputOptions, Plugin, RollupBuild, RollupOptions, SourceMapInput 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SRC_DIR = path.join(__dirname, '../src/');
+const DIST_DIR = path.join(__dirname, '../dist');
+
 const languageIds = fs
 	.readdirSync(path.join(SRC_DIR, 'languages'))
 	.map(f => f.slice(0, -'.js'.length))
 	.sort();
 const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
+const themeIds = fs
+	.readdirSync(path.join(SRC_DIR, '../themes'))
+	.map(f => f.slice(0, -'.css'.length))
+	.sort();
 
 async function loadComponent (id: string) {
 	let file;
@@ -54,8 +59,6 @@ async function minifyCSS () {
 		}
 	}
 
-	const DIST = path.join(__dirname, '../dist');
-
 	const clean = new CleanCSS({});
 
 	await Promise.all(
@@ -69,7 +72,7 @@ async function minifyCSS () {
 				console.warn(`${file}: ${warn}`);
 			}
 
-			const targetFile = path.join(DIST, target);
+			const targetFile = path.join(DIST_DIR, target);
 			await mkdir(path.dirname(targetFile), { recursive: true });
 			await writeFile(targetFile, output.styles, 'utf-8');
 		})
@@ -277,7 +280,7 @@ const inlineRegexSourcePlugin: Plugin = {
  */
 const lazyGrammarPlugin: Plugin = {
 	name: 'lazy-grammar',
-	renderChunk(code) {
+	renderChunk (code) {
 		const str = new MagicString(code);
 		str.replace(
 			/^(?<indent>[ \t]+)grammar: (\{[\s\S]*?^\k<indent>\})/m,
@@ -287,7 +290,7 @@ const lazyGrammarPlugin: Plugin = {
 	},
 };
 
-function toRenderedChunk(s: MagicString): { code: string; map: SourceMapInput } {
+function toRenderedChunk (s: MagicString): { code: string; map: SourceMapInput } {
 	return {
 		code: s.toString(),
 		map: s.generateMap({ hires: true }) as SourceMapInput,
@@ -310,7 +313,7 @@ const terserPlugin = rollupTerser({
 	keep_classnames: true,
 });
 
-async function clean() {
+async function clean () {
 	const outputDir = path.join(__dirname, '../dist');
 	const typesDir = path.join(__dirname, '../types');
 	await Promise.all([
@@ -325,7 +328,7 @@ async function copyComponentsJson () {
 	await copyFile(from, to);
 }
 
-async function buildTypes() {
+async function buildTypes () {
 	await mkdir('./types');
 
 	// Copy existing type definitions
@@ -359,7 +362,7 @@ async function buildTypes() {
 	program.emit();
 }
 
-async function buildJS() {
+async function buildJS () {
 	const input: Record<string, string> = {
 		'index': path.join(SRC_DIR, 'index.ts'),
 		'shared': path.join(SRC_DIR, 'shared.ts'),
@@ -373,7 +376,13 @@ async function buildJS() {
 
 	const defaultRollupOptions: RollupOptions = {
 		input,
-		plugins: [rollupTypescript({ module: 'esnext' })],
+		plugins: [
+			rollupTypescript({ module: 'esnext' }),
+			lazyGrammarPlugin,
+			dataInsertPlugin,
+			inlineRegexSourcePlugin,
+			terserPlugin,
+		],
 	};
 
 	const defaultOutputOptions: OutputOptions = {
@@ -381,7 +390,6 @@ async function buildJS() {
 		chunkFileNames: '_chunks/[name]-[hash].js',
 		validate: true,
 		sourcemap: 'hidden',
-		plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
 	};
 
 	const bundles: Record<
@@ -411,10 +419,10 @@ async function buildJS() {
 				...defaultRollupOptions,
 				input: {
 					'prism': path.join(SRC_DIR, 'auto-start.ts'),
-				}
+				},
 			},
 			outputOptions: defaultOutputOptions,
-		}
+		},
 	};
 
 	try {
@@ -430,4 +438,74 @@ async function buildJS() {
 	}
 }
 
-runTask(series(clean, parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)), copyComponentsJson));
+// Helper to get file size in bytes, or 0 if not found
+const getFileSize = async (filePath: string) => {
+	try {
+		const stat = await fs.promises.stat(filePath);
+		return stat.size;
+	}
+	catch {
+		return 0;
+	}
+};
+
+async function calculateFileSizes () {
+	type FileSizes = {
+		css?: number;
+		js?: number;
+	};
+
+	const ret: Record<string, FileSizes & Record<string, FileSizes>> = {
+		core: {},
+		themes: {},
+		languages: {},
+		plugins: {},
+	};
+
+	ret.core.js = await getFileSize(path.join(DIST_DIR, 'index.js'));
+
+	for (const category of ['themes', 'languages', 'plugins']) {
+		let ids = themeIds;
+		if (category === 'languages') {
+			ids = languageIds;
+		}
+		else if (category === 'plugins') {
+			ids = pluginIds;
+		}
+
+		for (const id of ids) {
+			ret[category][id] = {};
+
+			for (const ext of ['js', 'css']) {
+				if (
+					(ext === 'css' &&
+						(category === 'languages' || components[category][id].noCSS)) ||
+					(category === 'themes' && ext === 'js')
+				) {
+					continue;
+				}
+
+				const filePath = path.join(
+					DIST_DIR,
+					category,
+					category === 'plugins' ? `prism-${id}` : id
+				);
+				ret[category][id][ext as 'css' | 'js'] = await getFileSize(`${filePath}.${ext}`);
+			}
+		}
+	}
+
+	await fs.promises.writeFile(
+		path.join(DIST_DIR, 'file-sizes.json'),
+		JSON.stringify(ret, null, '\t')
+	);
+}
+
+runTask(
+	series(
+		clean,
+		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
+		copyComponentsJson,
+		calculateFileSizes
+	)
+);
