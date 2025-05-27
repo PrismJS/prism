@@ -1,7 +1,7 @@
 {
 	"core": {
 		"meta": {
-			"path": "components/prism-core.js",
+			"path": "index.js",
 			"option": "mandatory"
 		},
 		"core": "Core"
