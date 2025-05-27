@@ -1,12 +1,11 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'vala',
-	require: clike,
-	grammar ({ extend }) {
-		const vala = extend('clike', {
+	base: clike,
+	grammar () {
+		return {
 			// Classes copied from csharp
 			'class-name': [
 				{
@@ -50,51 +49,49 @@ export default {
 			'operator': /\+\+|--|&&|\|\||<<=?|>>=?|=>|->|~|[+\-*\/%&^|=!<>]=?|\?\??|\.\.\./,
 			'punctuation': /[{}[\];(),.:]/,
 			'constant': /\b[A-Z0-9_]+\b/,
-		});
-
-		insertBefore(vala, 'string', {
-			'raw-string': {
-				pattern: /"""[\s\S]*?"""/,
-				greedy: true,
-				alias: 'string',
-			},
-			'template-string': {
-				pattern: /@"[\s\S]*?"/,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
+			$insertBefore: {
+				'string': {
+					'raw-string': {
+						pattern: /"""[\s\S]*?"""/,
+						greedy: true,
+						alias: 'string',
+					},
+					'template-string': {
+						pattern: /@"[\s\S]*?"/,
+						greedy: true,
 						inside: {
-							'delimiter': {
-								pattern: /^\$\(?|\)$/,
-								alias: 'punctuation',
+							'interpolation': {
+								pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
+								inside: {
+									'delimiter': {
+										pattern: /^\$\(?|\)$/,
+										alias: 'punctuation',
+									},
+									$rest: 'vala',
+								},
 							},
-							$rest: vala,
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
-			},
-		});
-
-		insertBefore(vala, 'keyword', {
-			'regex': {
-				pattern:
-					/\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,
-				greedy: true,
-				inside: {
-					'regex-source': {
-						pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
-						lookbehind: true,
-						alias: 'language-regex',
-						inside: 'regex',
+				'keyword': {
+					'regex': {
+						pattern:
+							/\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,
+						greedy: true,
+						inside: {
+							'regex-source': {
+								pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+								lookbehind: true,
+								alias: 'language-regex',
+								inside: 'regex',
+							},
+							'regex-delimiter': /^\//,
+							'regex-flags': /^[a-z]+$/,
+						},
 					},
-					'regex-delimiter': /^\//,
-					'regex-flags': /^[a-z]+$/,
 				},
 			},
-		});
-
-		return vala;
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'vala'>;
