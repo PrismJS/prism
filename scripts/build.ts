@@ -27,7 +27,8 @@ const languageIds = fs
 	.sort();
 const pluginIds = fs.readdirSync(path.join(SRC_DIR, 'plugins')).sort();
 const themeIds = fs
-	.readdirSync(path.join(SRC_DIR, '../themes'))
+	.readdirSync(path.join(SRC_DIR, 'themes'))
+	.filter(f => /\.css$/i.test(f))
 	.map(f => f.slice(0, -'.css'.length))
 	.sort();
 
@@ -46,10 +47,8 @@ async function loadComponent (id: string) {
 async function minifyCSS () {
 	const input: Record<string, string> = {};
 
-	const THEMES_DIR = path.join(__dirname, '../themes');
-	const themes = await readdir(THEMES_DIR);
-	for (const theme of themes.filter(f => /\.css$/i.test(f))) {
-		input[`themes/${theme}`] = path.join(THEMES_DIR, theme);
+	for (const id of themeIds) {
+		input[`themes/${id}.css`] = path.join(SRC_DIR, `themes/${id}.css`);
 	}
 
 	for (const id of pluginIds) {
