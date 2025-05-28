@@ -1,12 +1,11 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'haxe',
-	require: clike,
-	grammar ({ extend }) {
-		const haxe = extend('clike', {
+	base: clike,
+	grammar () {
+		return {
 			'string': {
 				// Strings can be multi-line
 				pattern: /"(?:[^"\\]|\\[\s\S])*"/,
@@ -29,64 +28,61 @@ export default {
 				greedy: true,
 			},
 			'operator': /\.{3}|\+\+|--|&&|\|\||->|=>|(?:<<?|>{1,3}|[-+*/%!=&|^])=?|[?:~]/,
-		});
-
-		insertBefore(haxe, 'string', {
-			'string-interpolation': {
-				pattern: /'(?:[^'\\]|\\[\s\S])*'/,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /(^|[^\\])\$(?:\w+|\{[^{}]+\})/,
-						lookbehind: true,
+			$insertBefore: {
+				'string': {
+					'string-interpolation': {
+						pattern: /'(?:[^'\\]|\\[\s\S])*'/,
+						greedy: true,
 						inside: {
-							'interpolation-punctuation': {
-								pattern: /^\$\{?|\}$/,
-								alias: 'punctuation',
+							'interpolation': {
+								pattern: /(^|[^\\])\$(?:\w+|\{[^{}]+\})/,
+								lookbehind: true,
+								inside: {
+									'interpolation-punctuation': {
+										pattern: /^\$\{?|\}$/,
+										alias: 'punctuation',
+									},
+									'expression': {
+										pattern: /[\s\S]+/,
+										inside: 'haxe',
+									},
+								},
 							},
-							'expression': {
-								pattern: /[\s\S]+/,
-								inside: 'haxe',
-							},
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
-			},
-		});
-
-		insertBefore(haxe, 'class-name', {
-			'regex': {
-				pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
-				greedy: true,
-				inside: {
-					'regex-flags': /\b[a-z]+$/,
-					'regex-source': {
-						pattern: /^(~\/)[\s\S]+(?=\/$)/,
-						lookbehind: true,
-						alias: 'language-regex',
-						inside: 'regex',
+				'class-name': {
+					'regex': {
+						pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
+						greedy: true,
+						inside: {
+							'regex-flags': /\b[a-z]+$/,
+							'regex-source': {
+								pattern: /^(~\/)[\s\S]+(?=\/$)/,
+								lookbehind: true,
+								alias: 'language-regex',
+								inside: 'regex',
+							},
+							'regex-delimiter': /^~\/|\/$/,
+						},
 					},
-					'regex-delimiter': /^~\/|\/$/,
+				},
+				'keyword': {
+					'preprocessor': {
+						pattern: /#(?:else|elseif|end|if)\b.*/,
+						alias: 'property',
+					},
+					'metadata': {
+						pattern: /@:?[\w.]+/,
+						alias: 'symbol',
+					},
+					'reification': {
+						pattern: /\$(?:\w+|(?=\{))/,
+						alias: 'important',
+					},
 				},
 			},
-		});
-
-		insertBefore(haxe, 'keyword', {
-			'preprocessor': {
-				pattern: /#(?:else|elseif|end|if)\b.*/,
-				alias: 'property',
-			},
-			'metadata': {
-				pattern: /@:?[\w.]+/,
-				alias: 'symbol',
-			},
-			'reification': {
-				pattern: /\$(?:\w+|(?=\{))/,
-				alias: 'important',
-			},
-		});
-
-		return haxe;
+		};
 	},
 } as LanguageProto<'haxe'>;
