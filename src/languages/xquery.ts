@@ -2,10 +2,10 @@ import { getTextContent, Token } from '../core/classes/token';
 import { withoutTokenize } from '../util/without-tokenize';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';
-import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 function walkTokens (tokens: TokenStream) {
-	const openedTags = [];
+	const openedTags: { tagName: string; openedBraces: number }[] = [];
 	for (let i = 0; i < tokens.length; i++) {
 		const token = tokens[i];
 		const isToken = typeof token !== 'string';
@@ -107,9 +107,30 @@ function walkTokens (tokens: TokenStream) {
 
 export default {
 	id: 'xquery',
-	require: markup,
-	grammar ({ extend }) {
-		const xquery = extend('markup', {
+	base: markup,
+	grammar () {
+		return {
+			$merge: {
+				'tag': {
+					pattern:
+						/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/,
+					inside: {
+						'attr-value': {
+							pattern:
+								/=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/,
+							inside: {
+								'punctuation': /^="|"$/,
+								'expression': {
+									// Allow for two levels of nesting
+									pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
+									alias: 'language-xquery',
+									inside: 'xquery',
+								},
+							},
+						},
+					},
+				},
+			},
 			'xquery-comment': {
 				pattern: /\(:[\s\S]*?:\)/,
 				greedy: true,
@@ -166,29 +187,11 @@ export default {
 				},
 			],
 			'punctuation': /[[\](){},;:/]/,
-		});
-
-		const tag = xquery['tag'] as GrammarToken;
-		tag.pattern =
-			/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
-		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
-		attrValue.pattern =
-			/=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
-		const attrValueInside = attrValue.inside as Grammar;
-		attrValueInside['punctuation'] = /^="|"$/;
-		attrValueInside['expression'] = {
-			// Allow for two levels of nesting
-			pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
-			alias: 'language-xquery',
-			inside: 'xquery',
-		};
-
-		xquery.$tokenize = (code, grammar, Prism) => {
-			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-			walkTokens(tokens);
-			return tokens;
-		};
-
-		return xquery;
+			$tokenize: (code, grammar, Prism) => {
+				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+				walkTokens(tokens);
+				return tokens;
+			},
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'xquery'>;
