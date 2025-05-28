@@ -1,8 +1,9 @@
 /**
  * prism.js Twilight theme
  * Based (more or less) on the Twilight theme originally of Textmate fame.
- * @author Remy Bach
+ * @author Rémy Bach
  */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
