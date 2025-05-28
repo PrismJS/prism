@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/insert';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'rescript',
 	alias: 'res',
 	grammar () {
-		const rescript = {
+		return {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
@@ -40,33 +39,34 @@ export default {
 			'operator':
 				/\.{3}|:[:=]?|\|>|->|=(?:==?|>)?|<=?|>=?|[|^?'#!~`]|[+\-*\/]\.?|\b(?:asr|land|lor|lsl|lsr|lxor|mod)\b/,
 			'punctuation': /[(){}[\],;.]/,
-		};
-
-		insertBefore(rescript, 'string', {
-			'template-string': {
-				pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
-				greedy: true,
-				inside: {
-					'template-punctuation': {
-						pattern: /^`|`$/,
-						alias: 'string',
-					},
-					'interpolation': {
-						pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
-						lookbehind: true,
+			$insertBefore: {
+				'string': {
+					'template-string': {
+						pattern:
+							/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
+						greedy: true,
 						inside: {
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'tag',
+							'template-punctuation': {
+								pattern: /^`|`$/,
+								alias: 'string',
 							},
-							$rest: 'rescript',
+							'interpolation': {
+								pattern:
+									/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+								lookbehind: true,
+								inside: {
+									'interpolation-punctuation': {
+										pattern: /^\$\{|\}$/,
+										alias: 'tag',
+									},
+									$rest: 'rescript',
+								} as unknown as Grammar,
+							},
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
 			},
-		});
-
-		return rescript;
+		};
 	},
 } as LanguageProto<'rescript'>;
