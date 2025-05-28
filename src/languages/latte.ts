@@ -1,43 +1,13 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { insertBefore } from '../util/insert';
 import markup from './markup';
 import php from './php';
-import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'latte',
-	require: [markup, php],
-	grammar ({ extend }) {
-		const markupLatte = extend('markup', {});
-		const tag = markupLatte.tag as GrammarToken & { inside: Grammar };
-		insertBefore(tag.inside, 'attr-value', {
-			'n-attr': {
-				pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
-				inside: {
-					'attr-name': {
-						pattern: /^[^\s=]+/,
-						alias: 'important',
-					},
-					'attr-value': {
-						pattern: /=[\s\S]+/,
-						inside: {
-							'punctuation': [
-								/^=/,
-								{
-									pattern: /^(\s*)["']|["']$/,
-									lookbehind: true,
-								},
-							],
-							'php': {
-								pattern: /\S(?:[\s\S]*\S)?/,
-								inside: 'php',
-							},
-						},
-					},
-				},
-			},
-		});
-
+	base: markup,
+	require: php,
+	grammar () {
 		return {
 			'latte-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
@@ -66,7 +36,36 @@ export default {
 					},
 				},
 			},
-			$tokenize: embeddedIn(markupLatte),
-		};
+			$insertBefore: {
+				'tag/attr-value': {
+					'n-attr': {
+						pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
+						inside: {
+							'attr-name': {
+								pattern: /^[^\s=]+/,
+								alias: 'important',
+							},
+							'attr-value': {
+								pattern: /=[\s\S]+/,
+								inside: {
+									'punctuation': [
+										/^=/,
+										{
+											pattern: /^(\s*)["']|["']$/,
+											lookbehind: true,
+										},
+									],
+									'php': {
+										pattern: /\S(?:[\s\S]*\S)?/,
+										inside: 'php',
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			$tokenize: embeddedIn('markup'),
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'latte'>;
