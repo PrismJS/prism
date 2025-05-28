@@ -1,12 +1,11 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'qsharp',
-	require: clike,
+	base: clike,
 	alias: 'qs',
-	grammar ({ extend }) {
+	grammar () {
 		/**
 		 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
 		 *
@@ -62,7 +61,13 @@ export default {
 		// strings
 		const regularString = /"(?:\\.|[^\\"])*"/.source;
 
-		const qsharp = extend('clike', {
+		// single line
+		const interpolationExpr = nested(
+			replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]),
+			2
+		);
+
+		return {
 			'comment': /\/\/.*/,
 			'string': [
 				{
@@ -92,43 +97,37 @@ export default {
 			'operator':
 				/\band=|\bor=|\band\b|\bnot\b|\bor\b|<[-=]|[-=]>|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|~~~|[*\/+\-^=!%]=?/,
 			'punctuation': /::|[{}[\];(),.:]/,
-		});
-
-		insertBefore(qsharp, 'number', {
-			'range': {
-				pattern: /\.\./,
-				alias: 'operator',
-			},
-		});
-
-		// single line
-		const interpolationExpr = nested(
-			replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]),
-			2
-		);
-
-		insertBefore(qsharp, 'string', {
-			'interpolation-string': {
-				pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: re(/((?:^|[^\\])(?:\\\\)*)<<0>>/.source, [interpolationExpr]),
-						lookbehind: true,
+			$insertBefore: {
+				'number': {
+					'range': {
+						pattern: /\.\./,
+						alias: 'operator',
+					},
+				},
+				'string': {
+					'interpolation-string': {
+						pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
+						greedy: true,
 						inside: {
-							'punctuation': /^\{|\}$/,
-							'expression': {
-								pattern: /[\s\S]+/,
-								alias: 'language-qsharp',
-								inside: 'qsharp',
+							'interpolation': {
+								pattern: re(/((?:^|[^\\])(?:\\\\)*)<<0>>/.source, [
+									interpolationExpr,
+								]),
+								lookbehind: true,
+								inside: {
+									'punctuation': /^\{|\}$/,
+									'expression': {
+										pattern: /[\s\S]+/,
+										alias: 'language-qsharp',
+										inside: 'qsharp',
+									},
+								},
 							},
+							'string': /[\s\S]+/,
 						},
 					},
-					'string': /[\s\S]+/,
 				},
 			},
-		});
-
-		return qsharp;
+		};
 	},
 } as LanguageProto<'qsharp'>;
