@@ -1,12 +1,11 @@
-import { insertBefore } from '../util/insert';
 import css from './css';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'scss',
-	require: css,
-	grammar ({ extend }) {
-		const scss = extend('css', {
+	base: css,
+	grammar () {
+		return {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true,
@@ -46,47 +45,44 @@ export default {
 					'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
 				},
 			},
-		});
-
-		insertBefore(scss, 'atrule', {
-			'keyword': [
-				/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
-				{
-					pattern: /( )(?:from|through)(?= )/,
-					lookbehind: true,
+			$insertBefore: {
+				'atrule': {
+					'keyword': [
+						/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
+						{
+							pattern: /( )(?:from|through)(?= )/,
+							lookbehind: true,
+						},
+					],
 				},
-			],
-		});
-
-		insertBefore(scss, 'important', {
-			// var and interpolated vars
-			'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
-		});
-
-		insertBefore(scss, 'function', {
-			'module-modifier': {
-				pattern: /\b(?:as|hide|show|with)\b/i,
-				alias: 'keyword',
+				'important': {
+					// var and interpolated vars
+					'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
+				},
+				'function': {
+					'module-modifier': {
+						pattern: /\b(?:as|hide|show|with)\b/i,
+						alias: 'keyword',
+					},
+					'placeholder': {
+						pattern: /%[-\w]+/,
+						alias: 'selector',
+					},
+					'statement': {
+						pattern: /\B!(?:default|optional)\b/i,
+						alias: 'keyword',
+					},
+					'boolean': /\b(?:false|true)\b/,
+					'null': {
+						pattern: /\bnull\b/,
+						alias: 'keyword',
+					},
+					'operator': {
+						pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
+						lookbehind: true,
+					},
+				},
 			},
-			'placeholder': {
-				pattern: /%[-\w]+/,
-				alias: 'selector',
-			},
-			'statement': {
-				pattern: /\B!(?:default|optional)\b/i,
-				alias: 'keyword',
-			},
-			'boolean': /\b(?:false|true)\b/,
-			'null': {
-				pattern: /\bnull\b/,
-				alias: 'keyword',
-			},
-			'operator': {
-				pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
-				lookbehind: true,
-			},
-		});
-
-		return scss;
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'scss'>;
