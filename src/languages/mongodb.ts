@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/insert';
 import javascript from './javascript';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { LanguageProto } from '../types';
 
 export default {
 	id: 'mongodb',
-	require: javascript,
-	grammar ({ extend }) {
+	base: javascript,
+	grammar () {
 		let operators = [
 			// query and projection
 			'$eq',
@@ -276,41 +275,43 @@ export default {
 
 		const operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
-		const mongodb = extend('javascript', {});
-
-		insertBefore(mongodb, 'string', {
-			'property': {
-				pattern:
-					/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
-				greedy: true,
-				inside: {
-					'keyword': RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$'),
+		return {
+			$insertBefore: {
+				'string': {
+					'property': {
+						pattern:
+							/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
+						greedy: true,
+						inside: {
+							'keyword': RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$'),
+						},
+					},
+				},
+				'constant': {
+					'builtin': {
+						pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
+						alias: 'keyword',
+					},
 				},
 			},
-		});
-
-		const string = mongodb['string'] as GrammarToken;
-		string.inside = {
-			url: {
-				// url pattern
-				pattern: /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
-				greedy: true,
-			},
-			entity: {
-				// ipv4
-				pattern:
-					/\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
-				greedy: true,
+			$merge: {
+				'string': {
+					inside: {
+						url: {
+							// url pattern
+							pattern:
+								/https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
+							greedy: true,
+						},
+						entity: {
+							// ipv4
+							pattern:
+								/\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
+							greedy: true,
+						},
+					},
+				},
 			},
 		};
-
-		insertBefore(mongodb, 'constant', {
-			'builtin': {
-				pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
-				alias: 'keyword',
-			},
-		});
-
-		return mongodb;
 	},
 } as LanguageProto<'mongodb'>;
