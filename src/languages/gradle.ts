@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gradle',
 	require: clike,
-	grammar ({ extend }) {
+	grammar () {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -21,7 +20,7 @@ export default {
 			},
 		};
 
-		const gradle = extend('clike', {
+		return {
 			'string': {
 				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
 				greedy: true,
@@ -36,37 +35,34 @@ export default {
 				lookbehind: true,
 			},
 			'punctuation': /\.+|[{}[\];(),:$]/,
-		});
-
-		insertBefore(gradle, 'string', {
-			'shebang': {
-				pattern: /#!.+/,
-				alias: 'comment',
-				greedy: true,
-			},
-			'interpolation-string': {
-				pattern:
-					/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
-				greedy: true,
-				inside: {
-					'interpolation': interpolation,
-					'string': /[\s\S]+/,
+			$insertBefore: {
+				'string': {
+					'shebang': {
+						pattern: /#!.+/,
+						alias: 'comment',
+						greedy: true,
+					},
+					'interpolation-string': {
+						pattern:
+							/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
+						greedy: true,
+						inside: {
+							'interpolation': interpolation,
+							'string': /[\s\S]+/,
+						},
+					},
+				},
+				'punctuation': {
+					'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
+				},
+				'function': {
+					'annotation': {
+						pattern: /(^|[^.])@\w+/,
+						lookbehind: true,
+						alias: 'punctuation',
+					},
 				},
 			},
-		});
-
-		insertBefore(gradle, 'punctuation', {
-			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
-		});
-
-		insertBefore(gradle, 'function', {
-			'annotation': {
-				pattern: /(^|[^.])@\w+/,
-				lookbehind: true,
-				alias: 'punctuation',
-			},
-		});
-
-		return gradle;
+		};
 	},
 } as LanguageProto<'gradle'>;
