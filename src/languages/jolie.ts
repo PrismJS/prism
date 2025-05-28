@@ -1,12 +1,11 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jolie',
-	require: clike,
-	grammar ({ extend }) {
-		const jolie = extend('clike', {
+	base: clike,
+	grammar () {
+		return {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\[\s\S]|[^"\\])*"/,
 				lookbehind: true,
@@ -25,34 +24,33 @@ export default {
 			'punctuation': /[()[\]{},;.:]/,
 			'builtin':
 				/\b(?:Byte|any|bool|char|double|enum|float|int|length|long|ranges|regex|string|undefined|void)\b/,
-		});
-
-		insertBefore(jolie, 'keyword', {
-			'aggregates': {
-				pattern:
-					/(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
-				lookbehind: true,
-				inside: {
-					'keyword': /\bwith\b/,
-					'class-name': /\w+/,
-					'punctuation': /,/,
+			$insertBefore: {
+				'keyword': {
+					'aggregates': {
+						pattern:
+							/(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
+						lookbehind: true,
+						inside: {
+							'keyword': /\bwith\b/,
+							'class-name': /\w+/,
+							'punctuation': /,/,
+						},
+					},
+					'redirects': {
+						pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
+						lookbehind: true,
+						inside: {
+							'punctuation': /,/,
+							'class-name': /\w+/,
+							'operator': /=>/,
+						},
+					},
+					'property': {
+						pattern:
+							/\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/,
+					},
 				},
 			},
-			'redirects': {
-				pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
-				lookbehind: true,
-				inside: {
-					'punctuation': /,/,
-					'class-name': /\w+/,
-					'operator': /=>/,
-				},
-			},
-			'property': {
-				pattern:
-					/\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/,
-			},
-		});
-
-		return jolie;
+		};
 	},
 } as LanguageProto<'jolie'>;
