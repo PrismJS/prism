@@ -3,11 +3,11 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'json5',
-	require: json,
-	grammar ({ extend }) {
+	base: json,
+	grammar () {
 		const string = /("|')(?:\\(?:\r\n?|\n|.)|(?!\1)[^\\\r\n])*\1/;
 
-		return extend('json', {
+		return {
 			'property': [
 				{
 					pattern: RegExp(string.source + '(?=\\s*:)'),
@@ -24,6 +24,6 @@ export default {
 			},
 			'number':
 				/[+-]?\b(?:NaN|Infinity|0x[a-fA-F\d]+)\b|[+-]?(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+\b)?/,
-		});
+		};
 	},
 } as LanguageProto<'json5'>;
