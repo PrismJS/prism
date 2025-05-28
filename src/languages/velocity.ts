@@ -1,13 +1,10 @@
-import { insertBefore } from '../util/insert';
 import markup from './markup';
-import type { Grammar, GrammarOptions, GrammarToken, LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'velocity',
-	require: markup,
-	grammar ({ extend }: GrammarOptions) {
-		const velocity = extend('markup', {});
-
+	base: markup,
+	grammar () {
 		const vel = {
 			'variable': {
 				pattern:
@@ -36,51 +33,59 @@ export default {
 			'punctuation': vel['punctuation'],
 		};
 
-		insertBefore(velocity, 'comment', {
-			'unparsed': {
-				pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'punctuation': /^#\[\[|\]\]#$/,
-				},
-			},
-			'velocity-comment': [
-				{
-					pattern: /(^|[^\\])#\*[\s\S]*?\*#/,
-					lookbehind: true,
-					greedy: true,
-					alias: 'comment',
-				},
-				{
-					pattern: /(^|[^\\])##.*/,
-					lookbehind: true,
-					greedy: true,
-					alias: 'comment',
-				},
-			],
-			'directive': {
-				pattern:
-					/(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
-				lookbehind: true,
-				inside: {
-					'keyword': {
-						pattern: /^#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})|\bin\b/,
-						inside: {
-							'punctuation': /[{}]/,
+		return {
+			$merge: {
+				'tag': {
+					inside: {
+						'attr-value': {
+							inside: {
+								$rest: 'velocity',
+							} as unknown as Grammar,
 						},
 					},
-					$rest: vel,
 				},
 			},
-			'variable': vel['variable'],
-		});
-
-		(
-			(((velocity['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
-				.inside as Grammar
-		).$rest = velocity;
-
-		return velocity;
+			$insertBefore: {
+				'comment': {
+					'unparsed': {
+						pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
+						lookbehind: true,
+						greedy: true,
+						inside: {
+							'punctuation': /^#\[\[|\]\]#$/,
+						},
+					},
+					'velocity-comment': [
+						{
+							pattern: /(^|[^\\])#\*[\s\S]*?\*#/,
+							lookbehind: true,
+							greedy: true,
+							alias: 'comment',
+						},
+						{
+							pattern: /(^|[^\\])##.*/,
+							lookbehind: true,
+							greedy: true,
+							alias: 'comment',
+						},
+					],
+					'directive': {
+						pattern:
+							/(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
+						lookbehind: true,
+						inside: {
+							'keyword': {
+								pattern: /^#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})|\bin\b/,
+								inside: {
+									'punctuation': /[{}]/,
+								},
+							},
+							$rest: vel,
+						},
+					},
+					'variable': vel['variable'],
+				},
+			},
+		};
 	},
 } as LanguageProto<'velocity'>;
