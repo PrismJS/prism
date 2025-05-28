@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'groovy',
-	require: clike,
-	grammar ({ extend }) {
+	base: clike,
+	grammar () {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -21,7 +20,7 @@ export default {
 			},
 		};
 
-		const groovy = extend('clike', {
+		return {
 			'string': {
 				// https://groovy-lang.org/syntax.html#_dollar_slashy_string
 				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
@@ -37,39 +36,36 @@ export default {
 				lookbehind: true,
 			},
 			'punctuation': /\.+|[{}[\];(),:$]/,
-		});
-
-		insertBefore(groovy, 'string', {
-			'shebang': {
-				pattern: /#!.+/,
-				alias: 'comment',
-				greedy: true,
-			},
-			'interpolation-string': {
-				// TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
-				// simple division (see JS regex), so find a fix maybe?
-				pattern:
-					/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
-				greedy: true,
-				inside: {
-					'interpolation': interpolation,
-					'string': /[\s\S]+/,
+			$insertBefore: {
+				'string': {
+					'shebang': {
+						pattern: /#!.+/,
+						alias: 'comment',
+						greedy: true,
+					},
+					'interpolation-string': {
+						// TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
+						// simple division (see JS regex), so find a fix maybe?
+						pattern:
+							/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
+						greedy: true,
+						inside: {
+							'interpolation': interpolation,
+							'string': /[\s\S]+/,
+						},
+					},
+				},
+				'punctuation': {
+					'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
+				},
+				'function': {
+					'annotation': {
+						pattern: /(^|[^.])@\w+/,
+						lookbehind: true,
+						alias: 'punctuation',
+					},
 				},
 			},
-		});
-
-		insertBefore(groovy, 'punctuation', {
-			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
-		});
-
-		insertBefore(groovy, 'function', {
-			'annotation': {
-				pattern: /(^|[^.])@\w+/,
-				lookbehind: true,
-				alias: 'punctuation',
-			},
-		});
-
-		return groovy;
+		};
 	},
 } as LanguageProto<'groovy'>;
