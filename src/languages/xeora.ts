@@ -3,9 +3,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'xeora',
-	require: markup,
+	base: markup,
 	alias: 'xeoracube',
-	grammar ({ extend }) {
+	grammar () {
 		const functionVariable = {
 			pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
 			inside: {
@@ -18,7 +18,7 @@ export default {
 			},
 		};
 
-		return extend('markup', {
+		return {
 			'constant': {
 				pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
 				inside: {
@@ -115,6 +115,6 @@ export default {
 				},
 				alias: 'function',
 			},
-		});
+		};
 	},
 } as LanguageProto<'xeora'>;
