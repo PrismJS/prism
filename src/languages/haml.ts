@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/insert';
 import ruby from './ruby';
 import type { Grammar, LanguageProto } from '../types';
 
@@ -13,7 +12,42 @@ export default {
 					code |
 		*/
 
-		const haml = {
+		const filter_pattern =
+			'((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
+
+		// Non exhaustive list of available filters and associated languages
+		const filters = [
+			'css',
+			{ filter: 'coffee', language: 'coffeescript' },
+			'erb',
+			'javascript',
+			'less',
+			'markdown',
+			'ruby',
+			'scss',
+			'textile',
+		];
+		const all_filters: Grammar = {};
+		for (const f of filters) {
+			const { filter, language } = typeof f === 'string' ? { filter: f, language: f } : f;
+			all_filters['filter-' + filter] = {
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', () => filter)),
+				lookbehind: true,
+				inside: {
+					'filter-name': {
+						pattern: /^:[\w-]+/,
+						alias: 'symbol',
+					},
+					'text': {
+						pattern: /[\s\S]+/,
+						alias: [language, 'language-' + language],
+						inside: language,
+					},
+				},
+			};
+		}
+
+		return {
 			// Multiline stuff should appear before the rest
 
 			'multiline-comment': {
@@ -115,45 +149,9 @@ export default {
 				pattern: /((?:^|\r?\n|\r)[\t ]*)[~=\-&!]+/,
 				lookbehind: true,
 			},
+			$insertBefore: {
+				'filter': all_filters,
+			},
 		};
-
-		const filter_pattern =
-			'((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
-
-		// Non exhaustive list of available filters and associated languages
-		const filters = [
-			'css',
-			{ filter: 'coffee', language: 'coffeescript' },
-			'erb',
-			'javascript',
-			'less',
-			'markdown',
-			'ruby',
-			'scss',
-			'textile',
-		];
-		const all_filters: Grammar = {};
-		for (const f of filters) {
-			const { filter, language } = typeof f === 'string' ? { filter: f, language: f } : f;
-			all_filters['filter-' + filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', () => filter)),
-				lookbehind: true,
-				inside: {
-					'filter-name': {
-						pattern: /^:[\w-]+/,
-						alias: 'symbol',
-					},
-					'text': {
-						pattern: /[\s\S]+/,
-						alias: [language, 'language-' + language],
-						inside: language,
-					},
-				},
-			};
-		}
-
-		insertBefore(haml, 'filter', all_filters);
-
-		return haml;
 	},
 } as LanguageProto<'haml'>;
