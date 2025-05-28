@@ -1,13 +1,23 @@
-import { insertBefore } from '../util/insert';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'kotlin',
-	require: clike,
+	base: clike,
 	alias: ['kt', 'kts'],
-	grammar ({ extend }) {
-		const kotlin = extend('clike', {
+	grammar () {
+		const interpolationInside = {
+			'interpolation-punctuation': {
+				pattern: /^\$\{?|\}$/,
+				alias: 'punctuation',
+			},
+			'expression': {
+				pattern: /[\s\S]+/,
+				inside: 'kotlin',
+			},
+		};
+
+		return {
 			'keyword': {
 				// The lookbehind prevents wrong highlighting of e.g. kotlin.properties.get
 				pattern:
@@ -29,71 +39,54 @@ export default {
 				/\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
 			'operator':
 				/\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/,
-		});
-
-		delete kotlin['class-name'];
-
-		const interpolationInside = {
-			'interpolation-punctuation': {
-				pattern: /^\$\{?|\}$/,
-				alias: 'punctuation',
-			},
-			'expression': {
-				pattern: /[\s\S]+/,
-				inside: 'kotlin',
-			},
-		};
-
-		insertBefore(kotlin, 'string', {
-			// https://kotlinlang.org/spec/expressions.html#string-interpolation-expressions
-			'string-literal': [
-				{
-					pattern: /"""(?:[^$]|\$(?:(?!\{)|\{[^{}]*\}))*?"""/,
-					alias: 'multiline',
-					inside: {
-						'interpolation': {
-							pattern: /\$(?:[a-z_]\w*|\{[^{}]*\})/i,
-							inside: interpolationInside,
+			$insertBefore: {
+				'string': {
+					// https://kotlinlang.org/spec/expressions.html#string-interpolation-expressions
+					'string-literal': [
+						{
+							pattern: /"""(?:[^$]|\$(?:(?!\{)|\{[^{}]*\}))*?"""/,
+							alias: 'multiline',
+							inside: {
+								'interpolation': {
+									pattern: /\$(?:[a-z_]\w*|\{[^{}]*\})/i,
+									inside: interpolationInside,
+								},
+								'string': /[\s\S]+/,
+							},
 						},
-						'string': /[\s\S]+/,
+						{
+							pattern: /"(?:[^"\\\r\n$]|\\.|\$(?:(?!\{)|\{[^{}]*\}))*"/,
+							alias: 'singleline',
+							inside: {
+								'interpolation': {
+									pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:[a-z_]\w*|\{[^{}]*\})/i,
+									lookbehind: true,
+									inside: interpolationInside,
+								},
+								'string': /[\s\S]+/,
+							},
+						},
+					],
+					'char': {
+						// https://kotlinlang.org/spec/expressions.html#character-literals
+						pattern: /'(?:[^'\\\r\n]|\\(?:.|u[a-fA-F0-9]{0,4}))'/,
+						greedy: true,
 					},
 				},
-				{
-					pattern: /"(?:[^"\\\r\n$]|\\.|\$(?:(?!\{)|\{[^{}]*\}))*"/,
-					alias: 'singleline',
-					inside: {
-						'interpolation': {
-							pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:[a-z_]\w*|\{[^{}]*\})/i,
-							lookbehind: true,
-							inside: interpolationInside,
-						},
-						'string': /[\s\S]+/,
+				'keyword': {
+					'annotation': {
+						pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
+						alias: 'builtin',
 					},
 				},
-			],
-			'char': {
-				// https://kotlinlang.org/spec/expressions.html#character-literals
-				pattern: /'(?:[^'\\\r\n]|\\(?:.|u[a-fA-F0-9]{0,4}))'/,
-				greedy: true,
+				'function': {
+					'label': {
+						pattern: /\b\w+@|@\w+\b/,
+						alias: 'symbol',
+					},
+				},
 			},
-		});
-
-		delete kotlin['string'];
-
-		insertBefore(kotlin, 'keyword', {
-			'annotation': {
-				pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
-				alias: 'builtin',
-			},
-		});
-
-		insertBefore(kotlin, 'function', {
-			'label': {
-				pattern: /\b\w+@|@\w+\b/,
-				alias: 'symbol',
-			},
-		});
-
-		return kotlin;
+			$delete: ['class-name', 'string'],
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'kotlin'>;
