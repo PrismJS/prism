@@ -1,14 +1,12 @@
-import { insertBefore } from '../util/insert';
 import { toArray } from '../util/iterables';
 import javascript from './javascript';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'flow',
-	require: javascript,
-	grammar ({ extend, getLanguage }) {
-		const javascript = getLanguage('javascript');
-		const flow = extend('javascript', {
+	base: javascript,
+	grammar ({ base }) {
+		return {
 			'keyword': [
 				{
 					pattern: /(^|[^$]\b)(?:Class|declare|opaque|type)\b(?!\$)/,
@@ -19,31 +17,30 @@ export default {
 						/(^|[^$]\B)\$(?:Diff|Enum|Exact|Keys|ObjMap|PropertyType|Record|Shape|Subtype|Supertype|await)\b(?!\$)/,
 					lookbehind: true,
 				},
-				...toArray(javascript['keyword']),
+				...toArray(base!['keyword']),
 			],
-		});
-
-		insertBefore(flow, 'keyword', {
-			'type': {
-				pattern:
-					/\b(?:[Bb]oolean|Function|[Nn]umber|[Ss]tring|[Ss]ymbol|any|mixed|null|void)\b/,
-				alias: 'class-name',
+			$insertBefore: {
+				'operator': {
+					'flow-punctuation': {
+						pattern: /\{\||\|\}/,
+						alias: 'punctuation',
+					},
+				},
+				'keyword': {
+					'type': {
+						pattern:
+							/\b(?:[Bb]oolean|Function|[Nn]umber|[Ss]tring|[Ss]ymbol|any|mixed|null|void)\b/,
+						alias: 'class-name',
+					},
+				},
 			},
-		});
-
-		insertBefore(flow, 'operator', {
-			'flow-punctuation': {
-				pattern: /\{\||\|\}/,
-				alias: 'punctuation',
+			$merge: {
+				'function-variable': {
+					pattern:
+						/(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/i,
+				},
 			},
-		});
-
-		const fnVariable = flow['function-variable'] as GrammarToken;
-		fnVariable.pattern =
-			/(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/i;
-
-		delete flow['parameter'];
-
-		return flow;
+			$delete: ['parameter'],
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'flow'>;
