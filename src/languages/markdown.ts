@@ -95,7 +95,7 @@ export default {
 					// code block
 					// ```
 					pattern:
-						/^```(?<codeLanguage>[a-z-]+)(?:.+)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
+						/^```(?:\s*)(?<codeLanguage>[a-z-]+)(?:.+)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
 					inside: {
 						'code-language': groups => groups.codeLanguage,
 						'code-block': groups => groups.codeBlock,
