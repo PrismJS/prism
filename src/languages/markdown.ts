@@ -95,9 +95,10 @@ export default {
 					// code block
 					// ```
 					pattern:
-						/^```(?<codeLanguage>[a-z-]+)(?:.+)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*)?(?:\n|\r\n?)```$/i,
+						/^```(?<codeLanguage>[a-z-]+)(?:.+)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
 					inside: {
-						'code-block': groups => groups.codeLanguage,
+						'code-language': groups => groups.codeLanguage,
+						'code-block': groups => groups.codeBlock,
 						'punctuation': /```/,
 					},
 				},
