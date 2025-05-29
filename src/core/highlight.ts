@@ -54,6 +54,10 @@ export function highlight (
 		language,
 	};
 
+	if (env.languageDef && !env.language) {
+		env.language = prism.languageRegistry.getLanguage(env.languageDef);
+	}
+
 	prism.hooks.run('before-tokenize', env);
 
 	if (!env.language) {
