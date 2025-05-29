@@ -26,7 +26,17 @@ export function documentReady (document = globalThis.document) {
 }
 
 export function nextTick () {
-	return new Promise(resolve => requestAnimationFrame(resolve));
+	return new Promise(resolve => {
+		if (typeof requestAnimationFrame === 'function') {
+			requestAnimationFrame(resolve);
+		}
+		else if (typeof setImmediate === 'function') {
+			setImmediate(resolve);
+		}
+		else {
+			setTimeout(resolve, 0);
+		}
+	});
 }
 
 export async function allSettled<T> (promises: Promise<T>[]): Promise<(T | null)[]> {
