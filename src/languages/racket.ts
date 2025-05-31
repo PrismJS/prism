@@ -13,13 +13,12 @@ export default {
 				pattern: /([(\[]lambda\s+[(\[])[^()\[\]'\s]+/,
 				lookbehind: true,
 			},
-			$insertBefore: {
-				'string': {
-					'lang': {
-						pattern: /^#lang.+/m,
-						greedy: true,
-						alias: 'keyword',
-					},
+			$insert: {
+				'lang': {
+					$before: 'string',
+					pattern: /^#lang.+/m,
+					greedy: true,
+					alias: 'keyword',
 				},
 			},
 		};

@@ -72,17 +72,16 @@ export default {
 				},
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
-			$insertBefore: {
-				'tag': {
-					// Prevent highlighting inside <nowiki>, <source> and <pre> tags
-					'nowiki': {
-						pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
-						inside: {
-							'tag': {
-								pattern:
-									/<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-								inside: tag.inside,
-							},
+			$insert: {
+				// Prevent highlighting inside <nowiki>, <source> and <pre> tags
+				'nowiki': {
+					$before: 'tag',
+					pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
+					inside: {
+						'tag': {
+							pattern:
+								/<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
+							inside: tag.inside,
 						},
 					},
 				},

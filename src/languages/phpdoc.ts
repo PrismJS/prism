@@ -16,22 +16,19 @@ export default {
 				),
 				lookbehind: true,
 			},
-			$insertBefore: {
-				'keyword': {
-					'class-name': [
-						{
-							pattern: RegExp(
-								'(@(?:global|package|param|property(?:-read|-write)?|return|subpackage|throws|var)\\s+)' +
-									typeExpression
-							),
-							lookbehind: true,
-							inside: {
-								'keyword':
-									/\b(?:array|bool|boolean|callback|double|false|float|int|integer|mixed|null|object|resource|self|string|true|void)\b/,
-								'punctuation': /[|\\[\]()]/,
-							},
-						},
-					],
+			$insert: {
+				'class-name': {
+					$before: 'keyword',
+					pattern: RegExp(
+						'(@(?:global|package|param|property(?:-read|-write)?|return|subpackage|throws|var)\\s+)' +
+							typeExpression
+					),
+					lookbehind: true,
+					inside: {
+						'keyword':
+							/\b(?:array|bool|boolean|callback|double|false|float|int|integer|mixed|null|object|resource|self|string|true|void)\b/,
+						'punctuation': /[|\\[\]()]/,
+					},
 				},
 			},
 		};

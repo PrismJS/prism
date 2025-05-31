@@ -26,15 +26,14 @@ export default {
 				/[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
 			'builtin':
 				/\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|imag|u?int(?:8|16|32|64)?|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/,
-			$insertBefore: {
-				'string': {
-					'char': {
-						pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
-						greedy: true,
-					},
+			$insert: {
+				'char': {
+					$before: 'string',
+					pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
+					greedy: true,
 				},
 			},
 			$delete: ['class-name'],
-		} as Grammar;
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'go'>;

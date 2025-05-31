@@ -23,20 +23,19 @@ export default {
 				alias: 'keyword',
 			},
 			'constant': /\bDIK(?:_[a-z\d]+)+\b/i,
-			$insertBefore: {
-				'string': {
-					'macro': {
-						pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
-						lookbehind: true,
-						greedy: true,
-						alias: 'property',
-						inside: {
-							'directive': {
-								pattern: /#[a-z]+\b/i,
-								alias: 'keyword',
-							},
-							'comment': base!.comment,
+			$insert: {
+				'macro': {
+					$before: 'string',
+					pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
+					lookbehind: true,
+					greedy: true,
+					alias: 'property',
+					inside: {
+						'directive': {
+							pattern: /#[a-z]+\b/i,
+							alias: 'keyword',
 						},
+						'comment': base!.comment,
 					},
 				},
 			},
