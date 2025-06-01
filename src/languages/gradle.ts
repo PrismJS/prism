@@ -3,7 +3,7 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gradle',
-	require: clike,
+	base: clike,
 	grammar () {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
