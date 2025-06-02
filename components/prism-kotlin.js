@@ -45,7 +45,8 @@
 						inside: interpolationInside
 					},
 					'string': /[\s\S]+/
-				}
+				},
+				greedy: true
 			},
 			{
 				pattern: /"(?:[^"\\\r\n$]|\\.|\$(?:(?!\{)|\{[^{}]*\}))*"/,
@@ -57,7 +58,8 @@
 						inside: interpolationInside
 					},
 					'string': /[\s\S]+/
-				}
+				},
+				greedy: true
 			}
 		],
 		'char': {
