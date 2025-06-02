@@ -1,0 +1,23 @@
+title any fish
+
+dc.title any fish
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]]
+]
+
+----------------------------------------------------
+
+Index names.

@@ -1,0 +1,49 @@
+dc.title any/relevant fish
+
+dc.title any/ relevant /cql.string fish
+
+dc.title any/rel.algorithm=cori fish
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["relation-modifier", [
+			["punctuation", "/"],
+			["modifier", "relevant"]
+		]],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["relation-modifier", [
+			["punctuation", "/"],
+			["modifier", "relevant"]
+		]],
+		["relation-modifier", [
+			["punctuation", "/"],
+			["modifier", "cql.string"]
+		]],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["relation-modifier", [
+			["punctuation", "/"],
+			["modifier", "rel.algorithm"],
+			["comparitor", "="],
+			["value", "cori"]
+		]],
+		["term", "fish"]
+	]]
+]
+
+----------------------------------------------------
+
+Relation modifiers.

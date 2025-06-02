@@ -1,0 +1,33 @@
+dC.tiTlE any fish
+
+dc.TitlE Any/rEl.algOriThm=cori fish soRtbY Dc.TitlE
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dC.tiTlE"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+
+	["search-clause", [
+		["index", "dc.TitlE"],
+		["relation", "Any"],
+		["relation-modifier", [
+			["punctuation", "/"],
+			["modifier", "rEl.algOriThm"],
+			["comparitor", "="],
+			["value", "cori"]
+		]],
+		["term", "fish"]
+	]],
+	["sortby", [
+		["keyword", "soRtbY"],
+		["index", "Dc.TitlE"]
+	]]
+]
+
+----------------------------------------------------
+
+Case Insenstivity.

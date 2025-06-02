@@ -1,0 +1,23 @@
+dc.title any fish sortBy dc.date/sort.ascending
+
+----------------------------------------------------
+
+[
+	["search-clause", [
+		["index", "dc.title"],
+		["relation", "any"],
+		["term", "fish"]
+	]],
+	["sortby", [
+		["keyword", "sortBy"],
+		["index", "dc.date"],
+		["sortby-index-modifier", [
+			["punctuation", "/"],
+			["modifier", "sort.ascending"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Sorting.
