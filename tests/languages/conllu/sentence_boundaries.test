@@ -1,0 +1,582 @@
+# sent_id = 1
+# text = They buy and sell books.
+1	They	they	PRON	PRP	Case=Nom|Number=Plur	2	nsubj	2:nsubj|4:nsubj	_
+2	buy	buy	VERB	VBP	Number=Plur|Person=3|Tense=Pres	0	root	0:root	_
+3	and	and	CCONJ	CC	_	4	cc	4:cc	_
+4	sell	sell	VERB	VBP	Number=Plur|Person=3|Tense=Pres	2	conj	0:root|2:conj	_
+5	books	book	NOUN	NNS	Number=Plur	2	obj	2:obj|4:obj	SpaceAfter=No
+6	.	.	PUNCT	.	_	2	punct	2:punct	_
+
+# sent_id = 2
+# text = I have no clue.
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1	2	nsubj	_	_
+2	have	have	VERB	VBP	Number=Sing|Person=1|Tense=Pres	0	root	_	_
+3	no	no	DET	DT	PronType=Neg	4	det	_	_
+4	clue	clue	NOUN	NN	Number=Sing	2	obj	_	SpaceAfter=No
+5	.	.	PUNCT	.	_	2	punct	_	_
+
+# sent_id = panc0.s4
+# text = तत् यथानुश्रूयते।
+# translit = tat yathānuśrūyate.
+# text_fr = Voilà ce qui nous est parvenu par la tradition orale.
+# text_en = This is what is heard.
+1	तत्	तद्	DET	_	Case=Nom|…|PronType=Dem	3	nsubj	_	Translit=tat|LTranslit=tad|Gloss=it
+2-3	यथानुश्रूयते	_	_	_	_	_	_	_	SpaceAfter=No
+2	यथा	यथा	ADV	_	PronType=Rel	3	advmod	_	Translit=yathā|LTranslit=yathā|Gloss=how
+3	अनुश्रूयते	अनु-श्रु	VERB	_	Mood=Ind|…|Voice=Pass	0	root	_	Translit=anuśrūyate|LTranslit=anu-śru|Gloss=it-is-heard
+4	।	।	PUNCT	_	_	3	punct	_	Translit=.|LTranslit=.|Gloss=.
+
+----------------------------------------------------
+
+[
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "1"]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text"],
+			["operator", "="],
+			["value", "They buy and sell books."]
+		]]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "They"],
+		["lemma", "they"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "nsubj"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "nsubj"]
+			]]
+		]],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "buy"],
+		["lemma", "buy"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "3"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", [
+			["dep", [
+				["head", "0"],
+				["punctuation", ":"],
+				["relation", "root"]
+			]]
+		]],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "and"],
+		["lemma", "and"],
+		["upos", "CCONJ"],
+		["xpos", "CC"],
+		["feats", "_"],
+		["head", "4"],
+		["deprel", "cc"],
+		["deps", [
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "cc"]
+			]]
+		]],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "sell"],
+		["lemma", "sell"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "3"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "conj"],
+		["deps", [
+			["dep", [
+				["head", "0"],
+				["punctuation", ":"],
+				["relation", "root"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "conj"]
+			]]
+		]],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "books"],
+		["lemma", "book"],
+		["upos", "NOUN"],
+		["xpos", "NNS"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "obj"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "obj"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "obj"]
+			]]
+		]],
+		["misc", [
+			["feature", [
+				["key", "SpaceAfter"],
+				["operator", "="],
+				["value", "No"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "6"],
+		["form", "."],
+		["lemma", "."],
+		["upos", "PUNCT"],
+		["xpos", "."],
+		["feats", "_"],
+		["head", "2"],
+		["deprel", "punct"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "punct"]
+			]]
+		]],
+		["misc", "_"]
+	]],
+	["sentence-separator", ""],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "2"]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text"],
+			["operator", "="],
+			["value", "I have no clue."]
+		]]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "I"],
+		["lemma", "I"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "have"],
+		["lemma", "have"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "1"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "no"],
+		["lemma", "no"],
+		["upos", "DET"],
+		["xpos", "DT"],
+		["feats", [
+			["feature", [
+				["key", "PronType"],
+				["operator", "="],
+				["value", "Neg"]
+			]]
+		]],
+		["head", "4"],
+		["deprel", "det"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "clue"],
+		["lemma", "clue"],
+		["upos", "NOUN"],
+		["xpos", "NN"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Sing"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "obj"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "SpaceAfter"],
+				["operator", "="],
+				["value", "No"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "."],
+		["lemma", "."],
+		["upos", "PUNCT"],
+		["xpos", "."],
+		["feats", "_"],
+		["head", "2"],
+		["deprel", "punct"],
+		["deps", "_"],
+		["misc", "_"]
+	]],
+	["sentence-separator", ""],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "sent_id"],
+			["operator", "="],
+			["value", "panc0.s4"]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text"],
+			["operator", "="],
+			["value", "तत् यथानुश्रूयते।"]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "translit"],
+			["operator", "="],
+			["value", "tat yathānuśrūyate."]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text_fr"],
+			["operator", "="],
+			["value", "Voilà ce qui nous est parvenu par la tradition orale."]
+		]]
+	]],
+	["comment", [
+		["punctuation", "#"],
+		["metadata", [
+			["key", "text_en"],
+			["operator", "="],
+			["value", "This is what is heard."]
+		]]
+	]],
+	["token", [
+		["id", "1"],
+		["form", "तत्"],
+		["lemma", "तद्"],
+		["upos", "DET"],
+		["xpos", "_"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			"…",
+			["punctuation", "|"],
+			["feature", [
+				["key", "PronType"],
+				["operator", "="],
+				["value", "Dem"]
+			]]
+		]],
+		["head", "3"],
+		["deprel", "nsubj"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "Translit"],
+				["operator", "="],
+				["value", "tat"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "LTranslit"],
+				["operator", "="],
+				["value", "tad"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gloss"],
+				["operator", "="],
+				["value", "it"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "2-3"],
+		["form", "यथानुश्रूयते"],
+		["lemma", "_"],
+		["upos", "_"],
+		["xpos", "_"],
+		["feats", "_"],
+		["head", "_"],
+		["deprel", "_"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "SpaceAfter"],
+				["operator", "="],
+				["value", "No"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "यथा"],
+		["lemma", "यथा"],
+		["upos", "ADV"],
+		["xpos", "_"],
+		["feats", [
+			["feature", [
+				["key", "PronType"],
+				["operator", "="],
+				["value", "Rel"]
+			]]
+		]],
+		["head", "3"],
+		["deprel", "advmod"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "Translit"],
+				["operator", "="],
+				["value", "yathā"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "LTranslit"],
+				["operator", "="],
+				["value", "yathā"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gloss"],
+				["operator", "="],
+				["value", "how"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "अनुश्रूयते"],
+		["lemma", "अनु-श्रु"],
+		["upos", "VERB"],
+		["xpos", "_"],
+		["feats", [
+			["feature", [
+				["key", "Mood"],
+				["operator", "="],
+				["value", "Ind"]
+			]],
+			["punctuation", "|"],
+			"…",
+			["punctuation", "|"],
+			["feature", [
+				["key", "Voice"],
+				["operator", "="],
+				["value", "Pass"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "Translit"],
+				["operator", "="],
+				["value", "anuśrūyate"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "LTranslit"],
+				["operator", "="],
+				["value", "anu-śru"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gloss"],
+				["operator", "="],
+				["value", "it-is-heard"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "।"],
+		["lemma", "।"],
+		["upos", "PUNCT"],
+		["xpos", "_"],
+		["feats", "_"],
+		["head", "3"],
+		["deprel", "punct"],
+		["deps", "_"],
+		["misc", [
+			["feature", [
+				["key", "Translit"],
+				["operator", "="],
+				["value", "."]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "LTranslit"],
+				["operator", "="],
+				["value", "."]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Gloss"],
+				["operator", "="],
+				["value", "."]
+			]]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Example for sentence boundaries.

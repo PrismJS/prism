@@ -1,0 +1,189 @@
+1	They	they	PRON	PRP	Case=Nom|Number=Plur	2	nsubj	2:nsubj|4:nsubj
+2	buy	buy	VERB	VBP	Number=Plur|Person=3|Tense=Pres	0	root	0:root
+3	and	and	CCONJ	CC	_	4	cc	4:cc
+4	sell	sell	VERB	VBP	Number=Plur|Person=3|Tense=Pres	2	conj	0:root|2:conj
+5	books	book	NOUN	NNS	Number=Plur	2	obj	2:obj|4:obj
+6	.	.	PUNCT	.	_	2	punct	2:punct
+
+----------------------------------------------------
+
+[
+	["token", [
+		["id", "1"],
+		["form", "They"],
+		["lemma", "they"],
+		["upos", "PRON"],
+		["xpos", "PRP"],
+		["feats", [
+			["feature", [
+				["key", "Case"],
+				["operator", "="],
+				["value", "Nom"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "nsubj"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "nsubj"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "nsubj"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "2"],
+		["form", "buy"],
+		["lemma", "buy"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "3"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "0"],
+		["deprel", "root"],
+		["deps", [
+			["dep", [
+				["head", "0"],
+				["punctuation", ":"],
+				["relation", "root"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "3"],
+		["form", "and"],
+		["lemma", "and"],
+		["upos", "CCONJ"],
+		["xpos", "CC"],
+		["feats", "_"],
+		["head", "4"],
+		["deprel", "cc"],
+		["deps", [
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "cc"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "4"],
+		["form", "sell"],
+		["lemma", "sell"],
+		["upos", "VERB"],
+		["xpos", "VBP"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Person"],
+				["operator", "="],
+				["value", "3"]
+			]],
+			["punctuation", "|"],
+			["feature", [
+				["key", "Tense"],
+				["operator", "="],
+				["value", "Pres"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "conj"],
+		["deps", [
+			["dep", [
+				["head", "0"],
+				["punctuation", ":"],
+				["relation", "root"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "conj"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "5"],
+		["form", "books"],
+		["lemma", "book"],
+		["upos", "NOUN"],
+		["xpos", "NNS"],
+		["feats", [
+			["feature", [
+				["key", "Number"],
+				["operator", "="],
+				["value", "Plur"]
+			]]
+		]],
+		["head", "2"],
+		["deprel", "obj"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "obj"]
+			]],
+			["punctuation", "|"],
+			["dep", [
+				["head", "4"],
+				["punctuation", ":"],
+				["relation", "obj"]
+			]]
+		]]
+	]],
+	["token", [
+		["id", "6"],
+		["form", "."],
+		["lemma", "."],
+		["upos", "PUNCT"],
+		["xpos", "."],
+		["feats", "_"],
+		["head", "2"],
+		["deprel", "punct"],
+		["deps", [
+			["dep", [
+				["head", "2"],
+				["punctuation", ":"],
+				["relation", "punct"]
+			]]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Example for syntactical annotation.
