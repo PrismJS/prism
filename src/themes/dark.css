@@ -1,7 +1,10 @@
 /**
+ * Dark
+ *
  * prism.js Dark theme for JavaScript, CSS and HTML
  * Based on the slides of the talk [“/Reg(exp){2}lained/”](https://regexplained.com/slides.html).
- * @author Lea Verou
+ *
+ * @author Lea Verou (LeaVerou)
  */
 
 code[class*="language-"],
