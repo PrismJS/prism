@@ -130,7 +130,7 @@
 			var pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
 			options[contentType.replace(/\//g, '-')] = {
 				pattern: RegExp(
-					'(' + /content-type:\s*/.source + pattern + /(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
+					'(' + /content-type:\s*/.source + pattern + /(?:;[^\r\n]*)?(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
 					// This is a little interesting:
 					// The HTTP format spec required 1 empty line before the body to make everything unambiguous.
 					// However, when writing code by hand (e.g. to display on a website) people can forget about this,
