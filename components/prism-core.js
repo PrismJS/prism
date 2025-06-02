@@ -1209,8 +1209,8 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 // hack for components to work correctly in node.js
-if (typeof global !== 'undefined') {
-	global.Prism = Prism;
+if (typeof globalThis !== 'undefined') {
+	globalThis.Prism = Prism;
 }
 
 // some additional documentation/types
