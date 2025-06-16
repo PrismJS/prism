@@ -39,9 +39,19 @@ export function nextTick () {
 	});
 }
 
+// In addition to waiting for all promises to settle, handle post-hoc additions/removals.
 export async function allSettled<T> (promises: Promise<T>[]): Promise<(T | null)[]> {
-	const outcomes = await Promise.allSettled(promises);
-	return outcomes.map(o => (o.status === 'fulfilled' ? o.value : null));
+	return Promise.allSettled(promises).then(outcomes => {
+		if (promises.length > 0 && promises.length !== outcomes.length) {
+			// The list of promises changed. Return a new Promise.
+			// The original promise won't resolve until the new one does.
+			return allSettled(promises);
+		}
+
+		// The list of promises either empty or stayed the same.
+		// Return results immediately.
+		return outcomes.map(o => (o.status === 'fulfilled' ? o.value : null));
+	});
 }
 
 export class Deferred<T> extends Promise<T> {

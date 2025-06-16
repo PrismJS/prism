@@ -73,7 +73,6 @@ export default class Prism {
 		if (!this.config.manual) {
 			this.waitFor.push(documentReady());
 
-			this.ready = allSettled(this.waitFor);
 			this.ready
 				.then(() => {
 					this.highlightAll();
