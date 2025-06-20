@@ -1,6 +1,6 @@
 import { resolveAlias } from './shared/meta/alias-data';
 import { knownLanguages } from './shared/meta/all-languages-data';
-import { toArray } from './shared/util';
+import { toArray } from './util/iterables';
 import type { Prism } from './core';
 import type { ComponentProto } from './types';
 

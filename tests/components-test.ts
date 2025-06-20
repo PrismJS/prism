@@ -2,7 +2,8 @@ import { assert } from 'chai';
 import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { forEach, noop, toArray } from '../src/shared/util';
+import { noop } from '../src/shared/util';
+import { forEach, toArray } from '../src/util/iterables';
 import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-loader';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

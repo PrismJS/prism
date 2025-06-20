@@ -12,7 +12,8 @@ import {
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import * as scslre from 'scslre';
-import { lazy, toArray } from '../src/shared/util';
+import { lazy } from '../src/shared/util';
+import { toArray } from '../src/util/iterables';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { TestCaseFile, parseLanguageNames } from './helper/test-case';

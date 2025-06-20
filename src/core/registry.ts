@@ -1,5 +1,6 @@
 import { extend } from '../shared/language-util';
-import { forEach, kebabToCamelCase } from '../shared/util';
+import { kebabToCamelCase } from '../shared/util';
+import { forEach } from '../util/iterables';
 import type { ComponentProto, Grammar } from '../types';
 import type { Prism } from './prism';
 

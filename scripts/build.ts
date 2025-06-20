@@ -10,7 +10,7 @@ import MagicString from 'magic-string';
 import { rollup } from 'rollup';
 import ts from 'typescript';
 import { webfont } from 'webfont';
-import { toArray } from '../src/shared/util';
+import { toArray } from '../src/util/iterables';
 import { components } from './components';
 import { parallel, runTask, series } from './tasks';
 import type { ComponentProto } from '../src/types';

@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { toArray } from '../src/shared/util';
+import { toArray } from '../src/util/iterables';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
 import type { Prism, Token } from '../src/core';

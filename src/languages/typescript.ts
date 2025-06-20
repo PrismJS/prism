@@ -1,5 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import { toArray } from '../shared/util';
+import { toArray } from '../util/iterables';
 import javascript from './javascript';
 import type { Grammar, LanguageProto } from '../types';
 
