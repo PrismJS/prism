@@ -1,15 +1,5 @@
+import { combineCallbacks } from '../util/combine-callbacks';
 import type { HookCallback, HookEnvMap, Hooks } from '../core/hooks';
-
-/**
- * Returns a single function that calls all the given functions.
- */
-export function combineCallbacks (...callbacks: (() => void)[]): () => void {
-	return () => {
-		for (const callback of callbacks) {
-			callback();
-		}
-	};
-}
 
 /**
  * TODO: Add description
