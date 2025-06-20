@@ -5,12 +5,12 @@ import { HookState } from './hook-state';
 import { Hooks } from './hooks';
 import { LinkedList } from './linked-list';
 import { Registry } from './registry';
-import { Token } from './token';
+import { Token } from './classes/token';
 import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { HookEnvMap } from './hooks';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
-import type { TokenStream } from './token';
+import type { TokenStream } from './classes/token';
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting

@@ -4,7 +4,7 @@ import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
 import { formatHtml, getLeadingSpaces } from './util';
 import type { Prism } from '../../src/core';
-import type { TokenStream } from '../../src/core/token';
+import type { TokenStream } from '../../src/core/classes/token';
 
 const defaultCreateInstance = createInstance;
 

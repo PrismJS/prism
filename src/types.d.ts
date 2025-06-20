@@ -1,5 +1,5 @@
 import type { Prism } from './core/prism';
-import type { TokenStream } from './core/token';
+import type { TokenStream } from './core/classes/token';
 import type { KnownPlugins } from './known-plugins';
 import type { rest, tokenize } from './shared/symbols';
 

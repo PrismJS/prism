@@ -1,4 +1,4 @@
-import { getTextContent } from '../core/token';
+import { getTextContent } from '../core/classes/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import markup from './markup';

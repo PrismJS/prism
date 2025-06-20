@@ -1,9 +1,9 @@
-import { Token, getTextContent } from '../core/token';
+import { getTextContent, Token } from '../core/classes/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { rest, tokenize } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
-import type { TokenStream } from '../core/token';
+import type { TokenStream } from '../core/classes/token';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 function stringifyToken (token: string | Token | TokenStream | undefined): string {

@@ -1,4 +1,4 @@
-import { getTextContent } from '../core/token';
+import { getTextContent } from '../core/classes/token';
 import { withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import type { LanguageProto } from '../types';

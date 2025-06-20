@@ -1,2 +1,2 @@
 export { Prism } from './core/prism';
-export { Token } from './core/token';
+export { Token } from './core/classes/token';

@@ -3,7 +3,7 @@ import { toArray } from '../src/shared/util';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
 import type { Prism, Token } from '../src/core';
-import type { TokenStream } from '../src/core/token';
+import type { TokenStream } from '../src/core/classes/token';
 
 // This is where you can exclude a language from the identifier test.
 //
