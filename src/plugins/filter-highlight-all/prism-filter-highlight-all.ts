@@ -104,7 +104,7 @@ export default {
 		const config = Prism.plugins.filterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', (env) => {
-			env.elements = env.elements.filter((e) => config.everyFilter(e));
+			env.elements = env.elements.filter((e: Element) => config.everyFilter(e));
 		});
 	}
 } as PluginProto<'filter-highlight-all'>;

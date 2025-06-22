@@ -74,7 +74,7 @@ export default {
 				return;
 			}
 
-			env.classes = env.classes.map((c) => customClass.apply(c));
+			env.classes = env.classes.map((c: string) => customClass.apply(c));
 		});
 	}
 } as PluginProto<'custom-class'>;

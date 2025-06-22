@@ -1,14 +1,13 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
-import { HookState } from './hook-state';
-import { Hooks } from './hooks';
+import { Hooks } from './classes/hooks';
 import { LinkedList } from './linked-list';
 import { Registry } from './registry';
 import { Token } from './classes/token';
 import type { KnownPlugins } from '../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
-import type { HookEnvMap } from './hooks';
+import type { HookEnv } from './classes/hooks';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from './linked-list';
 import type { TokenStream } from './classes/token';
 
@@ -36,18 +35,16 @@ export class Prism {
 	highlightAll (options: HighlightAllOptions = {}) {
 		const { root, async, callback } = options;
 
-		const env: HookEnvMap['before-highlightall'] | HookEnvMap['before-all-elements-highlight'] =
+		const env: HookEnv =
 			{
 				callback,
 				root: root ?? document,
 				selector:
 					'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-				state: new HookState(),
 			};
 
 		this.hooks.run('before-highlightall', env);
 
-		assertEnv<'before-all-elements-highlight'>(env);
 		env.elements = [...env.root.querySelectorAll(env.selector)];
 
 		this.hooks.run('before-all-elements-highlight', env);
@@ -93,16 +90,14 @@ export class Prism {
 
 		const code = element.textContent as string;
 
-		const env: HookEnvMap['before-sanity-check'] = {
+		const env: HookEnv = {
 			element,
 			language,
 			grammar,
 			code,
-			state: new HookState(),
 		};
 
 		const insertHighlightedCode = (highlightedCode: string) => {
-			assertEnv<'before-insert'>(env);
 			env.highlightedCode = highlightedCode;
 			this.hooks.run('before-insert', env);
 
@@ -168,7 +163,7 @@ export class Prism {
 		const languageId = this.components.resolveAlias(language);
 		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 
-		const env: HookEnvMap['before-tokenize'] | HookEnvMap['after-tokenize'] = {
+		const env: HookEnv = {
 			code: text,
 			grammar,
 			language,
@@ -178,7 +173,6 @@ export class Prism {
 			throw new Error('The language "' + env.language + '" has no grammar.');
 		}
 
-		assertEnv<'after-tokenize'>(env);
 		env.tokens = this.tokenize(env.code, env.grammar);
 		this.hooks.run('after-tokenize', env);
 
@@ -437,10 +431,6 @@ export interface HighlightOptions {
 	grammar?: Grammar;
 }
 
-function assertEnv<T extends keyof HookEnvMap> (env: unknown): asserts env is HookEnvMap[T] {
-	/* noop */
-}
-
 function matchPattern (pattern: RegExp, pos: number, text: string, lookbehind: boolean) {
 	pattern.lastIndex = pos;
 	const match = pattern.exec(text);
@@ -475,7 +465,7 @@ function stringify (o: string | Token | TokenStream, language: string, hooks: Ho
 		return s;
 	}
 
-	const env: HookEnvMap['wrap'] = {
+	const env: HookEnv = {
 		type: o.type,
 		content: stringify(o.content, language, hooks),
 		tag: 'span',

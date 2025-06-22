@@ -1,5 +1,4 @@
 import { setLanguage } from '../../shared/dom-util';
-import { addHooks } from '../../shared/hooks-util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
 
@@ -108,7 +107,7 @@ export default {
 			return undefined;
 		}
 
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlightall': (env) => {
 				env.selector += ', ' + SELECTOR;
 			},

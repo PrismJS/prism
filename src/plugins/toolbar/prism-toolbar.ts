@@ -1,6 +1,6 @@
 import { getParentPre } from '../../shared/dom-util';
 import { noop } from '../../shared/util';
-import type { CompleteEnv, HookCallback } from '../../core/hooks';
+import type { HookEnv, HookCallback } from '../../core/classes/hooks';
 import type { PluginProto } from '../../types';
 
 /**
@@ -33,13 +33,13 @@ export interface ButtonOptions {
 	/**
 	 * The event listener for the `click` event of the created button.
 	 */
-	onClick?: (env: CompleteEnv) => void;
+	onClick?: (env: HookEnv) => void;
 	/**
 	 * The class attribute to include with element.
 	 */
 	className?: string;
 }
-export type ButtonFactory = (env: CompleteEnv) => Node | undefined;
+export type ButtonFactory = (env: HookEnv) => Node | undefined;
 
 export class Toolbar {
 	private callbacks: ButtonFactory[] = [];
@@ -103,7 +103,7 @@ export class Toolbar {
 	/**
 	 * @package
 	 */
-	hook: HookCallback<'complete'> = (env) => {
+	hook: HookCallback = (env) => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		const pre = getParentPre(env.element);
 		if (!pre) {

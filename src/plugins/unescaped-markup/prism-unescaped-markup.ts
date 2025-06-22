@@ -1,10 +1,9 @@
-import { addHooks } from '../../shared/hooks-util';
 import type { PluginProto } from '../../types';
 
 export default {
 	id: 'unescaped-markup',
 	effect(Prism) {
-		return addHooks(Prism.hooks, {
+		return Prism.hooks.add({
 			'before-highlightall': (env) => {
 				env.selector += ', [class*="lang-"] script[type="text/plain"]'
 					+ ', [class*="language-"] script[type="text/plain"]'
