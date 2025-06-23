@@ -1,14 +1,17 @@
-import { getLanguage, setLanguage } from '../../shared/dom-util';
 import { rest, tokenize } from '../../shared/symbols';
-import { htmlEncode } from '../../shared/util';
+import { highlight } from '../highlight';
+import { highlightAll } from '../highlight-all';
+import { highlightElement } from '../highlight-element';
 import { LinkedList } from '../linked-list';
 import { Registry } from '../registry';
 import { Hooks } from './hooks';
 import { Token } from './token';
 import type { KnownPlugins } from '../../known-plugins';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../../types';
+import type { HighlightOptions } from '../highlight';
+import type { HighlightAllOptions } from '../highlight-all';
+import type { HighlightElementOptions } from '../highlight-element';
 import type { LinkedListHeadNode, LinkedListMiddleNode, LinkedListTailNode } from '../linked-list';
-import type { HookEnv } from './hooks';
 import type { TokenStream } from './token';
 
 /**
@@ -21,159 +24,24 @@ export default class Prism {
 	plugins: Partial<Record<string, unknown> & KnownPlugins> = {};
 
 	/**
-	 * This is the most high-level function in Prism’s API.
-	 * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism#highlightElement} on
-	 * each one of them.
-	 *
-	 * The following hooks will be run:
-	 * 1. `before-highlightall`
-	 * 2. `before-all-elements-highlight`
-	 * 3. All hooks of {@link Prism#highlightElement} for each element.
+	 * See {@link highlightAll}.
 	 */
 	highlightAll (options: HighlightAllOptions = {}) {
-		const { root, async, callback } = options;
-
-		const env: HookEnv = {
-			callback,
-			root: root ?? document,
-			selector:
-				'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-		};
-
-		this.hooks.run('before-highlightall', env);
-
-		env.elements = [...env.root.querySelectorAll(env.selector)];
-
-		this.hooks.run('before-all-elements-highlight', env);
-
-		for (const element of env.elements) {
-			this.highlightElement(element, { async, callback: env.callback });
-		}
+		return highlightAll.call(this, options);
 	}
 
 	/**
-	 * Highlights the code inside a single element.
-	 *
-	 * The following hooks will be run:
-	 * 1. `before-sanity-check`
-	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism#highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
-	 * 4. `before-insert`
-	 * 5. `after-highlight`
-	 * 6. `complete`
-	 *
-	 * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
-	 * the element's language.
-	 *
-	 * @param element The element containing the code.
-	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
+	 * See {@link highlightElement}
 	 */
 	highlightElement (element: Element, options: HighlightElementOptions = {}) {
-		const { async, callback } = options;
-
-		// Find language
-		const language = getLanguage(element);
-		const languageId = this.components.resolveAlias(language);
-		const grammar = this.components.getLanguage(languageId);
-
-		// Set language on the element, if not present
-		setLanguage(element, language);
-
-		// Set language on the parent, for styling
-		let parent = element.parentElement;
-		if (parent && parent.nodeName.toLowerCase() === 'pre') {
-			setLanguage(parent, language);
-		}
-
-		const code = element.textContent as string;
-
-		const env: HookEnv = {
-			element,
-			language,
-			grammar,
-			code,
-		};
-
-		const insertHighlightedCode = (highlightedCode: string) => {
-			env.highlightedCode = highlightedCode;
-			this.hooks.run('before-insert', env);
-
-			env.element.innerHTML = env.highlightedCode;
-
-			this.hooks.run('after-highlight', env);
-			this.hooks.run('complete', env);
-			callback?.(env.element);
-		};
-
-		this.hooks.run('before-sanity-check', env);
-
-		// plugins may change/add the parent/element
-		parent = env.element.parentElement;
-		if (parent && parent.nodeName.toLowerCase() === 'pre' && !parent.hasAttribute('tabindex')) {
-			parent.setAttribute('tabindex', '0');
-		}
-
-		if (!env.code) {
-			this.hooks.run('complete', env);
-			callback?.(env.element);
-			return;
-		}
-
-		this.hooks.run('before-highlight', env);
-
-		if (!env.grammar) {
-			insertHighlightedCode(htmlEncode(env.code));
-			return;
-		}
-
-		if (async) {
-			async({
-				language: env.language,
-				code: env.code,
-				grammar: env.grammar,
-			}).then(insertHighlightedCode, error => console.log(error));
-		}
-		else {
-			insertHighlightedCode(this.highlight(env.code, env.language, { grammar: env.grammar }));
-		}
+		return highlightElement.call(this, element, options);
 	}
 
 	/**
-	 * Low-level function, only use if you know what you’re doing. It accepts a string of text as input
-	 * and the language definitions to use, and returns a string with the HTML produced.
-	 *
-	 * The following hooks will be run:
-	 * 1. `before-tokenize`
-	 * 2. `after-tokenize`
-	 * 3. `wrap`: On each {@link Token}.
-	 *
-	 * @param text A string with the code to be highlighted.
-	 * @param language The name of the language definition passed to `grammar`.
-	 * @param options An object containing the tokens to use.
-	 *
-	 * Usually a language definition like `Prism.languages.markup`.
-	 * @returns The highlighted HTML.
-	 * @example
-	 * Prism.highlight('var foo = true;', 'javascript');
+	 * See {@link highlight}
 	 */
-	highlight (text: string, language: string, options?: HighlightOptions): string {
-		const languageId = this.components.resolveAlias(language);
-		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
-
-		const env: HookEnv = {
-			code: text,
-			grammar,
-			language,
-		};
-		this.hooks.run('before-tokenize', env);
-		if (!env.grammar) {
-			throw new Error('The language "' + env.language + '" has no grammar.');
-		}
-
-		env.tokens = this.tokenize(env.code, env.grammar);
-		this.hooks.run('after-tokenize', env);
-
-		return stringify(env.tokens, env.language, this.hooks);
+	highlight (text: string, language: string, options: HighlightOptions = {}): string {
+		return highlight.call(this, text, language, options);
 	}
 
 	/**
@@ -392,42 +260,6 @@ interface RematchOptions {
 	reach: number;
 }
 
-export interface AsyncHighlightingData {
-	language: string;
-	code: string;
-	grammar: Grammar;
-}
-export type AsyncHighlighter = (data: AsyncHighlightingData) => Promise<string>;
-
-export interface HighlightAllOptions {
-	/**
-	 * The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
-	 */
-	root?: ParentNode;
-	async?: AsyncHighlighter;
-	/**
-	 * An optional callback to be invoked on each element after its highlighting is done.
-	 *
-	 * @see HighlightElementOptions#callback
-	 */
-	callback?: (element: Element) => void;
-}
-
-export interface HighlightElementOptions {
-	async?: AsyncHighlighter;
-	/**
-	 * An optional callback to be invoked after the highlighting is done.
-	 * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
-	 *
-	 * @param element The element successfully highlighted.
-	 */
-	callback?: (element: Element) => void;
-}
-
-export interface HighlightOptions {
-	grammar?: Grammar;
-}
-
 function matchPattern (pattern: RegExp, pos: number, text: string, lookbehind: boolean) {
 	pattern.lastIndex = pos;
 	const match = pattern.exec(text);
@@ -438,70 +270,6 @@ function matchPattern (pattern: RegExp, pos: number, text: string, lookbehind: b
 		match[0] = match[0].slice(lookbehindLength);
 	}
 	return match;
-}
-
-/**
- * Converts the given token or token stream to an HTML representation.
- *
- * The following hooks will be run:
- * 1. `wrap`: On each {@link Token}.
- *
- * @param o The token or token stream to be converted.
- * @param language The name of current language.
- * @returns The HTML representation of the token or token stream.
- */
-function stringify (o: string | Token | TokenStream, language: string, hooks: Hooks): string {
-	if (typeof o === 'string') {
-		return htmlEncode(o);
-	}
-	if (Array.isArray(o)) {
-		let s = '';
-		o.forEach(e => {
-			s += stringify(e, language, hooks);
-		});
-		return s;
-	}
-
-	const env: HookEnv = {
-		type: o.type,
-		content: stringify(o.content, language, hooks),
-		tag: 'span',
-		classes: ['token', o.type],
-		attributes: {},
-		language,
-	};
-
-	const aliases = o.alias;
-	if (aliases) {
-		if (Array.isArray(aliases)) {
-			env.classes.push(...aliases);
-		}
-		else {
-			env.classes.push(aliases);
-		}
-	}
-
-	hooks.run('wrap', env);
-
-	let attributes = '';
-	for (const name in env.attributes) {
-		attributes +=
-			' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
-	}
-
-	return (
-		'<' +
-		env.tag +
-		' class="' +
-		env.classes.join(' ') +
-		'"' +
-		attributes +
-		'>' +
-		env.content +
-		'</' +
-		env.tag +
-		'>'
-	);
 }
 
 function toGrammarToken (pattern: GrammarToken | RegExpLike): GrammarToken {
