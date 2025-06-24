@@ -141,7 +141,7 @@ async function runBenchmark (config: Config) {
 function getConfig (): Config {
 	const base = baseConfig;
 
-	const args = yargs(hideBin(process.argv)) as unknown as Record<string, unknown>;
+	const args = yargs(hideBin(process.argv)).argv as Record<string, unknown>;
 
 	if (typeof args.testFunction === 'string') {
 		baseConfig.options.testFunction = args.testFunction as ConfigOptions['testFunction'];
