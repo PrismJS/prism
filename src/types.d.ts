@@ -1,7 +1,7 @@
 import type { Prism } from './core/prism';
 import type { TokenStream } from './core/classes/token';
 import type { KnownPlugins } from './known-plugins';
-import type { rest, tokenize } from './shared/symbols';
+import type { rest } from './shared/symbols';
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
@@ -112,9 +112,16 @@ export interface GrammarSymbols {
 	 * An optional grammar object that will be appended to this grammar.
 	 */
 	[rest]?: Grammar | string | null;
-	[tokenize]?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 }
-export type Grammar = GrammarTokens & GrammarSymbols;
+
+export type GrammarSpecial = {
+	/**
+	 * An optional grammar object that will be appended to this grammar.
+	 */
+	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
+};
+
+export type Grammar = GrammarTokens & GrammarSymbols & GrammarSpecial;
 
 export interface PlainObject {
 	[key: string]: unknown;

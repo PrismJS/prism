@@ -1,8 +1,8 @@
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Prism } from '../core/prism';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'php',
@@ -363,13 +363,13 @@ export default {
 					/<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/,
 				inside: php,
 			},
-			[tokenize]: (code, grammar, Prism) => {
+			$tokenize: (code: string, grammar: Grammar, Prism: Prism) => {
 				if (!/<\?/.test(code)) {
 					return Prism.tokenize(code, php);
 				}
 
 				return embedded(code, grammar, Prism);
 			},
-		};
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'php'>;

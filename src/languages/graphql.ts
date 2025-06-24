@@ -1,7 +1,7 @@
 import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
+import type { Prism } from '../core/prism';
 import type { Token } from '../core';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'graphql',
@@ -67,7 +67,7 @@ export default {
 		'object': /\w+(?=\s*\{)/,
 		'punctuation': /[!(){}\[\]:=,]/,
 		'property': /\w+/,
-		[tokenize](code, grammar, Prism) {
+		$tokenize (code: string, grammar: Grammar, Prism: Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 			function isToken (token: Token | string): token is Token {
@@ -198,5 +198,5 @@ export default {
 
 			return tokens;
 		},
-	},
+	} as unknown as Grammar,
 } as LanguageProto<'graphql'>;

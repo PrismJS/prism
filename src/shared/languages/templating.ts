@@ -4,7 +4,6 @@ import type { Prism } from '../../core';
 import type { Token, TokenStream } from '../../core/classes/token';
 import type { Registry } from '../../core/registry';
 import type { Grammar } from '../../types';
-import type { tokenize } from '../symbols';
 
 const placeholderPattern = /___PH\d+___/;
 
@@ -134,7 +133,7 @@ export function templating (
 	return tokens;
 }
 
-export function embeddedIn (hostGrammar: GrammarRef): NonNullable<Grammar[typeof tokenize]> {
+export function embeddedIn (hostGrammar: GrammarRef): NonNullable<Grammar['$tokenize']> {
 	return (code, templateGrammar, Prism) => {
 		return templating(code, hostGrammar, withoutTokenize(templateGrammar), Prism);
 	};

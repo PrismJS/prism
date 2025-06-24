@@ -1,4 +1,4 @@
-import { rest, tokenize } from './symbols';
+import { rest } from './symbols';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 
 // TODO: Update documentation
@@ -181,9 +181,9 @@ function cloneGrammar (grammar: Grammar, id: string): Grammar {
 			}
 
 			// tokenize
-			const t = value[tokenize];
+			const t = value.$tokenize;
 			if (t) {
-				mapped[tokenize] = t;
+				mapped.$tokenize = t;
 			}
 		}
 		return mapped;
@@ -193,11 +193,11 @@ function cloneGrammar (grammar: Grammar, id: string): Grammar {
 }
 
 export function withoutTokenize (grammar: Grammar): Grammar {
-	if (!grammar[tokenize]) {
+	if (!grammar.$tokenize) {
 		return grammar;
 	}
 
 	const copy = { ...grammar };
-	delete copy[tokenize];
+	delete copy.$tokenize;
 	return copy;
 }

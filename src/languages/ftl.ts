@@ -1,5 +1,5 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
+import { rest } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';
 
@@ -115,7 +115,7 @@ export default {
 					},
 				},
 			},
-			[tokenize]: embeddedIn('markup'),
+			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 		};
 	},
 } as LanguageProto<'ftl'>;

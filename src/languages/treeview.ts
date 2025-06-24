@@ -1,7 +1,7 @@
 import { getTextContent } from '../core/classes/token';
 import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Prism } from '../core/prism';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'treeview',
@@ -45,7 +45,7 @@ export default {
 						},
 					},
 				},
-				[tokenize](code, grammar, Prism) {
+				$tokenize (code: string, grammar: Grammar, Prism: Prism) {
 					const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 					for (const token of tokens) {
@@ -95,5 +95,5 @@ export default {
 				},
 			},
 		},
-	},
+	} as unknown as Grammar,
 } as LanguageProto<'treeview'>;

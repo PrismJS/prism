@@ -1,7 +1,7 @@
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
-import { rest, tokenize } from '../shared/symbols';
-import type { GrammarToken, LanguageProto } from '../types';
+import { rest } from '../shared/symbols';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 /**
  * Creates a new pattern to match a template string with a special tag.
@@ -40,10 +40,10 @@ function createTemplate (language: string, tag: string): GrammarToken {
 							[rest]: 'javascript',
 						},
 					},
-					[tokenize]: embeddedIn(language),
+					$tokenize: embeddedIn(language),
 				},
 			},
-		},
+		} as Grammar,
 	};
 }
 

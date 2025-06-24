@@ -1,9 +1,8 @@
 import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
-import { tokenize } from '../shared/symbols';
 import clike from './clike';
 import markup from './markup';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'tt2',
@@ -56,7 +55,7 @@ export default {
 				pattern: /\[%[\s\S]+?%\]/,
 				inside: tt2,
 			},
-			[tokenize]: embeddedIn('markup'),
+			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
 		};
 	},
 } as LanguageProto<'tt2'>;

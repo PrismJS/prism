@@ -1,7 +1,7 @@
 import { getTextContent } from '../core/classes/token';
 import { withoutTokenize } from '../shared/language-util';
-import { tokenize } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
+import type { Prism } from '../core/prism';
 
 function isBracketsBalanced (input: string): boolean {
 	const brackets = '[]{}';
@@ -135,7 +135,7 @@ export default {
 				},
 			},
 
-			[tokenize](code, grammar, Prism) {
+			$tokenize (code: string, grammar: Grammar, Prism: Prism) {
 				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 				tokens.forEach(token => {
 					if (typeof token !== 'string' && token.type === 'generic-text') {
@@ -148,6 +148,6 @@ export default {
 				});
 				return tokens;
 			},
-		};
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'naniscript'>;

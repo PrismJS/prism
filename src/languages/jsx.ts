@@ -1,6 +1,6 @@
 import { getTextContent, Token } from '../core/classes/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { rest, tokenize } from '../shared/symbols';
+import { rest } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';
@@ -162,7 +162,7 @@ export default {
 			},
 		});
 
-		jsx[tokenize] = (code, grammar, Prism) => {
+		jsx.$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;
