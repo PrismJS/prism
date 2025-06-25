@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'python',
@@ -28,7 +27,7 @@ export default {
 							pattern: /![sra](?=[:}]$)/,
 							alias: 'punctuation',
 						},
-						[rest]: 'python',
+						$rest: 'python',
 					},
 				},
 				'string': /[\s\S]+/,
@@ -68,5 +67,5 @@ export default {
 			/\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,
 		'operator': /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'punctuation': /[{}[\];(),.:]/,
-	},
+	} as unknown as Grammar,
 } as LanguageProto<'python'>;

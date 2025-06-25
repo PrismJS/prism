@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'elixir',
@@ -12,8 +11,8 @@ export default {
 						pattern: /^#\{|\}$/,
 						alias: 'punctuation',
 					},
-					[rest]: 'elixir',
-				},
+					$rest: 'elixir',
+				} as unknown as Grammar,
 			},
 		};
 

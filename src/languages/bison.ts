@@ -1,7 +1,6 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import c from './c';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'bison',
@@ -32,8 +31,8 @@ export default {
 									'punctuation': /<|>/,
 								},
 							},
-							[rest]: c,
-						},
+							$rest: c,
+						} as unknown as Grammar,
 					},
 					'comment': c.comment,
 					'string': c.string,

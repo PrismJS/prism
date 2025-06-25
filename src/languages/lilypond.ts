@@ -1,6 +1,5 @@
-import { rest } from '../shared/symbols';
 import scheme from './scheme';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'lilypond',
@@ -48,11 +47,11 @@ export default {
 									},
 								},
 							},
-							[rest]: 'scheme',
+							$rest: 'scheme',
 						},
 					},
 					'punctuation': /#/,
-				},
+				} as unknown as Grammar,
 			},
 			'string': {
 				pattern: /"(?:[^"\\]|\\.)*"/,

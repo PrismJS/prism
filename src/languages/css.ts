@@ -1,6 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'css',
@@ -33,8 +32,8 @@ export default {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true,
 					},
-					[rest]: 'css',
-				},
+					$rest: 'css',
+				} as unknown as Grammar,
 			},
 			'url': {
 				// https://drafts.csswg.org/css-values-3/#urls

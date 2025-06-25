@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'rust',
@@ -53,8 +52,8 @@ export default {
 						pattern: /^\||\|$/,
 						alias: 'punctuation',
 					},
-					[rest]: 'rust',
-				},
+					$rest: 'rust',
+				} as unknown as Grammar,
 			},
 
 			'lifetime-annotation': {

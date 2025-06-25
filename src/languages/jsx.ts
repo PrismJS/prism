@@ -1,6 +1,5 @@
 import { getTextContent, Token } from '../core/classes/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';
@@ -157,8 +156,8 @@ export default {
 						pattern: /^=(?=\{)/,
 						alias: 'punctuation',
 					},
-					[rest]: 'jsx',
-				},
+					$rest: 'jsx',
+				} as unknown as Grammar,
 			},
 		});
 

@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {
@@ -15,7 +14,7 @@ export default {
 								pattern: /\[|\]/,
 								alias: 'punctuation',
 							},
-							[rest]: null as Grammar[typeof rest],
+							$rest: null as Grammar['$rest'],
 						},
 					},
 				},
@@ -65,13 +64,13 @@ export default {
 			'punctuation': /[.,:;(){}]/,
 		};
 
-		inform7['string'].inside['substitution'].inside[rest] = {
+		inform7['string'].inside['substitution'].inside.$rest = {
 			...inform7,
 			'text': {
 				pattern: /\S(?:\s*\S)*/,
 				alias: 'comment',
 			},
-		};
+		} as Grammar['$rest'];
 
 		return inform7;
 	},

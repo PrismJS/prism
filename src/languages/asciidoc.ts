@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
@@ -22,7 +21,7 @@ export default {
 					pattern: /'(?:[^'\\]|\\.)*'/,
 					inside: {
 						'punctuation': /^'|'$/,
-						[rest]: placeholder,
+						$rest: placeholder,
 					},
 				},
 				'string': /"(?:[^"\\]|\\.)*"/,
@@ -51,7 +50,7 @@ export default {
 						pattern: /(^|[^\\])[|!]=*/,
 						lookbehind: true,
 					},
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 
@@ -59,7 +58,7 @@ export default {
 				pattern: /^(\+{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^\++|\++$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			// Literal blocks and listing blocks
@@ -67,7 +66,7 @@ export default {
 				pattern: /^(-{4,}|\.{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			// Sidebar blocks, quote blocks, example blocks and open blocks
@@ -75,7 +74,7 @@ export default {
 				pattern: /^(--|\*{4,}|_{4,}|={4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 
@@ -102,7 +101,7 @@ export default {
 				alias: 'important',
 				inside: {
 					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/,
-					[rest]: placeholder,
+					$rest: placeholder,
 				},
 			},
 			'attribute-entry': {
@@ -215,23 +214,23 @@ export default {
 		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
 			const o: Grammar = {};
 			for (const key of keys) {
-				o[key] = asciidoc[key];
+				o[key] = asciidoc[key] as GrammarToken;
 			}
 			return o;
 		}
 
-		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc(
+		attributes.inside['interpreted'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',
 			'entity'
 		);
 
-		asciidoc['passthrough-block'].inside[rest] = copyFromAsciiDoc('macro');
+		asciidoc['passthrough-block'].inside.$rest = copyFromAsciiDoc('macro');
 
-		asciidoc['literal-block'].inside[rest] = copyFromAsciiDoc('callout');
+		asciidoc['literal-block'].inside.$rest = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['table'].inside.$rest = copyFromAsciiDoc(
 			'comment-block',
 			'passthrough-block',
 			'literal-block',
@@ -254,7 +253,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['other-block'].inside.$rest = copyFromAsciiDoc(
 			'table',
 			'list-punctuation',
 			'indented-block',
@@ -272,7 +271,7 @@ export default {
 			'line-continuation'
 		);
 
-		asciidoc['title'].inside[rest] = copyFromAsciiDoc(
+		asciidoc['title'].inside.$rest = copyFromAsciiDoc(
 			'macro',
 			'inline',
 			'replacement',

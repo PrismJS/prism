@@ -1,5 +1,4 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import csharp from './csharp';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
@@ -30,15 +29,15 @@ export default {
 						pattern: /<%\s*?[$=%#:]{0,2}|%>/,
 						alias: 'tag',
 					},
-					[rest]: 'csharp',
-				},
+					$rest: 'csharp',
+				} as unknown as Grammar,
 			},
 		});
 
 		const tag = aspnet['tag'] as GrammarToken & {
 			inside: { 'attr-value': { inside: Grammar } };
 		};
-		pageDirectiveInside[rest] = tag.inside;
+		pageDirectiveInside.$rest = tag.inside;
 
 		// Regexp copied from markup, with a negative look-ahead added
 		tag.pattern =

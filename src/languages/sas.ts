@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'sas',
@@ -258,7 +257,7 @@ export default {
 									keyword: /^(?:saveresult)/i,
 								},
 							},
-							[rest]: args,
+							$rest: args,
 						},
 					},
 					'cas-actions': casActions,
@@ -277,7 +276,7 @@ export default {
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
 					'string': string,
-				},
+				} as unknown as Grammar,
 			},
 
 			'proc-args': {

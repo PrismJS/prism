@@ -1,5 +1,4 @@
 import { embeddedIn } from '../shared/languages/templating';
-import { rest } from '../shared/symbols';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';
 
@@ -40,7 +39,7 @@ export default {
 							pattern: /^\$\{|\}$/,
 							alias: 'punctuation',
 						},
-						[rest]: null as Grammar[typeof rest], // see below
+						$rest: null as Grammar['$rest'], // see below
 					},
 				},
 			},
@@ -69,7 +68,7 @@ export default {
 			'punctuation': /[,;.:()[\]{}]/,
 		};
 
-		stringInterpolation.inside.interpolation.inside[rest] = ftl;
+		stringInterpolation.inside.interpolation.inside.$rest = ftl as Grammar['$rest'];
 
 		return {
 			'ftl-comment': {

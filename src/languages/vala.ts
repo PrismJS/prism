@@ -1,7 +1,6 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import clike from './clike';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'vala',
@@ -70,8 +69,8 @@ export default {
 								pattern: /^\$\(?|\)$/,
 								alias: 'punctuation',
 							},
-							[rest]: vala,
-						},
+							$rest: vala,
+						} as unknown as Grammar,
 					},
 					'string': /[\s\S]+/,
 				},

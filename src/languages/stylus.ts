@@ -1,4 +1,3 @@
-import { rest } from '../shared/symbols';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {
@@ -35,14 +34,14 @@ export default {
 						pattern: /^\{|\}$/,
 						alias: 'punctuation',
 					},
-					[rest]: null as Grammar[typeof rest],
+					$rest: null as Grammar['$rest'],
 				},
 			},
 			'func': {
 				pattern: /[\w-]+\([^)]*\).*/,
 				inside: {
 					'function': /^[^(]+/,
-					[rest]: null as Grammar[typeof rest],
+					$rest: null as Grammar['$rest'],
 				},
 			},
 			'important': /\B!(?:important|optional)\b/i,
@@ -76,8 +75,8 @@ export default {
 			'punctuation': /[{}()\[\];:,]/,
 		};
 
-		inside['interpolation'].inside[rest] = inside;
-		inside['func'].inside[rest] = inside;
+		inside['interpolation'].inside.$rest = inside as Grammar['$rest'];
+		inside['func'].inside.$rest = inside as Grammar['$rest'];
 
 		return {
 			'atrule-declaration': {
@@ -85,7 +84,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'atrule': /^@[\w-]+/,
-					[rest]: inside,
+					$rest: inside as Grammar['$rest'],
 				},
 			},
 			'variable-declaration': {
@@ -93,7 +92,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'variable': /^\S+/,
-					[rest]: inside,
+					$rest: inside as Grammar['$rest'],
 				},
 			},
 
@@ -102,7 +101,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'keyword': /^\S+/,
-					[rest]: inside,
+					$rest: inside as Grammar['$rest'],
 				},
 			},
 
@@ -119,7 +118,7 @@ export default {
 							'interpolation': inside.interpolation,
 						},
 					},
-					[rest]: inside,
+					$rest: inside as Grammar['$rest'],
 				},
 			},
 

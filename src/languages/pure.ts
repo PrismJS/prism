@@ -1,6 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'pure',
@@ -33,7 +32,7 @@ export default {
 						alias: 'punctuation',
 					},
 					// C is the default inline language
-					[rest]: 'c',
+					$rest: 'c',
 				},
 			},
 			'string': {
@@ -60,7 +59,7 @@ export default {
 				/(?:[!"#$%&'*+,\-.\/:<=>?@\\^`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]|\b_+\b)+|\b(?:and|div|mod|not|or)\b/,
 			// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 			'punctuation': /[(){}\[\];,|]/,
-		};
+		} as unknown as Grammar;
 
 		const inlineLanguages = ['c', { lang: 'c++', alias: 'cpp' }, 'fortran'];
 		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
@@ -86,11 +85,11 @@ export default {
 						'i'
 					),
 					inside: {
-						...pure['inline-lang'].inside,
-						[rest]: alias,
+						...(pure['inline-lang'] as GrammarToken).inside as Grammar,
+						$rest: alias,
 					},
 				},
-			});
+			} as unknown as Grammar);
 		});
 
 		return pure;

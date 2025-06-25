@@ -1,8 +1,7 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import javascript from './javascript';
 import markup from './markup';
-import type { GrammarTokens, LanguageProto } from '../types';
+import type { Grammar, GrammarTokens, LanguageProto } from '../types';
 
 export default {
 	id: 'pug',
@@ -78,7 +77,7 @@ export default {
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 						alias: 'keyword',
 					},
-					[rest]: 'javascript',
+					$rest: 'javascript',
 				},
 			},
 			'keyword': {
@@ -105,7 +104,7 @@ export default {
 							pattern: /^\+\w+/,
 							alias: 'function',
 						},
-						[rest]: 'javascript',
+						$rest: 'javascript',
 					},
 				},
 			],
@@ -154,7 +153,7 @@ export default {
 				},
 			],
 			'punctuation': /[.\-!=|]+/,
-		};
+		} as unknown as Grammar;
 
 		const filter_pattern =
 			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;

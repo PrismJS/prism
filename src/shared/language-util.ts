@@ -1,4 +1,3 @@
-import { rest } from './symbols';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 
 // TODO: Update documentation
@@ -71,7 +70,7 @@ export function insertBefore (grammar: Grammar, before: string, insert: GrammarT
 
 		// Do not insert tokens which also occur in `insert`. See #1525
 		if (!insert.hasOwnProperty(key)) {
-			grammar[key] = value;
+			grammar[key] = value as unknown as GrammarToken;
 		}
 	}
 }
@@ -151,7 +150,7 @@ function cloneGrammar (grammar: Grammar, id: string): Grammar {
 			return cloneToken(value);
 		}
 	}
-	function cloneRef (ref: NonNullable<Grammar[typeof rest]>) {
+	function cloneRef (ref: NonNullable<Grammar['$rest']>) {
 		if (ref === id) {
 			// self ref
 			return result;
@@ -171,13 +170,13 @@ function cloneGrammar (grammar: Grammar, id: string): Grammar {
 
 			// tokens
 			for (const [key, tokens] of Object.entries(value)) {
-				mapped[key] = cloneTokens(tokens);
+				mapped[key] = cloneTokens(tokens as GrammarToken[]);
 			}
 
 			// rest
-			const r = value[rest];
+			const r = value.$rest;
 			if (r != null) {
-				mapped[rest] = cloneRef(r);
+				mapped.$rest = cloneRef(r);
 			}
 
 			// tokenize

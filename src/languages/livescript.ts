@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'livescript',
@@ -33,11 +32,11 @@ export default {
 							pattern: /^#\{|\}$/,
 							alias: 'variable',
 						},
-						[rest]: 'livescript',
+						$rest: 'livescript',
 					},
 				},
 				'string': /[\s\S]+/,
-			},
+			} as unknown as Grammar,
 		},
 		'string': [
 			{

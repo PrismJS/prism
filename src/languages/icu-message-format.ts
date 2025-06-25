@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'icu-message-format',
@@ -81,7 +80,7 @@ export default {
 											'number': /\S+/,
 										},
 									},
-									[rest]: 'icu-message-format',
+									$rest: 'icu-message-format',
 								},
 							},
 							'plural-style': {
@@ -138,7 +137,7 @@ export default {
 								alias: 'string',
 							},
 							'punctuation': /,/,
-						},
+						} as unknown as Grammar,
 					},
 					'argument-delimiter': {
 						pattern: /./,

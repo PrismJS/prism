@@ -1,5 +1,4 @@
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'lisp',
@@ -48,7 +47,7 @@ export default {
 				lookbehind: true,
 				alias: 'variable',
 			},
-			[rest]: 'lisp',
+			$rest: 'lisp',
 		};
 
 		const forms = '\\S+(?:\\s+\\S+)*';
@@ -203,6 +202,6 @@ export default {
 					lookbehind: true,
 				},
 			],
-		};
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'lisp'>;

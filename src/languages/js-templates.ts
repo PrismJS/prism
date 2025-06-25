@@ -1,6 +1,5 @@
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
-import { rest } from '../shared/symbols';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 /**
@@ -37,7 +36,7 @@ function createTemplate (language: string, tag: string): GrammarToken {
 								pattern: /^\$\{|\}$/,
 								alias: 'punctuation',
 							},
-							[rest]: 'javascript',
+							$rest: 'javascript',
 						},
 					},
 					$tokenize: embeddedIn(language),

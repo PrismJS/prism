@@ -1,6 +1,5 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'rescript',
@@ -60,8 +59,8 @@ export default {
 								pattern: /^\$\{|\}$/,
 								alias: 'tag',
 							},
-							[rest]: 'rescript',
-						},
+							$rest: 'rescript',
+						} as unknown as Grammar,
 					},
 					'string': /[\s\S]+/,
 				},

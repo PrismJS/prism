@@ -1,7 +1,6 @@
 import { insertBefore } from '../shared/language-util';
-import { rest } from '../shared/symbols';
 import markup from './markup';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'wiki',
@@ -71,8 +70,8 @@ export default {
 						pattern: /\|$/,
 						alias: 'punctuation',
 					},
-					[rest]: tag.inside,
-				},
+					$rest: tag.inside,
+				} as Grammar,
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
 		});
