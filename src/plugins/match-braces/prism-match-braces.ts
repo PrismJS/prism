@@ -1,11 +1,12 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
 import type { PluginProto } from '../../types';
+import type { CustomClass } from '../custom-class/prism-custom-class';
 
 export default {
 	id: 'match-braces',
 	effect(Prism) {
 		function mapClassName(name: string) {
-			const customClass = Prism.plugins.customClass;
+			const customClass = Prism.plugins.customClass as CustomClass;
 			if (customClass) {
 				return customClass.apply(name);
 			} else {

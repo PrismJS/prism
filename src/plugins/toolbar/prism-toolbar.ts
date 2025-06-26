@@ -201,6 +201,7 @@ export default {
 		return toolbar;
 	},
 	effect(Prism) {
-		return Prism.hooks.add('complete', Prism.plugins.toolbar.hook);
+		const toolbar = Prism.plugins.toolbar as Toolbar;
+		return Prism.hooks.add('complete', toolbar.hook);
 	}
 } as PluginProto<'toolbar'>;

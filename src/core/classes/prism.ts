@@ -4,7 +4,6 @@ import { highlightElement } from '../highlight-element';
 import { Registry } from '../registry';
 import { tokenize } from '../tokenize/tokenize';
 import { Hooks } from './hooks';
-import type { KnownPlugins } from '../../known-plugins';
 import type { Grammar } from '../../types';
 import type { HighlightOptions } from '../highlight';
 import type { HighlightAllOptions } from '../highlight-all';
@@ -18,7 +17,7 @@ import type { TokenStream } from './token';
 export default class Prism {
 	hooks = new Hooks();
 	components = new Registry(this);
-	plugins: Partial<Record<string, unknown> & KnownPlugins> = {};
+	plugins: Record<string, unknown> = {};
 
 	/**
 	 * See {@link highlightAll}.

@@ -159,7 +159,7 @@ export default {
 		});
 	},
 	effect(Prism) {
-		const Normalizer = Prism.plugins.normalizeWhitespace;
+		const Normalizer = Prism.plugins.normalizeWhitespace as NormalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', (env) => {
 			if (!env.code) {

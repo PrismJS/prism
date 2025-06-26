@@ -3,6 +3,7 @@ import { combineCallbacks } from '../../util/combine-callbacks';
 import { lazy, noop } from '../../shared/util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
+import type { LineNumbers } from '../line-numbers/prism-line-numbers';
 
 const LINE_NUMBERS_CLASS = 'line-numbers';
 const LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';
@@ -126,8 +127,9 @@ export class LineHighlight {
 
 			// if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
 			if (hasLineNumbers && this.Prism.plugins.lineNumbers) {
-				const startNode = this.Prism.plugins.lineNumbers.getLine(pre, start);
-				const endNode = this.Prism.plugins.lineNumbers.getLine(pre, end);
+				const lineNumbers = this.Prism.plugins.lineNumbers as LineNumbers;
+				const startNode = lineNumbers.getLine(pre, start);
+				const endNode = lineNumbers.getLine(pre, end);
 
 				if (startNode) {
 					const top = `${startNode.offsetTop + codePreOffset}px`;
@@ -185,7 +187,8 @@ export class LineHighlight {
 			const start = parseInt(pre.getAttribute('data-start') || '1');
 
 			// iterate all line number spans
-			this.Prism.plugins.lineNumbers.getLines(pre)?.forEach((lineSpan, i) => {
+			const lineNumbers = this.Prism.plugins.lineNumbers as LineNumbers;
+			lineNumbers.getLines(pre)?.forEach((lineSpan, i) => {
 				const lineNumber = i + start;
 				lineSpan.onclick = () => {
 					const hash = `${id}.${lineNumber}`;
@@ -266,10 +269,11 @@ export default {
 				pre.setAttribute('data-line', '');
 			}
 
-			const mutateDom = Prism.plugins.lineHighlight.highlightLines(pre, range, 'temporary ');
+			const lineHighlight = Prism.plugins.lineHighlight as LineHighlight;
+			const mutateDom = lineHighlight.highlightLines(pre, range, 'temporary ');
 			mutateDom();
 
-			if (Prism.plugins.lineHighlight.scrollIntoView) {
+			if (lineHighlight.scrollIntoView) {
 				document.querySelector('.temporary.line-highlight')?.scrollIntoView();
 			}
 		};
@@ -277,7 +281,8 @@ export default {
 			$$('pre')
 				.filter(isActiveFor)
 				.map((pre) => {
-					return Prism.plugins.lineHighlight.highlightLines(pre);
+					const lineHighlight = Prism.plugins.lineHighlight as LineHighlight;
+					return lineHighlight.highlightLines(pre);
 				})
 				.forEach(callFunction);
 		};
@@ -326,7 +331,8 @@ export default {
 				clearTimeout(fakeTimer as never);
 			}
 
-			const mutateDom = Prism.plugins.lineHighlight.highlightLines(pre);
+			const lineHighlight = Prism.plugins.lineHighlight as LineHighlight;
+			const mutateDom = lineHighlight.highlightLines(pre);
 			mutateDom();
 			fakeTimer = setTimeout(applyHash, 1);
 		});

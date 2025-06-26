@@ -101,7 +101,7 @@ export default {
 		return config;
 	},
 	effect(Prism) {
-		const config = Prism.plugins.filterHighlightAll;
+		const config = Prism.plugins.filterHighlightAll as FilterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', (env) => {
 			env.elements = env.elements.filter((e: Element) => config.everyFilter(e));

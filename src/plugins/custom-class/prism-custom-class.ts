@@ -53,7 +53,7 @@ export default {
 		return new CustomClass();
 	},
 	effect(Prism) {
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.plugins.customClass as CustomClass;
 
 		return Prism.hooks.add('wrap', (env) => {
 			if (customClass['adder']) {

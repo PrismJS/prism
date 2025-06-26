@@ -3,6 +3,7 @@ import { insertBefore, withoutTokenize } from '../util/language-util';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 import type { Prism } from '../core/prism';
+import type { Autoloader } from '../plugins/autoloader/prism-autoloader';
 
 export default {
 	id: 'markdown',
@@ -360,7 +361,8 @@ export default {
 				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
 				env.attributes['id'] = id;
 
-				Prism.plugins.autoloader.loadLanguages(codeLang).then(
+				const autoloader = Prism.plugins.autoloader as Autoloader;
+				autoloader.loadLanguages(codeLang).then(
 					() => {
 						const element = document.getElementById(id);
 						if (element) {

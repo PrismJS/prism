@@ -718,7 +718,8 @@ export default {
 		*/
 
 		return Prism.hooks.add('after-highlight', (env) => {
-			Prism.plugins.previewers.initEvents(env.element, env.language);
+			const previewers = Prism.plugins.previewers as PreviewerCollection;
+			previewers.initEvents(env.element, env.language);
 		});
 	}
 } as PluginProto<'previewers'>;

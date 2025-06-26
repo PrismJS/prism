@@ -1,13 +1,13 @@
 import { getParentPre } from '../../shared/dom-util';
 import toolbar from '../toolbar/prism-toolbar';
 import type { PluginProto } from '../../types';
+import type { Toolbar } from '../toolbar/prism-toolbar';
 
 export default {
 	id: 'download-button',
 	require: toolbar,
 	effect(Prism) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const toolbar = Prism.plugins.toolbar!;
+		const toolbar = Prism.plugins.toolbar as Toolbar;
 
 		return toolbar.registerButton('download-file', (env) => {
 			const pre = getParentPre(env.element);
