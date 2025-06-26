@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
+import { insertBefore } from '../util/language-util';
 import clike from './clike';
 import markup from './markup';
 import type { Grammar, LanguageProto } from '../types';

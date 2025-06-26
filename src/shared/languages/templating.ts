@@ -1,5 +1,5 @@
 import { getTextContent } from '../../core/classes/token';
-import { withoutTokenize } from '../language-util';
+import { withoutTokenize } from '../../util/language-util';
 import type { Prism } from '../../core';
 import type { Token, TokenStream } from '../../core/classes/token';
 import type { Registry } from '../../core/registry';

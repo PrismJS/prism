@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import haskell from './haskell';
 import type { LanguageProto } from '../types';
 

@@ -1,6 +1,6 @@
-import { withoutTokenize } from '../shared/language-util';
-import type { Prism } from '../core/prism';
+import { withoutTokenize } from '../util/language-util';
 import type { Token } from '../core';
+import type { Prism } from '../core/prism';
 import type { Grammar, LanguageProto } from '../types';
 
 export default {

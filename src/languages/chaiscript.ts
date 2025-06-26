@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
 import { toArray } from '../util/iterables';
+import { insertBefore } from '../util/language-util';
 import clike from './clike';
 import cpp from './cpp';
 import type { LanguageProto } from '../types';

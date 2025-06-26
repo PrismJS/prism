@@ -1,5 +1,5 @@
 import { getTextContent, Token } from '../core/classes/token';
-import { insertBefore, withoutTokenize } from '../shared/language-util';
+import { insertBefore, withoutTokenize } from '../util/language-util';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';

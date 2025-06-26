@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import java from './java';
 import type { LanguageProto } from '../types';
 

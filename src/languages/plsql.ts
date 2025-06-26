@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import sql from './sql';
 import type { LanguageProto } from '../types';
 

@@ -1,5 +1,5 @@
 import { getTextContent } from '../core/classes/token';
-import { insertBefore, withoutTokenize } from '../shared/language-util';
+import { insertBefore, withoutTokenize } from '../util/language-util';
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 import type { Prism } from '../core/prism';

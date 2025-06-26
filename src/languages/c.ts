@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import clike from './clike';
 import type { GrammarToken, LanguageProto } from '../types';
 

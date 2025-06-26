@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
@@ -85,7 +85,7 @@ export default {
 						'i'
 					),
 					inside: {
-						...(pure['inline-lang'] as GrammarToken).inside as Grammar,
+						...((pure['inline-lang'] as GrammarToken).inside as Grammar),
 						$rest: alias,
 					},
 				},

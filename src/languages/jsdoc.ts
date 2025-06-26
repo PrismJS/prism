@@ -1,4 +1,4 @@
-import { insertBefore } from '../shared/language-util';
+import { insertBefore } from '../util/language-util';
 import javadoclike from './javadoclike';
 import javascript from './javascript';
 import typescript from './typescript';

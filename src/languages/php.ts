@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util';
 import { embeddedIn } from '../shared/languages/templating';
+import { insertBefore } from '../util/language-util';
 import markup from './markup';
 import type { Prism } from '../core/prism';
 import type { Grammar, LanguageProto } from '../types';

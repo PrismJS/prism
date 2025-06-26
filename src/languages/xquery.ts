@@ -1,5 +1,5 @@
 import { getTextContent, Token } from '../core/classes/token';
-import { withoutTokenize } from '../shared/language-util';
+import { withoutTokenize } from '../util/language-util';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';

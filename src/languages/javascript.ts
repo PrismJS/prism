@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { toArray } from '../util/iterables';
+import { insertBefore } from '../util/language-util';
 import clike from './clike';
 import type { Grammar, LanguageProto } from '../types';
 
