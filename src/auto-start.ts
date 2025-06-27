@@ -39,6 +39,11 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
 			Prism.highlightAll();
 		}
 	});
+
+	// Make Prism available globally
+	if (typeof globalThis !== 'undefined') {
+		(globalThis as any).Prism = Prism;
+	}
 }
 else {
 	PrismConfig.manual = true;

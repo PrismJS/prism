@@ -420,7 +420,12 @@ async function buildJS () {
 					'prism': path.join(SRC_DIR, 'auto-start.ts'),
 				},
 			},
-			outputOptions: defaultOutputOptions,
+			outputOptions: {
+				...defaultOutputOptions,
+				format: 'iife',
+				name: 'Prism',
+				exports: 'named',
+			},
 		},
 	};
 
