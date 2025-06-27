@@ -3,5 +3,5 @@ import globalPrism from './auto-start';
 
 export * from './core';
 export { loadLanguages } from './load-languages';
-export { PrismConfig } from './auto-start';
+export { PrismConfig } from './config';
 export default globalPrism;

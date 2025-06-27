@@ -1,3 +1,4 @@
+import globalDefaults from '../../config';
 import { highlight } from '../highlight';
 import { highlightAll } from '../highlight-all';
 import { highlightElement } from '../highlight-element';
@@ -18,6 +19,7 @@ export default class Prism {
 	hooks = new Hooks();
 	components = new Registry(this);
 	plugins: Record<string, unknown> = {};
+	config = globalDefaults;
 
 	/**
 	 * See {@link highlightAll}.

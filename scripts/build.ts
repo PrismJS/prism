@@ -424,7 +424,8 @@ async function buildJS () {
 				...defaultOutputOptions,
 				format: 'iife',
 				name: 'Prism',
-				exports: 'named',
+				exports: 'default',
+				extend: true,
 			},
 		},
 	};
