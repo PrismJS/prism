@@ -5,7 +5,7 @@ import type { Grammar, LanguageProto } from '../types';
 export default {
 	id: 'ftl',
 	require: markup,
-	grammar () {
+	grammar (): Grammar {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
 		// FTL expression with 4 levels of nesting supported
@@ -96,7 +96,7 @@ export default {
 						alias: 'ftl',
 						inside: ftl,
 					},
-				},
+				} as Grammar,
 			},
 			'ftl-interpolation': {
 				pattern: RegExp(
@@ -112,9 +112,9 @@ export default {
 						alias: 'ftl',
 						inside: ftl,
 					},
-				},
+				} as Grammar,
 			},
 			$tokenize: embeddedIn('markup') as Grammar['$tokenize'],
-		};
+		} as Grammar;
 	},
 } as LanguageProto<'ftl'>;

@@ -35,3 +35,15 @@ export function forEach<T extends {}> (
 		callbackFn(value as T, 0);
 	}
 }
+
+export function isIterable (value: any): value is Iterable<any> {
+	return typeof value === 'object' && Symbol.iterator in Object(value);
+}
+
+export function toIterable<T> (value: any): Iterable<T> {
+	if (isIterable(value)) {
+		return value;
+	}
+
+	return toArray(value);
+}

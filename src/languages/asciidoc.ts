@@ -28,7 +28,7 @@ export default {
 				'variable': /\w+(?==)/,
 				'punctuation': /^\[|\]$|,/,
 				'operator': /=/,
-				// The negative look-ahead prevents blank matches
+				// The negative lookahead prevents blank matches
 				'attr-value': /(?!^\s+$).+/,
 			},
 		};
@@ -146,7 +146,7 @@ export default {
 			},
 			'inline': {
 				/*
-					The initial look-behind prevents the highlighting of escaped quoted text.
+					The initial lookbehind prevents the highlighting of escaped quoted text.
 
 					Quoted text can be multi-line but cannot span an empty line.
 					All quoted text can have attributes before [foobar, 'foobar', baz="bar"].
@@ -212,11 +212,11 @@ export default {
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
 		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
-			const o: Grammar = {};
+			const o: Record<string, unknown> = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key] as GrammarToken;
 			}
-			return o;
+			return o as Grammar;
 		}
 
 		attributes.inside['interpreted'].inside.$rest = copyFromAsciiDoc(
@@ -279,13 +279,5 @@ export default {
 		);
 
 		return asciidoc;
-	},
-	effect (Prism) {
-		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', env => {
-			if (env.type === 'entity') {
-				env.attributes['title'] = env.content.replace(/&amp;/, '&');
-			}
-		});
 	},
 } as LanguageProto<'asciidoc'>;

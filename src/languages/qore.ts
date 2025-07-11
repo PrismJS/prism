@@ -3,9 +3,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'qore',
-	require: clike,
-	grammar ({ extend }) {
-		return extend('clike', {
+	base: clike,
+	grammar () {
+		return {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:\/\/|#).*)/,
 				lookbehind: true,
@@ -27,6 +27,6 @@ export default {
 				lookbehind: true,
 			},
 			'variable': /\$(?!\d)\w+\b/,
-		});
+		};
 	},
 } as LanguageProto<'qore'>;

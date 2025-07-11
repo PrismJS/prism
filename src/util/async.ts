@@ -24,3 +24,67 @@ export function documentReady (document = globalThis.document) {
 
 	return Promise.resolve();
 }
+
+export function nextTick () {
+	return new Promise(resolve => {
+		if (typeof requestAnimationFrame === 'function') {
+			requestAnimationFrame(resolve);
+		}
+		else if (typeof setImmediate === 'function') {
+			setImmediate(resolve);
+		}
+		else {
+			setTimeout(resolve, 0);
+		}
+	});
+}
+
+// In addition to waiting for all promises to settle, handle post-hoc additions/removals.
+export async function allSettled<T> (promises: Promise<T>[]): Promise<(T | null)[]> {
+	return Promise.allSettled(promises).then(outcomes => {
+		if (promises.length > 0 && promises.length !== outcomes.length) {
+			// The list of promises changed. Return a new Promise.
+			// The original promise won't resolve until the new one does.
+			return allSettled(promises);
+		}
+
+		// The list of promises either empty or stayed the same.
+		// Return results immediately.
+		return outcomes.map(o => (o.status === 'fulfilled' ? o.value : null));
+	});
+}
+
+export class Deferred<T> extends Promise<T> {
+	executor?: ConstructorParameters<typeof Promise<T>>[0];
+	resolve: (value: T | Promise<T>) => void = () => {};
+	reject: (reason?: Error) => void = () => {};
+
+	constructor (executor?: ConstructorParameters<typeof Promise<T>>[0]) {
+		super((resolve, reject) => {
+			this.resolve = resolve;
+			this.reject = reject;
+			executor?.(resolve, reject);
+		});
+		this.executor = executor;
+	}
+}
+
+type DeferredPromise<T> = Promise<T> & {
+	resolve: (value: T) => void;
+	reject: (reason?: any) => void;
+};
+
+export function defer<T> (): DeferredPromise<T> {
+	let res!: (value: T) => void;
+	let rej!: (reason?: any) => void;
+
+	let promise = new Promise<T>((resolve, reject) => {
+		res = resolve;
+		rej = reject;
+	}) as DeferredPromise<T>;
+
+	promise.resolve = res;
+	promise.reject = rej;
+
+	return promise;
+}

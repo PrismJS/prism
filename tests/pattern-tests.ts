@@ -1,13 +1,13 @@
 import { assert } from 'chai';
 import {
-	JS,
-	NFA,
-	Transformers,
-	Words,
 	combineTransformers,
 	getIntersectionWordSets,
 	isDisjointWith,
+	JS,
+	NFA,
 	transform,
+	Transformers,
+	Words,
 } from 'refa';
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
@@ -16,7 +16,7 @@ import { lazy } from '../src/shared/util';
 import { toArray } from '../src/util/iterables';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
-import { TestCaseFile, parseLanguageNames } from './helper/test-case';
+import { parseLanguageNames, TestCaseFile } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
 import { BFS, BFSPathToPrismTokenPath, isRegExp, parseRegex } from './helper/util';
 import type { Prism } from '../src/core';
@@ -91,7 +91,6 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		ast: LiteralAST;
 		tokenPath: string;
 		name: string;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		parent: any;
 		lookbehind: boolean;
 		lookbehindGroup: CapturingGroup | undefined;
@@ -109,7 +108,6 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 			visited.add(grammar);
 
 			BFS(grammar, path => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
@@ -126,9 +124,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 							);
 						}
 
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const lookbehind =
 							key === 'pattern' && !!parent && !!(parent as GrammarToken).lookbehind;
 						const lookbehindGroup = lookbehind
@@ -139,7 +135,6 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 							ast,
 							tokenPath,
 							name: key,
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							parent,
 							path,
 							lookbehind,
@@ -160,8 +155,8 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		}
 
 		// static analysis
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languageRegistry.cache)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (grammar) {
 				traverse(grammar, id);
 			}
@@ -170,7 +165,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 		// dynamic analysis
 		for (const lang of getRelevantLanguages()) {
 			const snippets = testSnippets.get(lang);
-			const grammar = Prism.components.getLanguage(lang);
+			const grammar = Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method
 			const oldTokenize = Prism.tokenize;
@@ -283,7 +278,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
 				if (group.references.length === 0 && !isLookbehindGroup) {
-					const fixes = [];
+					const fixes: string[] = [];
 					fixes.push(
 						`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`
 					);
@@ -407,7 +402,7 @@ function testPatterns (getPrism: () => Promise<Prism | undefined>, mainLanguage:
  * Returns the first capturing group in the given pattern.
  */
 function getFirstCapturingGroup (pattern: Pattern): CapturingGroup | undefined {
-	let cap = undefined;
+	let cap: CapturingGroup | undefined = undefined;
 
 	try {
 		visitRegExpAST(pattern, {
@@ -417,7 +412,7 @@ function getFirstCapturingGroup (pattern: Pattern): CapturingGroup | undefined {
 			},
 		});
 	}
-	catch (error) {
+	catch (error) { // eslint-disable-line @typescript-eslint/no-unused-vars
 		// ignore errors
 	}
 
@@ -706,7 +701,10 @@ function checkPolynomialBacktracking (path: string, pattern: RegExp, ast?: Liter
 		ast = parseRegex(pattern);
 	}
 
-	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, { maxReports: 1, reportTypes: { 'Move': false } });
+	const result = scslre.analyse(ast as Readonly<scslre.ParsedLiteral>, {
+		maxReports: 1,
+		reportTypes: { 'Move': false },
+	});
 	if (result.reports.length > 0) {
 		const report = result.reports[0];
 
@@ -782,9 +780,9 @@ interface Highlight {
 function highlight (highlights: Highlight[], offset = 0) {
 	highlights.sort((a, b) => a.start - b.start);
 
-	const lines = [];
+	const lines: string[] = [];
 	while (highlights.length > 0) {
-		const newHighlights = [];
+		const newHighlights: Highlight[] = [];
 		let l = '';
 		for (const highlight of highlights) {
 			const start = highlight.start + offset;

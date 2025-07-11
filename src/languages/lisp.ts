@@ -25,7 +25,7 @@ export default {
 		const symbol = /(?!\d)[-+*/~!@$%^=<>{}\w]+/.source;
 		// symbol starting with & used in function arguments
 		const marker = '&' + symbol;
-		// Open parenthesis for look-behind
+		// Open parenthesis for lookbehind
 		const par = '(\\()';
 		const endpar = '(?=\\))';
 		// End the pattern with look-ahead space

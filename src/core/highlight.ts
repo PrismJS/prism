@@ -1,11 +1,26 @@
 import singleton from './prism';
-import stringify from './stringify';
-import type { Grammar } from '../types';
+import { stringify } from './stringify';
+import { tokenize } from './tokenize/tokenize';
 import type { HookEnv } from './classes/hooks';
+import type { LanguageLike, LanguageProto } from './classes/language';
+import type { Token, TokenStream } from './classes/token';
 import type { Prism } from './prism';
 
+declare module './classes/hooks' {
+	interface HookEnv {
+		'before-tokenize': {
+			code: string;
+			languageId?: string;
+			languageDef?: LanguageProto<string>;
+			language?: any;
+			languageReady?: Promise<any>;
+		};
+		'after-tokenize': HookEnv['before-tokenize'] & { tokens?: TokenStream };
+	}
+}
+
 /**
- * Low-level function, only use if you know what you’re doing. It accepts a string of text as input
+ * Low-level function, only use if you know what you're doing. It accepts a string of text as input
  * and the language definitions to use, and returns a string with the HTML produced.
  *
  * The following hooks will be run:
@@ -25,30 +40,34 @@ import type { Prism } from './prism';
 export function highlight (
 	this: Prism,
 	text: string,
-	language: string,
-	options?: HighlightOptions
+	languageRef: string | LanguageLike,
+	options: HighlightOptions = {}
 ): string {
 	const prism = this ?? singleton;
 
-	const languageId = this.components.resolveAlias(language);
-	const grammar = options?.grammar ?? this.components.getLanguage(languageId);
+	const { id, def, language } = prism.languageRegistry.resolveRef(languageRef);
 
-	const env: HookEnv = {
+	let env: HookEnv['after-tokenize'] = {
 		code: text,
-		grammar,
+		languageId: id,
+		languageDef: def,
 		language,
 	};
-	prism.hooks.run('before-tokenize', env);
-	if (!env.grammar) {
-		throw new Error('The language "' + env.language + '" has no grammar.');
+
+	if (env.languageDef && !env.language) {
+		env.language = prism.languageRegistry.getLanguage(env.languageDef);
 	}
 
-	env.tokens = prism.tokenize(env.code, env.grammar);
+	prism.hooks.run('before-tokenize', env);
+
+	if (!env.language) {
+		throw new Error(`No language definition found for ${env.languageId}.`);
+	}
+
+	env.tokens = tokenize.call(prism, env.code, env.language!.resolvedGrammar);
 	prism.hooks.run('after-tokenize', env);
 
 	return stringify(env.tokens, env.language, prism.hooks);
 }
 
-export interface HighlightOptions {
-	grammar?: Grammar;
-}
+export interface HighlightOptions {}

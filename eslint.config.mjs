@@ -1,16 +1,14 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import js from '@eslint/js';
-
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsEslintParser from '@typescript-eslint/parser';
-import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -41,7 +39,7 @@ const config = [
 			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 			'one-var': ['warn', 'never'],
 			'prefer-arrow-callback': 'warn',
-			'prefer-const': ['warn', { 'destructuring': 'all' }],
+			'prefer-const': 'off',
 			'prefer-spread': 'warn',
 
 			// JSDoc
@@ -154,11 +152,17 @@ const config = [
 
 			'@typescript-eslint/no-unsafe-call': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-member-access': 'off',
+			'@typescript-eslint/no-unsafe-return': 'off',
+			'@typescript-eslint/no-unsafe-argument': 'off',
+			'@typescript-eslint/no-floating-promises': 'off',
+			'@typescript-eslint/await-thenable': 'off',
 		},
 	},
 	{
 		// Browser-specific parts
-		files: ['src/auto-start.ts'],
+		files: ['src/global.ts'],
 		languageOptions: {
 			globals: {
 				...globals.browser,

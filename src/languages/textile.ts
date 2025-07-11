@@ -3,8 +3,8 @@ import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'textile',
-	require: markup,
-	grammar ({ extend }) {
+	base: markup,
+	grammar () {
 		// We don't allow for pipes inside parentheses
 		// to not break table pattern |(. foo |). bar |
 		const modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
@@ -290,15 +290,14 @@ export default {
 		// Allow some styles inside table cells
 		Object.assign(phraseInside['table'].inside, nestedPatterns);
 
-		const textile = extend('markup', {
+		return {
 			'phrase': phrase,
-		});
-
-		// Only allow alpha-numeric HTML tags, not XML tags
-		const tag = textile.tag as GrammarToken;
-		tag.pattern =
-			/<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
-
-		return textile;
+			$merge: {
+				// Only allow alpha-numeric HTML tags, not XML tags
+				'tag': {
+					pattern: /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+				}
+			}
+		};
 	},
 } as LanguageProto<'textile'>;

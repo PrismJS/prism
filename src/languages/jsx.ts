@@ -1,5 +1,6 @@
 import { getTextContent, Token } from '../core/classes/token';
-import { insertBefore, withoutTokenize } from '../util/language-util';
+import { insertBefore } from '../util/insert';
+import { withoutTokenize } from '../util/without-tokenize';
 import javascript from './javascript';
 import markup from './markup';
 import type { TokenStream } from '../core/classes/token';
@@ -9,9 +10,8 @@ function stringifyToken (token: string | Token | TokenStream | undefined): strin
 	if (!token) {
 		return '';
 	}
-	else {
-		return getTextContent(token);
-	}
+
+	return getTextContent(token);
 }
 
 function walkTokens (tokens: TokenStream) {

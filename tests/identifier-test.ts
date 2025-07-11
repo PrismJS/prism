@@ -3,7 +3,7 @@ import { toArray } from '../src/util/iterables';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
 import type { Prism, Token } from '../src/core';
-import type { TokenStream } from '../src/core/classes/token';
+import type { TokenStream } from '../src/types';
 
 // This is where you can exclude a language from the identifier test.
 //
@@ -89,7 +89,7 @@ for (const lang of getLanguageIds()) {
 	describe(`Patterns of '${lang}' with optional dependencies`, () => {
 		const getPrism = async () => {
 			const component = await getComponent(lang);
-			const optional = toArray(component.optional);
+			const optional = toArray(component?.optional);
 			const Prism = await createInstance([lang, ...optional]);
 			return Prism;
 		};
@@ -122,8 +122,8 @@ function testLiterals (getPrism: Promise<Prism>, lang: string) {
 		identifierType: keyof IdentifierTestOptions
 	) {
 		const Prism = await getPrism;
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languageRegistry.cache)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (!grammar) {
 				continue;
 			}

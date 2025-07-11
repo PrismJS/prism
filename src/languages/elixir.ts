@@ -2,7 +2,7 @@ import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'elixir',
-	grammar () {
+	grammar (): Grammar {
 		const stringInside = {
 			'interpolation': {
 				pattern: /#\{[^}]+\}/,

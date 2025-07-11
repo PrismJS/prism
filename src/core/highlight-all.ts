@@ -1,7 +1,5 @@
-import singleton from './prism';
-import type { HookEnv } from './classes/hooks';
-import type { AsyncHighlighter } from './highlight-element';
-import type { Prism } from './prism';
+import singleton, { type Prism } from './prism';
+import type { HighlightElementOptions } from './highlight-element';
 
 /**
  * This is the most high-level function in Prism’s API.
@@ -17,7 +15,7 @@ export function highlightAll (this: Prism, options: HighlightAllOptions = {}) {
 	const prism = this ?? singleton;
 	const { root, async, callback } = options;
 
-	const env: HookEnv = {
+	const env: Record<any, any> = {
 		callback,
 		root: root ?? document,
 		selector:
@@ -35,16 +33,9 @@ export function highlightAll (this: Prism, options: HighlightAllOptions = {}) {
 	}
 }
 
-export interface HighlightAllOptions {
+export interface HighlightAllOptions extends HighlightElementOptions {
 	/**
 	 * The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 */
 	root?: ParentNode;
-	async?: AsyncHighlighter;
-	/**
-	 * An optional callback to be invoked on each element after its highlighting is done.
-	 *
-	 * @see HighlightElementOptions#callback
-	 */
-	callback?: (element: Element) => void;
 }

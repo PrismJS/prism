@@ -1,5 +1,5 @@
-import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { embeddedIn } from '../shared/languages/templating';
+import javascript, { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from './javascript';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 /**
@@ -42,13 +42,16 @@ function createTemplate (language: string, tag: string): GrammarToken {
 					$tokenize: embeddedIn(language),
 				},
 			},
-		} as Grammar,
+		} as unknown as Grammar,
 	};
 }
 
 export default {
 	id: 'js-templates',
+	require: javascript,
+	extends: 'javascript',
 	grammar () {
+		// TODO use function with groups
 		return {
 			'template-string': [
 				// styled-jsx:

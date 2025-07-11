@@ -1,8 +1,7 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { htmlEncode } from '../shared/util';
 import singleton from './prism';
-import type { Grammar } from '../types';
-import type { HookEnv } from './classes/hooks';
+import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
 import type { Prism } from './prism';
 
 /**
@@ -32,8 +31,8 @@ export function highlightElement (
 
 	// Find language
 	const language = getLanguage(element);
-	const languageId = this.components.resolveAlias(language);
-	const grammar = this.components.getLanguage(languageId);
+	const languageId = prism.components.resolveAlias(language);
+	const grammar = prism.languageRegistry.getLanguage(languageId);
 
 	// Set language on the element, if not present
 	setLanguage(element, language);
@@ -46,7 +45,7 @@ export function highlightElement (
 
 	const code = element.textContent as string;
 
-	const env: HookEnv = {
+	const env: Record<string, any> = {
 		element,
 		language,
 		grammar,
@@ -113,5 +112,4 @@ export interface AsyncHighlightingData {
 	code: string;
 	grammar: Grammar;
 }
-
 export type AsyncHighlighter = (data: AsyncHighlightingData) => Promise<string>;

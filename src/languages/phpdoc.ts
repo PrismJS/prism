@@ -1,14 +1,13 @@
-import { insertBefore } from '../util/language-util';
 import javadoclike from './javadoclike';
 import type { LanguageProto } from '../types';
 
 export default {
 	id: 'phpdoc',
-	require: javadoclike,
-	grammar ({ extend }) {
+	base: javadoclike,
+	grammar () {
 		const typeExpression = /(?:\b[a-zA-Z]\w*|[|\\[\]])+/.source;
 
-		const phpdoc = extend('javadoclike', {
+		return {
 			'parameter': {
 				pattern: RegExp(
 					'(@(?:global|param|property(?:-read|-write)?|var)\\s+(?:' +
@@ -17,11 +16,9 @@ export default {
 				),
 				lookbehind: true,
 			},
-		});
-
-		insertBefore(phpdoc, 'keyword', {
-			'class-name': [
-				{
+			$insert: {
+				'class-name': {
+					$before: 'keyword',
 					pattern: RegExp(
 						'(@(?:global|package|param|property(?:-read|-write)?|return|subpackage|throws|var)\\s+)' +
 							typeExpression
@@ -33,9 +30,7 @@ export default {
 						'punctuation': /[|\\[\]()]/,
 					},
 				},
-			],
-		});
-
-		return phpdoc;
+			},
+		};
 	},
 } as LanguageProto<'phpdoc'>;

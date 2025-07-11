@@ -1,7 +1,6 @@
 import { getTextContent } from '../core/classes/token';
-import { withoutTokenize } from '../util/language-util';
-import type { Grammar, LanguageProto } from '../types';
-import type { Prism } from '../core/prism';
+import { withoutTokenize } from '../util/without-tokenize';
+import type { Grammar, LanguageProto, Prism } from '../types';
 
 function isBracketsBalanced (input: string): boolean {
 	const brackets = '[]{}';

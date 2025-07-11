@@ -17,14 +17,13 @@ describe('Pattern test coverage', () => {
 		const Prism = await PrismLoader.createInstance(languages);
 
 		const root = Object.fromEntries(
-			[...Prism.components['entries'].keys()].map(id => [
+			Object.keys(Prism.languageRegistry.cache).map(id => [
 				id,
-				Prism.components.getLanguage(id),
+				Prism.languageRegistry.getLanguage(id)?.resolvedGrammar,
 			])
 		);
 
 		BFS(root, (path, object) => {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const { key, value } = path[path.length - 1];
 			const tokenPath = BFSPathToPrismTokenPath(path);
 
@@ -78,8 +77,8 @@ describe('Pattern test coverage', () => {
 					try {
 						await runTestCase(languageIdentifier, filePath, 'none', createInstance);
 					}
-					catch (error) {
-						// we don't case about whether the test succeeds,
+					catch (error) { // eslint-disable-line @typescript-eslint/no-unused-vars
+						// we don't care about whether the test succeeds,
 						// we just want to gather usage data
 					}
 				}
@@ -112,7 +111,7 @@ describe('Pattern test coverage', () => {
 				});
 
 				it(`- should exhaustively cover all keywords in keyword lists`, () => {
-					const problems = [];
+					const problems: string[] = [];
 
 					for (const data of getAllOf(language)) {
 						if (data.matches.length === 0) {

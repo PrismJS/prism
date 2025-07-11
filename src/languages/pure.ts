@@ -1,4 +1,4 @@
-import { insertBefore } from '../util/language-util';
+import { insertBefore } from '../util/insert';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
@@ -40,7 +40,7 @@ export default {
 				greedy: true,
 			},
 			'number': {
-				// The look-behind prevents wrong highlighting of the .. operator
+				// The lookbehind prevents wrong highlighting of the .. operator
 				pattern:
 					/((?:\.\.)?)(?:\b(?:inf|nan)\b|\b0x[\da-f]+|(?:\b(?:0b)?\d+(?:\.\d+)?|\B\.\d+)(?:e[+-]?\d+)?L?)/i,
 				lookbehind: true,

@@ -1,7 +1,7 @@
 import { createPrismDOM } from './prism-loader';
 import { assertEqual, useSnapshot } from './snapshot';
 import { formatHtml } from './util';
-import type { KebabToCamelCase } from '../../src/types';
+import type { KebabToCamelCase } from '../../src/util/types';
 import type { PrismDOM, PrismWindow } from './prism-loader';
 
 interface AssertOptions {

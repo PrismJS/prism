@@ -1,6 +1,19 @@
 import { htmlEncode } from '../shared/util';
 import type { HookEnv, Hooks } from './classes/hooks';
-import type { Token, TokenStream } from './classes/token';
+import type { Token, TokenName, TokenStream } from './classes/token';
+
+declare module './classes/hooks' {
+	interface HookEnv {
+		'wrap': {
+			type: TokenName;
+			languageId: string;
+			content: string;
+			tag: string;
+			classes: string[];
+			attributes: Record<string, string>;
+		};
+	}
+}
 
 /**
  * Converts the given token or token stream to an HTML representation.
@@ -9,28 +22,29 @@ import type { Token, TokenStream } from './classes/token';
  * 1. `wrap`: On each {@link Token}.
  *
  * @param o The token or token stream to be converted.
- * @param language The name of current language.
+ * @param languageId The name of current language.
  * @returns The HTML representation of the token or token stream.
  */
-function stringify (o: string | Token | TokenStream, language: string, hooks: Hooks): string {
+function stringify (o: string | Token | TokenStream, languageId: string, hooks: Hooks): string {
 	if (typeof o === 'string') {
 		return htmlEncode(o);
 	}
+
 	if (Array.isArray(o)) {
 		let s = '';
 		o.forEach(e => {
-			s += stringify(e, language, hooks);
+			s += stringify(e, languageId, hooks);
 		});
 		return s;
 	}
 
-	const env: HookEnv = {
+	const env: HookEnv['wrap'] = {
 		type: o.type,
-		content: stringify(o.content, language, hooks),
+		content: stringify(o.content, languageId, hooks),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
-		language,
+		languageId,
 	};
 
 	const aliases = o.alias;
@@ -45,25 +59,12 @@ function stringify (o: string | Token | TokenStream, language: string, hooks: Ho
 
 	hooks.run('wrap', env);
 
-	let attributes = '';
-	for (const name in env.attributes) {
-		attributes +=
-			' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
-	}
+	const attributes =
+		Object.entries(env.attributes)
+			.map(([name, value]) => ` ${name}=${(value ?? '').replace(/"/g, '&quot;')}"`)
+			.join('') || '';
 
-	return (
-		'<' +
-		env.tag +
-		' class="' +
-		env.classes.join(' ') +
-		'"' +
-		attributes +
-		'>' +
-		env.content +
-		'</' +
-		env.tag +
-		'>'
-	);
+	return `<${env.tag} class="${env.classes.join(' ')}"${attributes}>${env.content}</${env.tag}>`;
 }
 
 export { stringify };

@@ -1,7 +1,6 @@
 import { getTextContent } from '../core/classes/token';
-import { withoutTokenize } from '../util/language-util';
-import type { Prism } from '../core/prism';
-import type { Grammar, LanguageProto } from '../types';
+import { withoutTokenize } from '../util/without-tokenize';
+import type { Grammar, LanguageProto, Prism } from '../types';
 
 export default {
 	id: 'treeview',
@@ -95,5 +94,5 @@ export default {
 				},
 			},
 		},
-	} as unknown as Grammar,
-} as LanguageProto<'treeview'>;
+	},
+} satisfies LanguageProto<'treeview'>;

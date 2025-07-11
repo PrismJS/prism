@@ -1,5 +1,5 @@
 import { getTextContent } from '../../core/classes/token';
-import { withoutTokenize } from '../../util/language-util';
+import { withoutTokenize } from '../../util/without-tokenize';
 import type { Prism } from '../../core';
 import type { Token, TokenStream } from '../../core/classes/token';
 import type { Registry } from '../../core/registry';
@@ -105,6 +105,7 @@ function insertIntoHostToken (hostTokens: TokenStream, tokenStack: TokenStack) {
 
 type GrammarRef = Grammar | string | undefined | null;
 
+// TODO use resolve() from tokenize/util
 function resolve (ref: GrammarRef, components: Registry): Grammar | undefined {
 	if (!ref) {
 		return undefined;
