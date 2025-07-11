@@ -3,7 +3,6 @@ import diff, { PREFIXES } from '../../languages/diff';
 import type { HookEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/classes/token';
 import type { PluginProto } from '../../types';
-import type { HookEnv } from '../../core/classes/hooks';
 
 export default {
 	id: 'diff-highlight',

@@ -1,6 +1,6 @@
 import { getTextContent } from '../core/classes/token';
 import { withoutTokenize } from '../util/without-tokenize';
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto, Prism } from '../types';
 
 export default {
 	id: 'treeview',

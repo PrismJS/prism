@@ -206,7 +206,7 @@ export default {
 						greedy: true,
 						alias: 'property',
 					},
-				},
+				} as unknown as Grammar,
 				'operator': {
 					'literal-property': {
 						pattern:

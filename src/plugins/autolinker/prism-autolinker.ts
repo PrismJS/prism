@@ -1,4 +1,3 @@
-import { HookEnv, HookCallback } from '../../core/classes/hooks';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
