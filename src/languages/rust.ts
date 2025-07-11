@@ -1,4 +1,4 @@
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'rust',
@@ -53,7 +53,7 @@ export default {
 						alias: 'punctuation',
 					},
 					$rest: 'rust',
-				},
+				} as unknown as Grammar,
 			},
 
 			'lifetime-annotation': {

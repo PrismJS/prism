@@ -1,4 +1,5 @@
-import globalPrism, { type Prism } from './core/prism';
+import globalPrism from './core/prism';
+import type { Prism } from './core/prism';
 
 declare global {
 	interface globalThis {

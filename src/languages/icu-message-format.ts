@@ -137,7 +137,7 @@ export default {
 								alias: 'string',
 							},
 							'punctuation': /,/,
-						},
+						} as unknown as Grammar,
 					},
 					'argument-delimiter': {
 						pattern: /./,

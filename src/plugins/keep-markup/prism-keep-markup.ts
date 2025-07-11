@@ -13,7 +13,6 @@ interface NodeData {
 	posOpen: number;
 	posClose: number;
 }
-const markupData: StateKey<NodeData[]> = 'keep-markup data';
 
 export default {
 	id: 'keep-markup',
@@ -79,7 +78,7 @@ export default {
 				}
 			},
 			'after-highlight': (env) => {
-				const data = env.markupData ?? [];
+				const data: NodeData[] = env.markupData ?? [];
 				if (data.length) {
 					type End = [node: Text, pos: number]
 

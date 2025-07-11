@@ -42,7 +42,7 @@ function createTemplate (language: string, tag: string): GrammarToken {
 					$tokenize: embeddedIn(language),
 				},
 			},
-		},
+		} as Grammar,
 	};
 }
 

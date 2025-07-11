@@ -1,4 +1,4 @@
-import type { LanguageProto } from '../types';
+import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'sas',
@@ -276,7 +276,7 @@ export default {
 					'numeric-constant': numericConstant,
 					'punctuation': punctuation,
 					'string': string,
-				},
+				} as unknown as Grammar,
 			},
 
 			'proc-args': {

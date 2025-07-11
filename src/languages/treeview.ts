@@ -44,7 +44,7 @@ export default {
 						},
 					},
 				},
-				$tokenize (code, grammar, Prism) {
+				$tokenize (code: string, grammar: Grammar, Prism: Prism) {
 					const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 					for (const token of tokens) {

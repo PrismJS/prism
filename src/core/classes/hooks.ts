@@ -26,20 +26,23 @@ export class Hooks {
 	): () => void {
 		if (Array.isArray(name)) {
 			// One function, multiple hooks
-			for (let n of name) {
+			for (const n of name) {
 				this.add(n, callback);
 			}
 		}
 		else if (typeof name === 'object') {
 			// Multiple hooks
-			let hooks = name;
+			const hooks = name;
 
-			for (let name in hooks) {
-				this.add(name, hooks[name as string]);
+			for (const name in hooks) {
+				const callback = hooks[name];
+				if (callback) {
+					this.add(name as string, callback as HookCallback);
+				}
 			}
 		}
 		else {
-			let hooks = (this._all[name] ??= []);
+			const hooks = (this._all[name] ??= []);
 			hooks.push(callback as never);
 		}
 
@@ -54,13 +57,13 @@ export class Hooks {
 	): void {
 		if (Array.isArray(name)) {
 			// Multiple hook names, same callback
-			for (let n of name) {
+			for (const n of name) {
 				this.remove(n, callback);
 			}
 		}
 		else if (typeof name === 'object') {
 			// Map of hook names to callbacks
-			for (let n in name) {
+			for (const n in name) {
 				this.remove(n, callback);
 			}
 		}

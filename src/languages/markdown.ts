@@ -1,5 +1,7 @@
 import markup from './markup';
 import type { Grammar, GrammarToken, LanguageProto } from '../types';
+import type { Prism } from '../core/prism';
+import type { Autoloader } from '../plugins/autoloader/prism-autoloader';
 
 export default {
 	id: 'markdown',

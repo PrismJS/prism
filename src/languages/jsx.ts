@@ -157,7 +157,7 @@ export default {
 						alias: 'punctuation',
 					},
 					$rest: 'jsx',
-				},
+				} as unknown as Grammar,
 			},
 		});
 

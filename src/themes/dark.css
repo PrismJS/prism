@@ -1,14 +1,17 @@
 /**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
+ * Dark
+ *
+ * prism.js Dark theme for JavaScript, CSS and HTML
+ * Based on the slides of the talk [“/Reg(exp){2}lained/”](https://regexplained.com/slides.html).
+ *
+ * @author Lea Verou (LeaVerou)
  */
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #f8f8f2;
+	color: white;
 	background: none;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	text-shadow: 0 -0.1em 0.2em black;
 	font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 	font-size: 1em;
 	text-align: left;
@@ -28,23 +31,34 @@ pre[class*="language-"] {
 	hyphens: none;
 }
 
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	background: hsl(30, 20%, 25%);
+}
+
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
 	margin: 0.5em 0;
 	overflow: auto;
-	border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #272822;
+	border: 0.3em solid hsl(30, 20%, 40%);
+	border-radius: 0.5em;
+	box-shadow: 1px 1px 0.5em black inset;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: 0.1em;
+	padding: 0.15em 0.2em 0.05em;
 	border-radius: 0.3em;
+	border: 0.13em solid hsl(30, 20%, 40%);
+	box-shadow: 1px 1px 0.3em -0.1em black inset;
 	white-space: normal;
 }
 
@@ -52,11 +66,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #8292a2;
+	color: hsl(30, 20%, 50%);
 }
 
 .token.punctuation {
-	color: #f8f8f2;
+	opacity: 0.7;
 }
 
 .token.namespace {
@@ -65,15 +79,11 @@ pre[class*="language-"] {
 
 .token.property,
 .token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #f92672;
-}
-
 .token.boolean,
-.token.number {
-	color: #ae81ff;
+.token.number,
+.token.constant,
+.token.symbol {
+	color: hsl(350, 40%, 70%);
 }
 
 .token.selector,
@@ -82,7 +92,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #a6e22e;
+	color: hsl(75, 70%, 60%);
 }
 
 .token.operator,
@@ -91,23 +101,18 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-	color: #f8f8f2;
+	color: hsl(40, 90%, 60%);
 }
 
 .token.atrule,
 .token.attr-value,
-.token.function,
-.token.class-name {
-	color: #e6db74;
-}
-
 .token.keyword {
-	color: #66d9ef;
+	color: hsl(350, 40%, 70%);
 }
 
 .token.regex,
 .token.important {
-	color: #fd971f;
+	color: #e90;
 }
 
 .token.important,
@@ -120,4 +125,8 @@ pre[class*="language-"] {
 
 .token.entity {
 	cursor: help;
+}
+
+.token.deleted {
+	color: red;
 }

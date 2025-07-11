@@ -1,6 +1,6 @@
 import { embeddedIn } from '../shared/languages/templating';
 import markup from './markup';
-import type { Grammar, LanguageProto } from '../types';
+import type { Grammar, LanguageProto, Prism } from '../types';
 
 export default {
 	id: 'php',
@@ -370,13 +370,13 @@ export default {
 					},
 				},
 			},
-			$tokenize: (code, grammar, Prism) => {
+			$tokenize: (code: string, grammar: Grammar, Prism: Prism) => {
 				if (!/<\?/.test(code)) {
 					return Prism.tokenize(code, php);
 				}
 
 				return embedded(code, grammar, Prism);
 			},
-		};
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'php'>;

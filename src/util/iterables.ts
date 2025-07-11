@@ -1,4 +1,3 @@
-
 const isReadonlyArray: (arg: unknown) => arg is readonly any[] = Array.isArray;
 
 /**

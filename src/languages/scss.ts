@@ -15,7 +15,7 @@ export default {
 				inside: {
 					'rule': /@[\w-]+/,
 					$rest: 'scss',
-				},
+				} as unknown as Grammar,
 			},
 			// url, compassified
 			'url': /(?:[-a-z]+-)?url(?=\()/i,

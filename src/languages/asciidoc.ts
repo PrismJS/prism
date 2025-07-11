@@ -214,7 +214,7 @@ export default {
 		function copyFromAsciiDoc (...keys: (keyof typeof asciidoc)[]) {
 			const o: Record<string, unknown> = {};
 			for (const key of keys) {
-				o[key] = asciidoc[key];
+				o[key] = asciidoc[key] as GrammarToken;
 			}
 			return o as Grammar;
 		}

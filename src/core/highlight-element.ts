@@ -1,7 +1,8 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { htmlEncode } from '../shared/util';
+import singleton from './prism';
 import type { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../types';
-import singleton, { type Prism } from './prism';
+import type { Prism } from './prism';
 
 /**
  * Highlights the code inside a single element.

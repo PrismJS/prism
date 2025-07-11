@@ -1,7 +1,10 @@
 /**
+ * Funky
+ *
  * prism.js Funky theme
- * Based on “Polyfilling the gaps” talk slides http://lea.verou.me/polyfilling-the-gaps/
- * @author Lea Verou
+ * Based on [“Polyfilling the gaps”](https://talks.verou.me/polyfilling-the-gaps/) talk slides.
+ *
+ * @author Lea Verou (LeaVerou)
  */
 
 code[class*="language-"],

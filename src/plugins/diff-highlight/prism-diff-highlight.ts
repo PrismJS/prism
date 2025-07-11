@@ -3,6 +3,7 @@ import diff, { PREFIXES } from '../../languages/diff';
 import type { HookEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/classes/token';
 import type { PluginProto } from '../../types';
+import type { HookEnv } from '../../core/classes/hooks';
 
 export default {
 	id: 'diff-highlight',
@@ -44,7 +45,7 @@ export default {
 						return new Token('prefix', PREFIXES[type], /\w+/.exec(type)?.[0]);
 					};
 
-					const withoutPrefixes = token.content.filter((t) => typeof t === 'string' || t.type !== 'prefix');
+					const withoutPrefixes = token.content.filter((t: any) => typeof t === 'string' || t.type !== 'prefix');
 					const prefixCount = token.content.length - withoutPrefixes.length;
 
 					const diffTokens = Prism.tokenize(getTextContent(withoutPrefixes), diffGrammar);

@@ -12,7 +12,7 @@ export default {
 						alias: 'punctuation',
 					},
 					$rest: 'elixir',
-				},
+				} as unknown as Grammar,
 			},
 		};
 

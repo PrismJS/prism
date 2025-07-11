@@ -203,7 +203,8 @@ export default {
 
 		let lastWidth = NaN;
 		const listener = () => {
-			if (Prism.plugins.lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
+			const lineNumbers = Prism.plugins.lineNumbers as LineNumbers;
+			if (lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;
 			}
 			lastWidth = window.innerWidth;

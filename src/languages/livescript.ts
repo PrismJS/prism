@@ -36,7 +36,7 @@ export default {
 					},
 				},
 				'string': /[\s\S]+/,
-			},
+			} as unknown as Grammar,
 		},
 		'string': [
 			{

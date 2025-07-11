@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Grammar, GrammarToken } from '../../types';
-
 type StandardTokenName =
 	| 'atrule'
 	| 'attr-name'

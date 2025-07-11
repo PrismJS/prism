@@ -33,13 +33,13 @@ export interface ButtonOptions {
 	/**
 	 * The event listener for the `click` event of the created button.
 	 */
-	onClick?: (env: CompleteEnv) => void;
+	onClick?: (env: HookEnv) => void;
 	/**
 	 * The class attribute to include with element.
 	 */
 	className?: string;
 }
-export type ButtonFactory = (env: CompleteEnv) => Node | undefined;
+export type ButtonFactory = (env: HookEnv) => Node | undefined;
 
 export class Toolbar {
 	private callbacks: ButtonFactory[] = [];
@@ -103,7 +103,7 @@ export class Toolbar {
 	/**
 	 * @package
 	 */
-	hook: HookCallback<'complete'> = (env) => {
+	hook: HookCallback = (env) => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		const pre = getParentPre(env.element);
 		if (!pre) {
@@ -201,6 +201,7 @@ export default {
 		return toolbar;
 	},
 	effect(Prism) {
-		return Prism.hooks.add('complete', Prism.plugins.toolbar.hook);
+		const toolbar = Prism.plugins.toolbar as Toolbar;
+		return Prism.hooks.add('complete', toolbar.hook);
 	}
 } as PluginProto<'toolbar'>;

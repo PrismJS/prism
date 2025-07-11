@@ -33,7 +33,7 @@ export default {
 						lookbehind: true,
 					},
 					$rest: 'css',
-				},
+				} as unknown as Grammar,
 			},
 			'url': {
 				// https://drafts.csswg.org/css-values-3/#urls

@@ -1,5 +1,6 @@
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
+import type { Autoloader } from '../autoloader/prism-autoloader';
 
 function getGlobal(): Record<string, unknown> {
 	return typeof window === 'object' ? window as never : {};
@@ -241,7 +242,7 @@ export default {
 		return config;
 	},
 	effect(Prism) {
-		const config = Prism.plugins.jsonpHighlight;
+		const config = Prism.plugins.jsonpHighlight as JsonpHighlight;
 
 
 		const LOADING_MESSAGE = 'Loading…';
@@ -282,7 +283,7 @@ export default {
 				code.className = 'language-' + language;
 
 				// preload the language
-				const autoloader = Prism.plugins.autoloader;
+				const autoloader = Prism.plugins.autoloader as Autoloader;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);
 				}

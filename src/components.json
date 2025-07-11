@@ -1,7 +1,7 @@
 {
 	"core": {
 		"meta": {
-			"path": "components/prism-core.js",
+			"path": "index.js",
 			"option": "mandatory"
 		},
 		"core": "Core"
@@ -14,27 +14,34 @@
 		},
 		"prism": {
 			"title": "Default",
-			"option": "default"
+			"option": "default",
+			"owner": "LeaVerou"
 		},
-		"prism-dark": "Dark",
-		"prism-funky": "Funky",
-		"prism-okaidia": {
+		"dark": {
+			"title": "Dark",
+			"owner": "LeaVerou"
+		},
+		"funky": {
+			"title": "Funky",
+			"owner": "LeaVerou"
+		},
+		"okaidia": {
 			"title": "Okaidia",
 			"owner": "ocodia"
 		},
-		"prism-twilight": {
+		"twilight": {
 			"title": "Twilight",
 			"owner": "remybach"
 		},
-		"prism-coy": {
+		"coy": {
 			"title": "Coy",
 			"owner": "tshedor"
 		},
-		"prism-solarizedlight": {
+		"solarizedlight": {
 			"title": "Solarized Light",
 			"owner": "hectormatos2011 "
 		},
-		"prism-tomorrow": {
+		"tomorrow": {
 			"title": "Tomorrow Night",
 			"owner": "Rosey"
 		}

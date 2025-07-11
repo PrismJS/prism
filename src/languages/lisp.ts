@@ -202,6 +202,6 @@ export default {
 					lookbehind: true,
 				},
 			],
-		};
+		} as unknown as Grammar;
 	},
 } as LanguageProto<'lisp'>;

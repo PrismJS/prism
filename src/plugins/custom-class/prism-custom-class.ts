@@ -53,7 +53,7 @@ export default {
 		return new CustomClass();
 	},
 	effect(Prism) {
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.plugins.customClass as CustomClass;
 
 		return Prism.hooks.add('wrap', (env) => {
 			if (customClass['adder']) {
@@ -74,7 +74,7 @@ export default {
 				return;
 			}
 
-			env.classes = env.classes.map((c) => customClass.apply(c));
+			env.classes = env.classes.map((c: string) => customClass.apply(c));
 		});
 	}
 } as PluginProto<'custom-class'>;

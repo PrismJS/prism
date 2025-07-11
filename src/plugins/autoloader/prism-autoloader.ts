@@ -146,7 +146,8 @@ export default {
 				return;
 			}
 
-			Prism.plugins.autoloader.loadLanguages(deps).then(
+			const autoloader = Prism.plugins.autoloader as Autoloader;
+			autoloader.loadLanguages(deps).then(
 				() => Prism.highlightElement(element),
 				(reason) => {
 					console.error(`Failed to load languages (${deps.join(', ')}): ${String(reason)}`);

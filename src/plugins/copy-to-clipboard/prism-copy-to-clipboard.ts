@@ -1,5 +1,6 @@
 import toolbar from '../toolbar/prism-toolbar';
 import type { PluginProto } from '../../types';
+import type { Toolbar } from '../toolbar/prism-toolbar';
 
 interface CopyInfo {
 	getText: () => string;
@@ -118,8 +119,7 @@ export default {
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect(Prism) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const toolbar = Prism.plugins.toolbar!;
+		const toolbar = Prism.plugins.toolbar as Toolbar;
 
 		return toolbar.registerButton('copy-to-clipboard', (env) => {
 			const element = env.element;

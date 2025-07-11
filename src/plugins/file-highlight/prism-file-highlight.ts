@@ -1,6 +1,7 @@
 import { setLanguage } from '../../shared/dom-util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
+import type { Autoloader } from '../autoloader/prism-autoloader';
 
 const FAILURE_MESSAGE = (status: number, message: string) => {
 	return `✖ Error ${status} while fetching file: ${message}`;
@@ -145,7 +146,7 @@ export default {
 				setLanguage(pre, language);
 
 				// preload the language
-				const autoloader = Prism.plugins.autoloader;
+				const autoloader = Prism.plugins.autoloader as Autoloader;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);
 				}

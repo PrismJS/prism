@@ -1,4 +1,5 @@
 import { createTestSuite } from '../../helper/prism-dom-util';
+import type { CustomClass } from '../../../src/plugins/custom-class/prism-custom-class';
 
 describe('Custom class', () => {
 	const { it } = createTestSuite({
@@ -7,7 +8,8 @@ describe('Custom class', () => {
 	});
 
 	it('should set prefix', ({ Prism, util }) => {
-		Prism.plugins.customClass.prefix = 'prism-';
+		const customClass = Prism.plugins.customClass as CustomClass;
+		customClass.prefix = 'prism-';
 
 		util.assert.highlight({
 			language: 'javascript',
@@ -16,7 +18,8 @@ describe('Custom class', () => {
 	});
 
 	it('should reset prefix', ({ Prism, util }) => {
-		Prism.plugins.customClass.prefix = '';
+		const customClass = Prism.plugins.customClass as CustomClass;
+		customClass.prefix = '';
 
 		util.assert.highlight({
 			language: 'javascript',
@@ -25,7 +28,8 @@ describe('Custom class', () => {
 	});
 
 	it('should map class names using a function', ({ Prism, util }) => {
-		Prism.plugins.customClass.map(cls => {
+		const customClass = Prism.plugins.customClass as CustomClass;
+		customClass.map(cls => {
 			return `${cls}-suffix`;
 		});
 
@@ -36,7 +40,8 @@ describe('Custom class', () => {
 	});
 
 	it('should map class names using an object', ({ Prism, util }) => {
-		Prism.plugins.customClass.map({
+		const customClass = Prism.plugins.customClass as CustomClass;
+		customClass.map({
 			boolean: 'b',
 			keyword: 'kw',
 			operator: 'op',
@@ -50,7 +55,8 @@ describe('Custom class', () => {
 	});
 
 	it('should reset map', ({ Prism, util }) => {
-		Prism.plugins.customClass.map({});
+		const customClass = Prism.plugins.customClass as CustomClass;
+		customClass.map({});
 
 		util.assert.highlight({
 			language: 'javascript',

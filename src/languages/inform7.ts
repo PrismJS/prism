@@ -14,7 +14,7 @@ export default {
 								pattern: /\[|\]/,
 								alias: 'punctuation',
 							},
-							$rest: null as Grammar[typeof rest],
+							$rest: null as Grammar['$rest'],
 						},
 					},
 				},
@@ -70,7 +70,7 @@ export default {
 				pattern: /\S(?:\s*\S)*/,
 				alias: 'comment',
 			},
-		};
+		} as Grammar['$rest'];
 
 		return inform7;
 	},

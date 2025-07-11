@@ -1,5 +1,5 @@
 import markup from './markup';
-import type { GrammarToken, LanguageProto } from '../types';
+import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'wiki',
@@ -69,7 +69,7 @@ export default {
 						alias: 'punctuation',
 					},
 					$rest: tag.inside,
-				},
+				} as Grammar,
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
 			$insert: {

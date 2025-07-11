@@ -1,7 +1,7 @@
 import { insertBefore } from '../util/insert';
 import javascript from './javascript';
 import markup from './markup';
-import type { GrammarTokens, LanguageProto } from '../types';
+import type { Grammar, GrammarTokens, LanguageProto } from '../types';
 
 export default {
 	id: 'pug',
@@ -153,7 +153,7 @@ export default {
 				},
 			],
 			'punctuation': /[.\-!=|]+/,
-		};
+		} as unknown as Grammar;
 
 		const filter_pattern =
 			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
