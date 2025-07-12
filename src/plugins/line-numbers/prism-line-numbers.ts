@@ -1,5 +1,6 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
 import { isNonNull, noop } from '../../shared/util';
+import { documentReady } from '../../util/async';
 import { combineCallbacks } from '../../util/combine-callbacks';
 import type { PluginProto } from '../../types';
 
@@ -199,7 +200,7 @@ export class LineNumbers {
 	}
 }
 
-export default {
+const Self = {
 	id: 'line-numbers',
 	plugin () {
 		return new LineNumbers();
@@ -272,3 +273,14 @@ export default {
 		return combineCallbacks(removeListener, completeHook);
 	},
 } as PluginProto<'line-numbers'>;
+
+export default Self;
+
+if (typeof document !== 'undefined') {
+	void documentReady().then(() => {
+		const Prism = (globalThis as any).Prism;
+		if (Prism) {
+			Prism.components.add(Self);
+		}
+	});
+}
