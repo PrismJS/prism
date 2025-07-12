@@ -8,7 +8,6 @@ interface ClassAdderEnvironment {
 	content: string;
 }
 
-
 export class CustomClass {
 	private adder: ClassAdder | undefined;
 	private mapper: ClassMapper | undefined;
@@ -20,7 +19,7 @@ export class CustomClass {
 	/**
 	 * Sets the function which can be used to add custom aliases to any token.
 	 */
-	add(classAdder: ClassAdder) {
+	add (classAdder: ClassAdder) {
 		this.adder = classAdder;
 	}
 
@@ -29,11 +28,12 @@ export class CustomClass {
 	 *
 	 * This does not affect the prefix.
 	 */
-	map(classMapper: Record<string, string> | ClassMapper) {
+	map (classMapper: Record<string, string> | ClassMapper) {
 		if (typeof classMapper === 'function') {
 			this.mapper = classMapper;
-		} else {
-			this.mapper = (className) => classMapper[className] || className;
+		}
+		else {
+			this.mapper = className => classMapper[className] || className;
 		}
 	}
 
@@ -42,30 +42,31 @@ export class CustomClass {
 	 *
 	 * @param className A single class name.
 	 */
-	apply(className: string) {
+	apply (className: string) {
 		return this.prefix + (this.mapper ? this.mapper(className) : className);
 	}
 }
 
 export default {
 	id: 'custom-class',
-	plugin() {
+	plugin () {
 		return new CustomClass();
 	},
-	effect(Prism) {
+	effect (Prism) {
 		const customClass = Prism.plugins.customClass as CustomClass;
 
-		return Prism.hooks.add('wrap', (env) => {
+		return Prism.hooks.add('wrap', env => {
 			if (customClass['adder']) {
 				const result = customClass['adder']({
 					content: env.content,
 					type: env.type,
-					language: env.language
+					language: env.language,
 				});
 
 				if (Array.isArray(result)) {
 					env.classes.push(...result);
-				} else if (result) {
+				}
+				else if (result) {
 					env.classes.push(result);
 				}
 			}
@@ -76,5 +77,5 @@ export default {
 
 			env.classes = env.classes.map((c: string) => customClass.apply(c));
 		});
-	}
+	},
 } as PluginProto<'custom-class'>;

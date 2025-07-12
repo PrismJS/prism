@@ -14,9 +14,9 @@ interface CommandLineInfo {
 
 export default {
 	id: 'command-line',
-	effect(Prism) {
+	effect (Prism) {
 		return Prism.hooks.add({
-			'before-highlight': (env) => {
+			'before-highlight': env => {
 				const commandLine = env.commandLine ?? {};
 
 				if (commandLine.complete || !env.code) {
@@ -26,8 +26,11 @@ export default {
 
 				// Works only for <code> wrapped inside <pre> (not inline).
 				const pre = getParentPre(env.element);
-				if (!pre || // Abort only if neither the <pre> nor the <code> have the class
-					(!CLASS_PATTERN.test(pre.className) && !CLASS_PATTERN.test(env.element.className))) {
+				if (
+					!pre || // Abort only if neither the <pre> nor the <code> have the class
+					(!CLASS_PATTERN.test(pre.className) &&
+						!CLASS_PATTERN.test(env.element.className))
+				) {
 					commandLine.complete = true;
 					return;
 				}
@@ -41,12 +44,13 @@ export default {
 				const codeLines = env.code.split('\n');
 
 				commandLine.numberOfLines = codeLines.length;
-				const outputLines: string[] = commandLine.outputLines = [];
+				const outputLines: string[] = (commandLine.outputLines = []);
 
 				const outputSections = pre.getAttribute('data-output');
 				const outputFilter = pre.getAttribute('data-filter-output');
-				if (outputSections !== null) { // The user specified the output lines. -- cwells
-					outputSections.split(',').forEach((section) => {
+				if (outputSections !== null) {
+					// The user specified the output lines. -- cwells
+					outputSections.split(',').forEach(section => {
 						const range = section.split('-');
 						let outputStart = parseInt(range[0], 10);
 						let outputEnd = range.length === 2 ? parseInt(range[1], 10) : outputStart;
@@ -68,16 +72,19 @@ export default {
 							}
 						}
 					});
-				} else if (outputFilter) { // Treat lines beginning with this string as output. -- cwells
+				}
+				else if (outputFilter) {
+					// Treat lines beginning with this string as output. -- cwells
 					for (let i = 0; i < codeLines.length; i++) {
-						if (codeLines[i].startsWith(outputFilter)) { // This line is output. -- cwells
+						if (codeLines[i].startsWith(outputFilter)) {
+							// This line is output. -- cwells
 							outputLines[i] = codeLines[i].slice(outputFilter.length);
 							codeLines[i] = '';
 						}
 					}
 				}
 
-				const continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
+				const continuationLineIndicies = (commandLine.continuationLineIndicies = new Set());
 				const lineContinuationStr = pre.getAttribute('data-continuation-str');
 				const continuationFilter = pre.getAttribute('data-filter-continuation');
 
@@ -105,7 +112,7 @@ export default {
 
 				env.code = codeLines.join('\n');
 			},
-			'before-insert': (env) => {
+			'before-insert': env => {
 				const commandLine = env.commandLine ?? {};
 				if (commandLine.complete) {
 					return;
@@ -119,16 +126,16 @@ export default {
 					if (outputLines.hasOwnProperty(i)) {
 						// outputLines were removed from codeLines so missed out on escaping
 						// of markup so do it here.
-						codeLines[i] = '<span class="token output">'
-							+ htmlEncode(outputLines[i]) + '</span>';
-					} else {
-						codeLines[i] = '<span class="token command">'
-							+ codeLines[i] + '</span>';
+						codeLines[i] =
+							'<span class="token output">' + htmlEncode(outputLines[i]) + '</span>';
+					}
+					else {
+						codeLines[i] = '<span class="token command">' + codeLines[i] + '</span>';
 					}
 				}
 				env.highlightedCode = codeLines.join('\n');
 			},
-			'complete': (env) => {
+			'complete': env => {
 				const commandLine = env.commandLine ?? {};
 				if (commandLine.complete) {
 					return;
@@ -138,10 +145,12 @@ export default {
 				if (!pre) {
 					return;
 				}
-				if (CLASS_PATTERN.test(env.element.className)) { // Remove the class "command-line" from the <code>
+				if (CLASS_PATTERN.test(env.element.className)) {
+					// Remove the class "command-line" from the <code>
 					env.element.className = env.element.className.replace(CLASS_PATTERN, ' ');
 				}
-				if (!CLASS_PATTERN.test(pre.className)) { // Add the class "command-line" to the <pre>
+				if (!CLASS_PATTERN.test(pre.className)) {
+					// Add the class "command-line" to the <pre>
 					pre.className += ' command-line';
 				}
 
@@ -156,7 +165,8 @@ export default {
 				let promptLine;
 				if (promptText !== '') {
 					promptLine = '<span data-prompt="' + promptText + '"></span>';
-				} else {
+				}
+				else {
 					const user = getAttribute('data-user', 'user');
 					const host = getAttribute('data-host', 'localhost');
 					promptLine = '<span data-user="' + user + '" data-host="' + host + '"></span>';
@@ -164,13 +174,15 @@ export default {
 
 				const continuationLineIndicies = commandLine.continuationLineIndicies || new Set();
 				const continuationPromptText = getAttribute('data-continuation-prompt', '>');
-				const continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
+				const continuationPromptLine =
+					'<span data-continuation-prompt="' + continuationPromptText + '"></span>';
 
 				// Assemble all the appropriate prompt/continuation lines
 				for (let j = 0; j < rowCount; j++) {
 					if (continuationLineIndicies.has(j)) {
 						promptLines += continuationPromptLine;
-					} else {
+					}
+					else {
 						promptLines += promptLine;
 					}
 				}
@@ -193,7 +205,7 @@ export default {
 
 				env.element.insertBefore(prompt, env.element.firstChild);
 				commandLine.complete = true;
-			}
+			},
 		});
-	}
+	},
 } as PluginProto<'command-line'>;

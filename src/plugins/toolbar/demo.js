@@ -1,16 +1,16 @@
-Prism.plugins.toolbar.registerButton("hello-world", {
-	text: "Hello World!", // required
+Prism.plugins.toolbar.registerButton('hello-world', {
+	text: 'Hello World!', // required
 	onClick: function (env) {
 		// optional
 		alert(`This code snippet is written in ${env.language}.`);
 	},
 });
 
-Prism.plugins.toolbar.registerButton("select-code", env => {
-	let button = document.createElement("button");
-	button.innerHTML = "Select Code";
+Prism.plugins.toolbar.registerButton('select-code', env => {
+	let button = document.createElement('button');
+	button.innerHTML = 'Select Code';
 
-	button.addEventListener("click", () => {
+	button.addEventListener('click', () => {
 		// Source: http://stackoverflow.com/a/11128179/2757940
 		if (document.body.createTextRange) {
 			// ms

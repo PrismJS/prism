@@ -1,13 +1,13 @@
-import { Token, getTextContent } from '../../core/classes/token';
+import { getTextContent, Token } from '../../core/classes/token';
 import diff, { PREFIXES } from '../../languages/diff';
+import type { HookEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/classes/token';
 import type { PluginProto } from '../../types';
-import type { HookEnv } from '../../core/classes/hooks';
 
 export default {
 	id: 'diff-highlight',
 	require: diff,
-	effect(Prism) {
+	effect (Prism) {
 		const LANGUAGE_REGEX = /^diff-([\w-]+)/i;
 
 		const setMissingGrammar = (env: HookEnv) => {
@@ -20,7 +20,7 @@ export default {
 		return Prism.hooks.add({
 			'before-sanity-check': setMissingGrammar,
 			'before-tokenize': setMissingGrammar,
-			'after-tokenize': (env) => {
+			'after-tokenize': env => {
 				const langMatch = LANGUAGE_REGEX.exec(env.language);
 				if (!langMatch) {
 					return; // not a language specific diff
@@ -33,7 +33,11 @@ export default {
 				}
 
 				for (const token of env.tokens) {
-					if (typeof token === 'string' || !(token.type in PREFIXES) || !Array.isArray(token.content)) {
+					if (
+						typeof token === 'string' ||
+						!(token.type in PREFIXES) ||
+						!Array.isArray(token.content)
+					) {
 						continue;
 					}
 
@@ -44,7 +48,9 @@ export default {
 						return new Token('prefix', PREFIXES[type], /\w+/.exec(type)?.[0]);
 					};
 
-					const withoutPrefixes = token.content.filter((t: any) => typeof t === 'string' || t.type !== 'prefix');
+					const withoutPrefixes = token.content.filter(
+						(t: any) => typeof t === 'string' || t.type !== 'prefix'
+					);
 					const prefixCount = token.content.length - withoutPrefixes.length;
 
 					const diffTokens = Prism.tokenize(getTextContent(withoutPrefixes), diffGrammar);
@@ -86,12 +92,14 @@ export default {
 									tokens.splice(i, 1, ...inserted);
 									i += inserted.length - 1;
 								}
-							} else if (typeof token.content === 'string') {
+							}
+							else if (typeof token.content === 'string') {
 								const inserted = insertAfterLineBreakString(token.content);
 								if (inserted) {
 									token.content = inserted;
 								}
-							} else {
+							}
+							else {
 								insertAfterLineBreak(token.content);
 							}
 						}
@@ -105,7 +113,7 @@ export default {
 
 					token.content = diffTokens;
 				}
-			}
+			},
 		});
-	}
+	},
 } as PluginProto<'diff-highlight'>;

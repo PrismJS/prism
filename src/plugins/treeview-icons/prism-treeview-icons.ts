@@ -3,5 +3,5 @@ import type { PluginProto } from '../../types';
 
 export default {
 	id: 'treeview-icons',
-	require: treeview
+	require: treeview,
 } as PluginProto<'treeview-icons'>;

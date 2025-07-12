@@ -6,7 +6,9 @@ import type { PluginProto } from '../../types';
 /**
  * Returns the absolute X, Y offsets for an element
  */
-const getOffset = (element: Element): { top: number, right: number, bottom: number, left: number, width: number, height: number } => {
+const getOffset = (
+	element: Element
+): { top: number; right: number; bottom: number; left: number; width: number; height: number } => {
 	const elementBounds = element.getBoundingClientRect();
 	let left = elementBounds.left;
 	let top = elementBounds.top;
@@ -20,7 +22,7 @@ const getOffset = (element: Element): { top: number, right: number, bottom: numb
 		bottom: innerHeight - top - elementBounds.height,
 		left,
 		width: elementBounds.width,
-		height: elementBounds.height
+		height: elementBounds.height,
 	};
 };
 
@@ -49,7 +51,12 @@ class Previewer {
 	 * @param supportedLanguages Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
 	 * @param initializer Function that will be called on initialization.
 	 */
-	constructor(type: string, updater: Updater, supportedLanguages: string[] | string = '*', initializer?: Initializer) {
+	constructor (
+		type: string,
+		updater: Updater,
+		supportedLanguages: string[] | string = '*',
+		initializer?: Initializer
+	) {
 		this.type = type;
 		this.supportedLanguages = supportedLanguages;
 		this.updater = updater;
@@ -58,7 +65,7 @@ class Previewer {
 	/**
 	 * Creates the HTML element for the previewer.
 	 */
-	init(): asserts this is PreviewerE {
+	init (): asserts this is PreviewerE {
 		if (this._elt) {
 			return;
 		}
@@ -69,7 +76,7 @@ class Previewer {
 			this.initializer.call(this as PreviewerE);
 		}
 	}
-	isDisabled(token: Element): boolean {
+	isDisabled (token: Element): boolean {
 		const previewers = token.closest('[data-previewers]')?.getAttribute('data-previewers');
 		const parts = (previewers || '').split(/\s+/);
 		return !parts.includes(this.type);
@@ -77,7 +84,7 @@ class Previewer {
 	/**
 	 * Checks the class name of each hovered element
 	 */
-	tryShow(token: Element): void {
+	tryShow (token: Element): void {
 		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
 			return;
 		}
@@ -100,7 +107,7 @@ class Previewer {
 	/**
 	 * Shows the previewer positioned properly for the current token.
 	 */
-	show() {
+	show () {
 		this.init();
 
 		if (!this._token) {
@@ -117,25 +124,26 @@ class Previewer {
 				this._elt.classList.remove(FLIPPED_CLASS);
 				this._elt.style.top = `${offset.top}px`;
 				this._elt.style.bottom = '';
-			} else {
+			}
+			else {
 				this._elt.classList.add(FLIPPED_CLASS);
 				this._elt.style.bottom = `${offset.bottom}px`;
 				this._elt.style.top = '';
 			}
 
-			this._elt.style.left = `${(offset.left + Math.min(200, offset.width / 2))}px`;
-		} else {
+			this._elt.style.left = `${offset.left + Math.min(200, offset.width / 2)}px`;
+		}
+		else {
 			this.hide();
 		}
 	}
 	/**
 	 * Hides the previewer.
 	 */
-	hide() {
+	hide () {
 		this._elt?.classList.remove(ACTIVE_CLASS);
 	}
 }
-
 
 export class PreviewerCollection {
 	/**
@@ -147,8 +155,8 @@ export class PreviewerCollection {
 	 */
 	readonly byType = new Map<string, Previewer>();
 
-	add(previewer: Previewer) {
-		forEach(previewer.supportedLanguages, (lang) => {
+	add (previewer: Previewer) {
+		forEach(previewer.supportedLanguages, lang => {
 			let list = this.byLanguages.get(lang);
 			if (list === undefined) {
 				list = [];
@@ -168,21 +176,25 @@ export class PreviewerCollection {
 	 * @param elt The code block (`env.element`)
 	 * @param lang The language (`env.language`)
 	 */
-	initEvents(elt: Element, lang: string) {
+	initEvents (elt: Element, lang: string) {
 		const previewers: Previewer[] = [];
 		previewers.push(...(this.byLanguages.get(lang) ?? []));
 		previewers.push(...(this.byLanguages.get('*') ?? []));
 		if (previewers.length === 0) {
 			return;
 		}
-		elt.addEventListener('mouseover', (e) => {
-			const target = e.target;
-			if (target) {
-				previewers.forEach((previewer) => {
-					previewer.tryShow(target as Element);
-				});
-			}
-		}, false);
+		elt.addEventListener(
+			'mouseover',
+			e => {
+				const target = e.target;
+				if (target) {
+					previewers.forEach(previewer => {
+						previewer.tryShow(target as Element);
+					});
+				}
+			},
+			false
+		);
 	}
 }
 
@@ -195,8 +207,7 @@ const Prism = { languages: {} as Record<string, any> };
 const previewers = {
 	// gradient must be defined before color and angle
 	'gradient': {
-		create() {
-
+		create () {
 			/**
 			 * Stores already processed gradients so that we don't
 			 * make the conversion every time the previewer is shown
@@ -210,12 +221,17 @@ const previewers = {
 			 * @param func Gradient function name ("linear-gradient")
 			 * @param values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 			 */
-			function convertToW3CLinearGradient(prefix: string, func: string, values: string[]) {
+			function convertToW3CLinearGradient (prefix: string, func: string, values: string[]) {
 				// Default value for angle
 				let angle = '180deg';
 
 				const first = values[0];
-				if (first && /^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|bottom|left|right|to\b|top)/.test(first)) {
+				if (
+					first &&
+					/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|bottom|left|right|to\b|top)/.test(
+						first
+					)
+				) {
 					angle = first;
 					values.shift();
 					if (!angle.includes('to ')) {
@@ -224,28 +240,37 @@ const previewers = {
 						if (angle.includes('top')) {
 							if (angle.includes('left')) {
 								angle = 'to bottom right';
-							} else if (angle.includes('right')) {
+							}
+							else if (angle.includes('right')) {
 								angle = 'to bottom left';
-							} else {
+							}
+							else {
 								angle = 'to bottom';
 							}
-						} else if (angle.includes('bottom')) {
+						}
+						else if (angle.includes('bottom')) {
 							if (angle.includes('left')) {
 								angle = 'to top right';
-							} else if (angle.includes('right')) {
+							}
+							else if (angle.includes('right')) {
 								angle = 'to top left';
-							} else {
+							}
+							else {
 								angle = 'to top';
 							}
-						} else if (angle.includes('left')) {
+						}
+						else if (angle.includes('left')) {
 							angle = 'to right';
-						} else if (angle.includes('right')) {
+						}
+						else if (angle.includes('right')) {
 							angle = 'to left';
-						} else if (prefix) {
+						}
+						else if (prefix) {
 							// Angle is shifted by 90deg in prefixed gradients
 							if (angle.includes('deg')) {
 								angle = `${90 - parseFloat(angle)}deg`;
-							} else if (angle.includes('rad')) {
+							}
+							else if (angle.includes('rad')) {
 								angle = `${Math.PI / 2 - parseFloat(angle)}rad`;
 							}
 						}
@@ -262,7 +287,7 @@ const previewers = {
 			 * @param func Gradient function name ("linear-gradient")
 			 * @param values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 			 */
-			function convertToW3CRadialGradient(prefix: string, func: string, values: string[]) {
+			function convertToW3CRadialGradient (prefix: string, func: string, values: string[]) {
 				if (!values[0].includes('at')) {
 					// Looks like old syntax
 
@@ -279,7 +304,10 @@ const previewers = {
 					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 						// Found a shape and/or size
 						const shapeSizeParts = values.shift()!.split(/\s+/);
-						if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
+						if (
+							shapeSizeParts[0] &&
+							(shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')
+						) {
 							shape = shapeSizeParts.shift()!;
 						}
 						if (shapeSizeParts[0]) {
@@ -289,12 +317,24 @@ const previewers = {
 						// Old keywords are converted to their synonyms
 						if (size === 'cover') {
 							size = 'farthest-corner';
-						} else if (size === 'contain') {
+						}
+						else if (size === 'contain') {
 							size = 'clothest-side';
 						}
 					}
 
-					return func + '(' + shape + ' ' + size + ' at ' + position + ',' + values.join(',') + ')';
+					return (
+						func +
+						'(' +
+						shape +
+						' ' +
+						size +
+						' at ' +
+						position +
+						',' +
+						values.join(',') +
+						')'
+					);
 				}
 				return func + '(' + values.join(',') + ')';
 			}
@@ -305,16 +345,23 @@ const previewers = {
 			 *
 			 * @param gradient The CSS gradient
 			 */
-			function convertToW3CGradient(gradient: string) {
+			function convertToW3CGradient (gradient: string) {
 				if (cache[gradient]) {
 					return cache[gradient];
 				}
 
-				const values = gradient.replace(/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g, '').split(/\s*,\s*/);
-				const parts = gradient.match(/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/);
+				const values = gradient
+					.replace(
+						/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g,
+						''
+					)
+					.split(/\s*,\s*/);
+				const parts = gradient.match(
+					/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/
+				);
 
 				if (!parts) {
-					return cache[gradient] = '';
+					return (cache[gradient] = '');
 				}
 
 				// "", "-moz-", etc.
@@ -323,33 +370,40 @@ const previewers = {
 				const func = parts[2];
 
 				if (func.includes('linear')) {
-					return cache[gradient] = convertToW3CLinearGradient(prefix, func, values);
-				} else if (func.includes('radial')) {
-					return cache[gradient] = convertToW3CRadialGradient(prefix, func, values);
+					return (cache[gradient] = convertToW3CLinearGradient(prefix, func, values));
 				}
-				return cache[gradient] = func + '(' + values.join(',') + ')';
+				else if (func.includes('radial')) {
+					return (cache[gradient] = convertToW3CRadialGradient(prefix, func, values));
+				}
+				return (cache[gradient] = func + '(' + values.join(',') + ')');
 			}
 
-			return new Previewer('gradient', function (value) {
-				const first = this.firstChild as HTMLElement | null;
-				if (!first) {
-					return false;
+			return new Previewer(
+				'gradient',
+				function (value) {
+					const first = this.firstChild as HTMLElement | null;
+					if (!first) {
+						return false;
+					}
+					first.style.backgroundImage = '';
+					first.style.backgroundImage = convertToW3CGradient(value);
+					return !!first.style.backgroundImage;
+				},
+				'*',
+				function () {
+					this._elt.innerHTML = '<div></div>';
 				}
-				first.style.backgroundImage = '';
-				first.style.backgroundImage = convertToW3CGradient(value);
-				return !!first.style.backgroundImage;
-			}, '*', function () {
-				this._elt.innerHTML = '<div></div>';
-			});
+			);
 		},
 		tokens: {
 			'gradient': {
-				pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
+				pattern:
+					/(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
 				inside: {
 					'function': /[\w-]+(?=\()/,
-					'punctuation': /[(),]/
-				}
-			}
+					'punctuation': /[(),]/,
+				},
+			},
 		},
 		languages: {
 			'css': true,
@@ -359,14 +413,14 @@ const previewers = {
 					lang: 'sass',
 					before: 'punctuation',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
 				},
 				{
 					lang: 'sass',
 					before: 'punctuation',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line']
-				}
+					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+				},
 			],
 			'scss': true,
 			'stylus': [
@@ -374,56 +428,66 @@ const previewers = {
 					lang: 'stylus',
 					before: 'func',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['property-declaration'].inside,
 				},
 				{
 					lang: 'stylus',
 					before: 'func',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-				}
-			]
-		}
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['variable-declaration'].inside,
+				},
+			],
+		},
 	},
 	'angle': {
-		create() {
-			return new Previewer('angle', function (value) {
-				const num = parseFloat(value);
-				const unit = value.match(/[a-z]+$/i);
-				let max = 1;
-				if (!num || !unit) {
-					return false;
-				}
+		create () {
+			return new Previewer(
+				'angle',
+				function (value) {
+					const num = parseFloat(value);
+					const unit = value.match(/[a-z]+$/i);
+					let max = 1;
+					if (!num || !unit) {
+						return false;
+					}
 
-				switch (unit[0]) {
-					case 'deg':
-						max = 360;
-						break;
-					case 'grad':
-						max = 400;
-						break;
-					case 'rad':
-						max = 2 * Math.PI;
-						break;
-					case 'turn':
-						max = 1;
-				}
+					switch (unit[0]) {
+						case 'deg':
+							max = 360;
+							break;
+						case 'grad':
+							max = 400;
+							break;
+						case 'rad':
+							max = 2 * Math.PI;
+							break;
+						case 'turn':
+							max = 1;
+					}
 
-				const percentage = (100 * num / max) % 100;
-				this[`${num < 0 ? 'set' : 'remove'}Attribute`]('data-negative', '');
-				const circle = this.querySelector('circle');
-				if (circle) {
-					circle.style.strokeDasharray = `${Math.abs(percentage)},500`;
+					const percentage = ((100 * num) / max) % 100;
+					this[`${num < 0 ? 'set' : 'remove'}Attribute`]('data-negative', '');
+					const circle = this.querySelector('circle');
+					if (circle) {
+						circle.style.strokeDasharray = `${Math.abs(percentage)},500`;
+					}
+					return true;
+				},
+				'*',
+				function () {
+					this._elt.innerHTML =
+						'<svg viewBox="0 0 64 64">' +
+						'<circle r="16" cy="32" cx="32"></circle>' +
+						'</svg>';
 				}
-				return true;
-			}, '*', function () {
-				this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
-					'<circle r="16" cy="32" cx="32"></circle>' +
-					'</svg>';
-			});
+			);
 		},
 		tokens: {
-			'angle': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)(?:deg|g?rad|turn)\b/i
+			'angle': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)(?:deg|g?rad|turn)\b/i,
 		},
 		languages: {
 			'css': true,
@@ -432,20 +496,20 @@ const previewers = {
 				lang: 'markup',
 				before: 'punctuation',
 				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
 			},
 			'sass': [
 				{
 					lang: 'sass',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line']
+					root: Prism.languages.sass && Prism.languages.sass['property-line'],
 				},
 				{
 					lang: 'sass',
 					before: 'operator',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line']
-				}
+					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+				},
 			],
 			'scss': true,
 			'stylus': [
@@ -453,19 +517,23 @@ const previewers = {
 					lang: 'stylus',
 					before: 'func',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['property-declaration'].inside,
 				},
 				{
 					lang: 'stylus',
 					before: 'func',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-				}
-			]
-		}
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['variable-declaration'].inside,
+				},
+			],
+		},
 	},
 	'color': {
-		create() {
+		create () {
 			return new Previewer('color', function (value) {
 				this.style.backgroundColor = '';
 				this.style.backgroundColor = value;
@@ -473,7 +541,7 @@ const previewers = {
 			});
 		},
 		tokens: {
-			'color': [Prism.languages.css?.['hexcode']].concat(Prism.languages.css?.['color'])
+			'color': [Prism.languages.css?.['hexcode']].concat(Prism.languages.css?.['color']),
 		},
 		languages: {
 			// CSS extras is required, so css and scss are not necessary
@@ -483,20 +551,20 @@ const previewers = {
 				lang: 'markup',
 				before: 'punctuation',
 				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
 			},
 			'sass': [
 				{
 					lang: 'sass',
 					before: 'punctuation',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
 				},
 				{
 					lang: 'sass',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line']
-				}
+					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+				},
 			],
 			'scss': false,
 			'stylus': [
@@ -504,67 +572,92 @@ const previewers = {
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['property-declaration'].inside,
 				},
 				{
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-				}
-			]
-		}
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['variable-declaration'].inside,
+				},
+			],
+		},
 	},
 	'easing': {
-		create() {
+		create () {
 			const identifierMap: Partial<Record<string, string>> = {
 				'linear': '0,0,1,1',
 				'ease': '.25,.1,.25,1',
 				'ease-in': '.42,0,1,1',
 				'ease-out': '0,0,.58,1',
-				'ease-in-out': '.42,0,.58,1'
+				'ease-in-out': '.42,0,.58,1',
 			};
-			return new Previewer('easing', function (value) {
-				value = identifierMap[value] || value;
+			return new Previewer(
+				'easing',
+				function (value) {
+					value = identifierMap[value] || value;
 
-				const p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
+					const p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
 
-				if (p && p.length === 4) {
-					const values = p.map(Number).map((p, i) => (i % 2 ? 1 - p : p) * 100).map(String);
+					if (p && p.length === 4) {
+						const values = p
+							.map(Number)
+							.map((p, i) => (i % 2 ? 1 - p : p) * 100)
+							.map(String);
 
-					this.querySelector('path')?.setAttribute('d', 'M0,100 C' + values[0] + ',' + values[1] + ', ' + values[2] + ',' + values[3] + ', 100,0');
+						this.querySelector('path')?.setAttribute(
+							'd',
+							'M0,100 C' +
+								values[0] +
+								',' +
+								values[1] +
+								', ' +
+								values[2] +
+								',' +
+								values[3] +
+								', 100,0'
+						);
 
-					const lines = this.querySelectorAll('line');
-					lines[0].setAttribute('x2', values[0]);
-					lines[0].setAttribute('y2', values[1]);
-					lines[1].setAttribute('x2', values[2]);
-					lines[1].setAttribute('y2', values[3]);
+						const lines = this.querySelectorAll('line');
+						lines[0].setAttribute('x2', values[0]);
+						lines[0].setAttribute('y2', values[1]);
+						lines[1].setAttribute('x2', values[2]);
+						lines[1].setAttribute('y2', values[3]);
 
-					return true;
+						return true;
+					}
+
+					return false;
+				},
+				'*',
+				function () {
+					this._elt.innerHTML =
+						'<svg viewBox="-20 -20 140 140" width="100" height="100">' +
+						'<defs>' +
+						'<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">' +
+						'<circle cx="2" cy="2" r="1.5" />' +
+						'</marker>' +
+						'</defs>' +
+						'<path d="M0,100 C20,50, 40,30, 100,0" />' +
+						'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+						'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+						'</svg>';
 				}
-
-				return false;
-			}, '*', function () {
-				this._elt.innerHTML = '<svg viewBox="-20 -20 140 140" width="100" height="100">' +
-					'<defs>' +
-					'<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">' +
-					'<circle cx="2" cy="2" r="1.5" />' +
-					'</marker>' +
-					'</defs>' +
-					'<path d="M0,100 C20,50, 40,30, 100,0" />' +
-					'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
-					'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
-					'</svg>';
-			});
+			);
 		},
 		tokens: {
 			'easing': {
-				pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
+				pattern:
+					/\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
 				inside: {
 					'function': /[\w-]+(?=\()/,
-					'punctuation': /[(),]/
-				}
-			}
+					'punctuation': /[(),]/,
+				},
+			},
 		},
 		languages: {
 			'css': true,
@@ -574,13 +667,13 @@ const previewers = {
 					lang: 'sass',
 					inside: 'inside',
 					before: 'punctuation',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
 				},
 				{
 					lang: 'sass',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line']
-				}
+					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+				},
 			],
 			'scss': true,
 			'stylus': [
@@ -588,40 +681,50 @@ const previewers = {
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['property-declaration'].inside,
 				},
 				{
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-				}
-			]
-		}
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['variable-declaration'].inside,
+				},
+			],
+		},
 	},
 
 	'time': {
-		create() {
-			return new Previewer('time', function (value) {
-				const num = parseFloat(value);
-				const unit = value.match(/[a-z]+$/i);
-				if (!num || !unit) {
-					return false;
+		create () {
+			return new Previewer(
+				'time',
+				function (value) {
+					const num = parseFloat(value);
+					const unit = value.match(/[a-z]+$/i);
+					if (!num || !unit) {
+						return false;
+					}
+					const u = unit[0];
+					const circle = this.querySelector('circle');
+					if (circle) {
+						circle.style.animationDuration = `${2 * num}${u}`;
+					}
+					return true;
+				},
+				'*',
+				function () {
+					this._elt.innerHTML =
+						'<svg viewBox="0 0 64 64">' +
+						'<circle r="16" cy="32" cx="32"></circle>' +
+						'</svg>';
 				}
-				const u = unit[0];
-				const circle = this.querySelector('circle');
-				if (circle) {
-					circle.style.animationDuration = `${2 * num}${u}`;
-				}
-				return true;
-			}, '*', function () {
-				this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
-					'<circle r="16" cy="32" cx="32"></circle>' +
-					'</svg>';
-			});
+			);
 		},
 		tokens: {
-			'time': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)m?s\b/i
+			'time': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)m?s\b/i,
 		},
 		languages: {
 			'css': true,
@@ -630,20 +733,20 @@ const previewers = {
 				lang: 'markup',
 				before: 'punctuation',
 				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
 			},
 			'sass': [
 				{
 					lang: 'sass',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line']
+					root: Prism.languages.sass && Prism.languages.sass['property-line'],
 				},
 				{
 					lang: 'sass',
 					before: 'operator',
 					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line']
-				}
+					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+				},
 			],
 			'scss': true,
 			'stylus': [
@@ -651,26 +754,29 @@ const previewers = {
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['property-declaration'].inside,
 				},
 				{
 					lang: 'stylus',
 					before: 'hexcode',
 					inside: 'rest',
-					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-				}
-			]
-		}
-	}
+					root:
+						Prism.languages.stylus &&
+						Prism.languages.stylus['variable-declaration'].inside,
+				},
+			],
+		},
+	},
 };
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
 /* eslint-enable @typescript-eslint/no-unsafe-member-access */
 
-
 export default {
 	id: 'previewers',
 	require: cssExtras,
-	plugin() {
+	plugin () {
 		const collection = new PreviewerCollection();
 
 		if (typeof document !== 'undefined') {
@@ -681,7 +787,7 @@ export default {
 
 		return collection;
 	},
-	effect(Prism) {
+	effect (Prism) {
 		/*
 		Prism.hooks.add('before-highlight', (env) => {
 			for (const previewer of Object.values(previewers)) {
@@ -717,9 +823,9 @@ export default {
 		});
 		*/
 
-		return Prism.hooks.add('after-highlight', (env) => {
+		return Prism.hooks.add('after-highlight', env => {
 			const previewers = Prism.plugins.previewers as PreviewerCollection;
 			previewers.initEvents(env.element, env.language);
 		});
-	}
+	},
 } as PluginProto<'previewers'>;

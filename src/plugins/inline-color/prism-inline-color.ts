@@ -16,7 +16,7 @@ const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;
  * Hexadecimal colors are parsed because they are not fully supported by older browsers, so converting them to
  * `rgba` functions improves browser compatibility.
  */
-function parseHexColor(hex: string) {
+function parseHexColor (hex: string) {
 	const match = HEX_COLOR.exec(hex);
 	if (!match) {
 		return undefined;
@@ -41,9 +41,12 @@ function parseHexColor(hex: string) {
 	}
 
 	// output
-	const rgb = channels.slice(0, 3).map((x) => {
-		return String(Math.round(x * 255));
-	}).join(',');
+	const rgb = channels
+		.slice(0, 3)
+		.map(x => {
+			return String(Math.round(x * 255));
+		})
+		.join(',');
 	const alpha = String(Number(channels[3].toFixed(3))); // easy way to round 3 decimal places
 
 	return 'rgba(' + rgb + ',' + alpha + ')';
@@ -52,7 +55,7 @@ function parseHexColor(hex: string) {
 /**
  * Validates the given Color using the current browser's internal implementation.
  */
-function validateColor(color: string) {
+function validateColor (color: string) {
 	if (typeof document === 'undefined') {
 		return undefined;
 	}
@@ -65,19 +68,16 @@ function validateColor(color: string) {
 export default {
 	id: 'inline-color',
 	require: cssExtras,
-	effect(Prism) {
+	effect (Prism) {
 		/**
 		 * An array of function which parse a given string representation of a color.
 		 *
 		 * These parser serve as validators and as a layer of compatibility to support color formats which the browser
 		 * might not support natively.
 		 */
-		const parsers = [
-			parseHexColor,
-			validateColor
-		];
+		const parsers = [parseHexColor, validateColor];
 
-		return Prism.hooks.add('wrap', (env) => {
+		return Prism.hooks.add('wrap', env => {
 			if (env.type === 'color' || env.classes.includes('color')) {
 				const content = env.content;
 
@@ -93,9 +93,12 @@ export default {
 					return;
 				}
 
-				const previewElement = '<span class="inline-color-wrapper"><span class="inline-color" style="background-color:' + color + ';"></span></span>';
+				const previewElement =
+					'<span class="inline-color-wrapper"><span class="inline-color" style="background-color:' +
+					color +
+					';"></span></span>';
 				env.content = previewElement + content;
 			}
 		});
-	}
+	},
 } as PluginProto<'inline-color'>;

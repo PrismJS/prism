@@ -4,12 +4,13 @@ import type { CustomClass } from '../custom-class/prism-custom-class';
 
 export default {
 	id: 'match-braces',
-	effect(Prism) {
-		function mapClassName(name: string) {
+	effect (Prism) {
+		function mapClassName (name: string) {
 			const customClass = Prism.plugins.customClass as CustomClass;
 			if (customClass) {
 				return customClass.apply(name);
-			} else {
+			}
+			else {
 				return name;
 			}
 		}
@@ -44,15 +45,17 @@ export default {
 		/**
 		 * Returns the brace partner given one brace of a brace pair.
 		 */
-		function getPartnerBrace(brace: Element) {
+		function getPartnerBrace (brace: Element) {
 			const match = BRACE_ID_PATTERN.exec(brace.id);
 			if (!match) {
 				return null;
 			}
-			return document.querySelector('#' + match[1] + (match[2] === 'open' ? 'close' : 'open'));
+			return document.querySelector(
+				'#' + match[1] + (match[2] === 'open' ? 'close' : 'open')
+			);
 		}
 
-		function hoverBrace(this: Element) {
+		function hoverBrace (this: Element) {
 			if (!isActive(this, 'brace-hover', true)) {
 				return;
 			}
@@ -62,21 +65,21 @@ export default {
 				return;
 			}
 
-			[this, partner].forEach((e) => {
+			[this, partner].forEach(e => {
 				e.classList.add(mapClassName('brace-hover'));
 			});
 		}
-		function leaveBrace(this: Element) {
+		function leaveBrace (this: Element) {
 			const partner = getPartnerBrace(this);
 			if (!partner) {
 				return;
 			}
 
-			[this, partner].forEach((e) => {
+			[this, partner].forEach(e => {
 				e.classList.remove(mapClassName('brace-hover'));
 			});
 		}
-		function clickBrace(this: Element) {
+		function clickBrace (this: Element) {
 			if (!isActive(this, 'brace-select', true)) {
 				return;
 			}
@@ -86,14 +89,14 @@ export default {
 				return;
 			}
 
-			[this, partner].forEach((e) => {
+			[this, partner].forEach(e => {
 				e.classList.add(mapClassName('brace-selected'));
 			});
 		}
 
 		const withEventListener = new WeakSet<Element>();
 
-		return Prism.hooks.add('complete', (env) => {
+		return Prism.hooks.add('complete', env => {
 			const code = env.element;
 
 			const pre = getParentPre(code);
@@ -119,17 +122,21 @@ export default {
 					// the code element might have been replaced
 					const code = pre.querySelector('code');
 					const className = mapClassName('brace-selected');
-					code?.querySelectorAll('.' + className).forEach((e) => {
+					code?.querySelectorAll('.' + className).forEach(e => {
 						e.classList.remove(className);
 					});
 				});
 			}
 
-			const punctuation = [...code.querySelectorAll('span.' + mapClassName('token') + '.' + mapClassName('punctuation'))];
+			const punctuation = [
+				...code.querySelectorAll(
+					'span.' + mapClassName('token') + '.' + mapClassName('punctuation')
+				),
+			];
 
-			const allBraces: { index: number, open: boolean, element: Element }[] = [];
+			const allBraces: { index: number; open: boolean; element: Element }[] = [];
 
-			toMatch.forEach((open) => {
+			toMatch.forEach(open => {
 				const close = PARTNER[open];
 				const name = mapClassName(NAMES[open]);
 
@@ -146,7 +153,8 @@ export default {
 							element.classList.add(name);
 							element.classList.add(mapClassName('brace-open'));
 							openStack.push(i);
-						} else if (text === close) {
+						}
+						else if (text === close) {
 							allBraces.push({ index: i, open: false, element });
 							element.classList.add(name);
 							element.classList.add(mapClassName('brace-close'));
@@ -158,7 +166,7 @@ export default {
 					}
 				}
 
-				pairs.forEach((pair) => {
+				pairs.forEach(pair => {
 					const pairId = `pair-${pairIdCounter++}-`;
 
 					const opening = punctuation[pair[0]];
@@ -167,7 +175,7 @@ export default {
 					opening.id = pairId + 'open';
 					closing.id = pairId + 'close';
 
-					[opening, closing].forEach((e) => {
+					[opening, closing].forEach(e => {
 						e.addEventListener('mouseenter', hoverBrace);
 						e.addEventListener('mouseleave', leaveBrace);
 						e.addEventListener('click', clickBrace);
@@ -177,15 +185,20 @@ export default {
 
 			let level = 0;
 			allBraces.sort((a, b) => a.index - b.index);
-			allBraces.forEach((brace) => {
+			allBraces.forEach(brace => {
 				if (brace.open) {
-					brace.element.classList.add(mapClassName(`brace-level-${level % LEVEL_WARP + 1}`));
+					brace.element.classList.add(
+						mapClassName(`brace-level-${(level % LEVEL_WARP) + 1}`)
+					);
 					level++;
-				} else {
+				}
+				else {
 					level = Math.max(0, level - 1);
-					brace.element.classList.add(mapClassName(`brace-level-${level % LEVEL_WARP + 1}`));
+					brace.element.classList.add(
+						mapClassName(`brace-level-${(level % LEVEL_WARP) + 1}`)
+					);
 				}
 			});
 		});
-	}
+	},
 } as PluginProto<'match-braces'>;

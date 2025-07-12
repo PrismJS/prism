@@ -16,9 +16,9 @@
 	z-index: 10;
 
 	opacity: 0;
-	-webkit-transition: opacity .25s;
-	-o-transition: opacity .25s;
-	transition: opacity .25s;
+	-webkit-transition: opacity 0.25s;
+	-o-transition: opacity 0.25s;
+	transition: opacity 0.25s;
 }
 .prism-previewer.flipped {
 	margin-top: 0;
@@ -26,7 +26,7 @@
 }
 .prism-previewer:before,
 .prism-previewer:after {
-	content: '';
+	content: "";
 	position: absolute;
 	pointer-events: none;
 }
@@ -37,7 +37,9 @@
 	bottom: -5px;
 	border-radius: 10px;
 	border: 5px solid #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 10px rgba(0, 0, 0, 0.75);
+	box-shadow:
+		0 0 3px rgba(0, 0, 0, 0.5) inset,
+		0 0 10px rgba(0, 0, 0, 0.75);
 }
 .prism-previewer:after {
 	top: 100%;
@@ -92,9 +94,13 @@
 }
 
 .prism-previewer-gradient {
-	background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
+	background-image:
+		linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb),
+		linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
 	background-size: 10px 10px;
-	background-position: 0 0, 5px 5px;
+	background-position:
+		0 0,
+		5px 5px;
 
 	width: 64px;
 	margin-left: -32px;
@@ -110,13 +116,19 @@
 	bottom: -5px;
 	border-radius: 10px;
 	border: 5px solid #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 10px rgba(0, 0, 0, 0.75);
+	box-shadow:
+		0 0 3px rgba(0, 0, 0, 0.5) inset,
+		0 0 10px rgba(0, 0, 0, 0.75);
 }
 
 .prism-previewer-color {
-	background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
+	background-image:
+		linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb),
+		linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
 	background-size: 10px 10px;
-	background-position: 0 0, 5px 5px;
+	background-position:
+		0 0,
+		5px 5px;
 }
 .prism-previewer-color:before {
 	background-color: inherit;

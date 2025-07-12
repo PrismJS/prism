@@ -1,12 +1,12 @@
 import { getParentPre } from '../../shared/dom-util';
 import { noop } from '../../shared/util';
-import type { HookEnv, HookCallback } from '../../core/classes/hooks';
+import type { HookCallback, HookEnv } from '../../core/classes/hooks';
 import type { PluginProto } from '../../types';
 
 /**
  * Returns the callback order of the given element.
  */
-function getOrder(element: Element) {
+function getOrder (element: Element) {
 	let e: Element | null = element;
 	for (; e; e = e.parentElement) {
 		let order = e.getAttribute('data-toolbar-order');
@@ -14,7 +14,8 @@ function getOrder(element: Element) {
 			order = order.trim();
 			if (order.length) {
 				return order.split(/\s*,\s*/);
-			} else {
+			}
+			else {
 				return [];
 			}
 		}
@@ -50,12 +51,13 @@ export class Toolbar {
 	 *
 	 * The returned function will remove the added callback again when called.
 	 */
-	registerButton(key: string, opts: ButtonOptions | ButtonFactory): () => void {
+	registerButton (key: string, opts: ButtonOptions | ButtonFactory): () => void {
 		let callback: ButtonFactory;
 
 		if (typeof opts === 'function') {
 			callback = opts;
-		} else {
+		}
+		else {
 			callback = function (env) {
 				const { text, url, onClick, className } = opts;
 
@@ -66,10 +68,12 @@ export class Toolbar {
 					element.addEventListener('click', function () {
 						onClick.call(this, env);
 					});
-				} else if (typeof url === 'string') {
+				}
+				else if (typeof url === 'string') {
 					element = document.createElement('a');
 					element.href = url;
-				} else {
+				}
+				else {
 					element = document.createElement('span');
 				}
 
@@ -103,7 +107,7 @@ export class Toolbar {
 	/**
 	 * @package
 	 */
-	hook: HookCallback = (env) => {
+	hook: HookCallback = env => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		const pre = getParentPre(env.element);
 		if (!pre) {
@@ -134,10 +138,10 @@ export class Toolbar {
 		let elementCallbacks = this.callbacks;
 		const order = getOrder(env.element);
 		if (order) {
-			elementCallbacks = order.map((key) => this.map.get(key) || noop);
+			elementCallbacks = order.map(key => this.map.get(key) || noop);
 		}
 
-		elementCallbacks.forEach((callback) => {
+		elementCallbacks.forEach(callback => {
 			const element = callback(env);
 
 			if (!element) {
@@ -156,7 +160,7 @@ export class Toolbar {
 	};
 }
 
-const label: ButtonFactory = (env) => {
+const label: ButtonFactory = env => {
 	const pre = getParentPre(env.element);
 	if (!pre) {
 		return;
@@ -174,16 +178,21 @@ const label: ButtonFactory = (env) => {
 		if (text) {
 			template = document.querySelector('template#' + text);
 		}
-	} catch (e) { /* noop */ }
+	}
+	catch (e) {
+		/* noop */
+	}
 
 	if (template) {
 		element = (template as HTMLTemplateElement).content;
-	} else {
+	}
+	else {
 		const url = pre.getAttribute('data-url');
 		if (url) {
 			element = document.createElement('a');
 			element.href = url;
-		} else {
+		}
+		else {
 			element = document.createElement('span');
 		}
 
@@ -195,13 +204,13 @@ const label: ButtonFactory = (env) => {
 
 export default {
 	id: 'toolbar',
-	plugin() {
+	plugin () {
 		const toolbar = new Toolbar();
 		toolbar.registerButton('label', label);
 		return toolbar;
 	},
-	effect(Prism) {
+	effect (Prism) {
 		const toolbar = Prism.plugins.toolbar as Toolbar;
 		return Prism.hooks.add('complete', toolbar.hook);
-	}
+	},
 } as PluginProto<'toolbar'>;

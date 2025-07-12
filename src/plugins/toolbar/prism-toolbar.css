@@ -5,8 +5,8 @@ div.code-toolbar {
 div.code-toolbar > .toolbar {
 	position: absolute;
 	z-index: 10;
-	top: .3em;
-	right: .2em;
+	top: 0.3em;
+	right: 0.2em;
 	transition: opacity 0.3s ease-in-out;
 	opacity: 0;
 }
@@ -46,12 +46,12 @@ div.code-toolbar > .toolbar > .toolbar-item > a,
 div.code-toolbar > .toolbar > .toolbar-item > button,
 div.code-toolbar > .toolbar > .toolbar-item > span {
 	color: #bbb;
-	font-size: .8em;
-	padding: 0 .5em;
+	font-size: 0.8em;
+	padding: 0 0.5em;
 	background: #f5f2f0;
 	background: rgba(224, 224, 224, 0.2);
-	box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
-	border-radius: .5em;
+	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);
+	border-radius: 0.5em;
 }
 
 div.code-toolbar > .toolbar > .toolbar-item > a:hover,

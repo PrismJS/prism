@@ -2,8 +2,8 @@ import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
 import type { Autoloader } from '../autoloader/prism-autoloader';
 
-function getGlobal(): Record<string, unknown> {
-	return typeof window === 'object' ? window as never : {};
+function getGlobal (): Record<string, unknown> {
+	return typeof window === 'object' ? (window as never) : {};
 }
 
 let jsonpCallbackCounter = 0;
@@ -15,7 +15,13 @@ let jsonpCallbackCounter = 0;
  * @param callbackParameter The name of the callback parameter. If falsy, `"callback"`
  * will be used.
  */
-function jsonp(src: string, callbackParameter: string | undefined | null, timeout: number, onSuccess: (data: unknown) => void, onError: (reason: 'timeout' | 'network') => void): void {
+function jsonp (
+	src: string,
+	callbackParameter: string | undefined | null,
+	timeout: number,
+	onSuccess: (data: unknown) => void,
+	onError: (reason: 'timeout' | 'network') => void
+): void {
 	const callbackName = `prismjsonp${jsonpCallbackCounter++}`;
 
 	const uri = document.createElement('a');
@@ -34,10 +40,9 @@ function jsonp(src: string, callbackParameter: string | undefined | null, timeou
 		onError('timeout');
 	}, timeout);
 
-
 	const global = getGlobal();
 
-	function cleanup() {
+	function cleanup () {
 		clearTimeout(timeoutId);
 		document.head.removeChild(script);
 		delete global[callbackName];
@@ -54,14 +59,22 @@ function jsonp(src: string, callbackParameter: string | undefined | null, timeou
 	document.head.appendChild(script);
 }
 
-
 const STATUS_ATTR = 'data-jsonp-status';
 const STATUS_LOADING = 'loading';
 const STATUS_LOADED = 'loaded';
 const STATUS_FAILED = 'failed';
 
-const SELECTOR = 'pre[data-jsonp]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
-	+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
+const SELECTOR =
+	'pre[data-jsonp]:not([' +
+	STATUS_ATTR +
+	'="' +
+	STATUS_LOADED +
+	'"])' +
+	':not([' +
+	STATUS_ATTR +
+	'="' +
+	STATUS_LOADING +
+	'"])';
 
 type Adapter = (response: unknown, pre: HTMLPreElement) => string | null;
 
@@ -78,12 +91,11 @@ export class JsonpHighlight {
 	/**
 	 * The list of adapter which will be used if `data-adapter` is not specified.
 	 */
-	private adapters: { adapter: Adapter, name: string }[] = [];
+	private adapters: { adapter: Adapter; name: string }[] = [];
 
-	constructor(Prism: Prism) {
+	constructor (Prism: Prism) {
 		this.Prism = Prism;
 	}
-
 
 	/**
 	 * Returns the given adapter itself, if registered, or a registered adapter with the given name.
@@ -93,14 +105,15 @@ export class JsonpHighlight {
 	 * @param adapter The adapter itself or the name of an adapter.
 	 * @private
 	 */
-	getAdapter(adapter: string | Adapter) {
+	getAdapter (adapter: string | Adapter) {
 		if (typeof adapter === 'function') {
 			for (const item of this.adapters) {
 				if (item.adapter.valueOf() === adapter.valueOf()) {
 					return item.adapter;
 				}
 			}
-		} else if (typeof adapter === 'string') {
+		}
+		else if (typeof adapter === 'string') {
 			// eslint-disable-next-line no-redeclare
 			for (const item of this.adapters) {
 				if (item.name === adapter) {
@@ -120,7 +133,7 @@ export class JsonpHighlight {
 	 * @param name The name of the adapter.
 	 * @param adapter The adapter to be registered.
 	 */
-	registerAdapter(name: string, adapter: Adapter) {
+	registerAdapter (name: string, adapter: Adapter) {
 		if (typeof adapter === 'function' && !this.getAdapter(adapter) && !this.getAdapter(name)) {
 			this.adapters.push({ adapter, name });
 		}
@@ -132,10 +145,10 @@ export class JsonpHighlight {
 	 *
 	 * @param adapter The adapter itself or the name of an adapter.
 	 */
-	removeAdapter(adapter: string | Adapter) {
+	removeAdapter (adapter: string | Adapter) {
 		const resolvedAdapter = typeof adapter === 'string' ? this.getAdapter(adapter) : adapter;
 		if (resolvedAdapter) {
-			const index = this.adapters.findIndex((item) => item.adapter === resolvedAdapter);
+			const index = this.adapters.findIndex(item => item.adapter === resolvedAdapter);
 			if (index >= 0) {
 				this.adapters.splice(index, 1);
 			}
@@ -147,7 +160,7 @@ export class JsonpHighlight {
 	 * the given arguments. The result of the first adapter that returns a
 	 * string will be returned and iteration will be stopped.
 	 */
-	runAdapters(...args: Parameters<Adapter>) {
+	runAdapters (...args: Parameters<Adapter>) {
 		for (const adapter of this.adapters) {
 			const data = adapter.adapter(...args);
 			if (data !== null) {
@@ -166,7 +179,7 @@ export class JsonpHighlight {
 	 *
 	 * @param container Defaults to `document`.
 	 */
-	highlight(container: Element | Document = document) {
+	highlight (container: Element | Document = document) {
 		const elements = container.querySelectorAll(SELECTOR);
 
 		for (const element of elements) {
@@ -175,10 +188,9 @@ export class JsonpHighlight {
 	}
 }
 
-
 export default {
 	id: 'jsonp-highlight',
-	plugin(Prism) {
+	plugin (Prism) {
 		const config = new JsonpHighlight(Prism);
 
 		/* eslint-disable @typescript-eslint/no-explicit-any */
@@ -191,8 +203,9 @@ export default {
 			if (rsp && rsp.meta && rsp.data) {
 				if (rsp.meta.status && rsp.meta.status >= 400) {
 					return `Error: ${rsp.data.message || rsp.meta.status}`;
-				} else if (typeof (rsp.data.content) === 'string') {
-					return typeof (atob) === 'function'
+				}
+				else if (typeof rsp.data.content === 'string') {
+					return typeof atob === 'function'
 						? atob(rsp.data.content.replace(/\s/g, ''))
 						: 'Your browser cannot decode base64';
 				}
@@ -227,7 +240,7 @@ export default {
 			return null;
 		});
 		config.registerAdapter('bitbucket', (rsp: any) => {
-			if (rsp && rsp.node && typeof (rsp.data) === 'string') {
+			if (rsp && rsp.node && typeof rsp.data === 'string') {
 				return String(rsp.data);
 			}
 			return null;
@@ -241,9 +254,8 @@ export default {
 
 		return config;
 	},
-	effect(Prism) {
+	effect (Prism) {
 		const config = Prism.plugins.jsonpHighlight as JsonpHighlight;
-
 
 		const LOADING_MESSAGE = 'Loading…';
 		const MISSING_ADAPTER_MESSAGE = (name: string) => {
@@ -252,13 +264,14 @@ export default {
 		const TIMEOUT_MESSAGE = (url: string) => {
 			return '✖ Error: Timeout loading ' + url;
 		};
-		const UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
+		const UNKNOWN_FAILURE_MESSAGE =
+			'✖ Error: Cannot parse response (perhaps you need an adapter function?)';
 
 		return Prism.hooks.add({
-			'before-highlightall': (env) => {
+			'before-highlightall': env => {
 				env.selector += ', ' + SELECTOR;
 			},
-			'before-sanity-check': (env) => {
+			'before-sanity-check': env => {
 				const pre = env.element as HTMLPreElement;
 				if (!pre.matches(SELECTOR)) {
 					return;
@@ -294,7 +307,8 @@ export default {
 					const global = getGlobal();
 					if (typeof global[adapterName] === 'function') {
 						adapter = global[adapterName] as Adapter;
-					} else {
+					}
+					else {
 						// mark as failed
 						pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
@@ -307,12 +321,13 @@ export default {
 					src,
 					pre.getAttribute('data-callback'),
 					config.timeout,
-					(response) => {
+					response => {
 						// interpret the received data using the adapter(s)
 						let data;
 						if (adapter) {
 							data = adapter(response, pre);
-						} else {
+						}
+						else {
 							data = config.runAdapters(response, pre);
 						}
 
@@ -321,7 +336,8 @@ export default {
 							pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
 							code.textContent = UNKNOWN_FAILURE_MESSAGE;
-						} else {
+						}
+						else {
 							// mark as loaded
 							pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
@@ -336,7 +352,7 @@ export default {
 						code.textContent = TIMEOUT_MESSAGE(src);
 					}
 				);
-			}
+			},
 		});
-	}
+	},
 } as PluginProto<'jsonp-highlight'>;

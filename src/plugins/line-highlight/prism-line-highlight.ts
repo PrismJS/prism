@@ -1,6 +1,6 @@
 import { isActive } from '../../shared/dom-util';
-import { combineCallbacks } from '../../util/combine-callbacks';
 import { lazy, noop } from '../../shared/util';
+import { combineCallbacks } from '../../util/combine-callbacks';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
 import type { LineNumbers } from '../line-numbers/prism-line-numbers';
@@ -9,41 +9,43 @@ const LINE_NUMBERS_CLASS = 'line-numbers';
 const LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';
 const NEW_LINE_EXP = /\n(?!$)/g;
 
-function $$(selector: string, container: ParentNode = document) {
+function $$ (selector: string, container: ParentNode = document) {
 	return [...container.querySelectorAll(selector)];
 }
 
 /**
  * Returns the top offset of the content box of the given parent and the content box of one of its children.
  */
-function getContentBoxTopOffset(parent: HTMLElement, child: HTMLElement) {
+function getContentBoxTopOffset (parent: HTMLElement, child: HTMLElement) {
 	const parentStyle = getComputedStyle(parent);
 	const childStyle = getComputedStyle(child);
 
 	/**
 	 * Returns the numeric value of the given pixel value.
 	 */
-	function pxToNumber(px: string) {
+	function pxToNumber (px: string) {
 		return +px.substr(0, px.length - 2);
 	}
 
-	return child.offsetTop
-		+ pxToNumber(childStyle.borderTopWidth)
-		+ pxToNumber(childStyle.paddingTop)
-		- pxToNumber(parentStyle.paddingTop);
+	return (
+		child.offsetTop +
+		pxToNumber(childStyle.borderTopWidth) +
+		pxToNumber(childStyle.paddingTop) -
+		pxToNumber(parentStyle.paddingTop)
+	);
 }
 
 /**
  * Returns whether the given element has the given class.
  */
-function hasClass(element: Element, className: string) {
+function hasClass (element: Element, className: string) {
 	return element.classList.contains(className);
 }
 
 /**
  * Calls the given function.
  */
-function callFunction(func: () => void): void {
+function callFunction (func: () => void): void {
 	func();
 }
 
@@ -64,14 +66,13 @@ const isLineHeightRounded = lazy(() => {
 	return result;
 });
 
-
 export class LineHighlight {
 	/**
 	 * @package
 	 */
 	scrollIntoView = true;
 	Prism: Prism;
-	constructor(Prism: Prism) {
+	constructor (Prism: Prism) {
 		this.Prism = Prism;
 	}
 	/**
@@ -80,8 +81,8 @@ export class LineHighlight {
 	 * This function is split into a DOM measuring and mutate phase to improve performance.
 	 * The returned function mutates the DOM when called.
 	 */
-	highlightLines(pre: HTMLElement, lines?: string | null, classes = '') {
-		lines = typeof lines === 'string' ? lines : (pre.getAttribute('data-line') || '');
+	highlightLines (pre: HTMLElement, lines?: string | null, classes = '') {
+		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line') || '';
 
 		const ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
 		const offset = Number(pre.getAttribute('data-line-offset')) || 0;
@@ -104,9 +105,12 @@ export class LineHighlight {
 		 *
 		 * This offset will be 0 if the parent element of the line highlight element is the `<code>` element.
 		 */
-		const codePreOffset = !codeElement || parentElement === codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
+		const codePreOffset =
+			!codeElement || parentElement === codeElement
+				? 0
+				: getContentBoxTopOffset(pre, codeElement);
 
-		ranges.forEach((currentRange) => {
+		ranges.forEach(currentRange => {
 			const range = currentRange.split('-');
 
 			const start = +range[0];
@@ -117,7 +121,9 @@ export class LineHighlight {
 				return;
 			}
 
-			const line: HTMLElement = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
+			const line: HTMLElement =
+				pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') ||
+				document.createElement('div');
 
 			mutateActions.push(() => {
 				line.setAttribute('aria-hidden', 'true');
@@ -139,12 +145,13 @@ export class LineHighlight {
 				}
 
 				if (startNode && endNode) {
-					const height = `${(endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight}px`;
+					const height = `${endNode.offsetTop - startNode.offsetTop + endNode.offsetHeight}px`;
 					mutateActions.push(() => {
 						line.style.height = height;
 					});
 				}
-			} else {
+			}
+			else {
 				mutateActions.push(() => {
 					line.setAttribute('data-start', String(start));
 
@@ -170,7 +177,12 @@ export class LineHighlight {
 		});
 
 		const id = pre.id;
-		if (hasLineNumbers && this.Prism.plugins.lineNumbers && isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) && id) {
+		if (
+			hasLineNumbers &&
+			this.Prism.plugins.lineNumbers &&
+			isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) &&
+			id
+		) {
 			// This implements linkable line numbers. Linkable line numbers use Line Highlight to create a link to a
 			// specific line. For this to work, the pre element has to:
 			//  1) have line numbers,
@@ -212,10 +224,10 @@ export class LineHighlight {
 export default {
 	id: 'line-highlight',
 	optional: 'line-numbers',
-	plugin(Prism) {
+	plugin (Prism) {
 		return new LineHighlight(Prism);
 	},
-	effect(Prism) {
+	effect (Prism) {
 		if (typeof document === 'undefined') {
 			return noop;
 		}
@@ -225,7 +237,7 @@ export default {
 		 *
 		 * If this function returns `false`, do not call `highlightLines` for the given element.
 		 */
-		function isActiveFor(pre: Element | null | undefined): pre is HTMLPreElement {
+		function isActiveFor (pre: Element | null | undefined): pre is HTMLPreElement {
 			if (!pre || !/pre/i.test(pre.nodeName)) {
 				return false;
 			}
@@ -247,7 +259,7 @@ export default {
 			const hash = location.hash.slice(1);
 
 			// Remove pre-existing temporary lines
-			$$('.temporary.line-highlight').forEach((line) => {
+			$$('.temporary.line-highlight').forEach(line => {
 				line.remove();
 			});
 
@@ -280,7 +292,7 @@ export default {
 		const onResize = () => {
 			$$('pre')
 				.filter(isActiveFor)
-				.map((pre) => {
+				.map(pre => {
 					const lineHighlight = Prism.plugins.lineHighlight as LineHighlight;
 					return lineHighlight.highlightLines(pre);
 				})
@@ -297,21 +309,21 @@ export default {
 
 		let fakeTimer: number | NodeJS.Timeout | undefined = undefined; // Hack to limit the number of times applyHash() runs
 
-		const beforeSanityHook = Prism.hooks.add('before-sanity-check', (env) => {
+		const beforeSanityHook = Prism.hooks.add('before-sanity-check', env => {
 			const pre = env.element.parentElement;
 			if (!isActiveFor(pre)) {
 				return;
 			}
 
 			/*
-				 * Cleanup for other plugins (e.g. autoloader).
-				 *
-				 * Sometimes <code> blocks are highlighted multiple times. It is necessary
-				 * to cleanup any left-over tags, because the whitespace inside of the <div>
-				 * tags change the content of the <code> tag.
-				 */
+			 * Cleanup for other plugins (e.g. autoloader).
+			 *
+			 * Sometimes <code> blocks are highlighted multiple times. It is necessary
+			 * to cleanup any left-over tags, because the whitespace inside of the <div>
+			 * tags change the content of the <code> tag.
+			 */
 			let num = 0;
-			$$('.line-highlight', pre).forEach((line) => {
+			$$('.line-highlight', pre).forEach(line => {
 				num += (line.textContent || '').length;
 				line.remove();
 			});
@@ -321,7 +333,7 @@ export default {
 			}
 		});
 
-		const completeHook = Prism.hooks.add('complete', (env) => {
+		const completeHook = Prism.hooks.add('complete', env => {
 			const pre = env.element.parentElement;
 			if (!isActiveFor(pre)) {
 				return;
@@ -338,5 +350,5 @@ export default {
 		});
 
 		return combineCallbacks(removeEventListeners, beforeSanityHook, completeHook);
-	}
+	},
 } as PluginProto<'line-highlight'>;

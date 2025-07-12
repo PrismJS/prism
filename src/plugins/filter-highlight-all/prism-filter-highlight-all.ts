@@ -19,11 +19,11 @@ export class FilterHighlightAll {
 	 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
 	 * which the given function returns `true` will be highlighted.
 	 */
-	add(condition: Condition) {
-		this.filters.push((element) => {
+	add (condition: Condition) {
+		this.filters.push(element => {
 			return condition({
 				element,
-				language: getLanguage(element)
+				language: getLanguage(element),
 			});
 		});
 	}
@@ -32,8 +32,8 @@ export class FilterHighlightAll {
 	 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that
 	 * match the given CSS selection will be highlighted.
 	 */
-	addSelector(selector: string) {
-		this.filters.push((element) => {
+	addSelector (selector: string) {
+		this.filters.push(element => {
 			return element.matches(selector);
 		});
 	}
@@ -44,7 +44,7 @@ export class FilterHighlightAll {
 		 * which the given function returns `false` will be highlighted.
 		 */
 		add: (condition: Condition) => {
-			this.add((value) => !condition(value));
+			this.add(value => !condition(value));
 		},
 
 		/**
@@ -52,7 +52,7 @@ export class FilterHighlightAll {
 		 * not match the given CSS selection will be highlighted.
 		 */
 		addSelector: (selector: string) => {
-			this.filters.push((element) => {
+			this.filters.push(element => {
 				return !element.matches(selector);
 			});
 		},
@@ -62,7 +62,7 @@ export class FilterHighlightAll {
 	 * Applies all filters to the given element and returns `true` if and only if every filter returned `true` on the
 	 * given element.
 	 */
-	everyFilter(element: Element): boolean {
+	everyFilter (element: Element): boolean {
 		for (const filter of this.filters) {
 			if (!filter(element)) {
 				return false;
@@ -74,10 +74,10 @@ export class FilterHighlightAll {
 
 export default {
 	id: 'filter-highlight-all',
-	plugin(Prism) {
+	plugin (Prism) {
 		const config = new FilterHighlightAll();
 
-		config.add((env) => {
+		config.add(env => {
 			return !config.filterKnown || Prism.components.has(env.language);
 		});
 
@@ -100,11 +100,11 @@ export default {
 
 		return config;
 	},
-	effect(Prism) {
+	effect (Prism) {
 		const config = Prism.plugins.filterHighlightAll as FilterHighlightAll;
 
-		return Prism.hooks.add('before-all-elements-highlight', (env) => {
+		return Prism.hooks.add('before-all-elements-highlight', env => {
 			env.elements = env.elements.filter((e: Element) => config.everyFilter(e));
 		});
-	}
+	},
 } as PluginProto<'filter-highlight-all'>;

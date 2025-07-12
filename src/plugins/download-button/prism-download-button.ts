@@ -6,10 +6,10 @@ import type { Toolbar } from '../toolbar/prism-toolbar';
 export default {
 	id: 'download-button',
 	require: toolbar,
-	effect(Prism) {
+	effect (Prism) {
 		const toolbar = Prism.plugins.toolbar as Toolbar;
 
-		return toolbar.registerButton('download-file', (env) => {
+		return toolbar.registerButton('download-file', env => {
 			const pre = getParentPre(env.element);
 			if (!pre) {
 				return;
@@ -26,5 +26,5 @@ export default {
 			a.href = src;
 			return a;
 		});
-	}
+	},
 } as PluginProto<'download-button'>;

@@ -4,38 +4,39 @@ import type { PluginProto } from '../../types';
 export default {
 	id: 'data-uri-highlight',
 	optional: 'diff-highlight',
-	effect(Prism) {
+	effect (Prism) {
 		const uri = {
 			'data-uri': {
-				pattern: /(['"])data:[^,\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)|^data:[^,\/]+\/[^,]+,[\s\S]+$/,
+				pattern:
+					/(['"])data:[^,\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)|^data:[^,\/]+\/[^,]+,[\s\S]+$/,
 				lookbehind: true,
 				inside: {
 					'language-css': {
 						pattern: /(data:[^,\/]+\/(?:[^+,]+\+)?css,)[\s\S]+/,
 						lookbehind: true,
-						inside: 'css'
+						inside: 'css',
 					},
 					'language-javascript': {
 						pattern: /(data:[^,\/]+\/(?:[^+,]+\+)?javascript,)[\s\S]+/,
 						lookbehind: true,
-						inside: 'javascript'
+						inside: 'javascript',
 					},
 					'language-json': {
 						pattern: /(data:[^,\/]+\/(?:[^+,]+\+)?json,)[\s\S]+/,
 						lookbehind: true,
-						inside: 'json'
+						inside: 'json',
 					},
 					'language-markup': {
 						pattern: /(data:[^,\/]+\/(?:[^+,]+\+)?(?:html|xml),)[\s\S]+/,
 						lookbehind: true,
-						inside: 'markup'
-					}
-				}
-			}
+						inside: 'markup',
+					},
+				},
+			},
 		};
 
-		return Prism.hooks.add('after-tokenize', (env) => {
-			tokenizeStrings(env.tokens, (code) => Prism.tokenize(code, uri));
+		return Prism.hooks.add('after-tokenize', env => {
+			tokenizeStrings(env.tokens, code => Prism.tokenize(code, uri));
 		});
-	}
+	},
 } as PluginProto<'data-uri-highlight'>;

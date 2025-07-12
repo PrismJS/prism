@@ -7,10 +7,10 @@ import type { Toolbar } from '../toolbar/prism-toolbar';
 export default {
 	id: 'show-language',
 	require: toolbar,
-	effect(Prism) {
+	effect (Prism) {
 		const toolbar = Prism.plugins.toolbar as Toolbar;
 
-		return toolbar.registerButton('show-language', (env) => {
+		return toolbar.registerButton('show-language', env => {
 			const pre = getParentPre(env.element);
 			if (!pre) {
 				return;
@@ -25,5 +25,5 @@ export default {
 			element.textContent = title;
 			return element;
 		});
-	}
+	},
 } as PluginProto<'show-language'>;

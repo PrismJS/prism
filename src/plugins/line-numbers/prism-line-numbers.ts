@@ -1,6 +1,6 @@
 import { getParentPre, isActive } from '../../shared/dom-util';
-import { combineCallbacks } from '../../util/combine-callbacks';
 import { isNonNull, noop } from '../../shared/util';
+import { combineCallbacks } from '../../util/combine-callbacks';
 import type { PluginProto } from '../../types';
 
 /**
@@ -16,15 +16,15 @@ const NEW_LINE_EXP = /\n(?!$)/g;
 /**
  * Queries for the `line-numbers-rows` element
  */
-function getLineNumbersRows(element: Element): HTMLElement | null {
+function getLineNumbersRows (element: Element): HTMLElement | null {
 	return element.querySelector('.line-numbers-rows');
 }
 
 /**
  * Resizes the given elements.
  */
-function resizeElements(elements: Element[]) {
-	elements = elements.filter((e) => {
+function resizeElements (elements: Element[]) {
+	elements = elements.filter(e => {
 		const codeStyles = getComputedStyle(e);
 		const whiteSpace = codeStyles.whiteSpace;
 		return whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line';
@@ -34,48 +34,54 @@ function resizeElements(elements: Element[]) {
 		return;
 	}
 
-	const infos = elements.map((element): {
-		element: Element;
-		lines: string[];
-		lineHeights: (number | undefined)[];
-		oneLinerHeight: number;
-		sizer: HTMLElement;
-		wrapper: HTMLElement;
-	} | undefined => {
-		const codeElement = element.querySelector('code');
-		const lineNumbersWrapper = getLineNumbersRows(element);
-		if (!codeElement || !lineNumbersWrapper) {
-			return undefined;
-		}
+	const infos = elements
+		.map((
+			element
+		):
+			| {
+					element: Element;
+					lines: string[];
+					lineHeights: (number | undefined)[];
+					oneLinerHeight: number;
+					sizer: HTMLElement;
+					wrapper: HTMLElement;
+			  }
+			| undefined => {
+			const codeElement = element.querySelector('code');
+			const lineNumbersWrapper = getLineNumbersRows(element);
+			if (!codeElement || !lineNumbersWrapper) {
+				return undefined;
+			}
 
-		let lineNumberSizer: HTMLElement | null = element.querySelector('.line-numbers-sizer');
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const codeLines = codeElement.textContent!.split(NEW_LINE_EXP);
+			let lineNumberSizer: HTMLElement | null = element.querySelector('.line-numbers-sizer');
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const codeLines = codeElement.textContent!.split(NEW_LINE_EXP);
 
-		if (!lineNumberSizer) {
-			lineNumberSizer = document.createElement('span');
-			lineNumberSizer.className = 'line-numbers-sizer';
+			if (!lineNumberSizer) {
+				lineNumberSizer = document.createElement('span');
+				lineNumberSizer.className = 'line-numbers-sizer';
 
-			codeElement.appendChild(lineNumberSizer);
-		}
+				codeElement.appendChild(lineNumberSizer);
+			}
 
-		lineNumberSizer.innerHTML = '0';
-		lineNumberSizer.style.display = 'block';
+			lineNumberSizer.innerHTML = '0';
+			lineNumberSizer.style.display = 'block';
 
-		const oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
-		lineNumberSizer.innerHTML = '';
+			const oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
+			lineNumberSizer.innerHTML = '';
 
-		return {
-			element,
-			lines: codeLines,
-			lineHeights: [],
-			oneLinerHeight,
-			sizer: lineNumberSizer,
-			wrapper: lineNumbersWrapper
-		};
-	}).filter(isNonNull);
+			return {
+				element,
+				lines: codeLines,
+				lineHeights: [],
+				oneLinerHeight,
+				sizer: lineNumberSizer,
+				wrapper: lineNumbersWrapper,
+			};
+		})
+		.filter(isNonNull);
 
-	infos.forEach((info) => {
+	infos.forEach(info => {
 		const lineNumberSizer = info.sizer;
 		const lines = info.lines;
 		const lineHeights = info.lineHeights;
@@ -87,25 +93,27 @@ function resizeElements(elements: Element[]) {
 				const e = lineNumberSizer.appendChild(document.createElement('span'));
 				e.style.display = 'block';
 				e.textContent = line;
-			} else {
+			}
+			else {
 				lineHeights[index] = oneLinerHeight;
 			}
 		});
 	});
 
-	infos.forEach((info) => {
+	infos.forEach(info => {
 		const lineNumberSizer = info.sizer;
 		const lineHeights = info.lineHeights;
 
 		let childIndex = 0;
 		for (let i = 0; i < lineHeights.length; i++) {
 			if (lineHeights[i] === undefined) {
-				lineHeights[i] = lineNumberSizer.children[childIndex++].getBoundingClientRect().height;
+				lineHeights[i] =
+					lineNumberSizer.children[childIndex++].getBoundingClientRect().height;
 			}
 		}
 	});
 
-	infos.forEach((info) => {
+	infos.forEach(info => {
 		const lineNumberSizer = info.sizer;
 
 		lineNumberSizer.style.display = 'none';
@@ -137,7 +145,7 @@ export class LineNumbers {
 	 * @param element pre element
 	 * @param number line number
 	 */
-	getLine(element: Element, number: number): HTMLElement | undefined {
+	getLine (element: Element, number: number): HTMLElement | undefined {
 		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 			return;
 		}
@@ -166,7 +174,7 @@ export class LineNumbers {
 	 *
 	 * @param element pre element
 	 */
-	getLines(element: Element): HTMLElement[] | undefined {
+	getLines (element: Element): HTMLElement[] | undefined {
 		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 			return;
 		}
@@ -186,17 +194,17 @@ export class LineNumbers {
 	 *
 	 * @param element A `<pre>` element with line numbers.
 	 */
-	resize(element: Element): void {
+	resize (element: Element): void {
 		resizeElements([element]);
 	}
 }
 
 export default {
 	id: 'line-numbers',
-	plugin() {
+	plugin () {
 		return new LineNumbers();
 	},
-	effect(Prism) {
+	effect (Prism) {
 		if (typeof document === 'undefined') {
 			return noop;
 		}
@@ -216,7 +224,7 @@ export default {
 			window.removeEventListener('resize', listener);
 		};
 
-		const completeHook = Prism.hooks.add('complete', (env) => {
+		const completeHook = Prism.hooks.add('complete', env => {
 			if (!env.code) {
 				return;
 			}
@@ -247,7 +255,6 @@ export default {
 			const match = env.code.match(NEW_LINE_EXP);
 			const linesNum = match ? match.length + 1 : 1;
 
-
 			const lineNumbersWrapper = document.createElement('span');
 			lineNumbersWrapper.setAttribute('aria-hidden', 'true');
 			lineNumbersWrapper.className = 'line-numbers-rows';
@@ -263,5 +270,5 @@ export default {
 		});
 
 		return combineCallbacks(removeListener, completeHook);
-	}
+	},
 } as PluginProto<'line-numbers'>;

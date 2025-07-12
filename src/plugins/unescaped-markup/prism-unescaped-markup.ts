@@ -2,15 +2,16 @@ import type { PluginProto } from '../../types';
 
 export default {
 	id: 'unescaped-markup',
-	effect(Prism) {
+	effect (Prism) {
 		return Prism.hooks.add({
-			'before-highlightall': (env) => {
-				env.selector += ', [class*="lang-"] script[type="text/plain"]'
-					+ ', [class*="language-"] script[type="text/plain"]'
-					+ ', script[type="text/plain"][class*="lang-"]'
-					+ ', script[type="text/plain"][class*="language-"]';
+			'before-highlightall': env => {
+				env.selector +=
+					', [class*="lang-"] script[type="text/plain"]' +
+					', [class*="language-"] script[type="text/plain"]' +
+					', script[type="text/plain"][class*="lang-"]' +
+					', script[type="text/plain"][class*="language-"]';
 			},
-			'before-sanity-check': (env) => {
+			'before-sanity-check': env => {
 				const element = env.element as HTMLElement;
 
 				if (element.matches('script[type="text/plain"]')) {
@@ -25,13 +26,16 @@ export default {
 
 					// copy all "data-" attributes
 					const dataset = element.dataset;
-					Object.keys(dataset || {}).forEach((key) => {
+					Object.keys(dataset || {}).forEach(key => {
 						if (Object.prototype.hasOwnProperty.call(dataset, key)) {
 							pre.dataset[key] = dataset[key];
 						}
 					});
 
-					code.textContent = env.code = env.code.replace(/&lt;\/script(?:>|&gt;)/gi, '</scri' + 'pt>');
+					code.textContent = env.code = env.code.replace(
+						/&lt;\/script(?:>|&gt;)/gi,
+						'</scri' + 'pt>'
+					);
 
 					// change DOM
 					pre.appendChild(code);
@@ -48,7 +52,7 @@ export default {
 						element.textContent = env.code = childNodes[0].textContent || '';
 					}
 				}
-			}
+			},
 		});
-	}
+	},
 } as PluginProto<'unescaped-markup'>;
