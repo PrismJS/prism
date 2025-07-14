@@ -416,7 +416,6 @@ async function buildJS () {
 			outputOptions: {
 				...defaultOutputOptions,
 				dir: './dist/cjs',
-				chunkFileNames: '_chunks/[name]-[hash].js',
 			},
 		},
 	};
