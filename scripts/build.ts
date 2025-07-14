@@ -364,6 +364,7 @@ async function buildTypes () {
 async function buildJS () {
 	const input: Record<string, string> = {
 		'index': path.join(SRC_DIR, 'index.ts'),
+		'prism': path.join(SRC_DIR, 'prism.ts'), // global “bundle”
 		'shared': path.join(SRC_DIR, 'shared.ts'),
 	};
 	for (const id of languageIds) {
@@ -419,15 +420,6 @@ async function buildJS () {
 			bundle.build = await rollup(bundle.rollupOptions);
 			await bundle.build.write(bundle.outputOptions);
 		}
-
-		// Global “bundle”
-		await writeFile(
-			path.join(DIST_DIR, 'prism.js'),
-			`if (globalThis.document?.currentScript) {
-	// In browser and imported via non-ESM
-	import('./index.js').then(({ default: prism }) => (globalThis.Prism = prism));
-}`
-		);
 	}
 	finally {
 		for (const bundle of Object.values(bundles)) {
