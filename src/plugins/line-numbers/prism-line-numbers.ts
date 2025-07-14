@@ -1,6 +1,6 @@
+import Prism from '../../global';
 import { getParentPre, isActive } from '../../shared/dom-util';
 import { isNonNull, noop } from '../../shared/util';
-import { documentReady } from '../../util/async';
 import { combineCallbacks } from '../../util/combine-callbacks';
 import type { PluginProto } from '../../types';
 
@@ -276,11 +276,4 @@ const Self = {
 
 export default Self;
 
-if (typeof document !== 'undefined') {
-	void documentReady().then(() => {
-		const Prism = (globalThis as any).Prism;
-		if (Prism) {
-			Prism.components.add(Self);
-		}
-	});
-}
+Prism.components.add(Self);
