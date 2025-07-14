@@ -1,4 +1,4 @@
-import Prism from '../../global';
+import prism from '../../global';
 import { getParentPre, isActive } from '../../shared/dom-util';
 import { isNonNull, noop } from '../../shared/util';
 import { combineCallbacks } from '../../util/combine-callbacks';
@@ -276,4 +276,4 @@ const Self = {
 
 export default Self;
 
-Prism.components.add(Self);
+prism.components.add(Self);
