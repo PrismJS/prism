@@ -399,13 +399,7 @@ async function buildJS () {
 		}
 	> = {
 		esm: {
-			rollupOptions: {
-				...defaultRollupOptions,
-				input: {
-					...input,
-					'prism': path.join(SRC_DIR, 'auto-start.ts'),
-				},
-			},
+			rollupOptions: defaultRollupOptions,
 			outputOptions: defaultOutputOptions,
 		},
 		cjs: {
@@ -425,6 +419,15 @@ async function buildJS () {
 			bundle.build = await rollup(bundle.rollupOptions);
 			await bundle.build.write(bundle.outputOptions);
 		}
+
+		// Global “bundle”
+		await writeFile(
+			path.join(DIST_DIR, 'prism.js'),
+			`if (globalThis.document?.currentScript) {
+	// In browser and imported via non-ESM
+	import('./index.js').then(({ default: prism }) => (globalThis.Prism = prism));
+}`
+		);
 	}
 	finally {
 		for (const bundle of Object.values(bundles)) {
