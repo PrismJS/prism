@@ -386,7 +386,6 @@ async function buildJS () {
 
 	const defaultOutputOptions: OutputOptions = {
 		dir: './dist',
-		chunkFileNames: '_chunks/[name]-[hash].js',
 		validate: true,
 		sourcemap: 'hidden',
 	};
@@ -400,7 +399,13 @@ async function buildJS () {
 		}
 	> = {
 		esm: {
-			rollupOptions: defaultRollupOptions,
+			rollupOptions: {
+				...defaultRollupOptions,
+				input: {
+					...input,
+					'prism': path.join(SRC_DIR, 'auto-start.ts'),
+				},
+			},
 			outputOptions: defaultOutputOptions,
 		},
 		cjs: {
@@ -411,21 +416,7 @@ async function buildJS () {
 			outputOptions: {
 				...defaultOutputOptions,
 				dir: './dist/cjs',
-			},
-		},
-		global: {
-			rollupOptions: {
-				...defaultRollupOptions,
-				input: {
-					'prism': path.join(SRC_DIR, 'auto-start.ts'),
-				},
-			},
-			outputOptions: {
-				...defaultOutputOptions,
-				format: 'iife',
-				name: 'Prism',
-				exports: 'default',
-				extend: true,
+				chunkFileNames: '_chunks/[name]-[hash].js',
 			},
 		},
 	};
