@@ -364,7 +364,7 @@ async function buildTypes () {
 async function buildJS () {
 	const input: Record<string, string> = {
 		'index': path.join(SRC_DIR, 'index.ts'),
-		'prism': path.join(SRC_DIR, 'prism.ts'), // global “bundle”
+		'prism': path.join(SRC_DIR, 'prism.global.ts'),
 		'shared': path.join(SRC_DIR, 'shared.ts'),
 	};
 	for (const id of languageIds) {
