@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { getParentPre } from '../../shared/dom-util';
 import { noop } from '../../shared/util';
 import type { HookCallback, HookEnv } from '../../core/classes/hooks';
@@ -202,7 +203,7 @@ const label: ButtonFactory = env => {
 	return element;
 };
 
-export default {
+const Self = {
 	id: 'toolbar',
 	plugin () {
 		const toolbar = new Toolbar();
@@ -214,3 +215,7 @@ export default {
 		return Prism.hooks.add('complete', toolbar.hook);
 	},
 } as PluginProto<'toolbar'>;
+
+export default Self;
+
+prism.components.add(Self);
