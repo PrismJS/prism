@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { getLanguage } from '../../shared/dom-util';
 import type { PluginProto } from '../../types';
 
@@ -72,7 +73,7 @@ export class FilterHighlightAll {
 	}
 }
 
-export default {
+const Self = {
 	id: 'filter-highlight-all',
 	plugin (Prism) {
 		const config = new FilterHighlightAll();
@@ -108,3 +109,7 @@ export default {
 		});
 	},
 } as PluginProto<'filter-highlight-all'>;
+
+export default Self;
+
+prism.components.add(Self);
