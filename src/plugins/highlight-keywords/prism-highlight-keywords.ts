@@ -1,6 +1,7 @@
+import prism from '../../global';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'highlight-keywords',
 	effect (Prism) {
 		return Prism.hooks.add('wrap', env => {
@@ -11,3 +12,7 @@ export default {
 		});
 	},
 } as PluginProto<'highlight-keywords'>;
+
+export default Self;
+
+prism.components.add(Self);
