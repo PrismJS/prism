@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { isActive } from '../../shared/dom-util';
 import { lazy, noop } from '../../shared/util';
 import { combineCallbacks } from '../../util/combine-callbacks';
@@ -221,7 +222,7 @@ export class LineHighlight {
 	}
 }
 
-export default {
+const Self = {
 	id: 'line-highlight',
 	optional: 'line-numbers',
 	plugin (Prism) {
@@ -352,3 +353,7 @@ export default {
 		return combineCallbacks(removeEventListeners, beforeSanityHook, completeHook);
 	},
 } as PluginProto<'line-highlight'>;
+
+export default Self;
+
+prism.components.add(Self);
