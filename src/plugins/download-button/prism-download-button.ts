@@ -1,9 +1,10 @@
+import prism from '../../global';
 import { getParentPre } from '../../shared/dom-util';
 import toolbar from '../toolbar/prism-toolbar';
 import type { PluginProto } from '../../types';
 import type { Toolbar } from '../toolbar/prism-toolbar';
 
-export default {
+const Self = {
 	id: 'download-button',
 	require: toolbar,
 	effect (Prism) {
@@ -28,3 +29,7 @@ export default {
 		});
 	},
 } as PluginProto<'download-button'>;
+
+export default Self;
+
+prism.components.add(Self);
