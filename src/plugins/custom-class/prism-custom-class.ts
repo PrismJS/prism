@@ -1,3 +1,4 @@
+import prism from '../../global';
 import type { PluginProto } from '../../types';
 
 type ClassMapper = (className: string) => string;
@@ -47,7 +48,7 @@ export class CustomClass {
 	}
 }
 
-export default {
+const Self = {
 	id: 'custom-class',
 	plugin () {
 		return new CustomClass();
@@ -79,3 +80,7 @@ export default {
 		});
 	},
 } as PluginProto<'custom-class'>;
+
+export default Self;
+
+prism.components.add(Self);
