@@ -1,10 +1,11 @@
+import prism from '../../global';
 import { getParentPre } from '../../shared/dom-util';
 import { getTitle } from '../../shared/meta/title-data';
 import toolbar from '../toolbar/prism-toolbar';
 import type { PluginProto } from '../../types';
 import type { Toolbar } from '../toolbar/prism-toolbar';
 
-export default {
+const Self = {
 	id: 'show-language',
 	require: toolbar,
 	effect (Prism) {
@@ -27,3 +28,7 @@ export default {
 		});
 	},
 } as PluginProto<'show-language'>;
+
+export default Self;
+
+prism.components.add(Self);
