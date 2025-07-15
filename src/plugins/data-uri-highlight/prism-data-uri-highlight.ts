@@ -1,7 +1,8 @@
+import prism from '../../global';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'data-uri-highlight',
 	optional: 'diff-highlight',
 	effect (Prism) {
@@ -40,3 +41,7 @@ export default {
 		});
 	},
 } as PluginProto<'data-uri-highlight'>;
+
+export default Self;
+
+prism.components.add(Self);
