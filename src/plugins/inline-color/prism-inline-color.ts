@@ -1,3 +1,4 @@
+import prism from '../../global';
 import cssExtras from '../../languages/css-extras';
 import { MARKUP_TAG } from '../../shared/languages/patterns';
 import type { PluginProto } from '../../types';
@@ -65,7 +66,7 @@ function validateColor (color: string) {
 	return s.color ? color : undefined;
 }
 
-export default {
+const Self = {
 	id: 'inline-color',
 	require: cssExtras,
 	effect (Prism) {
@@ -102,3 +103,7 @@ export default {
 		});
 	},
 } as PluginProto<'inline-color'>;
+
+export default Self;
+
+prism.components.add(Self);
