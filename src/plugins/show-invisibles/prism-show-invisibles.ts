@@ -1,7 +1,8 @@
+import prism from '../../global';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'show-invisibles',
 	optional: ['autolinker', 'data-uri-highlight', 'diff-highlight'],
 	effect (Prism) {
@@ -18,3 +19,7 @@ export default {
 		});
 	},
 } as PluginProto<'show-invisibles'>;
+
+export default Self;
+
+prism.components.add(Self);
