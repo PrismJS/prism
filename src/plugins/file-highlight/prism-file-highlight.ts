@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { setLanguage } from '../../shared/dom-util';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
@@ -94,7 +95,7 @@ export class FileHighlight {
 	}
 }
 
-export default {
+const Self = {
 	id: 'file-highlight',
 	plugin (Prism) {
 		return new FileHighlight(Prism);
@@ -215,3 +216,7 @@ export default {
 		});
 	},
 } as PluginProto<'file-highlight'>;
+
+export default Self;
+
+prism.components.add(Self);
