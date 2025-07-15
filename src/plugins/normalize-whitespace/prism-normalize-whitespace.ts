@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { getParentPre, isActive } from '../../shared/dom-util';
 import type { PluginProto } from '../../types';
 
@@ -150,7 +151,7 @@ export class NormalizeWhitespace {
 	}
 }
 
-export default {
+const Self = {
 	id: 'normalize-whitespace',
 	optional: 'unescaped-markup',
 	plugin () {
@@ -231,3 +232,7 @@ export default {
 		});
 	},
 } as PluginProto<'normalize-whitespace'>;
+
+export default Self;
+
+prism.components.add(Self);
