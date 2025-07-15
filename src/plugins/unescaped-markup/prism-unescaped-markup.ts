@@ -1,6 +1,7 @@
+import prism from '../../global';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'unescaped-markup',
 	effect (Prism) {
 		return Prism.hooks.add({
@@ -56,3 +57,7 @@ export default {
 		});
 	},
 } as PluginProto<'unescaped-markup'>;
+
+export default Self;
+
+prism.components.add(Self);
