@@ -1,3 +1,4 @@
+import prism from '../../global';
 import type { Prism } from '../../core';
 import type { PluginProto } from '../../types';
 import type { Autoloader } from '../autoloader/prism-autoloader';
@@ -188,7 +189,7 @@ export class JsonpHighlight {
 	}
 }
 
-export default {
+const Self = {
 	id: 'jsonp-highlight',
 	plugin (Prism) {
 		const config = new JsonpHighlight(Prism);
@@ -356,3 +357,7 @@ export default {
 		});
 	},
 } as PluginProto<'jsonp-highlight'>;
+
+export default Self;
+
+prism.components.add(Self);
