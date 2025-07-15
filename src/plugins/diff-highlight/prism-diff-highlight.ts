@@ -1,10 +1,11 @@
 import { getTextContent, Token } from '../../core/classes/token';
+import prism from '../../global';
 import diff, { PREFIXES } from '../../languages/diff';
 import type { HookEnv } from '../../core/classes/hooks';
 import type { TokenStream } from '../../core/classes/token';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'diff-highlight',
 	require: diff,
 	effect (Prism) {
@@ -117,3 +118,7 @@ export default {
 		});
 	},
 } as PluginProto<'diff-highlight'>;
+
+export default Self;
+
+prism.components.add(Self);
