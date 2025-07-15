@@ -1,7 +1,8 @@
+import prism from '../../global';
 import { tokenizeStrings } from '../../shared/tokenize-strings';
 import type { PluginProto } from '../../types';
 
-export default {
+const Self = {
 	id: 'autolinker',
 	optional: 'diff-highlight',
 	effect (Prism) {
@@ -41,3 +42,7 @@ export default {
 		});
 	},
 } as PluginProto<'autolinker'>;
+
+export default Self;
+
+prism.components.add(Self);
