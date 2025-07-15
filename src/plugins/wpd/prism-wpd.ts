@@ -1,3 +1,4 @@
+import prism from '../../global';
 import cssSelector from '../../languages/css-selector';
 import type { PluginProto } from '../../types';
 
@@ -153,7 +154,7 @@ function getLanguage (tag: string) {
 	return null;
 }
 
-export default {
+const Self = {
 	id: 'wpd',
 	require: cssSelector,
 	effect (Prism) {
@@ -215,3 +216,7 @@ export default {
 		});
 	},
 } as PluginProto<'wpd'>;
+
+export default Self;
+
+prism.components.add(Self);
