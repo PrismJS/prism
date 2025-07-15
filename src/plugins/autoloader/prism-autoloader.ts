@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { getParentPre } from '../../shared/dom-util';
 import { resolveAlias } from '../../shared/meta/alias-data';
 import { toArray } from '../../util/iterables';
@@ -103,7 +104,7 @@ export class Autoloader {
 	}
 }
 
-export default {
+const Self = {
 	id: 'autoloader',
 	plugin (Prism) {
 		return new Autoloader(Prism);
@@ -167,3 +168,7 @@ export default {
 		});
 	},
 } as PluginProto<'autoloader'>;
+
+export default Self;
+
+prism.components.add(Self);
