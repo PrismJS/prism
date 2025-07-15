@@ -1,3 +1,4 @@
+import prism from '../../global';
 import toolbar from '../toolbar/prism-toolbar';
 import type { PluginProto } from '../../types';
 import type { Toolbar } from '../toolbar/prism-toolbar';
@@ -119,7 +120,7 @@ function getSettings (startElement: Element) {
 	return settings;
 }
 
-export default {
+const Self = {
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect (Prism) {
@@ -171,3 +172,7 @@ export default {
 		});
 	},
 } as PluginProto<'copy-to-clipboard'>;
+
+export default Self;
+
+prism.components.add(Self);
