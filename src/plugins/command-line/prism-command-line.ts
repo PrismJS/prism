@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { getParentPre } from '../../shared/dom-util';
 import { htmlEncode } from '../../shared/util';
 import type { PluginProto } from '../../types';
@@ -12,7 +13,7 @@ interface CommandLineInfo {
 	continuationLineIndicies?: Set<number>;
 }
 
-export default {
+const Self = {
 	id: 'command-line',
 	effect (Prism) {
 		return Prism.hooks.add({
@@ -209,3 +210,7 @@ export default {
 		});
 	},
 } as PluginProto<'command-line'>;
+
+export default Self;
+
+prism.components.add(Self);
