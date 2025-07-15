@@ -1,8 +1,9 @@
+import prism from '../../global';
 import { getParentPre, isActive } from '../../shared/dom-util';
 import type { PluginProto } from '../../types';
 import type { CustomClass } from '../custom-class/prism-custom-class';
 
-export default {
+const Self = {
 	id: 'match-braces',
 	effect (Prism) {
 		function mapClassName (name: string) {
@@ -202,3 +203,7 @@ export default {
 		});
 	},
 } as PluginProto<'match-braces'>;
+
+export default Self;
+
+prism.components.add(Self);
