@@ -1,3 +1,4 @@
+import prism from '../../global';
 import { isActive } from '../../shared/dom-util';
 import type { PluginProto } from '../../types';
 
@@ -14,7 +15,7 @@ interface NodeData {
 	posClose: number;
 }
 
-export default {
+const Self = {
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
 	effect (Prism) {
@@ -152,3 +153,7 @@ export default {
 		});
 	},
 } as PluginProto<'keep-markup'>;
+
+export default Self;
+
+prism.components.add(Self);
