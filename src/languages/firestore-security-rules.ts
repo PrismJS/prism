@@ -4,17 +4,11 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'firestore-security-rules',
-	require: clike,
-	grammar ({ extend }) {
-		const fsr = extend('clike', {
-			'comment': /\/\/.*/,
-			'keyword': /\b(?:allow|function|if|match|null|return|rules_version|service)\b/,
-			'operator': /&&|\|\||[<>!=]=?|[-+*/%]|\b(?:in|is)\b/,
-		});
+	base: clike,
+	grammar ({ base }) {
+		delete base!['class-name'];
 
-		delete fsr['class-name'];
-
-		insertBefore(fsr, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'path': {
 				pattern:
 					/(^|[\s(),])(?:\/(?:[\w\xA0-\uFFFF]+|\{[\w\xA0-\uFFFF]+(?:=\*\*)?\}|\$\([\w\xA0-\uFFFF.]+\)))+/,
@@ -43,6 +37,10 @@ export default {
 			},
 		});
 
-		return fsr;
+		return {
+			'comment': /\/\/.*/,
+			'keyword': /\b(?:allow|function|if|match|null|return|rules_version|service)\b/,
+			'operator': /&&|\|\||[<>!=]=?|[-+*/%]|\b(?:in|is)\b/,
+		};
 	},
 } as LanguageProto<'firestore-security-rules'>;
