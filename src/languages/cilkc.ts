@@ -4,16 +4,15 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'cilkc',
-	require: c,
+	base: c,
 	alias: 'cilk-c',
-	grammar ({ extend }) {
-		const cilkc = extend('c', {});
-		insertBefore(cilkc, 'function', {
+	grammar ({ base }) {
+		insertBefore(base!, 'function', {
 			'parallel-keyword': {
 				pattern: /\bcilk_(?:for|reducer|s(?:cope|pawn|ync))\b/,
 				alias: 'keyword',
 			},
 		});
-		return cilkc;
+		return {};
 	},
 } as LanguageProto<'cilkc'>;
