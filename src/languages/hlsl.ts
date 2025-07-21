@@ -4,16 +4,15 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'hlsl',
-	require: c,
-	grammar ({ extend, getLanguage }) {
-		const c = getLanguage('c');
-		return extend('c', {
+	base: c,
+	grammar ({ base }) {
+		return {
 			// Regarding keywords and class names:
 			// The list of all keywords was split into 'keyword' and 'class-name' tokens based on whether they are capitalized.
 			// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-appendix-keywords
 			// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-appendix-reserved-words
 			'class-name': [
-				...toArray(c['class-name']),
+				...toArray(base!['class-name']),
 				/\b(?:AppendStructuredBuffer|BlendState|Buffer|ByteAddressBuffer|CompileShader|ComputeShader|ConsumeStructuredBuffer|DepthStencilState|DepthStencilView|DomainShader|GeometryShader|Hullshader|InputPatch|LineStream|OutputPatch|PixelShader|PointStream|RWBuffer|RWByteAddressBuffer|RWStructuredBuffer|RWTexture(?:1D|1DArray|2D|2DArray|3D)|RasterizerState|RenderTargetView|SamplerComparisonState|SamplerState|StructuredBuffer|Texture(?:1D|1DArray|2D|2DArray|2DMS|2DMSArray|3D|Cube|CubeArray)|TriangleStream|VertexShader)\b/,
 			],
 			'keyword': [
@@ -26,6 +25,6 @@ export default {
 			'number':
 				/(?:(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[eE][+-]?\d+)?|\b0x[\da-fA-F]+)[fFhHlLuU]?\b/,
 			'boolean': /\b(?:false|true)\b/,
-		});
+		};
 	},
 } as LanguageProto<'hlsl'>;
