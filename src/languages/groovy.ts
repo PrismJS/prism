@@ -4,8 +4,8 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'groovy',
-	require: clike,
-	grammar ({ extend }) {
+	base: clike,
+	grammar ({ base }) {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -21,25 +21,7 @@ export default {
 			},
 		};
 
-		const groovy = extend('clike', {
-			'string': {
-				// https://groovy-lang.org/syntax.html#_dollar_slashy_string
-				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
-				greedy: true,
-			},
-			'keyword':
-				/\b(?:abstract|as|assert|boolean|break|byte|case|catch|char|class|const|continue|def|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|in|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|trait|transient|try|void|volatile|while)\b/,
-			'number':
-				/\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
-			'operator': {
-				pattern:
-					/(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
-				lookbehind: true,
-			},
-			'punctuation': /\.+|[{}[\];(),:$]/,
-		});
-
-		insertBefore(groovy, 'string', {
+		insertBefore(base!, 'string', {
 			'shebang': {
 				pattern: /#!.+/,
 				alias: 'comment',
@@ -58,11 +40,11 @@ export default {
 			},
 		});
 
-		insertBefore(groovy, 'punctuation', {
+		insertBefore(base!, 'punctuation', {
 			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
 		});
 
-		insertBefore(groovy, 'function', {
+		insertBefore(base!, 'function', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+/,
 				lookbehind: true,
@@ -70,6 +52,22 @@ export default {
 			},
 		});
 
-		return groovy;
+		return {
+			'string': {
+				// https://groovy-lang.org/syntax.html#_dollar_slashy_string
+				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
+				greedy: true,
+			},
+			'keyword':
+				/\b(?:abstract|as|assert|boolean|break|byte|case|catch|char|class|const|continue|def|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|in|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|trait|transient|try|void|volatile|while)\b/,
+			'number':
+				/\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
+			'operator': {
+				pattern:
+					/(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
+				lookbehind: true,
+			},
+			'punctuation': /\.+|[{}[\];(),:$]/,
+		};
 	},
 } as LanguageProto<'groovy'>;
