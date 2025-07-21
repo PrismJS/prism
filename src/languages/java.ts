@@ -5,8 +5,8 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'java',
-	require: clike,
-	grammar ({ extend, getLanguage }) {
+	base: clike,
+	grammar ({ base }) {
 		const keywords =
 			/\b(?:abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|module|native|new|non-sealed|null|open|opens|package|permits|private|protected|provides|public|record(?!\s*[(){}[\]<>=%~.:,;?+\-*/&|^])|requires|return|sealed|short|static|strictfp|super|switch|synchronized|this|throw|throws|to|transient|transitive|try|uses|var|void|volatile|while|with|yield)\b/;
 
@@ -30,58 +30,7 @@ export default {
 			},
 		};
 
-		const clike = getLanguage('clike');
-
-		const java = extend('clike', {
-			'string': {
-				pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"/,
-				lookbehind: true,
-				greedy: true,
-			},
-			'class-name': [
-				className,
-				{
-					// variables, parameters, and constructor references
-					// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
-					pattern: RegExp(
-						/(^|[^\w.])/.source +
-							classNamePrefix +
-							/[A-Z]\w*(?=\s+\w+\s*[;,=()]|\s*(?:\[[\s,]*\]\s*)?::\s*new\b)/.source
-					),
-					lookbehind: true,
-					inside: className.inside,
-				},
-				{
-					// class names based on keyword
-					// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
-					pattern: RegExp(
-						/(\b(?:class|enum|extends|implements|instanceof|interface|new|record|throws)\s+)/
-							.source +
-							classNamePrefix +
-							/[A-Z]\w*\b/.source
-					),
-					lookbehind: true,
-					inside: className.inside,
-				},
-			],
-			'keyword': keywords,
-			'function': [
-				...toArray(clike.function),
-				{
-					pattern: /(::\s*)[a-z_]\w*/,
-					lookbehind: true,
-				},
-			],
-			'number':
-				/\b0b[01][01_]*L?\b|\b0x(?:\.[\da-f_p+-]+|[\da-f_]+(?:\.[\da-f_p+-]+)?)\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
-			'operator': {
-				pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
-				lookbehind: true,
-			},
-			'constant': /\b[A-Z][A-Z_\d]+\b/,
-		});
-
-		insertBefore(java, 'comment', {
+		insertBefore(base!, 'comment', {
 			'doc-comment': {
 				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
@@ -90,7 +39,7 @@ export default {
 			},
 		});
 
-		insertBefore(java, 'string', {
+		insertBefore(base!, 'string', {
 			'triple-quoted-string': {
 				// http://openjdk.java.net/jeps/355#Description
 				pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
@@ -103,7 +52,7 @@ export default {
 			},
 		});
 
-		insertBefore(java, 'class-name', {
+		insertBefore(base!, 'class-name', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
 				lookbehind: true,
@@ -163,6 +112,53 @@ export default {
 			},
 		});
 
-		return java;
+		return {
+			'string': {
+				pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"/,
+				lookbehind: true,
+				greedy: true,
+			},
+			'class-name': [
+				className,
+				{
+					// variables, parameters, and constructor references
+					// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
+					pattern: RegExp(
+						/(^|[^\w.])/.source +
+							classNamePrefix +
+							/[A-Z]\w*(?=\s+\w+\s*[;,=()]|\s*(?:\[[\s,]*\]\s*)?::\s*new\b)/.source
+					),
+					lookbehind: true,
+					inside: className.inside,
+				},
+				{
+					// class names based on keyword
+					// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
+					pattern: RegExp(
+						/(\b(?:class|enum|extends|implements|instanceof|interface|new|record|throws)\s+)/
+							.source +
+							classNamePrefix +
+							/[A-Z]\w*\b/.source
+					),
+					lookbehind: true,
+					inside: className.inside,
+				},
+			],
+			'keyword': keywords,
+			'function': [
+				...toArray(base!.function),
+				{
+					pattern: /(::\s*)[a-z_]\w*/,
+					lookbehind: true,
+				},
+			],
+			'number':
+				/\b0b[01][01_]*L?\b|\b0x(?:\.[\da-f_p+-]+|[\da-f_]+(?:\.[\da-f_p+-]+)?)\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
+			'operator': {
+				pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
+				lookbehind: true,
+			},
+			'constant': /\b[A-Z][A-Z_\d]+\b/,
+		};
 	},
 } as LanguageProto<'java'>;
