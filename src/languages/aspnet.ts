@@ -5,39 +5,24 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'aspnet',
-	require: [markup, csharp],
-	grammar ({ extend }) {
-		const pageDirectiveInside: Grammar = {
-			'page-directive': {
-				pattern:
-					/<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
-				alias: 'tag',
+	base: markup,
+	require: csharp,
+	grammar ({ base }) {
+		const directive = {
+			pattern: /<%.*%>/,
+			alias: 'tag',
+			inside: {
+				'directive': {
+					pattern: /<%\s*?[$=%#:]{0,2}|%>/,
+					alias: 'tag',
+				},
+				$rest: 'csharp',
 			},
-		};
+		} as unknown as GrammarToken;
 
-		const aspnet = extend('markup', {
-			'page-directive': {
-				pattern: /<%\s*@.*%>/,
-				alias: 'tag',
-				inside: pageDirectiveInside,
-			},
-			'directive': {
-				pattern: /<%.*%>/,
-				alias: 'tag',
-				inside: {
-					'directive': {
-						pattern: /<%\s*?[$=%#:]{0,2}|%>/,
-						alias: 'tag',
-					},
-					$rest: 'csharp',
-				} as unknown as Grammar,
-			},
-		});
-
-		const tag = aspnet['tag'] as GrammarToken & {
+		const tag = base!['tag'] as GrammarToken & {
 			inside: { 'attr-value': { inside: Grammar } };
 		};
-		pageDirectiveInside.$rest = tag.inside;
 
 		// Regexp copied from markup, with a negative look-ahead added
 		tag.pattern =
@@ -45,10 +30,10 @@ export default {
 
 		// match directives of attribute value foo="<% Bar %>"
 		insertBefore(tag.inside['attr-value'].inside, 'punctuation', {
-			'directive': aspnet['directive'],
+			'directive': directive,
 		});
 
-		insertBefore(aspnet, 'comment', {
+		insertBefore(base!, 'comment', {
 			'asp-comment': {
 				pattern: /<%--[\s\S]*?--%>/,
 				alias: ['asp', 'comment'],
@@ -56,7 +41,7 @@ export default {
 		});
 
 		// script runat="server" contains csharp, not javascript
-		insertBefore(aspnet, 'script' in aspnet ? 'script' : 'tag', {
+		insertBefore(base!, 'script' in base! ? 'script' : 'tag', {
 			'asp-script': {
 				pattern: /(<script(?=.*runat=['"]?server\b)[^>]*>)[\s\S]*?(?=<\/script>)/i,
 				lookbehind: true,
@@ -65,6 +50,20 @@ export default {
 			},
 		});
 
-		return aspnet;
+		return {
+			'page-directive': {
+				pattern: /<%\s*@.*%>/,
+				alias: 'tag',
+				inside: {
+					'page-directive': {
+						pattern:
+							/<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
+						alias: 'tag',
+					},
+					$rest: tag.inside as Grammar['$rest'],
+				},
+			},
+			'directive': directive,
+		};
 	},
 } as LanguageProto<'aspnet'>;
