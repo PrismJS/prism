@@ -4,8 +4,8 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'gradle',
-	require: clike,
-	grammar ({ extend }) {
+	base: clike,
+	grammar ({ base }) {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -21,24 +21,7 @@ export default {
 			},
 		};
 
-		const gradle = extend('clike', {
-			'string': {
-				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
-				greedy: true,
-			},
-			'keyword':
-				/\b(?:apply|def|dependencies|else|if|implementation|import|plugin|plugins|project|repositories|repository|sourceSets|tasks|val)\b/,
-			'number':
-				/\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
-			'operator': {
-				pattern:
-					/(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
-				lookbehind: true,
-			},
-			'punctuation': /\.+|[{}[\];(),:$]/,
-		});
-
-		insertBefore(gradle, 'string', {
+		insertBefore(base!, 'string', {
 			'shebang': {
 				pattern: /#!.+/,
 				alias: 'comment',
@@ -55,11 +38,11 @@ export default {
 			},
 		});
 
-		insertBefore(gradle, 'punctuation', {
+		insertBefore(base!, 'punctuation', {
 			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
 		});
 
-		insertBefore(gradle, 'function', {
+		insertBefore(base!, 'function', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+/,
 				lookbehind: true,
@@ -67,6 +50,21 @@ export default {
 			},
 		});
 
-		return gradle;
+		return {
+			'string': {
+				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
+				greedy: true,
+			},
+			'keyword':
+				/\b(?:apply|def|dependencies|else|if|implementation|import|plugin|plugins|project|repositories|repository|sourceSets|tasks|val)\b/,
+			'number':
+				/\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
+			'operator': {
+				pattern:
+					/(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
+				lookbehind: true,
+			},
+			'punctuation': /\.+|[{}[\];(),:$]/,
+		};
 	},
 } as LanguageProto<'gradle'>;
