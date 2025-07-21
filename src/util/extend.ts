@@ -38,7 +38,7 @@ export function extend (grammar: Grammar, id: string, reDef: Grammar): Grammar {
 	return lang;
 }
 
-function cloneGrammar (grammar: Grammar, id: string): Grammar {
+export function cloneGrammar (grammar: Grammar, id: string): Grammar {
 	const result: Grammar = {};
 
 	const visited = new Map<Grammar, Grammar>();

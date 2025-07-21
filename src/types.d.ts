@@ -1,8 +1,9 @@
-import type { Prism } from './core/prism';
 import type { TokenStream } from './core/classes/token';
+import type { Prism } from './core/prism';
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
+	readonly base?: Grammar;
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
 }
@@ -16,6 +17,7 @@ export interface ComponentProtoBase<Id extends string = string> {
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	plugin?: undefined;
+	base?: LanguageProto;
 }
 type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
