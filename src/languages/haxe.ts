@@ -4,34 +4,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'haxe',
-	require: clike,
-	grammar ({ extend }) {
-		const haxe = extend('clike', {
-			'string': {
-				// Strings can be multi-line
-				pattern: /"(?:[^"\\]|\\[\s\S])*"/,
-				greedy: true,
-			},
-			'class-name': [
-				{
-					pattern:
-						/(\b(?:abstract|class|enum|extends|implements|interface|new|typedef)\s+)[A-Z_]\w*/,
-					lookbehind: true,
-				},
-				// based on naming convention
-				/\b[A-Z]\w*/,
-			],
-			// The final look-ahead prevents highlighting of keywords if expressions such as "haxe.macro.Expr"
-			'keyword':
-				/\bthis\b|\b(?:abstract|as|break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|final|for|from|function|if|implements|import|in|inline|interface|macro|new|null|operator|overload|override|package|private|public|return|static|super|switch|throw|to|try|typedef|untyped|using|var|while)(?!\.)\b/,
-			'function': {
-				pattern: /\b[a-z_]\w*(?=\s*(?:<[^<>]*>\s*)?\()/i,
-				greedy: true,
-			},
-			'operator': /\.{3}|\+\+|--|&&|\|\||->|=>|(?:<<?|>{1,3}|[-+*/%!=&|^])=?|[?:~]/,
-		});
-
-		insertBefore(haxe, 'string', {
+	base: clike,
+	grammar ({ base }) {
+		insertBefore(base!, 'string', {
 			'string-interpolation': {
 				pattern: /'(?:[^'\\]|\\[\s\S])*'/,
 				greedy: true,
@@ -55,7 +30,7 @@ export default {
 			},
 		});
 
-		insertBefore(haxe, 'class-name', {
+		insertBefore(base!, 'class-name', {
 			'regex': {
 				pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
 				greedy: true,
@@ -72,7 +47,7 @@ export default {
 			},
 		});
 
-		insertBefore(haxe, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'preprocessor': {
 				pattern: /#(?:else|elseif|end|if)\b.*/,
 				alias: 'property',
@@ -87,6 +62,29 @@ export default {
 			},
 		});
 
-		return haxe;
+		return {
+			'string': {
+				// Strings can be multi-line
+				pattern: /"(?:[^"\\]|\\[\s\S])*"/,
+				greedy: true,
+			},
+			'class-name': [
+				{
+					pattern:
+						/(\b(?:abstract|class|enum|extends|implements|interface|new|typedef)\s+)[A-Z_]\w*/,
+					lookbehind: true,
+				},
+				// based on naming convention
+				/\b[A-Z]\w*/,
+			],
+			// The final look-ahead prevents highlighting of keywords if expressions such as "haxe.macro.Expr"
+			'keyword':
+				/\bthis\b|\b(?:abstract|as|break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|final|for|from|function|if|implements|import|in|inline|interface|macro|new|null|operator|overload|override|package|private|public|return|static|super|switch|throw|to|try|typedef|untyped|using|var|while)(?!\.)\b/,
+			'function': {
+				pattern: /\b[a-z_]\w*(?=\s*(?:<[^<>]*>\s*)?\()/i,
+				greedy: true,
+			},
+			'operator': /\.{3}|\+\+|--|&&|\|\||->|=>|(?:<<?|>{1,3}|[-+*/%!=&|^])=?|[?:~]/,
+		};
 	},
 } as LanguageProto<'haxe'>;
