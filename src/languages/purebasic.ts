@@ -4,9 +4,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'purebasic',
-	require: clike,
+	base: clike,
 	alias: 'pbfasm',
-	grammar ({ extend }) {
+	grammar ({ base }) {
 		/*
 		Original Code by Bas Groothedde
 		!!MANY THANKS!! I never would have made this, regex and me will never be best friends ;)
@@ -15,16 +15,8 @@ export default {
 		*/
 
 		// PureBasic support, steal stuff from ansi-c
-		const purebasic = extend('clike', {
-			'comment': /;.*/,
-			'keyword':
-				/\b(?:align|and|as|break|calldebugger|case|compilercase|compilerdefault|compilerelse|compilerelseif|compilerendif|compilerendselect|compilererror|compilerif|compilerselect|continue|data|datasection|debug|debuglevel|declare|declarec|declarecdll|declaredll|declaremodule|default|define|dim|disableasm|disabledebugger|disableexplicit|else|elseif|enableasm|enabledebugger|enableexplicit|end|enddatasection|enddeclaremodule|endenumeration|endif|endimport|endinterface|endmacro|endmodule|endprocedure|endselect|endstructure|endstructureunion|endwith|enumeration|extends|fakereturn|for|foreach|forever|global|gosub|goto|if|import|importc|includebinary|includefile|includepath|interface|macro|module|newlist|newmap|next|not|or|procedure|procedurec|procedurecdll|proceduredll|procedurereturn|protected|prototype|prototypec|read|redim|repeat|restore|return|runtime|select|shared|static|step|structure|structureunion|swap|threaded|to|until|wend|while|with|xincludefile|xor)\b/i,
-			'function': /\b\w+(?:\.\w+)?\s*(?=\()/,
-			'number': /(?:\$[\da-f]+|\b-?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?)\b/i,
-			'operator': /(?:@\*?|\?|\*)\w+\$?|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/,
-		});
 
-		insertBefore(purebasic, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'tag': /#\w+\$?/,
 			'asm': {
 				pattern: /(^[\t ]*)!.*/m,
@@ -72,9 +64,16 @@ export default {
 			},
 		});
 
-		delete purebasic['class-name'];
-		delete purebasic['boolean'];
+		delete base!['class-name'];
+		delete base!['boolean'];
 
-		return purebasic;
+		return {
+			'comment': /;.*/,
+			'keyword':
+				/\b(?:align|and|as|break|calldebugger|case|compilercase|compilerdefault|compilerelse|compilerelseif|compilerendif|compilerendselect|compilererror|compilerif|compilerselect|continue|data|datasection|debug|debuglevel|declare|declarec|declarecdll|declaredll|declaremodule|default|define|dim|disableasm|disabledebugger|disableexplicit|else|elseif|enableasm|enabledebugger|enableexplicit|end|enddatasection|enddeclaremodule|endenumeration|endif|endimport|endinterface|endmacro|endmodule|endprocedure|endselect|endstructure|endstructureunion|endwith|enumeration|extends|fakereturn|for|foreach|forever|global|gosub|goto|if|import|importc|includebinary|includefile|includepath|interface|macro|module|newlist|newmap|next|not|or|procedure|procedurec|procedurecdll|proceduredll|procedurereturn|protected|prototype|prototypec|read|redim|repeat|restore|return|runtime|select|shared|static|step|structure|structureunion|swap|threaded|to|until|wend|while|with|xincludefile|xor)\b/i,
+			'function': /\b\w+(?:\.\w+)?\s*(?=\()/,
+			'number': /(?:\$[\da-f]+|\b-?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?)\b/i,
+			'operator': /(?:@\*?|\?|\*)\w+\$?|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/,
+		};
 	},
 } as LanguageProto<'purebasic'>;
