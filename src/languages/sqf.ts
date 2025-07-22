@@ -4,9 +4,27 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sqf',
-	require: clike,
-	grammar ({ extend }) {
-		const sqf = extend('clike', {
+	base: clike,
+	grammar ({ base }) {
+		insertBefore(base!, 'string', {
+			'macro': {
+				pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
+				lookbehind: true,
+				greedy: true,
+				alias: 'property',
+				inside: {
+					'directive': {
+						pattern: /#[a-z]+\b/i,
+						alias: 'keyword',
+					},
+					'comment': base!.comment,
+				},
+			},
+		});
+
+		delete base!['class-name'];
+
+		return {
 			'string': {
 				pattern: /"(?:(?:"")?[^"])*"(?!")|'(?:[^'])*'/,
 				greedy: true,
@@ -24,26 +42,6 @@ export default {
 				alias: 'keyword',
 			},
 			'constant': /\bDIK(?:_[a-z\d]+)+\b/i,
-		});
-
-		insertBefore(sqf, 'string', {
-			'macro': {
-				pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
-				lookbehind: true,
-				greedy: true,
-				alias: 'property',
-				inside: {
-					'directive': {
-						pattern: /#[a-z]+\b/i,
-						alias: 'keyword',
-					},
-					'comment': sqf.comment,
-				},
-			},
-		});
-
-		delete sqf['class-name'];
-
-		return sqf;
+		};
 	},
 } as LanguageProto<'sqf'>;
