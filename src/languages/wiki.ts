@@ -4,12 +4,24 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'wiki',
-	require: markup,
-	grammar ({ extend, getLanguage }) {
-		const markup = getLanguage('markup');
-		const tag = markup['tag'] as GrammarToken;
+	base: markup,
+	grammar ({ base }) {
+		const tag = base!['tag'] as GrammarToken;
 
-		const wiki = extend('markup', {
+		insertBefore(base!, 'tag', {
+			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
+			'nowiki': {
+				pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
+				inside: {
+					'tag': {
+						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
+						inside: tag.inside,
+					},
+				},
+			},
+		});
+
+		return {
 			'block-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
@@ -74,21 +86,6 @@ export default {
 				} as Grammar,
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
-		});
-
-		insertBefore(wiki, 'tag', {
-			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
-			'nowiki': {
-				pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
-				inside: {
-					'tag': {
-						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-						inside: tag.inside,
-					},
-				},
-			},
-		});
-
-		return wiki;
+		};
 	},
 } as LanguageProto<'wiki'>;
