@@ -4,10 +4,8 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'velocity',
-	require: markup,
-	grammar ({ extend }) {
-		const velocity = extend('markup', {});
-
+	base: markup,
+	grammar ({ base }) {
 		const vel = {
 			'variable': {
 				pattern:
@@ -36,7 +34,7 @@ export default {
 			'punctuation': vel['punctuation'],
 		};
 
-		insertBefore(velocity, 'comment', {
+		insertBefore(base!, 'comment', {
 			'unparsed': {
 				pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
 				lookbehind: true,
@@ -77,10 +75,10 @@ export default {
 		});
 
 		(
-			(((velocity['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
+			(((base!['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
 				.inside as Grammar
-		).$rest = velocity;
+		).$rest = 'velocity';
 
-		return velocity;
+		return {};
 	},
 } as LanguageProto<'velocity'>;
