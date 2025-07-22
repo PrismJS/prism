@@ -4,8 +4,8 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'less',
-	require: css,
-	grammar ({ extend }) {
+	base: css,
+	grammar ({ base }) {
 		/* FIXME :
 		 :extend() is not handled specifically : its highlighting is buggy.
 		 Mixin usage must be inside a ruleset to be highlighted.
@@ -14,7 +14,27 @@ export default {
 		 A comment before a mixin usage prevents the latter to be properly highlighted.
 		 */
 
-		const less = extend('css', {
+		insertBefore(base!, 'property', {
+			'variable': [
+				// Variable declaration (the colon must be consumed!)
+				{
+					pattern: /@[\w-]+\s*:/,
+					inside: {
+						'punctuation': /:/,
+					},
+				},
+
+				// Variable usage
+				/@@?[\w-]+/,
+			],
+			'mixin-usage': {
+				pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
+				lookbehind: true,
+				alias: 'function',
+			},
+		});
+
+		return {
 			'comment': [
 				/\/\*[\s\S]*?\*\//,
 				{
@@ -40,28 +60,6 @@ export default {
 
 			'property': /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/,
 			'operator': /[+\-*\/]/,
-		});
-
-		insertBefore(less, 'property', {
-			'variable': [
-				// Variable declaration (the colon must be consumed!)
-				{
-					pattern: /@[\w-]+\s*:/,
-					inside: {
-						'punctuation': /:/,
-					},
-				},
-
-				// Variable usage
-				/@@?[\w-]+/,
-			],
-			'mixin-usage': {
-				pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
-				lookbehind: true,
-				alias: 'function',
-			},
-		});
-
-		return less;
+		};
 	},
 } as LanguageProto<'less'>;
