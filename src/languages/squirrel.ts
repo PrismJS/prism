@@ -5,13 +5,30 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'squirrel',
-	require: clike,
-	grammar ({ extend, getLanguage }) {
-		const clike = getLanguage('clike');
+	base: clike,
+	grammar ({ base }) {
+		insertBefore(base!, 'string', {
+			'char': {
+				pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
+				lookbehind: true,
+				greedy: true,
+			},
+		});
 
-		const squirrel = extend('clike', {
+		insertBefore(base!, 'operator', {
+			'attribute-punctuation': {
+				pattern: /<\/|\/>/,
+				alias: 'important',
+			},
+			'lambda': {
+				pattern: /@(?=\()/,
+				alias: 'operator',
+			},
+		});
+
+		return {
 			'comment': [
-				...toArray(clike['comment']),
+				...toArray(base!.comment),
 				{
 					pattern: /#.*/,
 					greedy: true,
@@ -36,27 +53,6 @@ export default {
 			'number': /\b(?:0x[0-9a-fA-F]+|\d+(?:\.(?:\d+|[eE][+-]?\d+))?)\b/,
 			'operator': /\+\+|--|<=>|<[-<]|>>>?|&&?|\|\|?|[-+*/%!=<>]=?|[~^]|::?/,
 			'punctuation': /[(){}\[\],;.]/,
-		});
-
-		insertBefore(squirrel, 'string', {
-			'char': {
-				pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
-				lookbehind: true,
-				greedy: true,
-			},
-		});
-
-		insertBefore(squirrel, 'operator', {
-			'attribute-punctuation': {
-				pattern: /<\/|\/>/,
-				alias: 'important',
-			},
-			'lambda': {
-				pattern: /@(?=\()/,
-				alias: 'operator',
-			},
-		});
-
-		return squirrel;
+		};
 	},
 } as LanguageProto<'squirrel'>;
