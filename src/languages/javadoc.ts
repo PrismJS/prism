@@ -6,8 +6,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'javadoc',
-	require: [markup, java, javadoclike],
-	grammar ({ extend, getLanguage }) {
+	base: javadoclike,
+	require: [markup, java],
+	grammar ({ base, getLanguage }) {
 		const java = getLanguage('java');
 		const { tag, entity } = getLanguage('markup');
 
@@ -19,8 +20,7 @@ export default {
 			() => memberReference
 		);
 
-		const javadoc = extend('javadoclike', {});
-		insertBefore(javadoc, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'reference': {
 				pattern: RegExp(
 					/(@(?:exception|link|linkplain|see|throws|value)\s+(?:\*\s*)?)/.source +
@@ -98,6 +98,6 @@ export default {
 			'entity': entity,
 		});
 
-		return javadoc;
+		return {};
 	},
 } as LanguageProto<'javadoc'>;
