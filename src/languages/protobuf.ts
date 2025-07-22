@@ -4,29 +4,12 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'protobuf',
-	require: clike,
-	grammar ({ extend }) {
+	base: clike,
+	grammar ({ base }) {
 		const builtinTypes =
 			/\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
 
-		const protobuf = extend('clike', {
-			'class-name': [
-				{
-					pattern: /(\b(?:enum|extend|message|service)\s+)[A-Za-z_]\w*(?=\s*\{)/,
-					lookbehind: true,
-				},
-				{
-					pattern:
-						/(\b(?:rpc\s+\w+|returns)\s*\(\s*(?:stream\s+)?)\.?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*(?=\s*\))/,
-					lookbehind: true,
-				},
-			],
-			'keyword':
-				/\b(?:enum|extend|extensions|import|message|oneof|option|optional|package|public|repeated|required|reserved|returns|rpc(?=\s+\w)|service|stream|syntax|to)\b(?!\s*=\s*\d)/,
-			'function': /\b[a-z_]\w*(?=\s*\()/i,
-		});
-
-		insertBefore(protobuf, 'operator', {
+		insertBefore(base!, 'operator', {
 			'map': {
 				pattern: /\bmap<\s*[\w.]+\s*,\s*[\w.]+\s*>(?=\s+[a-z_]\w*\s*[=;])/i,
 				alias: 'class-name',
@@ -49,6 +32,21 @@ export default {
 			},
 		});
 
-		return protobuf;
+		return {
+			'class-name': [
+				{
+					pattern: /(\b(?:enum|extend|message|service)\s+)[A-Za-z_]\w*(?=\s*\{)/,
+					lookbehind: true,
+				},
+				{
+					pattern:
+						/(\b(?:rpc\s+\w+|returns)\s*\(\s*(?:stream\s+)?)\.?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*(?=\s*\))/,
+					lookbehind: true,
+				},
+			],
+			'keyword':
+				/\b(?:enum|extend|extensions|import|message|oneof|option|optional|package|public|repeated|required|reserved|returns|rpc(?=\s+\w)|service|stream|syntax|to)\b(?!\s*=\s*\d)/,
+			'function': /\b[a-z_]\w*(?=\s*\()/i,
+		};
 	},
 } as LanguageProto<'protobuf'>;
