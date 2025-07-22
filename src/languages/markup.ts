@@ -92,17 +92,15 @@ function attributeEmbedded (attrName: string, lang: string): GrammarToken {
 
 export default {
 	id: 'markup',
-	require: xml,
+	base: xml,
 	alias: ['html', 'svg', 'mathml'],
-	grammar ({ extend }) {
-		const markup = extend('xml', {});
-
-		insertBefore(markup, 'cdata', {
+	grammar ({ base }) {
+		insertBefore(base!, 'cdata', {
 			'style': inlineEmbedded('style', 'css'),
 			'script': inlineEmbedded('script', 'javascript'),
 		});
 
-		const tag = markup.tag as GrammarToken & { inside: Grammar };
+		const tag = base!.tag as GrammarToken & { inside: Grammar };
 		insertBefore(tag.inside, 'attr-value', {
 			'special-attr': [
 				attributeEmbedded('style', 'css'),
@@ -116,6 +114,6 @@ export default {
 			],
 		});
 
-		return markup;
+		return {};
 	},
 } as LanguageProto<'markup'>;
