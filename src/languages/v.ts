@@ -4,9 +4,52 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'v',
-	require: clike,
-	grammar ({ extend }) {
-		const v = extend('clike', {
+	base: clike,
+	grammar ({ base }) {
+		insertBefore(base!, 'string', {
+			'char': {
+				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
+				alias: 'rune',
+			},
+		});
+
+		const genericInside = {
+			'punctuation': /[<>]/,
+			'class-name': /\w+/,
+		};
+
+		insertBefore(base!, 'operator', {
+			'attribute': {
+				pattern:
+					/(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
+				lookbehind: true,
+				alias: 'annotation',
+				inside: {
+					'punctuation': /[\[\]]/,
+					'keyword': /\w+/,
+				},
+			},
+			'generic': {
+				pattern: /<\w+>(?=\s*[\)\{])/,
+				inside: genericInside,
+			},
+		});
+
+		insertBefore(base!, 'function', {
+			'generic-function': {
+				// e.g. foo<T>( ...
+				pattern: /\b\w+\s*<\w+>(?=\()/,
+				inside: {
+					'function': /^\w+/,
+					'generic': {
+						pattern: /<\w+>/,
+						inside: genericInside,
+					},
+				},
+			},
+		});
+
+		return {
 			'string': {
 				pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 				alias: 'quoted-string',
@@ -45,51 +88,6 @@ export default {
 				/~|\?|[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\.?/,
 			'builtin':
 				/\b(?:any(?:_float|_int)?|bool|byte(?:ptr)?|charptr|f(?:32|64)|i(?:8|16|64|128|nt)|rune|size_t|string|u(?:16|32|64|128)|voidptr)\b/,
-		});
-
-		insertBefore(v, 'string', {
-			'char': {
-				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
-				alias: 'rune',
-			},
-		});
-
-		const genericInside = {
-			'punctuation': /[<>]/,
-			'class-name': /\w+/,
 		};
-
-		insertBefore(v, 'operator', {
-			'attribute': {
-				pattern:
-					/(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
-				lookbehind: true,
-				alias: 'annotation',
-				inside: {
-					'punctuation': /[\[\]]/,
-					'keyword': /\w+/,
-				},
-			},
-			'generic': {
-				pattern: /<\w+>(?=\s*[\)\{])/,
-				inside: genericInside,
-			},
-		});
-
-		insertBefore(v, 'function', {
-			'generic-function': {
-				// e.g. foo<T>( ...
-				pattern: /\b\w+\s*<\w+>(?=\()/,
-				inside: {
-					'function': /^\w+/,
-					'generic': {
-						pattern: /<\w+>/,
-						inside: genericInside,
-					},
-				},
-			},
-		});
-
-		return v;
 	},
 } as LanguageProto<'v'>;
