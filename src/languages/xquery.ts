@@ -107,9 +107,30 @@ function walkTokens (tokens: TokenStream) {
 
 export default {
 	id: 'xquery',
-	require: markup,
-	grammar ({ extend }) {
-		const xquery = extend('markup', {
+	base: markup,
+	grammar ({ base }) {
+		const tag = base!['tag'] as GrammarToken;
+		tag.pattern =
+			/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
+		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
+		attrValue.pattern =
+			/=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
+		const attrValueInside = attrValue.inside as Grammar;
+		attrValueInside['punctuation'] = /^="|"$/;
+		attrValueInside['expression'] = {
+			// Allow for two levels of nesting
+			pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
+			alias: 'language-xquery',
+			inside: 'xquery',
+		};
+
+		base!.$tokenize = (code, grammar, Prism) => {
+			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+			walkTokens(tokens);
+			return tokens;
+		};
+
+		return {
 			'xquery-comment': {
 				pattern: /\(:[\s\S]*?:\)/,
 				greedy: true,
@@ -166,29 +187,6 @@ export default {
 				},
 			],
 			'punctuation': /[[\](){},;:/]/,
-		});
-
-		const tag = xquery['tag'] as GrammarToken;
-		tag.pattern =
-			/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
-		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
-		attrValue.pattern =
-			/=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
-		const attrValueInside = attrValue.inside as Grammar;
-		attrValueInside['punctuation'] = /^="|"$/;
-		attrValueInside['expression'] = {
-			// Allow for two levels of nesting
-			pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
-			alias: 'language-xquery',
-			inside: 'xquery',
 		};
-
-		xquery.$tokenize = (code, grammar, Prism) => {
-			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-			walkTokens(tokens);
-			return tokens;
-		};
-
-		return xquery;
 	},
 } as LanguageProto<'xquery'>;
