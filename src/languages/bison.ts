@@ -4,12 +4,9 @@ import type { Grammar, LanguageProto } from '../types';
 
 export default {
 	id: 'bison',
-	require: c,
-	grammar ({ extend, getLanguage }) {
-		const c = getLanguage('c');
-		const bison = extend('c', {});
-
-		insertBefore(bison, 'comment', {
+	base: c,
+	grammar ({ base }) {
+		insertBefore(base!, 'comment', {
 			'bison': {
 				// This should match all the beginning of the file
 				// including the prologue(s), the bison declarations and
@@ -31,11 +28,11 @@ export default {
 									'punctuation': /<|>/,
 								},
 							},
-							$rest: c,
+							$rest: 'c',
 						} as unknown as Grammar,
 					},
-					'comment': c.comment,
-					'string': c.string,
+					'comment': base!.comment,
+					'string': base!.string,
 					'property': /\S+(?=:)/,
 					'keyword': /%\w+/,
 					'number': {
@@ -47,6 +44,6 @@ export default {
 			},
 		});
 
-		return bison;
+		return {};
 	},
 } as LanguageProto<'bison'>;
