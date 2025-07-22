@@ -6,26 +6,16 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'jsdoc',
-	require: [javascript, javadoclike, typescript],
-	grammar ({ extend, getLanguage }) {
+	base: javadoclike,
+	require: [javascript, typescript],
+	grammar ({ base, getLanguage }) {
 		const javascript = getLanguage('javascript');
 		const typescript = getLanguage('typescript');
 
 		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
 
-		const jsdoc = extend('javadoclike', {
-			'parameter': {
-				// @param {string} foo - foo bar
-				pattern: RegExp(parameterPrefix + /(?:(?!\s)[$\w\xA0-\uFFFF.])+(?=\s|$)/.source),
-				lookbehind: true,
-				inside: {
-					'punctuation': /\./,
-				},
-			},
-		});
-
-		insertBefore(jsdoc, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'optional-parameter': {
 				// @param {string} [baz.foo="bar"] foo bar
 				pattern: RegExp(
@@ -89,6 +79,15 @@ export default {
 			},
 		});
 
-		return jsdoc;
+		return {
+			'parameter': {
+				// @param {string} foo - foo bar
+				pattern: RegExp(parameterPrefix + /(?:(?!\s)[$\w\xA0-\uFFFF.])+(?=\s|$)/.source),
+				lookbehind: true,
+				inside: {
+					'punctuation': /\./,
+				},
+			},
+		};
 	},
 } as LanguageProto<'jsdoc'>;
