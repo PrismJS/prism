@@ -4,8 +4,8 @@ import type { GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'mongodb',
-	require: javascript,
-	grammar ({ extend }) {
+	base: javascript,
+	grammar ({ base }) {
 		let operators = [
 			// query and projection
 			'$eq',
@@ -276,9 +276,7 @@ export default {
 
 		const operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
-		const mongodb = extend('javascript', {});
-
-		insertBefore(mongodb, 'string', {
+		insertBefore(base!, 'string', {
 			'property': {
 				pattern:
 					/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
@@ -289,7 +287,7 @@ export default {
 			},
 		});
 
-		const string = mongodb['string'] as GrammarToken;
+		const string = base!['string'] as GrammarToken;
 		string.inside = {
 			url: {
 				// url pattern
@@ -304,13 +302,13 @@ export default {
 			},
 		};
 
-		insertBefore(mongodb, 'constant', {
+		insertBefore(base!, 'constant', {
 			'builtin': {
 				pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
 				alias: 'keyword',
 			},
 		});
 
-		return mongodb;
+		return {};
 	},
 } as LanguageProto<'mongodb'>;
