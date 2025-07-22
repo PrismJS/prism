@@ -4,18 +4,9 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'sass',
-	require: css,
-	grammar ({ extend }) {
-		const sass = extend('css', {
-			// Sass comments don't need to be closed, only indented
-			'comment': {
-				pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t].+)*/m,
-				lookbehind: true,
-				greedy: true,
-			},
-		});
-
-		insertBefore(sass, 'atrule', {
+	base: css,
+	grammar ({ base }) {
+		insertBefore(base!, 'atrule', {
 			// We want to consume the whole line
 			'atrule-line': {
 				// Includes support for = and + shortcuts
@@ -26,7 +17,7 @@ export default {
 				},
 			},
 		});
-		delete sass.atrule;
+		delete base!.atrule;
 
 		const variable = /\$[-\w]+|#\{\$[-\w]+\}/;
 		const operator = [
@@ -37,7 +28,7 @@ export default {
 			},
 		];
 
-		insertBefore(sass, 'property', {
+		insertBefore(base!, 'property', {
 			// We want to consume the whole line
 			'variable-line': {
 				pattern: /^[ \t]*\$.+/m,
@@ -63,16 +54,16 @@ export default {
 					'punctuation': /:/,
 					'variable': variable,
 					'operator': operator,
-					'important': sass.important,
+					'important': base!.important,
 				},
 			},
 		});
-		delete sass.property;
-		delete sass.important;
+		delete base!.property;
+		delete base!.important;
 
 		// Now that whole lines for other patterns are consumed,
 		// what's left should be selectors
-		insertBefore(sass, 'punctuation', {
+		insertBefore(base!, 'punctuation', {
 			'selector': {
 				pattern:
 					/^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
@@ -81,6 +72,13 @@ export default {
 			},
 		});
 
-		return sass;
+		return {
+			// Sass comments don't need to be closed, only indented
+			'comment': {
+				pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t].+)*/m,
+				lookbehind: true,
+				greedy: true,
+			},
+		};
 	},
 } as LanguageProto<'sass'>;
