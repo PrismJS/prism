@@ -4,35 +4,16 @@ import type { LanguageProto } from '../types';
 
 export default {
 	id: 'ruby',
-	require: clike,
+	base: clike,
 	alias: 'rb',
-	grammar ({ extend }) {
+	grammar ({ base }) {
 		/**
 		 * Original by Samuel Flores
 		 *
 		 * Adds the following new token classes:
 		 *     constant, builtin, variable, symbol, regex
 		 */
-		const ruby = extend('clike', {
-			'comment': {
-				pattern: /#.*|^=begin\s[\s\S]*?^=end/m,
-				greedy: true,
-			},
-			'class-name': {
-				pattern:
-					/(\b(?:class|module)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
-				lookbehind: true,
-				inside: {
-					'punctuation': /[.\\]/,
-				},
-			},
-			'keyword':
-				/\b(?:BEGIN|END|alias|and|begin|break|case|class|def|define_method|defined|do|each|else|elsif|end|ensure|extend|for|if|in|include|module|new|next|nil|not|or|prepend|private|protected|public|raise|redo|require|rescue|retry|return|self|super|then|throw|undef|unless|until|when|while|yield)\b/,
-			'operator': /\.{2,3}|&\.|===|<?=>|[!=]?~|(?:&&|\|\||<<|>>|\*\*|[+\-*/%<>!^&|=])=?|[?:]/,
-			'punctuation': /[(){}[\].,;]/,
-		});
-
-		insertBefore(ruby, 'operator', {
+		insertBefore(base!, 'operator', {
 			'double-colon': {
 				pattern: /::/,
 				alias: 'punctuation',
@@ -55,7 +36,7 @@ export default {
 			},
 		};
 
-		delete ruby.function;
+		delete base!.function;
 
 		const percentExpression =
 			'(?:' +
@@ -71,7 +52,7 @@ export default {
 		const symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/
 			.source;
 
-		insertBefore(ruby, 'keyword', {
+		insertBefore(base!, 'keyword', {
 			'regex-literal': [
 				{
 					pattern: RegExp(/%r/.source + percentExpression + /[egimnosux]{0,6}/.source),
@@ -117,7 +98,7 @@ export default {
 			},
 		});
 
-		insertBefore(ruby, 'string', {
+		insertBefore(base!, 'string', {
 			'string-literal': [
 				{
 					pattern: RegExp(/%[qQiIwWs]?/.source + percentExpression),
@@ -193,14 +174,31 @@ export default {
 			],
 		});
 
-		delete ruby.string;
+		delete base!.string;
 
-		insertBefore(ruby, 'number', {
+		insertBefore(base!, 'number', {
 			'builtin':
 				/\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
 			'constant': /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/,
 		});
 
-		return ruby;
+		return {
+			'comment': {
+				pattern: /#.*|^=begin\s[\s\S]*?^=end/m,
+				greedy: true,
+			},
+			'class-name': {
+				pattern:
+					/(\b(?:class|module)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
+				lookbehind: true,
+				inside: {
+					'punctuation': /[.\\]/,
+				},
+			},
+			'keyword':
+				/\b(?:BEGIN|END|alias|and|begin|break|case|class|def|define_method|defined|do|each|else|elsif|end|ensure|extend|for|if|in|include|module|new|next|nil|not|or|prepend|private|protected|public|raise|redo|require|rescue|retry|return|self|super|then|throw|undef|unless|until|when|while|yield)\b/,
+			'operator': /\.{2,3}|&\.|===|<?=>|[!=]?~|(?:&&|\|\||<<|>>|\*\*|[+\-*/%<>!^&|=])=?|[?:]/,
+			'punctuation': /[(){}[\].,;]/,
+		};
 	},
 } as LanguageProto<'ruby'>;
