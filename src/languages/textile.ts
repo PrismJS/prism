@@ -291,7 +291,7 @@ export default {
 		Object.assign(phraseInside['table'].inside, nestedPatterns);
 
 		// Only allow alpha-numeric HTML tags, not XML tags
-		const tag = base!.tag as GrammarToken;
+		const tag = base.tag as GrammarToken;
 		tag.pattern =
 			/<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 

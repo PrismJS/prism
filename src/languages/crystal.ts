@@ -7,7 +7,7 @@ export default {
 	id: 'crystal',
 	base: ruby,
 	grammar ({ base }) {
-		insertBefore(base!, 'string-literal', {
+		insertBefore(base, 'string-literal', {
 			'attribute': {
 				pattern: /@\[.*?\]/,
 				inside: {
@@ -56,7 +56,7 @@ export default {
 			],
 			'number':
 				/\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[\da-fA-F_]*[\da-fA-F]|(?:\d(?:[\d_]*\d)?)(?:\.[\d_]*\d)?(?:[eE][+-]?[\d_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/,
-			'operator': [/->/, ...toArray(base!.operator)],
+			'operator': [/->/, ...toArray(base.operator)],
 			'punctuation': /[(){}[\].,;\\]/,
 		};
 	},

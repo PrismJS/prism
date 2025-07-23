@@ -6,7 +6,7 @@ export default {
 	base: c,
 	alias: 'objc',
 	grammar ({ base }) {
-		delete base!['class-name'];
+		delete base['class-name'];
 
 		return {
 			'string': {

@@ -7,7 +7,7 @@ export default {
 	base: javascript,
 	alias: 'n4jsd',
 	grammar ({ base }) {
-		insertBefore(base!, 'constant', {
+		insertBefore(base, 'constant', {
 			// Annotations in N4JS spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html#_annotations
 			'annotation': {
 				pattern: /@+\w+/,

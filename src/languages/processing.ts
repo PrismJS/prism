@@ -6,7 +6,7 @@ export default {
 	id: 'processing',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'number', {
+		insertBefore(base, 'number', {
 			// Special case: XML is a type
 			'constant': /\b(?!XML\b)[A-Z][A-Z\d_]+\b/,
 			'type': {

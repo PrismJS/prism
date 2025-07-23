@@ -7,7 +7,7 @@ export default {
 	base: basic,
 	optional: 'xml-doc',
 	grammar ({ base, getOptionalLanguage }) {
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'doc-comment': getOptionalLanguage('xml-doc')?.tick,
 		});
 

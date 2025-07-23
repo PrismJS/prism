@@ -9,7 +9,7 @@ export default {
 		const builtinTypes =
 			/\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
 
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'map': {
 				pattern: /\bmap<\s*[\w.]+\s*,\s*[\w.]+\s*>(?=\s+[a-z_]\w*\s*[=;])/i,
 				alias: 'class-name',

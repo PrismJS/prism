@@ -6,7 +6,7 @@ export default {
 	id: 'birb',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'metadata': {
 				pattern: /<\w+>/,
 				greedy: true,

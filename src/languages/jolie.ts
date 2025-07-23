@@ -6,7 +6,7 @@ export default {
 	id: 'jolie',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'aggregates': {
 				pattern:
 					/(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,

@@ -6,7 +6,7 @@ export default {
 	id: 'bison',
 	base: c,
 	grammar ({ base }) {
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'bison': {
 				// This should match all the beginning of the file
 				// including the prologue(s), the bison declarations and
@@ -31,8 +31,8 @@ export default {
 							$rest: 'c',
 						} as unknown as Grammar,
 					},
-					'comment': base!.comment,
-					'string': base!.string,
+					'comment': base.comment,
+					'string': base.string,
 					'property': /\S+(?=:)/,
 					'keyword': /%\w+/,
 					'number': {

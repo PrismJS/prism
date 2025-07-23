@@ -6,7 +6,7 @@ export default {
 	id: 'vala',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'raw-string': {
 				pattern: /"""[\s\S]*?"""/,
 				greedy: true,
@@ -31,7 +31,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'regex': {
 				pattern:
 					/\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,

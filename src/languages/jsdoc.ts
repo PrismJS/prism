@@ -15,7 +15,7 @@ export default {
 		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'optional-parameter': {
 				// @param {string} [baz.foo="bar"] foo bar
 				pattern: RegExp(

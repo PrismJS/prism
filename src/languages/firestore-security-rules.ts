@@ -6,9 +6,9 @@ export default {
 	id: 'firestore-security-rules',
 	base: clike,
 	grammar ({ base }) {
-		delete base!['class-name'];
+		delete base['class-name'];
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'path': {
 				pattern:
 					/(^|[\s(),])(?:\/(?:[\w\xA0-\uFFFF]+|\{[\w\xA0-\uFFFF]+(?:=\*\*)?\}|\$\([\w\xA0-\uFFFF.]+\)))+/,

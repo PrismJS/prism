@@ -95,12 +95,12 @@ export default {
 	base: xml,
 	alias: ['html', 'svg', 'mathml'],
 	grammar ({ base }) {
-		insertBefore(base!, 'cdata', {
+		insertBefore(base, 'cdata', {
 			'style': inlineEmbedded('style', 'css'),
 			'script': inlineEmbedded('script', 'javascript'),
 		});
 
-		const tag = base!.tag as GrammarToken & { inside: Grammar };
+		const tag = base.tag as GrammarToken & { inside: Grammar };
 		insertBefore(tag.inside, 'attr-value', {
 			'special-attr': [
 				attributeEmbedded('style', 'css'),

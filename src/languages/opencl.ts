@@ -7,7 +7,7 @@ export default {
 	base: c,
 	grammar ({ base }) {
 		/* OpenCL kernel language */
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			// https://www.khronos.org/registry/OpenCL/sdk/2.1/docs/man/xhtml/scalarDataTypes.html
 			// https://www.khronos.org/registry/OpenCL/sdk/2.1/docs/man/xhtml/otherDataTypes.html
 			'builtin-type': {

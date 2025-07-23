@@ -34,7 +34,7 @@ export default {
 			'punctuation': vel['punctuation'],
 		};
 
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'unparsed': {
 				pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
 				lookbehind: true,
@@ -75,7 +75,7 @@ export default {
 		});
 
 		(
-			(((base!['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
+			(((base['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
 				.inside as Grammar
 		).$rest = 'velocity';
 

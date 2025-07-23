@@ -10,7 +10,7 @@ export default {
 	optional: 'js-templates',
 	alias: 'js',
 	grammar ({ base, getOptionalLanguage }) {
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'doc-comment': {
 				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
@@ -18,7 +18,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'regex': {
 				pattern: RegExp(
 					// lookbehind
@@ -88,7 +88,7 @@ export default {
 
 		const jsTemplates = getOptionalLanguage('js-templates')?.['template-string'];
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'hashbang': {
 				pattern: /^#!.*/,
 				greedy: true,
@@ -130,7 +130,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'literal-property': {
 				pattern:
 					/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,

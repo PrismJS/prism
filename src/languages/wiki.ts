@@ -6,9 +6,9 @@ export default {
 	id: 'wiki',
 	base: markup,
 	grammar ({ base }) {
-		const tag = base!['tag'] as GrammarToken;
+		const tag = base['tag'] as GrammarToken;
 
-		insertBefore(base!, 'tag', {
+		insertBefore(base, 'tag', {
 			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
 			'nowiki': {
 				pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,

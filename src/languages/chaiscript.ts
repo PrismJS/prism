@@ -11,7 +11,7 @@ export default {
 	grammar ({ base, getLanguage }) {
 		const cpp = getLanguage('cpp');
 
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'parameter-type': {
 				// e.g. def foo(int x, Vector y) {...}
 				pattern: /([,(]\s*)\w+(?=\s+\w)/,
@@ -20,7 +20,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'string-interpolation': {
 				pattern:
 					/(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,

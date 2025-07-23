@@ -62,7 +62,7 @@ export default {
 		// strings
 		const regularString = /"(?:\\.|[^\\"])*"/.source;
 
-		insertBefore(base!, 'number', {
+		insertBefore(base, 'number', {
 			'range': {
 				pattern: /\.\./,
 				alias: 'operator',
@@ -75,7 +75,7 @@ export default {
 			2
 		);
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'interpolation-string': {
 				pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
 				greedy: true,

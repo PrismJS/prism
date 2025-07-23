@@ -6,7 +6,7 @@ export default {
 	id: 'plsql',
 	base: sql,
 	grammar ({ base }) {
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'label': {
 				pattern: /<<\s*\w+\s*>>/,
 				alias: 'symbol',

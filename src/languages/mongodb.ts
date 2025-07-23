@@ -276,7 +276,7 @@ export default {
 
 		const operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'property': {
 				pattern:
 					/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
@@ -287,7 +287,7 @@ export default {
 			},
 		});
 
-		const string = base!['string'] as GrammarToken;
+		const string = base['string'] as GrammarToken;
 		string.inside = {
 			url: {
 				// url pattern
@@ -302,7 +302,7 @@ export default {
 			},
 		};
 
-		insertBefore(base!, 'constant', {
+		insertBefore(base, 'constant', {
 			'builtin': {
 				pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
 				alias: 'keyword',

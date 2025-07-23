@@ -6,7 +6,7 @@ export default {
 	id: 'jsonp',
 	base: json,
 	grammar ({ base }) {
-		insertBefore(base!, 'punctuation', {
+		insertBefore(base, 'punctuation', {
 			'function': /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/,
 		});
 

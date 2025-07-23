@@ -7,7 +7,7 @@ export default {
 	base: clike,
 	optional: 'opencl-extensions',
 	grammar ({ base, getOptionalLanguage }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'char': {
 				// https://en.cppreference.com/w/c/language/character_constant
 				pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
@@ -15,7 +15,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'macro': {
 				// allow for multiline macro definitions
 				// spaces after the # character compile fine with gcc
@@ -31,10 +31,10 @@ export default {
 							pattern: /^(#\s*include\s*)<[^>]+>/,
 							lookbehind: true,
 						},
-						base!['string'] as GrammarToken,
+						base['string'] as GrammarToken,
 					],
-					'char': base!['char'],
-					'comment': base!['comment'],
+					'char': base['char'],
+					'comment': base['comment'],
 					'macro-name': [
 						{
 							pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
@@ -62,19 +62,19 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			// highlight predefined macros as constants
 			'constant':
 				/\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/,
 		});
 
-		delete base!['boolean'];
+		delete base['boolean'];
 
 		/* OpenCL host API */
 		const extensions = getOptionalLanguage('opencl-extensions');
 		if (extensions) {
-			insertBefore(base!, 'keyword', extensions);
-			delete base!['type-opencl-host-cpp'];
+			insertBefore(base, 'keyword', extensions);
+			delete base['type-opencl-host-cpp'];
 		}
 
 		return {

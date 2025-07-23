@@ -33,7 +33,7 @@ export default {
 		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
 			.source;
 
-		insertBefore(base!, 'prolog', {
+		insertBefore(base, 'prolog', {
 			'front-matter-block': {
 				pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 				lookbehind: true,
@@ -325,9 +325,9 @@ export default {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
 				if (token !== inside) {
 					(
-						(((base![token] as GrammarToken).inside as Grammar).content as GrammarToken)
+						(((base[token] as GrammarToken).inside as Grammar).content as GrammarToken)
 							.inside as Grammar
-					)[inside] = base![inside];
+					)[inside] = base[inside];
 				}
 			});
 		});

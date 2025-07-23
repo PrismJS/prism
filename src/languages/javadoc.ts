@@ -20,7 +20,7 @@ export default {
 			() => memberReference
 		);
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'reference': {
 				pattern: RegExp(
 					/(@(?:exception|link|linkplain|see|throws|value)\s+(?:\*\s*)?)/.source +

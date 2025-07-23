@@ -109,7 +109,7 @@ export default {
 	id: 'xquery',
 	base: markup,
 	grammar ({ base }) {
-		const tag = base!['tag'] as GrammarToken;
+		const tag = base['tag'] as GrammarToken;
 		tag.pattern =
 			/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
 		const attrValue = (tag.inside as Grammar)['attr-value'] as GrammarToken;
@@ -124,7 +124,7 @@ export default {
 			inside: 'xquery',
 		};
 
-		base!.$tokenize = (code, grammar, Prism) => {
+		base.$tokenize = (code, grammar, Prism) => {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 			walkTokens(tokens);
 			return tokens;

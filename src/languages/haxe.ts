@@ -6,7 +6,7 @@ export default {
 	id: 'haxe',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'string-interpolation': {
 				pattern: /'(?:[^'\\]|\\[\s\S])*'/,
 				greedy: true,
@@ -30,7 +30,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'regex': {
 				pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
 				greedy: true,
@@ -47,7 +47,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'preprocessor': {
 				pattern: /#(?:else|elseif|end|if)\b.*/,
 				alias: 'property',

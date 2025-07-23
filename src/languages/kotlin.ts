@@ -7,7 +7,7 @@ export default {
 	base: clike,
 	alias: ['kt', 'kts'],
 	grammar ({ base }) {
-		delete base!['class-name'];
+		delete base['class-name'];
 
 		const interpolationInside = {
 			'interpolation-punctuation': {
@@ -20,7 +20,7 @@ export default {
 			},
 		};
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			// https://kotlinlang.org/spec/expressions.html#string-interpolation-expressions
 			'string-literal': [
 				{
@@ -54,16 +54,16 @@ export default {
 			},
 		});
 
-		delete base!['string'];
+		delete base['string'];
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'annotation': {
 				pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
 				alias: 'builtin',
 			},
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'label': {
 				pattern: /\b\w+@|@\w+\b/,
 				alias: 'symbol',

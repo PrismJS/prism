@@ -7,7 +7,7 @@ export default {
 	base: haskell,
 	alias: 'idr',
 	grammar ({ base }) {
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'import-statement': {
 				pattern: /(^\s*import\s+)(?:[A-Z][\w']*)(?:\.[A-Z][\w']*)*/m,
 				lookbehind: true,

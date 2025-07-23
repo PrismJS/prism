@@ -6,7 +6,7 @@ export default {
 	id: 'scss',
 	base: css,
 	grammar ({ base }) {
-		insertBefore(base!, 'atrule', {
+		insertBefore(base, 'atrule', {
 			'keyword': [
 				/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
 				{
@@ -16,12 +16,12 @@ export default {
 			],
 		});
 
-		insertBefore(base!, 'important', {
+		insertBefore(base, 'important', {
 			// var and interpolated vars
 			'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'module-modifier': {
 				pattern: /\b(?:as|hide|show|with)\b/i,
 				alias: 'keyword',

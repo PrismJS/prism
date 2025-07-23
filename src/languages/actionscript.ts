@@ -6,16 +6,16 @@ export default {
 	id: 'actionscript',
 	base: javascript,
 	grammar ({ base }) {
-		const className = base!['class-name'] as GrammarToken;
+		const className = base['class-name'] as GrammarToken;
 		className.alias = 'function';
 
-		delete base!['doc-comment'];
+		delete base['doc-comment'];
 
 		// doesn't work with AS because AS is too complex
-		delete base!['parameter'];
-		delete base!['literal-property'];
+		delete base['parameter'];
+		delete base['literal-property'];
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'xml': {
 				pattern:
 					/(^|[^.])<\/?\w+(?:\s+[^\s>\/=]+=("|')(?:\\[\s\S]|(?!\2)[^\\])*\2)*\s*\/?>/,

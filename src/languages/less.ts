@@ -14,7 +14,7 @@ export default {
 		 A comment before a mixin usage prevents the latter to be properly highlighted.
 		 */
 
-		insertBefore(base!, 'property', {
+		insertBefore(base, 'property', {
 			'variable': [
 				// Variable declaration (the colon must be consumed!)
 				{

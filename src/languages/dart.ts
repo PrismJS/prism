@@ -28,7 +28,7 @@ export default {
 			},
 		};
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'string-literal': {
 				pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
 				greedy: true,
@@ -50,14 +50,14 @@ export default {
 			'string': undefined,
 		});
 
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'metadata': {
 				pattern: /@\w+/,
 				alias: 'function',
 			},
 		});
 
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'generics': {
 				pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
 				inside: {

@@ -7,7 +7,7 @@ export default {
 	id: 'squirrel',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'char': {
 				pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
 				lookbehind: true,
@@ -15,7 +15,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'attribute-punctuation': {
 				pattern: /<\/|\/>/,
 				alias: 'important',
@@ -28,7 +28,7 @@ export default {
 
 		return {
 			'comment': [
-				...toArray(base!.comment),
+				...toArray(base.comment),
 				{
 					pattern: /#.*/,
 					greedy: true,

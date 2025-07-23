@@ -7,7 +7,7 @@ export default {
 	base: clike,
 	optional: 'xml-doc',
 	grammar ({ base, getOptionalLanguage }) {
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'preprocessor': {
 				pattern: /(^[\t ]*)#.*/m,
 				lookbehind: true,
@@ -21,13 +21,13 @@ export default {
 				},
 			},
 		});
-		insertBefore(base!, 'punctuation', {
+		insertBefore(base, 'punctuation', {
 			'computation-expression': {
 				pattern: /\b[_a-z]\w*(?=\s*\{)/i,
 				alias: 'keyword',
 			},
 		});
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'annotation': {
 				pattern: /\[<.+?>\]/,
 				greedy: true,
@@ -50,7 +50,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'doc-comment': getOptionalLanguage('xml-doc')?.slash,
 		});
 

@@ -6,7 +6,7 @@ export default {
 	id: 'v',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'char': {
 				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
 				alias: 'rune',
@@ -18,7 +18,7 @@ export default {
 			'class-name': /\w+/,
 		};
 
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'attribute': {
 				pattern:
 					/(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
@@ -35,7 +35,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'generic-function': {
 				// e.g. foo<T>( ...
 				pattern: /\b\w+\s*<\w+>(?=\()/,

@@ -13,7 +13,7 @@ export default {
 		 * Adds the following new token classes:
 		 *     constant, builtin, variable, symbol, regex
 		 */
-		insertBefore(base!, 'operator', {
+		insertBefore(base, 'operator', {
 			'double-colon': {
 				pattern: /::/,
 				alias: 'punctuation',
@@ -36,7 +36,7 @@ export default {
 			},
 		};
 
-		delete base!.function;
+		delete base.function;
 
 		const percentExpression =
 			'(?:' +
@@ -52,7 +52,7 @@ export default {
 		const symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/
 			.source;
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'regex-literal': [
 				{
 					pattern: RegExp(/%r/.source + percentExpression + /[egimnosux]{0,6}/.source),
@@ -98,7 +98,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'string-literal': [
 				{
 					pattern: RegExp(/%[qQiIwWs]?/.source + percentExpression),
@@ -174,9 +174,9 @@ export default {
 			],
 		});
 
-		delete base!.string;
+		delete base.string;
 
-		insertBefore(base!, 'number', {
+		insertBefore(base, 'number', {
 			'builtin':
 				/\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
 			'constant': /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/,

@@ -6,7 +6,7 @@ export default {
 	id: 'sqf',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'macro': {
 				pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
 				lookbehind: true,
@@ -17,12 +17,12 @@ export default {
 						pattern: /#[a-z]+\b/i,
 						alias: 'keyword',
 					},
-					'comment': base!.comment,
+					'comment': base.comment,
 				},
 			},
 		});
 
-		delete base!['class-name'];
+		delete base['class-name'];
 
 		return {
 			'string': {

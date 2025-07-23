@@ -20,7 +20,7 @@ export default {
 			},
 		} as unknown as GrammarToken;
 
-		const tag = base!['tag'] as GrammarToken & {
+		const tag = base['tag'] as GrammarToken & {
 			inside: { 'attr-value': { inside: Grammar } };
 		};
 
@@ -33,7 +33,7 @@ export default {
 			'directive': directive,
 		});
 
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'asp-comment': {
 				pattern: /<%--[\s\S]*?--%>/,
 				alias: ['asp', 'comment'],
@@ -41,7 +41,7 @@ export default {
 		});
 
 		// script runat="server" contains csharp, not javascript
-		insertBefore(base!, 'script' in base! ? 'script' : 'tag', {
+		insertBefore(base, 'script' in base ? 'script' : 'tag', {
 			'asp-script': {
 				pattern: /(<script(?=.*runat=['"]?server\b)[^>]*>)[\s\S]*?(?=<\/script>)/i,
 				lookbehind: true,

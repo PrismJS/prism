@@ -30,7 +30,7 @@ export default {
 			},
 		};
 
-		insertBefore(base!, 'comment', {
+		insertBefore(base, 'comment', {
 			'doc-comment': {
 				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
@@ -39,7 +39,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'triple-quoted-string': {
 				// http://openjdk.java.net/jeps/355#Description
 				pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
@@ -52,7 +52,7 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
 				lookbehind: true,
@@ -146,7 +146,7 @@ export default {
 			],
 			'keyword': keywords,
 			'function': [
-				...toArray(base!.function),
+				...toArray(base.function),
 				{
 					pattern: /(::\s*)[a-z_]\w*/,
 					lookbehind: true,

@@ -7,7 +7,7 @@ export default {
 	base: scheme,
 	alias: 'rkt',
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'lang': {
 				pattern: /^#lang.+/m,
 				greedy: true,

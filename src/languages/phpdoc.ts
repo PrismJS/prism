@@ -8,7 +8,7 @@ export default {
 	grammar ({ base }) {
 		const typeExpression = /(?:\b[a-zA-Z]\w*|[|\\[\]])+/.source;
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'class-name': [
 				{
 					pattern: RegExp(

@@ -6,14 +6,14 @@ export default {
 	id: 'go',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'char': {
 				pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
 				greedy: true,
 			},
 		});
 
-		delete base!['class-name'];
+		delete base['class-name'];
 
 		return {
 			'string': {

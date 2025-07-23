@@ -7,7 +7,7 @@ export default {
 	base: cpp,
 	alias: ['cilk-cpp', 'cilk'],
 	grammar ({ base }) {
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'parallel-keyword': {
 				pattern: /\bcilk_(?:for|reducer|s(?:cope|pawn|ync))\b/,
 				alias: 'keyword',

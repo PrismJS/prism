@@ -6,17 +6,17 @@ export default {
 	id: 'd',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			// Characters
 			// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
 			'char': /'(?:\\(?:\W|\w+)|[^\\])'/,
 		});
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'property': /\B@\w*/,
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'register': {
 				// Iasm registers
 				pattern:

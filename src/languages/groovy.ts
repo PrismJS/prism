@@ -21,7 +21,7 @@ export default {
 			},
 		};
 
-		insertBefore(base!, 'string', {
+		insertBefore(base, 'string', {
 			'shebang': {
 				pattern: /#!.+/,
 				alias: 'comment',
@@ -40,11 +40,11 @@ export default {
 			},
 		});
 
-		insertBefore(base!, 'punctuation', {
+		insertBefore(base, 'punctuation', {
 			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
 		});
 
-		insertBefore(base!, 'function', {
+		insertBefore(base, 'function', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+/,
 				lookbehind: true,

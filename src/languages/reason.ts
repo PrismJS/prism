@@ -6,7 +6,7 @@ export default {
 	id: 'reason',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base!, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'char': {
 				pattern: /'(?:\\x[\da-f]{2}|\\o[0-3][0-7][0-7]|\\\d{3}|\\.|[^'\\\r\n])'/,
 				greedy: true,
@@ -20,7 +20,7 @@ export default {
 		});
 
 		// We can't match functions property, so let's not even try.
-		delete base!.function;
+		delete base.function;
 
 		return {
 			'string': {

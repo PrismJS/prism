@@ -6,7 +6,7 @@ export default {
 	id: 'sass',
 	base: css,
 	grammar ({ base }) {
-		insertBefore(base!, 'atrule', {
+		insertBefore(base, 'atrule', {
 			// We want to consume the whole line
 			'atrule-line': {
 				// Includes support for = and + shortcuts
@@ -17,7 +17,7 @@ export default {
 				},
 			},
 		});
-		delete base!.atrule;
+		delete base.atrule;
 
 		const variable = /\$[-\w]+|#\{\$[-\w]+\}/;
 		const operator = [
@@ -28,7 +28,7 @@ export default {
 			},
 		];
 
-		insertBefore(base!, 'property', {
+		insertBefore(base, 'property', {
 			// We want to consume the whole line
 			'variable-line': {
 				pattern: /^[ \t]*\$.+/m,
@@ -54,16 +54,16 @@ export default {
 					'punctuation': /:/,
 					'variable': variable,
 					'operator': operator,
-					'important': base!.important,
+					'important': base.important,
 				},
 			},
 		});
-		delete base!.property;
-		delete base!.important;
+		delete base.property;
+		delete base.important;
 
 		// Now that whole lines for other patterns are consumed,
 		// what's left should be selectors
-		insertBefore(base!, 'punctuation', {
+		insertBefore(base, 'punctuation', {
 			'selector': {
 				pattern:
 					/^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,

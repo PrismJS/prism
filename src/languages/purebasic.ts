@@ -16,7 +16,7 @@ export default {
 
 		// PureBasic support, steal stuff from ansi-c
 
-		insertBefore(base!, 'keyword', {
+		insertBefore(base, 'keyword', {
 			'tag': /#\w+\$?/,
 			'asm': {
 				pattern: /(^[\t ]*)!.*/m,
@@ -64,8 +64,8 @@ export default {
 			},
 		});
 
-		delete base!['class-name'];
-		delete base!['boolean'];
+		delete base['class-name'];
+		delete base['boolean'];
 
 		return {
 			'comment': /;.*/,

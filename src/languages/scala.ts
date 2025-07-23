@@ -6,7 +6,7 @@ export default {
 	id: 'scala',
 	base: java,
 	grammar ({ base }) {
-		insertBefore(base!, 'triple-quoted-string', {
+		insertBefore(base, 'triple-quoted-string', {
 			'string-interpolation': {
 				pattern:
 					/\b[a-z]\w*(?:"""(?:[^$]|\$(?:[^{]|\{(?:[^{}]|\{[^{}]*\})*\}))*?"""|"(?:[^$"\r\n]|\$(?:[^{]|\{(?:[^{}]|\{[^{}]*\})*\}))*")/i,
@@ -38,10 +38,10 @@ export default {
 			},
 		});
 
-		delete base!['doc-comment'];
-		delete base!['class-name'];
-		delete base!['function'];
-		delete base!['constant'];
+		delete base['doc-comment'];
+		delete base['class-name'];
+		delete base['function'];
+		delete base['constant'];
 
 		return {
 			'triple-quoted-string': {
