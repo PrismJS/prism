@@ -2,7 +2,13 @@ import { kebabToCamelCase } from '../shared/util';
 import { cloneGrammar } from '../util/extend';
 import { forEach, toArray } from '../util/iterables';
 import { extend } from '../util/language-util';
-import type { ComponentProto, Grammar, LanguageProto } from '../types';
+import type {
+	ComponentProto,
+	Grammar,
+	GrammarOptions,
+	GrammarOptionsWithBase,
+	LanguageProto,
+} from '../types';
 import type { Prism } from './prism';
 
 interface Entry {
@@ -172,18 +178,27 @@ export class Registry {
 		// We need this so that any code modifying the base grammar doesn't affect other instances
 		const baseGrammar = base && cloneGrammar(required(base.id), base.id);
 
-		let evaluatedGrammar =
-			typeof grammar === 'object'
-				? grammar
-				: grammar({
-						base: baseGrammar,
-						getLanguage: required,
-						getOptionalLanguage: id => this.getLanguage(id),
-						extend: (id, ref) => extend(required(id), id, ref),
-					});
+		let evaluatedGrammar: Grammar;
+		if (typeof grammar === 'object') {
+			// if the grammar is an object, we can use it directly
+			evaluatedGrammar = grammar;
+		}
+		else {
+			const options: GrammarOptions = {
+				getLanguage: required,
+				getOptionalLanguage: id => this.getLanguage(id),
+				extend: (id, ref) => extend(required(id), id, ref),
+				...(baseGrammar && { base: baseGrammar }),
+			};
 
-		if (base) {
-			evaluatedGrammar = extend(baseGrammar!, base.id, evaluatedGrammar);
+			const grammarFn = grammar as (
+				options: GrammarOptions | GrammarOptionsWithBase
+			) => Grammar;
+			evaluatedGrammar = grammarFn(options);
+		}
+
+		if (baseGrammar) {
+			evaluatedGrammar = extend(baseGrammar, base.id, evaluatedGrammar);
 		}
 
 		return (entry.evaluatedGrammar = evaluatedGrammar);

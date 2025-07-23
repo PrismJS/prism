@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import { Prism } from '../../src/core/prism';
+import type { GrammarOptions } from '../../src/types';
 
 describe('Registry', () => {
 	it('should resolve aliases', () => {
@@ -26,7 +27,7 @@ describe('Registry', () => {
 		components.add({
 			id: 'c',
 			optional: 'b',
-			grammar ({ getOptionalLanguage }) {
+			grammar ({ getOptionalLanguage }: GrammarOptions) {
 				return getOptionalLanguage('b') ?? {};
 			},
 		});
