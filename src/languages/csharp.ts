@@ -33,10 +33,10 @@ function nested (pattern: string, depthLog2: number) {
 
 export default {
 	id: 'csharp',
-	require: clike,
+	base: clike,
 	optional: 'xml-doc',
 	alias: ['cs', 'dotnet'],
-	grammar ({ extend, getOptionalLanguage }) {
+	grammar ({ base, getOptionalLanguage }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 		const keywordKinds = {
 			// keywords which represent a return or variable type
@@ -112,102 +112,14 @@ export default {
 		const regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 		const verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
 
-		const csharp = extend('clike', {
-			'string': [
-				{
-					pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
-					lookbehind: true,
-					greedy: true,
-				},
-				{
-					pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
-					lookbehind: true,
-					greedy: true,
-				},
-			],
-			'class-name': [
-				{
-					// Using static
-					// using static System.Math;
-					pattern: re(/(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
-					lookbehind: true,
-					inside: typeInside,
-				},
-				{
-					// Using alias (type)
-					// using Project = PC.MyCompany.Project;
-					pattern: re(/(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [
-						name,
-						typeExpression,
-					]),
-					lookbehind: true,
-					inside: typeInside,
-				},
-				{
-					// Using alias (alias)
-					// using Project = PC.MyCompany.Project;
-					pattern: re(/(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
-					lookbehind: true,
-				},
-				{
-					// Type declarations
-					// class Foo<A, B>
-					// interface Foo<out A, B>
-					pattern: re(/(\b<<0>>\s+)<<1>>/.source, [typeDeclarationKeywords, genericName]),
-					lookbehind: true,
-					inside: typeInside,
-				},
-				{
-					// Single catch exception declaration
-					// catch(Foo)
-					// (things like catch(Foo e) is covered by variable declaration)
-					pattern: re(/(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
-					lookbehind: true,
-					inside: typeInside,
-				},
-				{
-					// Name of the type parameter of generic constraints
-					// where Foo : class
-					pattern: re(/(\bwhere\s+)<<0>>/.source, [name]),
-					lookbehind: true,
-				},
-				{
-					// Casts and checks via as and is.
-					// as Foo<A>, is Bar<B>
-					// (things like if(a is Foo b) is covered by variable declaration)
-					pattern: re(/(\b(?:is(?:\s+not)?|as)\s+)<<0>>/.source, [
-						typeExpressionWithoutTuple,
-					]),
-					lookbehind: true,
-					inside: typeInside,
-				},
-				{
-					// Variable, field and parameter declaration
-					// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-					pattern: re(
-						/\b<<0>>(?=\s+(?!<<1>>|with\s*\{)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/
-							.source,
-						[typeExpression, nonContextualKeywords, name]
-					),
-					inside: typeInside,
-				},
-			],
-			'keyword': keywords,
-			// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
-			'number':
-				/(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
-			'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
-			'punctuation': /\?\.?|::|[{}[\];(),.:]/,
-		});
-
-		insertBefore(csharp, 'number', {
+		insertBefore(base, 'number', {
 			'range': {
 				pattern: /\.\./,
 				alias: 'operator',
 			},
 		});
 
-		insertBefore(csharp, 'punctuation', {
+		insertBefore(base, 'punctuation', {
 			'named-parameter': {
 				pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
 				lookbehind: true,
@@ -215,7 +127,7 @@ export default {
 			},
 		});
 
-		insertBefore(csharp, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'namespace': {
 				// namespace Foo.Bar {}
 				// using Foo.Bar;
@@ -343,7 +255,7 @@ export default {
 			.source;
 		const attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
 
-		insertBefore(csharp, 'class-name', {
+		insertBefore(base, 'class-name', {
 			'attribute': {
 				// Attributes
 				// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
@@ -425,7 +337,7 @@ export default {
 			};
 		}
 
-		insertBefore(csharp, 'string', {
+		insertBefore(base, 'string', {
 			'interpolation-string': [
 				{
 					pattern: re(
@@ -451,10 +363,96 @@ export default {
 			},
 		});
 
-		insertBefore(csharp, 'comment', {
+		insertBefore(base, 'comment', {
 			'doc-comment': getOptionalLanguage('xml-doc')?.slash,
 		});
 
-		return csharp;
+		return {
+			'string': [
+				{
+					pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
+					lookbehind: true,
+					greedy: true,
+				},
+				{
+					pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
+					lookbehind: true,
+					greedy: true,
+				},
+			],
+			'class-name': [
+				{
+					// Using static
+					// using static System.Math;
+					pattern: re(/(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
+					lookbehind: true,
+					inside: typeInside,
+				},
+				{
+					// Using alias (type)
+					// using Project = PC.MyCompany.Project;
+					pattern: re(/(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [
+						name,
+						typeExpression,
+					]),
+					lookbehind: true,
+					inside: typeInside,
+				},
+				{
+					// Using alias (alias)
+					// using Project = PC.MyCompany.Project;
+					pattern: re(/(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
+					lookbehind: true,
+				},
+				{
+					// Type declarations
+					// class Foo<A, B>
+					// interface Foo<out A, B>
+					pattern: re(/(\b<<0>>\s+)<<1>>/.source, [typeDeclarationKeywords, genericName]),
+					lookbehind: true,
+					inside: typeInside,
+				},
+				{
+					// Single catch exception declaration
+					// catch(Foo)
+					// (things like catch(Foo e) is covered by variable declaration)
+					pattern: re(/(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
+					lookbehind: true,
+					inside: typeInside,
+				},
+				{
+					// Name of the type parameter of generic constraints
+					// where Foo : class
+					pattern: re(/(\bwhere\s+)<<0>>/.source, [name]),
+					lookbehind: true,
+				},
+				{
+					// Casts and checks via as and is.
+					// as Foo<A>, is Bar<B>
+					// (things like if(a is Foo b) is covered by variable declaration)
+					pattern: re(/(\b(?:is(?:\s+not)?|as)\s+)<<0>>/.source, [
+						typeExpressionWithoutTuple,
+					]),
+					lookbehind: true,
+					inside: typeInside,
+				},
+				{
+					// Variable, field and parameter declaration
+					// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
+					pattern: re(
+						/\b<<0>>(?=\s+(?!<<1>>|with\s*\{)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/
+							.source,
+						[typeExpression, nonContextualKeywords, name]
+					),
+					inside: typeInside,
+				},
+			],
+			'keyword': keywords,
+			// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
+			'number':
+				/(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
+			'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
+			'punctuation': /\?\.?|::|[{}[\];(),.:]/,
+		};
 	},
 } as LanguageProto<'csharp'>;
