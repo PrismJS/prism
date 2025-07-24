@@ -4,11 +4,11 @@ import type { Grammar, GrammarToken, LanguageProto } from '../types';
 
 export default {
 	id: 'parser',
-	require: markup,
-	grammar ({ extend }) {
+	base: markup,
+	grammar ({ base }) {
 		const punctuation = /[\[\](){};]/;
 
-		const parser = extend('markup', {
+		const parser = {
 			'keyword': {
 				pattern:
 					/(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
@@ -37,7 +37,7 @@ export default {
 				alias: 'builtin',
 			},
 			'punctuation': punctuation,
-		});
+		} as Grammar;
 
 		insertBefore(parser, 'keyword', {
 			'parser-comment': {
@@ -69,7 +69,7 @@ export default {
 		});
 
 		insertBefore(
-			(((parser['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
+			(((base['tag'] as GrammarToken).inside as Grammar)['attr-value'] as GrammarToken)
 				.inside as Grammar,
 			'punctuation',
 			{
