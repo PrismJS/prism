@@ -1,0 +1,9 @@
+import globalPrism from './core/prism.js';
+
+/**
+ * The global {@link Prism} instance.
+ *
+ * This instance of Prism is unique. Even if this module is imported from
+ * different sources, the same Prism instance will be returned.
+ */
+export default globalPrism;
