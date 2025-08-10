@@ -1,18 +1,26 @@
 import { assert } from 'chai';
-import { createTestSuite } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
 
 class DummyClipboard {
 	text = '';
 	readText () {
 		return Promise.resolve(this.text);
 	}
-	writeText (data: string) {
+	/**
+	 * @param {string} data
+	 * @returns {Promise<void>}
+	 */
+	writeText (data) {
 		this.text = data;
 		return Promise.resolve();
 	}
 
-	assign (navigator: Navigator) {
-		(navigator as unknown as Record<string, unknown>).clipboard = this;
+	/**
+	 *
+	 * @param {Navigator} navigator
+	 */
+	assign (navigator) {
+		navigator.clipboard = this;
 	}
 }
 
@@ -60,16 +68,14 @@ describe('Copy to Clipboard', () => {
 		assert.strictEqual(clipboard.text, 'foo');
 
 		// change text
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		document.querySelector('code')!.textContent = 'bar';
+		document.querySelector('code').textContent = 'bar';
 		// and click
 		button.click();
 
 		assert.strictEqual(clipboard.text, 'bar');
 
 		// change text
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		document.querySelector('code')!.textContent = 'baz';
+		document.querySelector('code').textContent = 'baz';
 		Prism.highlightAll();
 		// and click
 		button.click();

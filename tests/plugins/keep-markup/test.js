@@ -1,6 +1,5 @@
 import { assert } from 'chai';
-import { createTestSuite } from '../../helper/prism-dom-util';
-import type { PrismDOM } from '../../helper/prism-loader';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
 
 describe('Keep Markup', () => {
 	const { it } = createTestSuite({
@@ -8,11 +7,14 @@ describe('Keep Markup', () => {
 		plugins: 'keep-markup',
 	});
 
-	function highlightInElement (
-		{ Prism, document }: PrismDOM<{}>,
-		html: string,
-		language = 'none'
-	) {
+	/**
+	 *
+	 * @param {PrismDom} dom
+	 * @param {string} html
+	 * @param {string} [language='none']
+	 * @returns {string}
+	 */
+	function highlightInElement ({ Prism, document }, html, language = 'none') {
 		const pre = document.createElement('pre');
 		pre.className = `language-${language}`;
 		pre.innerHTML = `<code>${html}</code>`;
@@ -23,7 +25,13 @@ describe('Keep Markup', () => {
 		return code.innerHTML;
 	}
 
-	function keepMarkup (dom: PrismDOM<{}>, html: string, language = 'none') {
+	/**
+	 *
+	 * @param {PrismDOM} dom
+	 * @param {string} html
+	 * @param {string} [language='none']
+	 */
+	function keepMarkup (dom, html, language = 'none') {
 		assert.equal(highlightInElement(dom, html, language), html);
 	}
 
@@ -86,3 +94,7 @@ describe('Keep Markup', () => {
 	})
 	*/
 });
+
+/**
+ * @typedef {import('../../helper/prism-loader.js').PrismDOM} PrismDOM
+ */

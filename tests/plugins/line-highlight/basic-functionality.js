@@ -1,4 +1,4 @@
-import { createTestSuite } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util.js';
 
 // just a few lines of JS code, so we have something to highlight
 const exampleCode = String.raw`// foo
