@@ -1,0 +1,123 @@
+<h2>Variables</h2>
+<pre><code>
+{{ username }}
+{{ foo.bar }}
+{{ foo["bar"] }}
+</code></pre>
+
+<h2>Filters</h2>
+<pre><code>
+{{ foo | title }}
+{{ foo | join(",") }}
+{{ foo | replace("foo", "bar") | capitalize }}
+</code></pre>
+
+<h2>Template Inheritance</h2>
+<pre><code>
+{% extends "parent.html" %}
+
+{% block header %}
+This is the default content
+{% endblock %}
+
+{% block left %}{% endblock %}
+</code></pre>
+
+<h2>Tags</h2>
+<h3>if</h3>
+<pre><code>
+{% if variable %}
+  It is true
+{% endif %}
+
+{% if hungry %}
+  I am hungry
+{% elif tired %}
+  I am tired
+{% else %}
+  I am good!
+{% endif %}
+
+{% if happy and hungry %}
+  I am happy *and* hungry; both are true.
+{% endif %}
+
+{% if happy or hungry %}
+  I am either happy *or* hungry; one or the other is true.
+{% endif %}
+</code></pre>
+
+<h3>for</h3>
+<pre><code>
+{% for user in users %}
+  {{ user.username }}
+{% endfor %}
+
+{% for ingredient, amount in food %}
+  Use {{ amount }} of {{ ingredient }}
+{% endfor %}
+</code></pre>
+
+<h3>macro</h3>
+<pre><code>
+{% macro field(name, value='', type='text') %}
+<div class="field">
+  {{ type }}
+  {{ name }}
+  {{ value | escape }}
+</div>
+{% endmacro %}
+
+{{ field('user') }}
+{{ field('pass', type='password') }}
+</code></pre>
+
+<h3>set</h3>
+<pre><code>
+{% set username = "joe" %}
+{{ username }}
+</code></pre>
+
+<h3>extends</h3>
+<pre><code>
+{% extends "parent.html" %}
+</code></pre>
+
+<h3>block</h3>
+<pre><code>
+{% block header %}
+This is the default content
+{% endblock %}
+</code></pre>
+
+<h3>include</h3>
+<pre><code>
+{% include "header.html" %}
+</code></pre>
+
+<h3>import</h3>
+<pre><code>
+{% import "header.html" as header %}
+{{ header.username }}
+</code></pre>
+
+<h3>filter</h3>
+<pre><code>
+{% filter upper %}
+  This text becomes uppercase
+{% endfilter %}
+</code></pre>
+
+<h3>call</h3>
+<pre><code>
+{% macro add(x, y) %}
+{{ caller() }}: {{ x + y }}
+{% endmacro%}
+</code></pre>
+
+<h2>Comments</h2>
+<pre><code>
+{# This is a comment #}
+</code></pre>
+
+
