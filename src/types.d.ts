@@ -1,5 +1,5 @@
-import type { TokenStream } from './core/classes/token';
-import type { Prism } from './core/prism';
+import type { TokenStream } from './core/classes/token.js';
+import type { Prism } from './core/prism.js';
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
