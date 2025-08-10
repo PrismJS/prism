@@ -1,7 +1,5 @@
 import js from '@eslint/js';
 
-import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
-import tsEslintParser from '@typescript-eslint/parser';
 import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
@@ -16,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config = [
 	{
-		ignores: ['benchmark/downloads', 'benchmark/remotes', 'dist', 'node_modules', 'types'],
+		ignores: ['benchmark/downloads', 'benchmark/remotes', 'dist', 'node_modules', 'src/types.d.ts', 'types'],
 	},
 	js.configs.recommended,
 	{
@@ -103,7 +101,6 @@ const config = [
 			'no-useless-escape': 'off',
 		},
 		settings: {
-			jsdoc: { mode: 'typescript' },
 			regexp: {
 				// allow alphanumeric and cyrillic ranges
 				allowedCharacterRanges: ['alphanumeric', 'а-я', 'А-Я'],
@@ -111,23 +108,13 @@ const config = [
 		},
 	},
 	{
-		files: ['**/*.ts'],
+		files: ['**/*.js'],
 		plugins: {
-			'@typescript-eslint': tsEslintPlugin,
 			'eslint-comments': eslintCommentsPlugin,
 			'regexp': regexpPlugin,
 		},
-		languageOptions: {
-			parser: tsEslintParser,
-			parserOptions: {
-				tsconfigRootDir: __dirname,
-				project: ['./tsconfig.json'],
-			},
-		},
 		rules: {
 			...eslintCommentsPlugin.configs.recommended.rules,
-			...tsEslintPlugin.configs.recommended.rules,
-			...tsEslintPlugin.configs['recommended-requiring-type-checking'].rules,
 			...regexpPlugin.configs.recommended.rules,
 
 			'no-use-before-define': 'off',
@@ -143,22 +130,11 @@ const config = [
 			'no-useless-escape': 'off',
 
 			'eslint-comments/disable-enable-pair': ['warn', { allowWholeFile: true }],
-
-			// Allow {} type
-			'@typescript-eslint/no-empty-object-type': 'off',
-
-			'@typescript-eslint/consistent-type-imports': [
-				'warn',
-				{ disallowTypeAnnotations: true },
-			],
-
-			'@typescript-eslint/no-unsafe-call': 'off',
-			'@typescript-eslint/no-explicit-any': 'off',
 		},
 	},
 	{
 		// Browser-specific parts
-		files: ['src/auto-start.ts'],
+		files: ['src/auto-start.js'],
 		languageOptions: {
 			globals: {
 				...globals.browser,
@@ -167,7 +143,7 @@ const config = [
 	},
 	{
 		// Plugins
-		files: ['src/plugins/**/*.ts'],
+		files: ['src/plugins/**/*.js'],
 		languageOptions: {
 			globals: {
 				...globals.browser,
@@ -208,10 +184,6 @@ const config = [
 			globals: {
 				...globals.node,
 			},
-			parserOptions: {
-				tsconfigRootDir: __dirname,
-				project: ['./scripts/tsconfig.json'],
-			},
 		},
 	},
 	{
@@ -238,7 +210,7 @@ const config = [
 export default defineConfig(replaceErrorsWithWarnings(config));
 
 /*
- * Many recommended ESLint configs (such as those from @typescript-eslint) default to "error" severity for some rules.
+ * Many recommended ESLint configs default to "error" severity for some rules.
  * However, we want all rules only to warn, not error.
  * This function recursively traverses the config and downgrades all "error" severities to "warn".
  * This ensures a consistent linting experience, even when extending third-party configs that use "error" by default.
