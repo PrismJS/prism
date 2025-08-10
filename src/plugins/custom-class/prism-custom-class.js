@@ -1,26 +1,32 @@
-import prism from '../../global';
-import type { PluginProto } from '../../types';
-
-type ClassMapper = (className: string) => string;
-type ClassAdder = (env: ClassAdderEnvironment) => undefined | string | string[];
-interface ClassAdderEnvironment {
-	language: string;
-	type: string;
-	content: string;
-}
+import prism from '../../global.js';
 
 export class CustomClass {
-	private adder: ClassAdder | undefined;
-	private mapper: ClassMapper | undefined;
+	/**
+	 * @type {ClassAdder | undefined}
+	 * @private
+	 */
+	adder;
+
+	/**
+	 * @type {ClassMapper | undefined}
+	 * @private
+	 */
+	mapper;
+
 	/**
 	 * A prefix to add to all class names.
+	 *
+	 * @type {string}
+	 * @default ''
 	 */
 	prefix = '';
 
 	/**
 	 * Sets the function which can be used to add custom aliases to any token.
+	 *
+	 * @param {ClassAdder} classAdder
 	 */
-	add (classAdder: ClassAdder) {
+	add (classAdder) {
 		this.adder = classAdder;
 	}
 
@@ -28,8 +34,10 @@ export class CustomClass {
 	 * Maps all class names using the given object or map function.
 	 *
 	 * This does not affect the prefix.
+	 *
+	 * @param {object | ClassMapper} classMapper
 	 */
-	map (classMapper: Record<string, string> | ClassMapper) {
+	map (classMapper) {
 		if (typeof classMapper === 'function') {
 			this.mapper = classMapper;
 		}
@@ -41,20 +49,23 @@ export class CustomClass {
 	/**
 	 * Applies the current mapping and prefix to the given class name.
 	 *
-	 * @param className A single class name.
+	 * @param {string} className A single class name.
+	 * @returns {string}
 	 */
-	apply (className: string) {
+	apply (className) {
 		return this.prefix + (this.mapper ? this.mapper(className) : className);
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'custom-class',
 	plugin () {
 		return new CustomClass();
 	},
 	effect (Prism) {
-		const customClass = Prism.plugins.customClass as CustomClass;
+		/** @type {import('./prism-custom-class.js').CustomClass} */
+		const customClass = Prism.plugins.customClass;
 
 		return Prism.hooks.add('wrap', env => {
 			if (customClass['adder']) {
@@ -76,11 +87,30 @@ const Self = {
 				return;
 			}
 
-			env.classes = env.classes.map((c: string) => customClass.apply(c));
+			env.classes = env.classes.map(c => customClass.apply(c));
 		});
 	},
-} as PluginProto<'custom-class'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @callback ClassMapper
+ * @param {string} className
+ * @returns {string}
+ */
+
+/**
+ * @callback ClassAdder
+ * @param {ClassAdderEnvironment} env
+ * @returns {undefined | string | string[]}
+ */
+
+/**
+ * @typedef {object} ClassAdderEnvironment
+ * @property {string} language
+ * @property {string} type
+ * @property {string} content
+ */

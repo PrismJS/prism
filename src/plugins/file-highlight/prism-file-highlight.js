@@ -1,10 +1,13 @@
-import prism from '../../global';
-import { setLanguage } from '../../shared/dom-util';
-import type { Prism } from '../../core';
-import type { PluginProto } from '../../types';
-import type { Autoloader } from '../autoloader/prism-autoloader';
+import prism from '../../global.js';
+import { setLanguage } from '../../shared/dom-util.js';
 
-const FAILURE_MESSAGE = (status: number, message: string) => {
+/**
+ *
+ * @param {number} status
+ * @param {string} message
+ * @returns {string}
+ */
+const FAILURE_MESSAGE = (status, message) => {
 	return `✖ Error ${status} while fetching file: ${message}`;
 };
 const LOADING_MESSAGE = 'Loading…';
@@ -13,13 +16,11 @@ const FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
 /**
  * Loads the given file.
  *
- * @param src The URL or path of the source file to load.
+ * @param {string} src The URL or path of the source file to load.
+ * @param {SuccessFn} success
+ * @param {ErrorFn} error
  */
-function loadFile (
-	src: string,
-	success: (result: string) => void,
-	error: (reason: string) => void
-) {
+function loadFile (src, success, error) {
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET', src, true);
 	xhr.onreadystatechange = function () {
@@ -40,7 +41,7 @@ function loadFile (
 	xhr.send(null);
 }
 
-const EXTENSIONS: Record<string, string | undefined> = {
+const EXTENSIONS = {
 	'js': 'javascript',
 	'py': 'python',
 	'rb': 'ruby',
@@ -70,12 +71,17 @@ const SELECTOR =
 	'"])';
 
 export class FileHighlight {
-	private Prism: Prism;
+	/**
+	 * @param {Prism} Prism
+	 * @private
+	 */
+	Prism;
 
 	/**
 	 * @package
+	 * @param {Prism} Prism
 	 */
-	constructor (Prism: Prism) {
+	constructor (Prism) {
 		this.Prism = Prism;
 	}
 
@@ -84,9 +90,9 @@ export class FileHighlight {
 	 *
 	 * Note: Elements which are already loaded or currently loading will not be touched by this method.
 	 *
-	 * @param container Defaults to `document`.
+	 * @param {ParentNode} [container=document] Defaults to `document`.
 	 */
-	highlight (container: ParentNode = document) {
+	highlight (container) {
 		const elements = container.querySelectorAll(SELECTOR);
 
 		for (const element of elements) {
@@ -95,6 +101,7 @@ export class FileHighlight {
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'file-highlight',
 	plugin (Prism) {
@@ -105,10 +112,11 @@ const Self = {
 		 * Parses the given range.
 		 *
 		 * This returns a range with inclusive ends.
+		 *
+		 * @param {string | null | undefined} range
+		 * @returns {Array | undefined}
 		 */
-		function parseRange (
-			range: string | null | undefined
-		): [number, number | undefined] | undefined {
+		function parseRange (range) {
 			const m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
 			if (m) {
 				const start = Number(m[1]);
@@ -131,7 +139,8 @@ const Self = {
 				env.selector += ', ' + SELECTOR;
 			},
 			'before-sanity-check': env => {
-				const pre = env.element as HTMLPreElement;
+				/** @type {HTMLPreElement} */
+				const pre = env.element;
 
 				if (!pre.matches(SELECTOR)) {
 					return;
@@ -163,7 +172,8 @@ const Self = {
 				setLanguage(pre, language);
 
 				// preload the language
-				const autoloader = Prism.plugins.autoloader as Autoloader;
+				/** @type {import('../autoloader/prism-autoloader.js').Autoloader} */
+				const autoloader = Prism.plugins.autoloader;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);
 				}
@@ -215,8 +225,24 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'file-highlight'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @callback SuccessFn
+ * @param {string} result
+ * @returns {void}
+ */
+
+/**
+ * @callback ErrorFn
+ * @param {string} reason
+ * @returns {void}
+ */
+
+/**
+ * @typedef {import('../../core.js').Prism} Prism
+ */

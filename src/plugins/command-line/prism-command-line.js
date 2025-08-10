@@ -1,18 +1,11 @@
-import prism from '../../global';
-import { getParentPre } from '../../shared/dom-util';
-import { htmlEncode } from '../../shared/util';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { getParentPre } from '../../shared/dom-util.js';
+import { htmlEncode } from '../../shared/util.js';
 
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';
 
-interface CommandLineInfo {
-	complete?: boolean;
-	numberOfLines?: number;
-	outputLines?: string[];
-	continuationLineIndicies?: Set<number>;
-}
-
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'command-line',
 	effect (Prism) {
@@ -45,7 +38,7 @@ const Self = {
 				const codeLines = env.code.split('\n');
 
 				commandLine.numberOfLines = codeLines.length;
-				const outputLines: string[] = (commandLine.outputLines = []);
+				const outputLines = (commandLine.outputLines = []);
 
 				const outputSections = pre.getAttribute('data-output');
 				const outputFilter = pre.getAttribute('data-filter-output');
@@ -155,7 +148,12 @@ const Self = {
 					pre.className += ' command-line';
 				}
 
-				const getAttribute = (key: string, defaultValue: string) => {
+				/**
+				 * @param {string} key
+				 * @param {string} defaultValue
+				 * @returns {string}
+				 */
+				const getAttribute = (key, defaultValue) => {
 					return (pre.getAttribute(key) || defaultValue).replace(/"/g, '&quot');
 				};
 
@@ -209,8 +207,16 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'command-line'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} CommandLineInfo
+ * @property {boolean} [complete]
+ * @property {number} [numberOfLines]
+ * @property {string[]} [outputLines]
+ * @property {Set<number>} [continuationLineIndicies]
+ */

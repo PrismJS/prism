@@ -1,7 +1,6 @@
-import prism from '../../global';
-import cssExtras from '../../languages/css-extras';
-import { MARKUP_TAG } from '../../shared/languages/patterns';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import cssExtras from '../../languages/css-extras.js';
+import { MARKUP_TAG } from '../../shared/languages/patterns.js';
 
 const HTML_TAG = RegExp(MARKUP_TAG, 'g');
 
@@ -16,8 +15,11 @@ const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;
  *
  * Hexadecimal colors are parsed because they are not fully supported by older browsers, so converting them to
  * `rgba` functions improves browser compatibility.
+ *
+ * @param {string} hex
+ * @returns {string | undefined}
  */
-function parseHexColor (hex: string) {
+function parseHexColor (hex) {
 	const match = HEX_COLOR.exec(hex);
 	if (!match) {
 		return undefined;
@@ -55,8 +57,11 @@ function parseHexColor (hex: string) {
 
 /**
  * Validates the given Color using the current browser's internal implementation.
+ *
+ * @param {string} color
+ * @returns {string | undefined}
  */
-function validateColor (color: string) {
+function validateColor (color) {
 	if (typeof document === 'undefined') {
 		return undefined;
 	}
@@ -66,6 +71,7 @@ function validateColor (color: string) {
 	return s.color ? color : undefined;
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'inline-color',
 	require: cssExtras,
@@ -102,7 +108,7 @@ const Self = {
 			}
 		});
 	},
-} as PluginProto<'inline-color'>;
+};
 
 export default Self;
 

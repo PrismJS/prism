@@ -1,15 +1,15 @@
-import prism from '../../global';
-import { getParentPre } from '../../shared/dom-util';
-import { getTitle } from '../../shared/meta/title-data';
-import toolbar from '../toolbar/prism-toolbar';
-import type { PluginProto } from '../../types';
-import type { Toolbar } from '../toolbar/prism-toolbar';
+import prism from '../../global.js';
+import { getParentPre } from '../../shared/dom-util.js';
+import { getTitle } from '../../shared/meta/title-data.js';
+import toolbar from '../toolbar/prism-toolbar.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'show-language',
 	require: toolbar,
 	effect (Prism) {
-		const toolbar = Prism.plugins.toolbar as Toolbar;
+		/** @type {import('../toolbar/prism-toolbar.js').Toolbar} */
+		const toolbar = Prism.plugins.toolbar;
 
 		return toolbar.registerButton('show-language', env => {
 			const pre = getParentPre(env.element);
@@ -27,7 +27,7 @@ const Self = {
 			return element;
 		});
 	},
-} as PluginProto<'show-language'>;
+};
 
 export default Self;
 

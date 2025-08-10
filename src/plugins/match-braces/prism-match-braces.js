@@ -1,13 +1,16 @@
-import prism from '../../global';
-import { getParentPre, isActive } from '../../shared/dom-util';
-import type { PluginProto } from '../../types';
-import type { CustomClass } from '../custom-class/prism-custom-class';
+import prism from '../../global.js';
+import { getParentPre, isActive } from '../../shared/dom-util.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'match-braces',
 	effect (Prism) {
-		function mapClassName (name: string) {
-			const customClass = Prism.plugins.customClass as CustomClass;
+		/**
+		 * @param {string} name
+		 */
+		function mapClassName (name) {
+			/** @type {import('../custom-class/prism-custom-class.js').CustomClass} */
+			const customClass = Prism.plugins.customClass;
 			if (customClass) {
 				return customClass.apply(name);
 			}
@@ -33,7 +36,7 @@ const Self = {
 
 		// A map for brace aliases.
 		// This is useful for when some braces have a prefix/suffix as part of the punctuation token.
-		const BRACE_ALIAS_MAP: Readonly<Record<string, string>> = {
+		const BRACE_ALIAS_MAP = {
 			'${': '{', // JS template punctuation (e.g. `foo ${bar + 1}`)
 		};
 
@@ -45,8 +48,10 @@ const Self = {
 
 		/**
 		 * Returns the brace partner given one brace of a brace pair.
+		 *
+		 * @param {Element} brace
 		 */
-		function getPartnerBrace (brace: Element) {
+		function getPartnerBrace (brace) {
 			const match = BRACE_ID_PATTERN.exec(brace.id);
 			if (!match) {
 				return null;
@@ -56,7 +61,10 @@ const Self = {
 			);
 		}
 
-		function hoverBrace (this: Element) {
+		/**
+		 * @this {Element}
+		 */
+		function hoverBrace () {
 			if (!isActive(this, 'brace-hover', true)) {
 				return;
 			}
@@ -70,7 +78,11 @@ const Self = {
 				e.classList.add(mapClassName('brace-hover'));
 			});
 		}
-		function leaveBrace (this: Element) {
+
+		/**
+		 * @this {Element}
+		 */
+		function leaveBrace () {
 			const partner = getPartnerBrace(this);
 			if (!partner) {
 				return;
@@ -80,7 +92,11 @@ const Self = {
 				e.classList.remove(mapClassName('brace-hover'));
 			});
 		}
-		function clickBrace (this: Element) {
+
+		/**
+		 * @this {Element}
+		 */
+		function clickBrace () {
 			if (!isActive(this, 'brace-select', true)) {
 				return;
 			}
@@ -95,7 +111,8 @@ const Self = {
 			});
 		}
 
-		const withEventListener = new WeakSet<Element>();
+		/** @type {WeakSet<Element>} */
+		const withEventListener = new WeakSet();
 
 		return Prism.hooks.add('complete', env => {
 			const code = env.element;
@@ -106,7 +123,7 @@ const Self = {
 			}
 
 			// find the braces to match
-			const toMatch: (keyof typeof PARTNER)[] = [];
+			const toMatch = [];
 			if (isActive(code, 'match-braces')) {
 				toMatch.push('(', '[', '{');
 			}
@@ -135,14 +152,16 @@ const Self = {
 				),
 			];
 
-			const allBraces: { index: number; open: boolean; element: Element }[] = [];
+			/** @type {BraceInfo[]} */
+			const allBraces = [];
 
 			toMatch.forEach(open => {
 				const close = PARTNER[open];
 				const name = mapClassName(NAMES[open]);
 
-				const pairs: [number, number][] = [];
-				const openStack: number[] = [];
+				const pairs = [];
+				/** @type {number[]} */
+				const openStack = [];
 
 				for (let i = 0; i < punctuation.length; i++) {
 					const element = punctuation[i];
@@ -202,8 +221,15 @@ const Self = {
 			});
 		});
 	},
-} as PluginProto<'match-braces'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} BraceInfo
+ * @property {number} index
+ * @property {boolean} open
+ * @property {Element} element
+ */

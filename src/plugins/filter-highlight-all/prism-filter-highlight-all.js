@@ -1,11 +1,13 @@
-import prism from '../../global';
-import { getLanguage } from '../../shared/dom-util';
-import type { PluginProto } from '../../types';
-
-type Condition = (value: { element: Element; language: string }) => boolean;
+import prism from '../../global.js';
+import { getLanguage } from '../../shared/dom-util.js';
 
 export class FilterHighlightAll {
-	private filters: ((element: Element) => boolean)[] = [];
+	/**
+	 * @type {FiltersFn[]}
+	 * @default []
+	 * @private
+	 */
+	filters = [];
 	/**
 	 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only elements with a known language
 	 * will be highlighted. All elements with an unset or unknown language will be ignored.
@@ -19,8 +21,10 @@ export class FilterHighlightAll {
 	/**
 	 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
 	 * which the given function returns `true` will be highlighted.
+	 *
+	 * @param {Condition} condition
 	 */
-	add (condition: Condition) {
+	add (condition) {
 		this.filters.push(element => {
 			return condition({
 				element,
@@ -32,8 +36,10 @@ export class FilterHighlightAll {
 	/**
 	 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that
 	 * match the given CSS selection will be highlighted.
+	 *
+	 * @param {string} selector
 	 */
-	addSelector (selector: string) {
+	addSelector (selector) {
 		this.filters.push(element => {
 			return element.matches(selector);
 		});
@@ -43,16 +49,20 @@ export class FilterHighlightAll {
 		/**
 		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
 		 * which the given function returns `false` will be highlighted.
+		 *
+		 * @param {Condition} condition
 		 */
-		add: (condition: Condition) => {
+		add: condition => {
 			this.add(value => !condition(value));
 		},
 
 		/**
 		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that do
 		 * not match the given CSS selection will be highlighted.
+		 *
+		 * @param {string} selector
 		 */
-		addSelector: (selector: string) => {
+		addSelector: selector => {
 			this.filters.push(element => {
 				return !element.matches(selector);
 			});
@@ -62,8 +72,11 @@ export class FilterHighlightAll {
 	/**
 	 * Applies all filters to the given element and returns `true` if and only if every filter returned `true` on the
 	 * given element.
+	 *
+	 * @param {Element} element
+	 * @returns {boolean}
 	 */
-	everyFilter (element: Element): boolean {
+	everyFilter (element) {
 		for (const filter of this.filters) {
 			if (!filter(element)) {
 				return false;
@@ -73,6 +86,7 @@ export class FilterHighlightAll {
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'filter-highlight-all',
 	plugin (Prism) {
@@ -102,14 +116,33 @@ const Self = {
 		return config;
 	},
 	effect (Prism) {
-		const config = Prism.plugins.filterHighlightAll as FilterHighlightAll;
+		/** @type {import('./prism-filter-highlight-all.js').FilterHighlightAll} */
+		const config = Prism.plugins.filterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', env => {
-			env.elements = env.elements.filter((e: Element) => config.everyFilter(e));
+			env.elements = env.elements.filter(e => config.everyFilter(e));
 		});
 	},
-} as PluginProto<'filter-highlight-all'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} ConditionValue
+ * @property {Element} element
+ * @property {string} language
+ */
+
+/**
+ * @callback Condition
+ * @param {ConditionValue} value
+ * @returns {boolean}
+ */
+
+/**
+ * @callback FiltersFunction
+ * @param {Element} element
+ * @returns {boolean}
+ */

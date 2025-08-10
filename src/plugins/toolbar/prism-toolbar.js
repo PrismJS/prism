@@ -1,14 +1,19 @@
-import prism from '../../global';
-import { getParentPre } from '../../shared/dom-util';
-import { noop } from '../../shared/util';
-import type { HookCallback, HookEnv } from '../../core/classes/hooks';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { getParentPre } from '../../shared/dom-util.js';
+import { noop } from '../../shared/util.js';
+
+/**
+ * @typedef {import('../../core/classes/hooks.js').HookEnv} HookEnv
+ */
 
 /**
  * Returns the callback order of the given element.
+ *
+ * @param {Element} element
  */
-function getOrder (element: Element) {
-	let e: Element | null = element;
+function getOrder (element) {
+	/** @type {Element | null} */
+	let e = element;
 	for (; e; e = e.parentElement) {
 		let order = e.getAttribute('data-toolbar-order');
 		if (order != null) {
@@ -23,37 +28,32 @@ function getOrder (element: Element) {
 	}
 }
 
-export interface ButtonOptions {
-	/**
-	 * The text displayed.
-	 */
-	text: string;
-	/**
-	 * The URL of the link which will be created.
-	 */
-	url?: string;
-	/**
-	 * The event listener for the `click` event of the created button.
-	 */
-	onClick?: (env: HookEnv) => void;
-	/**
-	 * The class attribute to include with element.
-	 */
-	className?: string;
-}
-export type ButtonFactory = (env: HookEnv) => Node | undefined;
-
 export class Toolbar {
-	private callbacks: ButtonFactory[] = [];
-	private map = new Map<string, ButtonFactory>();
+	/**
+	 * @type {ButtonFactory[]}
+	 * @default []
+	 * @private
+	 */
+	callbacks = [];
+
+	/**
+	 * @type {Map<string, ButtonFactory>}
+	 * @private
+	 */
+	map = new Map();
 
 	/**
 	 * Register a button callback with the toolbar.
 	 *
 	 * The returned function will remove the added callback again when called.
+	 *
+	 * @param {string} key
+	 * @param {ButtonOptions | ButtonFactory} opts
+	 * @returns {function():void}
 	 */
-	registerButton (key: string, opts: ButtonOptions | ButtonFactory): () => void {
-		let callback: ButtonFactory;
+	registerButton (key, opts) {
+		/** @type {ButtonFactory} */
+		let callback;
 
 		if (typeof opts === 'function') {
 			callback = opts;
@@ -106,9 +106,9 @@ export class Toolbar {
 	}
 
 	/**
-	 * @package
+	 * @type {HookCallback}
 	 */
-	hook: HookCallback = env => {
+	hook = env => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		const pre = getParentPre(env.element);
 		if (!pre) {
@@ -161,7 +161,8 @@ export class Toolbar {
 	};
 }
 
-const label: ButtonFactory = env => {
+/** @type {ButtonFactory} */
+const label = env => {
 	const pre = getParentPre(env.element);
 	if (!pre) {
 		return;
@@ -180,12 +181,12 @@ const label: ButtonFactory = env => {
 			template = document.querySelector('template#' + text);
 		}
 	}
-	catch (e) {
+	catch {
 		/* noop */
 	}
 
 	if (template) {
-		element = (template as HTMLTemplateElement).content;
+		element = template.content;
 	}
 	else {
 		const url = pre.getAttribute('data-url');
@@ -203,6 +204,7 @@ const label: ButtonFactory = env => {
 	return element;
 };
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'toolbar',
 	plugin () {
@@ -211,11 +213,32 @@ const Self = {
 		return toolbar;
 	},
 	effect (Prism) {
-		const toolbar = Prism.plugins.toolbar as Toolbar;
+		/** @type {import('./prism-toolbar.js').Toolbar} */
+		const toolbar = Prism.plugins.toolbar;
 		return Prism.hooks.add('complete', toolbar.hook);
 	},
-} as PluginProto<'toolbar'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} ButtonOptions
+ * @property {string} text The text displayed.
+ * @property {string} [url] The URL of the link which will be created.
+ * @property {OnClickFn} [onClick] The event listener for the `click` event of the created button.
+ * @property {string} [className] The class attribute to include with the element.
+ */
+
+/**
+ * @callback OnClickFn
+ * @param {HookEnv} env
+ * @returns {void}
+ */
+
+/**
+ * @callback ButtonFactory
+ * @param {HookEnv} env
+ * @returns {Node | undefined}
+ */

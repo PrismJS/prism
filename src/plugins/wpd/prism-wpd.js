@@ -1,8 +1,7 @@
-import prism from '../../global';
-import cssSelector from '../../languages/css-selector';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import cssSelector from '../../languages/css-selector.js';
 
-const htmlTags = new Set<string>([
+const htmlTags = new Set([
 	'a',
 	'abbr',
 	'acronym',
@@ -57,7 +56,7 @@ const htmlTags = new Set<string>([
 	'meter',
 	'menu',
 ]);
-const svgTags = new Set<string>([
+const svgTags = new Set([
 	'animateColor',
 	'animateMotion',
 	'animateTransform',
@@ -108,9 +107,13 @@ const svgTags = new Set<string>([
 	'hkern',
 	'vkern',
 ]);
-const mathmlTags = new Set<string>();
+const mathmlTags = new Set();
 
-function getLanguage (tag: string) {
+/**
+ * @param {string} tag
+ * @returns {string | null}
+ */
+function getLanguage (tag) {
 	const tagL = tag.toLowerCase();
 
 	if (htmlTags.has(tagL)) {
@@ -145,7 +148,7 @@ function getLanguage (tag: string) {
 		}
 	}
 
-	// Lame way to detect MathML, but browsers don’t expose interface names there :(
+	// Lame way to detect MathML, but browsers don't expose interface names there :(
 	if (tag.startsWith('m')) {
 		mathmlTags.add(tag);
 		return 'mathml';
@@ -154,6 +157,7 @@ function getLanguage (tag: string) {
 	return null;
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'wpd',
 	require: cssSelector,
@@ -215,7 +219,7 @@ const Self = {
 			env.attributes.target = '_blank';
 		});
 	},
-} as PluginProto<'wpd'>;
+};
 
 export default Self;
 

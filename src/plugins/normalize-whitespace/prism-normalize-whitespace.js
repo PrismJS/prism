@@ -1,8 +1,11 @@
-import prism from '../../global';
-import { getParentPre, isActive } from '../../shared/dom-util';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { getParentPre, isActive } from '../../shared/dom-util.js';
 
-function tabLength (str: string) {
+/**
+ * @param {string} str
+ * @returns {number}
+ */
+function tabLength (str) {
 	let res = 0;
 	for (let i = 0; i < str.length; ++i) {
 		if (str.charCodeAt(i) === '\t'.charCodeAt(0)) {
@@ -12,19 +15,7 @@ function tabLength (str: string) {
 	return str.length + res;
 }
 
-interface NormalizeWhitespaceDefaults {
-	'break-lines': number;
-	'indent': number;
-	'left-trim': boolean;
-	'remove-indent': boolean;
-	'remove-initial-line-feed': boolean;
-	'remove-trailing': boolean;
-	'right-trim': boolean;
-	'spaces-to-tabs': number;
-	'tabs-to-spaces': number;
-}
-
-const normalizationOrder: readonly (keyof NormalizeWhitespaceDefaults)[] = [
+const normalizationOrder = [
 	'remove-trailing',
 	'remove-indent',
 	'left-trim',
@@ -36,11 +27,7 @@ const normalizationOrder: readonly (keyof NormalizeWhitespaceDefaults)[] = [
 	'spaces-to-tabs',
 ];
 
-type Typeof<T> = T extends boolean ? 'boolean' : T extends number ? 'number' : string;
-
-const settingsConfig: Readonly<{
-	[K in keyof NormalizeWhitespaceDefaults]: Typeof<NormalizeWhitespaceDefaults[K]>;
-}> = {
+const settingsConfig = {
 	'remove-trailing': 'boolean',
 	'remove-indent': 'boolean',
 	'left-trim': 'boolean',
@@ -54,17 +41,19 @@ const settingsConfig: Readonly<{
 
 /**
  * Reads normalizations settings from the given elements's `data-*` attributes.
+ *
+ * @param {Element} element
  */
-function readSetting (element: Element) {
-	const settings: Partial<NormalizeWhitespaceDefaults> = {};
+function readSetting (element) {
+	const settings = {};
 	for (const key of normalizationOrder) {
 		const attr = element.getAttribute('data-' + key);
 		const type = settingsConfig[key];
 		if (attr !== null) {
 			try {
-				const value: unknown = JSON.parse(attr || 'true');
+				const value = JSON.parse(attr || 'true');
 				if (typeof value === type) {
-					settings[key] = value as never;
+					settings[key] = value;
 				}
 			}
 			catch {
@@ -75,12 +64,7 @@ function readSetting (element: Element) {
 	return settings;
 }
 
-const normalizationMethods: {
-	[K in keyof NormalizeWhitespaceDefaults]: (
-		input: string,
-		value: NormalizeWhitespaceDefaults[K]
-	) => string;
-} = {
+const normalizationMethods = {
 	'left-trim': input => input.replace(/^\s+/, ''),
 	'right-trim': input => input.replace(/(^|\S)\s+$/, '$1'),
 	'tabs-to-spaces': (input, spaces) => input.replace(/\t/g, ' '.repeat(spaces)),
@@ -128,22 +112,27 @@ const normalizationMethods: {
 };
 
 export class NormalizeWhitespace {
-	defaults: Partial<NormalizeWhitespaceDefaults>;
-	constructor (defaults: Partial<Readonly<NormalizeWhitespaceDefaults>>) {
+	defaults;
+	constructor (defaults) {
 		this.defaults = { ...defaults };
 	}
 
-	setDefaults (defaults: Partial<Readonly<NormalizeWhitespaceDefaults>>): void {
+	setDefaults (defaults) {
 		Object.assign(this.defaults, defaults);
 	}
 
-	normalize (input: string, settings?: Partial<Readonly<NormalizeWhitespaceDefaults>>): string {
+	/**
+	 * @param {string} input
+	 * @param {object} settings
+	 * @returns {string}
+	 */
+	normalize (input, settings) {
 		settings = { ...this.defaults, ...settings };
 
 		for (const name of normalizationOrder) {
 			const value = settings[name];
 			if (value !== undefined && value !== false) {
-				input = normalizationMethods[name](input, value as never);
+				input = normalizationMethods[name](input, value);
 			}
 		}
 
@@ -151,6 +140,7 @@ export class NormalizeWhitespace {
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'normalize-whitespace',
 	optional: 'unescaped-markup',
@@ -168,7 +158,8 @@ const Self = {
 		});
 	},
 	effect (Prism) {
-		const Normalizer = Prism.plugins.normalizeWhitespace as NormalizeWhitespace;
+		/** @type {import('./prism-normalize-whitespace.js').NormalizeWhitespace} */
+		const Normalizer = Prism.plugins.normalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', env => {
 			if (!env.code) {
@@ -231,8 +222,21 @@ const Self = {
 			}
 		});
 	},
-} as PluginProto<'normalize-whitespace'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} NormalizeWhitespaceDefaults
+ * @property {number} 'break-lines'
+ * @property {number} 'indent'
+ * @property {boolean} 'left-trim'
+ * @property {boolean} 'remove-indent'
+ * @property {boolean} 'remove-initial-line-feed'
+ * @property {boolean} 'remove-trailing'
+ * @property {boolean} 'right-trim'
+ * @property {number} 'spaces-to-tabs'
+ * @property {number} 'tabs-to-spaces'
+ */

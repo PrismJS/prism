@@ -1,20 +1,25 @@
-import prism from '../../global';
-import { isActive } from '../../shared/dom-util';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { isActive } from '../../shared/dom-util.js';
 
-function isElement (child: ChildNode): child is Element {
+/**
+ *
+ * @param {ChildNode} child
+ * @returns {boolean}
+ */
+function isElement (child) {
 	return child.nodeType === 1;
 }
-function isText (child: ChildNode): child is Text {
+
+/**
+ *
+ * @param {ChildNode} child
+ * @returns {boolean}
+ */
+function isText (child) {
 	return child.nodeType === 3;
 }
 
-interface NodeData {
-	element: Element;
-	posOpen: number;
-	posClose: number;
-}
-
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
@@ -32,8 +37,11 @@ const Self = {
 				const dropTokens = isActive(env.element, 'drop-tokens', false);
 				/**
 				 * Returns whether the given element should be kept.
+				 *
+				 * @param {Element} element
+				 * @returns {boolean}
 				 */
-				function shouldKeep (element: Element) {
+				function shouldKeep (element) {
 					if (
 						dropTokens &&
 						element.nodeName.toLowerCase() === 'span' &&
@@ -45,15 +53,21 @@ const Self = {
 				}
 
 				let pos = 0;
-				const data: NodeData[] = [];
-				function processElement (element: Element) {
+				/** @type {NodeData[]} */
+				const data = [];
+
+				/**
+				 * @param {Element} element
+				 */
+				function processElement (element) {
 					if (!shouldKeep(element)) {
 						// don't keep this element and just process its children
 						processChildren(element);
 						return;
 					}
 
-					const o: NodeData = {
+					/** @type {NodeData} */
+					const o = {
 						// Store original element so we can restore it after highlighting
 						element,
 						posOpen: pos,
@@ -65,7 +79,11 @@ const Self = {
 
 					o.posClose = pos;
 				}
-				function processChildren (element: Element) {
+
+				/**
+				 * @param {Element} element
+				 */
+				function processChildren (element) {
 					for (let i = 0, l = element.childNodes.length; i < l; i++) {
 						const child = element.childNodes[i];
 						if (isElement(child)) {
@@ -84,14 +102,14 @@ const Self = {
 				}
 			},
 			'after-highlight': env => {
-				const data: NodeData[] = env.markupData ?? [];
+				/** @type {NodeData[]} */
+				const data = env.markupData ?? [];
 				if (data.length) {
-					type End = [node: Text, pos: number];
-
-					const walk = (
-						elt: Element,
-						nodeState: { node: NodeData; pos: number; start?: End; end?: End }
-					) => {
+					/**
+					 * @param {Element} elt
+					 * @param {NodeState} nodeState
+					 */
+					const walk = (elt, nodeState) => {
 						for (let i = 0, l = elt.childNodes.length; i < l; i++) {
 							const child = elt.childNodes[i];
 
@@ -152,8 +170,23 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'keep-markup'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} NodeData
+ * @property {Element} element
+ * @property {number} posOpen
+ * @property {number} posClose
+ */
+
+/**
+ * @typedef {object} NodeState
+ * @property {NodeData} node
+ * @property {number} pos
+ * @property {Array} [start]
+ * @property {Array} [end]
+ */

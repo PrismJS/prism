@@ -1,17 +1,19 @@
-import { getTextContent, Token } from '../../core/classes/token';
-import prism from '../../global';
-import diff, { PREFIXES } from '../../languages/diff';
-import type { HookEnv } from '../../core/classes/hooks';
-import type { TokenStream } from '../../core/classes/token';
-import type { PluginProto } from '../../types';
+import { getTextContent, Token } from '../../core/classes/token.js';
+import prism from '../../global.js';
+import diff, { PREFIXES } from '../../languages/diff.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'diff-highlight',
 	require: diff,
 	effect (Prism) {
 		const LANGUAGE_REGEX = /^diff-([\w-]+)/i;
 
-		const setMissingGrammar = (env: HookEnv) => {
+		/**
+		 *
+		 * @param {import('../../core/classes/hooks.js').HookEnv} env
+		 */
+		const setMissingGrammar = env => {
 			const lang = env.language;
 			if (LANGUAGE_REGEX.test(lang) && !env.grammar) {
 				env.grammar = Prism.components.getLanguage('diff');
@@ -42,7 +44,7 @@ const Self = {
 						continue;
 					}
 
-					const type = token.type as keyof typeof PREFIXES;
+					const type = token.type;
 					let insertedPrefixes = 0;
 					const getPrefixToken = () => {
 						insertedPrefixes++;
@@ -50,7 +52,7 @@ const Self = {
 					};
 
 					const withoutPrefixes = token.content.filter(
-						(t: any) => typeof t === 'string' || t.type !== 'prefix'
+						t => typeof t === 'string' || t.type !== 'prefix'
 					);
 					const prefixCount = token.content.length - withoutPrefixes.length;
 
@@ -62,8 +64,13 @@ const Self = {
 					diffTokens.unshift(getPrefixToken());
 
 					const LINE_BREAK = /\r\n|\n/g;
-					const insertAfterLineBreakString = (text: string) => {
-						const result: TokenStream = [];
+					/**
+					 *
+					 * @param {string} text
+					 */
+					const insertAfterLineBreakString = text => {
+						/** @type {TokenStream} */
+						const result = [];
 						LINE_BREAK.lastIndex = 0;
 						let last = 0;
 						let m;
@@ -83,7 +90,12 @@ const Self = {
 						}
 						return result;
 					};
-					const insertAfterLineBreak = (tokens: TokenStream) => {
+
+					/**
+					 *
+					 * @param {TokenStream} tokens
+					 */
+					const insertAfterLineBreak = tokens => {
 						for (let i = 0; i < tokens.length && insertedPrefixes < prefixCount; i++) {
 							const token = tokens[i];
 
@@ -117,8 +129,12 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'diff-highlight'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {import('../../core/classes/token').TokenStream} TokenStream
+ */

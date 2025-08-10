@@ -1,6 +1,6 @@
-import prism from '../../global';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'unescaped-markup',
 	effect (Prism) {
@@ -13,7 +13,8 @@ const Self = {
 					', script[type="text/plain"][class*="language-"]';
 			},
 			'before-sanity-check': env => {
-				const element = env.element as HTMLElement;
+				/** @type {HTMLElement} */
+				const element = env.element;
 
 				if (element.matches('script[type="text/plain"]')) {
 					// found a <script type="text/plain" ...> element
@@ -56,7 +57,7 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'unescaped-markup'>;
+};
 
 export default Self;
 

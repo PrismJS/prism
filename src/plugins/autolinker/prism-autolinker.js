@@ -1,12 +1,16 @@
-import prism from '../../global';
-import { tokenizeStrings } from '../../shared/tokenize-strings';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'autolinker',
 	optional: 'diff-highlight',
 	effect (Prism) {
-		function balanced (chars: string) {
+		/**
+		 * @param {string} chars
+		 * @returns {string}
+		 */
+		function balanced (chars) {
 			return String.raw`(?:${chars}|\((?:${chars})*\))`;
 		}
 
@@ -41,7 +45,7 @@ const Self = {
 			},
 		});
 	},
-} as PluginProto<'autolinker'>;
+};
 
 export default Self;
 

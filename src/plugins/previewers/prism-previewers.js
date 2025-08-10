@@ -1,14 +1,23 @@
-import prism from '../../global';
-import cssExtras from '../../languages/css-extras';
-import { forEach } from '../../util/iterables';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import cssExtras from '../../languages/css-extras.js';
+import { forEach } from '../../util/iterables.js';
 
 /**
- * Returns the absolute X, Y offsets for an element
+ * @typedef {object} ElementOffset
+ * @property {number} top
+ * @property {number} right
+ * @property {number} bottom
+ * @property {number} left
+ * @property {number} width
+ * @property {number} height
  */
-const getOffset = (
-	element: Element
-): { top: number; right: number; bottom: number; left: number; width: number; height: number } => {
+/**
+ * Returns the absolute X, Y offsets for an element.
+ *
+ * @param {Element} element
+ * @returns {ElementOffset}
+ */
+const getOffset = element => {
 	const elementBounds = element.getBoundingClientRect();
 	let left = elementBounds.left;
 	let top = elementBounds.top;
@@ -30,33 +39,57 @@ const TOKEN_CLASS = 'token';
 const ACTIVE_CLASS = 'active';
 const FLIPPED_CLASS = 'flipped';
 
-type Updater = (this: HTMLDivElement, value: string) => boolean;
-type PreviewerE = Previewer & { ['_elt']: HTMLDivElement };
-type Initializer = (this: PreviewerE) => void;
-class Previewer {
-	readonly type: string;
-	supportedLanguages: string | string[];
-	updater: Updater;
-	initializer: Initializer | undefined;
+/**
+ * @callback Updater
+ * @this {HTMLDivElement}
+ * @param {string} value
+ * @returns {boolean}
+ */
 
-	/** @package */
-	_elt: HTMLDivElement | null = null;
-	private _token: Element | null = null;
+/**
+ * @typedef {object} PreviewerE
+ * @augments {Previewer}
+ * @property {HTMLDivElement} _elt
+ */
+
+/**
+ * @callback Initializer
+ * @this {PreviewerE}
+ * @returns {void}
+ */
+
+class Previewer {
+	/** @type {string} */
+	type;
+	/** @type {string | string[]} */
+	supportedLanguages;
+	/** @type {Updater} */
+	updater;
+	/** @type {Initializer | undefined} */
+	initializer;
+
+	/**
+	 * @type {HTMLDivElement | null}
+	 * @default null
+	 */
+	_elt = null;
+
+	/**
+	 * @type {Element | null}
+	 * @default null
+	 * @private
+	 */
+	_token = null;
 
 	/**
 	 * Previewer constructor
 	 *
-	 * @param type Unique previewer type
-	 * @param updater Function that will be called on mouseover.
-	 * @param supportedLanguages Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
-	 * @param initializer Function that will be called on initialization.
+	 * @param {string} type Unique previewer type
+	 * @param {Updater} updater Function that will be called on mouseover.
+	 * @param {string[] | string} [supportedLanguages='*'] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
+	 * @param {Initializer} [initializer] Function that will be called on initialization.
 	 */
-	constructor (
-		type: string,
-		updater: Updater,
-		supportedLanguages: string[] | string = '*',
-		initializer?: Initializer
-	) {
+	constructor (type, updater, supportedLanguages = '*', initializer) {
 		this.type = type;
 		this.supportedLanguages = supportedLanguages;
 		this.updater = updater;
@@ -65,7 +98,7 @@ class Previewer {
 	/**
 	 * Creates the HTML element for the previewer.
 	 */
-	init (): asserts this is PreviewerE {
+	init () {
 		if (this._elt) {
 			return;
 		}
@@ -73,18 +106,26 @@ class Previewer {
 		this._elt.className = 'prism-previewer prism-previewer-' + this.type;
 		document.body.appendChild(this._elt);
 		if (this.initializer) {
-			this.initializer.call(this as PreviewerE);
+			this.initializer.call(this);
 		}
 	}
-	isDisabled (token: Element): boolean {
+
+	/**
+	 * @param {Element} token
+	 * @returns {boolean}
+	 */
+	isDisabled (token) {
 		const previewers = token.closest('[data-previewers]')?.getAttribute('data-previewers');
 		const parts = (previewers || '').split(/\s+/);
 		return !parts.includes(this.type);
 	}
 	/**
-	 * Checks the class name of each hovered element
+	 * Checks the class name of each hovered element.
+	 *
+	 * @param {Element} token
+	 * @returns {void}
 	 */
-	tryShow (token: Element): void {
+	tryShow (token) {
 		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
 			return;
 		}
@@ -148,14 +189,21 @@ class Previewer {
 export class PreviewerCollection {
 	/**
 	 * Map of all registered previewers by language.
+	 *
+	 * @type {Map<string, Previewer[]>}
 	 */
-	readonly byLanguages = new Map<string, Previewer[]>();
+	byLanguages = new Map();
 	/**
-	 * Map of all registered previewers by type
+	 * Map of all registered previewers by type.
+	 *
+	 * @type {Map<string, Previewer>}
 	 */
-	readonly byType = new Map<string, Previewer>();
+	byType = new Map();
 
-	add (previewer: Previewer) {
+	/**
+	 * @param {Previewer} previewer
+	 */
+	add (previewer) {
 		forEach(previewer.supportedLanguages, lang => {
 			let list = this.byLanguages.get(lang);
 			if (list === undefined) {
@@ -173,11 +221,12 @@ export class PreviewerCollection {
 	/**
 	 * Initializes the mouseover event on the code block.
 	 *
-	 * @param elt The code block (`env.element`)
-	 * @param lang The language (`env.language`)
+	 * @param {Element} elt The code block (`env.element`)
+	 * @param {string} lang The language (`env.language`)
 	 */
-	initEvents (elt: Element, lang: string) {
-		const previewers: Previewer[] = [];
+	initEvents (elt, lang) {
+		/** @type {Previewer[]} */
+		const previewers = [];
 		previewers.push(...(this.byLanguages.get(lang) ?? []));
 		previewers.push(...(this.byLanguages.get('*') ?? []));
 		if (previewers.length === 0) {
@@ -189,7 +238,7 @@ export class PreviewerCollection {
 				const target = e.target;
 				if (target) {
 					previewers.forEach(previewer => {
-						previewer.tryShow(target as Element);
+						previewer.tryShow(target);
 					});
 				}
 			},
@@ -199,10 +248,8 @@ export class PreviewerCollection {
 }
 
 // TODO: Filthy hack to be able to load this script
-const Prism = { languages: {} as Record<string, any> };
+const Prism = { languages: {} };
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 const previewers = {
 	// gradient must be defined before color and angle
 	'gradient': {
@@ -211,16 +258,16 @@ const previewers = {
 			 * Stores already processed gradients so that we don't
 			 * make the conversion every time the previewer is shown
 			 */
-			const cache: Record<string, string> = {};
+			const cache = {};
 
 			/**
 			 * Returns a W3C-valid linear gradient
 			 *
-			 * @param prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
-			 * @param func Gradient function name ("linear-gradient")
-			 * @param values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
+			 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
+			 * @param {string} func Gradient function name ("linear-gradient")
+			 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 			 */
-			function convertToW3CLinearGradient (prefix: string, func: string, values: string[]) {
+			function convertToW3CLinearGradient (prefix, func, values) {
 				// Default value for angle
 				let angle = '180deg';
 
@@ -282,11 +329,11 @@ const previewers = {
 			/**
 			 * Returns a W3C-valid radial gradient
 			 *
-			 * @param prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
-			 * @param func Gradient function name ("linear-gradient")
-			 * @param values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
+			 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
+			 * @param {string} func Gradient function name ("linear-gradient")
+			 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 			 */
-			function convertToW3CRadialGradient (prefix: string, func: string, values: string[]) {
+			function convertToW3CRadialGradient (prefix, func, values) {
 				if (!values[0].includes('at')) {
 					// Looks like old syntax
 
@@ -298,19 +345,19 @@ const previewers = {
 					if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 						// Found a position
 						// Remove angle value, if any
-						position = values.shift()!.replace(/\s*-?\d+(?:deg|rad)\s*/, '');
+						position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
 					}
 					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 						// Found a shape and/or size
-						const shapeSizeParts = values.shift()!.split(/\s+/);
+						const shapeSizeParts = values.shift().split(/\s+/);
 						if (
 							shapeSizeParts[0] &&
 							(shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')
 						) {
-							shape = shapeSizeParts.shift()!;
+							shape = shapeSizeParts.shift();
 						}
 						if (shapeSizeParts[0]) {
-							size = shapeSizeParts.shift()!;
+							size = shapeSizeParts.shift();
 						}
 
 						// Old keywords are converted to their synonyms
@@ -342,9 +389,9 @@ const previewers = {
 			 * Converts a gradient to a W3C-valid one
 			 * Does not support old webkit syntax (-webkit-gradient(linear...) and -webkit-gradient(radial...))
 			 *
-			 * @param gradient The CSS gradient
+			 * @param {string} gradient The CSS gradient
 			 */
-			function convertToW3CGradient (gradient: string) {
+			function convertToW3CGradient (gradient) {
 				if (cache[gradient]) {
 					return cache[gradient];
 				}
@@ -380,7 +427,8 @@ const previewers = {
 			return new Previewer(
 				'gradient',
 				function (value) {
-					const first = this.firstChild as HTMLElement | null;
+					/** @type {HTMLElement | null} */
+					const first = this.firstChild;
 					if (!first) {
 						return false;
 					}
@@ -588,7 +636,7 @@ const previewers = {
 	},
 	'easing': {
 		create () {
-			const identifierMap: Partial<Record<string, string>> = {
+			const identifierMap = {
 				'linear': '0,0,1,1',
 				'ease': '.25,.1,.25,1',
 				'ease-in': '.42,0,1,1',
@@ -769,9 +817,8 @@ const previewers = {
 		},
 	},
 };
-/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-/* eslint-enable @typescript-eslint/no-unsafe-member-access */
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'previewers',
 	require: cssExtras,
@@ -823,11 +870,12 @@ const Self = {
 		*/
 
 		return Prism.hooks.add('after-highlight', env => {
-			const previewers = Prism.plugins.previewers as PreviewerCollection;
+			/** @type {import('./prism-previewers.js').PreviewerCollection} */
+			const previewers = Prism.plugins.previewers;
 			previewers.initEvents(env.element, env.language);
 		});
 	},
-} as PluginProto<'previewers'>;
+};
 
 export default Self;
 

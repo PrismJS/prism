@@ -1,6 +1,6 @@
-import prism from '../../global';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'highlight-keywords',
 	effect (Prism) {
@@ -11,7 +11,7 @@ const Self = {
 			env.classes.push('keyword-' + env.content);
 		});
 	},
-} as PluginProto<'highlight-keywords'>;
+};
 
 export default Self;
 

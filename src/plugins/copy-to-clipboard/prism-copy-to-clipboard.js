@@ -1,17 +1,13 @@
-import prism from '../../global';
-import toolbar from '../toolbar/prism-toolbar';
-import type { PluginProto } from '../../types';
-import type { Toolbar } from '../toolbar/prism-toolbar';
+import prism from '../../global.js';
+import toolbar from '../toolbar/prism-toolbar.js';
 
-interface CopyInfo {
-	getText: () => string;
-	success: () => void;
-	error: (reason: unknown) => void;
-}
 /**
  * When the given elements is clicked by the user, the given text will be copied to clipboard.
+ *
+ * @param {Element} element
+ * @param {CopyInfo} copyInfo
  */
-function registerClipboard (element: Element, copyInfo: CopyInfo) {
+function registerClipboard (element, copyInfo) {
 	element.addEventListener('click', () => {
 		copyTextToClipboard(copyInfo);
 	});
@@ -19,7 +15,10 @@ function registerClipboard (element: Element, copyInfo: CopyInfo) {
 
 // https://stackoverflow.com/a/30810322/7595472
 
-function fallbackCopyTextToClipboard (copyInfo: CopyInfo) {
+/**
+ * @param {CopyInfo} copyInfo
+ */
+function fallbackCopyTextToClipboard (copyInfo) {
 	const textArea = document.createElement('textarea');
 	textArea.value = copyInfo.getText();
 
@@ -51,7 +50,11 @@ function fallbackCopyTextToClipboard (copyInfo: CopyInfo) {
 
 	document.body.removeChild(textArea);
 }
-function copyTextToClipboard (copyInfo: CopyInfo) {
+
+/**
+ * @param {CopyInfo} copyInfo
+ */
+function copyTextToClipboard (copyInfo) {
 	if (navigator.clipboard) {
 		navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, () => {
 			// try the fallback in case `writeText` didn't work
@@ -65,37 +68,40 @@ function copyTextToClipboard (copyInfo: CopyInfo) {
 
 /**
  * Selects the text content of the given element.
+ *
+ * @param {Element} element
  */
-function selectElementText (element: Element) {
+function selectElementText (element) {
 	// https://stackoverflow.com/a/20079910/7595472
 	window.getSelection()?.selectAllChildren(element);
 }
 
-function getInheritedAttribute (element: Element, attribute: string) {
-	let e: Element | null = element;
+/**
+ * @param {Element} element
+ * @param {string} attribute
+ * @returns {string | null}
+ */
+function getInheritedAttribute (element, attribute) {
+	/** @type {Element | null} */
+	let e = element;
 	for (; e; e = e.parentElement) {
 		const value = e.getAttribute(attribute);
 		if (value !== null) {
 			return value;
 		}
 	}
-}
-
-interface Settings {
-	'copy': string;
-	'copy-error': string;
-	'copy-success': string;
-	'copy-timeout': number;
+	return null;
 }
 
 /**
  * Traverses up the DOM tree to find data attributes that override the default plugin settings.
  *
- * @param startElement An element to start from.
- * @returns The plugin settings.
+ * @param {Element} startElement An element to start from.
+ * @returns {Settings} The plugin settings.
  */
-function getSettings (startElement: Element) {
-	const settings: Settings = {
+function getSettings (startElement) {
+	/** @type {Settings} */
+	const settings = {
 		'copy': 'Copy',
 		'copy-error': 'Press Ctrl+C to copy',
 		'copy-success': 'Copied!',
@@ -103,7 +109,7 @@ function getSettings (startElement: Element) {
 	};
 
 	for (const k in settings) {
-		const key = k as keyof Settings;
+		const key = k;
 		const value = getInheritedAttribute(startElement, 'data-prismjs-' + key);
 		if (value) {
 			if (key === 'copy-timeout') {
@@ -120,11 +126,13 @@ function getSettings (startElement: Element) {
 	return settings;
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect (Prism) {
-		const toolbar = Prism.plugins.toolbar as Toolbar;
+		/** @type {import('../toolbar/prism-toolbar.js').Toolbar} */
+		const toolbar = Prism.plugins.toolbar;
 
 		return toolbar.registerButton('copy-to-clipboard', env => {
 			const element = env.element;
@@ -165,14 +173,38 @@ const Self = {
 				setTimeout(() => setState('copy'), settings['copy-timeout']);
 			}
 
-			function setState (state: 'copy' | 'copy-error' | 'copy-success') {
+			/**
+			 * @param {'copy' | 'copy-error' | 'copy-success'} state
+			 */
+			function setState (state) {
 				linkSpan.textContent = settings[state];
 				linkCopy.setAttribute('data-copy-state', state);
 			}
 		});
 	},
-} as PluginProto<'copy-to-clipboard'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @callback ErrorFunction
+ * @param {any} reason
+ * @returns {void}
+ */
+
+/**
+ * @typedef {object} CopyInfo
+ * @property {function(): string} getText
+ * @property {function(): void} success
+ * @property {ErrorFunction} error
+ */
+
+/**
+ * @typedef {object} Settings
+ * @property {string} copy
+ * @property {string} copy-error
+ * @property {string} copy-success
+ * @property {number} copy-timeout
+ */

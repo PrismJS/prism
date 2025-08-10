@@ -1,8 +1,7 @@
-import prism from '../../global';
-import { getParentPre, isActive } from '../../shared/dom-util';
-import { isNonNull, noop } from '../../shared/util';
-import { combineCallbacks } from '../../util/combine-callbacks';
-import type { PluginProto } from '../../types';
+import prism from '../../global.js';
+import { getParentPre, isActive } from '../../shared/dom-util.js';
+import { isNonNull, noop } from '../../shared/util.js';
+import { combineCallbacks } from '../../util/combine-callbacks.js';
 
 /**
  * Plugin name which is used as a class name for <pre> which is activating the plugin
@@ -15,16 +14,21 @@ const PLUGIN_NAME = 'line-numbers';
 const NEW_LINE_EXP = /\n(?!$)/g;
 
 /**
- * Queries for the `line-numbers-rows` element
+ * Queries for the `line-numbers-rows` element.
+ *
+ * @param {Element} element
+ * @returns {HTMLElement | null}
  */
-function getLineNumbersRows (element: Element): HTMLElement | null {
+function getLineNumbersRows (element) {
 	return element.querySelector('.line-numbers-rows');
 }
 
 /**
  * Resizes the given elements.
+ *
+ * @param {Element[]} elements
  */
-function resizeElements (elements: Element[]) {
+function resizeElements (elements) {
 	elements = elements.filter(e => {
 		const codeStyles = getComputedStyle(e);
 		const whiteSpace = codeStyles.whiteSpace;
@@ -35,28 +39,18 @@ function resizeElements (elements: Element[]) {
 		return;
 	}
 
+	/** @type {Info[]} */
 	const infos = elements
-		.map((
-			element
-		):
-			| {
-					element: Element;
-					lines: string[];
-					lineHeights: (number | undefined)[];
-					oneLinerHeight: number;
-					sizer: HTMLElement;
-					wrapper: HTMLElement;
-			  }
-			| undefined => {
+		.map(element => {
 			const codeElement = element.querySelector('code');
 			const lineNumbersWrapper = getLineNumbersRows(element);
 			if (!codeElement || !lineNumbersWrapper) {
 				return undefined;
 			}
 
-			let lineNumberSizer: HTMLElement | null = element.querySelector('.line-numbers-sizer');
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			const codeLines = codeElement.textContent!.split(NEW_LINE_EXP);
+			/** @type {HTMLElement | null} */
+			let lineNumberSizer = element.querySelector('.line-numbers-sizer');
+			const codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
 			if (!lineNumberSizer) {
 				lineNumberSizer = document.createElement('span');
@@ -122,7 +116,8 @@ function resizeElements (elements: Element[]) {
 
 		info.lineHeights.forEach((height, lineNumber) => {
 			if (height !== undefined) {
-				const child = info.wrapper.children[lineNumber] as HTMLElement;
+				/** @type {HTMLElement} */
+				const child = info.wrapper.children[lineNumber];
 				child.style.height = `${height}px`;
 			}
 		});
@@ -143,10 +138,11 @@ export class LineNumbers {
 	/**
 	 * Get node for provided line number
 	 *
-	 * @param element pre element
-	 * @param number line number
+	 * @param {Element} element pre element
+	 * @param {number} number number
+	 * @returns {HTMLElement | undefined}
 	 */
-	getLine (element: Element, number: number): HTMLElement | undefined {
+	getLine (element, number) {
 		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 			return;
 		}
@@ -167,15 +163,16 @@ export class LineNumbers {
 
 		const lineIndex = number - lineNumberStart;
 
-		return lineNumberRows.children[lineIndex] as HTMLElement;
+		return lineNumberRows.children[lineIndex];
 	}
 
 	/**
 	 * Returns the nodes of all line numbers.
 	 *
-	 * @param element pre element
+	 * @param {Element} element pre element
+	 * @returns {HTMLElement[] | undefined}
 	 */
-	getLines (element: Element): HTMLElement[] | undefined {
+	getLines (element) {
 		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 			return;
 		}
@@ -185,7 +182,7 @@ export class LineNumbers {
 			return;
 		}
 
-		return [...lineNumberRows.children] as HTMLElement[];
+		return [...lineNumberRows.children];
 	}
 
 	/**
@@ -193,13 +190,15 @@ export class LineNumbers {
 	 *
 	 * This function will not add line numbers. It will only resize existing ones.
 	 *
-	 * @param element A `<pre>` element with line numbers.
+	 * @param {Element} element A `<pre>` element with line numbers.
+	 * @returns {void}
 	 */
-	resize (element: Element): void {
+	resize (element) {
 		resizeElements([element]);
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'line-numbers',
 	plugin () {
@@ -212,7 +211,8 @@ const Self = {
 
 		let lastWidth = NaN;
 		const listener = () => {
-			const lineNumbers = Prism.plugins.lineNumbers as LineNumbers;
+			/** @type {import('./prism-line-numbers.js').LineNumbers} */
+			const lineNumbers = Prism.plugins.lineNumbers;
 			if (lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;
 			}
@@ -272,8 +272,18 @@ const Self = {
 
 		return combineCallbacks(removeListener, completeHook);
 	},
-} as PluginProto<'line-numbers'>;
+};
 
 export default Self;
 
 prism.components.add(Self);
+
+/**
+ * @typedef {object} Info
+ * @property {Element} element
+ * @property {string[]} lines
+ * @property {(number | undefined)[]} lineHeights
+ * @property {number} oneLinerHeight
+ * @property {HTMLElement} sizer
+ * @property {HTMLElement} wrapper
+ */

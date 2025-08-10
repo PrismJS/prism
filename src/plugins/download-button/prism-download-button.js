@@ -1,14 +1,14 @@
-import prism from '../../global';
-import { getParentPre } from '../../shared/dom-util';
-import toolbar from '../toolbar/prism-toolbar';
-import type { PluginProto } from '../../types';
-import type { Toolbar } from '../toolbar/prism-toolbar';
+import prism from '../../global.js';
+import { getParentPre } from '../../shared/dom-util.js';
+import toolbar from '../toolbar/prism-toolbar.js';
 
+/** @type {import('../../types.d.ts').PluginProto} */
 const Self = {
 	id: 'download-button',
 	require: toolbar,
 	effect (Prism) {
-		const toolbar = Prism.plugins.toolbar as Toolbar;
+		/** @type {import('../toolbar/prism-toolbar.js').Toolbar} */
+		const toolbar = Prism.plugins.toolbar;
 
 		return toolbar.registerButton('download-file', env => {
 			const pre = getParentPre(env.element);
@@ -28,7 +28,7 @@ const Self = {
 			return a;
 		});
 	},
-} as PluginProto<'download-button'>;
+};
 
 export default Self;
 
