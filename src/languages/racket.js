@@ -1,0 +1,26 @@
+import { insertBefore } from '../util/language-util.js';
+import scheme from './scheme.js';
+
+export default {
+	id: 'racket',
+	base: scheme,
+	alias: 'rkt',
+	grammar ({ base }) {
+		insertBefore(base, 'string', {
+			'lang': {
+				pattern: /^#lang.+/m,
+				greedy: true,
+				alias: 'keyword',
+			},
+		});
+
+		return {
+			'lambda-parameter': {
+				// the racket lambda syntax is a lot more complex, so we won't even attempt to capture it.
+				// this will just prevent false positives of the `function` pattern
+				pattern: /([(\[]lambda\s+[(\[])[^()\[\]'\s]+/,
+				lookbehind: true,
+			},
+		};
+	},
+};
