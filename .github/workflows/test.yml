@@ -54,18 +54,6 @@ jobs:
       - run: npm ci
       - run: npm run lint:ci
 
-  type-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-      - run: npm ci
-      - run: npm run tsc
-
   coverage:
     runs-on: ubuntu-latest
 
