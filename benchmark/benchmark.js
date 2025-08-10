@@ -1,21 +1,64 @@
-import Benchmark from 'benchmark';
-import fetch from 'cross-fetch';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import Benchmark from 'benchmark';
+import fetch from 'cross-fetch';
 import { gitP } from 'simple-git';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { parseLanguageNames } from '../tests/helper/test-case';
-import { config as baseConfig } from './config';
-import type { Prism } from '../src/core';
-import type { Config, ConfigOptions } from './config';
-import type { Options, Stats } from 'benchmark';
-import { fileURLToPath } from 'url';
+import { parseLanguageNames } from '../tests/helper/test-case.js';
+import { config as baseConfig } from './config.js';
+
+/**
+ * @typedef {import('../src/core.js').Prism} Prism
+ */
+
+/**
+ * @typedef {import('./config.js').Config} Config
+ * @typedef {import('./config.js').ConfigOptions} ConfigOptions
+ */
+
+/**
+ * @typedef {import('benchmark').Options} Options
+ * @typedef {import('benchmark').Stats} Stats
+ */
+
+/**
+ * @typedef {object} Summary
+ * @property {number} best
+ * @property {number} worst
+ * @property {number[]} relative
+ * @property {number} [avgRelative]
+ */
+
+/**
+ * @typedef {object} Case
+ * @property {string} id
+ * @property {string} language The main language.
+ * @property {string[]} languages All languages that have to be loaded.
+ * @property {FileInfo[]} files
+ */
+
+/**
+ * @typedef {object} FileInfo
+ * @property {string} uri
+ * @property {string} path
+ * @property {number} size
+ */
+
+/**
+ * @typedef {object} Result
+ * @property {string} name
+ * @property {Stats} stats
+ */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-async function runBenchmark (config: Config) {
+/**
+ * @param {Config} config
+ */
+async function runBenchmark (config) {
 	const cases = await getCases(config);
 	const candidates = await getCandidates(config);
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
@@ -26,13 +69,8 @@ async function runBenchmark (config: Config) {
 	const estimate = candidates.length * totalNumberOfCaseFiles * config.options.maxTime;
 	console.log(`Estimated duration: ${Math.floor(estimate / 60)}m ${Math.floor(estimate % 60)}s`);
 
-	interface Summary {
-		best: number;
-		worst: number;
-		relative: number[];
-		avgRelative?: number;
-	}
-	const totalSummary: Summary[] = Array.from({ length: candidates.length }, () => ({
+	/** @type {Summary[]} */
+	const totalSummary = Array.from({ length: candidates.length }, () => ({
 		best: 0,
 		worst: 0,
 		relative: [],
@@ -56,7 +94,7 @@ async function runBenchmark (config: Config) {
 			candidates.map(async ({ name, setup }) => {
 				const fn = await setup($case.language, $case.languages);
 				fn(warmupCode); // warmup
-				return [name, fn] as const;
+				return [name, fn];
 			})
 		);
 
@@ -129,8 +167,7 @@ async function runBenchmark (config: Config) {
 		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
 		const best = String(s.best).padStart('best'.length);
 		const worst = String(s.worst).padStart('worst'.length);
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const relative = ((s.avgRelative! / minAvgRelative).toFixed(2) + 'x').padStart(
+		const relative = ((s.avgRelative / minAvgRelative).toFixed(2) + 'x').padStart(
 			'relative'.length
 		);
 
@@ -138,13 +175,17 @@ async function runBenchmark (config: Config) {
 	});
 }
 
-function getConfig (): Config {
+/**
+ * @returns {Config}
+ */
+function getConfig () {
 	const base = baseConfig;
 
-	const args = yargs(hideBin(process.argv)).argv as Record<string, unknown>;
+	const args = yargs(hideBin(process.argv)).argv;
 
 	if (typeof args.testFunction === 'string') {
-		baseConfig.options.testFunction = args.testFunction as ConfigOptions['testFunction'];
+		/** @type {ConfigOptions['testFunction']} */
+		baseConfig.options.testFunction = args.testFunction;
 	}
 	if (typeof args.maxTime === 'number') {
 		baseConfig.options.maxTime = args.maxTime;
@@ -159,25 +200,19 @@ function getConfig (): Config {
 	return base;
 }
 
-interface Case {
-	id: string;
-	/**
-	 * The main language.
-	 */
-	language: string;
-	/**
-	 * All languages that have to be loaded.
-	 */
-	languages: string[];
-	files: FileInfo[];
-}
-async function getCases (config: Config) {
-	const caseFileCache = new Map<string, ReadonlySet<FileInfo>>();
+/**
+ * @param {Config} config
+ */
+async function getCases (config) {
+	/** @type {Map<string, Set<FileInfo>>} */
+	const caseFileCache = new Map();
 
 	/**
 	 * Returns all files of the test case with the given id.
+	 *
+	 * @param {string} id
 	 */
-	async function getCaseFiles (id: string) {
+	async function getCaseFiles (id) {
 		const cached = caseFileCache.get(id);
 		if (cached) {
 			return cached;
@@ -188,7 +223,8 @@ async function getCases (config: Config) {
 			throw new Error(`Unknown case "${id}"`);
 		}
 
-		const files = new Set<FileInfo>();
+		/** @type {Set<FileInfo>} */
+		const files = new Set();
 		caseFileCache.set(id, files);
 
 		await Promise.all(
@@ -205,8 +241,11 @@ async function getCases (config: Config) {
 
 	/**
 	 * Returns whether the case is enabled by the options provided by the user.
+	 *
+	 * @param {string[]} languages
+	 * @returns {boolean}
 	 */
-	function isEnabled (languages: string[]) {
+	function isEnabled (languages) {
 		if (config.options.language) {
 			// test whether the given languages contain any of the required languages
 			const required = new Set(config.options.language.split(/,/).filter(Boolean));
@@ -216,7 +255,8 @@ async function getCases (config: Config) {
 		return true;
 	}
 
-	const cases: Case[] = [];
+	/** @type {Case[]} */
+	const cases = [];
 	for (const id of Object.keys(config.cases)) {
 		const parsed = parseLanguageNames(id);
 
@@ -237,16 +277,14 @@ async function getCases (config: Config) {
 	return cases;
 }
 
-interface FileInfo {
-	uri: string;
-	path: string;
-	size: number;
-}
-const fileInfoCache = new Map<string, Promise<FileInfo>>();
+/** @type {Map<string, Promise<FileInfo>>} */
+const fileInfoCache = new Map();
 /**
  * Returns the path and other information for the given file identifier.
+ *
+ * @param {string} uri
  */
-function getFileInfo (uri: string) {
+function getFileInfo (uri) {
 	let info = fileInfoCache.get(uri);
 	if (info === undefined) {
 		info = getFileInfoUncached(uri);
@@ -254,7 +292,12 @@ function getFileInfo (uri: string) {
 	}
 	return info;
 }
-async function getFileInfoUncached (uri: string): Promise<FileInfo> {
+
+/**
+ * @param {string} uri
+ * @returns {Promise<FileInfo>}
+ */
+async function getFileInfoUncached (uri) {
 	const p = await getFilePath(uri);
 	const stat = await fs.promises.stat(p);
 	if (stat.isFile()) {
@@ -270,8 +313,10 @@ async function getFileInfoUncached (uri: string): Promise<FileInfo> {
 }
 /**
  * Returns the local path of the given file identifier.
+ *
+ * @param {string} uri
  */
-async function getFilePath (uri: string) {
+async function getFilePath (uri) {
 	if (/^https:\/\//.test(uri)) {
 		// it's a URL, so let's download the file (if not downloaded already)
 		const downloadDir = path.join(__dirname, 'downloads');
@@ -279,8 +324,7 @@ async function getFilePath (uri: string) {
 
 		// file path
 		const hash = crypto.createHash('md5').update(uri).digest('hex');
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)![0]);
+		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)[0]);
 
 		if (!fs.existsSync(localPath)) {
 			// download file
@@ -295,24 +339,29 @@ async function getFilePath (uri: string) {
 	return path.resolve(__dirname, uri);
 }
 
-interface Result {
-	name: string;
-	stats: Stats;
-}
-function measureCandidates (
-	candidates: Iterable<[string, () => void]>,
-	options: Options
-): Result[] {
+/**
+ *
+ * @param {*} candidates
+ * @param {Options} options
+ * @returns {Result[]}
+ */
+function measureCandidates (candidates, options) {
 	const suite = new Benchmark.Suite('temp name');
 
 	for (const [name, fn] of candidates) {
 		suite.add(name, fn, options);
 	}
 
-	const results: Result[] = [];
+	/** @type {Result[]} */
+	const results = [];
+
+	/**
+	 * @typedef {object} Event
+	 * @property {Result} target
+	 */
 
 	suite
-		.on('cycle', (event: { target: Result }) => {
+		.on('cycle', (/** @type {Event} */ event) => {
 			results.push({
 				name: event.target.name,
 				stats: event.target.stats,
@@ -323,7 +372,11 @@ function measureCandidates (
 	return results;
 }
 
-function getBest (results: Result[]): Result | null {
+/**
+ * @param {Result[]} results
+ * @returns {Result | null}
+ */
+function getBest (results) {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => a.stats.mean - b.stats.mean);
 		const best = sorted[0].stats;
@@ -337,7 +390,12 @@ function getBest (results: Result[]): Result | null {
 
 	return null;
 }
-function getWorst (results: Result[]): Result | null {
+
+/**
+ * @param {Result[]} results
+ * @returns {Result | null}
+ */
+function getWorst (results) {
 	if (results.length >= 2) {
 		const sorted = [...results].sort((a, b) => b.stats.mean - a.stats.mean);
 		const worst = sorted[0].stats;
@@ -354,18 +412,24 @@ function getWorst (results: Result[]): Result | null {
 }
 
 /**
- * Create a new test function from the given Prism instance.
+ * @callback CreateTestFunctionResult
+ * @param {string} code
+ * @returns {void}
  */
-function createTestFunction (
-	Prism: Prism,
-	mainLanguage: string,
-	testFunction: string
-): (code: string) => void {
+
+/**
+ * Create a new test function from the given Prism instance.
+ *
+ * @param {Prism} Prism
+ * @param {string} mainLanguage
+ * @param {string} testFunction
+ * @returns {CreateTestFunctionResult}
+ */
+function createTestFunction (Prism, mainLanguage, testFunction) {
 	if (testFunction === 'tokenize') {
 		return code => {
 			const grammar = Prism.components.getLanguage(mainLanguage);
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			Prism.tokenize(code, grammar!);
+			Prism.tokenize(code, grammar);
 		};
 	}
 	else if (testFunction === 'highlight') {
@@ -378,16 +442,32 @@ function createTestFunction (
 	}
 }
 
-interface Candidate {
-	name: string;
-	setup (mainLanguage: string, languages: string[]): Promise<(code: string) => void>;
-}
-async function getCandidates (config: Config): Promise<Candidate[]> {
-	const candidates: Candidate[] = [];
+/**
+ * @callback CandidateSetupFn
+ *
+ * @param {string} mainLanguage
+ * @param {string[]} languages
+ * @returns {Promise<CreateTestFunctionResult>}
+ */
+
+/**
+ * @typedef {object} Candidate
+ * @property {string} name
+ * @property {CandidateSetupFn} setup
+ */
+
+/**
+ *
+ * @param {Config} config
+ * @returns {Promise<Candidate[]>}
+ */
+async function getCandidates (config) {
+	/** @type {Candidate[]} */
+	const candidates = [];
 
 	// local
 	if (!config.options.remotesOnly) {
-		const localPrismLoader = await import('../tests/helper/prism-loader');
+		const localPrismLoader = await import('../tests/helper/prism-loader.js');
 		candidates.push({
 			name: 'local',
 			async setup (mainLanguage, languages) {
@@ -406,8 +486,7 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 	const baseGit = gitP(remoteBaseDir);
 
 	for (const remote of config.remotes) {
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)![0];
+		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)[0];
 		const branch = remote.branch || 'main';
 		const remoteName = `${user}@${branch}`;
 		const remoteDir = path.join(remoteBaseDir, `${user}@${branch}`);
@@ -424,10 +503,9 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 		}
 		await remoteGit.checkout(branch); // switch to branch
 
-		const remotePrismLoader = (await import(
-			path.join(remoteDir, 'tests/helper/prism-loader')
-			// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-		)) as typeof import('../tests/helper/prism-loader');
+		const remotePrismLoader = await import(
+			path.join(remoteDir, 'tests/helper/prism-loader.js')
+		);
 		candidates.push({
 			name: remoteName,
 			async setup (mainLanguage, languages) {
@@ -442,8 +520,12 @@ async function getCandidates (config: Config): Promise<Candidate[]> {
 
 /**
  * A utility function that converts the given optional array-like value into an array.
+ *
+ * @template T
+ * @param {T[] | T | undefined | null} value
+ * @returns {T[]}
  */
-function toArray<T extends {}> (value: T[] | T | undefined | null): readonly T[] {
+function toArray (value) {
 	if (Array.isArray(value)) {
 		return value;
 	}

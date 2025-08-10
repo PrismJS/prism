@@ -1,42 +1,32 @@
-export interface Config {
-	options: ConfigOptions;
-	remotes: ConfigRemote[];
-	cases: Record<string, ConfigCase>;
-}
+/**
+ * @typedef {object} Config
+ * @property {ConfigOptions} options
+ * @property {ConfigRemote[]} remotes
+ * @property {object} cases
+ */
 
-export interface ConfigOptions {
-	testFunction: 'tokenize' | 'highlight';
-	/**
-	 * in seconds
-	 */
-	maxTime: number;
-	/**
-	 * An optional comma separated list of languages than, if defined, will be the only languages for which the
-	 * benchmark will be run
-	 */
-	language?: string;
-	/**
-	 * Whether the benchmark will only run with remotes. If `true`, the local project will be ignored
-	 *
-	 * @default false
-	 */
-	remotesOnly?: boolean;
-}
+/**
+ * @typedef {object} ConfigOptions
+ * @property {'tokenize' | 'highlight'} testFunction
+ * @property {number} maxTime in seconds
+ * @property {string} [language] An optional comma separated list of languages than, if defined, will be the only languages for which the benchmark will be run
+ * @property {boolean} [remotesOnly=false] Whether the benchmark will only run with remotes. If `true`, the local project will be ignored
+ */
 
-export interface ConfigRemote {
-	repo: string;
-	/**
-	 * @default 'main'
-	 */
-	branch?: string;
-}
+/**
+ * @typedef {object} ConfigRemote
+ * @property {string} repo
+ * @property {string} [branch='main']
+ */
 
-export interface ConfigCase {
-	extends?: string | string[];
-	files?: string | string[];
-}
+/**
+ * @typedef {object} ConfigCase
+ * @property {string | string[]} [extends]
+ * @property {string | string[]} [files]
+ */
 
-export const config: Config = {
+/** @type {Config} */
+export const config = {
 	options: {
 		testFunction: 'tokenize',
 		maxTime: 3,
