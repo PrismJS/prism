@@ -1,0 +1,5 @@
+# Don't redirect direct URLs
+/dist/* /dist/:splat 200
+
+# Otherwise, if one requests something from this server, that means they need something from the dist folder
+/* /dist/:splat 200
