@@ -3,6 +3,7 @@
 module.exports = {
 	componentsFile: 'components.json',
 	componentsFileJS: 'components.js',
+	fileSizes: 'file-sizes.json',
 	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
 	themes: ['themes/*.css', '!themes/*.min.css'],
 	main: [
@@ -13,7 +14,7 @@ module.exports = {
 		'components/prism-javascript.js',
 		'plugins/file-highlight/prism-file-highlight.js'
 	],
-	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
+	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js', '!plugins/**/demo.js'],
 	pluginsCSS: ['plugins/**/*.css', '!plugins/**/*.min.css'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
