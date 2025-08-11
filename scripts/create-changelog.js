@@ -1,20 +1,31 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import simpleGit from 'simple-git';
-import { components } from './components';
-import { runTask } from './tasks';
+import components from '../src/components.json' with { type: 'json' };
+import { runTask } from './tasks.js';
 
 const git = simpleGit(__dirname);
+
+/**
+ * @template T
+ * @callback CompareFn
+ * @param {T} a
+ * @param {T} b
+ * @returns {number}
+ */
 
 /**
  * Creates an array which iterates its items in the order given by `compareFn`.
  *
  * The array may not be sorted at all times.
+ *
+ * @template T
+ * @param {CompareFn} compareFn
+ * @returns {T[]}
  */
-function createSortedArray<T> (compareFn: (a: T, b: T) => number): T[] {
-	const a: T[] = [];
+function createSortedArray (compareFn) {
+	/** @type {T[]} */
+	const a = [];
 
 	a['sort'] = function () {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return Array.prototype.sort.call(this, compareFn);
 	};
 	a[Symbol.iterator] = function () {
@@ -24,24 +35,28 @@ function createSortedArray<T> (compareFn: (a: T, b: T) => number): T[] {
 	return a;
 }
 
-interface CommitInfo {
-	message: string;
-	hash: string;
-	changes: CommitChange[];
-}
-interface CommitChange {
-	file: string;
-	mode: ChangeMode;
-}
-type ChangeMode = 'A' | 'C' | 'D' | 'M' | 'R' | 'T' | 'U' | 'X' | 'B';
+/** @typedef {object} CommitInfo
+ * @property {string} message
+ * @property {string} hash
+ * @property {CommitChange[]} changes
+ */
+
+/** @typedef {object} CommitChange
+ * @property {string} file
+ * @property {ChangeMode} mode
+ */
+
+/** @typedef {'A' | 'C' | 'D' | 'M' | 'R' | 'T' | 'U' | 'X' | 'B'} ChangeMode */
+
 /**
  * Parses the given log line and adds the list of the changed files to the output.
  *
- * @param line A one-liner log line consisting of the commit hash and the commit message.
+ * @param {string} line A one-liner log line consisting of the commit hash and the commit message.
+ * @returns {Promise<CommitInfo>}
  */
-async function getCommitInfo (line: string): Promise<CommitInfo> {
+async function getCommitInfo (line) {
 	// eslint-disable-next-line regexp/no-super-linear-backtracking
-	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line)!;
+	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
 
 	/* The output looks like this:
 	 *
@@ -57,9 +72,9 @@ async function getCommitInfo (line: string): Promise<CommitInfo> {
 		: output
 				.trim()
 				.split(/\n/)
-				.map((line): CommitChange => {
-					const [, mode, file] = /(\w)\s+(.+)/.exec(line)!;
-					return { mode: mode as ChangeMode, file };
+				.map((/** @type {CommitChange} */ line) => {
+					const [, mode, file] = /(\w)\s+(.+)/.exec(line);
+					return { mode, file };
 				});
 
 	return { hash, message, changes };
@@ -68,9 +83,10 @@ async function getCommitInfo (line: string): Promise<CommitInfo> {
 /**
  * Parses the output of `git log` with the given revision range.
  *
- * @param range The revision range in which the log will be parsed.
+ * @param {string | Promise<string>} range The revision range in which the log will be parsed.
+ * @returns {Promise<CommitInfo[]>}
  */
-async function getLog (range: string | Promise<string>): Promise<CommitInfo[]> {
+async function getLog (range) {
 	/* The output looks like this:
 	 *
 	 * bfbe4464 Invoke `callback` after `after-highlight` hook (#1588)
@@ -92,14 +108,20 @@ const revisionRanges = {
 		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
 	},
 };
-const strCompare = (a: string, b: string) => a.localeCompare(b, 'en');
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @returns {number}
+ */
+const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 runTask(async () => {
 	const { languages, plugins } = components;
 
 	const infos = await getLog(revisionRanges.nextRelease());
 
-	const entries: Record<string, Record<string, string[] | Record<string, string[]>>> = {
+	const entries = {
 		'TODO:': {},
 		'New components': {
 			['']: createSortedArray(strCompare),
@@ -109,7 +131,19 @@ runTask(async () => {
 		'Updated themes': {},
 		'Other': {},
 	};
-	function addEntry (category: string, info: string | { message: string; hash: string }) {
+
+	/**
+	 * @callback AddEntryInfoFn
+	 * @param {string} message
+	 * @param {string} hash
+	 */
+
+	/**
+	 *
+	 * @param {string} category
+	 * @param {string | AddEntryInfoFn} info
+	 */
+	function addEntry (category, info) {
 		const path = category.split(/\s*>>\s*/);
 		if (path[path.length - 1] !== '') {
 			path.push('');
@@ -118,43 +152,83 @@ runTask(async () => {
 		let current = entries;
 		for (const key of path) {
 			if (key) {
-				current = (current[key] = current[key] || {}) as never;
+				current = current[key] = current[key] || {};
 			}
 			else {
-				((current[key] = current[key] || []) as unknown as unknown[]).push(info);
+				(current[key] = current[key] || []).push(info);
 			}
 		}
 	}
 
-	function notGenerated (change: CommitChange) {
+	/**
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notGenerated (change) {
 		return (
 			!change.file.endsWith('.min.js') &&
 			!change.file.startsWith('docs/') &&
 			!['prism.js', 'components.js', 'package-lock.json'].includes(change.file)
 		);
 	}
-	function notPartlyGenerated (change: CommitChange) {
+
+	/**
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notPartlyGenerated (change) {
 		return (
 			change.file !== 'plugins/autoloader/prism-autoloader.js' &&
 			change.file !== 'plugins/show-language/prism-show-language.js'
 		);
 	}
-	function notTests (change: CommitChange) {
+
+	/**
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notTests (change) {
 		return !/^tests\//.test(change.file);
 	}
-	function notExamples (change: CommitChange) {
+
+	/**
+	 *
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notExamples (change) {
 		return !/^examples\//.test(change.file);
 	}
-	function notFailures (change: CommitChange) {
+
+	/**
+	 *
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notFailures (change) {
 		return !/^known-failures.html$/.test(change.file);
 	}
-	function notComponentsJSON (change: CommitChange) {
+
+	/**
+	 * @param {CommitChange} change
+	 * @returns {boolean}
+	 */
+	function notComponentsJSON (change) {
 		return change.file !== 'components.json';
 	}
 
-	function and<T> (
-		...filters: ((e: T, index: number) => boolean)[]
-	): (e: T, index: number) => boolean {
+	/**
+	 * @callback FilterFn
+	 * @param {T} e
+	 * @param {number} index
+	 * @returns {boolean}
+	 */
+
+	/**
+	 * @param {FilterFn[]} filters
+	 * @returns {FilterFn}
+	 */
+	function and (...filters) {
 		return (e, index) => {
 			for (let i = 0, l = filters.length; i < l; i++) {
 				if (!filters[i](e, index)) {
@@ -166,10 +240,20 @@ runTask(async () => {
 	}
 
 	/**
+	 * @typedef {object} RemoveMessagePrefixResult
+	 * @property {string} message
+	 * @property {string} hash
+	 */
+
+	/**
 	 * Some commit message have the format `component changed: actual message`.
 	 * This function can be used to remove this prefix.
+	 *
+	 * @param {string} prefix
+	 * @param {CommitInfo} info
+	 * @returns {RemoveMessagePrefixResult}
 	 */
-	function removeMessagePrefix (prefix: string, info: CommitInfo) {
+	function removeMessagePrefix (prefix, info) {
 		const source = String.raw`^${prefix.replace(/([^-\w\s])/g, '\\$1').replace(/[-\s]/g, '[-\\s]')}:\s*`;
 		const patter = RegExp(source, 'i');
 		return {
@@ -178,7 +262,14 @@ runTask(async () => {
 		};
 	}
 
-	const commitSorters: ((info: CommitInfo) => boolean | undefined)[] = [
+	/**
+	 * @callback CommitSorter
+	 * @param {CommitInfo} info
+	 * @returns {boolean | undefined}
+	 */
+
+	/** @type {CommitSorter[]} */
+	const commitSorters = [
 		function rebuild (info) {
 			if (info.changes.length > 0 && info.changes.filter(notGenerated).length === 0) {
 				console.log('Rebuild found: ' + info.message);
@@ -201,7 +292,7 @@ runTask(async () => {
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
 					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
-						const lang = change.file.match(/prism-([\w-]+)\.js$/)![1];
+						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						const entry = languages[lang] || {
 							title: 'REMOVED LANGUAGE ' + lang,
 						};
@@ -234,12 +325,12 @@ runTask(async () => {
 			if (relevantChanges.length === 1) {
 				const change = relevantChanges[0];
 				if (change.mode === 'M' && change.file.startsWith('components/prism-')) {
-					const lang = change.file.match(/prism-([\w-]+)\.js$/)![1];
+					const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 					if (lang === 'core') {
 						addEntry('Other >> Core', removeMessagePrefix('Core', info));
 					}
 					else {
-						const title = languages[lang]!.title;
+						const title = languages[lang].title;
 						addEntry(
 							'Updated components >> ' + title,
 							removeMessagePrefix(title, info)
@@ -261,8 +352,8 @@ runTask(async () => {
 			) {
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
-					const id = change.file.match(/\/prism-([\w-]+)\.js/)![1];
-					const title = plugins[id]!.title;
+					const id = change.file.match(/\/prism-([\w-]+)\.js/)[1];
+					const title = plugins[id].title;
 					addEntry('Updated plugins >> ' + title, removeMessagePrefix(title, info));
 				}
 				else {
@@ -281,7 +372,6 @@ runTask(async () => {
 			) {
 				if (info.changes.length === 1) {
 					const change = info.changes[0];
-					// eslint-disable-next-line no-sparse-arrays
 					let name = (change.file.match(/prism-(\w+)\.css$/) || [, 'Default'])[1];
 					name = name[0].toUpperCase() + name.substr(1);
 					addEntry('Updated themes >> ' + name, removeMessagePrefix(name, info));
@@ -307,12 +397,9 @@ runTask(async () => {
 						// a .something file
 						return true;
 					}
-					return [
-						'CNAME',
-						'composer.json',
-						'package.json',
-						'package-lock.json',
-					].includes(c.file);
+					return ['CNAME', 'composer.json', 'package.json', 'package-lock.json'].includes(
+						c.file
+					);
 				})
 			) {
 				addEntry('Other >> Infrastructure', info);
@@ -347,21 +434,29 @@ runTask(async () => {
 
 	/**
 	 * Stringifies the given commit info.
+	 *
+	 * @param {string | CommitInfo} info
+	 * @returns {string}
 	 */
-	function infoToString (info: string | CommitInfo) {
+	function infoToString (info) {
 		if (typeof info === 'string') {
 			return info;
 		}
 		return `${info.message} [\`${info.hash}\`](https://github.com/PrismJS/prism/commit/${info.hash})`;
 	}
-	function printCategory (category: Record<string, Record<string, never>>, indentation = '') {
+
+	/**
+	 * @param {object} category
+	 * @param {string} [indentation='']
+	 */
+	function printCategory (category, indentation = '') {
 		for (const subCategory of Object.keys(category).sort(strCompare)) {
 			if (subCategory) {
 				md += `${indentation}* __${subCategory}__\n`;
 				printCategory(category[subCategory], indentation + '    ');
 			}
 			else {
-				const infos = category[''] as unknown as (string | CommitInfo)[];
+				const infos = category[''];
 				for (const info of infos) {
 					md += `${indentation}* ${infoToString(info)}\n`;
 				}
@@ -371,7 +466,7 @@ runTask(async () => {
 
 	for (const category of Object.keys(entries)) {
 		md += `\n### ${category}\n\n`;
-		printCategory(entries[category] as never);
+		printCategory(entries[category]);
 	}
 	console.log(md);
 });

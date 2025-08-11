@@ -1,20 +1,22 @@
 import fs from 'fs';
-import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import rollupTerser from '@rollup/plugin-terser';
-import rollupTypescript from '@rollup/plugin-typescript';
 import CleanCSS from 'clean-css';
 import MagicString from 'magic-string';
 import { rollup } from 'rollup';
-import ts from 'typescript';
 import { webfont } from 'webfont';
-import { toArray } from '../src/util/iterables';
-import { components } from './components';
-import { parallel, runTask, series } from './tasks';
-import type { ComponentProto } from '../src/types';
-import type { OutputOptions, Plugin, RollupBuild, RollupOptions, SourceMapInput } from 'rollup';
+import components from '../src/components.json' with { type: 'json' };
+import { toArray } from '../src/util/iterables.js';
+import { parallel, runTask, series } from './tasks.js';
+
+/** @typedef {import('rollup').OutputOptions} OutputOptions */
+/** @typedef {import('rollup').Plugin} Plugin */
+/** @typedef {import('rollup').RollupBuild} RollupBuild */
+/** @typedef {import('rollup').RollupOptions} RollupOptions */
+/** @typedef {import('rollup').SourceMapInput} SourceMapInput */
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -32,20 +34,23 @@ const themeIds = fs
 	.map(f => f.slice(0, -'.css'.length))
 	.sort();
 
-async function loadComponent (id: string) {
+/**
+ * @param {string} id
+ */
+async function loadComponent (id) {
 	let file;
 	if (pluginIds.includes(id)) {
-		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
+		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`);
 	}
 	else {
-		file = path.join(SRC_DIR, `languages/${id}.ts`);
+		file = path.join(SRC_DIR, `languages/${id}.js`);
 	}
-	const exports = (await import(file)) as { default: ComponentProto };
+	const exports = await import(file);
 	return exports.default;
 }
 
 async function minifyCSS () {
-	const input: Record<string, string> = {};
+	const input = {};
 
 	for (const id of themeIds) {
 		input[`themes/${id}.css`] = path.join(SRC_DIR, `themes/${id}.css`);
@@ -105,8 +110,8 @@ async function treeviewIconFont () {
 		sort: false,
 	});
 
-	const woff = result.woff!;
-	const glyphsData = result.glyphsData!;
+	const woff = result.woff;
+	const glyphsData = result.glyphsData;
 
 	const fontFace = `
 /* @GENERATED-FONT */
@@ -114,14 +119,14 @@ async function treeviewIconFont () {
 	font-family: "${fontName}";
 	/**
 	 * This font is generated from the .svg files in the \`icons\` folder. See the \`treeviewIconFont\` function in
-	 * \`gulpfile.js/index.js\` for more information.
+	 * \`scripts/build.js\` for more information.
 	 *
 	 * Use the following escape sequences to refer to a specific icon:
 	 *
 	 * - ${glyphsData
 			.map(({ metadata }) => {
-				const codePoint = metadata!.unicode![0].codePointAt(0)!;
-				return `\\${codePoint.toString(16)} ${metadata!.name}`;
+				const codePoint = metadata.unicode[0].codePointAt(0);
+				return `\\${codePoint.toString(16)} ${metadata.name}`;
 			})
 			.join('\n\t * - ')}
 	 */
@@ -150,7 +155,8 @@ const dataToInsert = {
 	},
 	all_languages_placeholder: () => Promise.resolve(languageIds),
 	title_placeholder: async () => {
-		const rawTitles = new Map<string, string>();
+		/** @type {Map<string, string>} */
+		const rawTitles = new Map();
 		for (const [id, entry] of Object.entries(components.languages)) {
 			if (id === 'meta') {
 				continue;
@@ -182,9 +188,9 @@ const dataToInsert = {
 		/**
 		 * Tries to guess the name of a language given its id.
 		 *
-		 * @param name The language id.
+		 * @param {string} name The language id.
 		 */
-		function guessTitle (name: string) {
+		function guessTitle (name) {
 			return (name.substring(0, 1).toUpperCase() + name.substring(1)).replace(
 				/s(?=cript)/,
 				'S'
@@ -199,13 +205,15 @@ const dataToInsert = {
 	},
 };
 
-const dataInsertPlugin: Plugin = {
+/** @type {Plugin} */
+const dataInsertPlugin = {
 	name: 'data-insert',
 	async renderChunk (code, chunk) {
 		const pattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
 
 		// search for placeholders
-		const contained = new Set<string>();
+		/** @type {Set<string>} */
+		const contained = new Set();
 		let m;
 		while ((m = pattern.exec(code))) {
 			contained.add(m[1]);
@@ -216,10 +224,10 @@ const dataInsertPlugin: Plugin = {
 		}
 
 		// fetch placeholder data
-		const dataByName: Record<string, unknown> = {};
+		const dataByName = {};
 		for (const name of contained) {
 			if (name in dataToInsert) {
-				dataByName[name] = await dataToInsert[name as keyof typeof dataToInsert]();
+				dataByName[name] = await dataToInsert[name]();
 			}
 			else {
 				throw new Error(`Unknown placeholder ${name} in ${chunk.fileName}`);
@@ -228,36 +236,40 @@ const dataInsertPlugin: Plugin = {
 
 		// replace placeholders
 		const str = new MagicString(code);
-		str.replace(pattern, (_, name: string) => {
+		str.replace(pattern, (_, /** @type {string} */ name) => {
 			return JSON.stringify(dataByName[name]);
 		});
 		return toRenderedChunk(str);
 	},
 };
 
-const inlineRegexSourcePlugin: Plugin = {
+/** @type {Plugin} */
+const inlineRegexSourcePlugin = {
 	name: 'inline-regex-source',
 	renderChunk (code) {
 		const str = new MagicString(code);
 		str.replace(
 			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
-			(m, source: string) => {
+			(m, /** @type {string} */ source) => {
 				// escape backslashes
-				source = source.replace(/\\(.)|\[(?:\\s\\S|\\S\\s)\]/g, (m, g1: string) => {
-					if (g1) {
-						// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
-						if (/[nrt0/]/.test(g1)) {
-							return m;
+				source = source.replace(
+					/\\(.)|\[(?:\\s\\S|\\S\\s)\]/g,
+					(m, /** @type {string} */ g1) => {
+						if (g1) {
+							// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
+							if (/[nrt0/]/.test(g1)) {
+								return m;
+							}
+							if ('\\' === g1) {
+								return '\\\\\\\\'; // escape using 4 backslashes
+							}
+							return '\\\\' + g1;
 						}
-						if ('\\' === g1) {
-							return '\\\\\\\\'; // escape using 4 backslashes
+						else {
+							return '[^]';
 						}
-						return '\\\\' + g1;
 					}
-					else {
-						return '[^]';
-					}
-				});
+				);
 				// escape single quotes
 				source = source.replace(/'/g, "\\'");
 				// wrap source in single quotes
@@ -276,23 +288,35 @@ const inlineRegexSourcePlugin: Plugin = {
  * is a waste of CPU and memory, and it causes the JS thread to be block for roughly 200ms during page load.
  *
  * @see https://github.com/PrismJS/prism/issues/2768
+ *
+ * @type {Plugin}
  */
-const lazyGrammarPlugin: Plugin = {
+const lazyGrammarPlugin = {
 	name: 'lazy-grammar',
 	renderChunk (code) {
 		const str = new MagicString(code);
 		str.replace(
 			/^(?<indent>[ \t]+)grammar: (\{[\s\S]*?^\k<indent>\})/m,
-			(m, _, grammar: string) => `\tgrammar: () => (${grammar})`
+			(m, _, /** @type {string} */ grammar) => `\tgrammar: () => (${grammar})`
 		);
 		return toRenderedChunk(str);
 	},
 };
 
-function toRenderedChunk (s: MagicString): { code: string; map: SourceMapInput } {
+/**
+ * @typedef {object} RenderChunk
+ * @property {string} code
+ * @property {SourceMapInput} map
+ */
+
+/**
+ * @param {MagicString} s
+ * @returns {RenderChunk}
+ */
+function toRenderedChunk (s) {
 	return {
 		code: s.toString(),
-		map: s.generateMap({ hires: true }) as SourceMapInput,
+		map: s.generateMap({ hires: true }),
 	};
 }
 
@@ -327,78 +351,33 @@ async function copyComponentsJson () {
 	await copyFile(from, to);
 }
 
-async function buildTypes () {
-	await mkdir('./types');
-
-	// Copy existing type definitions
-	const typeFiles = ['types.d.ts'];
-
-	await Promise.all(
-		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
-	);
-
-	const configPath = ts.findConfigFile('./', ts.sys.fileExists, 'tsconfig.json');
-
-	if (!configPath) {
-		throw new Error('Could not find tsconfig.json');
-	}
-
-	const configFile = ts.readConfigFile(configPath, ts.sys.readFile);
-	const parsedConfig = ts.parseJsonConfigFileContent(configFile.config, ts.sys, './');
-
-	const compilerOptions: ts.CompilerOptions = {
-		...parsedConfig.options,
-		declaration: true,
-		emitDeclarationOnly: true,
-		outDir: './types',
-		rootDir: './src',
-		noEmit: false,
-		noEmitOnError: false,
-	};
-
-	const program = ts.createProgram(parsedConfig.fileNames, compilerOptions);
-
-	program.emit();
-}
-
 async function buildJS () {
-	const input: Record<string, string> = {
-		'index': path.join(SRC_DIR, 'index.ts'),
-		'prism': path.join(SRC_DIR, 'prism.global.ts'),
-		'shared': path.join(SRC_DIR, 'shared.ts'),
+	const input = {
+		'index': path.join(SRC_DIR, 'index.js'),
+		'prism': path.join(SRC_DIR, 'prism.global.js'),
+		'shared': path.join(SRC_DIR, 'shared.js'),
 	};
 	for (const id of languageIds) {
-		input[`languages/${id}`] = path.join(SRC_DIR, `languages/${id}.ts`);
+		input[`languages/${id}`] = path.join(SRC_DIR, `languages/${id}.js`);
 	}
 	for (const id of pluginIds) {
-		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.ts`);
+		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`);
 	}
 
-	const defaultRollupOptions: RollupOptions = {
+	/** @type {RollupOptions} */
+	const defaultRollupOptions = {
 		input,
-		plugins: [
-			rollupTypescript({ module: 'esnext' }),
-			lazyGrammarPlugin,
-			dataInsertPlugin,
-			inlineRegexSourcePlugin,
-			terserPlugin,
-		],
+		plugins: [lazyGrammarPlugin, dataInsertPlugin, inlineRegexSourcePlugin, terserPlugin],
 	};
 
-	const defaultOutputOptions: OutputOptions = {
+	/** @type {OutputOptions} */
+	const defaultOutputOptions = {
 		dir: './dist',
 		validate: true,
 		sourcemap: 'hidden',
 	};
 
-	const bundles: Record<
-		string,
-		{
-			rollupOptions: RollupOptions;
-			outputOptions: OutputOptions;
-			build?: RollupBuild;
-		}
-	> = {
+	const bundles = {
 		esm: {
 			rollupOptions: defaultRollupOptions,
 			outputOptions: defaultOutputOptions,
@@ -406,7 +385,7 @@ async function buildJS () {
 		cjs: {
 			rollupOptions: {
 				...defaultRollupOptions,
-				plugins: [...(defaultRollupOptions.plugins as Plugin[]), commonjs()],
+				plugins: [...defaultRollupOptions.plugins, commonjs()],
 			},
 			outputOptions: {
 				...defaultOutputOptions,
@@ -429,7 +408,10 @@ async function buildJS () {
 }
 
 // Helper to get file size in bytes, or 0 if not found
-const getFileSize = async (filePath: string) => {
+/**
+ * @param {string} filePath
+ */
+const getFileSize = async filePath => {
 	try {
 		const stat = await fs.promises.stat(filePath);
 		return stat.size;
@@ -439,13 +421,13 @@ const getFileSize = async (filePath: string) => {
 	}
 };
 
-async function calculateFileSizes () {
-	type FileSizes = {
-		css?: number;
-		js?: number;
-	};
+/** @typedef {object} FileSizes
+ * @property {number} [css]
+ * @property {number} [js]
+ */
 
-	const ret: Record<string, FileSizes & Record<string, FileSizes>> = {
+async function calculateFileSizes () {
+	const ret = {
 		core: {},
 		themes: {},
 		languages: {},
@@ -480,7 +462,7 @@ async function calculateFileSizes () {
 					category,
 					category === 'plugins' ? `prism-${id}` : id
 				);
-				ret[category][id][ext as 'css' | 'js'] = await getFileSize(`${filePath}.${ext}`);
+				ret[category][id][ext] = await getFileSize(`${filePath}.${ext}`);
 			}
 		}
 	}
@@ -494,7 +476,7 @@ async function calculateFileSizes () {
 runTask(
 	series(
 		clean,
-		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
+		parallel(buildJS, series(treeviewIconFont, minifyCSS)),
 		copyComponentsJson,
 		calculateFileSizes
 	)

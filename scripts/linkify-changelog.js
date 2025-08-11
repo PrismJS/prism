@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { runTask } from './tasks';
+import { runTask } from './tasks.js';
 
 runTask(async () => {
 	const changelog = 'CHANGELOG.md';

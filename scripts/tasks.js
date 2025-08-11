@@ -1,6 +1,13 @@
-type Task = () => void | Promise<void>;
+/**
+ * @typedef {function (): void | Promise<void>} Task
+ */
 
-function wrapTask (name: string, task: Task): Task {
+/**
+ * @param {string} name
+ * @param {Task} task
+ * @returns {Task}
+ */
+function wrapTask (name, task) {
 	return async function $ () {
 		console.log(`[Starting: ${name}]`);
 		const start = Date.now();
@@ -9,7 +16,12 @@ function wrapTask (name: string, task: Task): Task {
 		console.log(`[Done: ${name} (${duration.toFixed(2)}s)]`);
 	};
 }
-function wrapUnnamedTask (task: Task): Task {
+
+/**
+ * @param {Task} task
+ * @returns {Task}
+ */
+function wrapUnnamedTask (task) {
 	const name = task.name;
 	if (!name.startsWith('$')) {
 		task = wrapTask(name, task);
@@ -17,14 +29,23 @@ function wrapUnnamedTask (task: Task): Task {
 	return task;
 }
 
-export function series (...tasks: Task[]): Task {
+/**
+ * @param  {...Task} tasks
+ * @returns {Task}
+ */
+export function series (...tasks) {
 	return async function $ () {
 		for (const task of tasks.map(wrapUnnamedTask)) {
 			await task();
 		}
 	};
 }
-export function parallel (...tasks: Task[]): Task {
+
+/**
+ * @param  {...Task} tasks
+ * @returns {Task}
+ */
+export function parallel (...tasks) {
 	return async function $ () {
 		await Promise.all(
 			tasks.map(async task => {
@@ -38,9 +59,12 @@ export function parallel (...tasks: Task[]): Task {
  * Given a record of tasks, it will run the task as dictated by the CLI arguments.
  *
  * To run a specific task, run `node path/to/script.js taskName`.
+ *
+ * @param {object} tasks
  */
-export function run (tasks: Partial<Record<string, Task>>) {
+export function run (tasks) {
 	const selected = String(process.argv[2]);
+	/** @type {Task | undefined} */
 	const task = tasks[selected];
 	if (!task) {
 		console.error(
@@ -54,8 +78,10 @@ export function run (tasks: Partial<Record<string, Task>>) {
 
 /**
  * Runs the given task.
+ *
+ * @param {Task} tasks
  */
-export function runTask (tasks: Task) {
+export function runTask (tasks) {
 	Promise.resolve()
 		.then(() => tasks())
 		.catch(reason => {
