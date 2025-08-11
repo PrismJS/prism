@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { copyFile, mkdir, readFile, rm, writeFile } from 'fs/promises';
+import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
@@ -7,6 +7,7 @@ import rollupTerser from '@rollup/plugin-terser';
 import CleanCSS from 'clean-css';
 import MagicString from 'magic-string';
 import { rollup } from 'rollup';
+import ts from 'typescript';
 import { webfont } from 'webfont';
 import components from '../src/components.json' with { type: 'json' };
 import { toArray } from '../src/util/iterables.js';
@@ -351,6 +352,66 @@ async function copyComponentsJson () {
 	await copyFile(from, to);
 }
 
+/**
+ * Recursively find all files with a given extension in a directory.
+ *
+ * @param {string} dir
+ * @param {string} [ext='.js']
+ * @returns {Promise<string[]>}
+ */
+async function findFiles (dir, ext = '.js') {
+	const files = [];
+	const items = await readdir(dir);
+
+	for (const item of items) {
+		const fullPath = path.join(dir, item);
+		const stats = await stat(fullPath);
+
+		if (stats.isDirectory()) {
+			files.push(...(await findFiles(fullPath)));
+		}
+		else if (path.extname(item) === ext) {
+			files.push(fullPath);
+		}
+	}
+
+	return files;
+}
+
+async function buildTypes () {
+	await mkdir('./types');
+
+	// Copy existing type definitions
+	const typeFiles = ['types.d.ts'];
+
+	await Promise.all(
+		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
+	);
+
+	/** @type {import('typescript').CompilerOptions} */
+	const compilerOptions = {
+		target: ts.ScriptTarget.ES2022,
+		module: ts.ModuleKind.ES2022,
+		moduleResolution: ts.ModuleResolutionKind.Node,
+		esModuleInterop: true,
+		allowJs: true,
+		checkJs: false,
+		declaration: true,
+		emitDeclarationOnly: true,
+		outDir: './types',
+		rootDir: './src',
+		noEmit: false,
+		noEmitOnError: false,
+	};
+
+	// Get all .js files from the src directory
+	const files = await findFiles(SRC_DIR);
+
+	const program = ts.createProgram(files, compilerOptions);
+
+	program.emit();
+}
+
 async function buildJS () {
 	const input = {
 		'index': path.join(SRC_DIR, 'index.js'),
@@ -476,7 +537,7 @@ async function calculateFileSizes () {
 runTask(
 	series(
 		clean,
-		parallel(buildJS, series(treeviewIconFont, minifyCSS)),
+		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
 		copyComponentsJson,
 		calculateFileSizes
 	)
