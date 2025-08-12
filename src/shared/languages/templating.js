@@ -152,7 +152,7 @@ export function templating (code, hostGrammar, templateGrammar, Prism) {
 
 /**
  * @param {GrammarRef} hostGrammar
- * @returns {EmbeddedInFunction}
+ * @returns {EmbeddedInReturnFn}
  */
 export function embeddedIn (hostGrammar) {
 	return (code, templateGrammar, Prism) => {
@@ -167,19 +167,9 @@ export function embeddedIn (hostGrammar) {
  */
 
 /**
- * @callback EmbeddedInFunction
- * @param {string} code
- * @param {Grammar} templateGrammar
- * @param {Prism} Prism
- * @returns {TokenStream}
- */
-
-/**
- * @typedef {Array<[number, Token]>} TokenStack
- */
-
-/**
- * @typedef {Grammar | string | undefined | null} GrammarRef
+ * @typedef {import('./templating.d.ts').TokenStack} TokenStack
+ * @typedef {import('./templating.d.ts').GrammarRef} GrammarRef
+ * @typedef {import('./templating.d.ts').EmbeddedInReturnFn} EmbeddedInReturnFn
  */
 
 /**
@@ -187,11 +177,11 @@ export function embeddedIn (hostGrammar) {
  */
 
 /**
- * @typedef {import('../../core/classes/token.js').Token} Token
+ * @typedef {import('../../core/classes/token.d.ts').Token} Token
  */
 
 /**
- * @typedef {import('../../core/classes/token.js').TokenStream} TokenStream
+ * @typedef {import('../../core/classes/token.d.ts').TokenStream} TokenStream
  */
 
 /**
