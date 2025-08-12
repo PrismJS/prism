@@ -5,7 +5,6 @@ export class Token {
 	 * This is usually the key of a pattern in a {@link Grammar}.
 	 *
 	 * @see {@link GrammarToken}
-	 * @type {TokenName}
 	 */
 	type;
 
@@ -13,8 +12,6 @@ export class Token {
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
-	 *
-	 * @type {string | TokenStream}
 	 */
 	content;
 
@@ -22,7 +19,6 @@ export class Token {
 	 * The alias(es) of the token.
 	 *
 	 * @see {@link GrammarToken#alias}
-	 * @type {TokenName | TokenName[] | undefined}
 	 */
 	alias;
 
@@ -32,18 +28,11 @@ export class Token {
 	 * Only used internally. The API does not guarantee that this field has any particular value or meaning.
 	 *
 	 * @internal
-	 * @type {number}
 	 */
 	length;
 
 	/**
 	 * Creates a new token.
-	 *
-	 * @param {TokenName} type See {@link Token#type}
-	 * @param {string | TokenStream} content See {@link Token#content}
-	 * @param {TokenName | TokenName[]} [alias] The alias(es) of the token.
-	 * @param {string} [matchedStr=''] A copy of the full string this token was created from.
-	 * @public
 	 */
 	constructor (type, content, alias, matchedStr = '') {
 		this.type = type;
@@ -54,9 +43,6 @@ export class Token {
 
 	/**
 	 * Adds the given alias to the list of aliases of this token.
-	 *
-	 * @param {TokenName} alias
-	 * @returns {void}
 	 */
 	addAlias (alias) {
 		let aliases = this.alias;
@@ -91,23 +77,6 @@ export function getTextContent (token) {
 }
 
 /**
- * @typedef {'atrule' | 'attr-name' | 'attr-value' | 'bold' | 'boolean' | 'builtin' | 'cdata' | 'char' | 'class-name' | 'comment' | 'constant' | 'deleted' | 'doctype' | 'entity' | 'function' | 'important' | 'inserted' | 'italic' | 'keyword' | 'namespace' | 'number' | 'operator' | 'prolog' | 'property' | 'punctuation' | 'regex' | 'selector' | 'string' | 'symbol' | 'tag' | 'url'} StandardTokenName
- */
-
-/**
- * @typedef {string | StandardTokenName} TokenName
- */
-
-/**
- * A token stream is an array of strings and {@link Token Token} objects.
- *
- * Token streams have to fulfill a few properties that are assumed by most functions (mostly internal ones) that process
- * them.
- *
- * 1. No adjacent strings.
- * 2. No empty strings.
- *
- * The only exception here is the token stream that only contains the empty string and nothing else.
- *
- * @typedef {(string | Token)[]} TokenStream
+ * @typedef {import('./token.d.ts').Token} Token
+ * @typedef {import('./token.d.ts').TokenStream} TokenStream
  */
