@@ -3,7 +3,7 @@ import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /**
- * @param {import('../core/classes/token.js').TokenStream} tokens
+ * @param {TokenStream} tokens
  */
 function walkTokens (tokens) {
 	const openedTags = [];
@@ -197,4 +197,8 @@ export default {
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */
+
+/**
+ * @typedef {import('../core/classes/token.d.ts').TokenStream} TokenStream
  */

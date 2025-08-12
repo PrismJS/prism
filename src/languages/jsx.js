@@ -182,7 +182,7 @@ export default {
 };
 
 /**
- * @typedef {import('..core/classes/token.js').TokenStream} TokenStream
+ * @typedef {import('../core/classes/token.d.ts').TokenStream} TokenStream
  */
 
 /**
