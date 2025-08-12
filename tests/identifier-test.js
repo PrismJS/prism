@@ -176,11 +176,11 @@ function testLiterals (getPrism, lang) {
  */
 
 /**
- * @typedef {import('../src/core.js').Token} Token
+ * @typedef {import('../src/core/classes/token.d.ts').Token} Token
  */
 
 /**
- * @typedef {import('../src/core/classes/token.js').TokenStream} TokenStream
+ * @typedef {import('../src/core/classes/token.d.ts').TokenStream} TokenStream
  */
 
 /**

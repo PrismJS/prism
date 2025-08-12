@@ -496,5 +496,5 @@ function translateIndexIgnoreSpaces (spacey, withoutSpaces, withoutSpaceIndex) {
  */
 
 /**
- * @typedef {import('../../src/core/classes/token.js').TokenStream} TokenStream
+ * @typedef {import('../../src/core/classes/token.d.ts').TokenStream} TokenStream
  */
