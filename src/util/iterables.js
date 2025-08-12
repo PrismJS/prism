@@ -26,10 +26,7 @@ export function toArray (value) {
  * `undefined`, the callback will not be invoked. In all other cases, the callback will be invoked with the given
  * value as parameter.
  *
- * @template T
- * @param {null | undefined | T | T[]} value
- * @param {CallbackFn} callbackFn
- * @returns {void}
+ * @type {import('./iterables.d.ts').ForEachFn}
  */
 export function forEach (value, callbackFn) {
 	if (Array.isArray(value)) {
@@ -39,11 +36,3 @@ export function forEach (value, callbackFn) {
 		callbackFn(value, 0);
 	}
 }
-
-/**
- * @template T
- * @callback CallbackFn
- * @param {T} value
- * @param {number} index
- * @returns {void}
- */

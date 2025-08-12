@@ -75,7 +75,7 @@ export function cloneGrammar (grammar, id) {
 	}
 
 	/**
-	 * @param {RegExpLike | GrammarToken | (RegExpLike | GrammarToken)[] | undefined} value
+	 * @param {GrammarTokens['string']} value
 	 */
 	function cloneTokens (value) {
 		if (!value) {
@@ -116,7 +116,7 @@ export function cloneGrammar (grammar, id) {
 
 			// tokens
 			for (const [key, tokens] of Object.entries(value)) {
-				mapped[key] = cloneTokens(/** @type {GrammarToken[]} */ (tokens));
+				mapped[key] = cloneTokens(tokens);
 			}
 
 			// rest
