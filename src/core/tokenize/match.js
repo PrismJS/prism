@@ -222,19 +222,19 @@ function toGrammarToken (pattern) {
  */
 
 /**
- * @typedef {import('../linked-list.js').LinkedList} LinkedList
+ * @typedef {import('../linked-list.d.ts').LinkedList} LinkedList
  */
 
 /**
- * @typedef {import('../linked-list.js').LinkedListHeadNode} LinkedListHeadNode
+ * @typedef {import('../linked-list.d.ts').LinkedListHeadNode} LinkedListHeadNode
  */
 
 /**
- * @typedef {import('../linked-list.js').LinkedListMiddleNode} LinkedListMiddleNode
+ * @typedef {import('../linked-list.d.ts').LinkedListMiddleNode} LinkedListMiddleNode
  */
 
 /**
- * @typedef {import('../linked-list.js').LinkedListTailNode} LinkedListTailNode
+ * @typedef {import('../linked-list.d.ts').LinkedListTailNode} LinkedListTailNode
  */
 
 /**

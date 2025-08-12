@@ -39,7 +39,6 @@ export function tokenize (text, grammar) {
 		restGrammar = resolve(prism.components, restGrammar.$rest);
 	}
 
-	/** @type {LinkedList<string | Token>} */
 	const tokenList = new LinkedList();
 	tokenList.addAfter(tokenList.head, text);
 
@@ -49,15 +48,11 @@ export function tokenize (text, grammar) {
 }
 
 /**
+ * @typedef {import('../classes/token.d.ts').TokenStream} TokenStream
+ */
+
+/**
  * @typedef {import('../../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('../classes/token.js').Token} Token
- */
-
-/**
- * @typedef {import('../classes/token.js').TokenStream} TokenStream
  */
 
 /**
