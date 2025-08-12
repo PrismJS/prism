@@ -1,20 +1,11 @@
-/**
- * @template T
- */
 export class LinkedList {
-	/**
-	 * @type {LinkedListHeadNode}
-	 */
+	/** @type {LinkedListHeadNode} */
 	head;
 
-	/**
-	 * @type {LinkedListTailNode}
-	 */
+	/** @type {LinkedListTailNode} */
 	tail;
 
-	/**
-	 * @type {number}
-	 */
+	/** @type {number} */
 	length;
 
 	constructor () {
@@ -32,10 +23,6 @@ export class LinkedList {
 
 	/**
 	 * Adds a new node with the given value to the list.
-	 *
-	 * @param {LinkedListHeadNode | LinkedListMiddleNode} node
-	 * @param {T} value
-	 * @returns {LinkedListMiddleNode} The added node.
 	 */
 	addAfter (node, value) {
 		// assumes that node != list.tail && values.length >= 0
@@ -52,10 +39,6 @@ export class LinkedList {
 
 	/**
 	 * Removes `count` nodes after the given node. The given node will not be removed.
-	 *
-	 * @param {LinkedListHeadNode | LinkedListMiddleNode} node
-	 * @param {number} count
-	 * @returns {void}
 	 */
 	removeRange (node, count) {
 		let next = node.next;
@@ -68,9 +51,6 @@ export class LinkedList {
 		this.length -= i;
 	}
 
-	/**
-	 * @returns {T[]}
-	 */
 	toArray () {
 		const array = [];
 		let node = this.head.next;
@@ -83,25 +63,7 @@ export class LinkedList {
 }
 
 /**
- * @template T
- * @typedef {object} LinkedListMiddleNode
- * @property {T} value
- * @property {LinkedListMiddleNode | LinkedListHeadNode} prev
- * @property {LinkedListMiddleNode | LinkedListTailNode} next
- */
-
-/**
- * @template T
- * @typedef {object} LinkedListHeadNode
- * @property {T} value
- * @property {null} prev
- * @property {LinkedListMiddleNode | LinkedListTailNode} next
- */
-
-/**
- * @template T
- * @typedef {object} LinkedListTailNode
- * @property {T} value
- * @property {LinkedListMiddleNode | LinkedListHeadNode} prev
- * @property {null} next
+ * @typedef {import('./linked-list.d.ts').LinkedListMiddleNode} LinkedListMiddleNode
+ * @typedef {import('./linked-list.d.ts').LinkedListHeadNode} LinkedListHeadNode
+ * @typedef {import('./linked-list.d.ts').LinkedListTailNode} LinkedListTailNode
  */
