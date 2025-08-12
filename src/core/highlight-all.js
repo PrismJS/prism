@@ -10,14 +10,14 @@ import singleton from './prism.js';
  * 2. `before-all-elements-highlight`
  * 3. All hooks of {@link Prism#highlightElement} for each element.
  *
- * @this {Prism}
- * @param {HighlightAllOptions} [options={}]
+ * @this {import('./prism.js').Prism}
+ * @param {import('./highlight-all.d.ts').HighlightAllOptions} [options={}]
  */
 export function highlightAll (options = {}) {
 	const prism = this ?? singleton;
 	const { root, async, callback } = options;
 
-	/** @type {HookEnv} */
+	/** @type {import('./classes/hooks.d.ts').HookEnv} */
 	const env = {
 		callback,
 		root: root ?? document,
@@ -35,28 +35,3 @@ export function highlightAll (options = {}) {
 		prism.highlightElement(element, { async, callback: env.callback });
 	}
 }
-
-/**
- * @callback ElementCallback
- * @param {Element} element
- * @returns {void}
- */
-
-/**
- * @typedef {object} HighlightAllOptions
- * @property {ParentNode} [root] The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
- * @property {AsyncHighlighter} [async]
- * @property {ElementCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
- */
-
-/**
- * @typedef {import('./classes/hooks.js').HookEnv} HookEnv
- */
-
-/**
- * @typedef {import('./highlight-element.js').AsyncHighlighter} AsyncHighlighter
- */
-
-/**
- * @typedef {import('./prism.js').Prism} Prism
- */

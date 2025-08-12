@@ -16,10 +16,10 @@ import singleton from './prism.js';
  * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
  * the element's language.
  *
- * @this {Prism}
+ * @this {import('./prism.js').Prism}
  * @param {Element} element The element containing the code.
  * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
- * @param {HighlightElementOptions} [options={}]
+ * @param {import('./highlight-element.d.ts').HighlightElementOptions} [options={}]
  */
 export function highlightElement (element, options = {}) {
 	const prism = this ?? singleton;
@@ -39,9 +39,9 @@ export function highlightElement (element, options = {}) {
 		setLanguage(parent, language);
 	}
 
-	const code = /** @type {string} */ (element.textContent);
+	const code = element.textContent;
 
-	/** @type {HookEnv} */
+	/** @type {import('./classes/hooks.d.ts').HookEnv} */
 	const env = {
 		element,
 		language,
@@ -95,45 +95,3 @@ export function highlightElement (element, options = {}) {
 		insertHighlightedCode(prism.highlight(env.code, env.language, { grammar: env.grammar }));
 	}
 }
-
-/**
- * @callback ElementCallback
- * @param {Element} element
- * @returns {void}
- */
-
-/**
- * @callback AsyncHighlighterCallback
- * @param {AsyncHighlightingData} data
- * @returns {Promise<string>}
- */
-
-/**
- * @typedef {object} HighlightElementOptions
- * @property {AsyncHighlighter} [async]
- * @property {ElementCallback} [callback] An optional callback to be invoked after the highlighting is done.
- * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
- */
-
-/**
- * @typedef {object} AsyncHighlightingData
- * @property {string} language
- * @property {string} code
- * @property {Grammar} grammar
- */
-
-/**
- * @typedef {AsyncHighlighterCallback} AsyncHighlighter
- */
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('./classes/hooks.js').HookEnv} HookEnv
- */
-
-/**
- * @typedef {import('./prism.js').Prism} Prism
- */

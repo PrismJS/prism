@@ -10,10 +10,10 @@ import stringify from './stringify.js';
  * 2. `after-tokenize`
  * 3. `wrap`: On each {@link Token}.
  *
- * @this {Prism}
+ * @this {import('./prism.js').Prism}
  * @param {string} text A string with the code to be highlighted.
  * @param {string} language The name of the language definition passed to `grammar`.
- * @param {HighlightOptions} [options] An object containing the tokens to use.
+ * @param {import('./highlight.d.ts').HighlightOptions} [options] An object containing the tokens to use.
  *
  * Usually a language definition like `Prism.languages.markup`.
  * @returns {string} The highlighted HTML.
@@ -26,7 +26,7 @@ export function highlight (text, language, options) {
 	const languageId = this.components.resolveAlias(language);
 	const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 
-	/** @type {HookEnv} */
+	/** @type {import('./classes/hooks.d.ts').HookEnv} */
 	const env = {
 		code: text,
 		grammar,
@@ -42,20 +42,3 @@ export function highlight (text, language, options) {
 
 	return stringify(env.tokens, env.language, prism.hooks);
 }
-
-/**
- * @typedef {object} HighlightOptions
- * @property {Grammar} [grammar]
- */
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('./classes/hooks.js').HookEnv} HookEnv
- */
-
-/**
- * @typedef {import('./prism.js').Prism} Prism
- */
