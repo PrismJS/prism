@@ -5,11 +5,8 @@
 export class Hooks {
 	/**
 	 * Internal map of hook names to arrays of callback functions.
-	 *
-	 * @type {Record<string, HookCallback[]>}
-	 * @private
 	 */
-	_all = /** @type {Record<string, HookCallback[]>} */ ({});
+	_all = {};
 
 	/**
 	 * Adds the given callback to the list of callbacks for the given hook and returns a function that
@@ -22,10 +19,6 @@ export class Hooks {
 	 *
 	 * A callback function must not be registered for the same hook multiple times. Doing so will cause
 	 * undefined behavior. However, registering a callback again after removing it is fine.
-	 *
-	 * @param {string | string[] | MultipleHooks} name Hook name(s) or a map of hook names to callbacks.
-	 * @param {HookCallback} [callback] The callback function which is given environment variables.
-	 * @returns {function(): void} Function that removes the callback when called.
 	 */
 	add (name, callback) {
 		if (Array.isArray(name)) {
@@ -57,9 +50,6 @@ export class Hooks {
 
 	/**
 	 * Removes the given callback from the list of callbacks for the given hook(s).
-	 *
-	 * @param {string | string[] | MultipleHooks} name Hook name(s) or a map of hook names to callbacks.
-	 * @param {HookCallback} [callback] The callback function to remove.
 	 */
 	remove (name, callback) {
 		if (Array.isArray(name)) {
@@ -86,9 +76,6 @@ export class Hooks {
 	 * Runs a hook invoking all registered callbacks with the given environment variables.
 	 *
 	 * Callbacks will be invoked synchronously and in the order in which they were registered.
-	 *
-	 * @param {string} name The name of the hook.
-	 * @param {HookEnv} env The environment variables of the hook passed to all callbacks registered.
 	 */
 	run (name, env) {
 		const callbacks = this._all[name];
@@ -103,18 +90,3 @@ export class Hooks {
 		}
 	}
 }
-
-/**
- * @typedef {object} HookEnv
- * @property {object} [context] Optional context object.
- */
-
-/**
- * @callback HookCallback
- * @param {HookEnv} env The environment variables passed to hooks.
- * @returns {void}
- */
-
-/**
- * @typedef {Record<string, HookCallback>} MultipleHooks
- */
