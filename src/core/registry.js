@@ -222,7 +222,7 @@ export class Registry {
 			evaluatedGrammar = grammar;
 		}
 		else {
-			/** @type {GrammarOptions} */
+			/** @type {import('../types.d.ts').GrammarOptions} */
 			const options = {
 				getLanguage: required,
 				getOptionalLanguage: id => this.getLanguage(id),
@@ -254,18 +254,6 @@ export class Registry {
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('../types.d.ts').GrammarOptions} GrammarOptions
- */
-
-/**
- * @typedef {import('../types.d.ts').GrammarOptionsWithBase} GrammarOptionsWithBase
- */
-
-/**
- * @typedef {import('../types.d.ts').LanguageProto} LanguageProto
  */
 
 /**
