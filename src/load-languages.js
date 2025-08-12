@@ -33,7 +33,7 @@ function importFile (file) {
  * If no languages are provided, __all__ Prism languages will be loaded.
  *
  * @param {Prism} Prism
- * @param {string | string[]} [languages=knownLanguages]
+ * @param {string | string[]} [languages] Defaults to all known languages.
  * @param {string} [srcPath='.']
  * @returns {Promise}
  */
@@ -65,8 +65,4 @@ loadLanguages.silent = false;
 
 /**
  * @typedef {import('./core.js').Prism} Prism
- */
-
-/**
- * @typedef {import('./types.d.ts').ComponentProto} ComponentProto
  */
