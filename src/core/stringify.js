@@ -70,17 +70,17 @@ export { stringify };
 export default stringify;
 
 /**
- * @typedef {import('./classes/hooks.js').HookEnv} HookEnv
+ * @typedef {import('./classes/hooks.d.ts').HookEnv} HookEnv
  */
 
 /**
- * @typedef {import('./classes/hooks.js').Hooks} Hooks
+ * @typedef {import('./classes/hooks.d.ts').Hooks} Hooks
  */
 
 /**
- * @typedef {import('./classes/token.js').Token} Token
+ * @typedef {import('./classes/token.d.ts').Token} Token
  */
 
 /**
- * @typedef {import('./classes/token.js').TokenStream} TokenStream
+ * @typedef {import('./classes/token.d.ts').TokenStream} TokenStream
  */
