@@ -3,7 +3,7 @@ import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
 /**
- * @typedef {import('../../core/classes/hooks.js').HookEnv} HookEnv
+ * @typedef {import('../../core/classes/hooks.d.ts').HookEnv} HookEnv
  */
 
 /**

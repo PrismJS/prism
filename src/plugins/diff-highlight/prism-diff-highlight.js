@@ -11,7 +11,7 @@ const Self = {
 
 		/**
 		 *
-		 * @param {import('../../core/classes/hooks.js').HookEnv} env
+		 * @param {import('../../core/classes/hooks.d.ts').HookEnv} env
 		 */
 		const setMissingGrammar = env => {
 			const lang = env.language;
