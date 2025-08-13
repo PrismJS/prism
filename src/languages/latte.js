@@ -3,6 +3,7 @@ import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 import php from './php.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'latte'>} */
 export default {
 	id: 'latte',
 	require: [markup, php],

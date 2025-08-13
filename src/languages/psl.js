@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'psl'>} */
 export default {
 	id: 'psl',
 	grammar: {

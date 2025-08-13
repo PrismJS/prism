@@ -1,5 +1,6 @@
 import cssSelector from './css-selector.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'css-extras'>} */
 export default {
 	id: 'css-extras',
 	require: cssSelector,

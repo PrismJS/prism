@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'uri'>} */
 export default {
 	id: 'uri',
 	alias: 'url',

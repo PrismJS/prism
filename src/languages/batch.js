@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'batch'>} */
 export default {
 	id: 'batch',
 	grammar () {

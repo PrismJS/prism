@@ -2,6 +2,7 @@ import yaml from './yaml.js';
 
 // https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
+/** @type {import('../types.d.ts').LanguageProto<'tap'>} */
 export default {
 	id: 'tap',
 	require: yaml,

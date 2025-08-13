@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'nevod'>} */
 export default {
 	id: 'nevod',
 	grammar: {

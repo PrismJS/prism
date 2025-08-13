@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'parigp'>} */
 export default {
 	id: 'parigp',
 	grammar () {

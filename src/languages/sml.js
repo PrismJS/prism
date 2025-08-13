@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'sml'>} */
 export default {
 	id: 'sml',
 	alias: 'smlnj',

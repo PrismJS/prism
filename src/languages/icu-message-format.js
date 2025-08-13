@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'icu-message-format'>} */
 export default {
 	id: 'icu-message-format',
 	grammar () {

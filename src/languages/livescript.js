@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'livescript'>} */
 export default {
 	id: 'livescript',
 	grammar: {

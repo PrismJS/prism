@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'smalltalk'>} */
 export default {
 	id: 'smalltalk',
 	grammar: {

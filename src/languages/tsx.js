@@ -1,6 +1,7 @@
 import jsx from './jsx.js';
 import typescript from './typescript.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'tsx'>} */
 export default {
 	id: 'tsx',
 	require: [jsx, typescript],

@@ -1,6 +1,7 @@
 // ABNF grammar:
 // https://github.com/dhall-lang/dhall-lang/blob/master/standard/dhall.abnf
 
+/** @type {import('../types.d.ts').LanguageProto<'dhall'>} */
 export default {
 	id: 'dhall',
 	grammar: {

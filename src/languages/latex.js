@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'latex'>} */
 export default {
 	id: 'latex',
 	alias: ['tex', 'context'],

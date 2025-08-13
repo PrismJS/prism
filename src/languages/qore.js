@@ -1,5 +1,6 @@
 import clike from './clike.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'qore'>} */
 export default {
 	id: 'qore',
 	base: clike,

@@ -1,4 +1,5 @@
 /* eslint-disable no-misleading-character-class */
+/** @type {import('../types.d.ts').LanguageProto<'bsl'>} */
 export default {
 	id: 'bsl',
 	alias: 'oscript',

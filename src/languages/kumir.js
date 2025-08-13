@@ -1,4 +1,6 @@
 /* eslint-disable regexp/no-dupe-characters-character-class */
+
+/** @type {import('../types.d.ts').LanguageProto<'kumir'>} */
 export default {
 	id: 'kumir',
 	alias: 'kum',

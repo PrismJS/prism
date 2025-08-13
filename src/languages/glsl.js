@@ -1,5 +1,6 @@
 import c from './c.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'glsl'>} */
 export default {
 	id: 'glsl',
 	base: c,

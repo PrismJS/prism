@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'bbcode'>} */
 export default {
 	id: 'bbcode',
 	alias: 'shortcode',

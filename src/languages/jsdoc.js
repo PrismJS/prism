@@ -3,6 +3,7 @@ import javadoclike from './javadoclike.js';
 import javascript from './javascript.js';
 import typescript from './typescript.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'jsdoc'>} */
 export default {
 	id: 'jsdoc',
 	base: javadoclike,

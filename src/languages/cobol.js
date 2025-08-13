@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'cobol'>} */
 export default {
 	id: 'cobol',
 	grammar: {

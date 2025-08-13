@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'io'>} */
 export default {
 	id: 'io',
 	grammar: {

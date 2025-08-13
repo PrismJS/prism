@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'perl'>} */
 export default {
 	id: 'perl',
 	grammar () {

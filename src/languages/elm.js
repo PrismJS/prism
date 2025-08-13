@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'elm'>} */
 export default {
 	id: 'elm',
 	grammar: {

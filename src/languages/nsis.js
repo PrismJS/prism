@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'nsis'>} */
 export default {
 	id: 'nsis',
 	grammar () {

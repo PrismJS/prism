@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'plant-uml'>} */
 export default {
 	id: 'plant-uml',
 	alias: 'plantuml',

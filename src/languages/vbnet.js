@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import basic from './basic.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'vbnet'>} */
 export default {
 	id: 'vbnet',
 	base: basic,

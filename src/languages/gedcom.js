@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gedcom'>} */
 export default {
 	id: 'gedcom',
 	grammar: {

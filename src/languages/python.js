@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'python'>} */
 export default {
 	id: 'python',
 	alias: 'py',

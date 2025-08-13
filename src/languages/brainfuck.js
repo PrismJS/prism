@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'brainfuck'>} */
 export default {
 	id: 'brainfuck',
 	grammar: {

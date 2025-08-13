@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'dax'>} */
 export default {
 	id: 'dax',
 	grammar: {

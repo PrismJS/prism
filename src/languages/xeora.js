@@ -1,5 +1,6 @@
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'xeora'>} */
 export default {
 	id: 'xeora',
 	base: markup,

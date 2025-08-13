@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import c from './c.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'opencl'>} */
 export default {
 	id: 'opencl',
 	base: c,

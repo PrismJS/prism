@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'sas'>} */
 export default {
 	id: 'sas',
 	grammar () {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'eiffel'>} */
 export default {
 	id: 'eiffel',
 	grammar: {

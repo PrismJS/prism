@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'vhdl'>} */
 export default {
 	id: 'vhdl',
 	grammar: {

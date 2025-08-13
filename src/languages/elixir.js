@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'elixir'>} */
 export default {
 	id: 'elixir',
 	grammar () {

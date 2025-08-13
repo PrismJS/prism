@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'agda'>} */
 export default {
 	id: 'agda',
 	grammar: {

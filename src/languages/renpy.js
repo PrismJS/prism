@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'renpy'>} */
 export default {
 	id: 'renpy',
 	alias: 'rpy',

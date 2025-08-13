@@ -3,6 +3,7 @@ import java from './java.js';
 import javadoclike from './javadoclike.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'javadoc'>} */
 export default {
 	id: 'javadoc',
 	base: javadoclike,

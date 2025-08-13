@@ -30,6 +30,7 @@ function nested (pattern, depthLog2) {
 	return pattern.replace(/<<self>>/g, '[^\\s\\S]');
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'csharp'>} */
 export default {
 	id: 'csharp',
 	base: clike,

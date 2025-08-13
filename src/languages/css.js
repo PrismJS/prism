@@ -1,5 +1,6 @@
 import { insertBefore } from '../util/language-util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'css'>} */
 export default {
 	id: 'css',
 	optional: 'css-extras',

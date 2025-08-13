@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'awk'>} */
 export default {
 	id: 'awk',
 	alias: 'gawk',

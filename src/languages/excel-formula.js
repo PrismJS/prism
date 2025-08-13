@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'excel-formula'>} */
 export default {
 	id: 'excel-formula',
 	alias: ['xlsx', 'xls'],

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'yaml'>} */
 export default {
 	id: 'yaml',
 	alias: 'yml',

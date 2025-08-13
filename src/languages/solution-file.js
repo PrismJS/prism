@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'solution-file'>} */
 export default {
 	id: 'solution-file',
 	alias: 'sln',

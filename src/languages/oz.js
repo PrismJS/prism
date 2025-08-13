@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'oz'>} */
 export default {
 	id: 'oz',
 	grammar: {

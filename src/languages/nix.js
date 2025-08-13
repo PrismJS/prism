@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'nix'>} */
 export default {
 	id: 'nix',
 	grammar: {

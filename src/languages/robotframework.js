@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'robotframework'>} */
 export default {
 	id: 'robotframework',
 	alias: 'robot',

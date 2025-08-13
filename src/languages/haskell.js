@@ -13,6 +13,7 @@ export const infixOperator = {
 export const asciiOperator =
 	/[-!#$%*+=?&@|~:<>^\\\/][-!#$%*+=?&@|~.:<>^\\\/]*|\.[-!#$%*+=?&@|~.:<>^\\\/]+/;
 
+/** @type {import('../types.d.ts').LanguageProto<'haskell'>} */
 export default {
 	id: 'haskell',
 	alias: 'hs',

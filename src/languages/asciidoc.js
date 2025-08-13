@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'asciidoc'>} */
 export default {
 	id: 'asciidoc',
 	alias: 'adoc',
@@ -292,8 +293,5 @@ export default {
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */

@@ -2,6 +2,7 @@ import { insertBefore } from '../util/language-util.js';
 import csharp from './csharp.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'cshtml'>} */
 export default {
 	id: 'cshtml',
 	require: [markup, csharp],

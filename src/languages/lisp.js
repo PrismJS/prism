@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'lisp'>} */
 export default {
 	id: 'lisp',
 	alias: ['emacs', 'elisp', 'emacs-lisp'],

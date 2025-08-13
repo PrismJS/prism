@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'neon'>} */
 export default {
 	id: 'neon',
 	grammar: {

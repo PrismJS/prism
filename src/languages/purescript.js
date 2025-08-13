@@ -1,5 +1,6 @@
 import haskell, { asciiOperator, infixOperator } from './haskell.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'purescript'>} */
 export default {
 	id: 'purescript',
 	base: haskell,

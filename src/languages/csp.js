@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'csp'>} */
 export default {
 	id: 'csp',
 	grammar () {

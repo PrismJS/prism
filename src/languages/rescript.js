@@ -1,5 +1,6 @@
 import { insertBefore } from '../util/language-util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'rescript'>} */
 export default {
 	id: 'rescript',
 	alias: 'res',

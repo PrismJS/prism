@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'bbj'>} */
 export default {
 	id: 'bbj',
 	grammar: {

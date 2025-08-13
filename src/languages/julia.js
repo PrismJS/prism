@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'julia'>} */
 export default {
 	id: 'julia',
 	grammar: {

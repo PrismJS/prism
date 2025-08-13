@@ -2,6 +2,7 @@ import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 import ruby from './ruby.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'erb'>} */
 export default {
 	id: 'erb',
 	require: [ruby, markup],

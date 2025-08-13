@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'ichigojam'>} */
 export default {
 	id: 'ichigojam',
 	grammar () {

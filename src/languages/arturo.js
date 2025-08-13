@@ -19,6 +19,7 @@ function createLanguageString (lang, pattern) {
 	};
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'arturo'>} */
 export default {
 	id: 'arturo',
 	alias: 'art',

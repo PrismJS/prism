@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gn'>} */
 export default {
 	id: 'gn',
 	alias: 'gni',

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'wasm'>} */
 export default {
 	id: 'wasm',
 	grammar: {

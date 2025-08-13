@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'maxscript'>} */
 export default {
 	id: 'maxscript',
 	grammar () {

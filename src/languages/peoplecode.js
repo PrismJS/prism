@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'peoplecode'>} */
 export default {
 	id: 'peoplecode',
 	alias: 'pcode',

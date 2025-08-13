@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'zig'>} */
 export default {
 	id: 'zig',
 	grammar () {

@@ -110,6 +110,7 @@ function walkTokens (tokens) {
 	}
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'jsx'>} */
 export default {
 	id: 'jsx',
 	require: [markup, javascript],

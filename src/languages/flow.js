@@ -2,6 +2,7 @@ import { toArray } from '../util/iterables.js';
 import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'flow'>} */
 export default {
 	id: 'flow',
 	base: javascript,

@@ -1,5 +1,6 @@
 import clike from './clike.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'gml'>} */
 export default {
 	id: 'gml',
 	base: clike,

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'pascaligo'>} */
 export default {
 	id: 'pascaligo',
 	grammar () {

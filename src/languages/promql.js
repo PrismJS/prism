@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'promql'>} */
 export default {
 	id: 'promql',
 	grammar () {

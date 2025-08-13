@@ -1,5 +1,6 @@
 import javascript from './javascript.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'qml'>} */
 export default {
 	id: 'qml',
 	require: javascript,

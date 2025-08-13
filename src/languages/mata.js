@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'mata'>} */
 export default {
 	id: 'mata',
 	grammar () {

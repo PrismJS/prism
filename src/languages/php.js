@@ -2,6 +2,7 @@ import { embeddedIn } from '../shared/languages/templating.js';
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'php'>} */
 export default {
 	id: 'php',
 	require: markup,

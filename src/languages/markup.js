@@ -91,6 +91,7 @@ function attributeEmbedded (attrName, lang) {
 	};
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'markup'>} */
 export default {
 	id: 'markup',
 	base: xml,

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'stan'>} */
 export default {
 	id: 'stan',
 	grammar () {

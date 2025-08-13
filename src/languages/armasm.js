@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'armasm'>} */
 export default {
 	id: 'armasm',
 	alias: 'arm-asm',

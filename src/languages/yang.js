@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'yang'>} */
 export default {
 	id: 'yang',
 	grammar: {

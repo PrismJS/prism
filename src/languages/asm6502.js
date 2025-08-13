@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'asm6502'>} */
 export default {
 	id: 'asm6502',
 	grammar: {

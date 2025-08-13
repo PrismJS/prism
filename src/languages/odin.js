@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'odin'>} */
 export default {
 	id: 'odin',
 	grammar () {

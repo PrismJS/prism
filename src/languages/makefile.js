@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'makefile'>} */
 export default {
 	id: 'makefile',
 	grammar: {

@@ -2,6 +2,7 @@ import { toArray } from '../util/iterables.js';
 import { insertBefore } from '../util/language-util.js';
 import ruby from './ruby.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'crystal'>} */
 export default {
 	id: 'crystal',
 	base: ruby,

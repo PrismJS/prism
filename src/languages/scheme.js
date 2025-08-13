@@ -18,6 +18,7 @@ function SortedBNF (grammar) {
 	return grammar[key];
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'scheme'>} */
 export default {
 	id: 'scheme',
 	grammar: {

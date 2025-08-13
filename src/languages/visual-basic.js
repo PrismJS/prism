@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'visual-basic'>} */
 export default {
 	id: 'visual-basic',
 	alias: ['vb', 'vba'],

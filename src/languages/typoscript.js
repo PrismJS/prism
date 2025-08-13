@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'typoscript'>} */
 export default {
 	id: 'typoscript',
 	alias: 'tsconfig',

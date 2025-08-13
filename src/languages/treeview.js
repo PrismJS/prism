@@ -1,6 +1,7 @@
 import { getTextContent } from '../core/classes/token.js';
 import { withoutTokenize } from '../util/language-util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'treeview'>} */
 export default {
 	id: 'treeview',
 	alias: 'tree-view',

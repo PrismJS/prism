@@ -1,5 +1,6 @@
 import json from './json.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'json5'>} */
 export default {
 	id: 'json5',
 	base: json,

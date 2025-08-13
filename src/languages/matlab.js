@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'matlab'>} */
 export default {
 	id: 'matlab',
 	grammar: {

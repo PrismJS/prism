@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'aql'>} */
 export default {
 	id: 'aql',
 	grammar: {

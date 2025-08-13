@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'lua'>} */
 export default {
 	id: 'lua',
 	grammar: {

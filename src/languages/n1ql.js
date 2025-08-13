@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'n1ql'>} */
 export default {
 	id: 'n1ql',
 	grammar () {

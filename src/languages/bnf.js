@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'bnf'>} */
 export default {
 	id: 'bnf',
 	alias: 'rbnf',

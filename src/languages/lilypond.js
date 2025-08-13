@@ -1,5 +1,6 @@
 import scheme from './scheme.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'lilypond'>} */
 export default {
 	id: 'lilypond',
 	require: scheme,

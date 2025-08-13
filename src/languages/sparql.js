@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import turtle from './turtle.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'sparql'>} */
 export default {
 	id: 'sparql',
 	base: turtle,

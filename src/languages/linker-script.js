@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'linker-script'>} */
 export default {
 	id: 'linker-script',
 	alias: 'ld',

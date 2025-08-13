@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'avro-idl'>} */
 export default {
 	id: 'avro-idl',
 	alias: 'avdl',

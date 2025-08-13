@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'hoon'>} */
 export default {
 	id: 'hoon',
 	grammar: {

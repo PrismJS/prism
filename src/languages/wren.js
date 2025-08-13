@@ -1,5 +1,6 @@
 // https://wren.io/
 
+/** @type {import('../types.d.ts').LanguageProto<'wren'>} */
 export default {
 	id: 'wren',
 	grammar: {

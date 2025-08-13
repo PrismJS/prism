@@ -1,6 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'handlebars'>} */
 export default {
 	id: 'handlebars',
 	require: markup,

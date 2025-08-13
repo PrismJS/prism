@@ -1,5 +1,6 @@
 import { insertBefore } from '../util/language-util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'pure'>} */
 export default {
 	id: 'pure',
 	grammar () {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'erlang'>} */
 export default {
 	id: 'erlang',
 	grammar: {

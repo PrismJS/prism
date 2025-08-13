@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'fortran'>} */
 export default {
 	id: 'fortran',
 	grammar: {

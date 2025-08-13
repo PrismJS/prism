@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'dot'>} */
 export default {
 	id: 'dot',
 	alias: 'gv',

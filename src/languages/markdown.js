@@ -2,6 +2,7 @@ import { getTextContent } from '../core/classes/token.js';
 import { insertBefore, withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'markdown'>} */
 export default {
 	id: 'markdown',
 	base: markup,

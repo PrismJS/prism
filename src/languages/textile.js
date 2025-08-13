@@ -1,5 +1,6 @@
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'textile'>} */
 export default {
 	id: 'textile',
 	base: markup,

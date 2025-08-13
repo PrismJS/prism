@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'smali'>} */
 export default {
 	id: 'smali',
 	grammar () {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'pascal'>} */
 export default {
 	id: 'pascal',
 	alias: 'objectpascal',

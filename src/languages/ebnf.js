@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'ebnf'>} */
 export default {
 	id: 'ebnf',
 	grammar: {

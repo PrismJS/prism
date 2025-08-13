@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'groovy'>} */
 export default {
 	id: 'groovy',
 	base: clike,

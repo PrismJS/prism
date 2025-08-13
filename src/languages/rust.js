@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'rust'>} */
 export default {
 	id: 'rust',
 	grammar () {

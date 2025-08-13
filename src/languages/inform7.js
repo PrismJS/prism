@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'inform7'>} */
 export default {
 	id: 'inform7',
 	grammar () {

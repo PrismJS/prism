@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import ruby from './ruby.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'haml'>} */
 export default {
 	id: 'haml',
 	require: ruby,

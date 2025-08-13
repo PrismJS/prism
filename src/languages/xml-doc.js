@@ -1,5 +1,6 @@
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'xml-doc'>} */
 export default {
 	id: 'xml-doc',
 	require: markup,

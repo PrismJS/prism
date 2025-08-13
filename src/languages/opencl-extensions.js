@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'opencl-extensions'>} */
 export default {
 	id: 'opencl-extensions',
 	grammar: {

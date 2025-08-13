@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'javastacktrace'>} */
 export default {
 	id: 'javastacktrace',
 	grammar () {

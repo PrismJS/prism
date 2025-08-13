@@ -1,5 +1,6 @@
 import bash from './bash.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'shell-session'>} */
 export default {
 	id: 'shell-session',
 	require: bash,

@@ -3,6 +3,7 @@ import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 import cpp from './cpp.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'chaiscript'>} */
 export default {
 	id: 'chaiscript',
 	base: clike,

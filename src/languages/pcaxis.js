@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'pcaxis'>} */
 export default {
 	id: 'pcaxis',
 	alias: 'px',

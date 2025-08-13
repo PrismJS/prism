@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'icon'>} */
 export default {
 	id: 'icon',
 	grammar: {

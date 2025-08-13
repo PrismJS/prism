@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'clike'>} */
 export default {
 	id: 'clike',
 	grammar: {

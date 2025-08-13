@@ -1,5 +1,6 @@
 import { regexEscape } from '../shared/util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'factor'>} */
 export default {
 	id: 'factor',
 	grammar () {

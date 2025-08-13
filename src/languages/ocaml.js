@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'ocaml'>} */
 export default {
 	id: 'ocaml',
 	grammar () {

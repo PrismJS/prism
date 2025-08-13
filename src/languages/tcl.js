@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'tcl'>} */
 export default {
 	id: 'tcl',
 	grammar: {

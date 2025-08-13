@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'antlr4'>} */
 export default {
 	id: 'antlr4',
 	alias: 'g4',

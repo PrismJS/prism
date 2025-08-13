@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'iecst'>} */
 export default {
 	id: 'iecst',
 	grammar: {

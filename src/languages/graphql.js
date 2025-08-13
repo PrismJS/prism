@@ -1,5 +1,6 @@
 import { withoutTokenize } from '../util/language-util.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'graphql'>} */
 export default {
 	id: 'graphql',
 	grammar: {

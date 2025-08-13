@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'editorconfig'>} */
 export default {
 	id: 'editorconfig',
 	grammar: {

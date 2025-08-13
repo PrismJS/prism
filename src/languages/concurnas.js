@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'concurnas'>} */
 export default {
 	id: 'concurnas',
 	alias: 'conc',

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'regex'>} */
 export default {
 	id: 'regex',
 	grammar () {

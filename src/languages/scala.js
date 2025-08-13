@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import java from './java.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'scala'>} */
 export default {
 	id: 'scala',
 	base: java,

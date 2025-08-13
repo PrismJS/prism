@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'ignore'>} */
 export default {
 	id: 'ignore',
 	alias: ['gitignore', 'hgignore', 'npmignore'],

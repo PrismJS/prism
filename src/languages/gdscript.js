@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gdscript'>} */
 export default {
 	id: 'gdscript',
 	grammar: {

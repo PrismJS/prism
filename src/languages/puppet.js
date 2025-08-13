@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'puppet'>} */
 export default {
 	id: 'puppet',
 	grammar () {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'web-idl'>} */
 export default {
 	id: 'web-idl',
 	alias: 'webidl',

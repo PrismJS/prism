@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gcode'>} */
 export default {
 	id: 'gcode',
 	grammar: {

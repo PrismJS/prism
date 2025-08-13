@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'php-extras'>} */
 export default {
 	id: 'php-extras',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'cypher'>} */
 export default {
 	id: 'cypher',
 	grammar: {

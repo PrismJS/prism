@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'unrealscript'>} */
 export default {
 	id: 'unrealscript',
 	alias: ['uscript', 'uc'],

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'cmake'>} */
 export default {
 	id: 'cmake',
 	grammar: {

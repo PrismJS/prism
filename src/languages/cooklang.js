@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'cooklang'>} */
 export default {
 	id: 'cooklang',
 	grammar () {

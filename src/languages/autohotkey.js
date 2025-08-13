@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'autohotkey'>} */
 export default {
 	id: 'autohotkey',
 	grammar () {

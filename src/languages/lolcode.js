@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'lolcode'>} */
 export default {
 	id: 'lolcode',
 	grammar: {

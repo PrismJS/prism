@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'wgsl'>} */
 export default {
 	id: 'wgsl',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'log'>} */
 export default {
 	id: 'log',
 	optional: 'javastacktrace',

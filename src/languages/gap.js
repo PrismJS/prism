@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gap'>} */
 export default {
 	id: 'gap',
 	grammar () {

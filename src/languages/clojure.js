@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'clojure'>} */
 export default {
 	id: 'clojure',
 	grammar () {

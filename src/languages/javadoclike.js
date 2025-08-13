@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'javadoclike'>} */
 export default {
 	id: 'javadoclike',
 	grammar: {

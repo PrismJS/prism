@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'hcl'>} */
 export default {
 	id: 'hcl',
 	grammar: {

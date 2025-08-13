@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'docker'>} */
 export default {
 	id: 'docker',
 	alias: 'dockerfile',

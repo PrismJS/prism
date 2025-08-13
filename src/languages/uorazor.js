@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'uorazor'>} */
 export default {
 	id: 'uorazor',
 	grammar: {

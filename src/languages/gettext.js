@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gettext'>} */
 export default {
 	id: 'gettext',
 	alias: 'po',

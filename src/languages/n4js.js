@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'n4js'>} */
 export default {
 	id: 'n4js',
 	base: javascript,

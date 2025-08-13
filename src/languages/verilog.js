@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'verilog'>} */
 export default {
 	id: 'verilog',
 	grammar: {

@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import sql from './sql.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'plsql'>} */
 export default {
 	id: 'plsql',
 	base: sql,

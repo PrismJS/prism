@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'nim'>} */
 export default {
 	id: 'nim',
 	grammar: {

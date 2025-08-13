@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import haskell from './haskell.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'idris'>} */
 export default {
 	id: 'idris',
 	base: haskell,

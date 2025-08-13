@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'powerquery'>} */
 export default {
 	id: 'powerquery',
 	alias: ['pq', 'mscript'],

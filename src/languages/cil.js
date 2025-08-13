@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'cil'>} */
 export default {
 	id: 'cil',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'bash'>} */
 export default {
 	id: 'bash',
 	alias: ['sh', 'shell'],

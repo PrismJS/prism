@@ -46,6 +46,7 @@ function createTemplate (language, tag) {
 	};
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'js-templates'>} */
 export default {
 	id: 'js-templates',
 	grammar () {

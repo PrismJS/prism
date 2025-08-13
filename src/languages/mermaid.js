@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'mermaid'>} */
 export default {
 	id: 'mermaid',
 	grammar: {

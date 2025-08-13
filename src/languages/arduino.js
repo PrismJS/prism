@@ -1,5 +1,6 @@
 import cpp from './cpp.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'arduino'>} */
 export default {
 	id: 'arduino',
 	base: cpp,

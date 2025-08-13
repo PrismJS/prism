@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'prolog'>} */
 export default {
 	id: 'prolog',
 	grammar: {

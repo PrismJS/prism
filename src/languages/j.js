@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'j'>} */
 export default {
 	id: 'j',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'moonscript'>} */
 export default {
 	id: 'moonscript',
 	alias: 'moon',

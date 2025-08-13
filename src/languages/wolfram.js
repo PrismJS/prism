@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'wolfram'>} */
 export default {
 	id: 'wolfram',
 	alias: ['mathematica', 'nb', 'wl'],

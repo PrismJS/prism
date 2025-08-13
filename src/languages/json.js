@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'json'>} */
 export default {
 	id: 'json',
 	alias: 'webmanifest',

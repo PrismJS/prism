@@ -1,5 +1,6 @@
 import { MARKUP_TAG } from '../shared/languages/patterns.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'xml'>} */
 export default {
 	id: 'xml',
 	alias: ['ssml', 'atom', 'rss'],

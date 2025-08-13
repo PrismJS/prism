@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'powershell'>} */
 export default {
 	id: 'powershell',
 	grammar () {

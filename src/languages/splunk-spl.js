@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'splunk-spl'>} */
 export default {
 	id: 'splunk-spl',
 	grammar: {

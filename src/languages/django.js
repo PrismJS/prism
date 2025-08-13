@@ -4,6 +4,7 @@ import markup from './markup.js';
 // Django/Jinja2 syntax definition for Prism.js <http://prismjs.com> syntax highlighter.
 // Mostly it works OK but can paint code incorrectly on complex html/template tag combinations.
 
+/** @type {import('../types.d.ts').LanguageProto<'django'>} */
 export default {
 	id: 'django',
 	require: markup,

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'llvm'>} */
 export default {
 	id: 'llvm',
 	grammar: {

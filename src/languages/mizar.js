@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'mizar'>} */
 export default {
 	id: 'mizar',
 	grammar: {

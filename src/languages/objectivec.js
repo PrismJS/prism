@@ -1,5 +1,6 @@
 import c from './c.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'objectivec'>} */
 export default {
 	id: 'objectivec',
 	base: c,

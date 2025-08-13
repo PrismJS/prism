@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'rip'>} */
 export default {
 	id: 'rip',
 	grammar: {

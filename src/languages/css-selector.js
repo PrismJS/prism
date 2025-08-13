@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'css-selector'>} */
 export default {
 	id: 'css-selector',
 	grammar () {

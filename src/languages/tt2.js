@@ -3,6 +3,7 @@ import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'tt2'>} */
 export default {
 	id: 'tt2',
 	require: [clike, markup],

@@ -106,6 +106,7 @@ function walkTokens (tokens) {
 	}
 }
 
+/** @type {import('../types.d.ts').LanguageProto<'xquery'>} */
 export default {
 	id: 'xquery',
 	base: markup,

@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import scheme from './scheme.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'racket'>} */
 export default {
 	id: 'racket',
 	base: scheme,

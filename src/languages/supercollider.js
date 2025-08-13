@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'supercollider'>} */
 export default {
 	id: 'supercollider',
 	alias: 'sclang',

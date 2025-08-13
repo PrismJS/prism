@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'openqasm'>} */
 export default {
 	id: 'openqasm',
 	alias: 'qasm',

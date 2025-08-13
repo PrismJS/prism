@@ -1,5 +1,6 @@
 // based on https://github.com/microsoft/AL/blob/master/grammar/alsyntax.tmlanguage
 
+/** @type {import('../types.d.ts').LanguageProto<'al'>} */
 export default {
 	id: 'al',
 	grammar: {

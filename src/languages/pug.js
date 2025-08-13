@@ -2,6 +2,7 @@ import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'pug'>} */
 export default {
 	id: 'pug',
 	require: [markup, javascript],

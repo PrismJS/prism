@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'systemd'>} */
 export default {
 	id: 'systemd',
 	grammar () {

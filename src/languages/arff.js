@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'arff'>} */
 export default {
 	id: 'arff',
 	grammar: {

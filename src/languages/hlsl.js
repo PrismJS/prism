@@ -1,6 +1,7 @@
 import { toArray } from '../util/iterables.js';
 import c from './c.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'hlsl'>} */
 export default {
 	id: 'hlsl',
 	base: c,

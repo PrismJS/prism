@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'gherkin'>} */
 export default {
 	id: 'gherkin',
 	grammar () {

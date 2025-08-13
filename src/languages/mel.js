@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'mel'>} */
 export default {
 	id: 'mel',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'apacheconf'>} */
 export default {
 	id: 'apacheconf',
 	grammar: {

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'nand2tetris-hdl'>} */
 export default {
 	id: 'nand2tetris-hdl',
 	grammar: {

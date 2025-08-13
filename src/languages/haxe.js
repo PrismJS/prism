@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'haxe'>} */
 export default {
 	id: 'haxe',
 	base: clike,

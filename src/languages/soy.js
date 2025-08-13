@@ -1,6 +1,7 @@
 import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'soy'>} */
 export default {
 	id: 'soy',
 	require: markup,

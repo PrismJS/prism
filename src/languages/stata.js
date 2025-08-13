@@ -2,6 +2,7 @@ import java from './java.js';
 import mata from './mata.js';
 import python from './python.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'stata'>} */
 export default {
 	id: 'stata',
 	require: [mata, java, python],

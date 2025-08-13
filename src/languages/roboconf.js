@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'roboconf'>} */
 export default {
 	id: 'roboconf',
 	grammar: {

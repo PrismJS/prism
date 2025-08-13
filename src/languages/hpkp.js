@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'hpkp'>} */
 export default {
 	id: 'hpkp',
 	grammar () {

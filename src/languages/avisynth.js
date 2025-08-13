@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'avisynth'>} */
 export default {
 	id: 'avisynth',
 	alias: 'avs',

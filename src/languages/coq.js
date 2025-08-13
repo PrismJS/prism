@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'coq'>} */
 export default {
 	id: 'coq',
 	grammar () {

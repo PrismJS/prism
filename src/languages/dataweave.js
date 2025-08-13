@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'dataweave'>} */
 export default {
 	id: 'dataweave',
 	grammar: {

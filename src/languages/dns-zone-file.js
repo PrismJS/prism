@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'dns-zone-file'>} */
 export default {
 	id: 'dns-zone-file',
 	alias: 'dns-zone',

@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'tremor'>} */
 export default {
 	id: 'tremor',
 	alias: ['trickle', 'troy'],

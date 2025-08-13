@@ -1,6 +1,7 @@
 import clike from './clike.js';
 import sql from './sql.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'apex'>} */
 export default {
 	id: 'apex',
 	require: [clike, sql],

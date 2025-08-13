@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'git'>} */
 export default {
 	id: 'git',
 	grammar: {

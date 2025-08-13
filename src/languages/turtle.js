@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'turtle'>} */
 export default {
 	id: 'turtle',
 	alias: 'trig',

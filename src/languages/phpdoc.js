@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import javadoclike from './javadoclike.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'phpdoc'>} */
 export default {
 	id: 'phpdoc',
 	base: javadoclike,

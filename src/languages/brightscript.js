@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'brightscript'>} */
 export default {
 	id: 'brightscript',
 	grammar: {

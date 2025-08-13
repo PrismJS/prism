@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'velocity'>} */
 export default {
 	id: 'velocity',
 	base: markup,

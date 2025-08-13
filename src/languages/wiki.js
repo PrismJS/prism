@@ -1,6 +1,7 @@
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
+/** @type {import('../types.d.ts').LanguageProto<'wiki'>} */
 export default {
 	id: 'wiki',
 	base: markup,

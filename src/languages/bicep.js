@@ -1,5 +1,6 @@
 // based loosely upon: https://github.com/Azure/bicep/blob/main/src/textmate/bicep.tmlanguage
 
+/** @type {import('../types.d.ts').LanguageProto<'bicep'>} */
 export default {
 	id: 'bicep',
 	grammar: {

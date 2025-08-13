@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'applescript'>} */
 export default {
 	id: 'applescript',
 	grammar: {

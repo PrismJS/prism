@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'autoit'>} */
 export default {
 	id: 'autoit',
 	grammar: {

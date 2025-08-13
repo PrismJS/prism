@@ -1,3 +1,4 @@
+/** @type {import('../types.d.ts').LanguageProto<'asmatmel'>} */
 export default {
 	id: 'asmatmel',
 	grammar: {
