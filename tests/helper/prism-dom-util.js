@@ -3,13 +3,14 @@ import { assertEqual, useSnapshot } from './snapshot.js';
 import { formatHtml } from './util.js';
 
 /**
- * @param {PrismWindow} window
+ * @param {PrismWindow<{}>} window
  */
 export function createUtil (window) {
 	const { Prism, document } = window;
 
 	return {
 		assert: {
+			/** @param {AssertOptions} options */
 			highlight ({ language = 'none', code, format = true, expected = useSnapshot }) {
 				let actual = Prism.highlight(code, language);
 				if (format) {
@@ -17,6 +18,7 @@ export function createUtil (window) {
 				}
 				assertEqual(actual, expected);
 			},
+			/** @param {AssertOptions} options */
 			highlightElement ({ language = 'none', code, format = true, expected = useSnapshot }) {
 				const element = document.createElement('code');
 				element.classList.add('language-' + language);
@@ -30,6 +32,7 @@ export function createUtil (window) {
 				}
 				assertEqual(actual, expected);
 			},
+			/** @param {AssertOptions & { attributes?: Record<string, string> }} options */
 			highlightPreElement ({
 				language = 'none',
 				attributes = {},
@@ -65,7 +68,7 @@ export function createUtil (window) {
  * @param {object} options
  * @param {string | string[]} [options.languages]
  * @param {T | T[]} [options.plugins]
- * @returns {TestSuite}
+ * @returns {{ it: (title: string, fn: (dom: TestSuiteDom<T>) => void) => void }}
  */
 export function createTestSuite (options) {
 	return {
@@ -94,35 +97,15 @@ export function createTestSuite (options) {
 }
 
 /**
- * @typedef {object} AssertOptions
- * @property {string} [language]
- * @property {string} code
- * @property {boolean} [format]
- * @property {string | useSnapshot} [expected]
+ * @typedef {import('../types.d.ts').AssertOptions} AssertOptions
  */
 
 /**
- * @typedef {object} TestSuiteDom
- * @property {object} plugins
- * @property {object} util
+ * @template T
+ * @typedef {import('../types.d.ts').TestSuiteDom<T>} TestSuiteDom
  */
 
 /**
- * @callback TestFunction
- * @param {TestSuiteDom} dom
- * @returns {void}
+ * @template T
+ * @typedef {import('../types.d.ts').PrismWindow<T>} PrismWindow
  */
-
-/**
- * @callback ItFunction
- * @param {string} title
- * @param {TestFunction} fn
- * @returns {void}
- */
-
-/**
- * @typedef {object} TestSuite
- * @property {ItFunction} it
- */
-
-/** @typedef {import('./prism-loader.js').PrismWindow} PrismWindow */

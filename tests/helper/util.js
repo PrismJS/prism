@@ -10,7 +10,7 @@ const astCache = new Map();
  * Performs a breadth-first search on the given start element.
  *
  * @param {any} start
- * @param {BFSCallback} callback
+ * @param {(path: PathItem[], obj: Record<string, any>) => void} callback
  */
 export function BFS (start, callback) {
 	const visited = new Set();
@@ -146,11 +146,4 @@ export function isRegExp (value) {
  * @typedef {object} PathItem
  * @property {string | null} key
  * @property {any} value
- */
-
-/**
- * @callback BFSCallback
- * @param {PathItem[]} path
- * @param {object} obj
- * @returns {void}
  */

@@ -208,8 +208,8 @@ describe('Pattern test coverage', () => {
 	}
 
 	/**
-	 * @param {any} occurrences
-	 * @returns {SplitOccurrencesResult}
+	 * @param {Iterable<string>} occurrences
+	 * @returns {{ origin: string; otherOccurrences: string[] }}
 	 */
 	function splitOccurrences (occurrences) {
 		const all = [...occurrences];
@@ -260,10 +260,4 @@ function makeGlobal (regex) {
  * @property {string} language
  * @property {Set<string>} from
  * @property {RegExpExecArray[]} matches
- */
-
-/**
- * @typedef {object} SplitOccurrencesResult
- * @property {string} origin
- * @property {string[]} otherOccurrences
  */

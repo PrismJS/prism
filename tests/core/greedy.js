@@ -2,8 +2,6 @@ import { assert } from 'chai';
 import { Prism } from '../../src/core/prism.js';
 import { simplify } from '../helper/token-stream-transformer.js';
 
-/** @typedef {import('../../src/types.d.ts').Grammar} Grammar */
-
 /**
  * @param {object} options
  * @param {Grammar} options.grammar
@@ -118,3 +116,5 @@ describe('Greedy matching', () => {
 		});
 	});
 });
+
+/** @typedef {import('../../src/types.d.ts').Grammar} Grammar */

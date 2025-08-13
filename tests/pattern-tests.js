@@ -67,7 +67,7 @@ for (const lang of getLanguageIds()) {
 /**
  * Tests all patterns in the given Prism instance.
  *
- * @param {GetPrismFn} getPrism
+ * @param {() => Promise<Prism | undefined>} getPrism
  * @param {string} mainLanguage
  */
 function testPatterns (getPrism, mainLanguage) {
@@ -84,7 +84,7 @@ function testPatterns (getPrism, mainLanguage) {
 
 	/**
 	 *
-	 * @param {ForEachPatternFn} callback
+	 * @param {(values: ForEachPatternCallbackValue) => void} callback
 	 * @returns
 	 */
 	async function forEachPattern (callback) {
@@ -185,7 +185,7 @@ function testPatterns (getPrism, mainLanguage) {
 	 * Invokes the given callback for all capturing groups in the given pattern in left to right order.
 	 *
 	 * @param {Pattern} pattern
-	 * @param {ForEachCapturingGroupFn} callback
+	 * @param {(values: ForEachCapturingGroupCallbackValue) => void} callback
 	 * @returns {void}
 	 */
 	function forEachCapturingGroup (pattern, callback) {
@@ -467,8 +467,9 @@ function underAStar (node) {
 }
 
 /**
- * @param {*} iter
- * @returns {*}
+ * @template T
+ * @param {Iterable<T>} iter
+ * @returns {T | undefined}
  */
 function firstOf (iter) {
 	const [first] = iter;
@@ -731,7 +732,6 @@ function checkExponentialBacktracking (path, pattern, ast) {
 const polySafeRegexes = new Set();
 
 /**
- *
  * @param {string} path
  * @param {RegExp} pattern
  * @param {LiteralAST} [ast]
@@ -876,22 +876,9 @@ function indent (str, amount = '    ') {
 }
 
 /**
- * @callback ExecSupplier
- * @param {RegExp.exec} exec
- * @returns {(this: RegExp, input: string) => RegExpExecArray | null}
- */
-
-/**
- * @callback ExecSupplierReturnFn
- * @this {RegExp}
- * @param {string} input
- * @returns {RegExpExecArray | null}
- */
-
-/**
  *
- * @param {ExecSupplier} execSupplier
- * @param {function(): Promise<void>} fn
+ * @param {(exec: RegExp['exec']) => (this: RegExp, input: string) => RegExpExecArray | null} execSupplier
+ * @param {() => Promise<void>} fn
  */
 async function replaceRegExpProto (execSupplier, fn) {
 	const oldExec = RegExp.prototype.exec;
@@ -930,48 +917,9 @@ async function replaceRegExpProto (execSupplier, fn) {
 
 /**
  * @typedef {import('../src/core.js').Prism} Prism
- */
-
-/**
  * @typedef {import('../src/types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('./helper/util.js').LiteralAST} LiteralAST
  * @typedef {import('./helper/util.js').PathItem} PathItem
- */
-
-/**
- * @callback GetPrismFn
- * @returns {Promise<Prism | undefined>}
- */
-
-/**
- * @callback ReportErrorFn
- * @param {string} message
- */
-
-/**
- * @typedef {object} ForEachPatternCallbackValue
- * @property {RegExp} pattern
- * @property {LiteralAST} ast
- * @property {string} tokenPath
- * @property {string} name
- * @property {any} parent
- * @property {boolean} lookbehind
- * @property {CapturingGroup | undefined} lookbehindGroup
- * @property {PathItem[]} path
- * @property {ReportErrorFn} reportError
- */
-
-/**
- * @callback ForEachPatternFn
- * @param {ForEachPatternCallbackValue} values
- */
-
-/**
- * @callback ForEachCapturingGroupFn
- * @param {ForEachCapturingGroupCallbackValue} values
  */
 
 /**

@@ -9,7 +9,7 @@ describe('Keep Markup', () => {
 
 	/**
 	 *
-	 * @param {PrismDom} dom
+	 * @param {PrismDOM<{}>} dom
 	 * @param {string} html
 	 * @param {string} [language='none']
 	 * @returns {string}
@@ -27,7 +27,7 @@ describe('Keep Markup', () => {
 
 	/**
 	 *
-	 * @param {PrismDOM} dom
+	 * @param {PrismDOM<{}>} dom
 	 * @param {string} html
 	 * @param {string} [language='none']
 	 */
@@ -96,5 +96,6 @@ describe('Keep Markup', () => {
 });
 
 /**
- * @typedef {import('../../helper/prism-loader.js').PrismDOM} PrismDOM
+ * @template T
+ * @typedef {import('../../types.d.ts').PrismDOM<T>} PrismDOM
  */

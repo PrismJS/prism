@@ -358,7 +358,7 @@ function prettyTrimLineBreaks (prettyStream) {
  * number of line breaks in the source token stream.
  *
  * @param {PrettyTokenStream} prettyStream
- * @param {PrettyEnableLineBreakCondition} cond
+ * @param {(item: LineBreakItem) => boolean} cond
  */
 function prettyEnableLineBreaks (prettyStream, cond) {
 	prettyStream.forEach(token => {
@@ -373,7 +373,7 @@ function prettyEnableLineBreaks (prettyStream, cond) {
  * `true` will not be part of any of the created streams. No empty streams will be returned.
  *
  * @param {PrettyTokenStream} prettyStream
- * @param {PrettySplitCondition} cond
+ * @param {(item: PrettyTokenStreamItem) => boolean} cond
  * @returns {PrettyTokenStream[]}
  */
 function prettySplit (prettyStream, cond) {
@@ -403,7 +403,7 @@ function prettySplit (prettyStream, cond) {
 /**
  * @param {PrettyTokenStream} prettyStream
  * @param {boolean} recursive
- * @param {PrettySomeLineBreakCondition} cond
+ * @param {(item: LineBreakItem) => boolean} cond
  * @returns {boolean}
  */
 function prettySomeLineBreak (prettyStream, recursive, cond) {
@@ -527,30 +527,10 @@ function isTriviallyNested (item) {
  * @property {string | (string | TokenStreamItem)[]} content
  */
 
-/** @typedef {(string | TokenStreamItem)[]} TokenStream */
-
-/** @typedef {string | [string, string | SimplifiedTokenStream]} SimplifiedToken */
-
-/** @typedef {SimplifiedToken[]} SimplifiedTokenStream */
-
-/** @typedef {string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream]} PrettyTokenStreamItem */
-
-/** @typedef {PrettyTokenStreamItem[]} PrettyTokenStream */
-
 /**
- * @callback PrettyEnableLineBreakCondition
- * @param {LineBreakItem} item
- * @returns {boolean}
- */
-
-/**
- * @callback PrettySplitCondition
- * @param {PrettyTokenStreamItem} item
- * @returns {boolean}
- */
-
-/**
- * @callback PrettySomeLineBreakCondition
- * @param {LineBreakItem} item
- * @returns {boolean}
+ * @typedef {(string | TokenStreamItem)[]} TokenStream
+ * @typedef {string | [string, string | SimplifiedTokenStream]} SimplifiedToken
+ * @typedef {SimplifiedToken[]} SimplifiedTokenStream
+ * @typedef {string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream]} PrettyTokenStreamItem
+ * @typedef {PrettyTokenStreamItem[]} PrettyTokenStream
  */

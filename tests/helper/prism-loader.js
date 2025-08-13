@@ -103,7 +103,7 @@ function overwriteProps (target, source) {
 /**
  * Creates a new JavaScript DOM instance with Prism being loaded.
  *
- * @returns {PrismDOM}
+ * @returns {PrismDOM<{}>}
  */
 export function createPrismDOM () {
 	const dom = new JSDOM(``, {
@@ -170,36 +170,9 @@ export function createPrismDOM () {
 	};
 }
 
-/**
- * @typedef {object} PrismWindow
- * @property {Prism} Prism
- */
+/** @typedef {import('jsdom').DOMWindow} DOMWindow */
 
 /**
- * @callback LoadLanguagesFunction
- * @param {string|string[]} languages
- * @returns {Promise<void>}
- */
-
-/**
- * @callback LoadPluginsFunction
- * @param {string|string[]} plugins
- * @returns {Promise<void>}
- */
-
-/**
- * @callback WithGlobalsFunction
- * @param {function(): void} fn
- * @returns {void}
- */
-
-/**
- * @typedef {object} PrismDOM
- * @property {JSDOM} dom
- * @property {PrismWindow} window
- * @property {Document} document
- * @property {Prism} Prism
- * @property {LoadLanguagesFunction} loadLanguages
- * @property {LoadPluginsFunction} loadPlugins
- * @property {WithGlobalsFunction} withGlobals
+ * @template T
+ * @typedef {import('../types.d.ts').PrismDOM<T>} PrismDOM
  */

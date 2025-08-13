@@ -58,7 +58,9 @@ const components = JSON.parse(
 );
 
 describe('components.json', () => {
-	/** @param {ConsumeFn} consumeFn */
+	/**
+	 * @param {(entry: ComponentEntry, id: string, entries: Record<string, ComponentEntry>) => void} consumeFn
+	 */
 	function forEachEntry (consumeFn) {
 		const entries = {};
 
@@ -152,22 +154,14 @@ describe('components.json', () => {
 	});
 });
 
-/** @typedef {object} Components */
+/** @typedef {Record<string, ComponentCategory>} Components */
 
-/** @typedef {object} ComponentCategory */
+/** @typedef {Record<string, ComponentEntry | string>} ComponentCategory */
 
 /**
- * @type {object} ComponentEntry
+ * @typedef {object} ComponentEntry
  * @property {string} [title] - The title of the component.
  * @property {string} [owner] - The GitHub user name of the owner.
  * @property {boolean} [noCSS] - Whether the component doesn't have style sheets which should also be loaded.
  * @property {object} [aliasTitles] -  An optional map from an alias to its title. Aliases which are not in this map will the get title of the component.
- */
-
-/**
- * @callback ConsumeFn
- * @param {ComponentEntry} entry
- * @param {string} id
- * @param {object} entries
- * @returns {void}
  */
