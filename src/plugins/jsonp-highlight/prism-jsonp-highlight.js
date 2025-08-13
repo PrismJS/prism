@@ -82,7 +82,6 @@ export class JsonpHighlight {
 
 	/**
 	 * @type {Prism}
-	 * @private
 	 */
 	Prism;
 
@@ -90,8 +89,6 @@ export class JsonpHighlight {
 	 * The list of adapter which will be used if `data-adapter` is not specified.
 	 *
 	 * @type {{ adapter: Adapter, name: string }[]}
-	 * @default []
-	 * @private
 	 */
 	adapters = [];
 
@@ -108,7 +105,6 @@ export class JsonpHighlight {
 	 * If no fitting adapter is registered, `null` will be returned.
 	 *
 	 * @param {string | Adapter} adapter The adapter itself or the name of an adapter.
-	 * @private
 	 */
 	getAdapter (adapter) {
 		if (typeof adapter === 'function') {

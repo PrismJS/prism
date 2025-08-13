@@ -4,8 +4,6 @@ import { getLanguage } from '../../shared/dom-util.js';
 export class FilterHighlightAll {
 	/**
 	 * @type {((element: Element) => boolean)[]}
-	 * @default []
-	 * @private
 	 */
 	filters = [];
 	/**

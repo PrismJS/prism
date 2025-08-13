@@ -8,24 +8,23 @@ import { extend } from '../util/language-util.js';
  */
 export class Registry {
 	/**
-	 * A map from the aliases of components to the id of the component with that alias.
+	 * A private map from the aliases of components to the id of the component with that alias.
 	 *
 	 * @type {Map<string, string>}
-	 * @private
 	 */
 	aliasMap = new Map();
 
 	/**
-	 * A map from the aliases of components to the id of the component with that alias.
+	 * A private map from the aliases of components to the id of the component with that alias.
 	 *
 	 * @type {Map<string, Entry>}
-	 * @private
 	 */
 	entries = new Map();
 
 	/**
+	 * A private reference to the Prism instance.
+	 *
 	 * @type {Prism}
-	 * @private
 	 */
 	Prism;
 
@@ -97,8 +96,9 @@ export class Registry {
 	}
 
 	/**
+	 * Private method to update the registry.
+	 *
 	 * @param {Set<string>} changed
-	 * @private
 	 */
 	update (changed) {
 		/** @type {Map<string, boolean>} */

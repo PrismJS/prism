@@ -4,10 +4,9 @@
  */
 export class Hooks {
 	/**
-	 * Internal map of hook names to arrays of callback functions.
+	 * Private internal map of hook names to arrays of callback functions.
 	 *
 	 * @type {HooksAll}
-	 * @private
 	 */
 	_all = {};
 

@@ -61,13 +61,11 @@ export class Autoloader {
 
 	/**
 	 * @type {Map<string, Promise}
-	 * @private
 	 */
 	_importCache = new Map();
 
 	/**
 	 * @type {Prism}
-	 * @private
 	 */
 	Prism;
 

@@ -3,13 +3,11 @@ import prism from '../../global.js';
 export class CustomClass {
 	/**
 	 * @type {ClassAdder | undefined}
-	 * @private
 	 */
 	adder;
 
 	/**
 	 * @type {ClassMapper | undefined}
-	 * @private
 	 */
 	mapper;
 

@@ -27,14 +27,11 @@ function getOrder (element) {
 export class Toolbar {
 	/**
 	 * @type {ButtonFactory[]}
-	 * @default []
-	 * @private
 	 */
 	callbacks = [];
 
 	/**
 	 * @type {Map<string, ButtonFactory>}
-	 * @private
 	 */
 	map = new Map();
 

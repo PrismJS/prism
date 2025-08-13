@@ -59,14 +59,11 @@ class Previewer {
 
 	/**
 	 * @type {HTMLDivElement | null}
-	 * @default null
 	 */
 	_elt = null;
 
 	/**
 	 * @type {Element | null}
-	 * @default null
-	 * @private
 	 */
 	_token = null;
 
@@ -126,8 +123,6 @@ class Previewer {
 	}
 	/**
 	 * Called on mouseout
-	 *
-	 * @private
 	 */
 	mouseout = () => {
 		this._token?.removeEventListener('mouseout', this.mouseout, false);

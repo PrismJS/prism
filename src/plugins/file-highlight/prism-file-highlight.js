@@ -73,7 +73,6 @@ const SELECTOR =
 export class FileHighlight {
 	/**
 	 * @param {Prism} Prism
-	 * @private
 	 */
 	Prism;
 
