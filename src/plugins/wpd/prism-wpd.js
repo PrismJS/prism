@@ -157,7 +157,7 @@ function getLanguage (tag) {
 	return null;
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'wpd'>} */
 const Self = {
 	id: 'wpd',
 	require: cssSelector,

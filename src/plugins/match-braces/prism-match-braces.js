@@ -1,7 +1,7 @@
 import prism from '../../global.js';
 import { getParentPre, isActive } from '../../shared/dom-util.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'match-braces'>} */
 const Self = {
 	id: 'match-braces',
 	effect (Prism) {

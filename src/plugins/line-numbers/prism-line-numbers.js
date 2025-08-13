@@ -198,7 +198,7 @@ export class LineNumbers {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'line-numbers'>} */
 const Self = {
 	id: 'line-numbers',
 	plugin () {

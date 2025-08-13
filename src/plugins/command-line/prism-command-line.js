@@ -5,7 +5,7 @@ import { htmlEncode } from '../../shared/util.js';
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'command-line'>} */
 const Self = {
 	id: 'command-line',
 	effect (Prism) {

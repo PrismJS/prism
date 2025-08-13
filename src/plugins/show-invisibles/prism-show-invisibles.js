@@ -1,7 +1,7 @@
 import prism from '../../global.js';
 import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'show-invisibles'>} */
 const Self = {
 	id: 'show-invisibles',
 	optional: ['autolinker', 'data-uri-highlight', 'diff-highlight'],

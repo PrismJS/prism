@@ -101,7 +101,7 @@ export class FileHighlight {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'file-highlight'>} */
 const Self = {
 	id: 'file-highlight',
 	plugin (Prism) {

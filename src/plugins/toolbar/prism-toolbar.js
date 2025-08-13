@@ -200,7 +200,7 @@ const label = env => {
 	return element;
 };
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'toolbar'>} */
 const Self = {
 	id: 'toolbar',
 	plugin () {

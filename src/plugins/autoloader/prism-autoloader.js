@@ -124,6 +124,7 @@ export class Autoloader {
 	}
 }
 
+/** @type {import('../../types.d.ts').PluginProto<'autoloader'>} */
 const Self = {
 	id: 'autoloader',
 	plugin (Prism) {

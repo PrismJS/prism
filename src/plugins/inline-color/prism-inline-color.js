@@ -71,7 +71,7 @@ function validateColor (color) {
 	return s.color ? color : undefined;
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'inline-color'>} */
 const Self = {
 	id: 'inline-color',
 	require: cssExtras,

@@ -19,7 +19,7 @@ function isText (child) {
 	return child.nodeType === 3;
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'keep-markup'>} */
 const Self = {
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',

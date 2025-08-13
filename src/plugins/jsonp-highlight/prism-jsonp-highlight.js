@@ -192,7 +192,7 @@ export class JsonpHighlight {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'jsonp-highlight'>} */
 const Self = {
 	id: 'jsonp-highlight',
 	plugin (Prism) {

@@ -3,7 +3,7 @@ import { getParentPre } from '../../shared/dom-util.js';
 import { getTitle } from '../../shared/meta/title-data.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'show-language'>} */
 const Self = {
 	id: 'show-language',
 	require: toolbar,

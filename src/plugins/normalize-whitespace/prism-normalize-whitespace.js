@@ -141,7 +141,7 @@ export class NormalizeWhitespace {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'normalize-whitespace'>} */
 const Self = {
 	id: 'normalize-whitespace',
 	optional: 'unescaped-markup',

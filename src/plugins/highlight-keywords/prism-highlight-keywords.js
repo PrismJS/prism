@@ -1,6 +1,6 @@
 import prism from '../../global.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'highlight-keywords'>} */
 const Self = {
 	id: 'highlight-keywords',
 	effect (Prism) {

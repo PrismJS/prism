@@ -126,7 +126,7 @@ function getSettings (startElement) {
 	return settings;
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'copy-to-clipboard'>} */
 const Self = {
 	id: 'copy-to-clipboard',
 	require: toolbar,

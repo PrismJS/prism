@@ -2,7 +2,7 @@ import { getTextContent, Token } from '../../core/classes/token.js';
 import prism from '../../global.js';
 import diff, { PREFIXES } from '../../languages/diff.js';
 
-/** @type {PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'diff-highlight'>} */
 const Self = {
 	id: 'diff-highlight',
 	require: diff,
@@ -135,5 +135,4 @@ prism.components.add(Self);
 /**
  * @typedef {import('../../types.d.ts').HookEnv} HookEnv
  * @typedef {import('../../types.d.ts').TokenStream} TokenStream
- * @typedef {import('../../types.d.ts').PluginProto} PluginProto
  */

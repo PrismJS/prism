@@ -86,7 +86,7 @@ export class FilterHighlightAll {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'filter-highlight-all'>} */
 const Self = {
 	id: 'filter-highlight-all',
 	plugin (Prism) {

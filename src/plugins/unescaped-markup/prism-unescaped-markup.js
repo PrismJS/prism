@@ -1,6 +1,6 @@
 import prism from '../../global.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'unescaped-markup'>} */
 const Self = {
 	id: 'unescaped-markup',
 	effect (Prism) {

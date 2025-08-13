@@ -807,7 +807,7 @@ const previewers = {
 	},
 };
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'previewers'>} */
 const Self = {
 	id: 'previewers',
 	require: cssExtras,

@@ -57,7 +57,7 @@ export class CustomClass {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'custom-class'>} */
 const Self = {
 	id: 'custom-class',
 	plugin () {

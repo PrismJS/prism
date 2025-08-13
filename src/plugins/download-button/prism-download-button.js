@@ -2,7 +2,7 @@ import prism from '../../global.js';
 import { getParentPre } from '../../shared/dom-util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'download-button'>} */
 const Self = {
 	id: 'download-button',
 	require: toolbar,

@@ -252,7 +252,7 @@ export class LineHighlight {
 	}
 }
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {import('../../types.d.ts').PluginProto<'line-highlight'>} */
 const Self = {
 	id: 'line-highlight',
 	optional: 'line-numbers',
