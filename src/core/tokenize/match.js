@@ -4,12 +4,11 @@ import { tokenize } from './tokenize.js';
 import { resolve } from './util.js';
 
 /**
- * @template T
  * @this {Prism}
  * @param {string} text
- * @param {LinkedList<T>} tokenList
+ * @param {LinkedList<string | Token>} tokenList
  * @param {GrammarTokens} grammar
- * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} startNode
+ * @param {LinkedListHeadNode<string | Token> | LinkedListMiddleNode<string | Token>} startNode
  * @param {number} startPos
  * @param {RematchOptions} [rematch]
  * @returns {void}
@@ -94,6 +93,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 					}
 
 					// find the last node which is affected by this match
+					/** @type {LinkedListMiddleNode<string | Token> | LinkedListTailNode<string | Token>} */
 					let k = currentNode;
 					for (; k.next !== null && (p < to || typeof k.value === 'string'); k = k.next) {
 						removeCount++;

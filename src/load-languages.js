@@ -15,8 +15,9 @@ function pathJoin (dir, file) {
 const importCache = new Map();
 
 /**
+ * @template T
  * @param {string} file
- * @returns {Promise}
+ * @returns {Promise<T>}
  */
 function importFile (file) {
 	let promise = importCache.get(file);
@@ -46,6 +47,7 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 		languages.map(async id => {
 			try {
 				const path = pathJoin(srcPath, `languages/${id}.js`);
+				/** @type {{ default: ComponentProto }} */
 				const exports = await importFile(path);
 				Prism.components.add(exports.default);
 			}
@@ -65,4 +67,5 @@ loadLanguages.silent = false;
 
 /**
  * @typedef {import('./core.js').Prism} Prism
+ * @typedef {import('./types.d.ts').ComponentProto} ComponentProto
  */

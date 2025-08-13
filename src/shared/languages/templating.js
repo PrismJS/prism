@@ -15,7 +15,7 @@ function getPlaceholder (id) {
  * @param {string} code
  * @param {Grammar | undefined} grammar
  * @param {Prism} Prism
- * @returns {BuildPlaceholdersResult}
+ * @returns {{ hostCode: string, tokenStack: TokenStack }}
  */
 function buildPlaceholders (code, grammar, Prism) {
 	if (!grammar) {
@@ -152,7 +152,7 @@ export function templating (code, hostGrammar, templateGrammar, Prism) {
 
 /**
  * @param {GrammarRef} hostGrammar
- * @returns {EmbeddedInReturnFn}
+ * @returns {(code: string, grammar: Grammar, Prism: Prism) => TokenStream}
  */
 export function embeddedIn (hostGrammar) {
 	return (code, templateGrammar, Prism) => {
@@ -161,18 +161,14 @@ export function embeddedIn (hostGrammar) {
 }
 
 /**
- * @typedef {object} BuildPlaceholdersResult
- * @property {string} hostCode
- * @property {TokenStack} tokenStack
+ * @typedef {import('../../core.js').Prism} Prism
+ * @typedef {import('../../core/registry.js').Registry} Registry
+ * @typedef {import('../../core.js').Token} Token
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
+ * @typedef {import('../../types.d.ts').TokenStack} TokenStack
+ * @typedef {import('../../types.d.ts').Grammar} Grammar
  */
 
 /**
- * @typedef {import('./templating.d.ts').TokenStack} TokenStack
- * @typedef {import('./templating.d.ts').GrammarRef} GrammarRef
- * @typedef {import('./templating.d.ts').EmbeddedInReturnFn} EmbeddedInReturnFn
- * @typedef {import('../../core.js').Prism} Prism
- * @typedef {import('../../core.js').Token} Token
- * @typedef {import('../../types.d.ts').TokenStream} TokenStream
- * @typedef {import('../../core/registry.js').Registry} Registry
- * @typedef {import('../../types.d.ts').Grammar} Grammar
+ * @typedef {Grammar | string | undefined | null} GrammarRef
  */

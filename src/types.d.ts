@@ -127,6 +127,8 @@ export type TokenName = (string & {}) | StandardTokenName;
  */
 export type TokenStream = (string | Token)[];
 
+export type TokenStack = [number, Token][];
+
 export type RegExpLike = RegExp & { readonly pattern?: never };
 
 /**
@@ -183,11 +185,6 @@ export type Grammar = GrammarTokens & GrammarSpecial;
 export interface PlainObject {
 	[key: string]: unknown;
 }
-
-export type ForEach = <T extends {}>(
-	value: null | undefined | T | readonly T[],
-	callbackFn: (value: T, index: number) => void
-) => void;
 
 export type KebabToCamelCase<S extends string> = S extends `${infer T}-${infer U}`
 	? `${T}${Capitalize<KebabToCamelCase<U>>}`
