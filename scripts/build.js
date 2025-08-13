@@ -305,14 +305,8 @@ const lazyGrammarPlugin = {
 };
 
 /**
- * @typedef {object} RenderChunk
- * @property {string} code
- * @property {SourceMapInput} map
- */
-
-/**
  * @param {MagicString} s
- * @returns {RenderChunk}
+ * @returns {{ code: string; map: SourceMapInput }}
  */
 function toRenderedChunk (s) {
 	return {
@@ -482,7 +476,8 @@ const getFileSize = async filePath => {
 	}
 };
 
-/** @typedef {object} FileSizes
+/**
+ * @typedef {object} FileSizes
  * @property {number} [css]
  * @property {number} [js]
  */

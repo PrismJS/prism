@@ -27,13 +27,15 @@ function createSortedArray (compareFn) {
 	return a;
 }
 
-/** @typedef {object} CommitInfo
+/**
+ * @typedef {object} CommitInfo
  * @property {string} message
  * @property {string} hash
  * @property {CommitChange[]} changes
  */
 
-/** @typedef {object} CommitChange
+/**
+ * @typedef {object} CommitChange
  * @property {string} file
  * @property {ChangeMode} mode
  */
@@ -125,15 +127,8 @@ runTask(async () => {
 	};
 
 	/**
-	 * @callback AddEntryInfoFn
-	 * @param {string} message
-	 * @param {string} hash
-	 */
-
-	/**
-	 *
 	 * @param {string} category
-	 * @param {string | AddEntryInfoFn} info
+	 * @param {string | { message: string; hash: string }} info
 	 */
 	function addEntry (category, info) {
 		const path = category.split(/\s*>>\s*/);
@@ -210,15 +205,9 @@ runTask(async () => {
 	}
 
 	/**
-	 * @callback FilterFn
-	 * @param {T} e
-	 * @param {number} index
-	 * @returns {boolean}
-	 */
-
-	/**
-	 * @param {FilterFn[]} filters
-	 * @returns {FilterFn}
+	 * @template T
+	 * @param {((e: T, index: number) => boolean)[]} filters
+	 * @returns {(e: T, index: number) => boolean}
 	 */
 	function and (...filters) {
 		return (e, index) => {
@@ -232,18 +221,12 @@ runTask(async () => {
 	}
 
 	/**
-	 * @typedef {object} RemoveMessagePrefixResult
-	 * @property {string} message
-	 * @property {string} hash
-	 */
-
-	/**
 	 * Some commit message have the format `component changed: actual message`.
 	 * This function can be used to remove this prefix.
 	 *
 	 * @param {string} prefix
 	 * @param {CommitInfo} info
-	 * @returns {RemoveMessagePrefixResult}
+	 * @returns {{ message: string; hash: string }}
 	 */
 	function removeMessagePrefix (prefix, info) {
 		const source = String.raw`^${prefix.replace(/([^-\w\s])/g, '\\$1').replace(/[-\s]/g, '[-\\s]')}:\s*`;
@@ -254,13 +237,7 @@ runTask(async () => {
 		};
 	}
 
-	/**
-	 * @callback CommitSorter
-	 * @param {CommitInfo} info
-	 * @returns {boolean | undefined}
-	 */
-
-	/** @type {CommitSorter[]} */
+	/** @type {((info: CommitInfo) => boolean | undefined)[]} */
 	const commitSorters = [
 		function rebuild (info) {
 			if (info.changes.length > 0 && info.changes.filter(notGenerated).length === 0) {

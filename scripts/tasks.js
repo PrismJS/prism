@@ -1,5 +1,5 @@
 /**
- * @typedef {function (): void | Promise<void>} Task
+ * @typedef {() => void | Promise<void>} Task
  */
 
 /**
