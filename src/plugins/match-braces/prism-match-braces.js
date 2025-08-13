@@ -152,7 +152,7 @@ const Self = {
 				),
 			];
 
-			/** @type {BraceInfo[]} */
+			/** @type {{ index: number, open: boolean, element: Element }[]} */
 			const allBraces = [];
 
 			toMatch.forEach(open => {
@@ -226,10 +226,3 @@ const Self = {
 export default Self;
 
 prism.components.add(Self);
-
-/**
- * @typedef {object} BraceInfo
- * @property {number} index
- * @property {boolean} open
- * @property {Element} element
- */

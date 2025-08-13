@@ -189,16 +189,10 @@ export default Self;
 prism.components.add(Self);
 
 /**
- * @callback ErrorFunction
- * @param {any} reason
- * @returns {void}
- */
-
-/**
  * @typedef {object} CopyInfo
  * @property {function(): string} getText
  * @property {function(): void} success
- * @property {ErrorFunction} error
+ * @property {(reason: any) => void} error
  */
 
 /**

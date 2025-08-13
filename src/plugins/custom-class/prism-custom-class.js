@@ -64,7 +64,7 @@ const Self = {
 		return new CustomClass();
 	},
 	effect (Prism) {
-		/** @type {import('./prism-custom-class.js').CustomClass} */
+		/** @type {CustomClass} */
 		const customClass = Prism.plugins.customClass;
 
 		return Prism.hooks.add('wrap', env => {

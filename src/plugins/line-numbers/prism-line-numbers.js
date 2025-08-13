@@ -211,7 +211,7 @@ const Self = {
 
 		let lastWidth = NaN;
 		const listener = () => {
-			/** @type {import('./prism-line-numbers.js').LineNumbers} */
+			/** @type {LineNumbers} */
 			const lineNumbers = Prism.plugins.lineNumbers;
 			if (lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;

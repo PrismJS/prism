@@ -12,8 +12,8 @@ let jsonpCallbackCounter = 0;
  * @param {string} src The URL of the resource to request.
  * @param {string | undefined | null} callbackParameter The name of the callback parameter. If falsy, `"callback"` will be used.
  * @param {number} timeout
- * @param {OnSuccessFn} onSuccess
- * @param {OnErrorFn} onError
+ * @param {(data: any) => void} onSuccess
+ * @param {(reason: 'timeout' | 'network') => void} onError
  * @returns {void}
  */
 function jsonp (src, callbackParameter, timeout, onSuccess, onError) {
@@ -89,7 +89,7 @@ export class JsonpHighlight {
 	/**
 	 * The list of adapter which will be used if `data-adapter` is not specified.
 	 *
-	 * @type {Adapters[]}
+	 * @type {{ adapter: Adapter, name: string }[]}
 	 * @default []
 	 * @private
 	 */
@@ -248,7 +248,7 @@ const Self = {
 		return config;
 	},
 	effect (Prism) {
-		/** @type {import('./prism-jsonp-highlight.js').JsonpHighlight} */
+		/** @type {JsonpHighlight} */
 		const config = Prism.plugins.jsonpHighlight;
 
 		const LOADING_MESSAGE = 'Loading…';
@@ -362,30 +362,12 @@ export default Self;
 prism.components.add(Self);
 
 /**
- * @callback OnSuccessFn
- * @param {*} data
- * @returns {void}
- */
-
-/**
- * @callback OnErrorFn
- * @param {'timeout' | 'network'} reason
- * @returns {void}
- */
-
-/**
  * @callback Adapter
- * @param {*} response
+ * @param {any} response
  * @param {HTMLPreElement} pre
  * @returns {string | null}
  */
 
 /**
  * @typedef {import('../../core.js').Prism} Prism
- */
-
-/**
- * @typedef {object} Adapters
- * @property {Adapter} adapter
- * @property {string} name
  */

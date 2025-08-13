@@ -3,19 +3,10 @@ import cssExtras from '../../languages/css-extras.js';
 import { forEach } from '../../util/iterables.js';
 
 /**
- * @typedef {object} ElementOffset
- * @property {number} top
- * @property {number} right
- * @property {number} bottom
- * @property {number} left
- * @property {number} width
- * @property {number} height
- */
-/**
  * Returns the absolute X, Y offsets for an element.
  *
  * @param {Element} element
- * @returns {ElementOffset}
+ * @returns {{ top: number, right: number, bottom: number, left: number, width: number, height: number }}
  */
 const getOffset = element => {
 	const elementBounds = element.getBoundingClientRect();
@@ -47,9 +38,7 @@ const FLIPPED_CLASS = 'flipped';
  */
 
 /**
- * @typedef {object} PreviewerE
- * @augments {Previewer}
- * @property {HTMLDivElement} _elt
+ * @typedef {Previewer & { _elt: HTMLDivElement }} PreviewerE
  */
 
 /**
@@ -870,7 +859,7 @@ const Self = {
 		*/
 
 		return Prism.hooks.add('after-highlight', env => {
-			/** @type {import('./prism-previewers.js').PreviewerCollection} */
+			/** @type {PreviewerCollection} */
 			const previewers = Prism.plugins.previewers;
 			previewers.initEvents(env.element, env.language);
 		});

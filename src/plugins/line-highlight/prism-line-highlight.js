@@ -60,7 +60,7 @@ function hasClass (element, className) {
 /**
  * Calls the given function.
  *
- * @param {CallableFn} func
+ * @param {() => void} func
  * @returns {void}
  */
 function callFunction (func) {
@@ -397,17 +397,5 @@ prism.components.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism
- */
-
-/**
- * @typedef {import('../line-highlight/prism-line-highlight.js').LineHighlight} LineHighlight
- */
-
-/**
  * @typedef {import('../line-numbers/prism-line-numbers.js').LineNumbers} LineNumbers
- */
-
-/**
- * @callback CallableFn
- * @returns {void}
  */

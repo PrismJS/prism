@@ -17,8 +17,8 @@ const FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
  * Loads the given file.
  *
  * @param {string} src The URL or path of the source file to load.
- * @param {SuccessFn} success
- * @param {ErrorFn} error
+ * @param {(result: string) => void} success
+ * @param {(reason: string) => void} error
  */
 function loadFile (src, success, error) {
 	const xhr = new XMLHttpRequest();
@@ -230,18 +230,6 @@ const Self = {
 export default Self;
 
 prism.components.add(Self);
-
-/**
- * @callback SuccessFn
- * @param {string} result
- * @returns {void}
- */
-
-/**
- * @callback ErrorFn
- * @param {string} reason
- * @returns {void}
- */
 
 /**
  * @typedef {import('../../core.js').Prism} Prism

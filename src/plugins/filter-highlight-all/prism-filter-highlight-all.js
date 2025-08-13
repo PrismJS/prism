@@ -3,7 +3,7 @@ import { getLanguage } from '../../shared/dom-util.js';
 
 export class FilterHighlightAll {
 	/**
-	 * @type {FiltersFn[]}
+	 * @type {((element: Element) => boolean)[]}
 	 * @default []
 	 * @private
 	 */
@@ -116,7 +116,7 @@ const Self = {
 		return config;
 	},
 	effect (Prism) {
-		/** @type {import('./prism-filter-highlight-all.js').FilterHighlightAll} */
+		/** @type {FilterHighlightAll} */
 		const config = Prism.plugins.filterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', env => {
@@ -130,19 +130,7 @@ export default Self;
 prism.components.add(Self);
 
 /**
- * @typedef {object} ConditionValue
- * @property {Element} element
- * @property {string} language
- */
-
-/**
  * @callback Condition
- * @param {ConditionValue} value
- * @returns {boolean}
- */
-
-/**
- * @callback FiltersFunction
- * @param {Element} element
+ * @param {{ element: Element, language: string }} value
  * @returns {boolean}
  */

@@ -184,9 +184,13 @@ prism.components.add(Self);
  */
 
 /**
+ * @typedef {[node: Text, pos: number]} End
+ */
+
+/**
  * @typedef {object} NodeState
  * @property {NodeData} node
  * @property {number} pos
- * @property {Array} [start]
- * @property {Array} [end]
+ * @property {End} [start]
+ * @property {End} [end]
  */

@@ -15,6 +15,7 @@ function tabLength (str) {
 	return str.length + res;
 }
 
+/** @type {(keyof NormalizeWhitespaceDefaults)[]} */
 const normalizationOrder = [
 	'remove-trailing',
 	'remove-indent',
@@ -158,7 +159,7 @@ const Self = {
 		});
 	},
 	effect (Prism) {
-		/** @type {import('./prism-normalize-whitespace.js').NormalizeWhitespace} */
+		/** @type {NormalizeWhitespace} */
 		const Normalizer = Prism.plugins.normalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', env => {
@@ -230,13 +231,13 @@ prism.components.add(Self);
 
 /**
  * @typedef {object} NormalizeWhitespaceDefaults
- * @property {number} 'break-lines'
- * @property {number} 'indent'
- * @property {boolean} 'left-trim'
- * @property {boolean} 'remove-indent'
- * @property {boolean} 'remove-initial-line-feed'
- * @property {boolean} 'remove-trailing'
- * @property {boolean} 'right-trim'
- * @property {number} 'spaces-to-tabs'
- * @property {number} 'tabs-to-spaces'
+ * @property {number} break-lines
+ * @property {number} indent
+ * @property {boolean} left-trim
+ * @property {boolean} remove-indent
+ * @property {boolean} remove-initial-line-feed
+ * @property {boolean} remove-trailing
+ * @property {boolean} right-trim
+ * @property {number} spaces-to-tabs
+ * @property {number} tabs-to-spaces
  */

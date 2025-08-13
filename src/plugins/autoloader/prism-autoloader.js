@@ -182,7 +182,7 @@ const Self = {
 				return;
 			}
 
-			/** @type {import('./prism-autoloader.js').Autoloader} */
+			/** @type {Autoloader} */
 			const autoloader = Prism.plugins.autoloader;
 			autoloader.loadLanguages(deps).then(
 				() => Prism.highlightElement(element),

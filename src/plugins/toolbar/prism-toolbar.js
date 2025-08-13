@@ -209,7 +209,7 @@ const Self = {
 		return toolbar;
 	},
 	effect (Prism) {
-		/** @type {import('./prism-toolbar.js').Toolbar} */
+		/** @type {Toolbar} */
 		const toolbar = Prism.plugins.toolbar;
 		return Prism.hooks.add('complete', toolbar.hook);
 	},
