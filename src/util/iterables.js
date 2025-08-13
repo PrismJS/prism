@@ -26,7 +26,7 @@ export function toArray (value) {
  * `undefined`, the callback will not be invoked. In all other cases, the callback will be invoked with the given
  * value as parameter.
  *
- * @type {import('./iterables.d.ts').ForEachFn}
+ * @type {ForEach}
  */
 export function forEach (value, callbackFn) {
 	if (Array.isArray(value)) {
@@ -36,3 +36,7 @@ export function forEach (value, callbackFn) {
 		callbackFn(value, 0);
 	}
 }
+
+/**
+ * @typedef {import('../types.d.ts').ForEach} ForEach
+ */

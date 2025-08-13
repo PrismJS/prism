@@ -157,45 +157,12 @@ export class TestCaseFile {
 }
 
 /**
- * @callback RunFunction
- * @template T
- * @param {Prism} Prism
- * @param {string} code
- * @param {string} language
- * @returns {T}
- */
-
-/**
- * @callback PrintFunction
- * @template T
- * @param {T} actual
- * @returns {string}
- */
-
-/**
- * @callback IsEqualFunction
- * @template T
- * @param {T} actual
- * @param {string} expected
- * @returns {boolean}
- */
-
-/**
- * @callback AssertEqualFunction
- * @template T
- * @param {T} actual
- * @param {string} expected
- * @param {MessageFunction} message
- * @returns {void}
- */
-
-/**
  * @template T
  * @typedef Runner
- * @property {RunFunction<T>} run
- * @property {PrintFunction<T>} print
- * @property {IsEqualFunction<T>} isEqual
- * @property {AssertEqualFunction<T>} assertEqual
+ * @property {(Prism: Prism, code: string, language: string) => T} run
+ * @property {(actual: T) => string} print
+ * @property {(actual: T, expected: string) => boolean} isEqual
+ * @property {(actual: T, expected: string, message: (firstDifference: number) => string) => void} assertEqual
  */
 
 /** @type {Runner<TokenStream>} */
@@ -273,18 +240,6 @@ const htmlRunner = {
 /** @typedef {'none' | 'insert' | 'update'} UpdateMethod */
 
 /**
- * @callback CreateInstanceFunction
- * @param {string[]} languages
- * @returns {Promise<Prism>}
- */
-
-/**
- * @callback MessageFunction
- * @param {number} firstDifference
- * @returns {string}
- */
-
-/**
  * Runs the given test case file and asserts the result
  *
  * The passed language identifier can either be a language like "css" or a composed language
@@ -299,7 +254,7 @@ const htmlRunner = {
  * @param {string} languageIdentifier
  * @param {string} filePath
  * @param {UpdateMethod} updateMode
- * @param {CreateInstanceFunction} [createInstance]
+ * @param {(languages: string[]) => Promise<Prism>} [createInstance]
  */
 export async function runTestCase (
 	languageIdentifier,
@@ -333,7 +288,7 @@ export async function runTestCase (
  * @param {string} filePath
  * @param {UpdateMethod} updateMode
  * @param {Runner<T>} runner
- * @param {CreateInstanceFunction} createInstance
+ * @param {(languages: string[]) => Promise<Prism>} createInstance
  */
 export async function runTestCaseWithRunner (
 	languageIdentifier,
@@ -492,9 +447,6 @@ function translateIndexIgnoreSpaces (spacey, withoutSpaces, withoutSpaceIndex) {
 }
 
 /**
- * @typedef {import('../../src/core/prism.js').Prism} Prism
- */
-
-/**
- * @typedef {import('../../src/core/classes/token.d.ts').TokenStream} TokenStream
+ * @typedef {import('../../src/core.js').Prism} Prism
+ * @typedef {import('../../src/types.d.ts').TokenStream} TokenStream
  */

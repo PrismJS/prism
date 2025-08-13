@@ -63,8 +63,8 @@ export function createUtil (window) {
 /**
  * @template T
  * @param {object} options
- * @param {string|string[]} [options.languages]
- * @param {T|T[]} [options.plugins]
+ * @param {string | string[]} [options.languages]
+ * @param {T | T[]} [options.plugins]
  * @returns {TestSuite}
  */
 export function createTestSuite (options) {

@@ -1,5 +1,35 @@
-import type { TokenStream } from './core/classes/token.js';
+import type { Token } from './core/classes/token.js';
 import type { Prism } from './core/prism.js';
+
+export interface PrismConfig {
+	manual?: boolean;
+}
+
+export type GlobalConfig = Record<string, PrismConfig[keyof PrismConfig] | null>;
+
+export interface BaseHookEnv {
+	context?: object;
+}
+
+export interface HookEnv extends BaseHookEnv, Record<string, any> {}
+
+export type HookCallback<T extends keyof HookEnv = string> = (env: HookEnv[T]) => void;
+
+export type MultipleHooks<T extends keyof HookEnv> = { [K in T]?: HookCallback<K> };
+
+export type HooksAll = Record<keyof HookEnv, HookCallback[]>;
+
+export type HooksAdd = <Name extends keyof HookEnv>(
+	name: Name | Name[] | MultipleHooks<Name>,
+	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+) => () => void;
+
+export type HooksRemove = <Name extends keyof HookEnv>(
+	name: Name | Name[] | MultipleHooks<Name>,
+	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+) => void;
+
+export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Name]) => void;
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
@@ -84,6 +114,19 @@ export type StandardTokenName =
 
 export type TokenName = (string & {}) | StandardTokenName;
 
+/**
+ * A token stream is an array of strings and {@link Token Token} objects.
+ *
+ * Token streams have to fulfill a few properties that are assumed by most functions (mostly internal ones) that process
+ * them.
+ *
+ * 1. No adjacent strings.
+ * 2. No empty strings.
+ *
+ * The only exception here is the token stream that only contains the empty string and nothing else.
+ */
+export type TokenStream = (string | Token)[];
+
 export type RegExpLike = RegExp & { readonly pattern?: never };
 
 /**
@@ -140,6 +183,11 @@ export type Grammar = GrammarTokens & GrammarSpecial;
 export interface PlainObject {
 	[key: string]: unknown;
 }
+
+export type ForEach = <T extends {}>(
+	value: null | undefined | T | readonly T[],
+	callbackFn: (value: T, index: number) => void
+) => void;
 
 export type KebabToCamelCase<S extends string> = S extends `${infer T}-${infer U}`
 	? `${T}${Capitalize<KebabToCamelCase<U>>}`

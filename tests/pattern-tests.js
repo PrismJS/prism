@@ -517,15 +517,9 @@ function getResultCache (cacheName) {
 
 /**
  * @template T
- * @callback ComputeFn
- * @param {T} node
- * @returns {void}
- */
-
-/**
  * @param {string} cacheName
  * @param {T} cacheKey
- * @param {ComputeFn} compute
+ * @param {(node: T) => void} compute
  * @returns {void}
  */
 function withResultCache (cacheName, cacheKey, compute) {

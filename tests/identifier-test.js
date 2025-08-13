@@ -173,18 +173,12 @@ function testLiterals (getPrism, lang) {
 
 /**
  * @typedef {import('../src/core.js').Prism} Prism
+ * @typedef {import('../src/core.js').Token} Token
+ * @typedef {import('../src/types.d.ts').TokenStream} TokenStream
  */
 
 /**
- * @typedef {import('../src/core/classes/token.d.ts').Token} Token
- */
-
-/**
- * @typedef {import('../src/core/classes/token.d.ts').TokenStream} TokenStream
- */
-
-/**
- * @typedef IdentifierTestOptions
+ * @typedef {object} IdentifierTestOptions
  * @property {boolean} [word=true]
  * @property {boolean} [number=true]
  * @property {boolean} [template=true]

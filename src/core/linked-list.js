@@ -1,18 +1,33 @@
+/**
+ * @template T
+ */
 export class LinkedList {
-	/** @type {LinkedListHeadNode} */
+	/**
+	 * @template T
+	 * @type {LinkedListHeadNode<T>}
+	 */
 	head;
 
-	/** @type {LinkedListTailNode} */
+	/**
+	 * @template T
+	 * @type {LinkedListTailNode<T>}
+	 */
 	tail;
 
 	/** @type {number} */
 	length;
 
 	constructor () {
-		/** @type {LinkedListHeadNode} */
+		/**
+		 * @template T
+		 * @type {LinkedListHeadNode<T>}
+		 */
 		const head = { value: null, prev: null, next: null };
 
-		/** @type {LinkedListTailNode} */
+		/**
+		 * @template T
+		 * @type {LinkedListTailNode<T>}
+		 */
 		const tail = { value: null, prev: head, next: null };
 		head.next = tail;
 
@@ -23,6 +38,10 @@ export class LinkedList {
 
 	/**
 	 * Adds a new node with the given value to the list.
+	 *
+	 * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} node
+	 * @param {T} value
+	 * @returns {LinkedListMiddleNode<T>}
 	 */
 	addAfter (node, value) {
 		// assumes that node != list.tail && values.length >= 0
@@ -39,6 +58,9 @@ export class LinkedList {
 
 	/**
 	 * Removes `count` nodes after the given node. The given node will not be removed.
+	 *
+	 * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} node
+	 * @param {number} count
 	 */
 	removeRange (node, count) {
 		let next = node.next;
@@ -51,6 +73,9 @@ export class LinkedList {
 		this.length -= i;
 	}
 
+	/**
+	 * @returns {T[]}
+	 */
 	toArray () {
 		const array = [];
 		let node = this.head.next;
@@ -63,7 +88,24 @@ export class LinkedList {
 }
 
 /**
- * @typedef {import('./linked-list.d.ts').LinkedListMiddleNode} LinkedListMiddleNode
- * @typedef {import('./linked-list.d.ts').LinkedListHeadNode} LinkedListHeadNode
- * @typedef {import('./linked-list.d.ts').LinkedListTailNode} LinkedListTailNode
+ * @template T
+ * @typedef {object} LinkedListHeadNode
+ * @property {null} value
+ * @property {null} prev
+ * @property {LinkedListMiddleNode<T> | LinkedListTailNode<T>} next
+ */
+/**
+ * @template T
+ * @typedef {object} LinkedListMiddleNode
+ * @property {T} value
+ * @property {LinkedListMiddleNode<T> | LinkedListHeadNode<T>} prev
+ * @property {LinkedListMiddleNode<T> | LinkedListTailNode<T>} next
+ */
+
+/**
+ * @template T
+ * @typedef {object} LinkedListTailNode
+ * @property {null} value
+ * @property {LinkedListMiddleNode<T> | LinkedListHeadNode<T>} prev
+ * @property {null} next
  */

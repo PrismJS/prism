@@ -5,6 +5,9 @@
 export class Hooks {
 	/**
 	 * Internal map of hook names to arrays of callback functions.
+	 *
+	 * @type {HooksAll}
+	 * @private
 	 */
 	_all = {};
 
@@ -19,6 +22,11 @@ export class Hooks {
 	 *
 	 * A callback function must not be registered for the same hook multiple times. Doing so will cause
 	 * undefined behavior. However, registering a callback again after removing it is fine.
+	 *
+	 * @type {HooksAdd}
+	 * @param name Hook name(s) or a map of hook names to callbacks.
+	 * @param callback The callback function which is given environment variables.
+	 * @returns Function that removes the callback when called.
 	 */
 	add (name, callback) {
 		if (Array.isArray(name)) {
@@ -50,6 +58,10 @@ export class Hooks {
 
 	/**
 	 * Removes the given callback from the list of callbacks for the given hook(s).
+	 *
+	 * @type {HooksRemove}
+	 * @param name Hook name(s) or a map of hook names to callbacks.
+	 * @param callback The callback function to remove.
 	 */
 	remove (name, callback) {
 		if (Array.isArray(name)) {
@@ -76,6 +88,10 @@ export class Hooks {
 	 * Runs a hook invoking all registered callbacks with the given environment variables.
 	 *
 	 * Callbacks will be invoked synchronously and in the order in which they were registered.
+	 *
+	 * @type {HooksRun}
+	 * @param name The name of the hook.
+	 * @param env The environment variables of the hook passed to all callbacks registered.
 	 */
 	run (name, env) {
 		const callbacks = this._all[name];
@@ -90,3 +106,10 @@ export class Hooks {
 		}
 	}
 }
+
+/**
+ * @typedef {import('../../types.d.ts').HooksAll} HooksAll
+ * @typedef {import('../../types.d.ts').HooksAdd} HooksAdd
+ * @typedef {import('../../types.d.ts').HooksRemove} HooksRemove
+ * @typedef {import('../../types.d.ts').HooksRun} HooksRun
+ */

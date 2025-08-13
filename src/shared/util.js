@@ -2,8 +2,8 @@
  * Returns a function that caches the result of the given supplier.
  *
  * @template T
- * @param {function(): T} supplier
- * @returns {function(): T}
+ * @param {() => T} supplier
+ * @returns {() => T}
  */
 export function lazy (supplier) {
 	/** @type {T} */
@@ -34,7 +34,7 @@ export function htmlEncode (text) {
 /**
  * A function that does nothing.
  *
- * @type {function(): void | undefined}
+ * @type {() => void | undefined}
  */
 export const noop = () => {
 	/* noop */

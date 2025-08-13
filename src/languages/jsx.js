@@ -182,10 +182,7 @@ export default {
 };
 
 /**
- * @typedef {import('../core/classes/token.d.ts').TokenStream} TokenStream
- */
-
-/**
  * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').TokenStream} TokenStream
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */

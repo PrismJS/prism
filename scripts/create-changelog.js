@@ -5,20 +5,12 @@ import { runTask } from './tasks.js';
 const git = simpleGit(__dirname);
 
 /**
- * @template T
- * @callback CompareFn
- * @param {T} a
- * @param {T} b
- * @returns {number}
- */
-
-/**
  * Creates an array which iterates its items in the order given by `compareFn`.
  *
  * The array may not be sorted at all times.
  *
  * @template T
- * @param {CompareFn} compareFn
+ * @param {(a: T, b: T) => number} compareFn
  * @returns {T[]}
  */
 function createSortedArray (compareFn) {

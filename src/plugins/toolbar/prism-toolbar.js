@@ -3,10 +3,6 @@ import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
 /**
- * @typedef {import('../../core/classes/hooks.d.ts').HookEnv} HookEnv
- */
-
-/**
  * Returns the callback order of the given element.
  *
  * @param {Element} element
@@ -224,17 +220,15 @@ export default Self;
 prism.components.add(Self);
 
 /**
- * @typedef {object} ButtonOptions
- * @property {string} text The text displayed.
- * @property {string} [url] The URL of the link which will be created.
- * @property {OnClickFn} [onClick] The event listener for the `click` event of the created button.
- * @property {string} [className] The class attribute to include with the element.
+ * @typedef {import('../../types.d.ts').HookEnv} HookEnv
  */
 
 /**
- * @callback OnClickFn
- * @param {HookEnv} env
- * @returns {void}
+ * @typedef {object} ButtonOptions
+ * @property {string} text The text displayed.
+ * @property {string} [url] The URL of the link which will be created.
+ * @property {(env: HookEnv) => void} [onClick] The event listener for the `click` event of the created button.
+ * @property {string} [className] The class attribute to include with the element.
  */
 
 /**

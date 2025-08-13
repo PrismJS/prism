@@ -170,24 +170,9 @@ export function embeddedIn (hostGrammar) {
  * @typedef {import('./templating.d.ts').TokenStack} TokenStack
  * @typedef {import('./templating.d.ts').GrammarRef} GrammarRef
  * @typedef {import('./templating.d.ts').EmbeddedInReturnFn} EmbeddedInReturnFn
- */
-
-/**
  * @typedef {import('../../core.js').Prism} Prism
- */
-
-/**
- * @typedef {import('../../core/classes/token.d.ts').Token} Token
- */
-
-/**
- * @typedef {import('../../core/classes/token.d.ts').TokenStream} TokenStream
- */
-
-/**
+ * @typedef {import('../../core.js').Token} Token
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
  * @typedef {import('../../core/registry.js').Registry} Registry
- */
-
-/**
  * @typedef {import('../../types.d.ts').Grammar} Grammar
  */

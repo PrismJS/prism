@@ -76,24 +76,9 @@ export default class Prism {
 
 /**
  * @typedef {import('../../config.d.ts').PrismConfig} PrismConfig
- */
-
-/**
- * @typedef {import('../highlight-all.d.ts').HighlightAllOptions} HighlightAllOptions
- */
-
-/**
- * @typedef {import('../highlight-element.d.ts').HighlightElementOptions} HighlightElementOptions
- */
-
-/**
- * @typedef {import('../highlight.d.ts').HighlightOptions} HighlightOptions
- */
-
-/**
+ * @typedef {import('../highlight-all.js').HighlightAllOptions} HighlightAllOptions
+ * @typedef {import('../highlight-element.js').HighlightElementOptions} HighlightElementOptions
+ * @typedef {import('../highlight.js').HighlightOptions} HighlightOptions
  * @typedef {import('../../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('./token.d.ts').TokenStream} TokenStream
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
  */

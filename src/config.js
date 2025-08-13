@@ -2,7 +2,7 @@ const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement = hasDOM ? document.currentScript : null;
 
 /**
- * @type {import('./config.d.ts').GlobalConfig}
+ * @type {GlobalConfig}
  */
 const globalConfig = globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
 
@@ -44,10 +44,15 @@ function getGlobalBooleanSetting (name, defaultValue) {
 }
 
 /**
- * @type {import('./config.d.ts').PrismConfig}
+ * @type {PrismConfig}
  */
 export const globalDefaults = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
 };
 
 export default globalDefaults;
+
+/**
+ * @typedef {import('./types.d.ts').PrismConfig} PrismConfig
+ * @typedef {import('./types.d.ts').GlobalConfig} GlobalConfig
+ */

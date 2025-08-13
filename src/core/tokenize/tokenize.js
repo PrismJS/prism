@@ -48,13 +48,7 @@ export function tokenize (text, grammar) {
 }
 
 /**
- * @typedef {import('../classes/token.d.ts').TokenStream} TokenStream
- */
-
-/**
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
  * @typedef {import('../../types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('../prism.js').Prism} Prism
  */

@@ -5,6 +5,7 @@ export class Token {
 	 * This is usually the key of a pattern in a {@link Grammar}.
 	 *
 	 * @see {@link GrammarToken}
+	 * @type {TokenName}
 	 */
 	type;
 
@@ -12,6 +13,8 @@ export class Token {
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
+	 *
+	 * @type {string | TokenStream}
 	 */
 	content;
 
@@ -19,6 +22,7 @@ export class Token {
 	 * The alias(es) of the token.
 	 *
 	 * @see {@link GrammarToken#alias}
+	 * @type {TokenName | TokenName[] | undefined}
 	 */
 	alias;
 
@@ -28,11 +32,17 @@ export class Token {
 	 * Only used internally. The API does not guarantee that this field has any particular value or meaning.
 	 *
 	 * @internal
+	 * @type {number}
 	 */
 	length;
 
 	/**
 	 * Creates a new token.
+	 *
+	 * @param {TokenName} type
+	 * @param {string | TokenStream} content
+	 * @param {TokenName | TokenName[]} [alias]
+	 * @param {string} [matchedStr='']
 	 */
 	constructor (type, content, alias, matchedStr = '') {
 		this.type = type;
@@ -43,6 +53,9 @@ export class Token {
 
 	/**
 	 * Adds the given alias to the list of aliases of this token.
+	 *
+	 * @param {TokenName} alias
+	 * @returns {void}
 	 */
 	addAlias (alias) {
 		let aliases = this.alias;
@@ -77,6 +90,6 @@ export function getTextContent (token) {
 }
 
 /**
- * @typedef {import('./token.d.ts').Token} Token
- * @typedef {import('./token.d.ts').TokenStream} TokenStream
+ * @typedef {import('../../types.d.ts').TokenName} TokenName
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
  */

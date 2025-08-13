@@ -6,7 +6,7 @@
  * the given text.
  *
  * @param {TokenStream} tokens
- * @param {TokenizeFunction} tokenize
+ * @param {(code: string) => TokenStream} tokenize
  */
 export function tokenizeStrings (tokens, tokenize) {
 	/**
@@ -53,11 +53,5 @@ export function tokenizeStrings (tokens, tokenize) {
 }
 
 /**
- * @callback TokenizeFunction
- * @param {string} code
- * @returns {TokenStream}
- */
-
-/**
- * @typedef {import('../core/classes/token.d.ts').TokenStream} TokenStream
+ * @typedef {import('../types.d.ts').TokenStream} TokenStream
  */

@@ -4,11 +4,12 @@ import { tokenize } from './tokenize.js';
 import { resolve } from './util.js';
 
 /**
+ * @template T
  * @this {Prism}
  * @param {string} text
- * @param {LinkedList} tokenList
+ * @param {LinkedList<T>} tokenList
  * @param {GrammarTokens} grammar
- * @param {LinkedListHeadNode | LinkedListMiddleNode} startNode
+ * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} startNode
  * @param {number} startPos
  * @param {RematchOptions} [rematch]
  * @returns {void}
@@ -210,33 +211,16 @@ function toGrammarToken (pattern) {
  */
 
 /**
+ * @typedef {import('../prism.js').Prism} Prism
  * @typedef {import('../../types.d.ts').GrammarToken} GrammarToken
- */
-
-/**
  * @typedef {import('../../types.d.ts').GrammarTokens} GrammarTokens
- */
-
-/**
  * @typedef {import('../../types.d.ts').RegExpLike} RegExpLike
  */
 
 /**
- * @typedef {import('../linked-list.d.ts').LinkedList} LinkedList
- */
-
-/**
- * @typedef {import('../linked-list.d.ts').LinkedListHeadNode} LinkedListHeadNode
- */
-
-/**
- * @typedef {import('../linked-list.d.ts').LinkedListMiddleNode} LinkedListMiddleNode
- */
-
-/**
- * @typedef {import('../linked-list.d.ts').LinkedListTailNode} LinkedListTailNode
- */
-
-/**
- * @typedef {import('../prism.js').Prism} Prism
+ * @template T
+ * @typedef {import('../../core/linked-list.js').LinkedList<T>} LinkedList
+ * @typedef {import('../../core/linked-list.js').LinkedListHeadNode<T>} LinkedListHeadNode
+ * @typedef {import('../../core/linked-list.js').LinkedListMiddleNode<T>} LinkedListMiddleNode
+ * @typedef {import('../../core/linked-list.js').LinkedListTailNode<T>} LinkedListTailNode
  */

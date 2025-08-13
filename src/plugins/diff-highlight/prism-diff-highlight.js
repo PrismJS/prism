@@ -2,17 +2,14 @@ import { getTextContent, Token } from '../../core/classes/token.js';
 import prism from '../../global.js';
 import diff, { PREFIXES } from '../../languages/diff.js';
 
-/** @type {import('../../types.d.ts').PluginProto} */
+/** @type {PluginProto} */
 const Self = {
 	id: 'diff-highlight',
 	require: diff,
 	effect (Prism) {
 		const LANGUAGE_REGEX = /^diff-([\w-]+)/i;
 
-		/**
-		 *
-		 * @param {import('../../core/classes/hooks.d.ts').HookEnv} env
-		 */
+		/** @param {HookEnv} env */
 		const setMissingGrammar = env => {
 			const lang = env.language;
 			if (LANGUAGE_REGEX.test(lang) && !env.grammar) {
@@ -136,5 +133,7 @@ export default Self;
 prism.components.add(Self);
 
 /**
- * @typedef {import('../../core/classes/token').TokenStream} TokenStream
+ * @typedef {import('../../types.d.ts').HookEnv} HookEnv
+ * @typedef {import('../../types.d.ts').TokenStream} TokenStream
+ * @typedef {import('../../types.d.ts').PluginProto} PluginProto
  */
