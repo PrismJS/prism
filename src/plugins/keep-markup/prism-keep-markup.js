@@ -4,7 +4,7 @@ import { isActive } from '../../shared/dom-util.js';
 /**
  *
  * @param {ChildNode} child
- * @returns {boolean}
+ * @returns {child is Element}
  */
 function isElement (child) {
 	return child.nodeType === 1;
@@ -13,7 +13,7 @@ function isElement (child) {
 /**
  *
  * @param {ChildNode} child
- * @returns {boolean}
+ * @returns {child is Text}
  */
 function isText (child) {
 	return child.nodeType === 3;

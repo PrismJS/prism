@@ -19,13 +19,11 @@ export class LinkedList {
 
 	constructor () {
 		/**
-		 * @template T
 		 * @type {LinkedListHeadNode<T>}
 		 */
-		const head = { value: null, prev: null, next: null };
+		const head = { value: null, prev: null, next: /** @type {any} */ (null) };
 
 		/**
-		 * @template T
 		 * @type {LinkedListTailNode<T>}
 		 */
 		const tail = { value: null, prev: head, next: null };
@@ -47,7 +45,7 @@ export class LinkedList {
 		// assumes that node != list.tail && values.length >= 0
 		const next = node.next;
 
-		/** @type {LinkedListMiddleNode} */
+		/** @type {LinkedListMiddleNode<T>} */
 		const newNode = { value, prev: node, next };
 		node.next = newNode;
 		next.prev = newNode;

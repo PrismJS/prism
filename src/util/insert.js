@@ -67,20 +67,13 @@ export function insertBefore (grammar, before, insert) {
 
 		// Do not insert tokens which also occur in `insert`. See #1525
 		if (!insert.hasOwnProperty(key)) {
-			/** @type {GrammarToken} */
-			grammar[key] = value;
+			grammar[key] = /** @type {GrammarToken} */ (value);
 		}
 	}
 }
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- */
-
-/**
  * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
  */

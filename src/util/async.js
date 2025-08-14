@@ -1,16 +1,13 @@
 /**
  * @param {Document} [document=globalThis.document]
- * @returns {Promise}
+ * @returns {Promise<any>}
  */
 export function documentReady (document = globalThis.document) {
 	if (!document) {
 		return Promise.reject();
 	}
 
-	/**
-	 * @type {HTMLScriptElement | null}
-	 */
-	const script = document.currentScript;
+	const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
 
 	// If the document state is "loading", then we'll use DOMContentLoaded.
 	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the

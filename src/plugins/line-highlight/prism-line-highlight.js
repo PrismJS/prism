@@ -269,8 +269,8 @@ const Self = {
 		 *
 		 * If this function returns `false`, do not call `highlightLines` for the given element.
 		 *
-		 * @param {HTMLPreElement | null | undefined} pre
-		 * @returns {boolean}
+		 * @param {Element | null | undefined} pre
+		 * @returns {pre is HTMLPreElement}
 		 */
 		function isActiveFor (pre) {
 			if (!pre || !/pre/i.test(pre.nodeName)) {

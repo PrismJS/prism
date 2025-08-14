@@ -159,6 +159,8 @@ export class JsonpHighlight {
 	 * Runs all registered adapters in the order they were registered using
 	 * the given arguments. The result of the first adapter that returns a
 	 * string will be returned and iteration will be stopped.
+	 *
+	 * @param {Parameters<Adapter>} args
 	 */
 	runAdapters (...args) {
 		for (const adapter of this.adapters) {

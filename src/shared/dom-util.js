@@ -73,7 +73,7 @@ export function isActive (element, className, defaultActivation = false) {
 export function getParentPre (element) {
 	const pre = element.parentElement;
 	if (pre && /pre/i.test(pre.nodeName)) {
-		return pre;
+		return /** @type {HTMLPreElement} */ (pre);
 	}
 	return undefined;
 }

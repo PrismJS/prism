@@ -91,7 +91,7 @@ export class FileHighlight {
 	 *
 	 * @param {ParentNode} [container=document] Defaults to `document`.
 	 */
-	highlight (container) {
+	highlight (container = document) {
 		const elements = container.querySelectorAll(SELECTOR);
 
 		for (const element of elements) {

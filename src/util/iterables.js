@@ -39,7 +39,3 @@ export function forEach (value, callbackFn) {
 		callbackFn(value, 0);
 	}
 }
-
-/**
- * @typedef {import('../types.d.ts').ForEach} ForEach
- */

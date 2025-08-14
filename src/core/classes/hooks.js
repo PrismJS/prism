@@ -38,16 +38,16 @@ export class Hooks {
 			// Multiple hooks
 			const hooks = name;
 
-			for (const hookName in hooks) {
-				const hookCallback = hooks[hookName];
-				if (hookCallback) {
-					this.add(hookName, hookCallback);
+			for (const name in hooks) {
+				const callback = hooks[name];
+				if (callback) {
+					this.add(/** @type {string} */ (name), /** @type {HookCallback} */ (callback));
 				}
 			}
 		}
 		else {
 			const hooks = (this._all[name] ??= []);
-			hooks.push(callback);
+			hooks.push(/** @type {never} */ (callback));
 		}
 
 		return () => {
@@ -76,7 +76,7 @@ export class Hooks {
 			}
 		}
 		else {
-			const index = this._all[name]?.indexOf(callback);
+			const index = this._all[name]?.indexOf(/** @type {never} */ (callback));
 			if (index > -1) {
 				this._all[name].splice(index, 1);
 			}
@@ -107,6 +107,7 @@ export class Hooks {
 }
 
 /**
+ * @typedef {import('../../types.d.ts').HookCallback} HookCallback
  * @typedef {import('../../types.d.ts').HooksAll} HooksAll
  * @typedef {import('../../types.d.ts').HooksAdd} HooksAdd
  * @typedef {import('../../types.d.ts').HooksRemove} HooksRemove

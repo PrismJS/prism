@@ -76,13 +76,17 @@ export class Registry {
 			added.add(id);
 
 			// add aliases
+			// @ts-ignore - alias is always there
 			forEach(proto.alias, alias => this.aliasMap.set(alias, id));
 
+			// @ts-ignore
 			if (proto.base) {
+				// @ts-ignore
 				proto.require = [proto.base, ...toArray(proto.require)];
 			}
 
 			// dependencies
+			// @ts-ignore
 			forEach(proto.require, register);
 
 			// add plugin namespace
@@ -163,12 +167,12 @@ export class Registry {
 		const shouldRunEffects = proto => {
 			let depsChanged = false;
 
-			forEach(proto.require, ({ id }) => {
+			forEach(/** @type {any}*/ (proto.require), ({ id }) => {
 				if (performUpdate(id)) {
 					depsChanged = true;
 				}
 			});
-			forEach(proto.optional, id => {
+			forEach(/** @type {any}*/ (proto.optional), id => {
 				if (performUpdate(this.resolveAlias(id))) {
 					depsChanged = true;
 				}
@@ -222,7 +226,6 @@ export class Registry {
 			evaluatedGrammar = grammar;
 		}
 		else {
-			/** @type {import('../types.d.ts').GrammarOptions} */
 			const options = {
 				getLanguage: required,
 				getOptionalLanguage: id => this.getLanguage(id),
@@ -230,7 +233,7 @@ export class Registry {
 				...(baseGrammar && { base: baseGrammar }),
 			};
 
-			evaluatedGrammar = grammar(options);
+			evaluatedGrammar = grammar(/** @type {any} */ (options));
 		}
 
 		if (baseGrammar) {
@@ -250,12 +253,6 @@ export class Registry {
 
 /**
  * @typedef {import('../types.d.ts').ComponentProto} ComponentProto
- */
-
-/**
  * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('./prism.js').Prism} Prism
  */

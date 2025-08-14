@@ -132,7 +132,9 @@ export class Toolbar {
 		let elementCallbacks = this.callbacks;
 		const order = getOrder(env.element);
 		if (order) {
-			elementCallbacks = order.map(key => this.map.get(key) || noop);
+			elementCallbacks = /** @type {ButtonFactory[]} */ (
+				order.map(key => this.map.get(key) || noop)
+			);
 		}
 
 		elementCallbacks.forEach(callback => {
@@ -179,7 +181,7 @@ const label = env => {
 	}
 
 	if (template) {
-		element = template.content;
+		element = /** @type {HTMLTemplateElement} */ (template).content;
 	}
 	else {
 		const url = pre.getAttribute('data-url');
@@ -218,6 +220,7 @@ prism.components.add(Self);
 
 /**
  * @typedef {import('../../types.d.ts').HookEnv} HookEnv
+ * @typedef {import('../../types.d.ts').HookCallback} HookCallback
  */
 
 /**

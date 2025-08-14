@@ -5,8 +5,7 @@ import { toArray } from '../../util/iterables.js';
 
 function getDefaultSrcPath () {
 	if (typeof document !== 'undefined') {
-		/** @type {HTMLScriptElement | null} */
-		const script = document.currentScript;
+		const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
 		if (script) {
 			const autoloaderFile =
 				/\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
@@ -60,7 +59,7 @@ export class Autoloader {
 	srcPath = getDefaultSrcPath();
 
 	/**
-	 * @type {Map<string, Promise}
+	 * @type {Map<string, Promise<any>>}
 	 */
 	_importCache = new Map();
 

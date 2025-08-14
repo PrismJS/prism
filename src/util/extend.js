@@ -116,7 +116,7 @@ export function cloneGrammar (grammar, id) {
 
 			// tokens
 			for (const [key, tokens] of Object.entries(value)) {
-				mapped[key] = cloneTokens(tokens);
+				mapped[key] = cloneTokens(/** @type {GrammarToken[]} */ (tokens));
 			}
 
 			// rest
@@ -139,16 +139,7 @@ export function cloneGrammar (grammar, id) {
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
- */
-
-/**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- */
-
-/**
  * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
- */
-
-/**
  * @typedef {import('../types.d.ts').RegExpLike} RegExpLike
  */

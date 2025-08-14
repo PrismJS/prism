@@ -83,6 +83,8 @@ class Previewer {
 	}
 	/**
 	 * Creates the HTML element for the previewer.
+	 *
+	 * @returns {asserts this is PreviewerE}
 	 */
 	init () {
 		if (this._elt) {
@@ -92,7 +94,7 @@ class Previewer {
 		this._elt.className = 'prism-previewer prism-previewer-' + this.type;
 		document.body.appendChild(this._elt);
 		if (this.initializer) {
-			this.initializer.call(this);
+			this.initializer.call(/** @type {PreviewerE} */ (this));
 		}
 	}
 
@@ -222,7 +224,7 @@ export class PreviewerCollection {
 				const target = e.target;
 				if (target) {
 					previewers.forEach(previewer => {
-						previewer.tryShow(target);
+						previewer.tryShow(/** @type {Element} */ (target));
 					});
 				}
 			},
@@ -329,19 +331,22 @@ const previewers = {
 					if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 						// Found a position
 						// Remove angle value, if any
-						position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
+						position = /** @type {string} */ (values.shift()).replace(
+							/\s*-?\d+(?:deg|rad)\s*/,
+							''
+						);
 					}
 					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 						// Found a shape and/or size
-						const shapeSizeParts = values.shift().split(/\s+/);
+						const shapeSizeParts = /** @type {string} */ (values.shift()).split(/\s+/);
 						if (
 							shapeSizeParts[0] &&
 							(shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')
 						) {
-							shape = shapeSizeParts.shift();
+							shape = /** @type {string} */ (shapeSizeParts.shift());
 						}
 						if (shapeSizeParts[0]) {
-							size = shapeSizeParts.shift();
+							size = /** @type {string} */ (shapeSizeParts.shift());
 						}
 
 						// Old keywords are converted to their synonyms
@@ -411,8 +416,7 @@ const previewers = {
 			return new Previewer(
 				'gradient',
 				function (value) {
-					/** @type {HTMLElement | null} */
-					const first = this.firstChild;
+					const first = /** @type {HTMLElement | null} */ (this.firstChild);
 					if (!first) {
 						return false;
 					}

@@ -177,7 +177,6 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
  * @param {number} pos
  * @param {string} text
  * @param {boolean} lookbehind
- * @returns {string[] | null}
  */
 function matchPattern (pattern, pos, text, lookbehind) {
 	pattern.lastIndex = pos;
@@ -220,7 +219,19 @@ function toGrammarToken (pattern) {
 /**
  * @template T
  * @typedef {import('../../core/linked-list.js').LinkedList<T>} LinkedList
+ */
+
+/**
+ * @template T
  * @typedef {import('../../core/linked-list.js').LinkedListHeadNode<T>} LinkedListHeadNode
+ */
+
+/**
+ * @template T
  * @typedef {import('../../core/linked-list.js').LinkedListMiddleNode<T>} LinkedListMiddleNode
+ */
+
+/**
+ * @template T
  * @typedef {import('../../core/linked-list.js').LinkedListTailNode<T>} LinkedListTailNode
  */

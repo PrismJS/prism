@@ -124,7 +124,7 @@ export class NormalizeWhitespace {
 
 	/**
 	 * @param {string} input
-	 * @param {object} settings
+	 * @param {object} [settings]
 	 * @returns {string}
 	 */
 	normalize (input, settings) {

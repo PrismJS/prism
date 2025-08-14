@@ -39,42 +39,44 @@ function resizeElements (elements) {
 		return;
 	}
 
-	/** @type {Info[]} */
-	const infos = elements
-		.map(element => {
-			const codeElement = element.querySelector('code');
-			const lineNumbersWrapper = getLineNumbersRows(element);
-			if (!codeElement || !lineNumbersWrapper) {
-				return undefined;
-			}
+	const infos = /** @type {Info[]} */ (
+		elements
+			.map(element => {
+				const codeElement = element.querySelector('code');
+				const lineNumbersWrapper = getLineNumbersRows(element);
+				if (!codeElement || !lineNumbersWrapper) {
+					return undefined;
+				}
 
-			/** @type {HTMLElement | null} */
-			let lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			const codeLines = codeElement.textContent.split(NEW_LINE_EXP);
+				/** @type {HTMLElement | null} */
+				let lineNumberSizer = element.querySelector('.line-numbers-sizer');
+				// @ts-expect-error - codeElement.textContent is not null
+				const codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
-			if (!lineNumberSizer) {
-				lineNumberSizer = document.createElement('span');
-				lineNumberSizer.className = 'line-numbers-sizer';
+				if (!lineNumberSizer) {
+					lineNumberSizer = document.createElement('span');
+					lineNumberSizer.className = 'line-numbers-sizer';
 
-				codeElement.appendChild(lineNumberSizer);
-			}
+					codeElement.appendChild(lineNumberSizer);
+				}
 
-			lineNumberSizer.innerHTML = '0';
-			lineNumberSizer.style.display = 'block';
+				lineNumberSizer.innerHTML = '0';
+				lineNumberSizer.style.display = 'block';
 
-			const oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
-			lineNumberSizer.innerHTML = '';
+				const oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
+				lineNumberSizer.innerHTML = '';
 
-			return {
-				element,
-				lines: codeLines,
-				lineHeights: [],
-				oneLinerHeight,
-				sizer: lineNumberSizer,
-				wrapper: lineNumbersWrapper,
-			};
-		})
-		.filter(isNonNull);
+				return {
+					element,
+					lines: codeLines,
+					lineHeights: [],
+					oneLinerHeight,
+					sizer: lineNumberSizer,
+					wrapper: lineNumbersWrapper,
+				};
+			})
+			.filter(isNonNull)
+	);
 
 	infos.forEach(info => {
 		const lineNumberSizer = info.sizer;
@@ -116,8 +118,7 @@ function resizeElements (elements) {
 
 		info.lineHeights.forEach((height, lineNumber) => {
 			if (height !== undefined) {
-				/** @type {HTMLElement} */
-				const child = info.wrapper.children[lineNumber];
+				const child = /** @type {HTMLElement} */ (info.wrapper.children[lineNumber]);
 				child.style.height = `${height}px`;
 			}
 		});
@@ -163,7 +164,7 @@ export class LineNumbers {
 
 		const lineIndex = number - lineNumberStart;
 
-		return lineNumberRows.children[lineIndex];
+		return /** @type {HTMLElement} */ (lineNumberRows.children[lineIndex]);
 	}
 
 	/**
@@ -182,7 +183,7 @@ export class LineNumbers {
 			return;
 		}
 
-		return [...lineNumberRows.children];
+		return /** @type {HTMLElement[]} */ ([...lineNumberRows.children]);
 	}
 
 	/**
