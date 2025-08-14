@@ -27,7 +27,7 @@ export default {
 				pattern: /(\basm\b)[\s\S]+?(?=\bend\s*[;[])/i,
 				lookbehind: true,
 				greedy: true,
-				inside: null, // see below
+				inside: /** @type {GrammarToken['inside']} */ (null), // see below
 			},
 			'keyword': [
 				{
@@ -81,3 +81,7 @@ export default {
 		return pascal;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

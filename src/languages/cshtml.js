@@ -166,11 +166,15 @@ export default {
 			},
 		};
 
-		const tag = cshtml.tag;
+		const tag = /** @type {GrammarToken} */ (cshtml.tag);
 		tag.pattern = RegExp(/<\/?/.source + tagContent);
-		const attrValue = tag.inside['attr-value'];
+		const attrValue = /** @type {GrammarToken} */ (
+			/** @type {Grammar} */ (tag.inside)['attr-value']
+		);
 		attrValue.pattern = RegExp(/=\s*/.source + tagAttrValue);
-		insertBefore(attrValue.inside, 'punctuation', { 'value': inlineValue });
+		insertBefore(/** @type {Grammar} */ (attrValue.inside), 'punctuation', {
+			'value': inlineValue,
+		});
 
 		insertBefore(cshtml, 'prolog', {
 			'razor-comment': {
@@ -258,3 +262,8 @@ export default {
 		return cshtml;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

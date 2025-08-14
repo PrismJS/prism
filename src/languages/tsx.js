@@ -16,8 +16,7 @@ export default {
 		// This will prevent collisions between TSX tags and TS generic types.
 		// Idea by https://github.com/karlhorky
 		// Discussion: https://github.com/PrismJS/prism/issues/2594#issuecomment-710666928
-		/** @type {import('../types.d.ts').GrammarToken} */
-		const tag = tsx.tag;
+		const tag = /** @type {import('../types.d.ts').GrammarToken} */ (tsx.tag);
 		tag.pattern = RegExp(
 			/(^|[^\w$]|(?=<\/))/.source + '(?:' + tag.pattern.source + ')',
 			tag.pattern.flags

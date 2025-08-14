@@ -102,7 +102,7 @@ export default {
 			'script': inlineEmbedded('script', 'javascript'),
 		});
 
-		const tag = base.tag;
+		const tag = /** @type {GrammarToken & { inside: Grammar }} */ (base.tag);
 		insertBefore(tag.inside, 'attr-value', {
 			'special-attr': [
 				attributeEmbedded('style', 'css'),
@@ -122,4 +122,5 @@ export default {
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ * @typedef {import('../types.d.ts').Grammar} Grammar
  */

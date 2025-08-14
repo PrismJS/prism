@@ -1,6 +1,6 @@
 /**
  * @param {string} lang
- * @param {string} pattern
+ * @param {string} [pattern]
  * @returns {import('../types.d.ts').GrammarToken}
  */
 function createLanguageString (lang, pattern) {

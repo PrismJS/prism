@@ -6,7 +6,7 @@ export default {
 	id: 'actionscript',
 	base: javascript,
 	grammar ({ base }) {
-		const className = base['class-name'];
+		const className = /** @type {GrammarToken} */ (base['class-name']);
 		className.alias = 'function';
 
 		delete base['doc-comment'];
@@ -31,3 +31,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

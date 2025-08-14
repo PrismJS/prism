@@ -287,8 +287,7 @@ export default {
 			},
 		});
 
-		/** @type {import('../types.d.ts').GrammarToken} */
-		const string = base['string'];
+		const string = /** @type {import('../types.d.ts').GrammarToken} */ (base['string']);
 		string.inside = {
 			url: {
 				// url pattern

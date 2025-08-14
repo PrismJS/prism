@@ -111,16 +111,16 @@ export default {
 	id: 'xquery',
 	base: markup,
 	grammar ({ base }) {
-		/** @type {GrammarToken} */
-		const tag = base['tag'];
+		const tag = /** @type {GrammarToken} */ (base['tag']);
 		tag.pattern =
 			/<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
 
-		/** @type {GrammarToken} */
-		const attrValue = tag.inside['attr-value'];
+		const attrValue = /** @type {GrammarToken} */ (
+			/** @type {Grammar} */ (tag.inside)['attr-value']
+		);
 		attrValue.pattern =
 			/=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
-		const attrValueInside = attrValue.inside;
+		const attrValueInside = /** @type {Grammar} */ (attrValue.inside);
 		attrValueInside['punctuation'] = /^="|"$/;
 		attrValueInside['expression'] = {
 			// Allow for two levels of nesting
@@ -199,4 +199,5 @@ export default {
 /**
  * @typedef {import('../types.d.ts').TokenStream} TokenStream
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ * @typedef {import('../types.d.ts').Grammar} Grammar
  */

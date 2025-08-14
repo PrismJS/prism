@@ -22,8 +22,9 @@ export default {
 			},
 		});
 
-		/** @type {import('../types.d.ts').GrammarToken} */
-		const fnVariable = base['function-variable'];
+		const fnVariable = /** @type {import('../types.d.ts').GrammarToken} */ (
+			base['function-variable']
+		);
 		fnVariable.pattern =
 			/(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/i;
 

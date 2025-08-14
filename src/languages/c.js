@@ -31,7 +31,7 @@ export default {
 							pattern: /^(#\s*include\s*)<[^>]+>/,
 							lookbehind: true,
 						},
-						base['string'],
+						/** @type {GrammarToken} */ (base['string']),
 					],
 					'char': base['char'],
 					'comment': base['comment'],
@@ -101,3 +101,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */
