@@ -341,7 +341,7 @@ async function getFilePath (uri) {
 
 /**
  *
- * @param {*} candidates
+ * @param {Iterable<[string, () => void]>} candidates
  * @param {Options} options
  * @returns {Result[]}
  */
@@ -412,18 +412,12 @@ function getWorst (results) {
 }
 
 /**
- * @callback CreateTestFunctionResult
- * @param {string} code
- * @returns {void}
- */
-
-/**
  * Create a new test function from the given Prism instance.
  *
  * @param {Prism} Prism
  * @param {string} mainLanguage
  * @param {string} testFunction
- * @returns {CreateTestFunctionResult}
+ * @returns {(code: string) => void}
  */
 function createTestFunction (Prism, mainLanguage, testFunction) {
 	if (testFunction === 'tokenize') {
@@ -443,17 +437,9 @@ function createTestFunction (Prism, mainLanguage, testFunction) {
 }
 
 /**
- * @callback CandidateSetupFn
- *
- * @param {string} mainLanguage
- * @param {string[]} languages
- * @returns {Promise<CreateTestFunctionResult>}
- */
-
-/**
  * @typedef {object} Candidate
  * @property {string} name
- * @property {CandidateSetupFn} setup
+ * @property {(mainLanguage: string, languages: string[]) => Promise<(code: string) => void>} setup
  */
 
 /**
@@ -521,7 +507,7 @@ async function getCandidates (config) {
 /**
  * A utility function that converts the given optional array-like value into an array.
  *
- * @template T
+ * @template {{}} T
  * @param {T[] | T | undefined | null} value
  * @returns {T[]}
  */
