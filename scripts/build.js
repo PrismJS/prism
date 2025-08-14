@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
@@ -346,32 +346,6 @@ async function copyComponentsJson () {
 	await copyFile(from, to);
 }
 
-/**
- * Recursively find all files with a given extension in a directory.
- *
- * @param {string} dir
- * @param {string} [ext='.js']
- * @returns {Promise<string[]>}
- */
-async function findFiles (dir, ext = '.js') {
-	const files = [];
-	const items = await readdir(dir);
-
-	for (const item of items) {
-		const fullPath = path.join(dir, item);
-		const stats = await stat(fullPath);
-
-		if (stats.isDirectory()) {
-			files.push(...(await findFiles(fullPath)));
-		}
-		else if (path.extname(item) === ext) {
-			files.push(fullPath);
-		}
-	}
-
-	return files;
-}
-
 async function buildTypes () {
 	await mkdir('./types');
 
@@ -382,14 +356,18 @@ async function buildTypes () {
 		typeFiles.map(file => copyFile(path.join(SRC_DIR, file), path.join('./types', file)))
 	);
 
-	/** @type {import('typescript').CompilerOptions} */
+	const configPath = ts.findConfigFile('./', ts.sys.fileExists, 'tsconfig.json');
+
+	if (!configPath) {
+		throw new Error('Could not find tsconfig.json');
+	}
+
+	const configFile = ts.readConfigFile(configPath, ts.sys.readFile);
+	const parsedConfig = ts.parseJsonConfigFileContent(configFile.config, ts.sys, './');
+
+	/** @type {ts.CompilerOptions} */
 	const compilerOptions = {
-		target: ts.ScriptTarget.ES2022,
-		module: ts.ModuleKind.ES2022,
-		moduleResolution: ts.ModuleResolutionKind.Node,
-		esModuleInterop: true,
-		allowJs: true,
-		checkJs: false,
+		...parsedConfig.options,
 		declaration: true,
 		emitDeclarationOnly: true,
 		outDir: './types',
@@ -398,10 +376,7 @@ async function buildTypes () {
 		noEmitOnError: false,
 	};
 
-	// Get all .js files from the src directory
-	const files = await findFiles(SRC_DIR);
-
-	const program = ts.createProgram(files, compilerOptions);
+	const program = ts.createProgram(parsedConfig.fileNames, compilerOptions);
 
 	program.emit();
 }
