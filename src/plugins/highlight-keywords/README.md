@@ -39,7 +39,7 @@ This example shows the plugin in action. The keywords `if` and `return` will be 
 
 ## JavaScript
 
-<pre data-src="./prism-highlight-keywords.js"></pre>
+<pre data-src="./highlight-keywords.js"></pre>
 
 ## HTML (Markup)
 

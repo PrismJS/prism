@@ -40,7 +40,7 @@ eleventyExcludeFromCollections: true
 </section>
 
 <script src="https://dev.prismjs.com/prism.js"></script>
-<script src="./prism-normalize-whitespace.js"></script>
+<script src="./normalize-whitespace.js"></script>
 <script>
 // Optional
 Prism.plugins.NormalizeWhitespace.setDefaults({

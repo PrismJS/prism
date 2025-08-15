@@ -1,5 +1,5 @@
 import prism from '../../global.js';
-import toolbar from '../toolbar/prism-toolbar.js';
+import toolbar from '../toolbar/toolbar.js';
 
 /**
  * When the given elements is clicked by the user, the given text will be copied to clipboard.
@@ -131,7 +131,7 @@ const Self = {
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect (Prism) {
-		/** @type {import('../toolbar/prism-toolbar.js').Toolbar} */
+		/** @type {import('../toolbar/toolbar.js').Toolbar} */
 		const toolbar = Prism.plugins.toolbar;
 
 		return toolbar.registerButton('copy-to-clipboard', env => {

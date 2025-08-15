@@ -5,8 +5,8 @@ owner: nauzilus
 require: toolbar
 noCSS: true
 resources:
-  - ../toolbar/prism-toolbar.css
-  - ../toolbar/prism-toolbar.js { type="module" }
+  - ../toolbar/toolbar.css
+  - ../toolbar/toolbar.js { type="module" }
 ---
 
 <section>
@@ -15,11 +15,11 @@ resources:
 
 ## JavaScript
 
-<pre data-src="./prism-show-language.js"></pre>
+<pre data-src="./show-language.js"></pre>
 
 ## CSS
 
-<pre data-src="../toolbar/prism-toolbar.css"></pre>
+<pre data-src="../toolbar/toolbar.css"></pre>
 
 ## HTML (Markup)
 

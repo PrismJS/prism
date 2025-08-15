@@ -9,7 +9,7 @@ const Self = {
 		 * @param {string} name
 		 */
 		function mapClassName (name) {
-			/** @type {import('../custom-class/prism-custom-class.js').CustomClass} */
+			/** @type {import('../custom-class/custom-class.js').CustomClass} */
 			const customClass = Prism.plugins.customClass;
 			if (customClass) {
 				return customClass.apply(name);

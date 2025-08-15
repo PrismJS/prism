@@ -44,13 +44,13 @@ Optional: To support multiline line numbers using soft wrap, apply the CSS `whit
 
 ## JavaScript
 
-<pre class="line-numbers" data-src="./prism-line-numbers.js"></pre>
+<pre class="line-numbers" data-src="./line-numbers.js"></pre>
 
 ## CSS
 
 Please note that this `<pre>` does not have the `line-numbers` class but its parent does.
 
-<pre data-src="./prism-line-numbers.css"></pre>
+<pre data-src="./line-numbers.css"></pre>
 
 ## HTML
 

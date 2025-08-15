@@ -5,8 +5,8 @@ owner: Golmote
 require: toolbar
 noCSS: true
 resources:
-  - ../toolbar/prism-toolbar.css
-  - ../toolbar/prism-toolbar.js { type="module" }
+  - ../toolbar/toolbar.css
+  - ../toolbar/toolbar.js { type="module" }
 ---
 
 <section class="language-markup">
@@ -32,7 +32,7 @@ Optionally, the text of the button can also be customized by using a `data-downl
 # Examples
 
 The plugin’s JS code:
-<pre data-src="./prism-download-button.js" data-download-link data-download-link-label="Download the code!"></pre>
+<pre data-src="./download-button.js" data-download-link data-download-link-label="Download the code!"></pre>
 
 This page:
 <pre data-src="./index.html" data-download-link></pre>

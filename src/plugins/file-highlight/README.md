@@ -4,8 +4,8 @@ description: Fetch external files and highlight them with Prism. Used on the Pri
 owner: LeaVerou
 noCSS: true
 resources:
-  - ../line-numbers/prism-line-numbers.css
-  - ../line-numbers/prism-line-numbers.js { type="module" }
+  - ../line-numbers/line-numbers.css
+  - ../line-numbers/line-numbers.js { type="module" }
 ---
 
 <section class="language-markup">
@@ -40,7 +40,7 @@ Please note that the files are fetched with XMLHttpRequest. This means that if t
 
 The plugin’s JS code:
 
-<pre data-src="./prism-file-highlight.js"></pre>
+<pre data-src="./file-highlight.js"></pre>
 
 This page:
 
@@ -52,7 +52,7 @@ File that doesn’t exist:
 
 With line numbers, and `data-range="12,111"`:
 
-<pre data-src="./prism-file-highlight.js" data-range="12,111" class="line-numbers"></pre>
+<pre data-src="./file-highlight.js" data-range="12,111" class="line-numbers"></pre>
 
 For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.
 

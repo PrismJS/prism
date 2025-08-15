@@ -41,7 +41,7 @@ const themeIds = fs
 async function loadComponent (id) {
 	let file;
 	if (pluginIds.includes(id)) {
-		file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`);
+		file = path.join(SRC_DIR, `plugins/${id}/${id}.js`);
 	}
 	else {
 		file = path.join(SRC_DIR, `languages/${id}.js`);
@@ -58,9 +58,9 @@ async function minifyCSS () {
 	}
 
 	for (const id of pluginIds) {
-		const file = path.join(SRC_DIR, `plugins/${id}/prism-${id}.css`);
+		const file = path.join(SRC_DIR, `plugins/${id}/${id}.css`);
 		if (fs.existsSync(file)) {
-			input[`plugins/prism-${id}.css`] = file;
+			input[`plugins/${id}.css`] = file;
 		}
 	}
 
@@ -136,7 +136,7 @@ async function treeviewIconFont () {
 }
 `.trim();
 
-	const cssPath = 'src/plugins/treeview-icons/prism-treeview-icons.css';
+	const cssPath = 'src/plugins/treeview-icons/treeview-icons.css';
 	const fontFaceRegex =
 		/\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
 
@@ -391,7 +391,7 @@ async function buildJS () {
 		input[`languages/${id}`] = path.join(SRC_DIR, `languages/${id}.js`);
 	}
 	for (const id of pluginIds) {
-		input[`plugins/prism-${id}`] = path.join(SRC_DIR, `plugins/${id}/prism-${id}.js`);
+		input[`plugins/${id}`] = path.join(SRC_DIR, `plugins/${id}/${id}.js`);
 	}
 
 	/** @type {RollupOptions} */
@@ -488,11 +488,7 @@ async function calculateFileSizes () {
 					continue;
 				}
 
-				const filePath = path.join(
-					DIST_DIR,
-					category,
-					category === 'plugins' ? `prism-${id}` : id
-				);
+				const filePath = path.join(DIST_DIR, category, id);
 				ret[category][id][ext] = await getFileSize(`${filePath}.${ext}`);
 			}
 		}

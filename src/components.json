@@ -1331,7 +1331,7 @@
 	},
 	"plugins": {
 		"meta": {
-			"path": "plugins/{id}/prism-{id}",
+			"path": "plugins/{id}/{id}",
 			"link": "plugins/{id}/"
 		},
 		"line-highlight": {

@@ -1,5 +1,5 @@
 import Prism from './global.js';
-import autoloader from './plugins/autoloader/prism-autoloader.js';
+import autoloader from './plugins/autoloader/autoloader.js';
 import { documentReady } from './util/async.js';
 
 Prism.components.add(autoloader);

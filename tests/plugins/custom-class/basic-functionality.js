@@ -70,5 +70,5 @@ describe('Custom class', () => {
 });
 
 /**
- * @typedef {import('../../../src/plugins/custom-class/prism-custom-class').CustomClass} CustomClass
+ * @typedef {import('../../../src/plugins/custom-class/custom-class.js').CustomClass} CustomClass
  */

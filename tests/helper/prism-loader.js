@@ -34,7 +34,7 @@ export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds(
  */
 async function getComponentUncached (id) {
 	if (getPluginIds().includes(id)) {
-		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.js`);
+		const file = path.join(SRC_DIR, 'plugins', id, `${id}.js`);
 		const exports = await import(file);
 		return exports.default;
 	}

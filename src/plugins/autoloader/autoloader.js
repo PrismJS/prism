@@ -8,7 +8,7 @@ function getDefaultSrcPath () {
 		const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
 		if (script) {
 			const autoloaderFile =
-				/\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+				/\bplugins\/autoloader\/autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 			const prismFile = /(^|\/)[\w-]+\.(?:min\.)?m?js(?:\?[^\r\n/]*)?$/i;
 
 			const autoloaderPath = script.getAttribute('data-autoloader-path');

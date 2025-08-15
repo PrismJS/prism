@@ -22,6 +22,11 @@
 			"import": "./dist/languages/*.js",
 			"require": "./dist/cjs/languages/*.js"
 		},
+		"./plugins/*": {
+			"types": "./types/plugins/*.d.ts",
+			"import": "./dist/plugins/*.js",
+			"require": "./dist/cjs/plugins/*.js"
+		},
 		"./themes/*": "./dist/themes/*.css",
 		"./components.json": "./dist/components.json"
 	},

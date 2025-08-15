@@ -6,9 +6,9 @@ require: toolbar
 noCSS: true
 body_classes: language-text
 resources:
-  - ../autoloader/prism-autoloader.js { type="module" }
-  - ../toolbar/prism-toolbar.css
-  - ../toolbar/prism-toolbar.js { type="module" }
+  - ../autoloader/autoloader.js { type="module" }
+  - ../toolbar/toolbar.css
+  - ../toolbar/toolbar.js { type="module" }
 ---
 
 <section>

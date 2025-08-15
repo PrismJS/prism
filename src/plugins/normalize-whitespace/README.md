@@ -5,7 +5,7 @@ owner: zeitgeist87
 optional: unescaped-markup
 noCSS: true
 body_classes: language-markup
-resources: ../keep-markup/prism-keep-markup.js { type="module" }
+resources: ../keep-markup/keep-markup.js { type="module" }
 ---
 
 <style type="text/css">
@@ -138,7 +138,7 @@ This plugin can also be used on the server or on the command line with Node.js:
 
 ```js
 let Prism = require("prismjs");
-let Normalizer = require("prismjs/plugins/normalize-whitespace/prism-normalize-whitespace");
+let Normalizer = require("prismjs/plugins/normalize-whitespace/normalize-whitespace");
 // Create a new Normalizer object
 let nw = new Normalizer({
 	"remove-trailing": true,

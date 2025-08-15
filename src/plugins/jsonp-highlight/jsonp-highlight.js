@@ -291,7 +291,7 @@ const Self = {
 				code.className = 'language-' + language;
 
 				// preload the language
-				/** @type {import('../autoloader/prism-autoloader.js').Autoloader} */
+				/** @type {import('../autoloader/autoloader.js').Autoloader} */
 				const autoloader = Prism.plugins.autoloader;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);

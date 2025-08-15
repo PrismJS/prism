@@ -15,13 +15,13 @@ The Toolbar plugin allows for several methods to register your button, using the
 The simplest method is through the HTML API. Add a `data-label` attribute to the `pre` element, and the Toolbar plugin will read the value of that attribute and append a label to the code snippet.
 
 ```html { data-label="Hello World!" }
-<pre data-src="./prism-toolbar.js" data-label="Hello World!"></pre>
+<pre data-src="./toolbar.js" data-label="Hello World!"></pre>
 ```
 
 If you want to provide arbitrary HTML to the label, create a `template` element with the HTML you want in the label, and provide the `template` element's `id` to `data-label`. The Toolbar plugin will use the template's content for the button. You can also use to declare your event handlers inline:
 
 ```html { data-label="my-label-button" }
-<pre data-src="./prism-toolbar.js" data-label="my-label-button"></pre>
+<pre data-src="./toolbar.js" data-label="my-label-button"></pre>
 ```
 
 ```html
@@ -35,8 +35,8 @@ For more flexibility, the Toolbar exposes a JavaScript function that can be used
 The function accepts a key for the button and an object with a `text` property string and an optional `onClick` function or a `url` string. The `onClick` function will be called when the button is clicked, while the `url` property will be set to the anchor tag's `href`.
 
 ```js
-Prism.plugins.toolbar.registerButton("hello-world", {
-	text: "Hello World!", // required
+Prism.plugins.toolbar.registerButton('hello-world', {
+	text: 'Hello World!', // required
 	onClick: function (env) {
 		// optional
 		alert(`This code snippet is written in ${env.language}.`);
@@ -49,19 +49,18 @@ See how the above code registers the `Hello World!` button? You can use this in 
 If you need more control, you can provide a function to `registerButton` that returns either a `span`, `a`, or `button` element.
 
 ```js
-Prism.plugins.toolbar.registerButton("select-code", env => {
-	let button = document.createElement("button");
-	button.innerHTML = "Select Code";
+Prism.plugins.toolbar.registerButton('select-code', env => {
+	let button = document.createElement('button');
+	button.innerHTML = 'Select Code';
 
-	button.addEventListener("click", () => {
+	button.addEventListener('click', () => {
 		// Source: http://stackoverflow.com/a/11128179/2757940
 		if (document.body.createTextRange) {
 			// ms
 			let range = document.body.createTextRange();
 			range.moveToElementText(env.element);
 			range.select();
-		}
-		else if (window.getSelection) {
+		} else if (window.getSelection) {
 			// moz, opera, webkit
 			let selection = window.getSelection();
 			let range = document.createRange();

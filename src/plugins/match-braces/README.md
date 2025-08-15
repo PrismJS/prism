@@ -2,7 +2,7 @@
 title: Match braces
 description: Highlights matching braces.
 owner: RunDevelopment
-resources: ../autoloader/prism-autoloader.js { type="module" }
+resources: ../autoloader/autoloader.js { type="module" }
 ---
 
 <section class="language-markup">
@@ -35,7 +35,7 @@ To enable rainbow braces, simply add the `rainbow-braces` class to a code block.
 
 ## JavaScript
 
-<pre data-src="./prism-match-braces.js"></pre>
+<pre data-src="./match-braces.js"></pre>
 
 ```js
 const func = (a, b) => {

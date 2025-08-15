@@ -397,5 +397,5 @@ prism.components.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism
- * @typedef {import('../line-numbers/prism-line-numbers.js').LineNumbers} LineNumbers
+ * @typedef {import('../line-numbers/line-numbers.js').LineNumbers} LineNumbers
  */

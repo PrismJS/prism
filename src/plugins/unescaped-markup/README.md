@@ -83,7 +83,7 @@ View source to see that the following didn’t need escaping (except for <code>&
 </section>
 
 <script src="https://dev.prismjs.com/prism.js">&lt;/script>
-<script src="unescaped-markup/prism-unescaped-markup.js">&lt;/script>
+<script src="unescaped-markup/unescaped-markup.js">&lt;/script>
 
 </body>
 </html></script>
@@ -137,7 +137,7 @@ View source to see that the following didn’t need escaping (except for <code>&
 </section>
 
 <script src="https://dev.prismjs.com/prism.js"></script>
-<script src="unescaped-markup/prism-unescaped-markup.js"></script>
+<script src="unescaped-markup/unescaped-markup.js"></script>
 
 </body>
 </html>--></code></pre>

@@ -3,8 +3,8 @@ title: Line Highlight
 description: Highlights specific lines and/or line ranges.
 owner: LeaVerou
 resources:
-  - ../line-numbers/prism-line-numbers.css
-  - ../line-numbers/prism-line-numbers.js { type="module" }
+  - ../line-numbers/line-numbers.css
+  - ../line-numbers/line-numbers.js { type="module" }
 ---
 
 <section class="language-markup">
@@ -52,19 +52,19 @@ If line numbers are also enabled for a code block and the `<pre>` element has an
 
 ## Line 2
 
-<pre data-line="2" data-src="./prism-line-highlight.js" id="play"></pre>
+<pre data-line="2" data-src="./line-highlight.js" id="play"></pre>
 
 ## Lines 15-25
 
-<pre data-line="15-25" data-src="./prism-line-highlight.js"></pre>
+<pre data-line="15-25" data-src="./line-highlight.js"></pre>
 
 ## Line 1 and lines 3-4 and line 42
 
-<pre data-line="1,3-4,42" data-src="./prism-line-highlight.js"></pre>
+<pre data-line="1,3-4,42" data-src="./line-highlight.js"></pre>
 
 ## Line 43, starting from line 41
 
-<pre data-line="43" data-line-offset="40" data-src="./prism-line-highlight.js"></pre>
+<pre data-line="43" data-line-offset="40" data-src="./line-highlight.js"></pre>
 
 [Linking example](#play.50-55,60)
 
@@ -79,6 +79,6 @@ Even with some extra content before the `code` element.
 
 ## With linkable line numbers
 
-<pre id="linkable" class="line-numbers linkable-line-numbers" data-start="20" data-src="./prism-line-highlight.js"></pre>
+<pre id="linkable" class="line-numbers linkable-line-numbers" data-start="20" data-src="./line-highlight.js"></pre>
 
 </section>

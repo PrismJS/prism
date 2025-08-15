@@ -165,8 +165,8 @@ runTask(async () => {
 	 */
 	function notPartlyGenerated (change) {
 		return (
-			change.file !== 'plugins/autoloader/prism-autoloader.js' &&
-			change.file !== 'plugins/show-language/prism-show-language.js'
+			change.file !== 'plugins/autoloader/autoloader.js' &&
+			change.file !== 'plugins/show-language/show-language.js'
 		);
 	}
 
@@ -260,8 +260,8 @@ runTask(async () => {
 				// now, only the newly added JS should be left
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
-					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
-						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
+					if (change.mode === 'A' && change.file.startsWith('components/')) {
+						const lang = change.file.match(/([\w-]+)\.js$/)[1];
 						const entry = languages[lang] || {
 							title: 'REMOVED LANGUAGE ' + lang,
 						};
@@ -293,8 +293,8 @@ runTask(async () => {
 
 			if (relevantChanges.length === 1) {
 				const change = relevantChanges[0];
-				if (change.mode === 'M' && change.file.startsWith('components/prism-')) {
-					const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
+				if (change.mode === 'M' && change.file.startsWith('components/')) {
+					const lang = change.file.match(/([\w-]+)\.js$/)[1];
 					if (lang === 'core') {
 						addEntry('Other >> Core', removeMessagePrefix('Core', info));
 					}
@@ -321,7 +321,7 @@ runTask(async () => {
 			) {
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
-					const id = change.file.match(/\/prism-([\w-]+)\.js/)[1];
+					const id = change.file.match(/\/([\w-]+)\.js/)[1];
 					const title = plugins[id].title;
 					addEntry('Updated plugins >> ' + title, removeMessagePrefix(title, info));
 				}
@@ -341,7 +341,7 @@ runTask(async () => {
 			) {
 				if (info.changes.length === 1) {
 					const change = info.changes[0];
-					let name = (change.file.match(/prism-(\w+)\.css$/) || [, 'Default'])[1];
+					let name = (change.file.match(/(\w+)\.css$/) || [, 'Default'])[1];
 					name = name[0].toUpperCase() + name.substr(1);
 					addEntry('Updated themes >> ' + name, removeMessagePrefix(name, info));
 				}
