@@ -115,7 +115,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: null,
+							inside: /** @type {GrammarToken['inside']} */ (null),
 						},
 
 						// _italic_, __italic__
@@ -123,7 +123,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true,
-							inside: null,
+							inside: /** @type {GrammarToken['inside']} */ (null),
 						},
 
 						// ??cite??
@@ -147,7 +147,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
 							lookbehind: true,
-							inside: null,
+							inside: /** @type {GrammarToken['inside']} */ (null),
 						},
 
 						// -deleted-
@@ -155,7 +155,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
 							lookbehind: true,
-							inside: null,
+							inside: /** @type {GrammarToken['inside']} */ (null),
 						},
 
 						// %span%
@@ -163,7 +163,7 @@ export default {
 							// eslint-disable-next-line regexp/no-super-linear-backtracking
 							pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
 							lookbehind: true,
-							inside: null,
+							inside: /** @type {GrammarToken['inside']} */ (null),
 						},
 
 						'modifier': {
@@ -307,3 +307,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

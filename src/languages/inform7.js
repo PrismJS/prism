@@ -13,7 +13,7 @@ export default {
 								pattern: /\[|\]/,
 								alias: 'punctuation',
 							},
-							$rest: null,
+							$rest: /** @type {Grammar['$rest']} */ (null),
 						},
 					},
 				},
@@ -63,14 +63,18 @@ export default {
 			'punctuation': /[.,:;(){}]/,
 		};
 
-		inform7['string'].inside['substitution'].inside.$rest = {
+		inform7['string'].inside['substitution'].inside.$rest = /** @type {Grammar['$rest']} */ ({
 			...inform7,
 			'text': {
 				pattern: /\S(?:\s*\S)*/,
 				alias: 'comment',
 			},
-		};
+		});
 
-		return inform7;
+		return /** @type {Grammar} */ (inform7);
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

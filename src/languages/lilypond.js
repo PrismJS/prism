@@ -17,7 +17,7 @@ export default {
 		}
 		schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
 
-		return {
+		return /** @type {Grammar} */ ({
 			'comment': /%(?:(?!\{).*|\{[\s\S]*?%\})/,
 			'embedded-scheme': {
 				pattern: RegExp(
@@ -47,7 +47,7 @@ export default {
 									},
 								},
 							},
-							$rest: 'scheme',
+							$rest: /** @type {Grammar['$rest']} */ ('scheme'),
 						},
 					},
 					'punctuation': /#/,
@@ -74,6 +74,10 @@ export default {
 				lookbehind: true,
 			},
 			'number': /\b\d+(?:\/\d+)?\b/,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

@@ -16,7 +16,7 @@ export default {
 					'c': {
 						// Allow for one level of nested braces
 						pattern: /%\{[\s\S]*?%\}|\{(?:\{[^}]*\}|[^{}])*\}/,
-						inside: {
+						inside: /** @type {Grammar} */ ({
 							'delimiter': {
 								pattern: /^%?\{|%?\}$/,
 								alias: 'punctuation',
@@ -28,8 +28,8 @@ export default {
 									'punctuation': /<|>/,
 								},
 							},
-							$rest: 'c',
-						},
+							$rest: /** @type {Grammar['$rest']} */ ('c'),
+						}),
 					},
 					'comment': base.comment,
 					'string': base.string,
@@ -47,3 +47,7 @@ export default {
 		return {};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

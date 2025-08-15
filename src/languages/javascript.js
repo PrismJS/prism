@@ -99,7 +99,7 @@ export default {
 				{
 					pattern: JS_TEMPLATE,
 					greedy: true,
-					inside: {
+					inside: /** @type {Grammar} */ ({
 						'template-punctuation': {
 							pattern: /^`|`$/,
 							alias: 'string',
@@ -114,11 +114,11 @@ export default {
 									pattern: /^\$\{|\}$/,
 									alias: 'punctuation',
 								},
-								$rest: 'javascript',
+								$rest: /** @type {Grammar['$rest']} */ ('javascript'),
 							},
 						},
 						'string': /[\s\S]+/,
-					},
+					}),
 				},
 			],
 			'string-property': {
@@ -213,3 +213,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

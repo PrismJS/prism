@@ -1,7 +1,7 @@
 /** @type {import('../types.d.ts').LanguageProto<'livescript'>} */
 export default {
 	id: 'livescript',
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'comment': [
 			{
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
@@ -31,7 +31,7 @@ export default {
 							pattern: /^#\{|\}$/,
 							alias: 'variable',
 						},
-						$rest: 'livescript',
+						$rest: /** @type {Grammar['$rest']} */ ('livescript'),
 					},
 				},
 				'string': /[\s\S]+/,
@@ -119,5 +119,9 @@ export default {
 			/\.(?:[=~]|\.\.?)|\.(?:[&|^]|<<|>>>?)\.|:(?:=|:=?)|&&|\|[|>]|<(?:<<?<?|--?!?|~~?!?|[|=?])?|>[>=?]?|-(?:->?|>)?|\+\+?|@@?|%%?|\*\*?|!(?:~?=|--?>|~?~>)?|~(?:~?>|=)?|==?|\^\^?|[\/?]/,
 		],
 		'punctuation': /[(){}\[\]|.,:;`]/,
-	},
+	}),
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

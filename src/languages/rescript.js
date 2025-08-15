@@ -54,13 +54,13 @@ export default {
 					'interpolation': {
 						pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
 						lookbehind: true,
-						inside: {
+						inside: /** @type {Grammar} */ ({
 							'interpolation-punctuation': {
 								pattern: /^\$\{|\}$/,
 								alias: 'tag',
 							},
-							$rest: 'rescript',
-						},
+							$rest: /** @type {Grammar['$rest']} */ ('rescript'),
+						}),
 					},
 					'string': /[\s\S]+/,
 				},
@@ -70,3 +70,7 @@ export default {
 		return rescript;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

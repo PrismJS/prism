@@ -18,13 +18,13 @@ export default {
 				inside: {
 					'interpolation': {
 						pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
-						inside: {
+						inside: /** @type {Grammar} */ ({
 							'delimiter': {
 								pattern: /^\$\(?|\)$/,
 								alias: 'punctuation',
 							},
-							$rest: 'vala',
-						},
+							$rest: /** @type {Grammar['$rest']} */ ('vala'),
+						}),
 					},
 					'string': /[\s\S]+/,
 				},
@@ -96,3 +96,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

@@ -5,7 +5,7 @@ import markup from './markup.js';
 export default {
 	id: 'twig',
 	require: markup,
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'twig-comment': {
 			pattern: /\{#[\s\S]*?#\}/,
 			greedy: true,
@@ -45,6 +45,10 @@ export default {
 				'punctuation': /[()\[\]{}:.,]/,
 			},
 		},
-		$tokenize: embeddedIn('markup'),
-	},
+		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
+	}),
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

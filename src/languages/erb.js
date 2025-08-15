@@ -6,7 +6,7 @@ import ruby from './ruby.js';
 export default {
 	id: 'erb',
 	require: [ruby, markup],
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'erb': {
 			pattern:
 				/<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/,
@@ -22,6 +22,10 @@ export default {
 				},
 			},
 		},
-		$tokenize: embeddedIn('markup'),
-	},
+		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
+	}),
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

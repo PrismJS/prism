@@ -8,7 +8,7 @@ import { embeddedIn } from '../shared/languages/templating.js';
  *
  * @param {string} language The language id of the embedded language. E.g. `markdown`.
  * @param {string} tag The regex pattern to match the tag.
- * @returns {import('../types.d.ts').GrammarToken}
+ * @returns {GrammarToken}
  * @example
  * createTemplate('css', /\bcss/.source);
  */
@@ -18,7 +18,7 @@ function createTemplate (language, tag) {
 		lookbehind: true,
 		greedy: true,
 		alias: 'template-string',
-		inside: {
+		inside: /** @type {Grammar} */ ({
 			'template-punctuation': {
 				pattern: /^`|`$/,
 				alias: 'string',
@@ -42,7 +42,7 @@ function createTemplate (language, tag) {
 					$tokenize: embeddedIn(language),
 				},
 			},
-		},
+		}),
 	};
 }
 
@@ -81,3 +81,8 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

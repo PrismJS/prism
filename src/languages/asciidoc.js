@@ -3,8 +3,7 @@ export default {
 	id: 'asciidoc',
 	alias: 'adoc',
 	grammar () {
-		/** @type {GrammarToken['inside']} */
-		const placeholder = null;
+		const placeholder = /** @type {Grammar['inside']} */ null;
 
 		const attributes = {
 			pattern:
@@ -21,7 +20,7 @@ export default {
 					pattern: /'(?:[^'\\]|\\.)*'/,
 					inside: {
 						'punctuation': /^'|'$/,
-						$rest: placeholder,
+						$rest: /** @type {Grammar['$rest']} */ (placeholder),
 					},
 				},
 				'string': /"(?:[^"\\]|\\.)*"/,
@@ -33,7 +32,7 @@ export default {
 			},
 		};
 
-		const asciidoc = {
+		const asciidoc = /** @type {Grammar} */ ({
 			'comment-block': {
 				pattern: /^(\/{4,})$[\s\S]*?^\1/m,
 				alias: 'comment',
@@ -50,7 +49,7 @@ export default {
 						pattern: /(^|[^\\])[|!]=*/,
 						lookbehind: true,
 					},
-					$rest: placeholder,
+					$rest: /** @type {Grammar['$rest']} */ (placeholder),
 				},
 			},
 
@@ -58,7 +57,7 @@ export default {
 				pattern: /^(\+{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^\++|\++$/,
-					$rest: placeholder,
+					$rest: /** @type {Grammar['$rest']} */ (placeholder),
 				},
 			},
 			// Literal blocks and listing blocks
@@ -66,7 +65,7 @@ export default {
 				pattern: /^(-{4,}|\.{4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/,
-					$rest: placeholder,
+					$rest: /** @type {Grammar['$rest']} */ (placeholder),
 				},
 			},
 			// Sidebar blocks, quote blocks, example blocks and open blocks
@@ -74,7 +73,7 @@ export default {
 				pattern: /^(--|\*{4,}|_{4,}|={4,})$[\s\S]*?^\1$/m,
 				inside: {
 					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/,
-					$rest: placeholder,
+					$rest: /** @type {Grammar['$rest']} */ (placeholder),
 				},
 			},
 
@@ -101,7 +100,7 @@ export default {
 				alias: 'important',
 				inside: {
 					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/,
-					$rest: placeholder,
+					$rest: /** @type {Grammar['$rest']} */ (placeholder),
 				},
 			},
 			'attribute-entry': {
@@ -207,13 +206,15 @@ export default {
 				lookbehind: true,
 				alias: 'punctuation',
 			},
-		};
+		});
 
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
+		/**
+		 * @param {string[]} keys
+		 */
 		function copyFromAsciiDoc (...keys) {
-			/** @type {Grammar} */
-			const o = {};
+			const o = /** @type {Grammar} */ ({});
 			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}
@@ -227,57 +228,58 @@ export default {
 			'entity'
 		);
 
-		asciidoc['passthrough-block'].inside.$rest = copyFromAsciiDoc('macro');
+		/** @type {GrammarToken & { inside: Grammar }} */ (
+			asciidoc['passthrough-block']
+		).inside.$rest = copyFromAsciiDoc('macro');
 
-		asciidoc['literal-block'].inside.$rest = copyFromAsciiDoc('callout');
+		/** @type {GrammarToken & { inside: Grammar }} */ (asciidoc['literal-block']).inside.$rest =
+			copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside.$rest = copyFromAsciiDoc(
-			'comment-block',
-			'passthrough-block',
-			'literal-block',
-			'other-block',
-			'list-punctuation',
-			'indented-block',
-			'comment',
-			'title',
-			'attribute-entry',
-			'attributes',
-			'hr',
-			'page-break',
-			'admonition',
-			'list-label',
-			'callout',
-			'macro',
-			'inline',
-			'replacement',
-			'entity',
-			'line-continuation'
-		);
+		/** @type {GrammarToken & { inside: Grammar }} */ (asciidoc['table']).inside.$rest =
+			copyFromAsciiDoc(
+				'comment-block',
+				'passthrough-block',
+				'literal-block',
+				'other-block',
+				'list-punctuation',
+				'indented-block',
+				'comment',
+				'title',
+				'attribute-entry',
+				'attributes',
+				'hr',
+				'page-break',
+				'admonition',
+				'list-label',
+				'callout',
+				'macro',
+				'inline',
+				'replacement',
+				'entity',
+				'line-continuation'
+			);
 
-		asciidoc['other-block'].inside.$rest = copyFromAsciiDoc(
-			'table',
-			'list-punctuation',
-			'indented-block',
-			'comment',
-			'attribute-entry',
-			'attributes',
-			'hr',
-			'page-break',
-			'admonition',
-			'list-label',
-			'macro',
-			'inline',
-			'replacement',
-			'entity',
-			'line-continuation'
-		);
+		/** @type {GrammarToken & { inside: Grammar }} */ (asciidoc['other-block']).inside.$rest =
+			copyFromAsciiDoc(
+				'table',
+				'list-punctuation',
+				'indented-block',
+				'comment',
+				'attribute-entry',
+				'attributes',
+				'hr',
+				'page-break',
+				'admonition',
+				'list-label',
+				'macro',
+				'inline',
+				'replacement',
+				'entity',
+				'line-continuation'
+			);
 
-		asciidoc['title'].inside.$rest = copyFromAsciiDoc(
-			'macro',
-			'inline',
-			'replacement',
-			'entity'
-		);
+		/** @type {GrammarToken & { inside: Grammar }} */ (asciidoc['title']).inside.$rest =
+			copyFromAsciiDoc('macro', 'inline', 'replacement', 'entity');
 
 		return asciidoc;
 	},

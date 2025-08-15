@@ -8,7 +8,7 @@ export default {
 	base: markup,
 	require: csharp,
 	grammar ({ base }) {
-		const directive = {
+		const directive = /** @type {GrammarToken} */ ({
 			pattern: /<%.*%>/,
 			alias: 'tag',
 			inside: {
@@ -16,11 +16,14 @@ export default {
 					pattern: /<%\s*?[$=%#:]{0,2}|%>/,
 					alias: 'tag',
 				},
-				$rest: 'csharp',
+				$rest: /** @type {Grammar['$rest']} */ ('csharp'),
 			},
-		};
+		});
 
-		const tag = base['tag'];
+		const tag =
+			/** @type {GrammarToken & { inside: { 'attr-value': { inside: Grammar } } }} */ (
+				base['tag']
+			);
 
 		// Regexp copied from markup, with a negative look-ahead added
 		tag.pattern =
@@ -48,7 +51,7 @@ export default {
 			},
 		});
 
-		return {
+		return /** @type {Grammar} */ ({
 			'page-directive': {
 				pattern: /<%\s*@.*%>/,
 				alias: 'tag',
@@ -58,10 +61,15 @@ export default {
 							/<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
 						alias: 'tag',
 					},
-					$rest: tag.inside,
+					$rest: /** @type {Grammar['$rest']} */ (tag.inside),
 				},
 			},
 			'directive': directive,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

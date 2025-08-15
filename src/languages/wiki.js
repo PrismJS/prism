@@ -6,8 +6,7 @@ export default {
 	id: 'wiki',
 	base: markup,
 	grammar ({ base }) {
-		/** @type {import('../types.d.ts').GrammarToken} */
-		const tag = base['tag'];
+		const tag = /** @type {GrammarToken} */ (base['tag']);
 
 		insertBefore(base, 'tag', {
 			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
@@ -22,7 +21,7 @@ export default {
 			},
 		});
 
-		return {
+		return /** @type {Grammar} */ ({
 			'block-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
@@ -87,6 +86,11 @@ export default {
 				},
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

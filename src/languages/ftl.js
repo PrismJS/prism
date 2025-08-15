@@ -17,7 +17,7 @@ export default {
 		}
 		FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
-		const stringInterpolation = {
+		const stringInterpolation = /** @type {GrammarToken} */ ({
 			pattern: RegExp(
 				/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:(?!\})(?:<expr>))*\})*\1/.source.replace(
 					/<expr>/g,
@@ -39,13 +39,13 @@ export default {
 							pattern: /^\$\{|\}$/,
 							alias: 'punctuation',
 						},
-						$rest: null, // see below
+						$rest: /** @type {Grammar['$rest']} */ (null), // see below
 					},
 				},
 			},
-		};
+		});
 
-		const ftl = {
+		const ftl = /** @type {Grammar} */ ({
 			'comment': /<#--[\s\S]*?-->/,
 			'string': [
 				{
@@ -66,11 +66,13 @@ export default {
 			'number': /\b\d+(?:\.\d+)?\b/,
 			'operator': /\.\.[<*!]?|->|--|\+\+|&&|\|\||\?{1,2}|[-+*/%!=<>]=?|\b(?:gt|gte|lt|lte)\b/,
 			'punctuation': /[,;.:()[\]{}]/,
-		};
+		});
 
-		stringInterpolation.inside.interpolation.inside.$rest = ftl;
+		/** @type {GrammarToken & { inside: { interpolation: { inside: Grammar } } }} */ (
+			stringInterpolation
+		).inside.interpolation.inside.$rest = ftl;
 
-		return {
+		return /** @type {Grammar} */ ({
 			'ftl-comment': {
 				// the pattern is shortened to be more efficient
 				pattern: /<#--[\s\S]*?-->/,
@@ -114,7 +116,12 @@ export default {
 					},
 				},
 			},
-			$tokenize: embeddedIn('markup'),
-		};
+			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

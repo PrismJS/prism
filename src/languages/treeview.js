@@ -5,7 +5,7 @@ import { withoutTokenize } from '../util/language-util.js';
 export default {
 	id: 'treeview',
 	alias: 'tree-view',
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'treeview-part': {
 			pattern: /^.+/m,
 			inside: {
@@ -44,6 +44,7 @@ export default {
 						},
 					},
 				},
+				/** @type {Grammar['$tokenize']} */
 				$tokenize (code, grammar, Prism) {
 					const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
@@ -94,5 +95,9 @@ export default {
 				},
 			},
 		},
-	},
+	}),
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

@@ -356,12 +356,13 @@ export default {
 		}
 
 		const embedded = embeddedIn('markup');
-		return {
+		return /** @type {Grammar} */ ({
 			'php': {
 				pattern:
 					/<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/,
 				inside: php,
 			},
+			/** @type {Grammar['$tokenize']} */
 			$tokenize: (code, grammar, Prism) => {
 				if (!/<\?/.test(code)) {
 					return Prism.tokenize(code, php);
@@ -369,6 +370,10 @@ export default {
 
 				return embedded(code, grammar, Prism);
 			},
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

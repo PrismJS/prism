@@ -33,7 +33,7 @@ export default {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true,
 					},
-					$rest: 'css',
+					$rest: /** @type {Grammar['$rest']} */ ('css'),
 				}),
 			},
 			'url': {

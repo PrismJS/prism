@@ -2,7 +2,7 @@
 export default {
 	id: 'elixir',
 	grammar () {
-		const stringInside = {
+		const stringInside = /** @type {Grammar} */ ({
 			'interpolation': {
 				pattern: /#\{[^}]+\}/,
 				inside: {
@@ -10,10 +10,10 @@ export default {
 						pattern: /^#\{|\}$/,
 						alias: 'punctuation',
 					},
-					$rest: 'elixir',
+					$rest: /** @type {Grammar['$rest']} */ ('elixir'),
 				},
 			},
-		};
+		});
 
 		return {
 			'doc': {
@@ -98,3 +98,7 @@ export default {
 		};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

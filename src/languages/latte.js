@@ -9,7 +9,7 @@ export default {
 	require: [markup, php],
 	grammar ({ extend }) {
 		const markupLatte = extend('markup', {});
-		const tag = markupLatte.tag;
+		const tag = /** @type {GrammarToken & { inside: Grammar }} */ (markupLatte.tag);
 		insertBefore(tag.inside, 'attr-value', {
 			'n-attr': {
 				pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
@@ -38,7 +38,7 @@ export default {
 			},
 		});
 
-		return {
+		return /** @type {Grammar} */ ({
 			'latte-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
 				greedy: true,
@@ -66,7 +66,12 @@ export default {
 					},
 				},
 			},
-			$tokenize: embeddedIn(markupLatte),
-		};
+			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn(markupLatte)),
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

@@ -6,7 +6,7 @@ export default {
 	grammar () {
 		// https://agraef.github.io/pure-docs/pure.html#lexical-matters
 
-		const pure = {
+		const pure = /** @type {Grammar} */ ({
 			'comment': [
 				{
 					pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
@@ -32,7 +32,7 @@ export default {
 						alias: 'punctuation',
 					},
 					// C is the default inline language
-					$rest: 'c',
+					$rest: /** @type {Grammar['$rest']} */ ('c'),
 				},
 			},
 			'string': {
@@ -59,7 +59,7 @@ export default {
 				/(?:[!"#$%&'*+,\-.\/:<=>?@\\^`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]|\b_+\b)+|\b(?:and|div|mod|not|or)\b/,
 			// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 			'punctuation': /[(){}\[\];,|]/,
-		};
+		});
 
 		const inlineLanguages = ['c', { lang: 'c++', alias: 'cpp' }, 'fortran'];
 		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
@@ -84,10 +84,12 @@ export default {
 						),
 						'i'
 					),
-					inside: {
-						...pure['inline-lang'].inside,
+					inside: /** @type {Grammar} */ ({
+						.../** @type {Grammar} */ (
+							/** @type {GrammarToken} */ (pure['inline-lang']).inside
+						),
 						$rest: alias,
-					},
+					}),
 				},
 			});
 		});
@@ -95,3 +97,8 @@ export default {
 		return pure;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

@@ -141,7 +141,7 @@ export default {
 			lookbehind: true,
 		};
 
-		return {
+		return /** @type {Grammar} */ ({
 			'datalines': {
 				pattern: /^([ \t]*)(?:cards|(?:data)?lines);[\s\S]+?^[ \t]*;/im,
 				lookbehind: true,
@@ -256,7 +256,7 @@ export default {
 									keyword: /^(?:saveresult)/i,
 								},
 							},
-							$rest: args,
+							$rest: /** @type {Grammar['$rest']} */ (args),
 						},
 					},
 					'cas-actions': casActions,
@@ -365,6 +365,10 @@ export default {
 			'number': number,
 			'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?/,
 			'punctuation': punctuation,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

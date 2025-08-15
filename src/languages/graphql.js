@@ -3,7 +3,7 @@ import { withoutTokenize } from '../util/language-util.js';
 /** @type {import('../types.d.ts').LanguageProto<'graphql'>} */
 export default {
 	id: 'graphql',
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'comment': /#.*/,
 		'description': {
 			pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
@@ -65,12 +65,13 @@ export default {
 		'object': /\w+(?=\s*\{)/,
 		'punctuation': /[!(){}\[\]:=,]/,
 		'property': /\w+/,
+		/** @type {Grammar['$tokenize']} */
 		$tokenize (code, grammar, Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 			/**
 			 * @param {Token | string} token
-			 * @returns {boolean}
+			 * @returns {token is Token}
 			 */
 			function isToken (token) {
 				return typeof token !== 'string';
@@ -211,9 +212,10 @@ export default {
 
 			return tokens;
 		},
-	},
+	}),
 };
 
 /**
  * @typedef {import('../core.js').Token} Token
+ * @typedef {import('../types.d.ts').Grammar} Grammar
  */

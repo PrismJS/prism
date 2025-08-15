@@ -14,7 +14,7 @@ export default {
 			greedy: true,
 		};
 
-		return {
+		return /** @type {Grammar} */ ({
 			'comment': [
 				{
 					pattern: RegExp(/(^|[^\\])/.source + multilineComment),
@@ -51,7 +51,7 @@ export default {
 						pattern: /^\||\|$/,
 						alias: 'punctuation',
 					},
-					$rest: 'rust',
+					$rest: /** @type {Grammar['$rest']} */ ('rust'),
 				},
 			},
 
@@ -125,6 +125,10 @@ export default {
 			'boolean': /\b(?:false|true)\b/,
 			'punctuation': /->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,
 			'operator': /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

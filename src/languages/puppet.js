@@ -34,7 +34,7 @@ export default {
 			},
 		];
 
-		return {
+		return /** @type {Grammar} */ ({
 			'heredoc': [
 				// Matches the content of a quoted heredoc string (subject to interpolation)
 				{
@@ -140,6 +140,10 @@ export default {
 			'operator':
 				/=[=~>]?|![=~]?|<(?:<\|?|[=~|-])?|>[>=]?|->?|~>|\|>?>?|[*\/%+?]|\b(?:and|in|or)\b/,
 			'punctuation': /[\[\]{}().,;]|:+/,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

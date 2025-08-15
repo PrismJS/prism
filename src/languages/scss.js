@@ -45,7 +45,7 @@ export default {
 			},
 		});
 
-		return {
+		return /** @type {Grammar} */ ({
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true,
@@ -54,7 +54,7 @@ export default {
 				pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
 				inside: {
 					'rule': /@[\w-]+/,
-					$rest: 'scss',
+					$rest: /** @type {Grammar['$rest']} */ ('scss'),
 				},
 			},
 			// url, compassified
@@ -85,6 +85,10 @@ export default {
 					'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
 				},
 			},
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

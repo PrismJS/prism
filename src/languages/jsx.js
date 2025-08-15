@@ -138,7 +138,10 @@ export default {
 		const javascript = extend('javascript', {});
 		const jsx = extend('markup', javascript);
 
-		const tag = jsx.tag;
+		const tag =
+			/** @type {GrammarToken & {inside: Grammar & {tag: GrammarToken & { inside: Grammar };'attr-value': GrammarToken;};}} */ (
+				jsx.tag
+			);
 		tag.pattern = re(
 			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
 				.source
@@ -162,13 +165,13 @@ export default {
 				// Allow for two levels of nesting
 				pattern: re(/=<BRACES>/.source),
 				alias: 'language-javascript',
-				inside: {
+				inside: /** @type {Grammar} */ ({
 					'script-punctuation': {
 						pattern: /^=(?=\{)/,
 						alias: 'punctuation',
 					},
-					$rest: 'jsx',
-				},
+					$rest: /** @type {Grammar['$rest']} */ ('jsx'),
+				}),
 			},
 		});
 

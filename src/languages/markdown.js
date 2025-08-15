@@ -101,7 +101,7 @@ export default {
 					// ```
 					pattern: /^```[\s\S]*?^```$/m,
 					greedy: true,
-					inside: {
+					inside: /** @type {Grammar} */ ({
 						'code-block': {
 							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
 							lookbehind: true,
@@ -111,6 +111,7 @@ export default {
 							lookbehind: true,
 						},
 						'punctuation': /```/,
+						/** @type {Grammar['$tokenize']} */
 						$tokenize (code, grammar, Prism) {
 							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
@@ -163,7 +164,7 @@ export default {
 
 							return tokens;
 						},
-					},
+					}),
 				},
 			],
 			'title': [
@@ -325,7 +326,13 @@ export default {
 		['url', 'bold', 'italic', 'strike'].forEach(token => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
 				if (token !== inside) {
-					base[token].inside.content.inside[inside] = base[inside];
+					/** @type {Grammar} */ (
+						/** @type {GrammarToken}*/ (
+							/** @type {Grammar} */ (
+								/** @type {GrammarToken} */ (base[token]).inside
+							).content
+						).inside
+					)[inside] = base[inside];
 				}
 			});
 		});
@@ -373,3 +380,8 @@ export default {
 		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

@@ -8,7 +8,7 @@ export default {
 	grammar () {
 		const expression = {
 			pattern: /[\s\S]+/,
-			inside: null,
+			inside: /** @type {GrammarToken['inside']} */ (null),
 		};
 
 		const smarty = {
@@ -82,7 +82,7 @@ export default {
 			)
 		);
 
-		return {
+		return /** @type {Grammar} */ ({
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
@@ -105,7 +105,12 @@ export default {
 				greedy: true,
 				inside: smarty,
 			},
-			$tokenize: embeddedIn('markup'),
-		};
+			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

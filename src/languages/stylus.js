@@ -12,7 +12,7 @@ export default {
 			lookbehind: true,
 		};
 
-		const inside = {
+		const inside = /** @type {Grammar} */ ({
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true,
@@ -33,14 +33,14 @@ export default {
 						pattern: /^\{|\}$/,
 						alias: 'punctuation',
 					},
-					$rest: null,
+					$rest: /** @type {Grammar['$rest']} */ (null),
 				},
 			},
 			'func': {
 				pattern: /[\w-]+\([^)]*\).*/,
 				inside: {
 					'function': /^[^(]+/,
-					$rest: null,
+					$rest: /** @type {Grammar['$rest']} */ (null),
 				},
 			},
 			'important': /\B!(?:important|optional)\b/i,
@@ -72,18 +72,20 @@ export default {
 			],
 			'number': number,
 			'punctuation': /[{}()\[\];:,]/,
-		};
+		});
 
-		inside['interpolation'].inside.$rest = inside;
-		inside['func'].inside.$rest = inside;
+		/** @type {Grammar} */ (
+			/** @type {GrammarToken} */ (inside['interpolation']).inside
+		).$rest = inside;
+		/** @type {Grammar} */ (/** @type {GrammarToken} */ (inside['func']).inside).$rest = inside;
 
-		return {
+		return /** @type {Grammar} */ ({
 			'atrule-declaration': {
 				pattern: /(^[ \t]*)@.+/m,
 				lookbehind: true,
 				inside: {
 					'atrule': /^@[\w-]+/,
-					$rest: inside,
+					$rest: /** @type {Grammar['$rest']} */ (inside),
 				},
 			},
 			'variable-declaration': {
@@ -91,7 +93,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'variable': /^\S+/,
-					$rest: inside,
+					$rest: /** @type {Grammar['$rest']} */ (inside),
 				},
 			},
 
@@ -100,7 +102,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'keyword': /^\S+/,
-					$rest: inside,
+					$rest: /** @type {Grammar['$rest']} */ (inside),
 				},
 			},
 
@@ -117,7 +119,7 @@ export default {
 							'interpolation': inside.interpolation,
 						},
 					},
-					$rest: inside,
+					$rest: /** @type {Grammar['$rest']} */ (inside),
 				},
 			},
 
@@ -144,6 +146,11 @@ export default {
 			},
 			'interpolation': inside.interpolation,
 			'punctuation': /[{}()\[\];:.]/,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

@@ -61,21 +61,32 @@ export default {
 				pattern:
 					/(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
 				lookbehind: true,
-				inside: {
+				inside: /** @type {Grammar} */ ({
 					'keyword': {
 						pattern: /^#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})|\bin\b/,
 						inside: {
 							'punctuation': /[{}]/,
 						},
 					},
-					$rest: vel,
-				},
+					$rest: /** @type {Grammar['$rest']} */ (vel),
+				}),
 			},
 			'variable': vel['variable'],
 		});
 
-		base['tag'].inside['attr-value'].inside.$rest = 'velocity';
+		/** @type {Grammar} */ (
+			/** @type {GrammarToken} */ (
+				/** @type {Grammar} */ (/** @type {GrammarToken} */ (base['tag']).inside)[
+					'attr-value'
+				]
+			).inside
+		).$rest = 'velocity';
 
 		return {};
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */

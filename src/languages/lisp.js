@@ -52,7 +52,7 @@ export default {
 				lookbehind: true,
 				alias: 'variable',
 			},
-			$rest: 'lisp',
+			$rest: /** @type {Grammar['$rest']} */ ('lisp'),
 		};
 
 		const forms = '\\S+(?:\\s+\\S+)*';
@@ -81,7 +81,7 @@ export default {
 			},
 		};
 
-		return {
+		return /** @type {Grammar} */ ({
 			// Three or four semicolons are considered a heading.
 			// See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
 			'heading': {
@@ -207,6 +207,10 @@ export default {
 					lookbehind: true,
 				},
 			],
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

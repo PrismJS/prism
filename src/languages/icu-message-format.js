@@ -58,7 +58,7 @@ export default {
 			},
 		};
 
-		return {
+		return /** @type {Grammar} */ ({
 			'argument': {
 				pattern: RegExp(argumentSource),
 				greedy: true,
@@ -85,7 +85,7 @@ export default {
 											'number': /\S+/,
 										},
 									},
-									$rest: 'icu-message-format',
+									$rest: /** @type {Grammar['$rest']} */ ('icu-message-format'),
 								},
 							},
 							'plural-style': {
@@ -152,6 +152,10 @@ export default {
 			},
 			'escape': escape,
 			'string': string,
-		};
+		});
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

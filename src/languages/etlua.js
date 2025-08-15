@@ -6,7 +6,7 @@ import markup from './markup.js';
 export default {
 	id: 'etlua',
 	require: [lua, markup],
-	grammar: {
+	grammar: /** @type {Grammar} */ ({
 		'etlua': {
 			pattern: /<%[\s\S]+?%>/,
 			inside: {
@@ -20,6 +20,10 @@ export default {
 				},
 			},
 		},
-		$tokenize: embeddedIn('markup'),
-	},
+		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
+	}),
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ */

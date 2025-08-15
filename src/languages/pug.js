@@ -15,7 +15,7 @@ export default {
 		// - Add explicit support for plain text using |
 		// - Add support for markup embedded in plain text
 
-		const pug = {
+		const pug = /** @type {Grammar} */ ({
 			// Multiline stuff should appear before the rest
 
 			// This handles both single-line and multi-line comments
@@ -77,7 +77,7 @@ export default {
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 						alias: 'keyword',
 					},
-					$rest: 'javascript',
+					$rest: /** @type {Grammar['$rest']} */ ('javascript'),
 				},
 			},
 			'keyword': {
@@ -153,7 +153,7 @@ export default {
 				},
 			],
 			'punctuation': /[.\-!=|]+/,
-		};
+		});
 
 		const filter_pattern =
 			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
@@ -171,8 +171,7 @@ export default {
 			'stylus',
 		];
 
-		/** @type {import('../types.d.ts').GrammarTokens} */
-		const all_filters = {};
+		const all_filters = /** @type {GrammarTokens} */ ({});
 		for (const filterItem of filters) {
 			const { filter, language } =
 				typeof filterItem === 'string'
@@ -203,3 +202,8 @@ export default {
 		return pug;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
+ */

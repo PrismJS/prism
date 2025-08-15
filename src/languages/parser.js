@@ -68,18 +68,33 @@ export default {
 			},
 		});
 
-		insertBefore(base['tag'].inside['attr-value'].inside, 'punctuation', {
-			'expression': parser.expression,
-			'keyword': parser.keyword,
-			'variable': parser.variable,
-			'function': parser.function,
-			'escape': parser.escape,
-			'parser-punctuation': {
-				pattern: punctuation,
-				alias: 'punctuation',
-			},
-		});
+		insertBefore(
+			/** @type {Grammar} */ (
+				/** @type {GrammarToken} */ (
+					/** @type {Grammar} */ (/** @type {GrammarToken} */ (base['tag']).inside)[
+						'attr-value'
+					]
+				).inside
+			),
+			'punctuation',
+			{
+				'expression': parser.expression,
+				'keyword': parser.keyword,
+				'variable': parser.variable,
+				'function': parser.function,
+				'escape': parser.escape,
+				'parser-punctuation': {
+					pattern: punctuation,
+					alias: 'punctuation',
+				},
+			}
+		);
 
 		return parser;
 	},
 };
+
+/**
+ * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ */
