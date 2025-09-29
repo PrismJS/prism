@@ -35,7 +35,7 @@
 		"g4": "ANTLR4",
 		"apacheconf": "Apache Configuration",
 		"apl": "APL",
-		"aql": "AQL",
+		"aql": "AQL (ArangoDB)",
 		"ino": "Arduino",
 		"arff": "ARFF",
 		"armasm": "ARM Assembly",
