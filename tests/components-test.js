@@ -14,9 +14,9 @@ describe('Components', () => {
 
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
-			const require = new Set(toArray(proto?.require).map(p => p.id));
+			const require = new Set(toArray(/** @type any */ (proto)?.require).map(p => p.id));
 
-			forEach(proto?.optional, opt => {
+			forEach(/** @type any */ (proto?.optional), opt => {
 				if (require.has(opt)) {
 					assert.fail(
 						`The optional dependency ${opt} is redundant because ${id} already requires it. Remove the optional dependency.`
@@ -47,7 +47,8 @@ describe('Components', () => {
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
 			add(id, 'a component id');
-			forEach(proto?.alias, a => add(a, `an alias of ${id}`));
+			forEach(/** @type {string | string[] | null | undefined} */ (proto?.alias), a =>
+				add(a, `an alias of ${id}`));
 		}
 	});
 });
@@ -74,15 +75,22 @@ describe('components.json', () => {
 		}
 
 		for (const id in entries) {
-			consumeFn(entries[id], id, entries);
+			consumeFn(entries[id], id, /** @type {Record<string, ComponentEntry>} */ (entries));
 		}
 	}
 
 	describe('- should have valid alias titles', () => {
 		for (const lang of getLanguageIds()) {
 			it(`- ${lang} should have all alias titles registered as alias`, async () => {
-				const aliases = new Set(toArray((await getComponent(lang)).alias));
-				const aliasTitles = components.languages[lang]?.aliasTitles ?? {};
+				const aliases = new Set(
+					toArray(
+						/** @type {string | string[] | null | undefined} */ (
+							(await getComponent(lang)).alias
+						)
+					)
+				);
+				const aliasTitles =
+					/** @type {ComponentEntry} */ (components.languages[lang])?.aliasTitles ?? {};
 
 				Object.keys(aliasTitles).forEach(id => {
 					if (!aliases.has(id)) {
@@ -103,7 +111,7 @@ describe('components.json', () => {
 			.map(key => {
 				return {
 					id: key,
-					title: components.languages[key].title,
+					title: /** @type {ComponentEntry} */ (components.languages[key]).title,
 				};
 			});
 
@@ -119,12 +127,16 @@ describe('components.json', () => {
 		}
 
 		const sorted = [...languages].sort((a, b) => {
-			const comp = transformTitle(a.title).localeCompare(transformTitle(b.title));
+			const comp = transformTitle(/** @type {string} */ (a.title)).localeCompare(
+				transformTitle(/** @type {string} */ (b.title))
+			);
 			if (comp !== 0) {
 				return comp;
 			}
 			// a and b have the same intermediate form (e.g. "C" => "C", "C++" => "C", "C#" => "C").
-			return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+			return /** @type {string} */ (a.title)
+				.toLowerCase()
+				.localeCompare(/** @type {string} */ (b.title).toLowerCase());
 		});
 
 		assert.sameOrderedMembers(languages, sorted);

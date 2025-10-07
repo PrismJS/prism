@@ -1,6 +1,8 @@
-import { KebabToCamelCase } from '../src/types.d.ts';
 import { createUtil } from './helper/prism-dom-util.js';
 import { useSnapshot } from './helper/snapshot.js';
+import type { KebabToCamelCase } from '../src/types.d.ts';
+import type { PrismDOM, PrismWindow } from './prism-loader.js';
+import type { DOMWindow, JSDOM } from 'jsdom';
 
 export type PrismWindow<T> = DOMWindow & { Prism: Prism & T };
 

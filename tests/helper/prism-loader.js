@@ -143,7 +143,7 @@ export function createPrismDOM () {
 		finally {
 			undo?.();
 			// Clean up navigator property
-			delete g.navigator;
+			delete (/** @type {Partial<typeof global>} */ (g).navigator);
 		}
 	};
 

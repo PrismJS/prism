@@ -54,7 +54,9 @@ for (const lang of getLanguageIds()) {
 	describe(`Patterns of '${lang}' with optional dependencies`, () => {
 		const create = lazy(async () => {
 			const component = await getComponent(lang);
-			const optional = toArray(component.optional);
+			const optional = toArray(
+				/** @type {string | string[] | null | undefined} */ (component.optional)
+			);
 			if (optional.length === 0) {
 				return undefined;
 			}
@@ -517,7 +519,7 @@ function getResultCache (cacheName) {
 }
 
 /**
- * @template T
+ * @template {Node} T
  * @param {string} cacheName
  * @param {T} cacheKey
  * @param {(node: T) => void} compute
@@ -752,7 +754,10 @@ function checkPolynomialBacktracking (path, pattern, ast) {
 		ast = parseRegex(pattern);
 	}
 
-	const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+	const result = scslre.analyse(/** @type {scslre.ParsedLiteral} */ (ast), {
+		maxReports: 1,
+		reportTypes: { 'Move': false },
+	});
 	if (result.reports.length > 0) {
 		const report = result.reports[0];
 
@@ -926,4 +931,17 @@ async function replaceRegExpProto (execSupplier, fn) {
  * @typedef {object} ForEachCapturingGroupCallbackValue
  * @property {CapturingGroup} group
  * @property {number} number - Note: Starts at 1.
+ */
+
+/**
+ * @typedef {object} ForEachPatternCallbackValue
+ * @property {RegExp} pattern
+ * @property {LiteralAST} ast
+ * @property {string} tokenPath
+ * @property {string} name
+ * @property {any} parent
+ * @property {boolean} lookbehind
+ * @property {CapturingGroup | undefined} lookbehindGroup
+ * @property {PathItem[]} path
+ * @property {(message: string) => void} reportError
  */

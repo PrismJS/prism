@@ -78,7 +78,9 @@ for (const lang of getLanguageIds()) {
 	describe(`Patterns of '${lang}' with optional dependencies`, () => {
 		const getPrism = async () => {
 			const component = await getComponent(lang);
-			const optional = toArray(component.optional);
+			const optional = toArray(
+				/** @type {string | string[] | null | undefined} */ (component.optional)
+			);
 			const Prism = await createInstance([lang, ...optional]);
 			return Prism;
 		};

@@ -20,7 +20,7 @@ class DummyClipboard {
 	 * @param {Navigator} navigator
 	 */
 	assign (navigator) {
-		navigator.clipboard = this;
+		/** @type {any} */ (navigator).clipboard = this;
 	}
 }
 

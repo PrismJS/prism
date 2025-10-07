@@ -498,7 +498,7 @@ function prettyGlueTogetherAll (prettyStream, slice) {
 /**
  *
  * @param {PrettyTokenStreamItem} item
- * @returns {boolean}
+ * @returns {item is SimplifiedToken}
  */
 function isToken (item) {
 	return typeof item === 'string' || Array.isArray(item);
@@ -506,7 +506,7 @@ function isToken (item) {
 /**
  *
  * @param {PrettyTokenStreamItem} item
- * @returns {boolean}
+ * @returns {item is [string, SimplifiedToken[]]}
  */
 function isNested (item) {
 	return Array.isArray(item) && Array.isArray(item[1]);
@@ -515,7 +515,7 @@ function isNested (item) {
 /**
  *
  * @param {PrettyTokenStreamItem} item
- * @returns {boolean}
+ * @returns {item is [string, [string]]}
  */
 function isTriviallyNested (item) {
 	return isNested(item) && item[1].length === 1 && typeof item[1][0] === 'string';

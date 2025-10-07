@@ -49,7 +49,9 @@
 		"test:plugins": "mocha tests/plugins/**/*.js",
 		"test:runner": "mocha tests/testrunner-tests.js",
 		"test": "npm-run-all test:*",
-		"typecheck": "tsc"
+		"typecheck:core": "tsc",
+		"typecheck:tests": "tsc -p tests/tsconfig.json",
+		"typecheck": "npm-run-all typecheck:*"
 	},
 	"repository": {
 		"type": "git",

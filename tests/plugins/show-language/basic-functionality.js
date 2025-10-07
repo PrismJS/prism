@@ -15,7 +15,7 @@ describe('Show language', () => {
 
 	/**
 	 *
-	 * @param {import('../../helper/prism-loader').PrismDOM} dom
+	 * @param {import('../../types.d.ts').PrismDOM<{}>} dom
 	 * @param {string} expectedLanguage
 	 * @param {string} code
 	 */

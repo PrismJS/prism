@@ -81,7 +81,7 @@ export function createTestSuite (options) {
 						await dom.loadLanguages(options.languages);
 					}
 					if (options.plugins) {
-						await dom.loadPlugins(options.plugins);
+						await dom.loadPlugins(/** @type {string | string[]} */ (options.plugins));
 					}
 
 					dom.withGlobals(() => {
@@ -101,7 +101,7 @@ export function createTestSuite (options) {
  */
 
 /**
- * @template T
+ * @template {string} T
  * @typedef {import('../types.d.ts').TestSuiteDom<T>} TestSuiteDom
  */
 

@@ -42,7 +42,7 @@ export const noop = () => {
 
 /**
  * @param {any} value
- * @returns {boolean}
+ * @returns {value is T & {}}
  */
 export function isNonNull (value) {
 	return value != null;
