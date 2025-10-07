@@ -2,6 +2,7 @@ import { kebabToCamelCase } from '../shared/util.js';
 import { cloneGrammar } from '../util/extend.js';
 import { forEach, toArray } from '../util/iterables.js';
 import { extend } from '../util/language-util.js';
+import { defineLazyProperty } from '../util/objects.js';
 
 /**
  * TODO: docs
@@ -80,14 +81,17 @@ export class Registry {
 			forEach(proto.alias, alias => this.aliasMap.set(alias, id));
 
 			// @ts-ignore
+			const required = [...toArray(proto.require)]; // don't mutate the original array
+
+			// @ts-ignore
 			if (proto.base) {
 				// @ts-ignore
-				proto.require = [proto.base, ...toArray(proto.require)];
+				required.unshift(proto.base);
 			}
 
 			// dependencies
 			// @ts-ignore
-			forEach(proto.require, register);
+			forEach(required, register);
 
 			// add plugin namespace
 			if (proto.plugin) {
@@ -219,6 +223,14 @@ export class Registry {
 		// We need this so that any code modifying the base grammar doesn't affect other instances
 		const baseGrammar = base && cloneGrammar(required(base.id), base.id);
 
+		const requiredLanguages = toArray(
+			/** @type {LanguageProto | LanguageProto[] | undefined} */ (entry?.proto.require)
+		);
+		const languages = /** @type {Record<string, Grammar>} */ ({});
+		for (const lang of requiredLanguages) {
+			defineLazyProperty(languages, lang.id, () => required(lang.id));
+		}
+
 		/** @type {Grammar} */
 		let evaluatedGrammar;
 		if (typeof grammar === 'object') {
@@ -227,10 +239,10 @@ export class Registry {
 		}
 		else {
 			const options = {
-				getLanguage: required,
 				getOptionalLanguage: id => this.getLanguage(id),
 				extend: (id, ref) => extend(required(id), id, ref),
 				...(baseGrammar && { base: baseGrammar }),
+				...(requiredLanguages.length && { languages }),
 			};
 
 			evaluatedGrammar = grammar(/** @type {any} */ (options));
@@ -253,6 +265,7 @@ export class Registry {
 
 /**
  * @typedef {import('../types.d.ts').ComponentProto} ComponentProto
+ * @typedef {import('../types.d.ts').LanguageProto} LanguageProto
  * @typedef {import('../types.d.ts').Grammar} Grammar
  * @typedef {import('./prism.js').Prism} Prism
  */

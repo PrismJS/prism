@@ -8,9 +8,8 @@ export default {
 	id: 'jsdoc',
 	base: javadoclike,
 	require: [javascript, typescript],
-	grammar ({ base, getLanguage }) {
-		const javascript = getLanguage('javascript');
-		const typescript = getLanguage('typescript');
+	grammar ({ base, languages }) {
+		const { javascript, typescript } = languages;
 
 		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';

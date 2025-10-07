@@ -4,8 +4,8 @@ import markup from './markup.js';
 export default {
 	id: 'xml-doc',
 	require: markup,
-	grammar ({ getLanguage }) {
-		const tag = getLanguage('markup').tag;
+	grammar ({ languages }) {
+		const tag = languages.markup.tag;
 
 		return {
 			'slash': {

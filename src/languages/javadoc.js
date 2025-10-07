@@ -8,9 +8,8 @@ export default {
 	id: 'javadoc',
 	base: javadoclike,
 	require: [markup, java],
-	grammar ({ base, getLanguage }) {
-		const java = getLanguage('java');
-		const { tag, entity } = getLanguage('markup');
+	grammar ({ base, languages }) {
+		const { tag, entity } = languages.markup;
 
 		const codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
@@ -45,7 +44,7 @@ export default {
 						},
 					},
 					'class-name': /\b[A-Z]\w*/,
-					'keyword': java.keyword,
+					'keyword': languages.java.keyword,
 					'punctuation': /[#()[\],.]/,
 				},
 			},

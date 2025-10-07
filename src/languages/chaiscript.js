@@ -8,9 +8,7 @@ export default {
 	id: 'chaiscript',
 	base: clike,
 	require: cpp,
-	grammar ({ base, getLanguage }) {
-		const cpp = getLanguage('cpp');
-
+	grammar ({ base, languages }) {
 		insertBefore(base, 'operator', {
 			'parameter-type': {
 				// e.g. def foo(int x, Vector y) {...}
@@ -68,7 +66,7 @@ export default {
 			],
 			'keyword':
 				/\b(?:attr|auto|break|case|catch|class|continue|def|default|else|finally|for|fun|global|if|return|switch|this|try|var|while)\b/,
-			'number': [...toArray(cpp.number), /\b(?:Infinity|NaN)\b/],
+			'number': [...toArray(languages.cpp.number), /\b(?:Infinity|NaN)\b/],
 			'operator': />>=?|<<=?|\|\||&&|:[:=]?|--|\+\+|[=!<>+\-*/%|&^]=?|[?~]|`[^`\r\n]{1,4}`/,
 		};
 	},

@@ -32,14 +32,8 @@ export type HooksRemove = <Name extends keyof HookEnv>(
 export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Name]) => void;
 
 export interface GrammarOptions {
-	readonly getLanguage: (id: string) => Grammar;
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
-}
-
-// Overload for when base is required
-export interface GrammarOptionsWithBase extends GrammarOptions {
-	readonly base: Grammar;
 }
 
 export interface ComponentProtoBase<Id extends string = string> {
@@ -50,25 +44,49 @@ export interface ComponentProtoBase<Id extends string = string> {
 	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
 
-// For languages that extend a base language
-export interface LanguageProtoWithBase<Id extends string = string> extends ComponentProtoBase<Id> {
-	grammar: Grammar | ((options: GrammarOptionsWithBase) => Grammar);
-	plugin?: undefined;
-	base: LanguageProto; // Required base
-}
+export type LanguageProto<Id extends string = string> =
+	| LanguageProtoPlain<Id>
+	| LanguageProtoWithBase<Id>
+	| LanguageProtoWithRequire<Id>
+	| LanguageProtoWithBaseAndRequire<Id>;
 
-// For languages that don't extend a base language
-export interface LanguageProtoWithoutBase<Id extends string = string>
-	extends ComponentProtoBase<Id> {
+interface LanguageProtoPlain<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	plugin?: undefined;
 	base?: never; // Explicitly no base allowed
+	require?: never; // Explicitly no require allowed
 }
 
-// Union type that allows TypeScript to discriminate
-export type LanguageProto<Id extends string = string> =
-	| LanguageProtoWithBase<Id>
-	| LanguageProtoWithoutBase<Id>;
+interface LanguageProtoWithBase<Id extends string = string> extends ComponentProtoBase<Id> {
+	grammar: Grammar | ((options: GrammarOptions & { readonly base: Grammar }) => Grammar);
+	plugin?: undefined;
+	base: LanguageProto; // Required base
+	require?: never; // Explicitly no require allowed
+}
+
+interface LanguageProtoWithRequire<Id extends string = string> extends ComponentProtoBase<Id> {
+	grammar:
+		| Grammar
+		| ((options: GrammarOptions & { readonly languages: Record<string, Grammar> }) => Grammar);
+	plugin?: undefined;
+	base?: never; // Explicitly no base allowed
+	require: ComponentProto | readonly ComponentProto[]; // Required require
+}
+
+interface LanguageProtoWithBaseAndRequire<Id extends string = string>
+	extends ComponentProtoBase<Id> {
+	grammar:
+		| Grammar
+		| ((
+				options: GrammarOptions & {
+					readonly base: Grammar;
+					readonly languages: Record<string, Grammar>;
+				}
+		  ) => Grammar);
+	plugin?: undefined;
+	base: LanguageProto; // Required base
+	require: ComponentProto | readonly ComponentProto[]; // Required require
+}
 
 type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
