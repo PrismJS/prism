@@ -1,5 +1,5 @@
 import { getTextContent } from '../core/classes/token.js';
-import { insertBefore, withoutTokenize } from '../util/language-util.js';
+import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'markdown'>} */
@@ -7,7 +7,7 @@ export default {
 	id: 'markdown',
 	base: markup,
 	alias: 'md',
-	grammar ({ base }) {
+	grammar () {
 		// Allow only one line break
 		const inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
@@ -34,7 +34,7 @@ export default {
 		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
 			.source;
 
-		insertBefore(base, 'prolog', {
+		const markdown = {
 			'front-matter-block': {
 				pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 				lookbehind: true,
@@ -321,23 +321,29 @@ export default {
 					},
 				},
 			},
-		});
+		};
 
 		['url', 'bold', 'italic', 'strike'].forEach(token => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
-				if (token !== inside) {
-					/** @type {Grammar} */ (
-						/** @type {GrammarToken}*/ (
-							/** @type {Grammar} */ (
-								/** @type {GrammarToken} */ (base[token]).inside
-							).content
-						).inside
-					)[inside] = base[inside];
+				if (token === inside) {
+					return;
 				}
+
+				/** @type {Grammar} */ (
+					/** @type {GrammarToken}*/ (
+						/** @type {Grammar} */ (
+							/** @type {GrammarToken} */ (markdown[token]).inside
+						).content
+					).inside
+				)[inside] = markdown[inside];
 			});
 		});
 
-		return {};
+		return {
+			$insertBefore: {
+				'prolog': markdown,
+			},
+		};
 	},
 	effect (Prism) {
 		return Prism.hooks.add('wrap', env => {
