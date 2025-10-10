@@ -73,7 +73,7 @@ export default {
 		/* OpenCL host API */
 		const extensions = getOptionalLanguage('opencl-extensions');
 		if (extensions) {
-			insertBefore(base, 'keyword', extensions);
+			insertBefore(base, 'keyword', /** @type {GrammarTokens} */ (extensions));
 			delete base['type-opencl-host-cpp'];
 		}
 
@@ -104,4 +104,5 @@ export default {
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
+ * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
  */

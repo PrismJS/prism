@@ -5,7 +5,7 @@ describe('Registry', () => {
 	it('should resolve aliases', () => {
 		const { components } = new Prism();
 
-		const grammar = {};
+		const grammar = /** @type {Grammar} */ ({});
 		components.add({ id: 'a', alias: 'b', grammar });
 
 		assert.isTrue(components.has('a'));
@@ -21,7 +21,7 @@ describe('Registry', () => {
 	it('should resolve aliases in optional dependencies', () => {
 		const { components } = new Prism();
 
-		const grammar = {};
+		const grammar = /** @type {Grammar} */ ({});
 		components.add({ id: 'a', alias: 'b', grammar });
 		components.add({
 			id: 'c',
@@ -62,4 +62,7 @@ describe('Registry', () => {
 	});
 });
 
-/** @typedef {import('../../src/types.d.ts').GrammarOptions} GrammarOptions */
+/**
+ * @typedef {import('../../src/types.d.ts').GrammarOptions} GrammarOptions
+ * @typedef {import('../../src/types.d.ts').Grammar} Grammar
+ */
