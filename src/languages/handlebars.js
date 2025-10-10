@@ -6,7 +6,7 @@ export default {
 	id: 'handlebars',
 	require: markup,
 	alias: ['hbs', 'mustache'],
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'handlebars': {
 			pattern: /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/,
 			inside: {
@@ -34,10 +34,6 @@ export default {
 				'variable': /[^!"#%&'()*+,\/;<=>@\[\\\]^`{|}~\s]+/,
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+		$tokenize: embeddedIn('markup'),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
