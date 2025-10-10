@@ -1,5 +1,4 @@
 import { toArray } from '../util/iterables.js';
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'java'>} */
@@ -29,88 +28,6 @@ export default {
 				'punctuation': /\./,
 			},
 		};
-
-		insertBefore(base, 'comment', {
-			'doc-comment': {
-				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
-				greedy: true,
-				alias: 'comment',
-				inside: 'javadoc',
-			},
-		});
-
-		insertBefore(base, 'string', {
-			'triple-quoted-string': {
-				// http://openjdk.java.net/jeps/355#Description
-				pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
-				greedy: true,
-				alias: 'string',
-			},
-			'char': {
-				pattern: /'(?:\\.|[^'\\\r\n]){1,6}'/,
-				greedy: true,
-			},
-		});
-
-		insertBefore(base, 'class-name', {
-			'annotation': {
-				pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
-				lookbehind: true,
-				alias: 'punctuation',
-			},
-			'generics': {
-				pattern:
-					/<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
-				inside: {
-					'class-name': className,
-					'keyword': keywords,
-					'punctuation': /[<>(),.:]/,
-					'operator': /[?&|]/,
-				},
-			},
-			'import': [
-				{
-					pattern: RegExp(
-						/(\bimport\s+)/.source + classNamePrefix + /(?:[A-Z]\w*|\*)(?=\s*;)/.source
-					),
-					lookbehind: true,
-					inside: {
-						'namespace': className.inside.namespace,
-						'punctuation': /\./,
-						'operator': /\*/,
-						'class-name': /\w+/,
-					},
-				},
-				{
-					pattern: RegExp(
-						/(\bimport\s+static\s+)/.source +
-							classNamePrefix +
-							/(?:\w+|\*)(?=\s*;)/.source
-					),
-					lookbehind: true,
-					alias: 'static',
-					inside: {
-						'namespace': className.inside.namespace,
-						'static': /\b\w+$/,
-						'punctuation': /\./,
-						'operator': /\*/,
-						'class-name': /\w+/,
-					},
-				},
-			],
-			'namespace': {
-				pattern: RegExp(
-					/(\b(?:exports|import(?:\s+static)?|module|open|opens|package|provides|requires|to|transitive|uses|with)\s+)(?!<keyword>)[a-z]\w*(?:\.[a-z]\w*)*\.?/.source.replace(
-						/<keyword>/g,
-						() => keywords.source
-					)
-				),
-				lookbehind: true,
-				inside: {
-					'punctuation': /\./,
-				},
-			},
-		});
 
 		return {
 			'string': {
@@ -146,7 +63,7 @@ export default {
 			],
 			'keyword': keywords,
 			'function': [
-				...toArray(base.function),
+				...toArray(/** @type {import('../types.d.ts').GrammarTokens} */ (base).function),
 				{
 					pattern: /(::\s*)[a-z_]\w*/,
 					lookbehind: true,
@@ -159,6 +76,89 @@ export default {
 				lookbehind: true,
 			},
 			'constant': /\b[A-Z][A-Z_\d]+\b/,
+			$insertBefore: {
+				'comment': {
+					'doc-comment': {
+						pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
+						greedy: true,
+						alias: 'comment',
+						inside: 'javadoc',
+					},
+				},
+				'string': {
+					'triple-quoted-string': {
+						// http://openjdk.java.net/jeps/355#Description
+						pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
+						greedy: true,
+						alias: 'string',
+					},
+					'char': {
+						pattern: /'(?:\\.|[^'\\\r\n]){1,6}'/,
+						greedy: true,
+					},
+				},
+				'class-name': {
+					'annotation': {
+						pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
+						lookbehind: true,
+						alias: 'punctuation',
+					},
+					'generics': {
+						pattern:
+							/<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
+						inside: {
+							'class-name': className,
+							'keyword': keywords,
+							'punctuation': /[<>(),.:]/,
+							'operator': /[?&|]/,
+						},
+					},
+					'import': [
+						{
+							pattern: RegExp(
+								/(\bimport\s+)/.source +
+									classNamePrefix +
+									/(?:[A-Z]\w*|\*)(?=\s*;)/.source
+							),
+							lookbehind: true,
+							inside: {
+								'namespace': className.inside.namespace,
+								'punctuation': /\./,
+								'operator': /\*/,
+								'class-name': /\w+/,
+							},
+						},
+						{
+							pattern: RegExp(
+								/(\bimport\s+static\s+)/.source +
+									classNamePrefix +
+									/(?:\w+|\*)(?=\s*;)/.source
+							),
+							lookbehind: true,
+							alias: 'static',
+							inside: {
+								'namespace': className.inside.namespace,
+								'static': /\b\w+$/,
+								'punctuation': /\./,
+								'operator': /\*/,
+								'class-name': /\w+/,
+							},
+						},
+					],
+					'namespace': {
+						pattern: RegExp(
+							/(\b(?:exports|import(?:\s+static)?|module|open|opens|package|provides|requires|to|transitive|uses|with)\s+)(?!<keyword>)[a-z]\w*(?:\.[a-z]\w*)*\.?/.source.replace(
+								/<keyword>/g,
+								() => keywords.source
+							)
+						),
+						lookbehind: true,
+						inside: {
+							'punctuation': /\./,
+						},
+					},
+				},
+			},
 		};
 	},
 };
