@@ -5,7 +5,7 @@ import markup from './markup.js';
 export default {
 	id: 'liquid',
 	require: markup,
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'ignore-raw': {
 			pattern: /(\{%-?\s*raw\b[^\}]*\})[\s\S]*?(?=\{%-?\s*endraw\b[^\}]*\})/,
 			lookbehind: true,
@@ -59,10 +59,6 @@ export default {
 				},
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+		$tokenize: embeddedIn('markup'),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
