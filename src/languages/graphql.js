@@ -3,7 +3,7 @@ import { withoutTokenize } from '../util/language-util.js';
 /** @type {import('../types.d.ts').LanguageProto<'graphql'>} */
 export default {
 	id: 'graphql',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'comment': /#.*/,
 		'description': {
 			pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
@@ -212,7 +212,7 @@ export default {
 
 			return tokens;
 		},
-	}),
+	},
 };
 
 /**
