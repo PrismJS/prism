@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'purebasic'>} */
@@ -6,66 +5,13 @@ export default {
 	id: 'purebasic',
 	base: clike,
 	alias: 'pbfasm',
-	grammar ({ base }) {
+	grammar () {
 		/*
 		Original Code by Bas Groothedde
 		!!MANY THANKS!! I never would have made this, regex and me will never be best friends ;)
 		==> https://codepen.io/ImagineProgramming/details/JYydBy/
 		slightly changed to pass all tests
 		*/
-
-		// PureBasic support, steal stuff from ansi-c
-
-		insertBefore(base, 'keyword', {
-			'tag': /#\w+\$?/,
-			'asm': {
-				pattern: /(^[\t ]*)!.*/m,
-				lookbehind: true,
-				alias: 'tag',
-				inside: {
-					'comment': /;.*/,
-					'string': {
-						pattern: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-						greedy: true,
-					},
-					// Anonymous label references, i.e.: jmp @b
-					'label-reference-anonymous': {
-						pattern: /(!\s*j[a-z]+\s+)@[fb]/i,
-						lookbehind: true,
-						alias: 'fasm-label',
-					},
-					// Named label reference, i.e.: jne label1
-					'label-reference-addressed': {
-						pattern: /(!\s*j[a-z]+\s+)[A-Z._?$@][\w.?$@~#]*/i,
-						lookbehind: true,
-						alias: 'fasm-label',
-					},
-					'keyword': [/\b(?:extern|global)\b[^;\r\n]*/i, /\b(?:CPU|DEFAULT|FLOAT)\b.*/],
-					'function': {
-						pattern: /^([\t ]*!\s*)[\da-z]+(?=\s|$)/im,
-						lookbehind: true,
-					},
-					'function-inline': {
-						pattern: /(:\s*)[\da-z]+(?=\s)/i,
-						lookbehind: true,
-						alias: 'function',
-					},
-					'label': {
-						pattern: /^([\t ]*!\s*)[A-Za-z._?$@][\w.?$@~#]*(?=:)/m,
-						lookbehind: true,
-						alias: 'fasm-label',
-					},
-					'register':
-						/\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[abcd][hl]|[er]?[abcd]x|[er]?(?:bp|di|si|sp)|[cdefgs]s|mm\d+)\b/i,
-					'number':
-						/(?:\b|-|(?=\$))(?:0[hx](?:[\da-f]*\.)?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
-					'operator': /[\[\]*+\-/%<>=&|$!,.:]/,
-				},
-			},
-		});
-
-		delete base['class-name'];
-		delete base['boolean'];
 
 		return {
 			'comment': /;.*/,
@@ -74,6 +20,63 @@ export default {
 			'function': /\b\w+(?:\.\w+)?\s*(?=\()/,
 			'number': /(?:\$[\da-f]+|\b-?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?)\b/i,
 			'operator': /(?:@\*?|\?|\*)\w+\$?|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/,
+
+			// PureBasic support, steal stuff from ansi-c
+			$insert: {
+				'tag': {
+					$before: 'keyword',
+					pattern: /#\w+\$?/,
+				},
+				'asm': {
+					$before: 'keyword',
+					pattern: /(^[\t ]*)!.*/m,
+					lookbehind: true,
+					alias: 'tag',
+					inside: {
+						'comment': /;.*/,
+						'string': {
+							pattern: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+							greedy: true,
+						},
+						// Anonymous label references, i.e.: jmp @b
+						'label-reference-anonymous': {
+							pattern: /(!\s*j[a-z]+\s+)@[fb]/i,
+							lookbehind: true,
+							alias: 'fasm-label',
+						},
+						// Named label reference, i.e.: jne label1
+						'label-reference-addressed': {
+							pattern: /(!\s*j[a-z]+\s+)[A-Z._?$@][\w.?$@~#]*/i,
+							lookbehind: true,
+							alias: 'fasm-label',
+						},
+						'keyword': [
+							/\b(?:extern|global)\b[^;\r\n]*/i,
+							/\b(?:CPU|DEFAULT|FLOAT)\b.*/,
+						],
+						'function': {
+							pattern: /^([\t ]*!\s*)[\da-z]+(?=\s|$)/im,
+							lookbehind: true,
+						},
+						'function-inline': {
+							pattern: /(:\s*)[\da-z]+(?=\s)/i,
+							lookbehind: true,
+							alias: 'function',
+						},
+						'label': {
+							pattern: /^([\t ]*!\s*)[A-Za-z._?$@][\w.?$@~#]*(?=:)/m,
+							lookbehind: true,
+							alias: 'fasm-label',
+						},
+						'register':
+							/\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[abcd][hl]|[er]?[abcd]x|[er]?(?:bp|di|si|sp)|[cdefgs]s|mm\d+)\b/i,
+						'number':
+							/(?:\b|-|(?=\$))(?:0[hx](?:[\da-f]*\.)?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
+						'operator': /[\[\]*+\-/%<>=&|$!,.:]/,
+					},
+				},
+			},
+			$delete: ['class-name', 'boolean'],
 		};
 	},
 };
