@@ -18,7 +18,7 @@ function createTemplate (language, tag) {
 		lookbehind: true,
 		greedy: true,
 		alias: 'template-string',
-		inside: /** @type {Grammar} */ ({
+		inside: {
 			'template-punctuation': {
 				pattern: /^`|`$/,
 				alias: 'string',
@@ -42,7 +42,7 @@ function createTemplate (language, tag) {
 					$tokenize: embeddedIn(language),
 				},
 			},
-		}),
+		},
 	};
 }
 
@@ -83,6 +83,5 @@ export default {
 };
 
 /**
- * @typedef {import('../types.d.ts').Grammar} Grammar
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */
