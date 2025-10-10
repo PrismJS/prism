@@ -1,8 +1,8 @@
 import { kebabToCamelCase } from '../shared/util.js';
-import { cloneGrammar } from '../util/extend.js';
+import { extend } from '../util/extend.js';
+import { grammarPatch } from '../util/grammar-patch.js';
 import { forEach, toArray } from '../util/iterables.js';
-import { extend } from '../util/language-util.js';
-import { defineLazyProperty } from '../util/objects.js';
+import { deepClone, defineLazyProperty } from '../util/objects.js';
 
 /**
  * TODO: docs
@@ -221,7 +221,7 @@ export class Registry {
 
 		const base = entry?.proto.base;
 		// We need this so that any code modifying the base grammar doesn't affect other instances
-		const baseGrammar = base && cloneGrammar(required(base.id), base.id);
+		const baseGrammar = base && deepClone(required(base.id));
 
 		const requiredLanguages = toArray(
 			/** @type {LanguageProto | LanguageProto[] | undefined} */ (entry?.proto.require)
@@ -240,7 +240,7 @@ export class Registry {
 		else {
 			const options = {
 				getOptionalLanguage: id => this.getLanguage(id),
-				extend: (id, ref) => extend(required(id), id, ref),
+				extend: (id, ref) => extend(required(id), ref),
 				...(baseGrammar && { base: baseGrammar }),
 				...(requiredLanguages.length && { languages }),
 			};
@@ -249,10 +249,10 @@ export class Registry {
 		}
 
 		if (baseGrammar) {
-			evaluatedGrammar = extend(baseGrammar, base.id, evaluatedGrammar);
+			evaluatedGrammar = extend(baseGrammar, evaluatedGrammar);
 		}
 
-		return (entry.evaluatedGrammar = evaluatedGrammar);
+		return (entry.evaluatedGrammar = grammarPatch(evaluatedGrammar));
 	}
 }
 
