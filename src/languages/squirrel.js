@@ -1,5 +1,4 @@
 import { toArray } from '../util/iterables.js';
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'squirrel'>} */
@@ -7,28 +6,9 @@ export default {
 	id: 'squirrel',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'char': {
-				pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
-				lookbehind: true,
-				greedy: true,
-			},
-		});
-
-		insertBefore(base, 'operator', {
-			'attribute-punctuation': {
-				pattern: /<\/|\/>/,
-				alias: 'important',
-			},
-			'lambda': {
-				pattern: /@(?=\()/,
-				alias: 'operator',
-			},
-		});
-
 		return {
 			'comment': [
-				...toArray(base.comment),
+				...toArray(/** @type {import('../types.d.ts').GrammarTokens} */ (base).comment),
 				{
 					pattern: /#.*/,
 					greedy: true,
@@ -53,6 +33,25 @@ export default {
 			'number': /\b(?:0x[0-9a-fA-F]+|\d+(?:\.(?:\d+|[eE][+-]?\d+))?)\b/,
 			'operator': /\+\+|--|<=>|<[-<]|>>>?|&&?|\|\|?|[-+*/%!=<>]=?|[~^]|::?/,
 			'punctuation': /[(){}\[\],;.]/,
+			$insertBefore: {
+				'string': {
+					'char': {
+						pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
+						lookbehind: true,
+						greedy: true,
+					},
+				},
+				'operator': {
+					'attribute-punctuation': {
+						pattern: /<\/|\/>/,
+						alias: 'important',
+					},
+					'lambda': {
+						pattern: /@(?=\()/,
+						alias: 'operator',
+					},
+				},
+			},
 		};
 	},
 };
