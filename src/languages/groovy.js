@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'groovy'>} */
 export default {
 	id: 'groovy',
 	base: clike,
-	grammar ({ base }) {
+	grammar () {
 		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -20,37 +19,6 @@ export default {
 				},
 			},
 		};
-
-		insertBefore(base, 'string', {
-			'shebang': {
-				pattern: /#!.+/,
-				alias: 'comment',
-				greedy: true,
-			},
-			'interpolation-string': {
-				// TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
-				// simple division (see JS regex), so find a fix maybe?
-				pattern:
-					/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
-				greedy: true,
-				inside: {
-					'interpolation': interpolation,
-					'string': /[\s\S]+/,
-				},
-			},
-		});
-
-		insertBefore(base, 'punctuation', {
-			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
-		});
-
-		insertBefore(base, 'function', {
-			'annotation': {
-				pattern: /(^|[^.])@\w+/,
-				lookbehind: true,
-				alias: 'punctuation',
-			},
-		});
 
 		return {
 			'string': {
@@ -68,6 +36,36 @@ export default {
 				lookbehind: true,
 			},
 			'punctuation': /\.+|[{}[\];(),:$]/,
+			$insert: {
+				'shebang': {
+					$before: 'string',
+					pattern: /#!.+/,
+					alias: 'comment',
+					greedy: true,
+				},
+				'interpolation-string': {
+					$before: 'string',
+					// TODO: Slash strings (e.g. /foo/) can contain line breaks but this will cause a lot of trouble with
+					// simple division (see JS regex), so find a fix maybe?
+					pattern:
+						/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
+					greedy: true,
+					inside: {
+						'interpolation': interpolation,
+						'string': /[\s\S]+/,
+					},
+				},
+				'spock-block': {
+					$before: 'punctuation',
+					pattern: /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
+				},
+				'annotation': {
+					$before: 'function',
+					pattern: /(^|[^.])@\w+/,
+					lookbehind: true,
+					alias: 'punctuation',
+				},
+			},
 		};
 	},
 };
