@@ -72,7 +72,7 @@ export default {
 			stringInterpolation
 		).inside.interpolation.inside.$rest = ftl;
 
-		return /** @type {Grammar} */ ({
+		return {
 			'ftl-comment': {
 				// the pattern is shortened to be more efficient
 				pattern: /<#--[\s\S]*?-->/,
@@ -116,8 +116,8 @@ export default {
 					},
 				},
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+			$tokenize: embeddedIn('markup'),
+		};
 	},
 };
 
