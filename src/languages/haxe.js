@@ -1,67 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'haxe'>} */
 export default {
 	id: 'haxe',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'string-interpolation': {
-				pattern: /'(?:[^'\\]|\\[\s\S])*'/,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /(^|[^\\])\$(?:\w+|\{[^{}]+\})/,
-						lookbehind: true,
-						inside: {
-							'interpolation-punctuation': {
-								pattern: /^\$\{?|\}$/,
-								alias: 'punctuation',
-							},
-							'expression': {
-								pattern: /[\s\S]+/,
-								inside: 'haxe',
-							},
-						},
-					},
-					'string': /[\s\S]+/,
-				},
-			},
-		});
-
-		insertBefore(base, 'class-name', {
-			'regex': {
-				pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
-				greedy: true,
-				inside: {
-					'regex-flags': /\b[a-z]+$/,
-					'regex-source': {
-						pattern: /^(~\/)[\s\S]+(?=\/$)/,
-						lookbehind: true,
-						alias: 'language-regex',
-						inside: 'regex',
-					},
-					'regex-delimiter': /^~\/|\/$/,
-				},
-			},
-		});
-
-		insertBefore(base, 'keyword', {
-			'preprocessor': {
-				pattern: /#(?:else|elseif|end|if)\b.*/,
-				alias: 'property',
-			},
-			'metadata': {
-				pattern: /@:?[\w.]+/,
-				alias: 'symbol',
-			},
-			'reification': {
-				pattern: /\$(?:\w+|(?=\{))/,
-				alias: 'important',
-			},
-		});
-
+	grammar () {
 		return {
 			'string': {
 				// Strings can be multi-line
@@ -85,6 +28,61 @@ export default {
 				greedy: true,
 			},
 			'operator': /\.{3}|\+\+|--|&&|\|\||->|=>|(?:<<?|>{1,3}|[-+*/%!=&|^])=?|[?:~]/,
+			$insert: {
+				'string-interpolation': {
+					$before: 'string',
+					pattern: /'(?:[^'\\]|\\[\s\S])*'/,
+					greedy: true,
+					inside: {
+						'interpolation': {
+							pattern: /(^|[^\\])\$(?:\w+|\{[^{}]+\})/,
+							lookbehind: true,
+							inside: {
+								'interpolation-punctuation': {
+									pattern: /^\$\{?|\}$/,
+									alias: 'punctuation',
+								},
+								'expression': {
+									pattern: /[\s\S]+/,
+									inside: 'haxe',
+								},
+							},
+						},
+						'string': /[\s\S]+/,
+					},
+				},
+				'regex': {
+					$before: 'class-name',
+					pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
+					greedy: true,
+					inside: {
+						'regex-flags': /\b[a-z]+$/,
+						'regex-source': {
+							pattern: /^(~\/)[\s\S]+(?=\/$)/,
+							lookbehind: true,
+							alias: 'language-regex',
+							inside: 'regex',
+						},
+						'regex-delimiter': /^~\/|\/$/,
+					},
+				},
+			},
+			$insertBefore: {
+				'keyword': {
+					'preprocessor': {
+						pattern: /#(?:else|elseif|end|if)\b.*/,
+						alias: 'property',
+					},
+					'metadata': {
+						pattern: /@:?[\w.]+/,
+						alias: 'symbol',
+					},
+					'reification': {
+						pattern: /\$(?:\w+|(?=\{))/,
+						alias: 'important',
+					},
+				},
+			},
 		};
 	},
 };
