@@ -58,7 +58,7 @@ export default {
 			],
 		};
 
-		return /** @type {Grammar} */ ({
+		return {
 			// ; ...
 			'comment': {
 				pattern: /^([\t ]*);.*/m,
@@ -138,7 +138,6 @@ export default {
 				},
 			},
 
-			/** @type {Grammar['$tokenize']} */
 			$tokenize (code, grammar, Prism) {
 				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 				tokens.forEach(token => {
@@ -152,10 +151,6 @@ export default {
 				});
 				return tokens;
 			},
-		});
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
