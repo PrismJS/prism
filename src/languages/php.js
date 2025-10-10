@@ -352,7 +352,7 @@ export default {
 
 		const extras = getOptionalLanguage('php-extras');
 		if (extras) {
-			insertBefore(php, 'variable', extras);
+			insertBefore(php, 'variable', /** @type {GrammarTokens} */ (extras));
 		}
 
 		const embedded = embeddedIn('markup');
@@ -376,4 +376,5 @@ export default {
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
  */

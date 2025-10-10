@@ -89,7 +89,11 @@ export default {
 
 		const extras = getOptionalLanguage('css-extras');
 		if (extras) {
-			insertBefore(css, 'function', extras);
+			insertBefore(
+				css,
+				'function',
+				/** @type {import('../types.d.ts').GrammarTokens} */ (extras)
+			);
 		}
 
 		return css;

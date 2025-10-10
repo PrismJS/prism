@@ -103,7 +103,11 @@ export default {
 		/* OpenCL host API */
 		const extensions = getOptionalLanguage('opencl-extensions');
 		if (extensions) {
-			insertBefore(cpp, 'keyword', extensions);
+			insertBefore(
+				cpp,
+				'keyword',
+				/** @type {import('../types.d.ts').GrammarTokens} */ (extensions)
+			);
 		}
 
 		const baseInside = { ...cpp };
