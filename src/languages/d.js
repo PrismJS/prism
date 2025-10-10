@@ -1,30 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'d'>} */
 export default {
 	id: 'd',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			// Characters
-			// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
-			'char': /'(?:\\(?:\W|\w+)|[^\\])'/,
-		});
-
-		insertBefore(base, 'keyword', {
-			'property': /\B@\w*/,
-		});
-
-		insertBefore(base, 'function', {
-			'register': {
-				// Iasm registers
-				pattern:
-					/\b(?:[ABCD][LHX]|E?(?:BP|DI|SI|SP)|[BS]PL|CR[0234]|[ECSDGF]S|[DS]IL|DR[012367]|E[ABCD]X|X?MM[0-7]|R(?:1[0-5]|[89])[BWD]?|R[ABCD]X|R[BS]P|R[DS]I|TR[3-7]|XMM(?:1[0-5]|[89])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
-				alias: 'variable',
-			},
-		});
-
+	grammar () {
 		return {
 			'comment': [
 				{
@@ -101,6 +81,25 @@ export default {
 
 			'operator':
 				/\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/,
+
+			$insertBefore: {
+				'string': {
+					// Characters
+					// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
+					'char': /'(?:\\(?:\W|\w+)|[^\\])'/,
+				},
+				'keyword': {
+					'property': /\B@\w*/,
+				},
+				'function': {
+					'register': {
+						// Iasm registers
+						pattern:
+							/\b(?:[ABCD][LHX]|E?(?:BP|DI|SI|SP)|[BS]PL|CR[0234]|[ECSDGF]S|[DS]IL|DR[012367]|E[ABCD]X|X?MM[0-7]|R(?:1[0-5]|[89])[BWD]?|R[ABCD]X|R[BS]P|R[DS]I|TR[3-7]|XMM(?:1[0-5]|[89])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
+						alias: 'variable',
+					},
+				},
+			},
 		};
 	},
 };
