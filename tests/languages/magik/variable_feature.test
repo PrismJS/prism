@@ -1,0 +1,23 @@
+!terminal!
+|!terminal!|
+|!terminal|!
+!|terminal|!
+!||!
+sw:gis_program_manager
+@gis_program_manager
+
+----------------------------------------------------
+
+[
+	["variable", "!terminal!"],
+	["variable", "|!terminal!|"],
+	["variable", "|!terminal|!"],
+	["variable", "!|terminal|!"],
+	["variable", "!||!"],
+	["variable", "sw:gis_program_manager"],
+	["variable", "@gis_program_manager"]
+]
+
+----------------------------------------------------
+
+Checks for variables.

@@ -1,0 +1,103 @@
+^<<
+<<
+_and<<
+_andif<<
+_or<<
+_orif<<
+_xor<<
+**<<
+**^<<
+*<<
+*^<<
+/<<
+/^<<
+_mod<<
+_mod^<<
+_div<<
+_div^<<
+-<<
+-^<<
++<<
++^<<
+>>
+_return
+_cf
+_is
+_isnt
+=
+~=
+<>
+>=
+<=
+<
+>
+_and
+_andif
+_or
+_orif
+_xor
+**
+*
+/
+_div
+_mod
++
+-
+_not
+~
+
+----------------------------------------------------
+
+[
+	["operator", "^<<"],
+	["operator", "<<"],
+	["operator", "_and<<"],
+	["operator", "_andif<<"],
+	["operator", "_or<<"],
+	["operator", "_orif<<"],
+	["operator", "_xor<<"],
+	["operator", "**<<"],
+	["operator", "**^<<"],
+	["operator", "*<<"],
+	["operator", "*^<<"],
+	["operator", "/<<"],
+	["operator", "/^<<"],
+	["operator", "_mod<<"],
+	["operator", "_mod^<<"],
+	["operator", "_div<<"],
+	["operator", "_div^<<"],
+	["operator", "-<<"],
+	["operator", "-^<<"],
+	["operator", "+<<"],
+	["operator", "+^<<"],
+	["operator", ">>"],
+	["operator", "_return"],
+	["operator", "_cf"],
+	["operator", "_is"],
+	["operator", "_isnt"],
+	["operator", "="],
+	["operator", "~="],
+	["operator", "<>"],
+	["operator", ">="],
+	["operator", "<="],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "_and"],
+	["operator", "_andif"],
+	["operator", "_or"],
+	["operator", "_orif"],
+	["operator", "_xor"],
+	["operator", "**"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "_div"],
+	["operator", "_mod"],
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "_not"],
+	["operator", "~"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

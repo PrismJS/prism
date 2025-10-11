@@ -736,6 +736,10 @@
 			"title": "Lua",
 			"owner": "Golmote"
 		},
+		"magik": {
+			"title": "Magik",
+			"owner": "sebastiaanspeck"
+		},
 		"magma": {
 			"title": "Magma (CAS)",
 			"owner": "RunDevelopment"

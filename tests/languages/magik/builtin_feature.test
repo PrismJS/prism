@@ -1,0 +1,17 @@
+_clone
+_package
+_self
+_super
+
+----------------------------------------------------
+
+[
+	["builtin", "_clone"],
+	["builtin", "_package"],
+	["builtin", "_self"],
+	["builtin", "_super"]
+]
+
+----------------------------------------------------
+
+Checks for builtins.

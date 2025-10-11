@@ -1,0 +1,20 @@
+_pragma(classify_level=basic, usage=restricted, topic=prism)
+
+----------------------------------------------------
+
+[
+	["property", [
+		"_pragma(",
+		["modifier", "classify_level"],
+		["punctuation", "="],
+		"basic",
+		["punctuation", ","],
+		["modifier", "usage"],
+		["punctuation", "="],
+		"restricted",
+		["punctuation", ","],
+		["modifier", "topic"],
+		["punctuation", "="],
+		"prism)"
+	]]
+]
