@@ -38,7 +38,7 @@ export default {
 			},
 		});
 
-		return /** @type {Grammar} */ ({
+		return {
 			'latte-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
 				greedy: true,
@@ -66,8 +66,8 @@ export default {
 					},
 				},
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn(markupLatte)),
-		});
+			$tokenize: embeddedIn(markupLatte),
+		};
 	},
 };
 
