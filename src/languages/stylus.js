@@ -33,14 +33,14 @@ export default {
 						pattern: /^\{|\}$/,
 						alias: 'punctuation',
 					},
-					$rest: /** @type {Grammar['$rest']} */ (null),
+					$rest: null,
 				},
 			},
 			'func': {
 				pattern: /[\w-]+\([^)]*\).*/,
 				inside: {
 					'function': /^[^(]+/,
-					$rest: /** @type {Grammar['$rest']} */ (null),
+					$rest: null,
 				},
 			},
 			'important': /\B!(?:important|optional)\b/i,
@@ -85,7 +85,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'atrule': /^@[\w-]+/,
-					$rest: /** @type {Grammar['$rest']} */ (inside),
+					$rest: inside,
 				},
 			},
 			'variable-declaration': {
@@ -93,7 +93,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'variable': /^\S+/,
-					$rest: /** @type {Grammar['$rest']} */ (inside),
+					$rest: inside,
 				},
 			},
 
@@ -102,7 +102,7 @@ export default {
 				lookbehind: true,
 				inside: {
 					'keyword': /^\S+/,
-					$rest: /** @type {Grammar['$rest']} */ (inside),
+					$rest: inside,
 				},
 			},
 
@@ -119,7 +119,7 @@ export default {
 							'interpolation': inside.interpolation,
 						},
 					},
-					$rest: /** @type {Grammar['$rest']} */ (inside),
+					$rest: inside,
 				},
 			},
 
