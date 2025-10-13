@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'c'>} */
@@ -7,75 +6,8 @@ export default {
 	base: clike,
 	optional: 'opencl-extensions',
 	grammar ({ base, getOptionalLanguage }) {
-		insertBefore(base, 'string', {
-			'char': {
-				// https://en.cppreference.com/w/c/language/character_constant
-				pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
-				greedy: true,
-			},
-		});
-
-		insertBefore(base, 'string', {
-			'macro': {
-				// allow for multiline macro definitions
-				// spaces after the # character compile fine with gcc
-				pattern:
-					/(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
-				lookbehind: true,
-				greedy: true,
-				alias: 'property',
-				inside: {
-					'string': [
-						{
-							// highlight the path of the include statement as a string
-							pattern: /^(#\s*include\s*)<[^>]+>/,
-							lookbehind: true,
-						},
-						/** @type {GrammarToken} */ (base['string']),
-					],
-					'char': base['char'],
-					'comment': base['comment'],
-					'macro-name': [
-						{
-							pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
-							lookbehind: true,
-						},
-						{
-							pattern: /(^#\s*define\s+)\w+\b(?=\()/i,
-							lookbehind: true,
-							alias: 'function',
-						},
-					],
-					// highlight macro directives as keywords
-					'directive': {
-						pattern: /^(#\s*)[a-z]+/,
-						lookbehind: true,
-						alias: 'keyword',
-					},
-					'directive-hash': /^#/,
-					'punctuation': /##|\\(?=[\r\n])/,
-					'expression': {
-						pattern: /\S[\s\S]*/,
-						inside: 'c',
-					},
-				},
-			},
-		});
-
-		insertBefore(base, 'function', {
-			// highlight predefined macros as constants
-			'constant':
-				/\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/,
-		});
-
-		delete base['boolean'];
-
 		/* OpenCL host API */
 		const extensions = getOptionalLanguage('opencl-extensions');
-		if (extensions) {
-			insertBefore(base, 'keyword', /** @type {GrammarTokens} */ (extensions));
-			delete base['type-opencl-host-cpp'];
-		}
 
 		return {
 			'comment': {
@@ -98,6 +30,69 @@ export default {
 			'number':
 				/(?:\b0x(?:[\da-f]+(?:\.[\da-f]*)?|\.[\da-f]+)(?:p[+-]?\d+)?|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ful]{0,4}/i,
 			'operator': />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?/,
+			$insert: {
+				'char': {
+					$before: 'string',
+					// https://en.cppreference.com/w/c/language/character_constant
+					pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
+					greedy: true,
+				},
+				'macro': {
+					$before: 'string',
+					// allow for multiline macro definitions
+					// spaces after the # character compile fine with gcc
+					pattern:
+						/(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
+					lookbehind: true,
+					greedy: true,
+					alias: 'property',
+					inside: {
+						'string': [
+							{
+								// highlight the path of the include statement as a string
+								pattern: /^(#\s*include\s*)<[^>]+>/,
+								lookbehind: true,
+							},
+							/** @type {GrammarToken} */ (base['string']),
+						],
+						'char': base['char'],
+						'comment': base['comment'],
+						'macro-name': [
+							{
+								pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
+								lookbehind: true,
+							},
+							{
+								pattern: /(^#\s*define\s+)\w+\b(?=\()/i,
+								lookbehind: true,
+								alias: 'function',
+							},
+						],
+						// highlight macro directives as keywords
+						'directive': {
+							pattern: /^(#\s*)[a-z]+/,
+							lookbehind: true,
+							alias: 'keyword',
+						},
+						'directive-hash': /^#/,
+						'punctuation': /##|\\(?=[\r\n])/,
+						'expression': {
+							pattern: /\S[\s\S]*/,
+							inside: 'c',
+						},
+					},
+				},
+				// highlight predefined macros as constants
+				'constant': {
+					$before: 'function',
+					pattern:
+						/\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/,
+				},
+			},
+			$insertBefore: {
+				'function': /** @type {import('../types.d.ts').GrammarTokens} */ (extensions),
+			},
+			$delete: ['boolean', ...(extensions ? ['type-opencl-host-cpp'] : [])],
 		};
 	},
 };
