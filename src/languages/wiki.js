@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'wiki'>} */
@@ -6,22 +5,9 @@ export default {
 	id: 'wiki',
 	base: markup,
 	grammar ({ base }) {
-		const tag = /** @type {GrammarToken} */ (base['tag']);
+		const tag = /** @type {import('../types.d.ts').GrammarToken} */ (base['tag']);
 
-		insertBefore(base, 'tag', {
-			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
-			'nowiki': {
-				pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
-				inside: {
-					'tag': {
-						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-						inside: tag.inside,
-					},
-				},
-			},
-		});
-
-		return /** @type {Grammar} */ ({
+		return {
 			'block-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
@@ -86,11 +72,19 @@ export default {
 				},
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m,
-		});
+			$insert: {
+				// Prevent highlighting inside <nowiki>, <source> and <pre> tags
+				'nowiki': {
+					$before: 'tag',
+					pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
+					inside: {
+						'tag': {
+							pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
+							inside: tag.inside,
+						},
+					},
+				},
+			},
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- */
