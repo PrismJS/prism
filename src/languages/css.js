@@ -1,5 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
-
 /** @type {import('../types.d.ts').LanguageProto<'css'>} */
 export default {
 	id: 'css',
@@ -8,8 +6,7 @@ export default {
 		const string =
 			/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
-		/** @type {Grammar} */
-		const css = {
+		return {
 			'comment': /\/\*[\s\S]*?\*\//,
 			'atrule': {
 				pattern: RegExp(
@@ -20,7 +17,7 @@ export default {
 						')*?' +
 						/(?:;|(?=\s*\{))/.source
 				),
-				inside: /** @type {Grammar} */ ({
+				inside: {
 					'rule': /^@[\w-]+/,
 					'selector-function-argument': {
 						pattern:
@@ -33,8 +30,8 @@ export default {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true,
 					},
-					$rest: /** @type {Grammar['$rest']} */ ('css'),
-				}),
+					$rest: 'css',
+				},
 			},
 			'url': {
 				// https://drafts.csswg.org/css-values-3/#urls
@@ -85,21 +82,11 @@ export default {
 				lookbehind: true,
 			},
 			'punctuation': /[(){};:,]/,
+			$insertBefore: {
+				'function': /** @type {import('../types.d.ts').GrammarTokens} */ (
+					getOptionalLanguage('css-extras')
+				),
+			},
 		};
-
-		const extras = getOptionalLanguage('css-extras');
-		if (extras) {
-			insertBefore(
-				css,
-				'function',
-				/** @type {import('../types.d.ts').GrammarTokens} */ (extras)
-			);
-		}
-
-		return css;
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */
