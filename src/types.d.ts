@@ -198,7 +198,35 @@ export type GrammarSpecial = {
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 };
 
-export type Grammar = GrammarTokens & GrammarSpecial;
+/**
+ * Tokens within $insert
+ */
+export type InsertableToken = (RegExpLike | GrammarToken | (RegExpLike | GrammarToken)[]) & {
+	$before?: TokenName | TokenName[];
+	$after?: TokenName | TokenName[];
+};
+
+/**
+ * A grammar that is defined as its delta from another grammar.
+ */
+export type GrammarPatch = {
+	$insert?: Partial<Record<TokenName, InsertableToken>>;
+	$insertBefore?: Partial<Record<TokenName, GrammarTokens>>;
+	$insertAfter?: Partial<Record<TokenName, GrammarTokens>>;
+	$delete?: TokenName[];
+	$merge?: Partial<
+		Record<TokenName, Partial<Omit<GrammarToken, 'pattern'>> & { pattern?: RegExpLike }>
+	>;
+};
+
+export interface Grammar extends GrammarSpecial, GrammarPatch {
+	[token: string]:
+		| RegExpLike
+		| GrammarToken
+		| (RegExpLike | GrammarToken)[]
+		| GrammarSpecial[keyof GrammarSpecial]
+		| GrammarPatch[keyof GrammarPatch];
+}
 
 export interface PlainObject {
 	[key: string]: unknown;
