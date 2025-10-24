@@ -3,7 +3,7 @@ title: Data URI Highlight
 description: Highlights data-URI contents.
 owner: Golmote
 noCSS: true
-resources: ../autolinker/autolinker.css
+resources: /plugins/autolinker.css
 ---
 
 <section>

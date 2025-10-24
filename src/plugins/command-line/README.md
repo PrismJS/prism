@@ -3,9 +3,9 @@ title: Command Line
 description: Display a command line with a prompt and, optionally, the output/response from the commands.
 owner: chriswells0
 resources:
-  - https://dev.prismjs.com/components/prism-bash.js
-  - https://dev.prismjs.com/components/prism-powershell.js
-  - https://dev.prismjs.com/components/prism-sql.js
+  - /languages/bash.js { type="module" }
+  - /languages/powershell.js { type="module" }
+  - /languages/sql.js { type="module" }
 ---
 
 <section class="language-markup">

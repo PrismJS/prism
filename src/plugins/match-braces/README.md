@@ -2,7 +2,7 @@
 title: Match braces
 description: Highlights matching braces.
 owner: RunDevelopment
-resources: ../autoloader/autoloader.js { type="module" }
+resources: /plugins/autoloader.js { type="module" }
 ---
 
 <section class="language-markup">

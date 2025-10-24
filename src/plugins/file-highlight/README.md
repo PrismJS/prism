@@ -4,8 +4,8 @@ description: Fetch external files and highlight them with Prism. Used on the Pri
 owner: LeaVerou
 noCSS: true
 resources:
-  - ../line-numbers/line-numbers.css
-  - ../line-numbers/line-numbers.js { type="module" }
+  - /plugins/line-numbers.css
+  - /plugins/line-numbers.js { type="module" }
 ---
 
 <section class="language-markup">

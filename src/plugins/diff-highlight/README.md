@@ -3,7 +3,7 @@ title: Diff Highlight
 description: Highlight the code inside diff blocks.
 owner: RunDevelopment
 require: diff
-resources: ../autoloader/autoloader.js { type="module" }
+resources: /plugins/autoloader.js { type="module" }
 ---
 
 <section class="language-none">
