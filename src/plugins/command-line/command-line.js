@@ -11,7 +11,7 @@ const Self = {
 	effect (Prism) {
 		return Prism.hooks.add({
 			'before-highlight': env => {
-				const commandLine = env.commandLine ?? {};
+				const commandLine = (env.commandLine ??= {});
 
 				if (commandLine.complete || !env.code) {
 					commandLine.complete = true;
@@ -107,7 +107,7 @@ const Self = {
 				env.code = codeLines.join('\n');
 			},
 			'before-insert': env => {
-				const commandLine = env.commandLine ?? {};
+				const commandLine = (env.commandLine ??= {});
 				if (commandLine.complete) {
 					return;
 				}
@@ -130,7 +130,7 @@ const Self = {
 				env.highlightedCode = codeLines.join('\n');
 			},
 			'complete': env => {
-				const commandLine = env.commandLine ?? {};
+				const commandLine = (env.commandLine ??= {});
 				if (commandLine.complete) {
 					return;
 				}
