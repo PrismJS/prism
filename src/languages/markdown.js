@@ -149,7 +149,8 @@ export default {
 								if (langName) {
 									codeBlock.addAlias('language-' + langName);
 
-									const grammar = Prism.components.getLanguage(lang);
+									const grammar =
+										Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
 									if (grammar) {
 										codeBlock.content = Prism.tokenize(
 											getTextContent(codeBlock),
