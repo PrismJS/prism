@@ -125,8 +125,8 @@ function testLiterals (getPrism, lang) {
 	 */
 	async function matchNotBroken (identifierElements, identifierType) {
 		const Prism = await getPrism;
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languages)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (!grammar) {
 				continue;
 			}
