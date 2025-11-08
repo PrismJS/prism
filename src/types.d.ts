@@ -1,8 +1,27 @@
+import type { Language } from './core/classes/language.js';
+import type { Plugin } from './core/classes/plugin.js';
 import type { Token } from './core/classes/token.js';
 import type { Prism } from './core/prism.js';
 
+export type { LanguageRegistry } from './core/language-registry.js';
+
+export type { Language };
+export type Languages = Record<string, Language>;
+export type LanguageGrammars = Record<string, Grammar>;
+
+export type { PluginRegistry } from './core/plugin-registry.js';
+
+export type { Plugin };
+export type Plugins = Record<string, Plugin>;
+
 export interface PrismConfig {
 	manual?: boolean;
+	silent?: boolean;
+	errorHandler?: (reason: any) => PromiseLike<never>;
+	plugins?: string[];
+	languages?: string[];
+	pluginPath?: string;
+	languagePath?: string;
 }
 
 export type GlobalConfig = Record<string, PrismConfig[keyof PrismConfig] | null>;

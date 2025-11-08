@@ -1,22 +1,31 @@
+import singleton from '../prism.js';
+
 /**
- * @param {Registry} components
+ * @this {Prism}
  * @param {Grammar | string | null | undefined} reference
  * @returns {Grammar | undefined}
  */
-export function resolve (components, reference) {
-	if (reference) {
-		if (typeof reference === 'string') {
-			return components.getLanguage(reference);
-		}
-		return reference;
+export function resolve (reference) {
+	const prism = this ?? singleton;
+	let ret = reference ?? undefined;
+
+	if (typeof ret === 'string') {
+		ret = prism.languageRegistry.getLanguage(ret)?.resolvedGrammar;
 	}
-	return undefined;
+
+	if (typeof ret === 'object' && ret.$rest) {
+		const restGrammar = resolve.call(prism, ret.$rest) ?? {};
+		if (typeof restGrammar === 'object') {
+			ret = { ...ret, ...restGrammar };
+		}
+
+		delete ret.$rest;
+	}
+
+	return /** @type {Grammar | undefined} */ (ret);
 }
 
 /**
- * @typedef {import('../../types.d.ts').Grammar} Grammar
- */
-
-/**
- * @typedef {import('../registry.js').Registry} Registry
+ * @import { Prism } from '../prism.js';
+ * @import { Grammar, LanguageRegistry } from '../../types.d.ts';
  */
