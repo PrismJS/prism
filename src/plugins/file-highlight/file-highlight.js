@@ -172,7 +172,7 @@ const Self = {
 
 				// preload the language
 				/** @type {import('../autoloader/autoloader.js').Autoloader} */
-				const autoloader = Prism.plugins.autoloader;
+				const autoloader = Prism.pluginRegistry.peek('autoloader')?.plugin;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);
 				}
@@ -228,7 +228,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism

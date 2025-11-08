@@ -170,7 +170,7 @@ const Self = {
 				return;
 			}
 
-			const lang = Prism.components.resolveAlias(env.language);
+			const lang = Prism.languageRegistry.resolveRef(env.language).id;
 			if (lang === 'css' || lang === 'scss') {
 				href += 'css/';
 
@@ -223,4 +223,4 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);

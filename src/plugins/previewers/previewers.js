@@ -859,7 +859,7 @@ const Self = {
 
 		return Prism.hooks.add('after-highlight', env => {
 			/** @type {PreviewerCollection} */
-			const previewers = Prism.plugins.previewers;
+			const previewers = Prism.pluginRegistry.peek(Self)?.plugin;
 			previewers.initEvents(env.element, env.language);
 		});
 	},
@@ -867,4 +867,4 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);

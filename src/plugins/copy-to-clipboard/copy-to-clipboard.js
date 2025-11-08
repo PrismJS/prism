@@ -132,7 +132,7 @@ const Self = {
 	require: toolbar,
 	effect (Prism) {
 		/** @type {import('../toolbar/toolbar.js').Toolbar} */
-		const toolbar = Prism.plugins.toolbar;
+		const toolbar = Prism.pluginRegistry.peek('toolbar')?.plugin;
 
 		return toolbar.registerButton('copy-to-clipboard', env => {
 			const element = env.element;
@@ -186,7 +186,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {object} CopyInfo

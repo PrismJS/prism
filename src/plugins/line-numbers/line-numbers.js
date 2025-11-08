@@ -213,7 +213,7 @@ const Self = {
 		let lastWidth = NaN;
 		const listener = () => {
 			/** @type {LineNumbers} */
-			const lineNumbers = Prism.plugins.lineNumbers;
+			const lineNumbers = Prism.pluginRegistry.peek(Self)?.plugin;
 			if (lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;
 			}
@@ -277,7 +277,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {object} Info

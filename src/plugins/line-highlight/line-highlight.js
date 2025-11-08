@@ -161,9 +161,9 @@ export class LineHighlight {
 			});
 
 			// if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
-			if (hasLineNumbers && this.Prism.plugins.lineNumbers) {
+			if (hasLineNumbers && this.Prism.pluginRegistry.peek('line-numbers')?.plugin) {
 				/** @type {LineNumbers} */
-				const lineNumbers = this.Prism.plugins.lineNumbers;
+				const lineNumbers = this.Prism.pluginRegistry.peek('line-numbers')?.plugin;
 				const startNode = lineNumbers.getLine(pre, start);
 				const endNode = lineNumbers.getLine(pre, end);
 
@@ -209,7 +209,7 @@ export class LineHighlight {
 		const id = pre.id;
 		if (
 			hasLineNumbers &&
-			this.Prism.plugins.lineNumbers &&
+			this.Prism.pluginRegistry.peek('line-numbers')?.plugin &&
 			isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) &&
 			id
 		) {
@@ -230,7 +230,7 @@ export class LineHighlight {
 
 			// iterate all line number spans
 			/** @type {LineNumbers} */
-			const lineNumbers = this.Prism.plugins.lineNumbers;
+			const lineNumbers = this.Prism.pluginRegistry.peek('line-numbers')?.plugin;
 			lineNumbers.getLines(pre)?.forEach((lineSpan, i) => {
 				const lineNumber = i + start;
 				lineSpan.onclick = () => {
@@ -316,7 +316,7 @@ const Self = {
 			}
 
 			/** @type {LineHighlight} */
-			const lineHighlight = Prism.plugins.lineHighlight;
+			const lineHighlight = Prism.pluginRegistry.peek(Self)?.plugin;
 			const mutateDom = lineHighlight.highlightLines(pre, range, 'temporary ');
 			mutateDom();
 
@@ -329,7 +329,7 @@ const Self = {
 				.filter(isActiveFor)
 				.map(pre => {
 					/** @type {LineHighlight} */
-					const lineHighlight = Prism.plugins.lineHighlight;
+					const lineHighlight = Prism.pluginRegistry.peek(Self)?.plugin;
 					return lineHighlight.highlightLines(pre);
 				})
 				.forEach(callFunction);
@@ -381,7 +381,7 @@ const Self = {
 			}
 
 			/** @type {LineHighlight} */
-			const lineHighlight = Prism.plugins.lineHighlight;
+			const lineHighlight = Prism.pluginRegistry.peek(Self)?.plugin;
 			const mutateDom = lineHighlight.highlightLines(pre);
 			mutateDom();
 			fakeTimer = setTimeout(applyHash, 1);
@@ -393,7 +393,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism
