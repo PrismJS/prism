@@ -1,0 +1,22 @@
+cat << "EOF" > /tmp/output
+data
+EOF
+
+----------------------------------------------------
+
+[
+	["function", "cat"],
+	["operator", ["<<"]],
+	["string", [
+		"\"EOF\"",
+		["bash", [
+			["operator", [">"]],
+			" /tmp/output"
+		]],
+		"\r\ndata\r\nEOF"
+	]]
+]
+
+----------------------------------------------------
+
+Checks that commands inside quoted here-documents are tokenized as Bash code.
