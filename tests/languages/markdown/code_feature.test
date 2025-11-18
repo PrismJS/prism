@@ -21,7 +21,7 @@ var a = 0;
 	["code", "\tfoobar\r\n\tcontinuous"],
 
 	["code", [
-		["punctuation", "```"], ["code-language", " js"],
+		["punctuation", "```"], ["code-language", "js"],
 		["code-block", "var a = 0;"],
 		["punctuation", "```"]
 	]]

@@ -99,73 +99,24 @@ export default {
 					// ```optional language
 					// code block
 					// ```
-					pattern: /^```[\s\S]*?^```$/m,
-					greedy: true,
-					inside: /** @type {Grammar} */ ({
-						'code-block': {
-							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
-							lookbehind: true,
-						},
-						'code-language': {
-							pattern: /^(```).+/,
-							lookbehind: true,
-						},
-						'punctuation': /```/,
-						/** @type {Grammar['$tokenize']} */
-						$tokenize (code, grammar, Prism) {
-							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-
-							/*
-							 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-							 * is optional. But the grammar is defined so that there is only one case we have to handle:
-							 *
-							 * token.content = [
-							 *     <span class="punctuation">```</span>,
-							 *     <span class="code-language">xxxx</span>,
-							 *     '\n', // exactly one new lines (\r or \n or \r\n)
-							 *     <span class="code-block">...</span>,
-							 *     '\n', // exactly one new lines again
-							 *     <span class="punctuation">```</span>
-							 * ];
-							 */
-
-							const codeLang = tokens[1];
-							const codeBlock = tokens[3];
-
-							if (
-								typeof codeLang === 'object' &&
-								typeof codeBlock === 'object' &&
-								codeLang.type === 'code-language' &&
-								codeBlock.type === 'code-block'
-							) {
-								// this might be a language that Prism does not support
-
-								// do some replacements to support C++, C#, and F#
-								const lang = getTextContent(codeLang.content)
-									.replace(/\b#/g, 'sharp')
-									.replace(/\b\+\+/g, 'pp');
-								// only use the first word
-								const langName = /[a-z][\w-]*/i.exec(lang)?.[0].toLowerCase();
-								if (langName) {
-									codeBlock.addAlias('language-' + langName);
-
-									const grammar =
-										Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
-									if (grammar) {
-										codeBlock.content = Prism.tokenize(
-											getTextContent(codeBlock),
-											grammar
-										);
-									}
-									else {
-										codeBlock.addAlias('needs-highlighting');
-									}
+					pattern:
+						/^```(?:\s*)(?<codeLanguage>\{[^{}]*\}|[a-z+#-]+)(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
+					inside: {
+						'code-block': groups => {
+							let lang = groups.codeLanguage;
+							// Extract language code from curly braces like {r pressure, echo=FALSE} → r
+							if (lang.startsWith('{') && lang.endsWith('}')) {
+								const match = lang.slice(1, -1).match(/^(?:\s*)([a-z+#-]+)/i);
+								if (match) {
+									lang = match[0];
 								}
 							}
-
-							return tokens;
+							// Apply transformations: c++ → cpp, c# → csharp, f# → fsharp, etc.
+							lang = lang.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
+							return lang.toLowerCase();
 						},
-					}),
+						'punctuation': /```/,
+					},
 				},
 			],
 			'title': [
