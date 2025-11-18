@@ -269,7 +269,8 @@ function testPatterns (getPrism, mainLanguage) {
 		await forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
-				if (group.references.length === 0 && !isLookbehindGroup) {
+				const isNamedGroup = !!group.name; // named capturing groups are used for tokenization, so they are not unused
+				if (group.references.length === 0 && !isLookbehindGroup && !isNamedGroup) {
 					const fixes = [];
 					fixes.push(
 						`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`
