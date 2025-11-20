@@ -100,13 +100,13 @@ export default {
 					// code block
 					// ```
 					pattern:
-						/^```(?:\s*)(?<codeLanguage>\{[^{}]*\}|[a-z+#-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
+						/^```\s*(?<codeLanguage>\{[^{}]*\}|[a-z+#-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
 					inside: {
 						'code-block': groups => {
 							let lang = groups.codeLanguage;
 							// Extract language code from curly braces like {r pressure, echo=FALSE} → r
 							if (lang.startsWith('{') && lang.endsWith('}')) {
-								const match = lang.slice(1, -1).match(/^(?:\s*)([a-z+#-]+)/i);
+								const match = lang.slice(1, -1).match(/^\s*([a-z+#-]+)/i);
 								if (match) {
 									lang = match[0];
 								}
