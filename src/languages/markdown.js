@@ -100,7 +100,7 @@ export default {
 					// code block
 					// ```
 					pattern:
-						/^```(?:\s*)(?<codeLanguage>\{[^{}]*\}|[a-z+#-]+)(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
+						/^```(?:\s*)(?<codeLanguage>\{[^{}]*\}|[a-z+#-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
 					inside: {
 						'code-block': groups => {
 							let lang = groups.codeLanguage;

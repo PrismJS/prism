@@ -14,6 +14,10 @@ var a = 0;
 plot(pressure)
 ```
 
+```js { data-copy="Copy the JavaScript snippet!" }
+let bar = 42;
+```
+
 ----------------------------------------------------
 
 <span class="token code">
@@ -41,5 +45,13 @@ plot(pressure)
 	<span class="token punctuation">```</span>
 	<span class="token code-language">{r pressure, echo=FALSE}</span>
 	<span class="token code-block">plot(pressure)</span>
+	<span class="token punctuation">```</span>
+</span>
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">js</span>
+	{ data-copy="Copy the JavaScript snippet!" }
+	<span class="token code-block">let bar = 42;</span>
 	<span class="token punctuation">```</span>
 </span>
