@@ -3,15 +3,7 @@ export default {
 	id: 'toml',
 	grammar () {
 		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
-
-		/**
-		 *
-		 * @param {string} pattern
-		 * @returns {string}
-		 */
-		function insertKey (pattern) {
-			return pattern.replace(/__/g, () => key);
-		}
+		const dottedKey = key + '(?:\\s*\\.\\s*' + key + ')*';
 
 		return {
 			'comment': {
@@ -19,19 +11,22 @@ export default {
 				greedy: true,
 			},
 			'table': {
-				pattern: RegExp(
-					insertKey(/(^[\t ]*\[\s*(?:\[\s*)?)__(?:\s*\.\s*__)*(?=\s*\])/.source),
-					'm'
-				),
+				// keep entire table header (including brackets) under one parent token
+				pattern: RegExp('(^[\\t ]*)\\[\\[?\\s*' + dottedKey + '\\s*\\]\\]?', 'm'),
 				lookbehind: true,
 				greedy: true,
 				alias: 'class-name',
+				inside: {
+					'table-name': {
+						pattern: RegExp('(^\\[\\[?\\s*)' + dottedKey),
+						lookbehind: true,
+						alias: 'class-name',
+					},
+					'punctuation': /\[|\]/,
+				},
 			},
 			'key': {
-				pattern: RegExp(
-					insertKey(/(^[\t ]*|[{,]\s*)__(?:\s*\.\s*__)*(?=\s*=)/.source),
-					'm'
-				),
+				pattern: RegExp('(^[\\t ]*|[{,]\\s*)' + dottedKey + '(?=\\s*=)', 'm'),
 				lookbehind: true,
 				greedy: true,
 				alias: 'property',

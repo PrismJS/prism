@@ -7,15 +7,18 @@ foo = [ "bar" ]
 ----------------------------------------------------
 
 [
-	["punctuation", "["],
-	["table", "table"],
-	["punctuation", "]"],
-
-	["punctuation", "["],
-	["punctuation", "["],
-	["table", "array"],
-	["punctuation", "]"],
-	["punctuation", "]"],
+	["table", [
+		["punctuation", "["],
+		["table-name", "table"],
+		["punctuation", "]"]
+	]],
+	["table", [
+		["punctuation", "["],
+		["punctuation", "["],
+		["table-name", "array"],
+		["punctuation", "]"],
+		["punctuation", "]"]
+	]],
 
 	["comment", "# not a table"],
 
