@@ -1464,6 +1464,10 @@
 			"title": "Treeview Icons",
 			"description": "Adds icons and special styles to highlighted file system tree structures.",
 			"owner": "Golmote"
+		},
+		"code-folding": {
+			"title": "Code Folding",
+			"description": "Adds support for collapsing and expanding large code blocks to improve readability."
 		}
 	}
 }

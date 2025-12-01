@@ -1,0 +1,90 @@
+pre.code-folding {
+	position: relative;
+}
+
+pre.code-folding > .code-folding-toggle {
+	position: absolute;
+	top: 0.3em;
+	right: 0.3em;
+	z-index: 10;
+	background: #f5f2f0;
+	background: rgba(224, 224, 224, 0.3);
+	border: 1px solid #ddd;
+	border-radius: 0.3em;
+	color: #666;
+	cursor: pointer;
+	font-size: 0.75em;
+	padding: 0.25em 0.6em;
+	transition: all 0.2s ease;
+	font-family: inherit;
+	line-height: normal;
+}
+
+pre.code-folding > .code-folding-toggle:hover {
+	background: rgba(224, 224, 224, 0.5);
+	color: #333;
+	border-color: #999;
+}
+
+pre.code-folding > .code-folding-toggle:active {
+	transform: translateY(1px);
+}
+
+pre.code-folding > .code-folding-toggle:focus {
+	outline: 2px solid #4a90e2;
+	outline-offset: 2px;
+}
+
+pre.code-folded > code {
+	max-height: 8em;
+	overflow: hidden;
+	display: block;
+	position: relative;
+}
+
+pre.code-folded > code::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 3em;
+	background: linear-gradient(to bottom, transparent, #f5f2f0);
+	pointer-events: none;
+}
+
+.code-folding-placeholder {
+	display: block;
+	padding: 0.5em 1em;
+	margin-top: 0.5em;
+	background: rgba(255, 255, 255, 0.05);
+	border-top: 1px dashed #ddd;
+	color: #888;
+	font-size: 0.85em;
+	font-style: italic;
+	text-align: center;
+}
+
+pre[class*="language-"].code-folding {
+	padding-top: 2.5em;
+}
+
+@media (max-width: 768px) {
+	pre.code-folding > .code-folding-toggle {
+		font-size: 0.7em;
+		padding: 0.3em 0.5em;
+	}
+	
+	pre.code-folded > code {
+		max-height: 6em;
+	}
+}
+
+pre.code-folding.line-numbers {
+	padding-left: 3.8em;
+}
+
+div.code-toolbar > pre.code-folding > .code-folding-toggle {
+	right: 0.5em;
+	top: 0.5em;
+}
