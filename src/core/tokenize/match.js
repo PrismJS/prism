@@ -25,7 +25,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 			!grammar.hasOwnProperty(token) ||
 			token.startsWith('$') ||
 			!tokenValue ||
-			typeof tokenValue === 'function'
+			typeof tokenValue === 'function' // functional tokens ($inside for now) are handled on L170, and we should ignore them in all other cases
 		) {
 			continue;
 		}
