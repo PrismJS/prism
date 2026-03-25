@@ -502,6 +502,10 @@
 			"title": "GNU Linker Script",
 			"owner": "RunDevelopment"
 		},
+		"gleam": {
+    		"title": "Gleam",
+		"owner": "nikhilkalburgi45"
+		},
 		"go": {
 			"title": "Go",
 			"owner": "arnehormann"
