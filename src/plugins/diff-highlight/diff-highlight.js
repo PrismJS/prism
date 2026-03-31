@@ -13,7 +13,7 @@ const Self = {
 		const setMissingGrammar = env => {
 			const lang = env.language;
 			if (LANGUAGE_REGEX.test(lang) && !env.grammar) {
-				env.grammar = Prism.components.getLanguage('diff');
+				env.grammar = Prism.languageRegistry.getLanguage('diff')?.resolvedGrammar;
 			}
 		};
 
@@ -27,7 +27,8 @@ const Self = {
 				}
 
 				const diffLanguage = langMatch[1];
-				const diffGrammar = Prism.components.getLanguage(diffLanguage);
+				const diffGrammar =
+					Prism.languageRegistry.getLanguage(diffLanguage)?.resolvedGrammar;
 				if (!diffGrammar) {
 					return;
 				}
@@ -130,7 +131,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../types.d.ts').HookEnv} HookEnv

@@ -152,8 +152,8 @@ function testPatterns (getPrism, mainLanguage) {
 		}
 
 		// static analysis
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languages)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (grammar) {
 				traverse(grammar, id);
 			}
@@ -162,7 +162,7 @@ function testPatterns (getPrism, mainLanguage) {
 		// dynamic analysis
 		for (const lang of getRelevantLanguages()) {
 			const snippets = testSnippets.get(lang);
-			const grammar = Prism.components.getLanguage(lang);
+			const grammar = Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
 
 			const oldTokenize = Prism.tokenize;
 			Prism.tokenize = function (code, grammar) {

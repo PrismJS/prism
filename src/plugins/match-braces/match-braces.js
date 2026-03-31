@@ -10,7 +10,7 @@ const Self = {
 		 */
 		function mapClassName (name) {
 			/** @type {import('../custom-class/custom-class.js').CustomClass} */
-			const customClass = Prism.plugins.customClass;
+			const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 			if (customClass) {
 				return customClass.apply(name);
 			}
@@ -225,4 +225,4 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);

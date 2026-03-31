@@ -16,6 +16,9 @@ import { resolve } from './util.js';
 export function _matchGrammar (text, tokenList, grammar, startNode, startPos, rematch) {
 	const prism = this ?? singleton;
 
+	// @ts-ignore
+	grammar = resolve.call(prism, grammar);
+
 	for (const token in grammar) {
 		const tokenValue = grammar[token];
 		if (!grammar.hasOwnProperty(token) || token.startsWith('$') || !tokenValue) {
@@ -31,7 +34,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 			const patternObj = toGrammarToken(patterns[j]);
 			let { pattern, lookbehind = false, greedy = false, alias, inside } = patternObj;
-			const insideGrammar = resolve(prism.components, inside);
+			const insideGrammar = resolve.call(prism, inside);
 
 			if (greedy && !pattern.global) {
 				// Without the global flag, lastIndex won't work
@@ -133,7 +136,9 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 				const wrapped = new Token(
 					token,
-					insideGrammar ? tokenize.call(prism, matchStr, insideGrammar) : matchStr,
+					insideGrammar
+						? tokenize.call(prism, matchStr, /** @type {Grammar} */ (insideGrammar))
+						: matchStr,
 					alias,
 					matchStr
 				);
@@ -210,10 +215,8 @@ function toGrammarToken (pattern) {
  */
 
 /**
- * @typedef {import('../prism.js').Prism} Prism
- * @typedef {import('../../types.d.ts').GrammarToken} GrammarToken
- * @typedef {import('../../types.d.ts').GrammarTokens} GrammarTokens
- * @typedef {import('../../types.d.ts').RegExpLike} RegExpLike
+ * @import { Prism } from '../prism.js';
+ * @import { Grammar, GrammarToken, GrammarTokens, RegExpLike } from '../../types.d.ts';
  */
 
 /**

@@ -1,3 +1,5 @@
+import { betterAssign } from './objects.js';
+
 /**
  * Inserts tokens _before_ another token in the given grammar.
  *
@@ -26,48 +28,59 @@
  * });
  * ```
  *
- * ## Special cases
- *
- * If the grammars of `grammar` and `insert` have tokens with the same name, the tokens in `grammar`'s grammar
- * will be ignored.
- *
- * This behavior can be used to insert tokens after `before`:
- *
- * ```js
- * insertBefore(markup, 'comment', {
- *     'comment': markup.comment,
- *     // tokens after 'comment'
- * });
- * ```
- *
  * @param {Grammar} grammar The grammar to be modified.
- * @param {string} before The key to insert before.
- * @param {GrammarTokens} insert An object containing the key-value pairs to be inserted.
- * @returns {void}
+ * @param {string} beforeKey The key to insert before.
+ * @param {GrammarTokens} tokens An object containing the key-value pairs to be inserted.
  */
-export function insertBefore (grammar, before, insert) {
-	if (!(before in grammar)) {
-		throw new Error(`"${before}" has to be a key of grammar.`);
+export function insertBefore (grammar, beforeKey, tokens) {
+	insert(grammar, beforeKey, tokens, 'before');
+}
+
+/**
+ *
+ * @param {Grammar} grammar
+ * @param {string} afterKey
+ * @param {GrammarTokens} tokens
+ */
+export function insertAfter (grammar, afterKey, tokens) {
+	insert(grammar, afterKey, tokens);
+}
+
+/**
+ *
+ * @param {Grammar} grammar
+ * @param {string} atKey
+ * @param {GrammarTokens} insert
+ * @param {'before' | 'after'} [position='after']
+ */
+export function insert (grammar, atKey, insert, position = 'after') {
+	if (!(atKey in grammar)) {
+		// TODO support deep keys
+		throw new Error(`"${atKey}" has to be a key of grammar.`);
 	}
 
-	const grammarEntries = Object.entries(grammar);
+	const descriptors = Object.getOwnPropertyDescriptors(grammar);
 
 	// delete all keys in `grammar`
-	for (const [key] of grammarEntries) {
-		delete grammar[key];
+	for (const key in descriptors) {
+		if (Object.hasOwn(descriptors, key)) {
+			delete grammar[key];
+		}
 	}
 
 	// insert keys again
-	for (const [key, value] of grammarEntries) {
-		if (key === before) {
-			for (const insertKey of Object.keys(insert)) {
-				grammar[insertKey] = insert[insertKey];
-			}
+	for (const key in descriptors) {
+		if (position === 'before' && key === atKey) {
+			betterAssign(grammar, insert);
 		}
 
 		// Do not insert tokens which also occur in `insert`. See #1525
-		if (!insert.hasOwnProperty(key)) {
-			grammar[key] = /** @type {GrammarToken} */ (value);
+		if (!Object.hasOwn(insert, key)) {
+			Object.defineProperty(grammar, key, descriptors[key]);
+		}
+
+		if (position === 'after' && key === atKey) {
+			betterAssign(grammar, insert);
 		}
 	}
 }

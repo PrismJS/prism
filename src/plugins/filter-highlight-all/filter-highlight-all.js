@@ -91,7 +91,7 @@ const Self = {
 		const config = new FilterHighlightAll();
 
 		config.add(env => {
-			return !config.filterKnown || Prism.components.has(env.language);
+			return !config.filterKnown || Prism.languageRegistry.has(env.language);
 		});
 
 		if (typeof document !== 'undefined') {
@@ -115,7 +115,7 @@ const Self = {
 	},
 	effect (Prism) {
 		/** @type {FilterHighlightAll} */
-		const config = Prism.plugins.filterHighlightAll;
+		const config = Prism.pluginRegistry.peek(Self)?.plugin;
 
 		return Prism.hooks.add('before-all-elements-highlight', env => {
 			env.elements = env.elements.filter(e => config.everyFilter(e));
@@ -125,7 +125,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @callback Condition

@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'mongodb'>} */
 export default {
 	id: 'mongodb',
 	base: javascript,
-	grammar ({ base }) {
+	grammar () {
 		let operators = [
 			// query and projection
 			'$eq',
@@ -276,39 +275,41 @@ export default {
 
 		const operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
-		insertBefore(base, 'string', {
-			'property': {
-				pattern:
-					/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
-				greedy: true,
-				inside: {
-					'keyword': RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$'),
+		return {
+			$insert: {
+				'property': {
+					$before: 'string',
+					pattern:
+						/(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
+					greedy: true,
+					inside: {
+						'keyword': RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$'),
+					},
+				},
+				'builtin': {
+					$before: 'constant',
+					pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
+					alias: 'keyword',
 				},
 			},
-		});
-
-		const string = /** @type {import('../types.d.ts').GrammarToken} */ (base['string']);
-		string.inside = {
-			url: {
-				// url pattern
-				pattern: /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
-				greedy: true,
-			},
-			entity: {
-				// ipv4
-				pattern:
-					/\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
-				greedy: true,
+			$merge: {
+				'string': {
+					inside: {
+						url: {
+							// url pattern
+							pattern:
+								/https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
+							greedy: true,
+						},
+						entity: {
+							// ipv4
+							pattern:
+								/\b(?:(?:[01]?\d\d?|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d\d?|2[0-4]\d|25[0-5])\b/,
+							greedy: true,
+						},
+					},
+				},
 			},
 		};
-
-		insertBefore(base, 'constant', {
-			'builtin': {
-				pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
-				alias: 'keyword',
-			},
-		});
-
-		return {};
 	},
 };

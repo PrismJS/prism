@@ -51,8 +51,8 @@ const ignoredLanguages = new Set(['none']);
  */
 function isLoaded (Prism, name) {
 	// resolve alias
-	const id = resolveAlias(name);
-	return Prism.components.has(id) || ignoredLanguages.has(id);
+	const id = Prism.languageRegistry.resolveRef(name).id;
+	return Prism.languageRegistry.has(id) || ignoredLanguages.has(id);
 }
 
 export class Autoloader {
@@ -93,9 +93,9 @@ export class Autoloader {
 				let promise = this._importCache.get(path);
 				if (promise === undefined) {
 					promise = import(path).then(exports => {
-						/** @type {import('../../types.d.ts').ComponentProto} */
+						/** @type {import('../../types.d.ts').LanguageProto} */
 						const proto = exports.default;
-						this.Prism.components.add(proto);
+						this.Prism.languageRegistry.add(proto);
 					});
 					this._importCache.set(path, promise);
 				}
@@ -181,7 +181,7 @@ const Self = {
 			}
 
 			/** @type {Autoloader} */
-			const autoloader = Prism.plugins.autoloader;
+			const autoloader = Prism.pluginRegistry.peek(Self)?.plugin;
 			autoloader.loadLanguages(deps).then(
 				() => Prism.highlightElement(element),
 				reason => {
@@ -196,7 +196,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism

@@ -4,11 +4,11 @@ description: Previewers for angles, colors, gradients, easing and time.
 owner: Golmote
 require: css-extras
 resources:
-  - https://dev.prismjs.com/components/prism-css-extras.js
-  - https://dev.prismjs.com/components/prism-less.js
-  - https://dev.prismjs.com/components/prism-sass.js
-  - https://dev.prismjs.com/components/prism-scss.js
-  - https://dev.prismjs.com/components/prism-stylus.js
+  - /languages/css-extras.js { type="module" }
+  - /languages/less.js { type="module" }
+  - /languages/sass.js { type="module" }
+  - /languages/scss.js { type="module" }
+  - /languages/stylus.js { type="module" }
 ---
 
 <section class="language-markup">

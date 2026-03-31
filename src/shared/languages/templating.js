@@ -1,4 +1,5 @@
 import { getTextContent } from '../../core/classes/token.js';
+import { resolve } from '../../core/tokenize/util.js';
 import { withoutTokenize } from '../../util/language-util.js';
 
 const placeholderPattern = /___PH\d+___/;
@@ -116,23 +117,6 @@ function insertIntoHostToken (hostTokens, tokenStack) {
 }
 
 /**
- * @param {GrammarRef} ref
- * @param {Registry} components
- * @returns {Grammar | undefined}
- */
-function resolve (ref, components) {
-	if (!ref) {
-		return undefined;
-	}
-	else if (typeof ref === 'string') {
-		return components.getLanguage(ref);
-	}
-	else {
-		return ref;
-	}
-}
-
-/**
  * @param {string} code
  * @param {GrammarRef} hostGrammar
  * @param {GrammarRef} templateGrammar
@@ -140,8 +124,8 @@ function resolve (ref, components) {
  * @returns {TokenStream}
  */
 export function templating (code, hostGrammar, templateGrammar, Prism) {
-	hostGrammar = resolve(hostGrammar, Prism.components);
-	templateGrammar = resolve(templateGrammar, Prism.components);
+	hostGrammar = resolve.call(Prism, hostGrammar);
+	templateGrammar = resolve.call(Prism, templateGrammar);
 
 	const { hostCode, tokenStack } = buildPlaceholders(code, templateGrammar, Prism);
 
@@ -161,12 +145,8 @@ export function embeddedIn (hostGrammar) {
 }
 
 /**
- * @typedef {import('../../core.js').Prism} Prism
- * @typedef {import('../../core/registry.js').Registry} Registry
- * @typedef {import('../../core.js').Token} Token
- * @typedef {import('../../types.d.ts').TokenStream} TokenStream
- * @typedef {import('../../types.d.ts').TokenStack} TokenStack
- * @typedef {import('../../types.d.ts').Grammar} Grammar
+ * @import { Prism, Token } from '../../core.js';
+ * @import { TokenStream, TokenStack, Grammar, LanguageRegistry} from '../../types.d.ts';
  */
 
 /**

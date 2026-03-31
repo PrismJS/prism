@@ -41,7 +41,7 @@ function importFile (file) {
 export async function loadLanguages (Prism, languages = knownLanguages, srcPath = '.') {
 	languages = toArray(languages)
 		.map(resolveAlias)
-		.filter(id => !Prism.components.has(id));
+		.filter(id => !Prism.languageRegistry.has(id));
 
 	await Promise.all(
 		languages.map(async id => {
@@ -49,7 +49,8 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 				const path = pathJoin(srcPath, `languages/${id}.js`);
 				/** @type {{ default: ComponentProto }} */
 				const exports = await importFile(path);
-				Prism.components.add(exports.default);
+				// @ts-ignore
+				Prism.languageRegistry.add(exports.default);
 			}
 			catch (error) {
 				if (!loadLanguages.silent) {
@@ -66,6 +67,6 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 loadLanguages.silent = false;
 
 /**
- * @typedef {import('./core.js').Prism} Prism
- * @typedef {import('./types.d.ts').ComponentProto} ComponentProto
+ * @import { Prism } from './core.js';
+ * @import { ComponentProto } from './types.d.ts';
  */

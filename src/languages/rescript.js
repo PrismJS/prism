@@ -1,16 +1,36 @@
-import { insertBefore } from '../util/language-util.js';
-
 /** @type {import('../types.d.ts').LanguageProto<'rescript'>} */
 export default {
 	id: 'rescript',
 	alias: 'res',
 	grammar () {
-		const rescript = {
+		return {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
 			},
 			'char': { pattern: /'(?:[^\r\n\\]|\\(?:.|\w+))'/, greedy: true },
+			'template-string': {
+				pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
+				greedy: true,
+				inside: {
+					'template-punctuation': {
+						pattern: /^`|`$/,
+						alias: 'string',
+					},
+					'interpolation': {
+						pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+						lookbehind: true,
+						inside: {
+							'interpolation-punctuation': {
+								pattern: /^\$\{|\}$/,
+								alias: 'tag',
+							},
+							$rest: 'rescript',
+						},
+					},
+					'string': /[\s\S]+/,
+				},
+			},
 			'string': {
 				pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
 				greedy: true,
@@ -41,36 +61,5 @@ export default {
 				/\.{3}|:[:=]?|\|>|->|=(?:==?|>)?|<=?|>=?|[|^?'#!~`]|[+\-*\/]\.?|\b(?:asr|land|lor|lsl|lsr|lxor|mod)\b/,
 			'punctuation': /[(){}[\],;.]/,
 		};
-
-		insertBefore(rescript, 'string', {
-			'template-string': {
-				pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
-				greedy: true,
-				inside: {
-					'template-punctuation': {
-						pattern: /^`|`$/,
-						alias: 'string',
-					},
-					'interpolation': {
-						pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
-						lookbehind: true,
-						inside: /** @type {Grammar} */ ({
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'tag',
-							},
-							$rest: /** @type {Grammar['$rest']} */ ('rescript'),
-						}),
-					},
-					'string': /[\s\S]+/,
-				},
-			},
-		});
-
-		return rescript;
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

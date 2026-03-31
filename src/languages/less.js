@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import css from './css.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'less'>} */
 export default {
 	id: 'less',
 	base: css,
-	grammar ({ base }) {
+	grammar () {
 		/* FIXME :
 		 :extend() is not handled specifically : its highlighting is buggy.
 		 Mixin usage must be inside a ruleset to be highlighted.
@@ -13,26 +12,6 @@ export default {
 		 Detached rulesets are highlighted as at-rules.
 		 A comment before a mixin usage prevents the latter to be properly highlighted.
 		 */
-
-		insertBefore(base, 'property', {
-			'variable': [
-				// Variable declaration (the colon must be consumed!)
-				{
-					pattern: /@[\w-]+\s*:/,
-					inside: {
-						'punctuation': /:/,
-					},
-				},
-
-				// Variable usage
-				/@@?[\w-]+/,
-			],
-			'mixin-usage': {
-				pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
-				lookbehind: true,
-				alias: 'function',
-			},
-		});
 
 		return {
 			'comment': [
@@ -60,6 +39,27 @@ export default {
 
 			'property': /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/,
 			'operator': /[+\-*\/]/,
+			$insertBefore: {
+				'property': {
+					'variable': [
+						// Variable declaration (the colon must be consumed!)
+						{
+							pattern: /@[\w-]+\s*:/,
+							inside: {
+								'punctuation': /:/,
+							},
+						},
+
+						// Variable usage
+						/@@?[\w-]+/,
+					],
+					'mixin-usage': {
+						pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
+						lookbehind: true,
+						alias: 'function',
+					},
+				},
+			},
 		};
 	},
 };

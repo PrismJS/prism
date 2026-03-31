@@ -7,7 +7,7 @@ export default {
 	id: 'ejs',
 	require: [javascript, markup],
 	alias: 'eta',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'ejs-comment': {
 			pattern: /<%#[\s\S]*?%>/,
 			greedy: true,
@@ -30,10 +30,6 @@ export default {
 				},
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+		$tokenize: embeddedIn('markup'),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

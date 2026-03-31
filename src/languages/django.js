@@ -9,7 +9,7 @@ export default {
 	id: 'django',
 	require: markup,
 	alias: 'jinja2',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'django': {
 			pattern: /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}|\{#[\s\S]*?#\}/,
 			inside: {
@@ -47,10 +47,6 @@ export default {
 				'punctuation': /[{}[\](),.:;]/,
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+		$tokenize: embeddedIn('markup'),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

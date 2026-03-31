@@ -1,51 +1,11 @@
-import { insertBefore } from '../util/language-util.js';
 import css from './css.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'scss'>} */
 export default {
 	id: 'scss',
 	base: css,
-	grammar ({ base }) {
-		insertBefore(base, 'atrule', {
-			'keyword': [
-				/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
-				{
-					pattern: /( )(?:from|through)(?= )/,
-					lookbehind: true,
-				},
-			],
-		});
-
-		insertBefore(base, 'important', {
-			// var and interpolated vars
-			'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
-		});
-
-		insertBefore(base, 'function', {
-			'module-modifier': {
-				pattern: /\b(?:as|hide|show|with)\b/i,
-				alias: 'keyword',
-			},
-			'placeholder': {
-				pattern: /%[-\w]+/,
-				alias: 'selector',
-			},
-			'statement': {
-				pattern: /\B!(?:default|optional)\b/i,
-				alias: 'keyword',
-			},
-			'boolean': /\b(?:false|true)\b/,
-			'null': {
-				pattern: /\bnull\b/,
-				alias: 'keyword',
-			},
-			'operator': {
-				pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
-				lookbehind: true,
-			},
-		});
-
-		return /** @type {Grammar} */ ({
+	grammar () {
+		return {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true,
@@ -54,7 +14,7 @@ export default {
 				pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
 				inside: {
 					'rule': /@[\w-]+/,
-					$rest: /** @type {Grammar['$rest']} */ ('scss'),
+					$rest: 'scss',
 				},
 			},
 			// url, compassified
@@ -85,10 +45,44 @@ export default {
 					'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
 				},
 			},
-		});
+			$insertBefore: {
+				'atrule': {
+					'keyword': [
+						/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
+						{
+							pattern: /( )(?:from|through)(?= )/,
+							lookbehind: true,
+						},
+					],
+				},
+				'important': {
+					// var and interpolated vars
+					'variable': /\$[-\w]+|#\{\$[-\w]+\}/,
+				},
+				'function': {
+					'module-modifier': {
+						pattern: /\b(?:as|hide|show|with)\b/i,
+						alias: 'keyword',
+					},
+					'placeholder': {
+						pattern: /%[-\w]+/,
+						alias: 'selector',
+					},
+					'statement': {
+						pattern: /\B!(?:default|optional)\b/i,
+						alias: 'keyword',
+					},
+					'boolean': /\b(?:false|true)\b/,
+					'null': {
+						pattern: /\bnull\b/,
+						alias: 'keyword',
+					},
+					'operator': {
+						pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
+						lookbehind: true,
+					},
+				},
+			},
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

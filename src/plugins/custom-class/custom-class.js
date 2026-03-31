@@ -63,7 +63,7 @@ const Self = {
 	},
 	effect (Prism) {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek(Self)?.plugin;
 
 		return Prism.hooks.add('wrap', env => {
 			if (customClass['adder']) {
@@ -92,7 +92,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @callback ClassMapper

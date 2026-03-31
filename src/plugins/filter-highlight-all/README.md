@@ -4,7 +4,7 @@ description: Filters the elements the `highlightAll` and `highlightAllUnder` met
 owner: RunDevelopment
 noCSS: true
 resources:
-  - https://dev.prismjs.com/components/prism-typescript.js
+  - /languages/typescript.js { type="module" }
   - ./demo.js { defer }
 ---
 

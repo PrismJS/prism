@@ -23,8 +23,8 @@ import stringify from './stringify.js';
 export function highlight (text, language, options) {
 	const prism = this ?? singleton;
 
-	const languageId = this.components.resolveAlias(language);
-	const grammar = options?.grammar ?? this.components.getLanguage(languageId);
+	const grammar =
+		options?.grammar ?? prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
 
 	/** @type {HookEnv} */
 	const env = {
@@ -44,9 +44,8 @@ export function highlight (text, language, options) {
 }
 
 /**
- * @typedef {import('./prism.js').Prism} Prism
- * @typedef {import('../types.d.ts').HookEnv} HookEnv
- * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @import { Prism } from './prism.js';
+ * @import { HookEnv, Grammar } from '../types.d.ts';
  */
 
 /**

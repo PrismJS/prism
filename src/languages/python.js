@@ -2,7 +2,7 @@
 export default {
 	id: 'python',
 	alias: 'py',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'comment': {
 			pattern: /(^|[^\\])#.*/,
 			lookbehind: true,
@@ -26,7 +26,7 @@ export default {
 							pattern: /![sra](?=[:}]$)/,
 							alias: 'punctuation',
 						},
-						$rest: /** @type {Grammar['$rest']} */ ('python'),
+						$rest: 'python',
 					},
 				},
 				'string': /[\s\S]+/,
@@ -66,9 +66,5 @@ export default {
 			/\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,
 		'operator': /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'punctuation': /[{}[\];(),.:]/,
-	}),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

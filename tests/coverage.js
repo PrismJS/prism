@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { toArray } from '../src/util/iterables.js';
 import * as PrismLoader from './helper/prism-loader.js';
 import { runTestCase } from './helper/test-case.js';
 import { loadAllTests } from './helper/test-discovery.js';
@@ -16,9 +17,9 @@ describe('Pattern test coverage', () => {
 		const Prism = await PrismLoader.createInstance(languages);
 
 		const root = Object.fromEntries(
-			[...Prism.components['entries'].keys()].map(id => [
+			toArray(languages).map(id => [
 				id,
-				Prism.components.getLanguage(id),
+				Prism.languageRegistry.getLanguage(id)?.resolvedGrammar,
 			])
 		);
 

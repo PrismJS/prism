@@ -5,8 +5,8 @@ owner: Golmote
 require: toolbar
 noCSS: true
 resources:
-  - ../toolbar/toolbar.css
-  - ../toolbar/toolbar.js { type="module" }
+  - /plugins/toolbar.css
+  - /plugins/toolbar.js { type="module" }
 ---
 
 <section class="language-markup">

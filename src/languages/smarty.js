@@ -82,7 +82,7 @@ export default {
 			)
 		);
 
-		return /** @type {Grammar} */ ({
+		return {
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
@@ -105,12 +105,11 @@ export default {
 				greedy: true,
 				inside: smarty,
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+			$tokenize: embeddedIn('markup'),
+		};
 	},
 };
 
 /**
- * @typedef {import('../types.d.ts').Grammar} Grammar
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */

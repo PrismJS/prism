@@ -50,16 +50,12 @@ export default {
 		// The different types of TT2 strings "replace" the C-like standard string
 		delete tt2.string;
 
-		return /** @type {Grammar} */ ({
+		return {
 			'tt2': {
 				pattern: /\[%[\s\S]+?%\]/,
 				inside: tt2,
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+			$tokenize: embeddedIn('markup'),
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

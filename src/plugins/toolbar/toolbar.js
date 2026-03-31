@@ -209,14 +209,14 @@ const Self = {
 	},
 	effect (Prism) {
 		/** @type {Toolbar} */
-		const toolbar = Prism.plugins.toolbar;
+		const toolbar = Prism.pluginRegistry.peek(Self)?.plugin;
 		return Prism.hooks.add('complete', toolbar.hook);
 	},
 };
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../types.d.ts').HookEnv} HookEnv

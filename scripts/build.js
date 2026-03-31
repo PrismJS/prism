@@ -384,6 +384,7 @@ async function buildTypes () {
 async function buildJS () {
 	const input = {
 		'index': path.join(SRC_DIR, 'index.js'),
+		'global': path.join(SRC_DIR, 'global.js'),
 		'prism': path.join(SRC_DIR, 'prism.global.js'),
 		'shared': path.join(SRC_DIR, 'shared.js'),
 	};

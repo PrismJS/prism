@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import css from './css.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'sass'>} */
@@ -6,19 +5,6 @@ export default {
 	id: 'sass',
 	base: css,
 	grammar ({ base }) {
-		insertBefore(base, 'atrule', {
-			// We want to consume the whole line
-			'atrule-line': {
-				// Includes support for = and + shortcuts
-				pattern: /^(?:[ \t]*)[@+=].+/m,
-				greedy: true,
-				inside: {
-					'atrule': /(?:@[\w-]+|[+=])/,
-				},
-			},
-		});
-		delete base.atrule;
-
 		const variable = /\$[-\w]+|#\{\$[-\w]+\}/;
 		const operator = [
 			/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|not|or)\b/,
@@ -28,50 +14,6 @@ export default {
 			},
 		];
 
-		insertBefore(base, 'property', {
-			// We want to consume the whole line
-			'variable-line': {
-				pattern: /^[ \t]*\$.+/m,
-				greedy: true,
-				inside: {
-					'punctuation': /:/,
-					'variable': variable,
-					'operator': operator,
-				},
-			},
-			// We want to consume the whole line
-			'property-line': {
-				pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s].*)/m,
-				greedy: true,
-				inside: {
-					'property': [
-						/[^:\s]+(?=\s*:)/,
-						{
-							pattern: /(:)[^:\s]+/,
-							lookbehind: true,
-						},
-					],
-					'punctuation': /:/,
-					'variable': variable,
-					'operator': operator,
-					'important': base.important,
-				},
-			},
-		});
-		delete base.property;
-		delete base.important;
-
-		// Now that whole lines for other patterns are consumed,
-		// what's left should be selectors
-		insertBefore(base, 'punctuation', {
-			'selector': {
-				pattern:
-					/^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
-				lookbehind: true,
-				greedy: true,
-			},
-		});
-
 		return {
 			// Sass comments don't need to be closed, only indented
 			'comment': {
@@ -79,6 +21,58 @@ export default {
 				lookbehind: true,
 				greedy: true,
 			},
+			$insert: {
+				// We want to consume the whole line
+				'atrule-line': {
+					$before: 'atrule',
+					// Includes support for = and + shortcuts
+					pattern: /^(?:[ \t]*)[@+=].+/m,
+					greedy: true,
+					inside: {
+						'atrule': /(?:@[\w-]+|[+=])/,
+					},
+				},
+				// We want to consume the whole line
+				'variable-line': {
+					$before: 'property',
+					pattern: /^[ \t]*\$.+/m,
+					greedy: true,
+					inside: {
+						'punctuation': /:/,
+						'variable': variable,
+						'operator': operator,
+					},
+				},
+				// We want to consume the whole line
+				'property-line': {
+					$before: 'property',
+					pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s].*)/m,
+					greedy: true,
+					inside: {
+						'property': [
+							/[^:\s]+(?=\s*:)/,
+							{
+								pattern: /(:)[^:\s]+/,
+								lookbehind: true,
+							},
+						],
+						'punctuation': /:/,
+						'variable': variable,
+						'operator': operator,
+						'important': base.important,
+					},
+				},
+				// Now that whole lines for other patterns are consumed,
+				// what's left should be selectors
+				'selector': {
+					$before: 'punctuation',
+					pattern:
+						/^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
+					lookbehind: true,
+					greedy: true,
+				},
+			},
+			$delete: ['atrule', 'property', 'important'],
 		};
 	},
 };

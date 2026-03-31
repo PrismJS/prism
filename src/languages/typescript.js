@@ -8,8 +8,7 @@ export default {
 	require: javascript,
 	alias: 'ts',
 	grammar ({ extend }) {
-		/** @type {import('../types.d.ts').Grammar} */
-		const typeInside = {};
+		const typeInside = /** @type {import('../types.d.ts').Grammar} */ ({});
 
 		const typescript = extend('javascript', {
 			'class-name': {
@@ -24,7 +23,7 @@ export default {
 		});
 
 		typescript.keyword = [
-			...toArray(typescript.keyword),
+			...toArray(/** @type {import('../types.d.ts').GrammarTokens} */ (typescript).keyword),
 
 			// The keywords TypeScript adds to JavaScript
 			/\b(?:abstract|declare|is|keyof|out|readonly|require|satisfies)\b/,

@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'qsharp'>} */
@@ -6,7 +5,7 @@ export default {
 	id: 'qsharp',
 	base: clike,
 	alias: 'qs',
-	grammar ({ base }) {
+	grammar () {
 		/**
 		 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
 		 *
@@ -78,40 +77,11 @@ export default {
 		// strings
 		const regularString = /"(?:\\.|[^\\"])*"/.source;
 
-		insertBefore(base, 'number', {
-			'range': {
-				pattern: /\.\./,
-				alias: 'operator',
-			},
-		});
-
 		// single line
 		const interpolationExpr = nested(
 			replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]),
 			2
 		);
-
-		insertBefore(base, 'string', {
-			'interpolation-string': {
-				pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: re(/((?:^|[^\\])(?:\\\\)*)<<0>>/.source, [interpolationExpr]),
-						lookbehind: true,
-						inside: {
-							'punctuation': /^\{|\}$/,
-							'expression': {
-								pattern: /[\s\S]+/,
-								alias: 'language-qsharp',
-								inside: 'qsharp',
-							},
-						},
-					},
-					'string': /[\s\S]+/,
-				},
-			},
-		});
 
 		return {
 			'comment': /\/\/.*/,
@@ -143,6 +113,33 @@ export default {
 			'operator':
 				/\band=|\bor=|\band\b|\bnot\b|\bor\b|<[-=]|[-=]>|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|~~~|[*\/+\-^=!%]=?/,
 			'punctuation': /::|[{}[\];(),.:]/,
+			$insert: {
+				'range': {
+					$before: 'number',
+					pattern: /\.\./,
+					alias: 'operator',
+				},
+				'interpolation-string': {
+					$before: 'string',
+					pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
+					greedy: true,
+					inside: {
+						'interpolation': {
+							pattern: re(/((?:^|[^\\])(?:\\\\)*)<<0>>/.source, [interpolationExpr]),
+							lookbehind: true,
+							inside: {
+								'punctuation': /^\{|\}$/,
+								'expression': {
+									pattern: /[\s\S]+/,
+									alias: 'language-qsharp',
+									inside: 'qsharp',
+								},
+							},
+						},
+						'string': /[\s\S]+/,
+					},
+				},
+			},
 		};
 	},
 };

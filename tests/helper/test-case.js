@@ -168,7 +168,7 @@ export class TestCaseFile {
 /** @type {Runner<TokenStream>} */
 const jsonRunner = {
 	run (Prism, code, language) {
-		const grammar = Prism.components.getLanguage(language);
+		const grammar = Prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
 		return Prism.tokenize(code, grammar ?? {});
 	},
 	print (actual) {
@@ -447,6 +447,6 @@ function translateIndexIgnoreSpaces (spacey, withoutSpaces, withoutSpaceIndex) {
 }
 
 /**
- * @typedef {import('../../src/core.js').Prism} Prism
- * @typedef {import('../../src/types.d.ts').TokenStream} TokenStream
+ * @import { Prism } from '../../src/core.js';
+ * @import { TokenStream } from '../../src/types.d.ts';
  */

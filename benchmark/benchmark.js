@@ -422,7 +422,7 @@ function getWorst (results) {
 function createTestFunction (Prism, mainLanguage, testFunction) {
 	if (testFunction === 'tokenize') {
 		return code => {
-			const grammar = Prism.components.getLanguage(mainLanguage);
+			const grammar = Prism.languageRegistry.getLanguage(mainLanguage)?.resolvedGrammar;
 			Prism.tokenize(code, grammar);
 		};
 	}

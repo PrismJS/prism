@@ -1,54 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'vala'>} */
 export default {
 	id: 'vala',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'raw-string': {
-				pattern: /"""[\s\S]*?"""/,
-				greedy: true,
-				alias: 'string',
-			},
-			'template-string': {
-				pattern: /@"[\s\S]*?"/,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
-						inside: /** @type {Grammar} */ ({
-							'delimiter': {
-								pattern: /^\$\(?|\)$/,
-								alias: 'punctuation',
-							},
-							$rest: /** @type {Grammar['$rest']} */ ('vala'),
-						}),
-					},
-					'string': /[\s\S]+/,
-				},
-			},
-		});
-
-		insertBefore(base, 'keyword', {
-			'regex': {
-				pattern:
-					/\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,
-				greedy: true,
-				inside: {
-					'regex-source': {
-						pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
-						lookbehind: true,
-						alias: 'language-regex',
-						inside: 'regex',
-					},
-					'regex-delimiter': /^\//,
-					'regex-flags': /^[a-z]+$/,
-				},
-			},
-		});
-
+	grammar () {
 		return {
 			// Classes copied from csharp
 			'class-name': [
@@ -93,10 +49,48 @@ export default {
 			'operator': /\+\+|--|&&|\|\||<<=?|>>=?|=>|->|~|[+\-*\/%&^|=!<>]=?|\?\??|\.\.\./,
 			'punctuation': /[{}[\];(),.:]/,
 			'constant': /\b[A-Z0-9_]+\b/,
+			$insert: {
+				'raw-string': {
+					$before: 'string',
+					pattern: /"""[\s\S]*?"""/,
+					greedy: true,
+					alias: 'string',
+				},
+				'template-string': {
+					$before: 'string',
+					pattern: /@"[\s\S]*?"/,
+					greedy: true,
+					inside: {
+						'interpolation': {
+							pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
+							inside: {
+								'delimiter': {
+									pattern: /^\$\(?|\)$/,
+									alias: 'punctuation',
+								},
+								$rest: 'vala',
+							},
+						},
+						'string': /[\s\S]+/,
+					},
+				},
+				'regex': {
+					$before: 'keyword',
+					pattern:
+						/\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,
+					greedy: true,
+					inside: {
+						'regex-source': {
+							pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+							lookbehind: true,
+							alias: 'language-regex',
+							inside: 'regex',
+						},
+						'regex-delimiter': /^\//,
+						'regex-flags': /^[a-z]+$/,
+					},
+				},
+			},
 		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

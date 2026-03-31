@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
 
@@ -15,7 +14,49 @@ export default {
 		// - Add explicit support for plain text using |
 		// - Add support for markup embedded in plain text
 
-		const pug = /** @type {Grammar} */ ({
+		const filter_pattern =
+			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
+
+		// Non exhaustive list of available filters and associated languages
+		const filters = [
+			{ filter: 'atpl', language: 'twig' },
+			{ filter: 'coffee', language: 'coffeescript' },
+			'ejs',
+			'handlebars',
+			'less',
+			'livescript',
+			'markdown',
+			{ filter: 'sass', language: 'scss' },
+			'stylus',
+		];
+
+		const all_filters = /** @type {import('../types.d.ts').GrammarTokens} */ ({});
+		for (const filterItem of filters) {
+			const { filter, language } =
+				typeof filterItem === 'string'
+					? { filter: filterItem, language: filterItem }
+					: filterItem;
+			all_filters['filter-' + filter] = {
+				pattern: RegExp(
+					filter_pattern.replace('<filter_name>', () => filter),
+					'm'
+				),
+				lookbehind: true,
+				inside: {
+					'filter-name': {
+						pattern: /^:[\w-]+/,
+						alias: 'variable',
+					},
+					'text': {
+						pattern: /\S[\s\S]*/,
+						alias: [language, 'language-' + language],
+						inside: language,
+					},
+				},
+			};
+		}
+
+		return {
 			// Multiline stuff should appear before the rest
 
 			// This handles both single-line and multi-line comments
@@ -77,7 +118,7 @@ export default {
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 						alias: 'keyword',
 					},
-					$rest: /** @type {Grammar['$rest']} */ ('javascript'),
+					$rest: 'javascript',
 				},
 			},
 			'keyword': {
@@ -153,57 +194,9 @@ export default {
 				},
 			],
 			'punctuation': /[.\-!=|]+/,
-		});
-
-		const filter_pattern =
-			/(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
-
-		// Non exhaustive list of available filters and associated languages
-		const filters = [
-			{ filter: 'atpl', language: 'twig' },
-			{ filter: 'coffee', language: 'coffeescript' },
-			'ejs',
-			'handlebars',
-			'less',
-			'livescript',
-			'markdown',
-			{ filter: 'sass', language: 'scss' },
-			'stylus',
-		];
-
-		const all_filters = /** @type {GrammarTokens} */ ({});
-		for (const filterItem of filters) {
-			const { filter, language } =
-				typeof filterItem === 'string'
-					? { filter: filterItem, language: filterItem }
-					: filterItem;
-			all_filters['filter-' + filter] = {
-				pattern: RegExp(
-					filter_pattern.replace('<filter_name>', () => filter),
-					'm'
-				),
-				lookbehind: true,
-				inside: {
-					'filter-name': {
-						pattern: /^:[\w-]+/,
-						alias: 'variable',
-					},
-					'text': {
-						pattern: /\S[\s\S]*/,
-						alias: [language, 'language-' + language],
-						inside: language,
-					},
-				},
-			};
-		}
-
-		insertBefore(pug, 'filter', all_filters);
-
-		return pug;
+			$insertBefore: {
+				'filter': all_filters,
+			},
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- * @typedef {import('../types.d.ts').GrammarTokens} GrammarTokens
- */
