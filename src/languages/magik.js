@@ -8,7 +8,7 @@ export default {
 		],
 
 		'char': {
-			pattern: /%(?:[a-z][a-z0-9_?!]*|.)/i,
+			pattern: /%(?:[a-z][\w?!]*|.)/i,
 			greedy: true
 		},
 
@@ -74,7 +74,7 @@ export default {
 		'boolean': /\b_(?:false|maybe|true)\b/i,
 
 		'symbol': {
-			pattern: /(^|[^a-z0-9_]):[a-z0-9_|]+(?:\([^)]*\)|\{[^}]*\}|\[[^\]]*\])?[a-z0-9_|]*/i,
+			pattern: /(^|\W):[\w|]+(?:\([^)]*\)|\{[^}]*\}|\[[^\]]*\])?[\w|]*/,
 			lookbehind: true
 		},
 
@@ -96,7 +96,7 @@ export default {
 		},
 
 		'global-reference': {
-			pattern: /@(?:[a-zA-Z_][a-z0-9_]*:)?[a-z_][a-z0-9_]*/i,
+			pattern: /@(?:[a-z_]\w*:)?[a-z_]\w*/i,
 			alias: 'symbol'
 		},
 
@@ -107,7 +107,7 @@ export default {
 
 		'function': [
 			{ pattern: /\b_(?:abstract|endmethod|iter|method|private)\b/, greedy: true }, // method keywords
-			{ pattern: /\b_(?:endproc|proc)\b/ }, // procedure
+			/\b_(?:endproc|proc)\b/, // procedure
 			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
 			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
 		],
@@ -125,12 +125,12 @@ export default {
 		],
 
 		'variable': [
-			{ pattern: /\|![a-z0-9_?!]+!\|/i }, // variable encased like |!var!|
-			{ pattern: /\|![a-z0-9_?!]+\|!/i }, // variable encased like |!var|!
-			{ pattern: /!\|[a-z0-9_?!]+\|!/i }, // variable encased like !|var!|
-			{ pattern: /!\|\|!/ }, // empty variable !||!
-			{ pattern: /![a-z][a-z0-9_?!]*!/i }, // variable encased like !var!
-			{ pattern: /\b[a-z_]+:[a-z_]+\b/i }, // variable with a prefix like sw:gis_program_manager
+			/\|![\w?!]+!\|/, // variable encased like |!var!|
+			/\|![\w?!]+\|!/, // variable encased like |!var|!
+			/!\|[\w?!]+\|!/, // variable encased like !|var!|
+			/!\|\|!/, // empty variable !||!
+			/![a-z][\w?!]*!/, // variable encased like !var!
+			/\b[a-z_]+:[a-z_]+\b/i, // variable with a prefix like sw:gis_program_manager
 			{ pattern: /(^|[^.])\b[a-z][a-z_]*\b/i, lookbehind: true }
 		],
 	}
