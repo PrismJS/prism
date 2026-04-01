@@ -37,6 +37,13 @@ export default {
 			}
 		},
 
+		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
+
+		'symbol': {
+			pattern: /(^|\W):(\|[^|]*\||\\.|[\w\?!]+)+/, 
+			lookbehind: true
+		},
+
 		'operator': [
 			/\^<</, /<</, { pattern: /_(?:and|andif|or|orif|xor)<</i, greedy: true }, { pattern: /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, greedy: true }, // assignment operators
 			{ pattern: /(?:\*\*\^?|\*\^?|\/\^?|-\^?|\+\^?)<</, greedy: true }, // assignment operators
@@ -71,13 +78,6 @@ export default {
 		'builtin': /\b_(?:clone|package|super|thisthread)\b/i,
 
 		'boolean': /\b_(?:false|maybe|true)\b/i,
-
-		'symbol': {
-			pattern: /(^|\W):[\w|]+(?:\([^)]*\)|\{[^}]*\}|\[[^\]]*\])?[\w|]*/,
-			lookbehind: true
-		},
-
-		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'punctuation': /[[\](){},;]/,
 

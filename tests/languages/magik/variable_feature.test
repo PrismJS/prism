@@ -4,7 +4,8 @@
 !|terminal|!
 !||!
 sw:gis_program_manager
-some_var
+a_name
+anotherName
 
 ----------------------------------------------------
 
@@ -15,7 +16,8 @@ some_var
 	["variable", "!|terminal|!"],
 	["variable", "!||!"],
 	["variable", "sw:gis_program_manager"],
-	["variable", "some_var"]
+	["variable", "a_name"],
+	["variable", "anotherName"]
 ]
 
 ----------------------------------------------------

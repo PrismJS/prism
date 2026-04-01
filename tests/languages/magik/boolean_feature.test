@@ -1,13 +1,15 @@
+_true
+_True
 _false
 _maybe
-_true
 
 ----------------------------------------------------
 
 [
+	["boolean", "_true"],
+	["boolean", "_True"],
 	["boolean", "_false"],
-	["boolean", "_maybe"],
-	["boolean", "_true"]
+	["boolean", "_maybe"]
 ]
 
 ----------------------------------------------------

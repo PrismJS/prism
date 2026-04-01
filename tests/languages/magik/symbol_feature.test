@@ -1,6 +1,17 @@
-:some_symbol
-:|pipe|
-:some_symbol|()|
+:symbol
+:boolean?
+:kleenean??
+:int!internal
+:|piped|
+:int|!|internal
+:new|()|
+:|A|b|c ||()|
+:_new
+:|=|
+:|new world|
+:||
+:|ABC|\||def|
+:||\D|D|
 (:symbol)
 {:symbol}
 [:symbol]
@@ -8,9 +19,20 @@
 ----------------------------------------------------
 
 [
-	["symbol", ":some_symbol"],
-	["symbol", ":|pipe|"],
-	["symbol", ":some_symbol|()|"],
+	["symbol", ":symbol"],
+	["symbol", ":boolean?"],
+	["symbol", ":kleenean??"],
+	["symbol", ":int!internal"],
+	["symbol", ":|piped|"],
+	["symbol", ":int|!|internal"],
+	["symbol", ":new|()|"],
+	["symbol", ":|A|b|c ||()|"],
+	["symbol", ":_new"],
+	["symbol", ":|=|"],
+	["symbol", ":|new world|"],
+	["symbol", ":||"],
+	["symbol", ":|ABC|\\||def|"],
+	["symbol", ":||\\D|D|"],
 	["punctuation", "("], ["symbol", ":symbol"], ["punctuation", ")"],
 	["punctuation", "{"], ["symbol", ":symbol"], ["punctuation", "}"],
 	["punctuation", "["], ["symbol", ":symbol"], ["punctuation", "]"]
