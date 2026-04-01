@@ -40,7 +40,6 @@ export default {
 		'operator': [
 			/(?:\*\*\^?|\*\^?|\/\^?|-\^?|\+\^?)<</, // compound arithmetic assignment
 			/\^<</, /<</, // assignment operators
-			/>>/, /\b_return\b/, // return operators
 			/<>/, />=/, /<=/, /</, { pattern: /(^|[^>])>(?!>)/, lookbehind: true }, /~=/, /=/, // relational operators
 			/\*\*/, /\*/, /\//, // arithmetic operators
 			/\+/, /-/, /~/, // unary operators
@@ -78,10 +77,7 @@ export default {
 			lookbehind: true
 		},
 
-		'number': {
-			pattern: /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
-			greedy: true
-		},
+		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'punctuation': /[[\](){},;]/,
 
