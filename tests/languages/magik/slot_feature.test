@@ -1,0 +1,20 @@
+.slot_name
+some_class.some_method(.slot_name)
+some_class.some_method(_optional .slot_name, .another_slot_name)
+{.slot_name, some_other_variable, .another_slot_name}
+_global some_variable; some_variable << .slot_name
+
+----------------------------------------------------
+
+[
+	["slot", ".slot_name"],
+	["variable", "some_class"], ".", ["function", "some_method"], ["punctuation", "("], ["slot", ".slot_name"], ["punctuation", ")"],
+	["variable", "some_class"], ".", ["function", "some_method"], ["punctuation", "("], ["keyword", "_optional"], ["slot", ".slot_name"], ["punctuation", ","], ["slot", ".another_slot_name"], ["punctuation", ")"],
+	["punctuation", "{"], ["slot", ".slot_name"], ["punctuation", ","], ["variable", "some_other_variable"], ["punctuation", ","], ["slot", ".another_slot_name"], ["punctuation", "}"],
+	["keyword", "_global"], ["declaration", "some_variable"], ["punctuation", ";"], ["variable", "some_variable"], ["operator", "<<"], ["slot", ".slot_name"]
+	
+]
+
+----------------------------------------------------
+
+Checks for slot names.

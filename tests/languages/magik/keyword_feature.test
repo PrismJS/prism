@@ -1,77 +1,40 @@
-_class _constant _dynamic _global _import _local
-_abstract _private _iter _method _endmethod
-_proc _endproc
+_class _dynamic _global _import _local
 _block _endblock
-_if _elif _then _else _endif
-_for _over _loop _endloop _continue _finally _leave _loopbody _while
+_elif _else _endif _if _then
+_and _andif _not _or _orif _xor
+_continue _endloop _finally _for _leave _loop _loopbody _over _while
 _default _handling
 _catch _endcatch
 _throw
+>> _return
 _primitive
-_try _when _endtry
-_protect _locking _protection _endprotect
-_lock _endlock
+_endtry _try _when
+_endprotect _locking _protect _protection
+_endlock _lock
 _with
+_allresults _gather _optional _scatter
+
 
 ----------------------------------------------------
 
 [
-	["keyword", "_class"],
-	["keyword", "_constant"],
-	["keyword", "_dynamic"],
-	["keyword", "_global"],
-	["keyword", "_import"],
-	["keyword", "_local"],
-
-	["keyword", "_abstract"],
-	["keyword", "_private"],
-	["keyword", "_iter"],
-	["keyword", "_method"],
-	["keyword", "_endmethod"],
-
-	["keyword", "_proc"],
-	["keyword", "_endproc"],
-
-	["keyword", "_block"],
-	["keyword", "_endblock"],
-
-	["keyword", "_if"],
-	["keyword", "_elif"],
-	["keyword", "_then"],
-	["keyword", "_else"],
-	["keyword", "_endif"],
-
-	["keyword", "_for"],
-	["keyword", "_over"],
-	["keyword", "_loop"],
-	["keyword", "_endloop"],
-	["keyword", "_continue"],
-	["keyword", "_finally"],
-	["keyword", "_leave"],
-	["keyword", "_loopbody"],
-	["keyword", "_while"],
-
-	["keyword", "_default"],
-	["keyword", "_handling"],
-
-	["keyword", "_catch"],
-	["keyword", "_endcatch"],
-
+	["keyword", "_class"], ["keyword", "_dynamic"], ["keyword", "_global"], ["keyword", "_import"], ["keyword", "_local"],
+	["keyword", "_block"], ["keyword", "_endblock"],
+ 	["keyword", "_elif"], ["keyword", "_else"], ["keyword", "_endif"], ["keyword", "_if"], ["keyword", "_then"],
+ 	["keyword", "_and"], ["keyword", "_andif"], ["keyword", "_not"], ["keyword", "_or"], ["keyword", "_orif"], ["keyword", "_xor"],
+ 	["keyword", "_continue"], ["keyword", "_endloop"], ["keyword", "_finally"], ["keyword", "_for"], ["keyword", "_leave"], ["keyword", "_loop"], ["keyword", "_loopbody"], ["keyword", "_over"], ["keyword", "_while"],
+ 	["keyword", "_default"], ["keyword", "_handling"],
+	["keyword", "_catch"], ["keyword", "_endcatch"],
 	["keyword", "_throw"],
-
+	["keyword", ">>"], ["keyword", "_return"],
 	["keyword", "_primitive"],
-
-	["keyword", "_try"],
-	["keyword", "_when"],
-	["keyword", "_endtry"],
-
-	["keyword", "_protect"],
-	["keyword", "_locking"],
-	["keyword", "_protection"],
-	["keyword", "_endprotect"],
-
-	["keyword", "_lock"],
-	["keyword", "_endlock"],
-
-	["keyword", "_with"]
+	["keyword", "_endtry"], ["keyword", "_try"], ["keyword", "_when"],
+	["keyword", "_endprotect"],["keyword", "_locking"], ["keyword", "_protect"], ["keyword", "_protection"],
+	["keyword", "_endlock"], ["keyword", "_lock"],
+	["keyword", "_with"],
+	["keyword", "_allresults"], ["keyword", "_gather"], ["keyword", "_optional"], ["keyword", "_scatter"]
 ]
+
+----------------------------------------------------
+
+Checks for all known keywords.

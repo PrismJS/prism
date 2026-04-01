@@ -3,12 +3,12 @@ export default {
 	id: 'magik',
 	grammar: {
 		'comment': [
-			{ pattern: /##.*/, greedy: true }, // documentation
-			{ pattern: /#.*/, greedy: true } // comment
+			{ pattern: /##.*/, greedy: true, alias: 'documentation' }, // documentation
+			{ pattern: /#(?!#).*/, greedy: true }, // comments
 		],
 
 		'char': {
-			pattern: /%(?:[a-z][\w?!]*|.)/i,
+			pattern: /%(?:[a-z][a-z0-9_?!]*|.)/i,
 			greedy: true
 		},
 
@@ -18,63 +18,120 @@ export default {
 		},
 
 		'regex': {
-			pattern: /\/(?:\/|(?:\\.|[^\\/\r\n])+\/[qisdlmuCX]*)/,
+			pattern: /\/(?:(?!\/)(?:\\.|[^\\\/\r\n])*\/[qisdlmuCX]*|\/)/,
 			greedy: true
 		},
 
-		'property': {
+		'declaration': [
+			{ pattern: /(\b_package\s+).*/i, greedy: true, lookbehind: true },
+			{ pattern: /(\b_global\s+)(?!_)\w+/i, greedy: true, lookbehind: true },
+			{ pattern: /(\b_constant\s+)[a-z_]+/i, greedy: true, lookbehind: true }
+		],
+
+		'pragma': {
 			pattern: /_pragma.*/,
+			alias: 'prolog',
 			inside: {
 				'modifier': /classify_level|topic|usage/,
-				'punctuation': /[={},]/
+				'pragma-punctuation': { pattern: /[={},]/ }
 			}
 		},
 
 		'operator': [
-			/_(?:and|andif|or|orif|xor)<</, // compound logical assignment
-			/(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</, // compound arithmetic assignment
+			/(?:\*\*\^?|\*\^?|\/\^?|-\^?|\+\^?)<</, // compound arithmetic assignment
 			/\^<</, /<</, // assignment operators
 			/>>/, /\b_return\b/, // return operators
-			/\b_(?:cf|is|isnt)\b/, /<>/, />=/, /<=/, /</, />/, /~=/, /=/, // relational operators
-			/\b_(?:and|andif|or|orif|xor)\b/, // logical operators
-			/\*\*/, /\*/, /\//, /\b_(?:div|mod)\b/, // arithmetic operators
-			/\+/, /-/, /\b_not\b/, /~/, // unary operators
+			/<>/, />=/, /<=/, /</, { pattern: /(^|[^>])>(?!>)/, lookbehind: true }, /~=/, /=/, // relational operators
+			/\*\*/, /\*/, /\//, // arithmetic operators
+			/\+/, /-/, /~/, // unary operators
+		],
+
+		'keyword-operator': [
+			{ pattern: /\b_(?:cf|is|isnt)\b/i, alias: 'keyword' }, // comparison
+			{ pattern: /\b_(?:div|mod)\b/i, alias: 'keyword' } // math
 		],
 
 		'keyword': [
-			/\b_(?:class|constant|dynamic|global|import|local)\b/, // variables,
-			/\b_(?:abstract|endmethod|iter|method|private)\b/, // method
-			/\b_(?:endproc|proc)\b/, // procedure
-			/\b_(?:block|endblock)\b/, // block
-			/\b_(?:elif|else|endif|if|then)\b/, // if
-			/\b_(?:continue|endloop|finally|for|leave|loop|loopbody|over|while)\b/, // loop
-			/\b_(?:default|handling)\b/, // handling
-			/\b_(?:catch|endcatch)\b/, // catch
-			/\b_throw\b/, // throw
-			/\b_primitive\b/, // primitive
-			/\b_(?:endtry|try|when)\b/, // try
-			/\b_(?:endprotect|locking|protect|protection)\b/, // protect
-			/\b_(?:endlock|lock)\b/, // lock
-			/\b_with\b/ // standalone since _finally, _handling, _throw, _try, _leave and _continue all can have this
+			/\b_(?:class|dynamic|global|import|local)\b/i, // variables,
+			/\b_(?:block|endblock)\b/i, // block
+			/\b_(?:elif|else|endif|if|then)\b/i, // if
+			/\b_(?:and|andif|not|or|orif|xor)\b/i, // logical operators
+			/\b_(?:continue|endloop|finally|for|leave|loop|loopbody|over|while)\b/i, // loop
+			/\b_(?:default|handling)\b/i, // handling
+			/\b_(?:catch|endcatch)\b/i, // catch
+			/\b_throw\b/i, // throw
+			/>>/, /\b_return\b/i, // return
+			/\b_primitive\b/i, // primitive
+			/\b_(?:endtry|try|when)\b/i, // try
+			/\b_(?:endprotect|locking|protect|protection)\b/i, // protect
+			/\b_(?:endlock|lock)\b/i, // lock
+			/\b_with\b/i, // standalone since _finally, _handling, _throw, _try, _leave and _continue all can have this
+			/\b_(?:allresults|gather|optional|scatter)\b/i // parameter options
 		],
 
-		'builtin': [
-			/\b_(?:clone|package|self|super|thisthread|unset)\b/
+		'builtin': /\b_(?:clone|package|super|thisthread)\b/i,
+
+		'boolean': /\b_(?:false|maybe|true)\b/i,
+
+		'symbol': {
+			pattern: /(^|[^a-z0-9_]):[a-z0-9_|]+(?:\([^)]*\)|\{[^}]*\}|\[[^\]]*\])?[a-z0-9_|]*/i,
+			lookbehind: true
+		},
+
+		'number': {
+			pattern: /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
+			greedy: true
+		},
+
+		'punctuation': /[[\](){},;]/,
+
+		'unset': {
+			pattern: /\b_unset\b/i,
+			alias: 'symbol'
+		},
+
+		'constant': {
+			pattern: /\b_constant\b/i,
+			alias: 'symbol'
+		},
+
+		'global-reference': {
+			pattern: /@(?:[a-zA-Z_][a-z0-9_]*:)?[a-z_][a-z0-9_]*/i,
+			alias: 'symbol'
+		},
+
+		'slot': {
+			pattern: /(^|[\s({])\.\s*[A-Z_]+/i,
+			lookbehind: true
+		},
+
+		'function': [
+			{ pattern: /\b_(?:abstract|endmethod|iter|method|private)\b/, greedy: true }, // method keywords
+			{ pattern: /\b_(?:endproc|proc)\b/ }, // procedure
+			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
+			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
 		],
 
-		'boolean': /\b_(?:false|maybe|true)\b/,
+		'self': [
+			{
+				pattern: /(\b_method\b\s+)\S+(?=\.)/,
+				greedy: true,
+				lookbehind: true
+			},
+			{
+				pattern: /\b_self\b/i,
+				greedy: true
+			}
+		],
 
 		'variable': [
-			/\|![\w?!]+!\|/, /\|![\w?!]+\|!/, /!\|[\w?!]+\|!/, /!\|\|!/, /![a-z][\w?!]*!/i, // dynamic variable
-			/[a-z_]\w*:[a-z_]\w*/i, // global variable
-			/@(?:[a-z_]\w*:)?[a-z_]\w*/i, // global reference
+			{ pattern: /\|![a-z0-9_?!]+!\|/i }, // variable encased like |!var!|
+			{ pattern: /\|![a-z0-9_?!]+\|!/i }, // variable encased like |!var|!
+			{ pattern: /!\|[a-z0-9_?!]+\|!/i }, // variable encased like !|var!|
+			{ pattern: /!\|\|!/ }, // empty variable !||!
+			{ pattern: /![a-z][a-z0-9_?!]*!/i }, // variable encased like !var!
+			{ pattern: /\b[a-z_]+:[a-z_]+\b/i }, // variable with a prefix like sw:gis_program_manager
+			{ pattern: /(^|[^.])\b[a-z][a-z_]*\b/i, lookbehind: true }
 		],
-
-		'symbol': /:(?:\|[^|]*\||[\w?!])+/,
-
-		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
-
-		'punctuation': /[[\](){},;]/
-
 	}
 };

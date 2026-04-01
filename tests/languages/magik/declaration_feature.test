@@ -1,0 +1,17 @@
+_package user
+_global some_var; some_var << 1
+_constant yippie << 2
+_global _constant !done_meas_follow_nodes! << _unset
+
+----------------------------------------------------
+
+[
+	["builtin", "_package"], ["declaration", "user"],
+    ["keyword", "_global"], ["declaration", "some_var"], ["punctuation", ";"], ["variable", "some_var"], ["operator", "<<"], ["number", "1"],
+    ["constant", "_constant"], ["declaration", "yippie"], ["operator", "<<"], ["number", "2"],
+    ["keyword", "_global"], ["constant", "_constant"], ["variable", "!done_meas_follow_nodes!"], ["operator", "<<"], ["unset", "_unset"]
+]
+
+----------------------------------------------------
+
+Checks for declarations.

@@ -1,15 +1,15 @@
 _clone
-_package
-_self
 _super
+_thisthread
+_package
 
 ----------------------------------------------------
 
 [
 	["builtin", "_clone"],
-	["builtin", "_package"],
-	["builtin", "_self"],
-	["builtin", "_super"]
+	["builtin", "_super"],
+	["builtin", "_thisthread"],
+	["builtin", "_package"]
 ]
 
 ----------------------------------------------------

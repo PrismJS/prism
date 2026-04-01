@@ -2,6 +2,8 @@
 "foobar"
 ''
 'foobar'
+"123"
+"_method some_class.some_method(param1, :param2, .param3, _gather args)"
 
 ----------------------------------------------------
 
@@ -9,7 +11,9 @@
 	["string", "\"\""],
 	["string", "\"foobar\""],
 	["string", "''"],
-	["string", "'foobar'"]
+	["string", "'foobar'"],
+	["string", "\"123\""],
+	["string", "\"_method some_class.some_method(param1, :param2, .param3, _gather args)\""]
 ]
 
 ----------------------------------------------------

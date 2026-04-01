@@ -1,0 +1,16 @@
+_unset
+(_unset)
+{_unset,_unset}
+
+
+----------------------------------------------------
+
+[
+	["unset", "_unset"],
+    ["punctuation", "("], ["unset", "_unset"], ["punctuation", ")"],
+    ["punctuation", "{"], ["unset", "_unset"], ["punctuation", ","], ["unset", "_unset"], ["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for _unset.

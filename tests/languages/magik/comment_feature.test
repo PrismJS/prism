@@ -25,7 +25,7 @@ _endblock
 	["comment", "# Comment"],
 
 	["keyword", "_block"],
-	["number", "1"], ["operator", "_and"], ["comment", "# comment"],
+	["number", "1"], ["keyword", "_and"], ["comment", "# comment"],
 	["number", "2"],
 	["keyword", "_endblock"],
 

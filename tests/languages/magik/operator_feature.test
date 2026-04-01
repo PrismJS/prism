@@ -19,11 +19,6 @@ _div^<<
 -^<<
 +<<
 +^<<
->>
-_return
-_cf
-_is
-_isnt
 =
 ~=
 <>
@@ -31,19 +26,11 @@ _isnt
 <=
 <
 >
-_and
-_andif
-_or
-_orif
-_xor
 **
 *
 /
-_div
-_mod
 +
 -
-_not
 ~
 
 ----------------------------------------------------
@@ -70,11 +57,6 @@ _not
 	["operator", "-^<<"],
 	["operator", "+<<"],
 	["operator", "+^<<"],
-	["operator", ">>"],
-	["operator", "_return"],
-	["operator", "_cf"],
-	["operator", "_is"],
-	["operator", "_isnt"],
 	["operator", "="],
 	["operator", "~="],
 	["operator", "<>"],
@@ -82,19 +64,11 @@ _not
 	["operator", "<="],
 	["operator", "<"],
 	["operator", ">"],
-	["operator", "_and"],
-	["operator", "_andif"],
-	["operator", "_or"],
-	["operator", "_orif"],
-	["operator", "_xor"],
 	["operator", "**"],
 	["operator", "*"],
 	["operator", "/"],
-	["operator", "_div"],
-	["operator", "_mod"],
 	["operator", "+"],
 	["operator", "-"],
-	["operator", "_not"],
 	["operator", "~"]
 ]
 

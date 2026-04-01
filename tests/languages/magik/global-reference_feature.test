@@ -1,0 +1,17 @@
+@gis_program_manager
+(@gis_program_manager)
+{@gis_program_manager}
+,@gis_program_manager
+
+----------------------------------------------------
+
+[
+	["global-reference", "@gis_program_manager"],
+    ["punctuation", "("], ["global-reference", "@gis_program_manager"], ["punctuation", ")"],
+    ["punctuation", "{"], ["global-reference", "@gis_program_manager"], ["punctuation", "}"],
+    ["punctuation", ","], ["global-reference", "@gis_program_manager"]
+]
+
+----------------------------------------------------
+
+Checks for @global_references.

@@ -1,0 +1,24 @@
+_abstract _endmethod _iter _method _private
+_proc _endproc
+variable.method_name
+variable.method_name!
+variable.method_name?
+variable.method_name()
+variable.|methodName|()
+.slot_name
+----------------------------------------------------
+
+[
+	["function", "_abstract"], ["function", "_endmethod"], ["function", "_iter"], ["function", "_method"], ["function", "_private"],
+    ["function", "_proc"], ["function", "_endproc"],
+    ["variable", "variable"], ".", ["function", "method_name"],
+    ["variable", "variable"], ".", ["function", "method_name!"],
+    ["variable", "variable"], ".", ["function", "method_name?"],
+    ["variable", "variable"], ".", ["function", "method_name"], ["punctuation", "("], ["punctuation", ")"],
+    ["variable", "variable"], ".", ["function", "|methodName|"], ["punctuation", "("], ["punctuation", ")"],
+    ["slot", ".slot_name"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

@@ -1,11 +1,19 @@
-:symbol
+:some_symbol
 :|pipe|
+:some_symbol|()|
+(:symbol)
+{:symbol}
+[:symbol]
 
 ----------------------------------------------------
 
 [
-	["symbol", ":symbol"],
-	["symbol", ":|pipe|"]
+	["symbol", ":some_symbol"],
+	["symbol", ":|pipe|"],
+	["symbol", ":some_symbol|()|"],
+	["punctuation", "("], ["symbol", ":symbol"], ["punctuation", ")"],
+	["punctuation", "{"], ["symbol", ":symbol"], ["punctuation", "}"],
+	["punctuation", "["], ["symbol", ":symbol"], ["punctuation", "]"]
 ]
 
 ----------------------------------------------------

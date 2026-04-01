@@ -1,0 +1,13 @@
+_self
+_private _method current_exemplar.method
+
+----------------------------------------------------
+
+[
+	["self", "_self"],
+	["function", "_private"], ["function", "_method"], ["self", "current_exemplar"], ".", ["function", "method"]
+]
+
+----------------------------------------------------
+
+Checks for _self and the current exemplar's name.
