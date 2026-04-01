@@ -23,9 +23,9 @@ export default {
 		},
 
 		'declaration': [
-			{ pattern: /(\b_package\s+).*/i, greedy: true, lookbehind: true },
-			{ pattern: /(\b_global\s+)(?!_)\w+/i, greedy: true, lookbehind: true },
-			{ pattern: /(\b_constant\s+)[a-z_]+/i, greedy: true, lookbehind: true }
+			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
+			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_constant\s+)[a-z_]+/i, lookbehind: true }
 		],
 
 		'pragma': {
@@ -51,7 +51,7 @@ export default {
 		],
 
 		'keyword': [
-			/\b_(?:class|dynamic|global|import|local)\b/i, // variables,
+			/\b_(?:class|dynamic|global|import|local)\b/i, // variables
 			/\b_(?:block|endblock)\b/i, // block
 			/\b_(?:elif|else|endif|if|then)\b/i, // if
 			/\b_(?:and|andif|not|or|orif|xor)\b/i, // logical operators
@@ -101,23 +101,19 @@ export default {
 			lookbehind: true
 		},
 
+		'self': [
+			{
+				pattern: /(\b_method\s+)\S+(?=\.)/,
+				lookbehind: true
+			},
+			/\b_self\b/i
+		],
+
 		'function': [
-			{ pattern: /\b_(?:abstract|endmethod|iter|method|private)\b/, greedy: true }, // method keywords
+			/\b_(?:abstract|endmethod|iter|method|private)\b/, // method keywords
 			/\b_(?:endproc|proc)\b/, // procedure
 			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
 			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
-		],
-
-		'self': [
-			{
-				pattern: /(\b_method\b\s+)\S+(?=\.)/,
-				greedy: true,
-				lookbehind: true
-			},
-			{
-				pattern: /\b_self\b/i,
-				greedy: true
-			}
 		],
 
 		'variable': [
