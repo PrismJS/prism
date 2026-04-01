@@ -7,6 +7,40 @@ export default {
 			{ pattern: /#.*/, greedy: true } // comment
 		],
 
+		'char': {
+			pattern: /%(?:[a-z][\w?!]*|.)/i,
+			greedy: true
+		},
+
+		'string': {
+			pattern: /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/,
+			greedy: true
+		},
+
+		'regex': {
+			pattern: /\/(?:\/|(?:\\.|[^\\/\r\n])+\/[qisdlmuCX]*)/,
+			greedy: true
+		},
+
+		'property': {
+			pattern: /_pragma.*/,
+			inside: {
+				'modifier': /classify_level|topic|usage/,
+				'punctuation': /[={},]/
+			}
+		},
+
+		'operator': [
+			/_(?:and|andif|or|orif|xor)<</, // compound logical assignment
+			/(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</, // compound arithmetic assignment
+			/\^<</, /<</, // assignment operators
+			/>>/, /\b_return\b/, // return operators
+			/\b_(?:cf|is|isnt)\b/, /<>/, />=/, /<=/, /</, />/, /~=/, /=/, // relational operators
+			/\b_(?:and|andif|or|orif|xor)\b/, // logical operators
+			/\*\*/, /\*/, /\//, /\b_(?:div|mod)\b/, // arithmetic operators
+			/\+/, /-/, /\b_not\b/, /~/, // unary operators
+		],
+
 		'keyword': [
 			/\b_(?:class|constant|dynamic|global|import|local)\b/, // variables,
 			/\b_(?:abstract|endmethod|iter|method|private)\b/, // method
@@ -30,11 +64,6 @@ export default {
 
 		'boolean': /\b_(?:false|maybe|true)\b/,
 
-		'char': {
-			pattern: /%(?:[a-z][\w?!]*|.)/i,
-			greedy: true
-		},
-
 		'variable': [
 			/\|![\w?!]+!\|/, /\|![\w?!]+\|!/, /!\|[\w?!]+\|!/, /!\|\|!/, /![a-z][\w?!]*!/i, // dynamic variable
 			/[a-z_]\w*:[a-z_]\w*/i, // global variable
@@ -43,38 +72,7 @@ export default {
 
 		'symbol': /:(?:\|[^|]*\||[\w?!])+/,
 
-		'number': {
-			pattern: /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
-			greedy: true
-		},
-
-		'string': {
-			pattern: /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/,
-			greedy: true
-		},
-
-		'regex': {
-			pattern: /\/(?:\/|(?:\\.|[^\\/\r\n])+\/[qisdlmuCX]*)/,
-			greedy: true
-		},
-
-		'operator': [
-			/\^<</, /<</, { pattern: /_(?:and|andif|or|orif|xor)<</, greedy: true }, { pattern: /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</, greedy: true }, // assignment operators
-			/>>/, /\b_return\b/, // return operators
-			/\b_(?:cf|is|isnt)\b/, /<>/, />=/, /<=/, /</, />/, /~=/, /=/, // relational operators
-			/\b_(?:and|andif|or|orif|xor)\b/, // logical operators
-			/\*\*/, /\*/, /\//, /\b_(?:div|mod)\b/, // arithmetic operators
-			/\+/, /-/, /\b_not\b/, /~/, // unary operators
-		],
-
-		'property': {
-			pattern: /_pragma.*/,
-			greedy: true,
-			inside: {
-				'modifier': /classify_level|topic|usage/,
-				'punctuation': /[={},]/
-			}
-		},
+		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'punctuation': /[[\](){},;]/
 
