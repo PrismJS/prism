@@ -1,19 +1,25 @@
-""
-"foobar"
-''
-'foobar'
-"123"
-"_method some_class.some_method(param1, :param2, .param3, _gather args)"
+"string"
+'string'
+"%"
+"\"
+"'"
+'"'
+"multi
+line"
+"#not a comment"
 
 ----------------------------------------------------
 
 [
-	["string", "\"\""],
-	["string", "\"foobar\""],
-	["string", "''"],
-	["string", "'foobar'"],
-	["string", "\"123\""],
-	["string", "\"_method some_class.some_method(param1, :param2, .param3, _gather args)\""]
+	["string", "\"string\""],
+	["string", "'string'"],
+	["string", "\"%\""],
+	"\r\n\"\\\"\r\n",
+	["string", "\"'\""],
+	["string", "'\"'"],
+	"\r\n\"", ["variable", "multi"],
+	["variable", "line"], "\"\r\n",
+	["string", "\"#not a comment\""]
 ]
 
 ----------------------------------------------------

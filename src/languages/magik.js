@@ -18,7 +18,7 @@ export default {
 		},
 
 		'regex': {
-			pattern: /\/(?:(?!\/)(?:\\.|[^\\\/\r\n])*\/[qisdlmuCX]*|\/)/,
+			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmuCX]*|\/)/,
 			greedy: true
 		},
 
@@ -40,7 +40,7 @@ export default {
 		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'symbol': {
-			pattern: /(^|\W):(\|[^|]*\||\\.|[\w\?!]+)+/,
+			pattern: /(^|\W):(?:\|[^|]*\||\\.|[\w?!])+/,
 			lookbehind: true
 		},
 
