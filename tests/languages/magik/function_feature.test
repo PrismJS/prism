@@ -5,18 +5,35 @@ variable.method_name!
 variable.method_name?
 variable.method_name()
 variable.|methodName|()
-.slot_name
+object.method
+object.getName
+object.|getName|
+object.method<< _unset
+object.method1.method2
+coordinate3d.new_with()
+_self.new()
+_super.new()
+_clone.init()
+
 ----------------------------------------------------
 
 [
 	["function", "_abstract"], ["function", "_endmethod"], ["function", "_iter"], ["function", "_method"], ["function", "_private"],
-    ["function", "_proc"], ["function", "_endproc"],
-    ["variable", "variable"], ".", ["function", "method_name"],
-    ["variable", "variable"], ".", ["function", "method_name!"],
-    ["variable", "variable"], ".", ["function", "method_name?"],
-    ["variable", "variable"], ".", ["function", "method_name"], ["punctuation", "("], ["punctuation", ")"],
-    ["variable", "variable"], ".", ["function", "|methodName|"], ["punctuation", "("], ["punctuation", ")"],
-    ["slot", ".slot_name"]
+	["function", "_proc"], ["function", "_endproc"],
+	["variable", "variable"], ".", ["function", "method_name"],
+	["variable", "variable"], ".", ["function", "method_name!"],
+	["variable", "variable"], ".", ["function", "method_name?"],
+	["variable", "variable"], ".", ["function", "method_name"], ["punctuation", "("], ["punctuation", ")"],
+	["variable", "variable"], ".", ["function", "|methodName|"], ["punctuation", "("], ["punctuation", ")"],
+	["variable", "object"], ".", ["function", "method"],
+	["variable", "object"], ".", ["function", "getName"],
+	["variable", "object"], ".", ["function", "|getName|"],
+	["variable", "object"], ".", ["function", "method"], ["operator", "<<"], ["unset", "_unset"],
+	["variable", "object"], ".", ["function", "method1"], ".", ["function", "method2"],
+	["variable", "coordinate3d"], ".", ["function", "new_with"], ["punctuation", "("], ["punctuation", ")"],
+	["self", "_self"], ".", ["function", "new"], ["punctuation", "("], ["punctuation", ")"],
+	["builtin", "_super"], ".", ["function", "new"], ["punctuation", "("], ["punctuation", ")"],
+	["builtin", "_clone"], ".", ["function", "init"], ["punctuation", "("], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

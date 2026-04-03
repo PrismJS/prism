@@ -75,6 +75,11 @@ export default {
 			/\b_(?:allresults|gather|optional|scatter)\b/i // parameter options
 		],
 
+		'slot': {
+			pattern: /(^|[\s({])\.\s*[A-Z_]+/i,
+			lookbehind: true
+		},
+
 		'builtin': /\b_(?:clone|package|super|thisthread)\b/i,
 
 		'boolean': /\b_(?:false|maybe|true)\b/i,
@@ -94,11 +99,6 @@ export default {
 		'global-reference': {
 			pattern: /@(?:[a-z_]\w*:)?[a-z_]\w*/i,
 			alias: 'symbol'
-		},
-
-		'slot': {
-			pattern: /(^|[\s({])\.\s*[A-Z_]+/i,
-			lookbehind: true
 		},
 
 		'self': [
@@ -122,8 +122,8 @@ export default {
 			/!\|[\w?!]+\|!/, // variable encased like !|var!|
 			/!\|\|!/, // empty variable !||!
 			/![a-z][\w?!]*!/, // variable encased like !var!
-			/\b[a-z_]+:[a-z_]+\b/i, // variable with a prefix like sw:gis_program_manager
-			{ pattern: /(^|[^.])\b[a-z][a-z_]*\b/i, lookbehind: true }
+			/\b[a-z_]+:\w+\b/i, // variable with a prefix like sw:gis_program_manager
+			{ pattern: /(^|[^.])\b[a-z]\w*\b/i, lookbehind: true }
 		],
 	}
 };
