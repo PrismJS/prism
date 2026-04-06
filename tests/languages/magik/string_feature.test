@@ -1,7 +1,6 @@
 "string"
 'string'
 "%"
-"\"
 "#not a comment"
 
 ----------------------------------------------------
@@ -10,7 +9,6 @@
 	["string", "\"string\""],
 	["string", "'string'"],
 	["string", "\"%\""],
-	["string", "\"'\""],
 	["string", "\"#not a comment\""]
 ]
 

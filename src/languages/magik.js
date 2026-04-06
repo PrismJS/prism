@@ -46,7 +46,7 @@ export default {
 
 		'operator': [
 			/\^<</, /<</, { pattern: /_(?:and|andif|or|orif|xor)<</i, greedy: true }, { pattern: /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, greedy: true }, // assignment operators
-			{ pattern: /(?:\*\*\^?|\*\^?|\/\^?|-\^?|\+\^?)<</, greedy: true }, // assignment operators
+			/(?:\*\*\^?|\*\^?|\/\^?|-\^?|\+\^?)<</, // assignment operators
 			/<>/, />=/, /<=/, /</, { pattern: /(^|[^>])>(?!>)/, lookbehind: true }, /~=/, /=/, // relational operators
 			/\*\*/, /\*/, /\//, // arithmetic operators
 			/\+/, /-/, /~/, // unary operators
