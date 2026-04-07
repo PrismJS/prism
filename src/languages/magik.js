@@ -18,7 +18,7 @@ export default {
 		},
 
 		'regex': {
-			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmu]*|\/)/,
+			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmucx]*|\/)/,
 			greedy: true
 		},
 
