@@ -18,7 +18,7 @@ export default {
 		},
 
 		'regex': {
-			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmuCX]*|\/)/,
+			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmu]*|\/)/,
 			greedy: true
 		},
 
@@ -109,8 +109,8 @@ export default {
 		],
 
 		'function': [
-			/\b_(?:abstract|endmethod|iter|method|private)\b/, // method keywords
-			/\b_(?:endproc|proc)\b/, // procedure
+			/\b_(?:abstract|endmethod|iter|method|private)\b/i, // method keywords
+			/\b_(?:endproc|proc)\b/i, // procedure
 			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
 			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
 		],
