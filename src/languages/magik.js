@@ -75,7 +75,7 @@ export default {
 		],
 
 		'slot': {
-			pattern: /(^|[\s({])\.\s*[A-Z_]+/i,
+			pattern: /(^|[\s({])\.\s*[a-z_]+/i,
 			lookbehind: true
 		},
 
