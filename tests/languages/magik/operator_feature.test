@@ -1,5 +1,3 @@
-^<<
-<<
 _and<<
 _andif<<
 _or<<
@@ -19,13 +17,14 @@ _div^<<
 -^<<
 +<<
 +^<<
-=
-~=
+<<
+^<<
 <>
 >=
 <=
 <
->
+~=
+=
 **
 *
 /
@@ -36,8 +35,6 @@ _div^<<
 ----------------------------------------------------
 
 [
-	["operator", "^<<"],
-	["operator", "<<"],
 	["operator", "_and<<"],
 	["operator", "_andif<<"],
 	["operator", "_or<<"],
@@ -57,13 +54,14 @@ _div^<<
 	["operator", "-^<<"],
 	["operator", "+<<"],
 	["operator", "+^<<"],
-	["operator", "="],
-	["operator", "~="],
+	["operator", "<<"],
+	["operator", "^<<"],
 	["operator", "<>"],
 	["operator", ">="],
 	["operator", "<="],
 	["operator", "<"],
-	["operator", ">"],
+	["operator", "~="],
+	["operator", "="],
 	["operator", "**"],
 	["operator", "*"],
 	["operator", "/"],
