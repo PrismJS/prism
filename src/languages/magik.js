@@ -111,8 +111,8 @@ export default {
 		'function': [
 			/\b_(?:abstract|endmethod|iter|method|private)\b/i, // method keywords
 			/\b_(?:endproc|proc)\b/i, // procedure
-			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
-			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
+			{ pattern: /(\.)\s*\|[a-z][\w?!]*\|/, lookbehind: true }, // encased |methodNames|
+			{ pattern: /(\.)\s*[a-z][\w?!]*/, lookbehind: true }, // methods
 		],
 
 		'variable': [

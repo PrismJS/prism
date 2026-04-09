@@ -6,6 +6,7 @@ variable.method_name?
 variable.method_name()
 variable.|methodName|()
 object.method
+object.int!method
 object.getName
 object.|getName|
 object.method<< _unset
@@ -26,6 +27,7 @@ _clone.init()
 	["variable", "variable"], ".", ["function", "method_name"], ["punctuation", "("], ["punctuation", ")"],
 	["variable", "variable"], ".", ["function", "|methodName|"], ["punctuation", "("], ["punctuation", ")"],
 	["variable", "object"], ".", ["function", "method"],
+	["variable", "object"], ".", ["function", "int!method"],
 	["variable", "object"], ".", ["function", "getName"],
 	["variable", "object"], ".", ["function", "|getName|"],
 	["variable", "object"], ".", ["function", "method"], ["operator", "<<"], ["unset", "_unset"],
