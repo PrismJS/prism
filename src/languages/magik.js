@@ -37,12 +37,12 @@ export default {
 			}
 		},
 
-		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
-
 		'symbol': {
 			pattern: /(^|\W):(?:\|[^|]*\||\\.|[\w?!])+/,
 			lookbehind: true
 		},
+
+		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'operator': [
 			/_(?:and|andif|or|orif|xor)<</i, /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, /\^?<</, // assignment operators
