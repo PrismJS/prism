@@ -16,7 +16,7 @@ _global _constant gis_program_manager << _unset
 		["constant", "_constant"], ["keyword-variable", "_local"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
 		["keyword-variable", "_local"], ["constant", "_constant"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
 	["keyword", "_endblock"],
-	["keyword-variable", "_global"], ["constant", "_constant"], ["variable", "!current_view!"], ["operator", "<<"], ["unset", "_unset"],
+	["keyword-variable", "_global"], ["constant", "_constant"], ["dynamic-variable", "!current_view!"], ["operator", "<<"], ["unset", "_unset"],
 	["keyword-variable", "_global"], ["constant", "_constant"], ["declaration", "gis_program_manager"], ["operator", "<<"], ["unset", "_unset"]
 ]
 

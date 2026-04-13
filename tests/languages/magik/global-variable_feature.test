@@ -1,0 +1,13 @@
+sw:gis_program_manager
+sw:|gis_program_manager|
+
+----------------------------------------------------
+
+[
+	["global-variable", "sw:gis_program_manager"],
+	["global-variable", "sw:|gis_program_manager|"]
+]
+
+----------------------------------------------------
+
+Checks for global variables.

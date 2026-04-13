@@ -1,9 +1,3 @@
-!terminal!
-|!terminal!|
-|!terminal|!
-!|terminal|!
-!||!
-sw:gis_program_manager
 a_name
 anotherName
 some_var
@@ -16,12 +10,6 @@ coords3d_rope.new_with(coordinate3d.new(0, 0, 0), coordinate3d.new(10, 10, 10))
 ----------------------------------------------------
 
 [
-	["variable", "!terminal!"],
-	["variable", "|!terminal!|"],
-	["variable", "|!terminal|!"],
-	["variable", "!|terminal|!"],
-	["variable", "!||!"],
-	["variable", "sw:gis_program_manager"],
 	["variable", "a_name"],
 	["variable", "anotherName"],
 	["variable", "some_var"],

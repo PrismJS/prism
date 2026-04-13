@@ -32,6 +32,32 @@ export default {
 			lookbehind: true
 		},
 
+		'global-reference': [
+			{ pattern: /@(?:[a-z_]\w*:)?\|[^|]*\|/i, alias: 'symbol' }, // @|name| or @prefix:|name|
+			{ pattern: /@(?:[a-z_]\w*:)?[a-z_]\w*/i, alias: 'symbol' }, // @name or @prefix:name
+		],
+
+		'dynamic-variable': [
+			{ pattern: /\|![\w?!]+!\|/, alias: 'variable' }, // variable encased like |!var!|
+			{ pattern: /\|![\w?!]+\|!/, alias: 'variable' }, // variable encased like |!var|!
+			{ pattern: /!\|[\w?!]+\|!/, alias: 'variable' }, // variable encased like !|var!|
+			{ pattern: /!\|\|!/, alias: 'variable' }, // empty variable !||!
+			{ pattern: /[a-z_]+:![a-z][\w?!]*!/, alias: 'variable' }, // variable with a prefix like sw:!var!
+			{ pattern: /![a-z][\w?!]*!/, alias: 'variable' }, // variable encased like !var!
+		],
+
+		'global-variable': [
+			{ pattern: /\b[a-z_]+:\w+\b/i, alias: 'variable' }, // variable with a prefix like sw:gis_program_manager
+			{ pattern: /[a-z_]+:\|\w+\|/i, alias: 'variable' }, // variable with a prefix like sw:|gis_program_manager|
+		],
+
+		'declaration': [
+			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
+			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_constant\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_local\s+)(?!_)\w+/i, lookbehind: true }
+		],
+
 		'number': /(?<!\|)\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'operator': [
@@ -44,13 +70,6 @@ export default {
 		'keyword-operator': [
 			{ pattern: /\b_(?:cf|is|isnt)\b/i, alias: 'keyword' }, // comparison
 			{ pattern: /\b_(?:div|mod)\b/i, alias: 'keyword' } // math
-		],
-
-		'declaration': [
-			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
-			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
-			{ pattern: /(\b_constant\s+)(?!_)\w+/i, lookbehind: true },
-			{ pattern: /(\b_local\s+)(?!_)\w+/i, lookbehind: true }
 		],
 
 		'keyword-variable': {
@@ -96,11 +115,6 @@ export default {
 			alias: 'symbol'
 		},
 
-		'global-reference': {
-			pattern: /@(?:[a-z_]\w*:)?[a-z_]\w*/i,
-			alias: 'symbol'
-		},
-
 		'self': [
 			{
 				pattern: /(\b_method\s+)\S+(?=\.)/,
@@ -117,14 +131,8 @@ export default {
 		],
 
 		'variable': [
-			/\|![\w?!]+!\|/, // variable encased like |!var!|
-			/\|![\w?!]+\|!/, // variable encased like |!var|!
-			/!\|[\w?!]+\|!/, // variable encased like !|var!|
-			/!\|\|!/, // empty variable !||!
 			/\|[\w?!]+\|/, // variable encased like |var|, |0|, |123|
-			/![a-z][\w?!]*!/, // variable encased like !var!
-			/\b[a-z_]+:\w+\b/i, // variable with a prefix like sw:gis_program_manager
 			{ pattern: /(^|[^.])\b[a-z]\w*\b/i, lookbehind: true }
-		],
+		]
 	}
 };
