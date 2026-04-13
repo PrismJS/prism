@@ -22,27 +22,17 @@ export default {
 			greedy: true
 		},
 
-		'declaration': [
-			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
-			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
-			{ pattern: /(\b_constant\s+)[a-z_]+/i, lookbehind: true }
-		],
-
 		'pragma': {
 			pattern: /_pragma.*/,
-			alias: 'prolog',
-			inside: {
-				'modifier': /classify_level|topic|usage/,
-				'pragma-punctuation': { pattern: /[={},]/ }
-			}
+			alias: 'prolog'
 		},
-
-		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'symbol': {
 			pattern: /(^|\W):(?:\|[^|]*\||\\.|[\w?!])+/,
 			lookbehind: true
 		},
+
+		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'operator': [
 			/_(?:and|andif|or|orif|xor)<</i, /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, /\^?<</, // assignment operators
@@ -56,8 +46,19 @@ export default {
 			{ pattern: /\b_(?:div|mod)\b/i, alias: 'keyword' } // math
 		],
 
+		'declaration': [
+			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
+			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_constant\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_local\s+)(?!_)\w+/i, lookbehind: true }
+		],
+
+		'keyword-variable': {
+			pattern: /\b_(?:class|dynamic|global|import|local)\b/i,
+			alias: 'keyword'
+		},
+
 		'keyword': [
-			/\b_(?:class|dynamic|global|import|local)\b/i, // variables
 			/\b_(?:block|endblock)\b/i, // block
 			/\b_(?:elif|else|endif|if|then)\b/i, // if
 			/\b_(?:and|andif|not|or|orif|xor)\b/i, // logical operators
@@ -75,7 +76,7 @@ export default {
 		],
 
 		'slot': {
-			pattern: /(^|[\s({])\.\s*[a-z_]+/i,
+			pattern: /(^|[\s({])\.\s*[a-z][\w?!]+/i,
 			lookbehind: true
 		},
 
@@ -111,8 +112,8 @@ export default {
 		'function': [
 			/\b_(?:abstract|endmethod|iter|method|private)\b/i, // method keywords
 			/\b_(?:endproc|proc)\b/i, // procedure
-			{ pattern: /(\.)\s*\|[a-z_]\w*[!?]?\|/, lookbehind: true }, // encased |methodNames|
-			{ pattern: /(\.)\s*[a-z_]\w*[!?]?/, lookbehind: true }, // methods
+			{ pattern: /(\.)\s*\|[a-z][\w?!]*\|/, lookbehind: true }, // encased |methodNames|
+			{ pattern: /(\.)\s*[a-z][\w?!]*/, lookbehind: true }, // methods
 		],
 
 		'variable': [

@@ -7,9 +7,9 @@
 
 [
 	["global-reference", "@gis_program_manager"],
-    ["punctuation", "("], ["global-reference", "@gis_program_manager"], ["punctuation", ")"],
-    ["punctuation", "{"], ["global-reference", "@gis_program_manager"], ["punctuation", "}"],
-    ["punctuation", ","], ["global-reference", "@gis_program_manager"]
+	["punctuation", "("], ["global-reference", "@gis_program_manager"], ["punctuation", ")"],
+	["punctuation", "{"], ["global-reference", "@gis_program_manager"], ["punctuation", "}"],
+	["punctuation", ","], ["global-reference", "@gis_program_manager"]
 ]
 
 ----------------------------------------------------
