@@ -32,7 +32,7 @@ export default {
 			lookbehind: true
 		},
 
-		'number': /\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
+		'number': /(?<!\|)\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
 
 		'operator': [
 			/_(?:and|andif|or|orif|xor)<</i, /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, /\^?<</, // assignment operators
@@ -121,6 +121,7 @@ export default {
 			/\|![\w?!]+\|!/, // variable encased like |!var|!
 			/!\|[\w?!]+\|!/, // variable encased like !|var!|
 			/!\|\|!/, // empty variable !||!
+			/\|[\w?!]+\|/, // variable encased like |var|, |0|, |123|
 			/![a-z][\w?!]*!/, // variable encased like !var!
 			/\b[a-z_]+:\w+\b/i, // variable with a prefix like sw:gis_program_manager
 			{ pattern: /(^|[^.])\b[a-z]\w*\b/i, lookbehind: true }
