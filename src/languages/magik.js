@@ -61,7 +61,8 @@ export default {
 			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
 			{ pattern: /(\b_global\s+)(?!_)\w+/i, lookbehind: true },
 			{ pattern: /(\b_constant\s+)(?!_)\w+/i, lookbehind: true },
-			{ pattern: /(\b_local\s+)(?!_)\w+/i, lookbehind: true }
+			{ pattern: /(\b_local\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_import\s+)(?!_)\w+/i, lookbehind: true }
 		],
 
 		'number': /(?<!\|)\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
