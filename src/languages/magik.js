@@ -22,6 +22,12 @@ export default {
 			greedy: true
 		},
 
+		'slot': {
+			pattern: /(^|[\s({])\.\s*[a-z][\w?!]+/i,
+			lookbehind: true,
+			greedy: true
+		},
+
 		'pragma': {
 			pattern: /_pragma.*/,
 			alias: 'prolog'
@@ -93,11 +99,6 @@ export default {
 			/\b_with\b/i, // standalone since _finally, _handling, _throw, _try, _leave and _continue all can have this
 			/\b_(?:allresults|gather|optional|scatter)\b/i // parameter options
 		],
-
-		'slot': {
-			pattern: /(^|[\s({])\.\s*[a-z][\w?!]+/i,
-			lookbehind: true
-		},
 
 		'builtin': /\b_(?:clone|package|super|thisthread)\b/i,
 
