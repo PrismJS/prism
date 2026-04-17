@@ -23,7 +23,7 @@ export default {
 		},
 
 		'slot': {
-			pattern: /(^|[\s({])\.\s*[a-z][\w?!]+/i,
+			pattern: /(^|[\s({])\.\s*[a-z][\w?!]*/i,
 			lookbehind: true,
 			greedy: true
 		},
@@ -44,12 +44,12 @@ export default {
 		],
 
 		'dynamic-variable': [
-			{ pattern: /\|![\w?!]+!\|/, alias: 'variable' }, // variable encased like |!var!|
-			{ pattern: /\|![\w?!]+\|!/, alias: 'variable' }, // variable encased like |!var|!
-			{ pattern: /!\|[\w?!]+\|!/, alias: 'variable' }, // variable encased like !|var!|
+			{ pattern: /\|![\w?!]+!\|/i, alias: 'variable' }, // variable encased like |!var!|
+			{ pattern: /\|![\w?!]+\|!/i, alias: 'variable' }, // variable encased like |!var|!
+			{ pattern: /!\|[\w?!]+\|!/i, alias: 'variable' }, // variable encased like !|var!|
 			{ pattern: /!\|\|!/, alias: 'variable' }, // empty variable !||!
-			{ pattern: /[a-z_]+:![a-z][\w?!]*!/, alias: 'variable' }, // variable with a prefix like sw:!var!
-			{ pattern: /![a-z][\w?!]*!/, alias: 'variable' }, // variable encased like !var!
+			{ pattern: /[a-z_]+:![a-z][\w?!]*!/i, alias: 'variable' }, // variable with a prefix like sw:!var!
+			{ pattern: /![a-z][\w?!]*!/i, alias: 'variable' }, // variable encased like !var!
 		],
 
 		'global-variable': [
@@ -58,7 +58,7 @@ export default {
 		],
 
 		'declaration': [
-			{ pattern: /(\b_package\s+).*/i, lookbehind: true },
+			{ pattern: /(\b_package\s+)\w+/i, lookbehind: true },
 			{ pattern: /(\b_(?:constant|global|import|local)\s+)(?!_)\w+/i, lookbehind: true },
 		],
 
