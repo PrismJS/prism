@@ -44,9 +44,9 @@ export default {
 		],
 
 		'dynamic-variable': [
-			{ pattern: /\|![\w?!]+!\|/i, alias: 'variable' }, // variable encased like |!var!|
-			{ pattern: /\|![\w?!]+\|!/i, alias: 'variable' }, // variable encased like |!var|!
-			{ pattern: /!\|[\w?!]+\|!/i, alias: 'variable' }, // variable encased like !|var!|
+			{ pattern: /\|![\w?!]+!\|/, alias: 'variable' }, // variable encased like |!var!|
+			{ pattern: /\|![\w?!]+\|!/, alias: 'variable' }, // variable encased like |!var|!
+			{ pattern: /!\|[\w?!]+\|!/, alias: 'variable' }, // variable encased like !|var!|
 			{ pattern: /!\|\|!/, alias: 'variable' }, // empty variable !||!
 			{ pattern: /[a-z_]+:![a-z][\w?!]*!/i, alias: 'variable' }, // variable with a prefix like sw:!var!
 			{ pattern: /![a-z][\w?!]*!/i, alias: 'variable' }, // variable encased like !var!
