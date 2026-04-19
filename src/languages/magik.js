@@ -57,13 +57,13 @@ export default {
 		],
 
 		'global-variable': [
-			{ pattern: /\b[a-z_]+:\w+\b/i, alias: 'variable' }, // variable with a prefix like sw:gis_program_manager
-			{ pattern: /[a-z_]+:\|\w+\|/i, alias: 'variable' }, // variable with a prefix like sw:|gis_program_manager|
+			{ pattern: /\b[a-z_]+:[\w?!]+\b/i, alias: 'variable' }, // variable with a prefix like sw:gis_program_manager
+			{ pattern: /[a-z_]+:\|[\w?!]+\|/i, alias: 'variable' }, // variable with a prefix like sw:|gis_program_manager|
 		],
 
 		'declaration': [
-			{ pattern: /(\b_package\s+)\w+/i, lookbehind: true },
-			{ pattern: /(\b_(?:constant|global|import|local)\s+)(?!_)\w+/i, lookbehind: true },
+			{ pattern: /(\b_package\s+)\w+\b/i, lookbehind: true },
+			{ pattern: /(\b_(?:constant|global|import|local)\s+)(?!_)\w+\b/i, lookbehind: true },
 		],
 
 		'number': /(?<!\|)\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b/i,
