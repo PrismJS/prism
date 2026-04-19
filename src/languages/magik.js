@@ -57,7 +57,7 @@ export default {
 		],
 
 		'global-variable': [
-			{ pattern: /\b[a-z_]+:[\w?!]+\b/i, alias: 'variable' }, // variable with a prefix like sw:gis_program_manager
+			{ pattern: /[a-z_]+:[\w?!]+/i, alias: 'variable' }, // variable with a prefix like sw:gis_program_manager
 			{ pattern: /[a-z_]+:\|[\w?!]+\|/i, alias: 'variable' }, // variable with a prefix like sw:|gis_program_manager|
 		],
 
