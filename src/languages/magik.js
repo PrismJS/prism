@@ -30,7 +30,11 @@ export default {
 
 		'pragma': {
 			pattern: /_pragma.*/,
-			alias: 'prolog'
+			alias: 'prolog',
+			inside: {
+				'modifier': /classify_level|topic|usage/,
+				'pragma-punctuation': { pattern: /[={},]/ }
+			}
 		},
 
 		'symbol': {
