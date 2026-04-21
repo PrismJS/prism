@@ -1,4 +1,3 @@
-_class _dynamic _global _import _local
 _block _endblock
 _elif _else _endif _if _then
 _and _andif _not _or _orif _xor
@@ -17,7 +16,6 @@ _allresults _gather _optional _scatter
 ----------------------------------------------------
 
 [
-	["keyword", "_class"], ["keyword", "_dynamic"], ["keyword", "_global"], ["keyword", "_import"], ["keyword", "_local"],
 	["keyword", "_block"], ["keyword", "_endblock"],
  	["keyword", "_elif"], ["keyword", "_else"], ["keyword", "_endif"], ["keyword", "_if"], ["keyword", "_then"],
  	["keyword", "_and"], ["keyword", "_andif"], ["keyword", "_not"], ["keyword", "_or"], ["keyword", "_orif"], ["keyword", "_xor"],

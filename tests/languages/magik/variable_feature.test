@@ -1,28 +1,26 @@
-!terminal!
-|!terminal!|
-|!terminal|!
-!|terminal|!
-!||!
-sw:gis_program_manager
 a_name
 anotherName
 some_var
+|0|
+|123|
+|a|
+|aBc|
+|16r0000FFFF|
 coords3d_rope.new_with(coordinate3d.new(0, 0, 0), coordinate3d.new(10, 10, 10))
 
 ----------------------------------------------------
 
 [
-	["variable", "!terminal!"],
-	["variable", "|!terminal!|"],
-	["variable", "|!terminal|!"],
-	["variable", "!|terminal|!"],
-	["variable", "!||!"],
-	["variable", "sw:gis_program_manager"],
 	["variable", "a_name"],
 	["variable", "anotherName"],
 	["variable", "some_var"],
-	["variable", "coords3d_rope"], ".", ["function", "new_with"], ["punctuation", "("], 
-	    ["variable", "coordinate3d"], ".", ["function", "new"], ["punctuation", "("], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ")"], ["punctuation", ","], 
+	["variable", "|0|"],
+	["variable", "|123|"],
+	["variable", "|a|"],
+	["variable", "|aBc|"],
+    ["variable", "|16r0000FFFF|"],
+	["variable", "coords3d_rope"], ".", ["function", "new_with"], ["punctuation", "("],
+		["variable", "coordinate3d"], ".", ["function", "new"], ["punctuation", "("], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ")"], ["punctuation", ","],
 		["variable", "coordinate3d"], ".", ["function", "new"], ["punctuation", "("], ["number", "10"], ["punctuation", ","], ["number", "10"], ["punctuation", ","], ["number", "10"], ["punctuation", ")"], ["punctuation", ")"]
 ]
 

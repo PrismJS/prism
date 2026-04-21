@@ -1,21 +1,23 @@
-_constant something
-_global _constant something
-_global _constant gis_program_manager << _unset
+_block
+	_constant something << _unset
+	_constant max_size << 1
+	_constant _local max_size << 1
+	_local _constant max_size << 1
+_endblock
 _global _constant !current_view! << _unset
-_constant max_size << 1
-_constant _local max_size << 1
-_local _constant max_size << 1
+_global _constant gis_program_manager << _unset
 
 ----------------------------------------------------
 
 [
-	["constant", "_constant"], ["declaration", "something"],
-    ["keyword", "_global"], ["constant", "_constant"], ["declaration", "something"],
-	["keyword", "_global"], ["constant", "_constant"], ["declaration", "gis_program_manager"], ["operator", "<<"], ["unset", "_unset"],
-	["keyword", "_global"], ["constant", "_constant"], ["variable", "!current_view!"], ["operator", "<<"], ["unset", "_unset"],
-	["constant", "_constant"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
-	["constant", "_constant"], ["declaration", "_local"], ["variable", "max_size"], ["operator", "<<"], ["number", "1"],
-	["keyword", "_local"], ["constant", "_constant"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"]
+	["keyword", "_block"],
+		["constant", "_constant"], ["declaration", "something"], ["operator", "<<"], ["unset", "_unset"],
+		["constant", "_constant"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
+		["constant", "_constant"], ["keyword-variable", "_local"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
+		["keyword-variable", "_local"], ["constant", "_constant"], ["declaration", "max_size"], ["operator", "<<"], ["number", "1"],
+	["keyword", "_endblock"],
+	["keyword-variable", "_global"], ["constant", "_constant"], ["dynamic-variable", "!current_view!"], ["operator", "<<"], ["unset", "_unset"],
+	["keyword-variable", "_global"], ["constant", "_constant"], ["declaration", "gis_program_manager"], ["operator", "<<"], ["unset", "_unset"]
 ]
 
 ----------------------------------------------------

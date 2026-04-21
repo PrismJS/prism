@@ -3,6 +3,7 @@
 :kleenean??
 :int!internal
 :|piped|
+:|123|
 :int|!|internal
 :new|()|
 :|A|b|c ||()|
@@ -24,6 +25,7 @@
 	["symbol", ":kleenean??"],
 	["symbol", ":int!internal"],
 	["symbol", ":|piped|"],
+	["symbol", ":|123|"],
 	["symbol", ":int|!|internal"],
 	["symbol", ":new|()|"],
 	["symbol", ":|A|b|c ||()|"],
