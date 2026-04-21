@@ -5,6 +5,7 @@ some_var
 |123|
 |a|
 |aBc|
+|16r0000FFFF|
 coords3d_rope.new_with(coordinate3d.new(0, 0, 0), coordinate3d.new(10, 10, 10))
 
 ----------------------------------------------------
@@ -17,6 +18,7 @@ coords3d_rope.new_with(coordinate3d.new(0, 0, 0), coordinate3d.new(10, 10, 10))
 	["variable", "|123|"],
 	["variable", "|a|"],
 	["variable", "|aBc|"],
+    ["variable", "|16r0000FFFF|"],
 	["variable", "coords3d_rope"], ".", ["function", "new_with"], ["punctuation", "("],
 		["variable", "coordinate3d"], ".", ["function", "new"], ["punctuation", "("], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ","], ["number", "0"], ["punctuation", ")"], ["punctuation", ","],
 		["variable", "coordinate3d"], ".", ["function", "new"], ["punctuation", "("], ["number", "10"], ["punctuation", ","], ["number", "10"], ["punctuation", ","], ["number", "10"], ["punctuation", ")"], ["punctuation", ")"]
