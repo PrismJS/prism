@@ -9,23 +9,23 @@ export default {
 
 		'char': {
 			pattern: /%(?:[a-z][\w?!]*|.)/i,
-			greedy: true
+			greedy: true,
 		},
 
 		'string': {
 			pattern: /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/,
-			greedy: true
+			greedy: true,
 		},
 
 		'regex': {
 			pattern: /\/(?:(?:\\.|[^\\/\r\n])+\/[qisdlmucx]*|\/)/,
-			greedy: true
+			greedy: true,
 		},
 
 		'slot': {
 			pattern: /(^|[\s({])\.\s*[a-z][\w?!]*/i,
 			lookbehind: true,
-			greedy: true
+			greedy: true,
 		},
 
 		'pragma': {
@@ -33,13 +33,13 @@ export default {
 			alias: 'prolog',
 			inside: {
 				'modifier': /classify_level|topic|usage/,
-				'pragma-punctuation': { pattern: /[={},]/ }
-			}
+				'pragma-punctuation': { pattern: /[={},]/ },
+			},
 		},
 
 		'symbol': {
 			pattern: /(^|\W):(?:\|[^|]*\||\\.|[\w?!])+/,
-			lookbehind: true
+			lookbehind: true,
 		},
 
 		'global-reference': [
@@ -66,23 +66,35 @@ export default {
 			{ pattern: /(\b_(?:constant|global|import|local)\s+)(?!_)\w+\b/i, lookbehind: true },
 		],
 
-		'number': /(?<!\|)(?:\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b)/i,
+		'number':
+			/(?<!\|)(?:\b\d+(?:\.\d+)?(?:[e&][+-]?\d+)?\b|\b(?:[2-9]|[12]\d|3[0-6])r[a-z0-9]+\b)/i,
 
 		'operator': [
-			/_(?:and|andif|or|orif|xor)<</i, /(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i, /\^?<</, // assignment operators
-			/<>/, />=/, /<=/, /</, /~=/, /=/, // relational operators
-			/\*\*/, /\*/, /\//, // arithmetic operators
-			/\+/, /-/, /~/, // unary operators
+			/_(?:and|andif|or|orif|xor)<</i,
+			/(?:\*\*\^?|\*\^?|\/\^?|_mod\^?|_div\^?|-\^?|\+\^?)<</i,
+			/\^?<</,
+			/<>/,
+			/>=/,
+			/<=/,
+			/</,
+			/~=/,
+			/=/,
+			/\*\*/,
+			/\*/,
+			/\//,
+			/\+/,
+			/-/,
+			/~/,
 		],
 
 		'keyword-operator': [
 			{ pattern: /\b_(?:cf|is|isnt)\b/i, alias: 'keyword' }, // comparison
-			{ pattern: /\b_(?:div|mod)\b/i, alias: 'keyword' } // math
+			{ pattern: /\b_(?:div|mod)\b/i, alias: 'keyword' }, // math
 		],
 
 		'keyword-variable': {
 			pattern: /\b_(?:class|dynamic|global|import|local)\b/i,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 
 		'keyword': [
@@ -93,13 +105,14 @@ export default {
 			/\b_(?:default|handling)\b/i, // handling
 			/\b_(?:catch|endcatch)\b/i, // catch
 			/\b_throw\b/i, // throw
-			/>>/, /\b_return\b/i, // return
+			/>>/,
+			/\b_return\b/i,
 			/\b_primitive\b/i, // primitive
 			/\b_(?:endtry|try|when)\b/i, // try
 			/\b_(?:endprotect|locking|protect|protection)\b/i, // protect
 			/\b_(?:endlock|lock)\b/i, // lock
 			/\b_with\b/i, // standalone since _finally, _handling, _throw, _try, _leave and _continue all can have this
-			/\b_(?:allresults|gather|optional|scatter)\b/i // parameter options
+			/\b_(?:allresults|gather|optional|scatter)\b/i, // parameter options
 		],
 
 		'builtin': /\b_(?:clone|package|super|thisthread)\b/i,
@@ -110,20 +123,20 @@ export default {
 
 		'unset': {
 			pattern: /\b_unset\b/i,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 
 		'constant': {
 			pattern: /\b_constant\b/i,
-			alias: 'keyword'
+			alias: 'keyword',
 		},
 
 		'self': [
 			{
 				pattern: /(\b_method\s+)\S+(?=\.)/,
-				lookbehind: true
+				lookbehind: true,
 			},
-			/\b_self\b/i
+			/\b_self\b/i,
 		],
 
 		'function': [
@@ -135,7 +148,7 @@ export default {
 
 		'variable': [
 			/\|[\w?!]+\|/, // variable encased like |var|, |0|, |123|
-			{ pattern: /(^|[^.])\b[a-z]\w*\b/i, lookbehind: true }
-		]
-	}
+			{ pattern: /(^|[^.])\b[a-z]\w*\b/i, lookbehind: true },
+		],
+	},
 };
