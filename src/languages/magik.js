@@ -110,12 +110,12 @@ export default {
 
 		'unset': {
 			pattern: /\b_unset\b/i,
-			alias: 'symbol'
+			alias: 'keyword'
 		},
 
 		'constant': {
 			pattern: /\b_constant\b/i,
-			alias: 'symbol'
+			alias: 'keyword'
 		},
 
 		'self': [
