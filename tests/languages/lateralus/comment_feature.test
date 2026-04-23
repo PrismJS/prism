@@ -1,0 +1,18 @@
+// single line comment
+/// doc comment
+/* block comment */
+/* outer /* inner */ still outer */
+
+----------------------------------------------------
+
+[
+	["comment", "// single line comment"],
+	["comment", "/// doc comment"],
+	["comment", "/* block comment */"],
+	["comment", "/* outer /* inner */ still outer */"]
+]
+
+
+----------------------------------------------------
+
+Checks for line, doc, and nested block comments.

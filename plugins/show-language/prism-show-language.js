@@ -151,6 +151,8 @@
 		"kt": "Kotlin",
 		"kumir": "KuMir (КуМир)",
 		"kum": "KuMir (КуМир)",
+		"ltl": "Lateralus",
+		"lat": "Lateralus",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",

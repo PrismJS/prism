@@ -1,0 +1,76 @@
+fn
+let
+const
+var
+mut
+if
+else
+match
+for
+while
+loop
+return
+break
+continue
+struct
+enum
+trait
+impl
+type
+pub
+use
+import
+module
+self
+async
+await
+actor
+spawn
+true
+false
+nil
+None
+Some
+
+----------------------------------------------------
+
+[
+	["keyword", "fn"],
+	["keyword", "let"],
+	["keyword", "const"],
+	["keyword", "var"],
+	["keyword", "mut"],
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "match"],
+	["keyword", "for"],
+	["keyword", "while"],
+	["keyword", "loop"],
+	["keyword", "return"],
+	["keyword", "break"],
+	["keyword", "continue"],
+	["keyword", "struct"],
+	["keyword", "enum"],
+	["keyword", "trait"],
+	["keyword", "impl"],
+	["keyword", "type"],
+	["keyword", "pub"],
+	["keyword", "use"],
+	["keyword", "import"],
+	["keyword", "module"],
+	["keyword", "self"],
+	["keyword", "async"],
+	["keyword", "await"],
+	["keyword", "actor"],
+	["keyword", "spawn"],
+	["constant", "true"],
+	["constant", "false"],
+	["constant", "nil"],
+	["constant", "None"],
+	["constant", "Some"]
+]
+
+
+----------------------------------------------------
+
+Checks for keywords and constants.
