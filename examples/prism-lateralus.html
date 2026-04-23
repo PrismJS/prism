@@ -1,0 +1,61 @@
+<h2>Comments</h2>
+<pre><code>// single-line
+/// doc comment
+/* block
+   /* nested */
+   still a comment */</code></pre>
+
+<h2>Strings</h2>
+<pre><code>let s = "hello, {name}!"
+let raw = r"C:\path\to\file"
+let multi = r#"quotes "inside" are fine"#
+let bytes = b"\x00\xFF"</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>let a: u64 = 42_u64
+let b = 0xFF_i32
+let c = 0b1010_1100
+let d = 3.14_f32
+let e = 1_000_000</code></pre>
+
+<h2>Functions and pipelines</h2>
+<pre><code>#[caps(io, net)]
+@inline
+fn fibonacci(n: u64) -> u64 {
+    if n &lt; 2 { return n }
+    fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+pub fn main() -> Result {
+    let xs = [1, 2, 3, 4]
+    xs |&gt; map(fibonacci) |&gt; sum()
+}</code></pre>
+
+<h2>Types, enums, and traits</h2>
+<pre><code>enum Shape {
+    Circle(f64),
+    Rect { w: f64, h: f64 },
+}
+
+trait Area {
+    fn area(self) -&gt; f64
+}
+
+impl Area for Shape {
+    fn area(self) -&gt; f64 {
+        match self {
+            Shape::Circle(r) =&gt; 3.14159 * r * r,
+            Shape::Rect { w, h } =&gt; w * h,
+        }
+    }
+}</code></pre>
+
+<h2>Actors and capabilities</h2>
+<pre><code>actor Logger {
+    let mut buffer: Vec&lt;string&gt; = []
+
+    #[caps(io)]
+    fn log(msg: str) {
+        self.buffer.push(msg)
+    }
+}</code></pre>

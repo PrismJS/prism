@@ -1,0 +1,36 @@
+"hello"
+"with \"escape\""
+"interpolation {name}"
+r"raw \n not escaped"
+r#"with "quotes""#
+b"bytes"
+'a'
+'\n'
+'\u{1F600}'
+
+----------------------------------------------------
+
+[
+	["string", ["\"hello\""]],
+	["string", ["\"with \\\"escape\\\"\""]],
+	["string", [
+		"\"interpolation ",
+		["interpolation", [
+			["interpolation-punctuation", "{"],
+			"name",
+			["interpolation-punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", "r\"raw \\n not escaped\""],
+	["string", "r#\"with \"quotes\"\"#"],
+	["string", "b\"bytes\""],
+	["char", "'a'"],
+	["char", "'\\n'"],
+	["char", "'\\u{1F600}'"]
+]
+
+
+----------------------------------------------------
+
+Checks for string variants, interpolation, raw strings, byte strings, and char literals.

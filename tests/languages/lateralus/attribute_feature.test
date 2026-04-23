@@ -1,0 +1,35 @@
+#[caps(io, net)]
+@inline
+@deprecated
+#!["crate-level"]
+
+----------------------------------------------------
+
+[
+	["attribute", [
+		["punctuation", "#["],
+		"caps(io, net)",
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "@"],
+		"inline"
+	]],
+
+	["attribute", [
+		["punctuation", "@"],
+		"deprecated"
+	]],
+
+	"\r\n#",
+	["operator", "!"],
+	["punctuation", "["],
+	["string", ["\"crate-level\""]],
+	["punctuation", "]"]
+]
+
+
+----------------------------------------------------
+
+Checks for attribute decorators, capability annotations, and crate-level attributes.

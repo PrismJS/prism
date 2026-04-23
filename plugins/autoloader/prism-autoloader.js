@@ -226,6 +226,8 @@
 		"kt": "kotlin",
 		"kts": "kotlin",
 		"kum": "kumir",
+		"ltl": "lateralus",
+		"lat": "lateralus",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",

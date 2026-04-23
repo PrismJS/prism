@@ -1,0 +1,56 @@
+i8
+i16
+i32
+i64
+i128
+isize
+u8
+u16
+u32
+u64
+u128
+usize
+f32
+f64
+bool
+char
+str
+string
+void
+Result
+Option
+Vec
+HashMap
+
+----------------------------------------------------
+
+[
+	["builtin-type", "i8"],
+	["builtin-type", "i16"],
+	["builtin-type", "i32"],
+	["builtin-type", "i64"],
+	["builtin-type", "i128"],
+	["builtin-type", "isize"],
+	["builtin-type", "u8"],
+	["builtin-type", "u16"],
+	["builtin-type", "u32"],
+	["builtin-type", "u64"],
+	["builtin-type", "u128"],
+	["builtin-type", "usize"],
+	["builtin-type", "f32"],
+	["builtin-type", "f64"],
+	["builtin-type", "bool"],
+	["builtin-type", "char"],
+	["builtin-type", "str"],
+	["builtin-type", "string"],
+	["builtin-type", "void"],
+	["builtin-type", "Result"],
+	["builtin-type", "Option"],
+	["builtin-type", "Vec"],
+	["builtin-type", "HashMap"]
+]
+
+
+----------------------------------------------------
+
+Checks for built-in types.

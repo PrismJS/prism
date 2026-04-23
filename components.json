@@ -826,6 +826,11 @@
 			"title": "Kusto",
 			"owner": "RunDevelopment"
 		},
+		"lateralus": {
+			"title": "Lateralus",
+			"alias": ["ltl", "lat"],
+			"owner": "bad-antics"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],

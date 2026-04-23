@@ -1,0 +1,32 @@
+42
+1_000_000
+0xFF
+0xDEAD_BEEF
+0b1010_1100
+0o755
+3.14
+3.14_f32
+42u64
+0xFF_i32
+1_000.5e-10
+
+----------------------------------------------------
+
+[
+	["number", "42"],
+	["number", "1_000_000"],
+	["number", "0xFF"],
+	["number", "0xDEAD_BEEF"],
+	["number", "0b1010_1100"],
+	["number", "0o755"],
+	["number", "3.14"],
+	["number", "3.14_f32"],
+	["number", "42u64"],
+	["number", "0xFF_i32"],
+	["number", "1_000.5e-10"]
+]
+
+
+----------------------------------------------------
+
+Checks for numeric literals with separators and type suffixes.

@@ -1,0 +1,54 @@
+|>
+->
+=>
+::
+..
+..=
+==
+!=
+<=
+>=
+&&
+||
+<<
+>>
++
+-
+*
+/
+%
+=
++=
+-=
+
+----------------------------------------------------
+
+[
+	["operator", "|>"],
+	["operator", "->"],
+	["operator", "=>"],
+	["operator", "::"],
+	["operator", ".."],
+	["operator", "..="],
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", "&&"],
+	["operator", "||"],
+	["operator", "<<"],
+	["operator", ">>"],
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "="],
+	["operator", "+="],
+	["operator", "-="]
+]
+
+
+----------------------------------------------------
+
+Checks for operators including pipeline and path separators.
