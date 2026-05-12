@@ -55,10 +55,20 @@ async (a,b,c) => {}
 import {} from "foo"
 import {} from 'foo'
 class { get foo(){} set baz(){} get [value](){} }
+using file = openFile();
+await using conn = getConn();
+using x = a, y = b;
+for (using x of arr) {}
+for (await using y of arr) {}
 
 // variables, not keywords
 
 const { async, from, to } = bar;
+const using = 1;
+obj.using;
+using();
+using {x} = obj;
+import using from "foo";
 promise.catch(foo).finally(bar);
 
 // TypeScript keywords
@@ -220,6 +230,54 @@ import type *, {}
 	["punctuation", "}"],
 	["punctuation", "}"],
 
+	["keyword", "using"],
+	" file ",
+	["operator", "="],
+	["function", "openFile"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "await"],
+	["keyword", "using"],
+	" conn ",
+	["operator", "="],
+	["function", "getConn"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	" x ",
+	["operator", "="],
+	" a",
+	["punctuation", ","],
+	" y ",
+	["operator", "="],
+	" b",
+	["punctuation", ";"],
+
+	["keyword", "for"],
+	["punctuation", "("],
+	["keyword", "using"],
+	" x ",
+	["keyword", "of"],
+	" arr",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "for"],
+	["punctuation", "("],
+	["keyword", "await"],
+	["keyword", "using"],
+	" y ",
+	["keyword", "of"],
+	" arr",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
 	["comment", "// variables, not keywords"],
 
 	["keyword", "const"],
@@ -232,6 +290,36 @@ import type *, {}
 	["punctuation", "}"],
 	["operator", "="],
 	" bar",
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	" using ",
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"],
+
+	"\r\nobj",
+	["punctuation", "."],
+	"using",
+	["punctuation", ";"],
+
+	["function", "using"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nusing ",
+	["punctuation", "{"],
+	"x",
+	["punctuation", "}"],
+	["operator", "="],
+	" obj",
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	" using ",
+	["keyword", "from"],
+	["string", "\"foo\""],
 	["punctuation", ";"],
 
 	"\r\npromise",

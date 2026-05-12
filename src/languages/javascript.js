@@ -31,6 +31,11 @@ export default {
 			'keyword': [
 				{
 					pattern:
+						/(^|[^.]|\.\.\.\s*)\busing(?=\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*(?:=(?!=)|\bof\b))/,
+					lookbehind: true,
+				},
+				{
+					pattern:
 						/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|export|from(?=\s*(?:['"]|$))|import)\b/,
 					lookbehind: true,
 					alias: 'module',
