@@ -148,7 +148,7 @@ export default {
 
 		'variable': [
 			/\|[\w?!]+\|/, // variable encased like |var|, |0|, |123|
-			{ pattern: /(^|[^.])[a-z][\w?!]*/i, lookbehind: true },
+			{ pattern: /(^|[^.])\b[a-z][\w?!]*/i, lookbehind: true },
 		],
 	},
 };
