@@ -1,6 +1,8 @@
 a_name
 anotherName
 some_var
+int!okay
+ok?
 |0|
 |123|
 |a|
@@ -14,6 +16,8 @@ coords3d_rope.new_with(coordinate3d.new(0, 0, 0), coordinate3d.new(10, 10, 10))
 	["variable", "a_name"],
 	["variable", "anotherName"],
 	["variable", "some_var"],
+	["variable", "int!okay"],
+	["variable", "ok?"],
 	["variable", "|0|"],
 	["variable", "|123|"],
 	["variable", "|a|"],
