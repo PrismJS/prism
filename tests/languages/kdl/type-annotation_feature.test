@@ -1,0 +1,42 @@
+node (u8)42
+node (regex)".*"
+(published)date "1970-01-01"
+node prop=(i32)100
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "u8"],
+		["punctuation", ")"]
+	]],
+	["number", "42"],
+
+	["tag", "node"],
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "regex"],
+		["punctuation", ")"]
+	]],
+	["string", "\".*\""],
+
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "published"],
+		["punctuation", ")"]
+	]],
+	["tag", "date"],
+	["string", "\"1970-01-01\""],
+
+	["tag", "node"],
+	["property", "prop"],
+	["punctuation", "="],
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "i32"],
+		["punctuation", ")"]
+	]],
+	["number", "100"]
+]

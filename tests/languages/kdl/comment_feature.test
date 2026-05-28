@@ -1,0 +1,15 @@
+// single-line comment
+/* multi
+   line
+   comment */
+node // trailing comment
+node /* inline */ arg
+
+----------------------------------------------------
+
+[
+	["comment", "// single-line comment"],
+	["comment", "/* multi\r\n   line\r\n   comment */"],
+	["tag", "node"], ["comment", "// trailing comment"],
+	["tag", "node"], ["comment", "/* inline */"], " arg"
+]
