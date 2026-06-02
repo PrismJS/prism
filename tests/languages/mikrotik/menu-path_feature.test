@@ -1,0 +1,42 @@
+/ip
+/ip/firewall/filter
+/interface/bridge
+/routing/ospf/area
+/system/scheduler
+/ip/dhcp-server
+
+----------------------------------------------------
+
+[
+	["prefix", "/"],
+	["command", "ip"],
+
+	["prefix", "/"],
+	["command", "ip"],
+	["prefix", "/"],
+	["command", "firewall"],
+	["prefix", "/"],
+	["command", "filter"],
+
+	["prefix", "/"],
+	["command", "interface"],
+	["prefix", "/"],
+	["command", "bridge"],
+
+	["prefix", "/"],
+	["command", "routing"],
+	["prefix", "/"],
+	["command", "ospf"],
+	["prefix", "/"],
+	["command", "area"],
+
+	["prefix", "/"],
+	["command", "system"],
+	["prefix", "/"],
+	["command", "scheduler"],
+
+	["prefix", "/"],
+	["command", "ip"],
+	["prefix", "/"],
+	["command", "dhcp-server"]
+]

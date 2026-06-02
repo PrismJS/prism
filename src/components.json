@@ -780,6 +780,14 @@
 			"title": "METAFONT",
 			"owner": "LaeriExNihilo"
 		},
+		"mikrotik": {
+			"title": "MikroTik",
+			"aliasTitles": {
+				"routeros": "RouterOS Script",
+				"ros": "RouterOS Script"
+			},
+			"owner": "DmitrySharabin"
+		},
 		"mizar": {
 			"title": "Mizar",
 			"owner": "Golmote"

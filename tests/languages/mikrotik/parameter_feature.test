@@ -1,0 +1,43 @@
+add src-address=
+add dst-address=
+add connection-state=
+print about
+print append
+print as-string
+print as-value
+print brief
+print count-only
+print detail
+print file=
+print follow
+print follow-only
+print from=
+print interval=
+print terse
+print value-list
+print where
+print without-paging
+
+----------------------------------------------------
+
+[
+	["command", "add"], ["parameter", "src-address"], ["operator", "="],
+	["command", "add"], ["parameter", "dst-address"], ["operator", "="],
+	["command", "add"], ["parameter", "connection-state"], ["operator", "="],
+	["command", "print"], ["parameter", "about"],
+	["command", "print"], ["parameter", "append"],
+	["command", "print"], ["parameter", "as-string"],
+	["command", "print"], ["parameter", "as-value"],
+	["command", "print"], ["parameter", "brief"],
+	["command", "print"], ["parameter", "count-only"],
+	["command", "print"], ["parameter", "detail"],
+	["command", "print"], ["parameter", "file"], ["operator", "="],
+	["command", "print"], ["parameter", "follow"],
+	["command", "print"], ["parameter", "follow-only"],
+	["command", "print"], ["keyword", "from"], ["operator", "="],
+	["command", "print"], ["parameter", "interval"], ["operator", "="],
+	["command", "print"], ["parameter", "terse"],
+	["command", "print"], ["parameter", "value-list"],
+	["command", "print"], ["parameter", "where"],
+	["command", "print"], ["parameter", "without-paging"]
+]

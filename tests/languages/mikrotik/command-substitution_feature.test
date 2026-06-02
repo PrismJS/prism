@@ -1,0 +1,61 @@
+:local x [/ip address get [find interface="ether1"] address]
+:local n [:len $myStr]
+:local id [/ip firewall address-list find list="restricted"]
+
+----------------------------------------------------
+
+[
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "x"],
+	["punctuation", "["],
+	["command-substitution", [
+		["prefix", "/"],
+		["command", "ip"],
+		" address ",
+		["command", "get"],
+		["punctuation", "["],
+		["command-substitution", [
+			["command", "find"],
+			["parameter", "interface"],
+			["operator", "="],
+			["string", ["\"ether1\""]]
+		]],
+		["punctuation", "]"],
+		" address"
+	]],
+	["punctuation", "]"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "n"],
+	["punctuation", "["],
+	["command-substitution", [
+		["prefix", ":"],
+		["command", "len"],
+		["operator", "$"],
+		["variable", "myStr"]
+	]],
+	["punctuation", "]"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "id"],
+	["punctuation", "["],
+	["command-substitution", [
+		["prefix", "/"],
+		["command", "ip"],
+		" firewall address-list ",
+		["command", "find"],
+		["parameter", "list"],
+		["operator", "="],
+		["string", ["\"restricted\""]]
+	]],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Tests the `command-substitution` token: nested `[...]` substitutions (depth 2),
+global command substitution (`:len $var`), and menu path substitution
+(`/ip firewall address-list find`).

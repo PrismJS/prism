@@ -1,0 +1,16 @@
+:put "hello";
+:local x;
+
+----------------------------------------------------
+
+[
+	["prefix", ":"],
+	["command", "put"],
+	["string", ["\"hello\""]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "x"],
+	["end-of-command", ";"]
+]

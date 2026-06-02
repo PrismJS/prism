@@ -1,0 +1,61 @@
+->
++
+*
+/
+%
+-
+!
+&&
+||
+and
+or
+in
+<<
+>>
+~
+&
+^
+|
+<
+>
+<=
+>=
+!=
+.
+,
+()
+=
+$
+
+----------------------------------------------------
+
+[
+	["operator", "->"],
+	["operator", "+"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "-"],
+	["operator", "!"],
+	["operator", "&&"],
+	["operator", "||"],
+	["operator", "and"],
+	["operator", "or"],
+	["operator", "in"],
+	["operator", "<<"],
+	["operator", ">>"],
+	["operator", "~"],
+	["operator", "&"],
+	["operator", "^"],
+	["operator", "|"],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", "!="],
+	["operator", "."],
+	["operator", ","],
+	["operator", "("], ["operator", ")"],
+	["operator", "="],
+	["operator", "$"]
+]

@@ -1,0 +1,27 @@
+:global myGlobal
+:local myLocal
+:set myVar
+:local x1
+:global "my-global"
+:local "my-local"
+:for i
+:foreach item
+$myVar
+$var1
+$"my-quoted-var"
+
+----------------------------------------------------
+
+[
+	["prefix", ":"], ["command", "global"], ["variable", "myGlobal"],
+	["prefix", ":"], ["command", "local"], ["variable", "myLocal"],
+	["prefix", ":"], ["command", "set"], ["variable", "myVar"],
+	["prefix", ":"], ["command", "local"], ["variable", "x1"],
+	["prefix", ":"], ["command", "global"], ["variable", "\"my-global\""],
+	["prefix", ":"], ["command", "local"], ["variable", "\"my-local\""],
+	["prefix", ":"], ["keyword", "for"], ["variable", "i"],
+	["prefix", ":"], ["keyword", "foreach"], ["variable", "item"],
+	["operator", "$"], ["variable", "myVar"],
+	["operator", "$"], ["variable", "var1"],
+	["operator", "$"], ["variable", "\"my-quoted-var\""]
+]

@@ -1,0 +1,21 @@
+=auto
+=disabled
+=enabled
+=no
+=none
+=yes
+,yes
+,no
+
+----------------------------------------------------
+
+[
+	["operator", "="], ["property-value", "auto"],
+	["operator", "="], ["property-value", "disabled"],
+	["operator", "="], ["property-value", "enabled"],
+	["operator", "="], ["property-value", "no"],
+	["operator", "="], ["property-value", "none"],
+	["operator", "="], ["property-value", "yes"],
+	["operator", ","], ["property-value", "yes"],
+	["operator", ","], ["property-value", "no"]
+]
