@@ -1,0 +1,14 @@
+export EXPORTED_VAR=value
+
+----------------------------------------------------
+
+[
+	["keyword", "export"],
+	["key", "EXPORTED_VAR"],
+	["assignment-operator", "="],
+	["value", ["value"]]
+]
+
+----------------------------------------------------
+
+Check for the export keyword.

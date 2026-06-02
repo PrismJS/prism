@@ -383,6 +383,10 @@
 			"title": "Docker",
 			"owner": "JustinBeckwith"
 		},
+		"dotenv": {
+			"title": "Dotenv (.env)",
+			"owner": "DmitrySharabin"
+		},
 		"dot": {
 			"title": "DOT (Graphviz)",
 			"owner": "RunDevelopment"

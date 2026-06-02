@@ -1,0 +1,90 @@
+# This is a comment
+
+KEY=VAL # inline comment
+KEY="VAL"# and another one
+KEY='VAL'# and another one
+KEY=`VAL`# and another one
+
+KEY="String with a hash # this is not a comment"
+KEY='String with a hash # this is not a comment'
+KEY=`String with a hash # this is not a comment`
+KEY=VAL# also not a comment
+KEY=Escaped \# hash is not a comment as well
+
+----------------------------------------------------
+
+[
+	["comment", "# This is a comment"],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", ["VAL"]],
+	["comment", "# inline comment"],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"VAL",
+		["punctuation", "\""]
+	]],
+	["comment", "# and another one"],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "'"],
+		"VAL",
+		["punctuation", "'"]
+	]],
+	["comment", "# and another one"],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"VAL",
+		["punctuation", "`"]
+	]],
+	["comment", "# and another one"],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"String with a hash # this is not a comment",
+		["punctuation", "\""]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "'"],
+		"String with a hash # this is not a comment",
+		["punctuation", "'"]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"String with a hash # this is not a comment",
+		["punctuation", "`"]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", ["VAL# also not a comment"]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		"Escaped ",
+		["escape-sequence", "\\#"],
+		" hash is not a comment as well"
+	]]
+]
+
+----------------------------------------------------
+
+Check for comments.
