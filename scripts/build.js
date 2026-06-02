@@ -305,6 +305,25 @@ const lazyGrammarPlugin = {
 };
 
 /**
+ * Makes `require("prismjs")` return the default export directly with named
+ * exports as properties, so CJS consumers don't need `.default`.
+ *
+ * @type {Plugin}
+ */
+const cjsExportPlugin = {
+	name: 'cjs-default-export',
+	renderChunk (code) {
+		if (!code.includes('exports.default=')) {
+			return null;
+		}
+
+		code += 'module.exports=Object.assign(exports.default,exports);';
+
+		return { code, map: null };
+	},
+};
+
+/**
  * @param {MagicString} s
  * @returns {{ code: string; map: SourceMapInput }}
  */
@@ -419,7 +438,7 @@ async function buildJS () {
 		cjs: {
 			rollupOptions: {
 				...defaultRollupOptions,
-				plugins: [...defaultRollupOptions.plugins, commonjs()],
+				plugins: [...defaultRollupOptions.plugins, commonjs(), cjsExportPlugin],
 			},
 			outputOptions: {
 				...defaultOutputOptions,
