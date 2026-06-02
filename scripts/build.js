@@ -411,7 +411,10 @@ async function buildJS () {
 	const bundles = {
 		esm: {
 			rollupOptions: defaultRollupOptions,
-			outputOptions: defaultOutputOptions,
+			outputOptions: {
+				...defaultOutputOptions,
+				format: 'es',
+			},
 		},
 		cjs: {
 			rollupOptions: {
@@ -421,6 +424,7 @@ async function buildJS () {
 			outputOptions: {
 				...defaultOutputOptions,
 				dir: './dist/cjs',
+				format: 'cjs',
 			},
 		},
 	};
@@ -430,6 +434,14 @@ async function buildJS () {
 			bundle.build = await rollup(bundle.rollupOptions);
 			await bundle.build.write(bundle.outputOptions);
 		}
+		// The root package.json has "type": "module", so Node treats all .js files as ESM.
+		// This overrides that for the CJS directory, since Node uses the nearest parent
+		// package.json to determine the module system: https://nodejs.org/api/packages.html#type
+		await writeFile(
+			path.join(DIST_DIR, 'cjs', 'package.json'),
+			JSON.stringify({ type: 'commonjs' }),
+			'utf-8'
+		);
 	}
 	finally {
 		for (const bundle of Object.values(bundles)) {
