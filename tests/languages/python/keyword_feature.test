@@ -9,7 +9,7 @@ pass print raise return
 try while with yield
 nonlocal
 and not or
-match case _:
+match case _: lazy
 
 ----------------------------------------------------
 
@@ -25,7 +25,7 @@ match case _:
 	["keyword", "try"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"],
 	["keyword", "nonlocal"],
 	["keyword", "and"], ["keyword", "not"], ["keyword", "or"],
-	["keyword", "match"], ["keyword", "case"], ["keyword", "_"], ["punctuation", ":"]
+	["keyword", "match"], ["keyword", "case"], ["keyword", "_"], ["punctuation", ":"], ["keyword", "lazy"]
 ]
 
 ----------------------------------------------------
