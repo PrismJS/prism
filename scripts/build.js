@@ -334,7 +334,8 @@ function toRenderedChunk (s) {
 	};
 }
 
-const terserPlugin = rollupTerser({
+/** @type {import('@rollup/plugin-terser').Options} */
+const terserOptions = {
 	ecma: 2020,
 	module: true,
 	compress: {
@@ -348,7 +349,8 @@ const terserPlugin = rollupTerser({
 		comments: false,
 	},
 	keep_classnames: true,
-});
+};
+const terserPlugin = rollupTerser(terserOptions);
 
 async function clean () {
 	const outputDir = path.join(__dirname, '../dist');
@@ -404,7 +406,6 @@ async function buildJS () {
 	const input = {
 		'index': path.join(SRC_DIR, 'index.js'),
 		'global': path.join(SRC_DIR, 'global.js'),
-		'prism': path.join(SRC_DIR, 'prism.global.js'),
 		'shared': path.join(SRC_DIR, 'shared.js'),
 	};
 	for (const id of languageIds) {
@@ -444,6 +445,24 @@ async function buildJS () {
 				...defaultOutputOptions,
 				dir: './dist/cjs',
 				format: 'cjs',
+			},
+		},
+		iife: {
+			rollupOptions: {
+				...defaultRollupOptions,
+				input: path.join(SRC_DIR, 'auto-start.js'),
+				plugins: [
+					...defaultRollupOptions.plugins.slice(0, -1), // remove default terser plugin
+					rollupTerser({ ...terserOptions, module: false }),
+				],
+			},
+			outputOptions: {
+				...defaultOutputOptions,
+				dir: undefined,
+				file: path.join(DIST_DIR, 'prism.js'),
+				format: 'iife',
+				name: 'Prism',
+				exports: 'default',
 			},
 		},
 	};
