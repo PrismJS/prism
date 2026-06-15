@@ -112,17 +112,5 @@
 		"typescript": "^5.8.3",
 		"webfont": "^11.2.26",
 		"yargs": "^17.7.2"
-	},
-	"jspm": {
-		"main": "prism",
-		"registry": "jspm",
-		"jspmPackage": true,
-		"format": "global",
-		"files": [
-			"components/**/*.js",
-			"plugins/**/*",
-			"themes/*.css",
-			"prism.js"
-		]
 	}
 }
