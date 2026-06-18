@@ -1367,10 +1367,6 @@
 			"title": "Autolinker",
 			"description": "Converts URLs and emails in code to clickable links. Parses Markdown links in comments."
 		},
-		"wpd": {
-			"title": "WebPlatform Docs",
-			"description": "Makes tokens link to <a href=\"https://webplatform.github.io/docs/\">WebPlatform.org documentation</a>. The links open in a new tab."
-		},
 		"custom-class": {
 			"title": "Custom Class",
 			"description": "This plugin allows you to prefix Prism's default classes (<code>.comment</code> can become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code>). You can even add new classes.",
