@@ -11,7 +11,7 @@
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">html</span>
-	<span class="token code-block language-html">
+	<span class="token code-block">
 		<span class="token tag">
 			<span class="token punctuation">&lt;</span>
 			<span class="token tag">a</span>
@@ -38,7 +38,7 @@
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">unknownLanguage</span>
-	<span class="token code-block language-unknownlanguage needs-highlighting">
+	<span class="token code-block">
 		&lt;a href="#foo">Click me!&lt;/a> &amp;amp;
 	</span>
 	<span class="token punctuation">```</span>

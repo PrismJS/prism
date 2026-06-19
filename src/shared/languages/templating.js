@@ -127,9 +127,9 @@ export function templating (code, hostGrammar, templateGrammar, Prism) {
 	hostGrammar = resolve.call(Prism, hostGrammar);
 	templateGrammar = resolve.call(Prism, templateGrammar);
 
-	const { hostCode, tokenStack } = buildPlaceholders(code, templateGrammar, Prism);
+	const { hostCode, tokenStack } = buildPlaceholders(code, /** @type {Grammar | undefined} */ (templateGrammar), Prism);
 
-	const tokens = hostGrammar ? Prism.tokenize(hostCode, hostGrammar) : [hostCode];
+	const tokens = hostGrammar ? Prism.tokenize(hostCode, /** @type {Grammar} */ (hostGrammar)) : [hostCode];
 	insertIntoHostToken(tokens, tokenStack);
 	return tokens;
 }
@@ -145,10 +145,10 @@ export function embeddedIn (hostGrammar) {
 }
 
 /**
- * @import { Prism, Token } from '../../core.js';
- * @import { TokenStream, TokenStack, Grammar, LanguageRegistry} from '../../types.d.ts';
+ * @import { Prism } from '../../core.js';
+ * @import { TokenStream, TokenStack, Grammar } from '../../types.d.ts';
  */
 
 /**
- * @typedef {Grammar | string | undefined | null} GrammarRef
+ * @typedef {Grammar | Function | string | undefined | null} GrammarRef
  */

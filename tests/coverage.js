@@ -10,6 +10,28 @@ describe('Pattern test coverage', () => {
 	const patterns = new Map();
 
 	/**
+	 * Creates a key for pattern lookup based on source and normalized flags.
+	 * Normalizes flags by removing `g` and `d` (which Prism may add) and sorting the rest.
+	 * Uses a simple loop instead of `String.replace` to avoid triggering our `RegExp.exec` interception.
+	 *
+	 * @param {string} source
+	 * @param {string} flags
+	 * @returns {string}
+	 */
+	function getSourceKey (source, flags) {
+		// Normalize flags: remove 'g' and 'd', then sort
+		let normalizedFlags = '';
+		for (let i = 0; i < flags.length; i++) {
+			const flag = flags[i];
+			if (flag !== 'g' && flag !== 'd') {
+				normalizedFlags += flag;
+			}
+		}
+		normalizedFlags = normalizedFlags.split('').sort().join('');
+		return `${source}|${normalizedFlags}`;
+	}
+
+	/**
 	 * @param {string | string[]} languages
 	 * @returns {Promise<Prism>}
 	 */
@@ -31,7 +53,9 @@ describe('Pattern test coverage', () => {
 				const regex = makeGlobal(value);
 				object[key] = regex;
 
-				const patternKey = String(regex);
+				// Register with the original regex's source and flags (before making global)
+				// This matches what Prism will use when creating new RegExp objects
+				const patternKey = getSourceKey(value.source, value.flags);
 				let data = patterns.get(patternKey);
 				if (!data) {
 					data = {
@@ -43,20 +67,29 @@ describe('Pattern test coverage', () => {
 					patterns.set(patternKey, data);
 				}
 				data.from.add(tokenPath);
-				const { matches } = data;
-
-				regex.exec = string => {
-					const match = RegExp.prototype.exec.call(regex, string);
-					if (match) {
-						matches.push(match);
-					}
-					return match;
-				};
 			}
 		});
 
 		return Prism;
 	}
+
+	// Intercept RegExp.prototype.exec globally to track all pattern matches.
+	// We use global interception (instead of per-regex interception) because Prism creates new RegExp
+	// objects when adding flags (see src/core/tokenize/match.js). Per-regex interception
+	// would only catch the original regex objects, missing matches on the new ones.
+	// This is safe because we only track patterns that exist in our map.
+	const originalExec = RegExp.prototype.exec;
+	RegExp.prototype.exec = function (string) {
+		const match = originalExec.call(this, string);
+		if (match) {
+			const patternKey = getSourceKey(this.source, this.flags);
+			const data = patterns.get(patternKey);
+			if (data) {
+				data.matches.push(match);
+			}
+		}
+		return match;
+	};
 
 	describe('Register all patterns', () => {
 		it('all', async function () {

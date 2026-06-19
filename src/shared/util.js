@@ -76,3 +76,13 @@ export function kebabToCamelCase (kebab) {
 	const [first, ...others] = kebab.split(/-/);
 	return first + others.map(capitalize).join('');
 }
+
+/**
+ * Converts the given camel case identifier to a kebab case identifier.
+ *
+ * @param {string} str
+ * @returns
+ */
+export function camelToKebabCase (str) {
+	return (str + '').replace(/[A-Z]/g, l => '-' + l.toLowerCase());
+}
