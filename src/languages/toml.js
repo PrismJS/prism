@@ -4,6 +4,7 @@ export default {
 	grammar () {
 		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 		const dottedKey = key + '(?:\\s*\\.\\s*' + key + ')*';
+		const trailingComment = '(?=\\s*(?:#.*)?$)';
 
 		return {
 			'comment': {
@@ -12,15 +13,18 @@ export default {
 			},
 			'table': {
 				// keep entire table header (including brackets) under one parent token
-				pattern: RegExp('(^[\\t ]*)\\[\\[?\\s*' + dottedKey + '\\s*\\]\\]?', 'm'),
+				pattern: RegExp(
+					'(^[\\t ]*)(?:\\[(?!\\[)\\s*' + dottedKey + '\\s*\\]' + trailingComment +
+						'|\\[\\[\\s*' + dottedKey + '\\s*\\]\\]' + trailingComment + ')',
+					'm'
+				),
 				lookbehind: true,
 				greedy: true,
-				alias: 'class-name',
 				inside: {
 					'table-name': {
 						pattern: RegExp('(^\\[\\[?\\s*)' + dottedKey),
 						lookbehind: true,
-						alias: 'class-name',
+						alias: 'variable',
 					},
 					'punctuation': /\[|\]/,
 				},
