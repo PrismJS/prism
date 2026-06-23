@@ -14,8 +14,11 @@ export default {
 			'table': {
 				// keep entire table header (including brackets) under one parent token
 				pattern: RegExp(
-					'(^[\\t ]*)(?:\\[(?!\\[)\\s*' + dottedKey + '\\s*\\]' + trailingComment +
-						'|\\[\\[\\s*' + dottedKey + '\\s*\\]\\]' + trailingComment + ')',
+					'(^[\\t ]*)(?:\\[\\[\\s*' +
+						dottedKey +
+						'\\s*\\]\\]|\\[\\s*' +
+						dottedKey +
+						'\\s*\\])(?!\\])',
 					'm'
 				),
 				lookbehind: true,
