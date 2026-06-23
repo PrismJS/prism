@@ -4,7 +4,6 @@ export default {
 	grammar () {
 		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 		const dottedKey = key + '(?:\\s*\\.\\s*' + key + ')*';
-		const trailingComment = '(?=\\s*(?:#.*)?$)';
 
 		return {
 			'comment': {
