@@ -1,5 +1,12 @@
 [table]
 [[array]]
+[a.b]
+[[a.b]]
+[name] # trailing comment
+[name]]
+[[name]
+[name
+name]
 
 # not a table
 foo = [ "bar" ]
@@ -7,14 +14,46 @@ foo = [ "bar" ]
 ----------------------------------------------------
 
 [
+	["table", [
+		["punctuation", "["],
+		["table-name", "table"],
+		["punctuation", "]"]
+	]],
+	["table", [
+		["punctuation", "["],
+		["punctuation", "["],
+		["table-name", "array"],
+		["punctuation", "]"],
+		["punctuation", "]"]
+	]],
+	["table", [
+		["punctuation", "["],
+		["table-name", "a.b"],
+		["punctuation", "]"]
+	]],
+	["table", [
+		["punctuation", "["],
+		["punctuation", "["],
+		["table-name", "a.b"],
+		["punctuation", "]"],
+		["punctuation", "]"]
+	]],
+	["table", [
+		["punctuation", "["],
+		["table-name", "name"],
+		["punctuation", "]"]
+	]],
+	["comment", "# trailing comment"],
 	["punctuation", "["],
-	["table", "table"],
+	"name",
 	["punctuation", "]"],
-
-	["punctuation", "["],
-	["punctuation", "["],
-	["table", "array"],
 	["punctuation", "]"],
+	["punctuation", "["],
+	["punctuation", "["],
+	"name",
+	["punctuation", "]"],
+	["punctuation", "["],
+	"name\r\nname",
 	["punctuation", "]"],
 
 	["comment", "# not a table"],
