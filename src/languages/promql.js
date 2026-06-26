@@ -39,6 +39,7 @@ export default {
 			},
 			'vector-match': {
 				// Match the comma-separated label lists inside vector matching:
+				// eslint-disable-next-line regexp/sort-alternatives -- vectorMatching kept in PromQL docs order
 				pattern: new RegExp('((?:' + vectorMatching.join('|') + ')\\s*)\\([^)]*\\)'),
 				lookbehind: true,
 				inside: {
@@ -86,6 +87,7 @@ export default {
 					},
 				},
 			],
+			// eslint-disable-next-line regexp/sort-alternatives -- keywords concatenates semantically-ordered groups
 			'keyword': new RegExp('\\b(?:' + keywords.join('|') + ')\\b', 'i'),
 			'function': /\b[a-z_]\w*(?=\s*\()/i,
 			'number':
