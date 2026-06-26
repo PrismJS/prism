@@ -1,6 +1,6 @@
 Prism.plugins.toolbar.registerButton('hello-world', {
 	text: 'Hello World!', // required
-	onClick: function (env) {
+	onClick (env) {
 		// optional
 		alert(`This code snippet is written in ${env.language}.`);
 	},

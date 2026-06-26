@@ -44,7 +44,7 @@ document.querySelector('.download-grammars').addEventListener('click', async ({ 
 			continue;
 		}
 		let basepath =
-			'https://dev.prismjs.com/' + components.languages.meta.path.replace(/\{id}/g, id);
+			'https://dev.prismjs.com/' + components.languages.meta.path.replace(/\{id\}/g, id);
 		let basename = basepath.substring(basepath.lastIndexOf('/') + 1);
 		files.push([basename + '.js', basepath + '.js']);
 		files.push([basename + '.min.js', basepath + '.min.js']);

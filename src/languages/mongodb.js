@@ -288,6 +288,7 @@ export default {
 				},
 				'builtin': {
 					$before: 'constant',
+					// eslint-disable-next-line regexp/sort-alternatives -- builtinFunctions order kept semantic, not alphabetical
 					pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
 					alias: 'keyword',
 				},

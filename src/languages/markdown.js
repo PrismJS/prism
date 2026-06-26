@@ -1,5 +1,3 @@
-import { getTextContent } from '../core/classes/token.js';
-import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'markdown'>} */

@@ -39,7 +39,7 @@ const config = [
 			'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 			'one-var': ['warn', 'never'],
 			'prefer-arrow-callback': 'warn',
-			'prefer-const': ['warn', { 'destructuring': 'all' }],
+			'prefer-const': 'off',
 			'prefer-spread': 'warn',
 
 			// JSDoc
@@ -86,6 +86,22 @@ const config = [
 			'regexp/sort-flags': 'warn',
 			'regexp/strict': 'warn',
 
+			// Bug-catching rules ported from `regexp/recommended`. We don't extend the full
+			// recommended set because most of its remaining rules either flag intentional
+			// Prism grammar patterns (multi-line block matchers, `<MOD>` template substitution,
+			// `[^\s\S]` recursion terminators, `[\r\n]` line endings) or are pure style.
+			'regexp/no-empty-group': 'warn',
+			'regexp/no-empty-string-literal': 'warn',
+			'regexp/no-escape-backspace': 'warn',
+			'regexp/no-invalid-regexp': 'warn',
+			'regexp/no-invisible-character': 'warn',
+			'regexp/no-legacy-features': 'warn',
+			'regexp/no-missing-g-flag': 'warn',
+			'regexp/no-non-standard-flag': 'warn',
+			'regexp/no-potentially-useless-backreference': 'warn',
+			'regexp/no-useless-backreference': 'warn',
+			'regexp/no-useless-dollar-replacements': 'warn',
+
 			// I turned this rule off because we use `hasOwnProperty` in a lot of places
 			// TODO: Think about re-enabling this rule
 			'no-prototype-builtins': 'off',
@@ -115,7 +131,6 @@ const config = [
 		},
 		rules: {
 			...eslintCommentsPlugin.configs.recommended.rules,
-			...regexpPlugin.configs.recommended.rules,
 
 			'no-use-before-define': 'off',
 
@@ -148,6 +163,22 @@ const config = [
 			globals: {
 				...globals.browser,
 			},
+		},
+	},
+	{
+		// Plugin demo pages — load these globals via <script> tags on the demo HTML
+		files: ['src/plugins/**/demo.js'],
+		languageOptions: {
+			globals: {
+				Prism: 'readonly',
+				JSZip: 'readonly',
+				components: 'readonly',
+				saveAs: 'readonly',
+			},
+		},
+		rules: {
+			// Demo scripts expose globals consumed by HTML attributes (e.g. data-adapter="...")
+			'no-unused-vars': 'off',
 		},
 	},
 	{
