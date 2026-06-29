@@ -1,0 +1,7 @@
+======
+Operators
+======
+[1, 2] |> list.map(fn(x) { x + 1 })
+======
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">|&gt;</span> <span class="token function">list</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">fn</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span> x <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+======
