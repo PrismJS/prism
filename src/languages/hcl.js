@@ -10,10 +10,10 @@ export default {
 		},
 		'keyword': [
 			{
-				pattern: /(?:data|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
+				pattern: /(?:data|ephemeral|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
 				inside: {
 					'type': {
-						pattern: /(resource|data|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
+						pattern: /(data|ephemeral|resource|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
 						lookbehind: true,
 						alias: 'variable',
 					},

@@ -1,5 +1,6 @@
 resource "aws_db_instance" "main" {
 data "terraform_remote_state" "main" {
+ephemeral "provider_type" "main" {
 output "dev_vpc_id" {
 config {
 terraform {
@@ -15,6 +16,11 @@ terraform {
 	["keyword",
 		["data ",
 		["type", "\"terraform_remote_state\""]]],
+    ["string", ["\"main\""]],
+    ["punctuation", "{"],
+	["keyword",
+		["ephemeral ",
+		["type", "\"provider_type\""]]],
     ["string", ["\"main\""]],
     ["punctuation", "{"],
 	["keyword",
