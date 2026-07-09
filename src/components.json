@@ -887,7 +887,8 @@
 		"pascal": {
 			"title": "Pascal",
 			"aliasTitles": {
-				"objectpascal": "Object Pascal"
+				"objectpascal": "Object Pascal",
+				"delphi": "Delphi"
 			},
 			"owner": "Golmote"
 		},
