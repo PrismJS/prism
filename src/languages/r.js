@@ -4,7 +4,7 @@ export default {
 	grammar: {
 		'comment': /#.*/,
 		'string': {
-			pattern: /(['"])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+            pattern: /(['"])(?:\\.|(?!\1)[^\\])*\1/,
 			greedy: true,
 		},
 		'percent-operator': {
