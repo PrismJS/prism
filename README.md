@@ -48,4 +48,4 @@ Prism will run on [almost any browser](https://prismjs.com/#features-full) and N
 
 ## Translations
 
-- [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (if unavailable, see [here](https://deepmind.t-salon.cc/article/113))
+- [简体中文](http://web.archive.org/web/20210928023004/https://www.awesomes.cn/repo/PrismJS/prism) (if unavailable, see [here](http://web.archive.org/web/20260308053518/https://deepmind.t-salon.cc/article/113))
