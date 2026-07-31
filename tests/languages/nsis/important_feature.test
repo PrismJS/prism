@@ -1,11 +1,18 @@
 !addincludedir
 !addplugindir
 !appendfile
+!appendmemfile
+!assert
 !cd
 !define
 !delfile
 !echo
 !else
+!elseif
+!elseifdef
+!elseifmacrodef
+!elseifmacrondef
+!elseifndef
 !endif
 !error
 !execute
@@ -21,6 +28,7 @@
 !insertmacro
 !macroend
 !macro
+!macroundef
 !makensis
 !packhdr
 !pragma
@@ -29,6 +37,7 @@
 !system
 !tempfile
 !undef
+!uninstfinalize
 !verbose
 !warning
 
@@ -38,11 +47,18 @@
 	["important", "!addincludedir"],
 	["important", "!addplugindir"],
 	["important", "!appendfile"],
+	["important", "!appendmemfile"],
+	["important", "!assert"],
 	["important", "!cd"],
 	["important", "!define"],
 	["important", "!delfile"],
 	["important", "!echo"],
 	["important", "!else"],
+	["important", "!elseif"],
+	["important", "!elseifdef"],
+	["important", "!elseifmacrodef"],
+	["important", "!elseifmacrondef"],
+	["important", "!elseifndef"],
 	["important", "!endif"],
 	["important", "!error"],
 	["important", "!execute"],
@@ -58,6 +74,7 @@
 	["important", "!insertmacro"],
 	["important", "!macroend"],
 	["important", "!macro"],
+	["important", "!macroundef"],
 	["important", "!makensis"],
 	["important", "!packhdr"],
 	["important", "!pragma"],
@@ -66,6 +83,7 @@
 	["important", "!system"],
 	["important", "!tempfile"],
 	["important", "!undef"],
+	["important", "!uninstfinalize"],
 	["important", "!verbose"],
 	["important", "!warning"]
 ]
