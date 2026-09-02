@@ -1,0 +1,13 @@
+<!-- foo <!-- bar -->
+
+----------------------------------------------------
+
+[
+	["comment", "<!-- foo <!-- bar -->"]
+]
+
+----------------------------------------------------
+
+Checks that a comment containing a literal "<!--" in its body is not split into
+multiple tokens. Per the HTML tokenizer, a comment only ends at the first literal
+"-->"; an embedded "<!--" has no special meaning and is just comment content.

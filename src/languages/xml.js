@@ -15,7 +15,7 @@ export default {
 
 		return {
 			'comment': {
-				pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
+				pattern: /<!--[\s\S]*?-->/,
 				greedy: true,
 			},
 			'prolog': {
