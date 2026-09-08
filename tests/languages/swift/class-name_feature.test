@@ -5,6 +5,7 @@ class SomeClass: SomeSuperclass {
         return 107
     }
 }
+class _Foo: __Bar {}
 
 ----------------------------------------------------
 
@@ -37,5 +38,16 @@ class SomeClass: SomeSuperclass {
 
 	["punctuation", "}"],
 
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "_Foo"],
+	["punctuation", ":"],
+	["class-name", "__Bar"],
+	["punctuation", "{"],
 	["punctuation", "}"]
 ]
+
+----------------------------------------------------
+
+Swift types may be prefixed with underscores.
