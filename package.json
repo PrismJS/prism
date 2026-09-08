@@ -38,6 +38,7 @@
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
 		"build": "node scripts/build.js",
+		"prepack": "npm run build",
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
 		"lint:ci": "eslint . --max-warnings 0",
