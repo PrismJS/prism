@@ -4,6 +4,7 @@ import c from './c.js';
 /** @type {import('../types.d.ts').LanguageProto<'cpp'>} */
 export default {
 	id: 'cpp',
+	alias: ['c++', 'cc', 'h++', 'hpp', 'hxx', 'cxx'],
 	require: c,
 	optional: 'opencl-extensions',
 	grammar ({ extend, getOptionalLanguage }) {
