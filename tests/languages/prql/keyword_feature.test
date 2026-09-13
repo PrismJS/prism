@@ -1,0 +1,15 @@
+aggregate derive filter
+from group join
+select sort take
+
+----------------------------------------------------
+
+[
+	["keyword", "aggregate"], ["keyword", "derive"], ["keyword", "filter"]
+	["keyword", "from"], ["keyword", "group"], ["keyword", "join"],
+	["keyword", "select"], ["keyword", "sort"], ["keyword", "take"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
