@@ -2,6 +2,7 @@ import prism from '../../global.js';
 import { getParentPre } from '../../shared/dom-util.js';
 import { resolveAlias } from '../../shared/meta/alias-data.js';
 import { toArray } from '../../util/iterables.js';
+import { languageIdParts } from '../../util/language-id.js';
 
 function getDefaultSrcPath () {
 	if (typeof document !== 'undefined') {
@@ -152,16 +153,12 @@ const Self = {
 		 * @returns {string[]}
 		 */
 		function mapDependency (name) {
-			if (!name || ignoredLanguages.has(name)) {
+			if (!name) {
 				return [];
 			}
-			else if (/^diff-./i.test(name)) {
-				// the "diff-xxxx" format is used by the Diff Highlight plugin
-				return ['diff', name.slice('diff-'.length)];
-			}
-			else {
-				return [name];
-			}
+
+			// compound ids like `diff:css` require all their parts
+			return languageIdParts(name).filter(part => part && !ignoredLanguages.has(part));
 		}
 
 		return Prism.hooks.add('complete', ({ element, language }) => {

@@ -1,0 +1,38 @@
+```diff:js
+-let foo = 1;
++const foo = 1;
+```
+
+----------------------------------------------------
+
+[
+	["code", [
+		["punctuation", "```"],
+		["code-language", "diff:js"],
+
+		["code-block", [
+			["deleted-sign", [
+				["prefix", "-"],
+				["keyword", "let"],
+				" foo ",
+				["operator", "="],
+				["number", "1"],
+				["punctuation", ";"]
+			]],
+			["inserted-sign", [
+				["prefix", "+"],
+				["keyword", "const"],
+				" foo ",
+				["operator", "="],
+				["number", "1"],
+				["punctuation", ";"]
+			]]
+		]],
+
+		["punctuation", "```"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks that compound language ids work in fenced code blocks.

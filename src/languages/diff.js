@@ -13,7 +13,9 @@ export const PREFIXES = {
 /** @type {import('../types.d.ts').LanguageProto<'diff'>} */
 export default {
 	id: 'diff',
-	grammar () {
+	// `diff:css` highlights a diff of CSS. There is no default inner language.
+	inner: null,
+	grammar ({ inner }) {
 		/** @type {import('../types.d.ts').Grammar} */
 		const diff = {
 			'coord': [
@@ -51,6 +53,10 @@ export default {
 						greedy: true,
 						alias: mainName,
 					},
+					// What is left after taking out the prefixes is code in the inner language.
+					// Unlike template tags, prefixes don't stand for anything, so they leave no placeholder.
+					$inner: inner,
+					$placeholder: false,
 				},
 			};
 		});

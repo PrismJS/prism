@@ -1,4 +1,3 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 import markup from './markup.js';
@@ -6,7 +5,8 @@ import markup from './markup.js';
 /** @type {import('../types.d.ts').LanguageProto<'tt2'>} */
 export default {
 	id: 'tt2',
-	require: [clike, markup],
+	require: clike,
+	inner: markup,
 	grammar ({ extend }) {
 		const tt2 = extend('clike', {
 			'comment': /#.*|\[%#[\s\S]*?%\]/,
@@ -55,7 +55,6 @@ export default {
 				pattern: /\[%[\s\S]+?%\]/,
 				inside: tt2,
 			},
-			$tokenize: embeddedIn('markup'),
 		};
 	},
 };

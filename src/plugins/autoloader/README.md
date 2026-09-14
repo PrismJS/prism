@@ -57,6 +57,10 @@ By default, the plugin uses the minified versions of the grammars. If you wish t
 Prism.plugins.autoloader.use_minified = false;
 ```
 
+## Compound language ids
+
+Compound ids of meta-languages such as `language-diff:css` or `language-django:css` are understood: the plugin loads every part (`diff` and `css`).
+
 ## Specifying additional dependencies
 
 All default dependencies are already included in the plugin. However, there are some cases where you might want to load an additional dependency for a specific code block. To do so, just add a `data-dependencies` attribute on you `<code>` or `<pre>` tags, containing a list of comma-separated language aliases.

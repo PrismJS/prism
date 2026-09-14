@@ -1,10 +1,9 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ftl'>} */
 export default {
 	id: 'ftl',
-	require: markup,
+	inner: markup,
 	grammar () {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
@@ -116,7 +115,6 @@ export default {
 					},
 				},
 			},
-			$tokenize: embeddedIn('markup'),
 		};
 	},
 };

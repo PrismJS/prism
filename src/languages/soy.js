@@ -1,10 +1,9 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'soy'>} */
 export default {
 	id: 'soy',
-	require: markup,
+	inner: markup,
 	grammar () {
 		const stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 		const numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
@@ -82,7 +81,6 @@ export default {
 					'punctuation': /[{}()\[\]|.,:]/,
 				},
 			},
-			$tokenize: embeddedIn('markup'),
 		};
 	},
 };

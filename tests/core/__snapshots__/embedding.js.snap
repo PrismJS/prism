@@ -1,6 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Diff Highlight should work with aliases 1`] = `
+exports[`Compound language ids (outer:inner) should be recursive 1`] = `
+"<span class=\\"token coord\\">@@ -1,3 +1,3 @@</span>
+<span class=\\"token unchanged\\">
+	<span class=\\"token prefix unchanged\\"></span>
+	<span class=\\"token selector\\">a</span>
+	<span class=\\"token punctuation\\">{</span>
+</span>
+<span class=\\"token deleted-sign deleted\\">
+	<span class=\\"token prefix deleted\\">-</span>
+	<span class=\\"token property\\">color</span>
+	<span class=\\"token punctuation\\">:</span>
+	<span class=\\"token django\\">
+		<span class=\\"token delimiter punctuation\\">{{</span>
+		<span class=\\"token variable\\">foo</span>
+		<span class=\\"token delimiter punctuation\\">}}</span>
+	</span>
+	<span class=\\"token punctuation\\">;</span>
+</span>
+<span class=\\"token inserted-sign inserted\\">
+	<span class=\\"token prefix inserted\\">+</span>
+	<span class=\\"token property\\">color</span>
+	<span class=\\"token punctuation\\">:</span>
+	<span class=\\"token django\\">
+		<span class=\\"token delimiter punctuation\\">{{</span>
+		<span class=\\"token variable\\">bar</span>
+		<span class=\\"token delimiter punctuation\\">}}</span>
+	</span>
+	<span class=\\"token punctuation\\">;</span>
+</span>
+<span class=\\"token unchanged\\">
+	<span class=\\"token prefix unchanged\\"></span>
+	<span class=\\"token punctuation\\">}</span>
+</span>
+"
+`;
+
+exports[`Compound language ids (outer:inner) should highlight a diff of another language 1`] = `
 "<span class=\\"token coord\\">@@ -4,6 +4,5 @@</span>
 <span class=\\"token deleted-sign deleted\\">
 	<span class=\\"token prefix deleted\\">-</span>
@@ -71,26 +107,45 @@ exports[`Diff Highlight should work with aliases 1`] = `
 "
 `;
 
-exports[`Diff Highlight should work with language-diff 1`] = `
-"<span class=\\"token coord\\">@@ -4,6 +4,5 @@</span>
-<span class=\\"token deleted-sign deleted\\">
-	<span class=\\"token prefix deleted\\">-</span>
-	let foo = bar.baz([1, 2, 3]);
-	<span class=\\"token prefix deleted\\">-</span>
-	foo = foo + 1;
+exports[`Compound language ids (outer:inner) should let templating languages produce other languages 1`] = `
+"<span class=\\"token selector\\">a</span>
+<span class=\\"token punctuation\\">{</span>
+<span class=\\"token django\\">
+	<span class=\\"token delimiter punctuation\\">{%</span>
+	<span class=\\"token tag keyword\\">if</span>
+	<span class=\\"token variable\\">setColor</span>
+	<span class=\\"token delimiter punctuation\\">%}</span>
 </span>
-<span class=\\"token inserted-sign inserted\\">
-	<span class=\\"token prefix inserted\\">+</span>
-	const foo = bar.baz([1, 2, 3]) + 1;
+<span class=\\"token property\\">color</span>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token django\\">
+	<span class=\\"token delimiter punctuation\\">{{</span>
+	<span class=\\"token variable\\">bar</span>
+	<span class=\\"token delimiter punctuation\\">}}</span>
 </span>
-<span class=\\"token unchanged\\">
-	<span class=\\"token prefix unchanged\\"></span>
-	console.log(\`foo: \${foo}\`);
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token django\\">
+	<span class=\\"token delimiter punctuation\\">{%</span>
+	<span class=\\"token tag keyword\\">endif</span>
+	<span class=\\"token delimiter punctuation\\">%}</span>
 </span>
+<span class=\\"token punctuation\\">}</span>
 "
 `;
 
-exports[`Diff Highlight should work with language-diff-javascript 1`] = `
+exports[`Compound language ids (outer:inner) should support custom composition (php) 1`] = `
+"<span class=\\"token php\\">
+	<span class=\\"token delimiter important\\">&lt;?php</span>
+	<span class=\\"token keyword\\">echo</span>
+	<span class=\\"token number\\">1</span>
+	<span class=\\"token punctuation\\">;</span>
+	<span class=\\"token delimiter important\\">?></span>
+</span>
+&lt;b>text&lt;/b>
+"
+`;
+
+exports[`Compound language ids (outer:inner) should work with language-xxxx classes on elements 1`] = `
 "<span class=\\"token coord\\">@@ -4,6 +4,5 @@</span>
 <span class=\\"token deleted-sign deleted\\">
 	<span class=\\"token prefix deleted\\">-</span>

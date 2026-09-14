@@ -1,11 +1,11 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import lua from './lua.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'etlua'>} */
 export default {
 	id: 'etlua',
-	require: [lua, markup],
+	require: lua,
+	inner: markup,
 	grammar: {
 		'etlua': {
 			pattern: /<%[\s\S]+?%>/,
@@ -20,6 +20,5 @@ export default {
 				},
 			},
 		},
-		$tokenize: embeddedIn('markup'),
 	},
 };

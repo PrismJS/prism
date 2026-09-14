@@ -1,10 +1,9 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'smarty'>} */
 export default {
 	id: 'smarty',
-	require: markup,
+	inner: markup,
 	grammar () {
 		const expression = {
 			pattern: /[\s\S]+/,
@@ -105,7 +104,6 @@ export default {
 				greedy: true,
 				inside: smarty,
 			},
-			$tokenize: embeddedIn('markup'),
 		};
 	},
 };
