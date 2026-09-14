@@ -106,7 +106,8 @@ export default {
 							if (lang.startsWith('{') && lang.endsWith('}')) {
 								const match = lang.slice(1, -1).match(/^\s*([a-z+#:-]+)/i);
 								if (match) {
-									lang = match[0];
+									// Not match[0] — that would keep the whitespace `\s*` skipped
+									lang = match[1];
 								}
 							}
 							// Apply transformations: c++ → cpp, c# → csharp, f# → fsharp, etc.
