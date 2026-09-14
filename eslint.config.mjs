@@ -218,15 +218,6 @@ const config = [
 		},
 	},
 	{
-		// Danger
-		files: ['dangerfile.js'],
-		languageOptions: {
-			globals: {
-				...globals.node,
-			},
-		},
-	},
-	{
 		// This file
 		files: ['eslint.config.mjs'],
 		languageOptions: {
