@@ -62,7 +62,7 @@ describe('Registry', () => {
 });
 
 /**
- * @import { Grammar, GrammarOptions, LanguageProto } from '../../src/types.d.ts';
+ * @import { Grammar, GrammarOptions, InnerSpec, LanguageProto } from '../../src/types.d.ts';
  */
 
 describe('Registry: compound ids (outer:inner)', () => {
@@ -71,7 +71,7 @@ describe('Registry: compound ids (outer:inner)', () => {
 	 * - `host` (alias `h`): a plain language
 	 * - `other` (alias `o`): a plain language
 	 * - `tpl` (alias `t`): a meta-language defaulting to `host`
-	 * - `meta`: a meta-language without a default, whose grammar function records `inner`
+	 * - `meta`: a meta-language without a default that selects its own containers, like `diff`
 	 */
 	function createRegistry () {
 		const { languageRegistry } = new Prism();
@@ -87,16 +87,17 @@ describe('Registry: compound ids (outer:inner)', () => {
 			inner: host,
 			grammar: { 'tpl': /\{\{[^}]*\}\}/ },
 		};
-		/** @type {Record<string, Grammar | undefined>} */
-		const seenInner = {};
 		/** @type {LanguageProto} */
 		const meta = {
 			id: 'meta',
 			inner: null,
-			grammar ({ inner }) {
-				seenInner[String(Object.keys(seenInner).length)] = inner;
-				// line prefixes that leave no placeholder, like `diff`
-				return { 'meta': /^!/m, $inner: inner, $placeholder: false };
+			// lines with a prefix, like `diff`: the inner language is what follows the prefixes
+			grammar: {
+				'line': {
+					pattern: /^!.*(?:\n|$)/m,
+					inside: { 'prefix': /^!/ },
+				},
+				$inner: { select: 'line' },
 			},
 		};
 
@@ -104,7 +105,7 @@ describe('Registry: compound ids (outer:inner)', () => {
 			languageRegistry.add(def);
 		}
 
-		return { languageRegistry, host, other, tpl, meta, seenInner };
+		return { languageRegistry, host, other, tpl, meta };
 	}
 
 	it('should normalize compound ids', () => {
@@ -211,45 +212,115 @@ describe('Registry: compound ids (outer:inner)', () => {
 		]);
 	});
 
-	it('should pass the inner grammar to grammar functions', () => {
-		const { languageRegistry, seenInner } = createRegistry();
+	it('should fill in the inner language of a `$inner` selection', () => {
+		const { languageRegistry, meta } = createRegistry();
 
-		languageRegistry.getLanguage('meta')?.resolvedGrammar;
-		assert.isUndefined(seenInner['0']);
+		const plain = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+		const withHost = /** @type {Grammar} */ (languageRegistry.getLanguage('meta:host')?.resolvedGrammar);
 
-		languageRegistry.getLanguage('meta:other')?.resolvedGrammar;
-		assert.strictEqual(seenInner['1'], languageRegistry.getLanguage('other')?.resolvedGrammar);
+		// no inner language: the selection is left alone
+		assert.deepStrictEqual(plain.$inner, { select: 'line' });
+		// the definition itself is untouched
+		assert.deepStrictEqual(/** @type {Grammar} */ (meta.grammar).$inner, { select: 'line' });
+		// the instance's inner language is filled in
+		assert.isFunction(/** @type {InnerSpec} */ (withHost.$inner).language);
+		assert.strictEqual(/** @type {InnerSpec} */ (withHost.$inner).select, 'line');
 
 		// recursion: the inner language may itself be a compound language
 		const nested = languageRegistry.getLanguage('meta:t:o');
 		assert.strictEqual(nested?.id, 'meta:tpl:other');
 		assert.strictEqual(nested?.inner?.id, 'tpl:other');
-		nested?.resolvedGrammar;
-		assert.strictEqual(seenInner['2'], languageRegistry.getLanguage('tpl:other')?.resolvedGrammar);
 	});
 });
 
-describe('Registry: $placeholder', () => {
-	it('should take tokens out without a placeholder when $placeholder is false', () => {
+describe('Registry: $inner selectors', () => {
+	const host = /** @type {LanguageProto} */ ({ id: 'host', grammar: { 'keyword': /\bhost\b/ } });
+
+	it('should highlight the selected containers as one whole, without the other tokens', () => {
 		const { languageRegistry } = new Prism();
-		languageRegistry.add({ id: 'host', grammar: { 'keyword': /\bhost\b/ } });
+		languageRegistry.add(host);
 		languageRegistry.add({
 			id: 'meta',
 			inner: null,
-			grammar ({ inner }) {
-				return { 'meta': /^!/m, $inner: inner, $placeholder: false };
+			grammar: {
+				'line': { pattern: /^!.*(?:\n|$)/m, inside: { 'prefix': /^!/ } },
+				$inner: { select: 'line' },
 			},
 		});
 
 		const prism = languageRegistry.prism;
 		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta:host')?.resolvedGrammar);
 
-		// a placeholder would glue to `host` and prevent the keyword from matching
+		// the prefixes are not part of the inner code, so `host` is a keyword right after them
 		assert.deepStrictEqual(simplify(prism.tokenize('!host\n!host', grammar)), [
-			['meta', '!'],
-			['keyword', 'host'],
-			['meta', '!'],
-			['keyword', 'host'],
+			['line', [['prefix', '!'], ['keyword', 'host']]],
+			['line', [['prefix', '!'], ['keyword', 'host']]],
 		]);
+	});
+
+	it('should combine token containers with the unmatched text', () => {
+		const { languageRegistry } = new Prism();
+		languageRegistry.add(host);
+		languageRegistry.add({
+			id: 'meta',
+			inner: host,
+			grammar: {
+				'group': { pattern: /\[[^\]]*\]/, inside: { 'punctuation': /[[\]]/ } },
+				'other': { pattern: /\([^)]*\)/, inside: { 'punctuation': /[()]/ } },
+				$inner: { select: 'group, :text' },
+			},
+		});
+
+		const prism = languageRegistry.prism;
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+
+		assert.deepStrictEqual(simplify(prism.tokenize('host [host] (host)', grammar)), [
+			['keyword', 'host'],
+			['group', [['punctuation', '['], ['keyword', 'host'], ['punctuation', ']']]],
+			['other', [['punctuation', '('], 'host', ['punctuation', ')']]],
+		]);
+	});
+
+	it('should highlight each selector separately, later ones winning', () => {
+		const { languageRegistry } = new Prism();
+		languageRegistry.add(host);
+		languageRegistry.add({ id: 'shout', grammar: { 'shout': /\bhost\b/ } });
+		languageRegistry.add({
+			id: 'meta',
+			inner: null,
+			grammar: {
+				'a': { pattern: /\[[^\]]*\]/, inside: { 'punctuation': /[[\]]/ } },
+				'b': { pattern: /\([^)]*\)/, inside: { 'punctuation': /[()]/ } },
+				// like a diff: `a` and `b` are two versions of the code around the shared text
+				$inner: { select: ['a, :text', 'b, :text'] },
+			},
+		});
+
+		const prism = languageRegistry.prism;
+
+		// with `host` as the inner language both documents produce the same tokens
+		assert.deepStrictEqual(
+			simplify(prism.tokenize('host [host] (host)', /** @type {Grammar} */ (languageRegistry.getLanguage('meta:host')?.resolvedGrammar))),
+			[
+				['keyword', 'host'],
+				['a', [['punctuation', '['], ['keyword', 'host'], ['punctuation', ']']]],
+				['b', [['punctuation', '('], ['keyword', 'host'], ['punctuation', ')']]],
+			]
+		);
+
+		// a multi-line construct spanning the shared text and one version is highlighted as one whole
+		languageRegistry.add({
+			id: 'quoted',
+			grammar: { 'string': /"[^"]*"/ },
+		});
+		assert.deepStrictEqual(
+			simplify(prism.tokenize('"x [y"] (z)', /** @type {Grammar} */ (languageRegistry.getLanguage('meta:quoted')?.resolvedGrammar))),
+			[
+				// the shared text takes the tokens of the last selector, where the quote is unterminated
+				'"x ',
+				['a', [['punctuation', '['], ['string', 'y"'], ['punctuation', ']']]],
+				['b', [['punctuation', '('], 'z', ['punctuation', ')']]],
+			]
+		);
 	});
 });

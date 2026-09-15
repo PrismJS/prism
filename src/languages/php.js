@@ -1,5 +1,4 @@
-import { templating } from '../shared/languages/templating.js';
-import { insertBefore } from '../util/language-util.js';
+import { insertBefore, withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'php'>} */
@@ -7,7 +6,7 @@ export default {
 	id: 'php',
 	inner: markup,
 	optional: 'php-extras',
-	grammar ({ getOptionalLanguage, inner }) {
+	grammar ({ getOptionalLanguage }) {
 		/**
 		 * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
 		 * Modified by Miles Johnson: http://milesj.me
@@ -361,14 +360,10 @@ export default {
 					/<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/,
 				inside: php,
 			},
+			// Bare PHP without `<?` is not embedded in markup
 			/** @type {Grammar['$tokenize']} */
-			$tokenize: (code, grammar, Prism) => {
-				if (!/<\?/.test(code)) {
-					return Prism.tokenize(code, php);
-				}
-
-				return templating(code, inner, grammar, Prism);
-			},
+			$tokenize: (code, grammar, Prism) =>
+				Prism.tokenize(code, /<\?/.test(code) ? withoutTokenize(grammar) : php),
 		});
 	},
 };

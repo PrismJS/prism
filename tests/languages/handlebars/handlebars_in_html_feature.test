@@ -44,22 +44,15 @@
 		["delimiter", "}}"]
 	]],
 
-	["tag", [
-		["punctuation", "<"],
-		["tag", ["span"]],
-		["attr-name", ["data-has-name"]],
-		["attr-value", [
-			["punctuation", "="],
-			["handlebars", [
-				["delimiter", "{{"],
-				["variable", "if"],
-				["variable", "name"],
-				["boolean", "true"],
-				["delimiter", "}}"]
-			]]
-		]],
-		["punctuation", ">"]
+	"\r\n<span data-has-name=",
+	["handlebars", [
+		["delimiter", "{{"],
+		["variable", "if"],
+		["variable", "name"],
+		["boolean", "true"],
+		["delimiter", "}}"]
 	]],
+	">",
 	["tag", [
 		["punctuation", "</"],
 		["tag", ["span"]],
@@ -69,16 +62,14 @@
 	["tag", [
 		["punctuation", "<"],
 		["tag", ["div"]],
-		["attr-name", [
-			["handlebars", [
-				["delimiter", "{{"],
-				["variable", "on"],
-				["string", "\"click\""],
-				["variable", "this"],
-				["punctuation", "."],
-				["variable", "hello"],
-				["delimiter", "}}"]
-			]]
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "on"],
+			["string", "\"click\""],
+			["variable", "this"],
+			["punctuation", "."],
+			["variable", "hello"],
+			["delimiter", "}}"]
 		]],
 		["punctuation", "/>"]
 	]]

@@ -82,6 +82,15 @@ describe('Compound language ids (outer:inner)', () => {
 		util.assert.highlight({ language: 'diff:django:css', code: djangoCssDiff });
 	});
 
+	it('should highlight the before and after versions of a diff as wholes', ({ Prism }) => {
+		const code = ' /*\n-  old\n+  new\n  */';
+		const html = Prism.highlight(code, 'diff:javascript');
+
+		// both the deleted and the inserted line belong to the comment that the unchanged lines open and close
+		assert.include(html, '<span class="token prefix deleted">-</span><span class="token comment">  old');
+		assert.include(html, '<span class="token prefix inserted">+</span><span class="token comment">  new');
+	});
+
 	it('should support custom composition (php)', ({ util }) => {
 		util.assert.highlight({ language: 'php:none', code: '<?php echo 1; ?> <b>text</b>' });
 	});
