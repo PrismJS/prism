@@ -4,7 +4,6 @@ import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 /** @type {import('../../types.d.ts').PluginProto<'data-uri-highlight'>} */
 const Self = {
 	id: 'data-uri-highlight',
-	optional: 'diff-highlight',
 	effect (Prism) {
 		const uri = {
 			'data-uri': {

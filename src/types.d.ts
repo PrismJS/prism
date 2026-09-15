@@ -53,6 +53,12 @@ export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Nam
 export interface GrammarOptions {
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
+	readonly whenDefined: (id: string) => Promise<ComponentProto>;
+	/**
+	 * The resolved grammar of the inner language of a meta-language (see `LanguageProtoBase.inner`),
+	 * or `undefined` if there is none.
+	 */
+	readonly inner?: Grammar;
 }
 
 export interface ComponentProtoBase<Id extends string = string> {
@@ -69,31 +75,44 @@ export type LanguageProto<Id extends string = string> =
 	| LanguageProtoWithRequire<Id>
 	| LanguageProtoWithBaseAndRequire<Id>;
 
-interface LanguageProtoPlain<Id extends string = string> extends ComponentProtoBase<Id> {
-	grammar: Grammar | ((options: GrammarOptions) => Grammar);
+interface LanguageProtoBase<Id extends string = string> extends ComponentProtoBase<Id> {
 	plugin?: undefined;
+	/**
+	 * Marks this language as a meta-language that embeds or produces another language and can be
+	 * used with a compound id (`outer:inner`, e.g. `diff:css`, `django:css`, `diff:django:css`).
+	 *
+	 * A definition is the default inner language (e.g. `markup` for templating languages);
+	 * `null` means there is no default (e.g. `diff`). Use `:none` to explicitly opt out of a default.
+	 *
+	 * Everything that is not a token of this grammar is highlighted as the inner language, via `$inner`
+	 * at the top level. A `grammar` function can instead read the inner grammar from its `inner` option
+	 * and place `$inner` itself (e.g. `diff` puts it inside its line tokens).
+	 */
+	inner?: LanguageProto | null;
+}
+
+interface LanguageProtoPlain<Id extends string = string> extends LanguageProtoBase<Id> {
+	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	base?: never; // Explicitly no base allowed
 	require?: never; // Explicitly no require allowed
 }
 
-interface LanguageProtoWithBase<Id extends string = string> extends ComponentProtoBase<Id> {
+interface LanguageProtoWithBase<Id extends string = string> extends LanguageProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions & { readonly base: Grammar }) => Grammar);
-	plugin?: undefined;
 	base: LanguageProto; // Required base
 	require?: never; // Explicitly no require allowed
 }
 
-interface LanguageProtoWithRequire<Id extends string = string> extends ComponentProtoBase<Id> {
+interface LanguageProtoWithRequire<Id extends string = string> extends LanguageProtoBase<Id> {
 	grammar:
 		| Grammar
 		| ((options: GrammarOptions & { readonly languages: Record<string, Grammar> }) => Grammar);
-	plugin?: undefined;
 	base?: never; // Explicitly no base allowed
 	require: ComponentProto | readonly ComponentProto[]; // Required require
 }
 
 interface LanguageProtoWithBaseAndRequire<Id extends string = string>
-	extends ComponentProtoBase<Id> {
+	extends LanguageProtoBase<Id> {
 	grammar:
 		| Grammar
 		| ((
@@ -102,7 +121,6 @@ interface LanguageProtoWithBaseAndRequire<Id extends string = string>
 					readonly languages: Record<string, Grammar>;
 				}
 		  ) => Grammar);
-	plugin?: undefined;
 	base: LanguageProto; // Required base
 	require: ComponentProto | readonly ComponentProto[]; // Required require
 }
@@ -110,6 +128,7 @@ interface LanguageProtoWithBaseAndRequire<Id extends string = string>
 type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar?: undefined;
+	inner?: undefined;
 	plugin?: (
 		Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }
 	) => PluginType<KebabToCamelCase<Id>> & {};
@@ -214,6 +233,21 @@ export type GrammarSpecial = {
 	 * An optional grammar object that will be appended to this grammar.
 	 */
 	$rest?: Grammar | string | null;
+	/**
+	 * The language of everything that is not matched by this grammar.
+	 *
+	 * The code is tokenized with this grammar, the resulting tokens are removed, what is left is
+	 * tokenized as one whole with the `$inner` grammar and the tokens are put back afterwards.
+	 * This is how templating languages embed their host language and how `diff:css` highlights
+	 * the code inside a diff.
+	 */
+	$inner?: Grammar | string | (() => Grammar) | null;
+	/**
+	 * Whether the tokens of this grammar leave an identifier-like placeholder in the code that is
+	 * tokenized with `$inner` (default), so that the inner grammar still sees a value where they
+	 * were. Set to `false` for tokens that don't stand for anything (e.g. the prefixes of a diff).
+	 */
+	$placeholder?: boolean;
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 };
 

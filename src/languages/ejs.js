@@ -1,11 +1,11 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ejs'>} */
 export default {
 	id: 'ejs',
-	require: [javascript, markup],
+	require: javascript,
+	inner: markup,
 	alias: 'eta',
 	grammar: {
 		'ejs-comment': {
@@ -30,6 +30,5 @@ export default {
 				},
 			},
 		},
-		$tokenize: embeddedIn('markup'),
 	},
 };

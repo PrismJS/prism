@@ -10,6 +10,14 @@ export default class Language extends EventTarget {
 	/** @type {LanguageRegistry} */
 	registry;
 
+	/**
+	 * The id of this language. For derived meta-language instances this is the
+	 * compound id (e.g. `diff:css`), otherwise it is the id of the definition.
+	 *
+	 * @type {string}
+	 */
+	id;
+
 	/** @type {List<Language | LanguageProto>} */
 	require = new List();
 
@@ -22,20 +30,35 @@ export default class Language extends EventTarget {
 	readyState = 0;
 
 	/**
+	 * The inner language of this meta-language instance, `null` if there is none.
+	 * `undefined` means it has not been resolved yet.
+	 *
+	 * @type {Language | null | undefined}
+	 */
+	#inner;
+
+	/**
 	 *
 	 * @param {LanguageProto} def
 	 * @param {LanguageRegistry} registry
+	 * @param {LanguageOptions} [options]
 	 */
-	constructor (def, registry) {
+	constructor (def, registry, options = {}) {
 		super();
 		this.def = def;
 		this.registry = registry;
+		this.id = options.id ?? def.id;
+		this.#inner = options.inner;
 
 		if (this.def.base) {
 			this.require.add(this.def.base);
 		}
 		if (this.def.require) {
 			this.require.addAll(/** @type {LanguageProto | LanguageProto[]} */ (this.def.require));
+		}
+		if (this.def.inner) {
+			// The default inner language is a hard dependency, just like `base`
+			this.registry.add(this.def.inner);
 		}
 
 		if (this.def.optional) {
@@ -83,10 +106,6 @@ export default class Language extends EventTarget {
 
 	resolve () {}
 
-	get id () {
-		return this.def.id;
-	}
-
 	get alias () {
 		if (!this.def.alias) {
 			return [];
@@ -115,6 +134,26 @@ export default class Language extends EventTarget {
 	}
 
 	/**
+	 * The inner language this instance embeds or produces, or `null` if there is none.
+	 *
+	 * Only meta-languages (definitions with an `inner` key) can have an inner language.
+	 * Unless one was explicitly provided (e.g. for `diff:css`), the default inner language
+	 * declared by the definition is used.
+	 *
+	 * @returns {Language | null}
+	 */
+	get inner () {
+		let inner = this.#inner;
+		if (inner === undefined) {
+			const def = this.def.inner;
+			inner = def ? this.registry.getLanguage(def) : null;
+			this.#inner = inner;
+		}
+
+		return /** @type {Language | null} */ (inner);
+	}
+
+	/**
 	 * @returns {Grammar}
 	 */
 	get grammar () {
@@ -123,6 +162,8 @@ export default class Language extends EventTarget {
 
 		let { grammar } = def;
 		const base = this.base;
+		const inner = this.inner;
+		let innerUsed = false;
 
 		if (typeof grammar === 'function') {
 			const options = {
@@ -132,6 +173,11 @@ export default class Language extends EventTarget {
 					},
 				}),
 				languages: this.languages,
+
+				get inner () {
+					innerUsed = true;
+					return inner?.resolvedGrammar;
+				},
 
 				/**
 				 * @param {string} id
@@ -166,6 +212,12 @@ export default class Language extends EventTarget {
 			grammar = deepClone(grammar);
 		}
 
+		if (inner && !innerUsed && (/** @type {Grammar} */ (grammar)).$inner === undefined) {
+			// Unless the grammar places the inner language itself, everything that is not a token
+			// of this grammar is the inner language.
+			grammar = { ...grammar, $inner: () => inner.resolvedGrammar };
+		}
+
 		// This will replace the getter with a writable property
 		// @ts-ignore
 		return (this.grammar = grammar);
@@ -194,3 +246,10 @@ export default class Language extends EventTarget {
 }
 
 /** @import { LanguageGrammars, LanguageProto, LanguageRegistry, Grammar } from '../../types.d.ts' */
+
+/**
+ * @typedef {object} LanguageOptions
+ * @property {string} [id] The id of the language instance. Defaults to the id of the definition.
+ * @property {Language | null} [inner] The inner language. `null` means none. If omitted, the
+ * default inner language of the definition is used.
+ */

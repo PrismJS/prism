@@ -4,7 +4,6 @@ import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 /** @type {import('../../types.d.ts').PluginProto<'autolinker'>} */
 const Self = {
 	id: 'autolinker',
-	optional: 'diff-highlight',
 	effect (Prism) {
 		/**
 		 * @param {string} chars

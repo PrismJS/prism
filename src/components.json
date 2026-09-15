@@ -1461,11 +1461,6 @@
 			"description": "Highlights matching braces.",
 			"owner": "RunDevelopment"
 		},
-		"diff-highlight": {
-			"title": "Diff Highlight",
-			"description": "Highlights the code inside diff blocks.",
-			"owner": "RunDevelopment"
-		},
 		"filter-highlight-all": {
 			"title": "Filter highlightAll",
 			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",

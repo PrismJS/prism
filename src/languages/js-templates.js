@@ -1,5 +1,4 @@
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
-import { embeddedIn } from '../shared/languages/templating.js';
 
 /**
  * Creates a new pattern to match a template string with a special tag.
@@ -39,7 +38,7 @@ function createTemplate (language, tag) {
 							$rest: 'javascript',
 						},
 					},
-					$tokenize: embeddedIn(language),
+					$inner: language,
 				},
 			},
 		},

@@ -1,13 +1,13 @@
-import { embeddedIn } from '../shared/languages/templating.js';
+import { templating } from '../shared/languages/templating.js';
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'php'>} */
 export default {
 	id: 'php',
-	require: markup,
+	inner: markup,
 	optional: 'php-extras',
-	grammar ({ getOptionalLanguage }) {
+	grammar ({ getOptionalLanguage, inner }) {
 		/**
 		 * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
 		 * Modified by Miles Johnson: http://milesj.me
@@ -355,7 +355,6 @@ export default {
 			insertBefore(php, 'variable', /** @type {GrammarTokens} */ (extras));
 		}
 
-		const embedded = embeddedIn('markup');
 		return /** @type {Grammar} */ ({
 			'php': {
 				pattern:
@@ -368,7 +367,7 @@ export default {
 					return Prism.tokenize(code, php);
 				}
 
-				return embedded(code, grammar, Prism);
+				return templating(code, inner, grammar, Prism);
 			},
 		});
 	},

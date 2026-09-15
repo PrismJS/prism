@@ -1,6 +1,7 @@
 import { resolveAlias } from './shared/meta/alias-data.js';
 import { knownLanguages } from './shared/meta/all-languages-data.js';
 import { toArray } from './util/iterables.js';
+import { languageIdParts } from './util/language-id.js';
 
 /**
  * @param {string} dir
@@ -40,6 +41,9 @@ function importFile (file) {
  */
 export async function loadLanguages (Prism, languages = knownLanguages, srcPath = '.') {
 	languages = toArray(languages)
+		// compound ids like `diff:css` load all their parts
+		.flatMap(languageIdParts)
+		.filter(id => id !== 'none')
 		.map(resolveAlias)
 		.filter(id => !Prism.languageRegistry.has(id));
 
