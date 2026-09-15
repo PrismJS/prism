@@ -51,9 +51,7 @@ const ignoredLanguages = new Set(['none']);
  * @param {string} name The name of the language
  */
 function isLoaded (Prism, name) {
-	// resolve alias
-	const id = Prism.languageRegistry.resolveRef(name).id;
-	return Prism.languageRegistry.has(id) || ignoredLanguages.has(id);
+	return Prism.languageRegistry.has(name) || ignoredLanguages.has(name);
 }
 
 export class Autoloader {

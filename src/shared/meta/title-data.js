@@ -26,6 +26,9 @@ function guessTitle (name) {
  * @returns {string}
  */
 export function getTitle (name) {
+	// `php:none` is still PHP, just without its inner language
+	name = name.replace(/:none$/, '');
+
 	const index = name.indexOf(':');
 	if (index !== -1) {
 		return `${getTitle(name.slice(0, index))} (${getTitle(name.slice(index + 1))})`;

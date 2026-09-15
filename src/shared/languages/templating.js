@@ -2,14 +2,6 @@ import { getTextContent } from '../../core/classes/token.js';
 import { resolve } from '../../core/tokenize/util.js';
 
 /**
- * @param {number} id
- * @returns {string}
- */
-function getPlaceholder (id) {
-	return `___PH${id}___`;
-}
-
-/**
  * Tokenizes `code` with the template grammar, takes the resulting tokens out, tokenizes
  * everything that is left as one whole with the host grammar, and then puts the template
  * tokens back where they were.
@@ -45,11 +37,11 @@ export function templating (code, hostGrammar, templateGrammar, Prism) {
 		delete tokens.$inner;
 		delete tokens.$placeholder;
 		delete tokens.$tokenize;
-		const usePlaceholders = template.$placeholder !== false;
-		const hasPlaceholderLike = usePlaceholders && /___PH\d+___/.test(code);
+		// A plain lowercase word: anything a host grammar recognizes wraps the token (`___` is
+		// markdown emphasis, `PRISMPH` a JS constant). Not unique: tokens go back by position.
+		const placeholder = template.$placeholder === false ? '' : 'prismph';
 
 		hostCode = '';
-		let id = 0;
 		for (const token of Prism.tokenize(code, tokens)) {
 			if (typeof token === 'string') {
 				hostCode += token;
@@ -58,14 +50,6 @@ export function templating (code, hostGrammar, templateGrammar, Prism) {
 				hostCode += getTextContent(token.content);
 			}
 			else {
-				let placeholder = '';
-				if (usePlaceholders) {
-					while (hasPlaceholderLike && code.includes(getPlaceholder(id))) {
-						id++;
-					}
-					placeholder = getPlaceholder(id++);
-				}
-
 				replacements.push({ start: hostCode.length, end: hostCode.length + placeholder.length, token });
 				hostCode += placeholder;
 			}
