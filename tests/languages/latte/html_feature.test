@@ -54,31 +54,27 @@
 	["tag", [
 		["punctuation", "<"],
 		["tag", ["a"]],
-		["attr-name", [
-			["latte", [
-				["delimiter", "{"],
-				["latte-tag", "if"],
-				["php", [
-					["variable", "$post"],
-					["operator", "->"],
-					["property", "id"]
-				]],
-				["delimiter", "}"]
+		["latte", [
+			["delimiter", "{"],
+			["latte-tag", "if"],
+			["php", [
+				["variable", "$post"],
+				["operator", "->"],
+				["property", "id"]
 			]],
-			"title"
+			["delimiter", "}"]
 		]],
+		["attr-name", ["title"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
 			"ahoj",
 			["punctuation", "\""]
 		]],
-		["attr-name", [
-			["latte", [
-				["delimiter", "{/"],
-				["latte-tag", "if"],
-				["delimiter", "}"]
-			]]
+		["latte", [
+			["delimiter", "{/"],
+			["latte-tag", "if"],
+			["delimiter", "}"]
 		]],
 		["punctuation", ">"]
 	]],

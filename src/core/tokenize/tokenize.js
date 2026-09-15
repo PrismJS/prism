@@ -1,4 +1,4 @@
-import { templating } from '../../shared/languages/templating.js';
+import { embed } from './embed.js';
 import { LinkedList } from '../linked-list.js';
 import singleton from '../prism.js';
 import { _matchGrammar } from './match.js';
@@ -33,8 +33,8 @@ export function tokenize (text, grammar) {
 		return $tokenize(text, grammar, prism);
 	}
 	if ($inner != null) {
-		// Everything that is not a token of this grammar is highlighted as the inner language
-		return templating(text, $inner, grammar, prism);
+		// Parts of the result are highlighted as the inner language
+		return embed(text, grammar, prism);
 	}
 
 	const tokenList = new LinkedList();
