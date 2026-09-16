@@ -14,52 +14,46 @@ import { getTextContent, Token } from '../core/classes/token.js';
  * @returns {TokenStream[]} `offsets.length + 1` segments
  */
 export function splitTokenStream (stream, offsets) {
+	/** @type {TokenStream[]} */
 	const segments = [];
-	let rest = stream;
-	let base = 0;
-
-	for (const offset of offsets) {
-		const [left, right] = splitAt(rest, offset - base);
-		segments.push(left);
-		rest = right;
-		base = offset;
-	}
-
-	segments.push(rest);
-	return segments;
-}
-
-/**
- * @param {TokenStream} stream
- * @param {number} offset Relative to the start of the stream
- * @returns {[TokenStream, TokenStream]}
- */
-function splitAt (stream, offset) {
 	/** @type {TokenStream} */
-	const left = [];
+	let current = [];
 	let pos = 0;
+	let next = 0;
 
-	for (let i = 0; i < stream.length; i++) {
-		if (pos >= offset) {
-			return [left, stream.slice(i)];
-		}
-
-		const item = stream[i];
-		const length = getTextContent(item).length;
-
-		if (pos + length <= offset) {
-			left.push(item);
-			pos += length;
+	for (let item of stream) {
+		// Once every offset is consumed, the rest of the stream is the tail as-is
+		if (next === offsets.length) {
+			current.push(item);
 			continue;
 		}
 
-		// This item straddles the offset
-		const [a, b] = splitItem(item, offset - pos);
-		left.push(a);
-		return [left, [b, ...stream.slice(i + 1)]];
+		let start = pos;
+		pos += getTextContent(item).length;
+
+		// Every offset up to the end of this item closes a segment, splitting off the part
+		// of the item that still belongs to it
+		while (next < offsets.length && (offsets[next] < pos || offsets[next] === start)) {
+			const offset = offsets[next++];
+			if (offset > start) {
+				const [left, right] = splitItem(item, offset - start);
+				current.push(left);
+				item = right;
+				start = offset;
+			}
+			segments.push(current);
+			current = [];
+		}
+
+		current.push(item);
 	}
 
-	return [left, []];
+	segments.push(current);
+	while (segments.length <= offsets.length) {
+		segments.push([]);
+	}
+
+	return segments;
 }
 
 /**
@@ -75,7 +69,7 @@ function splitItem (item, offset) {
 	const [a, b] =
 		typeof item.content === 'string'
 			? [item.content.slice(0, offset), item.content.slice(offset)]
-			: splitAt(item.content, offset);
+			: splitTokenStream(item.content, [offset]);
 
 	return [new Token(item.type, a, item.alias), new Token(item.type, b, item.alias)];
 }
