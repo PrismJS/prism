@@ -236,7 +236,9 @@ export type GrammarSpecial = {
 	 * the parts were. By default the unmatched text is selected: this is how templating languages
 	 * embed their host language. `{ select }` selects other containers, e.g. the lines of a diff.
 	 *
-	 * A grammar reference alone is shorthand for `{ language }`.
+	 * A grammar reference alone is shorthand for `{ language }`. An inline grammar is told apart
+	 * from the object form by its keys, so one whose only token is named `language` has to be
+	 * referenced by id or from a function instead.
 	 */
 	$inner?: GrammarRef | InnerSpec;
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
@@ -258,6 +260,9 @@ export interface InnerSpec {
 	 * (matching a token's type or alias) and `:text` for the unmatched text. The strings directly
 	 * inside the selected containers are concatenated and highlighted as one whole. With several
 	 * selectors, this happens once per selector, later ones winning where they overlap.
+	 *
+	 * A selector that names no container at all is an error. A name that no token has is not:
+	 * it simply selects nothing, since a document need not contain every kind of container.
 	 *
 	 * @default ':text'
 	 */
