@@ -47,6 +47,38 @@ describe('Keep Markup', () => {
 		keepMarkup(dom, `xy<a>a</a>`);
 	});
 
+	// Nested zero-length markup is flattened / dropped (#1640)
+	// https://github.com/PrismJS/prism/issues/1640
+	it('should keep nested zero-length markup', dom => {
+		keepMarkup(dom, `<x><y></y></x>`);
+		keepMarkup(dom, `<x>a<y></y></x>`);
+		keepMarkup(dom, `<x>a<y></y><z></z></x>`);
+		keepMarkup(dom, `<x>a<y><z></z></y></x>`);
+	});
+	it('should keep nested empty markup among sibling text', dom => {
+		keepMarkup(dom, `<x>a<y></y>b</x>`);
+		keepMarkup(dom, `<x><y></y></x>foo`);
+		keepMarkup(dom, `<x>a<y></y></x>b`);
+	});
+	it('should preserve nested empty markup parents', ({ Prism, document }) => {
+		const pre = document.createElement('pre');
+		pre.className = 'language-none';
+		pre.innerHTML = '<code><x>a<y></y></x>b</code>';
+		const code = pre.children[0];
+		const xBefore = code.querySelector('x');
+		const yBefore = xBefore?.querySelector('y');
+
+		assert.ok(xBefore && yBefore);
+		assert.strictEqual(yBefore.parentNode, xBefore);
+
+		Prism.highlightElement(code);
+
+		assert.strictEqual(code.querySelector('x'), xBefore);
+		assert.strictEqual(xBefore.querySelector('y'), yBefore);
+		assert.strictEqual(yBefore.parentNode, xBefore);
+		assert.equal(code.innerHTML, '<x>a<y></y></x>b');
+	});
+
 	it('should support double highlighting', ({ Prism, document }) => {
 		const pre = document.createElement('pre');
 		pre.className = 'language-javascript drop-tokens';
