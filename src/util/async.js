@@ -66,7 +66,7 @@ export async function allSettled (promises) {
 
 /**
  * @template T
- * @typedef {Promise<T> & {resolve: (value: T) => void, reject: (reason?: any) => void}} DeferredPromise<T>
+ * @typedef {Promise<T> & {resolve: (value: T) => void, reject: (reason?: any) => void}} DeferredPromise
  */
 
 /**
