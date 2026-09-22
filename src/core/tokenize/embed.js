@@ -1,5 +1,5 @@
 import { getTextContent } from '../../core/classes/token.js';
-import { insertTokens, splitTokenStream, tokenMatches } from '../../util/token-stream.js';
+import { insertTokens, replaceRange, splitTokenStream, tokenMatches } from '../../util/token-stream.js';
 import { resolve } from './util.js';
 
 /** The name of the container of the unmatched text in a selector. */
@@ -162,7 +162,7 @@ function collectRuns (stream, { text, names }) {
 				text,
 				replace: segment => {
 					insertTokens(segment, inside);
-					container.splice(start, end - start + 1, ...segment);
+					replaceRange(container, start, end - start + 1, segment);
 				},
 			});
 		}
@@ -177,7 +177,9 @@ function collectRuns (stream, { text, names }) {
 			collect(stream, true);
 		}
 		for (const item of stream) {
-			if (typeof item === 'string') {
+			// A root `ignore` token is already part of the `:text` run; taking it again would
+			// feed its text to the inner language twice
+			if (typeof item === 'string' || (root && text && item.type.startsWith('ignore'))) {
 				continue;
 			}
 			if (!tokenMatches(item, names)) {
