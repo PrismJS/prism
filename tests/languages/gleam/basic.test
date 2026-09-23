@@ -1,0 +1,11 @@
+======
+Basic function
+======
+pub fn main() {
+  echo "hello"
+}
+======
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">echo</span> <span class="token string">"hello"</span>
+<span class="token punctuation">}</span>
+======

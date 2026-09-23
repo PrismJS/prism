@@ -1,0 +1,9 @@
+======
+Types and constructors
+======
+type Result(a, b) { Ok(a) Error(b) }
+Ok(42)
+======
+<span class="token keyword">type</span> <span class="token class-name">Result</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+<span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
+======
