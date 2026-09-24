@@ -10,7 +10,7 @@ resources: ./demo.js { defer }
 
 # How to use
 
-The Toolbar plugin allows for several methods to register your button, using the `Prism.plugins.toolbar.registerButton` function.
+The Toolbar plugin allows for several methods to register your button, using the `Prism.pluginRegistry.peek('toolbar').plugin.registerButton` function.
 
 The simplest method is through the HTML API. Add a `data-label` attribute to the `pre` element, and the Toolbar plugin will read the value of that attribute and append a label to the code snippet.
 
@@ -30,12 +30,14 @@ If you want to provide arbitrary HTML to the label, create a `template` element 
 
 ## Registering buttons
 
-For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar, `Prism.plugins.toolbar.registerButton`.
+For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar, `Prism.pluginRegistry.peek('toolbar').plugin.registerButton`.
 
 The function accepts a key for the button and an object with a `text` property string and an optional `onClick` function or a `url` string. The `onClick` function will be called when the button is clicked, while the `url` property will be set to the anchor tag's `href`.
 
 ```js
-Prism.plugins.toolbar.registerButton('hello-world', {
+const toolbar = Prism.pluginRegistry.peek('toolbar').plugin;
+
+toolbar.registerButton('hello-world', {
 	text: 'Hello World!', // required
 	onClick: function (env) {
 		// optional
@@ -49,7 +51,7 @@ See how the above code registers the `Hello World!` button? You can use this in 
 If you need more control, you can provide a function to `registerButton` that returns either a `span`, `a`, or `button` element.
 
 ```js
-Prism.plugins.toolbar.registerButton('select-code', env => {
+toolbar.registerButton('select-code', env => {
 	let button = document.createElement('button');
 	button.innerHTML = 'Select Code';
 

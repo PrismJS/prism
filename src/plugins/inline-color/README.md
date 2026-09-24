@@ -25,7 +25,7 @@ span.bar {
 }
 ```
 
-<pre data-src="https://dev.prismjs.com/themes/prism.css"></pre>
+<pre data-src="/themes/prism.css"></pre>
 
 ## HTML (Markup)
 

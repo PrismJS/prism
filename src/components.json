@@ -1165,10 +1165,6 @@
 			"title": "Systemd configuration file",
 			"owner": "RunDevelopment"
 		},
-		"t4-templating": {
-			"title": "T4 templating",
-			"owner": "RunDevelopment"
-		},
 		"t4-cs": {
 			"title": "T4 Text Templates (C#)",
 			"owner": "RunDevelopment"
@@ -1463,7 +1459,7 @@
 		},
 		"filter-highlight-all": {
 			"title": "Filter highlightAll",
-			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
+			"description": "Filters the elements the <code>highlightAll</code> method actually highlights.",
 			"owner": "RunDevelopment",
 			"noCSS": true
 		},

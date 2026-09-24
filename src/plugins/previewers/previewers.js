@@ -48,7 +48,7 @@ const FLIPPED_CLASS = 'flipped';
  * @returns {void}
  */
 
-class Previewer {
+export class Previewer {
 	/** @type {string} */
 	type;
 	/** @type {string | string[]} */

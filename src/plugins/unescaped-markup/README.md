@@ -45,7 +45,7 @@ View source to see that the following didn’t need escaping (except for <code>&
 	<title>Keep markup ▲ Prism plugins</title>
 	<base href=".." />
 	<link rel="stylesheet" href="https://prismjs.com/assets/style.css" />
-	<link rel="stylesheet" href="https://dev.prismjs.com/themes/prism.css" />
+	<link rel="stylesheet" href="https://v2.dev.prismjs.com/dist/themes/prism.css" />
 
 </head>
 <body class="language-markup">
@@ -82,8 +82,10 @@ View source to see that the following didn’t need escaping (except for <code>&
 	<script type="text/plain"><div><span>Foo</span></div>&lt;/script>
 </section>
 
-<script src="https://dev.prismjs.com/prism.js">&lt;/script>
-<script src="unescaped-markup/unescaped-markup.js">&lt;/script>
+<script type="module">
+	import "https://v2.dev.prismjs.com/dist/index.js";
+	import "https://v2.dev.prismjs.com/dist/plugins/unescaped-markup.js";
+&lt;/script>
 
 </body>
 </html></script>
@@ -99,7 +101,7 @@ View source to see that the following didn’t need escaping (except for <code>&
 	<title>Keep markup ▲ Prism plugins</title>
 	<base href=".." />
 	<link rel="stylesheet" href="https://prismjs.com/assets/style.css" />
-	<link rel="stylesheet" href="https://dev.prismjs.com/themes/prism.css" />
+	<link rel="stylesheet" href="https://v2.dev.prismjs.com/dist/themes/prism.css" />
 
 </head>
 <body class="language-markup">
@@ -136,8 +138,10 @@ View source to see that the following didn’t need escaping (except for <code>&
 	<script type="text/plain"><div><span>Foo</span></div></script>
 </section>
 
-<script src="https://dev.prismjs.com/prism.js"></script>
-<script src="unescaped-markup/unescaped-markup.js"></script>
+<script type="module">
+	import "https://v2.dev.prismjs.com/dist/index.js";
+	import "https://v2.dev.prismjs.com/dist/plugins/unescaped-markup.js";
+</script>
 
 </body>
 </html>--></code></pre>
