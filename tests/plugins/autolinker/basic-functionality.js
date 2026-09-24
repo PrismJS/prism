@@ -22,6 +22,14 @@ var foo = 5;
 `,
 		});
 	});
+	it('Markdown link needs a URL target', ({ util }) => {
+		util.assert.highlightElement({
+			language: 'javascript',
+			code: String.raw`
+// Calls handlers[name](event)
+`,
+		});
+	});
 	it('In CSS code', ({ util }) => {
 		util.assert.highlightElement({
 			language: 'css',

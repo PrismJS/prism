@@ -20,8 +20,11 @@ const Self = {
 				`(?:#${balanced(/[\w\-+%~/.:=&!$'*,;@?#]/.source)}*)?`
 		);
 		const email = /\b\S+@[\w.]+[a-z]{2}/;
+		// Only a URL target: `handlers[name](event)` is code
+		const mdLink = RegExp(String.raw`\[([^\]]+)\]\((${url.source})\)`);
 
 		const links = {
+			'md-link': mdLink,
 			'url-link': url,
 			'email-link': email,
 		};
@@ -36,6 +39,11 @@ const Self = {
 
 					if (env.type === 'email-link' && !href.startsWith('mailto:')) {
 						href = 'mailto:' + href;
+					}
+					else if (env.type === 'md-link') {
+						const [, text, link] = /** @type {RegExpMatchArray} */ (href.match(mdLink));
+						env.content = text;
+						href = link;
 					}
 
 					env.tag = 'a';
