@@ -1,5 +1,6 @@
 import prism from '../../global.js';
 import cssExtras from '../../languages/css-extras.js';
+import { insertBefore } from '../../util/insert.js';
 import { forEach } from '../../util/iterables.js';
 
 /**
@@ -104,8 +105,7 @@ class Previewer {
 	 */
 	isDisabled (token) {
 		const previewers = token.closest('[data-previewers]')?.getAttribute('data-previewers');
-		const parts = (previewers || '').split(/\s+/);
-		return !parts.includes(this.type);
+		return previewers != null && !previewers.split(/\s+/).includes(this.type);
 	}
 	/**
 	 * Checks the class name of each hovered element.
@@ -232,9 +232,6 @@ export class PreviewerCollection {
 		);
 	}
 }
-
-// TODO: Filthy hack to be able to load this script
-const Prism = { languages: {} };
 
 const previewers = {
 	// gradient must be defined before color and angle
@@ -445,35 +442,23 @@ const previewers = {
 			'less': true,
 			'sass': [
 				{
-					lang: 'sass',
 					before: 'punctuation',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+					root: grammar => grammar['variable-line'].inside,
 				},
 				{
-					lang: 'sass',
 					before: 'punctuation',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+					root: grammar => grammar['property-line'].inside,
 				},
 			],
 			'scss': true,
 			'stylus': [
 				{
-					lang: 'stylus',
 					before: 'func',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['property-declaration'].inside,
+					root: grammar => grammar['property-declaration'].inside.$rest,
 				},
 				{
-					lang: 'stylus',
 					before: 'func',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['variable-declaration'].inside,
+					root: grammar => grammar['variable-declaration'].inside.$rest,
 				},
 			],
 		},
@@ -528,41 +513,27 @@ const previewers = {
 			'css': true,
 			'less': true,
 			'markup': {
-				lang: 'markup',
 				before: 'punctuation',
-				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
+				root: grammar => grammar['tag'].inside['attr-value'].inside,
 			},
 			'sass': [
 				{
-					lang: 'sass',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+					root: grammar => grammar['property-line'].inside,
 				},
 				{
-					lang: 'sass',
 					before: 'operator',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+					root: grammar => grammar['variable-line'].inside,
 				},
 			],
 			'scss': true,
 			'stylus': [
 				{
-					lang: 'stylus',
 					before: 'func',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['property-declaration'].inside,
+					root: grammar => grammar['property-declaration'].inside.$rest,
 				},
 				{
-					lang: 'stylus',
 					before: 'func',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['variable-declaration'].inside,
+					root: grammar => grammar['variable-declaration'].inside.$rest,
 				},
 			],
 		},
@@ -575,49 +546,32 @@ const previewers = {
 				return !!this.style.backgroundColor;
 			});
 		},
-		tokens: {
-			'color': [Prism.languages.css?.['hexcode']].concat(Prism.languages.css?.['color']),
-		},
 		languages: {
 			// CSS extras is required, so css and scss are not necessary
 			'css': false,
 			'less': true,
 			'markup': {
-				lang: 'markup',
 				before: 'punctuation',
-				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
+				root: grammar => grammar['tag'].inside['attr-value'].inside,
 			},
 			'sass': [
 				{
-					lang: 'sass',
 					before: 'punctuation',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+					root: grammar => grammar['variable-line'].inside,
 				},
 				{
-					lang: 'sass',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+					root: grammar => grammar['property-line'].inside,
 				},
 			],
 			'scss': false,
 			'stylus': [
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['property-declaration'].inside,
+					root: grammar => grammar['property-declaration'].inside.$rest,
 				},
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['variable-declaration'].inside,
+					root: grammar => grammar['variable-declaration'].inside.$rest,
 				},
 			],
 		},
@@ -699,34 +653,22 @@ const previewers = {
 			'less': true,
 			'sass': [
 				{
-					lang: 'sass',
-					inside: 'inside',
 					before: 'punctuation',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+					root: grammar => grammar['variable-line'].inside,
 				},
 				{
-					lang: 'sass',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+					root: grammar => grammar['property-line'].inside,
 				},
 			],
 			'scss': true,
 			'stylus': [
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['property-declaration'].inside,
+					root: grammar => grammar['property-declaration'].inside.$rest,
 				},
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['variable-declaration'].inside,
+					root: grammar => grammar['variable-declaration'].inside.$rest,
 				},
 			],
 		},
@@ -765,41 +707,27 @@ const previewers = {
 			'css': true,
 			'less': true,
 			'markup': {
-				lang: 'markup',
 				before: 'punctuation',
-				inside: 'inside',
-				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value'],
+				root: grammar => grammar['tag'].inside['attr-value'].inside,
 			},
 			'sass': [
 				{
-					lang: 'sass',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['property-line'],
+					root: grammar => grammar['property-line'].inside,
 				},
 				{
-					lang: 'sass',
 					before: 'operator',
-					inside: 'inside',
-					root: Prism.languages.sass && Prism.languages.sass['variable-line'],
+					root: grammar => grammar['variable-line'].inside,
 				},
 			],
 			'scss': true,
 			'stylus': [
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['property-declaration'].inside,
+					root: grammar => grammar['property-declaration'].inside.$rest,
 				},
 				{
-					lang: 'stylus',
 					before: 'hexcode',
-					inside: 'rest',
-					root:
-						Prism.languages.stylus &&
-						Prism.languages.stylus['variable-declaration'].inside,
+					root: grammar => grammar['variable-declaration'].inside.$rest,
 				},
 			],
 		},
@@ -822,45 +750,40 @@ const Self = {
 		return collection;
 	},
 	effect (Prism) {
-		/*
-		Prism.hooks.add('before-highlight', (env) => {
-			for (const previewer of Object.values(previewers)) {
-				const languages = previewer.languages;
-				if (languages[env.language] && !languages[env.language].initialized) {
-					let lang = languages[env.language];
-					if (!Array.isArray(lang)) {
-						lang = [lang];
-					}
-					lang.forEach((lang) => {
-						let before; let inside; let root; let skip;
+		const patched = new Set();
+
+		return Prism.hooks.add({
+			'before-tokenize': env => {
+				if (!env.grammar || patched.has(env.language)) {
+					return;
+				}
+				patched.add(env.language);
+
+				// The color previewer adds css-extras's own color tokens
+				const extras = Prism.languageRegistry.getLanguage('css-extras')?.resolvedGrammar;
+				for (const previewer of Object.values(previewers)) {
+					const tokens = previewer.tokens ?? {
+						'color': [extras?.['hexcode']].concat(extras?.['color']),
+					};
+					forEach(previewer.languages[env.language], lang => {
 						if (lang === true) {
-							before = 'important';
-							inside = env.language;
-							lang = env.language;
-						} else {
-							before = lang.before || 'important';
-							inside = lang.inside || lang.lang;
-							root = lang.root || Prism.languages;
-							skip = lang.skip;
-							lang = env.language;
+							insertBefore(env.grammar, 'important', tokens);
 						}
-
-						if (!skip && Prism.languages[lang]) {
-							Prism.languages.insertBefore(inside, before, previewer.tokens, root);
-							env.grammar = Prism.languages[lang];
-
-							languages[env.language] = { initialized: true };
+						else if (lang) {
+							insertBefore(
+								lang.root(env.grammar),
+								lang.before ?? 'important',
+								tokens
+							);
 						}
 					});
 				}
-			}
-		});
-		*/
-
-		return Prism.hooks.add('after-highlight', env => {
-			/** @type {PreviewerCollection} */
-			const previewers = Prism.pluginRegistry.peek(Self)?.plugin;
-			previewers.initEvents(env.element, env.language);
+			},
+			'after-highlight': env => {
+				/** @type {PreviewerCollection} */
+				const previewers = Prism.pluginRegistry.peek(Self)?.plugin;
+				previewers.initEvents(env.element, env.language);
+			},
 		});
 	},
 };
