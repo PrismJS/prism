@@ -1,8 +1,10 @@
+const filterHighlightAll = Prism.pluginRegistry.peek('filter-highlight-all').plugin;
+
 // elements with a .no-highlight class will be ignored
-Prism.plugins.filterHighlightAll.reject.addSelector('code.no-highlight');
-Prism.plugins.filterHighlightAll.reject.addSelector('pre.no-highlight > code');
+filterHighlightAll.reject.addSelector('code.no-highlight');
+filterHighlightAll.reject.addSelector('pre.no-highlight > code');
 
 // don't highlight CSS code
-Prism.plugins.filterHighlightAll.add(env => {
+filterHighlightAll.add(env => {
 	return env.language !== 'css';
 });

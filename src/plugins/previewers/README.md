@@ -204,11 +204,11 @@ div {
 
 # API
 
-This plugins provides a constructor that can be accessed through `Prism.plugins.Previewer`.
+This plugins provides a constructor that can be imported from `prismjs/plugins/previewers.js` as `Previewer`. Add a previewer with `Prism.pluginRegistry.peek('previewers').plugin.add(previewer)`.
 
 Once a previewer has been instantiated, an HTML element is appended to the document body. This element will appear when specific tokens are hovered.
 
-## `new Prism.plugins.Previewer(type, updater, supportedLanguages)`
+## `new Previewer(type, updater, supportedLanguages)`
 
 - `type`: the token type this previewer is associated to. The previewer will be shown when hovering tokens of this type.
 

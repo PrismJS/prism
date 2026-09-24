@@ -39,11 +39,12 @@ eleventyExcludeFromCollections: true
 
 </section>
 
-<script src="https://dev.prismjs.com/prism.js"></script>
-<script src="./normalize-whitespace.js"></script>
-<script>
+<script type="module">
+import Prism from "https://v2.dev.prismjs.com/dist/index.js";
+import "https://v2.dev.prismjs.com/dist/plugins/normalize-whitespace.js";
+
 // Optional
-Prism.plugins.NormalizeWhitespace.setDefaults({
+Prism.pluginRegistry.peek("normalize-whitespace").plugin.setDefaults({
 	"remove-trailing": true,
 	"remove-indent": true,
 	"left-trim": true,

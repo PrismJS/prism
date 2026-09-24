@@ -1,4 +1,6 @@
-Prism.plugins.toolbar.registerButton('hello-world', {
+const toolbar = Prism.pluginRegistry.peek('toolbar').plugin;
+
+toolbar.registerButton('hello-world', {
 	text: 'Hello World!', // required
 	onClick (env) {
 		// optional
@@ -6,7 +8,7 @@ Prism.plugins.toolbar.registerButton('hello-world', {
 	},
 });
 
-Prism.plugins.toolbar.registerButton('select-code', env => {
+toolbar.registerButton('select-code', env => {
 	let button = document.createElement('button');
 	button.innerHTML = 'Select Code';
 

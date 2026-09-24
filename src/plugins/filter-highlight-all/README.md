@@ -1,6 +1,6 @@
 ---
 title: Filter highlightAll
-description: Filters the elements the `highlightAll` and `highlightAllUnder` methods actually highlight.
+description: Filters the elements the `highlightAll` method actually highlights.
 owner: RunDevelopment
 noCSS: true
 resources:
@@ -16,7 +16,7 @@ resources:
 
 # How to use
 
-Filter highlightAll provides you with ways to filter the element the `highlightAll` and `highlightAllUnder` methods actually highlight. This can be very useful when you use Prism's automatic highlighting when loading the page but want to exclude certain code blocks.
+Filter highlightAll provides you with ways to filter the element the `highlightAll` method actually highlights. This can be very useful when you use Prism's automatic highlighting when loading the page but want to exclude certain code blocks.
 
 </section>
 
@@ -24,7 +24,7 @@ Filter highlightAll provides you with ways to filter the element the `highlightA
 
 # API
 
-In `Prism.plugins.filterHighlightAll` you can find the following:
+In `Prism.pluginRegistry.peek('filter-highlight-all').plugin` you can find the following:
 
 `add(condition: (value: { element, language: string }) => boolean): void`
 
@@ -47,7 +47,7 @@ This can be used to define a custom language filter.
 
 : Set this to `true` to only allow known languages. Code blocks without a set language or an unknown language will not be highlighted.
 
-An element will only be highlighted by the `highlightAll` and `highlightAllUnder` methods if all of the above accept the element.
+An element will only be highlighted by the `highlightAll` method if all of the above accept the element.
 
 ## Attributes
 
@@ -55,15 +55,15 @@ You can also add the following `data-*`{ .language-none } attributes to the scri
 
 `<script src="..." data-filter-selector="<css selector>">`{ .language-markup }
 
-: This attribute is a shorthand for `Prism.plugins.filterHighlightAll.addSelector`. The value of the attribute will be passed as is to the `addSelector` function.
+: This attribute is a shorthand for `Prism.pluginRegistry.peek('filter-highlight-all').plugin.addSelector`. The value of the attribute will be passed as is to the `addSelector` function.
 
 `<script src="..." data-reject-selector="<css selector>">`{ .language-markup }
 
-: This attribute is a shorthand for `Prism.plugins.filterHighlightAll.reject.addSelector`. The value of the attribute will be passed as is to the `rejectSelector` function.
+: This attribute is a shorthand for `Prism.pluginRegistry.peek('filter-highlight-all').plugin.reject.addSelector`. The value of the attribute will be passed as is to the `rejectSelector` function.
 
 `<script src="..." data-filter-known>`{ .language-markup }
 
-: This attribute can be used to set the value of `Prism.plugins.filterHighlightAll.filterKnown`. `filterKnown` will be set to `true` if the attribute is present, `false` otherwise.
+: This attribute can be used to set the value of `Prism.pluginRegistry.peek('filter-highlight-all').plugin.filterKnown`. `filterKnown` will be set to `true` if the attribute is present, `false` otherwise.
 
 </section>
 
@@ -74,12 +74,14 @@ You can also add the following `data-*`{ .language-none } attributes to the scri
 The following code is used to define a filter on this page.
 
 ```js
+const filterHighlightAll = Prism.pluginRegistry.peek('filter-highlight-all').plugin;
+
 // <code> elements with a .no-highlight class will be ignored
-Prism.plugins.filterHighlightAll.reject.addSelector('code.no-highlight');
-Prism.plugins.filterHighlightAll.reject.addSelector('pre.no-highlight > code');
+filterHighlightAll.reject.addSelector('code.no-highlight');
+filterHighlightAll.reject.addSelector('pre.no-highlight > code');
 
 // don't highlight CSS code
-Prism.plugins.filterHighlightAll.add(function (env) {
+filterHighlightAll.add(function (env) {
 	return env.language !== 'css';
 });
 ```

@@ -159,8 +159,9 @@ const Self = {
 			return languageIdParts(name).filter(part => part && !ignoredLanguages.has(part));
 		}
 
-		return Prism.hooks.add('complete', ({ element, language }) => {
-			if (!language || ignoredLanguages.has(language)) {
+		return Prism.hooks.add('complete', ({ element, language, code }) => {
+			// No code means a plugin like File Highlight fills the element and highlights it later
+			if (!code || !language || ignoredLanguages.has(language)) {
 				return;
 			}
 
