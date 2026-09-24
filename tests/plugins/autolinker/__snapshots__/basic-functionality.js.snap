@@ -24,9 +24,9 @@ exports[`Autolinker In HTML code 1`] = `
 "<span class=\\"token comment\\">
 	&lt;!-- Links in HTML, woo! Lea Verou
 	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
-	or, with Markdown, [Lea Verou](
-	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
-	) --&gt;
+	or, with Markdown,
+	<a class=\\"token md-link\\" href=\\"http://lea.verou.me\\">Lea Verou</a>
+	--&gt;
 </span>
 <span class=\\"token tag\\">
 	<span class=\\"token punctuation\\">&lt;</span>
@@ -74,9 +74,9 @@ exports[`Autolinker In JS code 1`] = `
 	<a class=\\"token url-link\\" href=\\"http://lea.verou.me\\">http://lea.verou.me</a>
 	* Reach Lea at
 	<a class=\\"token email-link\\" href=\\"mailto:fake@email.com\\">fake@email.com</a>
-	(no, not really) * And this is [a Markdown link](
-	<a class=\\"token url-link\\" href=\\"http://prismjs.com\\">http://prismjs.com</a>
-	). Sweet, huh? */
+	(no, not really) * And this is
+	<a class=\\"token md-link\\" href=\\"http://prismjs.com\\">a Markdown link</a>
+	. Sweet, huh? */
 </span>
 <span class=\\"token keyword\\">var</span>
 foo
@@ -87,5 +87,10 @@ foo
 	// And a single line comment
 	<a class=\\"token url-link\\" href=\\"http://google.com\\">http://google.com</a>
 </span>
+"
+`;
+
+exports[`Autolinker Markdown link needs a URL target 1`] = `
+"<span class=\\"token comment\\">// Calls handlers[name](event)</span>
 "
 `;
