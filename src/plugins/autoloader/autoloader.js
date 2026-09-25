@@ -82,6 +82,7 @@ export class Autoloader {
 	 */
 	async loadLanguages (languages) {
 		const toLoad = toArray(languages)
+			.flatMap(languageIdParts)
 			.map(resolveAlias)
 			.filter(id => !isLoaded(this.Prism, id));
 
@@ -106,14 +107,14 @@ export class Autoloader {
 	/**
 	 * Loads all given languages concurrently.
 	 *
-	 * This function simply invokes {@link Autoloader#loadLanguages} and logs errors to `console.error`.
+	 * This function simply invokes {@link Autoloader#loadLanguages} and reports errors to `Prism.config.errorHandler`.
 	 *
 	 * @param {string | string[]} languages
 	 * @returns {void}
 	 */
 	preloadLanguages (languages) {
 		this.loadLanguages(languages).catch(reason => {
-			console.error(
+			this.Prism.config.errorHandler?.(
 				`Failed to preload languages (${toArray(languages).join(', ')}): ${String(reason)}`
 			);
 		});
@@ -181,7 +182,7 @@ const Self = {
 			autoloader.loadLanguages(deps).then(
 				() => Prism.highlightElement(element),
 				reason => {
-					console.error(
+					Prism.config.errorHandler?.(
 						`Failed to load languages (${deps.join(', ')}): ${String(reason)}`
 					);
 				}
