@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autoloader should load the language of code embedded in the element 1`] = `
+"<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">style</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token style\\">
+	<span class=\\"token language-css\\">
+		<span class=\\"token selector\\">a</span>
+		<span class=\\"token punctuation\\">{</span>
+		<span class=\\"token property\\">color</span>
+		<span class=\\"token punctuation\\">:</span>
+		red
+		<span class=\\"token punctuation\\">;</span>
+		<span class=\\"token punctuation\\">}</span>
+	</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<span class=\\"token tag\\">style</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+"
+`;
