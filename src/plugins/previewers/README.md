@@ -4,11 +4,11 @@ description: Previewers for angles, colors, gradients, easing and time.
 owner: Golmote
 require: css-extras
 resources:
-  - /languages/css-extras.js { type="module" }
-  - /languages/less.js { type="module" }
-  - /languages/sass.js { type="module" }
-  - /languages/scss.js { type="module" }
-  - /languages/stylus.js { type="module" }
+  - /languages/css-extras.js
+  - /languages/less.js
+  - /languages/sass.js
+  - /languages/scss.js
+  - /languages/stylus.js
 ---
 
 <section class="language-markup">

@@ -3,9 +3,9 @@ title: Command Line
 description: Display a command line with a prompt and, optionally, the output/response from the commands.
 owner: chriswells0
 resources:
-  - /languages/bash.js { type="module" }
-  - /languages/powershell.js { type="module" }
-  - /languages/sql.js { type="module" }
+  - /languages/bash.js
+  - /languages/powershell.js
+  - /languages/sql.js
 ---
 
 <section class="language-markup">

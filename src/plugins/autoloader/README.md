@@ -6,6 +6,7 @@ noCSS: true
 resources:
   - https://prismjs.com/assets/vendor/jszip.min.js
   - https://prismjs.com/assets/vendor/FileSaver.min.js
+  - /languages/css.js
   - ./demo.js
 ---
 

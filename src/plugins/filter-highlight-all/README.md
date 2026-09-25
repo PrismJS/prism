@@ -4,7 +4,7 @@ description: Filters the elements the `highlightAll` method actually highlights.
 owner: RunDevelopment
 noCSS: true
 resources:
-  - /languages/typescript.js { type="module" }
+  - /languages/typescript.js
   - ./demo.js { defer }
 ---
 
