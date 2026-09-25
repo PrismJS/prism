@@ -1,0 +1,36 @@
+/- commented-node
+node /- 1 2 3
+node /- key=value
+node {
+    /- commented-child
+    real-child
+}
+
+----------------------------------------------------
+
+[
+	["slashdash", "/-"],
+	" commented-node\r\n",
+
+	["tag", "node"],
+	["slashdash", "/-"],
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+
+	["tag", "node"],
+	["slashdash", "/-"],
+	["property", "key"],
+	["punctuation", "="],
+	"value\r\n",
+
+	["tag", "node"],
+	["punctuation", "{"],
+
+	["slashdash", "/-"],
+	" commented-child\r\n    ",
+
+	["tag", "real-child"],
+
+	["punctuation", "}"]
+]

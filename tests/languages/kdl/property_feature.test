@@ -1,0 +1,37 @@
+node key=1
+node key="value"
+node a=1 b=2
+node key = 1
+node "quoted key"="value"
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["number", "1"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["string", "\"value\""],
+
+	["tag", "node"],
+	["property", "a"],
+	["punctuation", "="],
+	["number", "1"],
+	["property", "b"],
+	["punctuation", "="],
+	["number", "2"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["number", "1"],
+
+	["tag", "node"],
+	["property", "\"quoted key\""],
+	["punctuation", "="],
+	["string", "\"value\""]
+]
