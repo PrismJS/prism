@@ -23,28 +23,28 @@ let bar = 42;
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">js</span>
-	<span class="token code-block">let a = 0;</span>
+	<span class="token code-block language-js">let a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">c++</span>
-	<span class="token code-block">int a = 0;</span>
+	<span class="token code-block language-cpp">int a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">c#</span>
-	<span class="token code-block">var a = 0;</span>
+	<span class="token code-block language-csharp">var a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">{r pressure, echo=FALSE}</span>
-	<span class="token code-block">plot(pressure)</span>
+	<span class="token code-block language-r">plot(pressure)</span>
 	<span class="token punctuation">```</span>
 </span>
 
@@ -52,6 +52,6 @@ let bar = 42;
 	<span class="token punctuation">```</span>
 	<span class="token code-language">js</span>
 	{ data-copy="Copy the JavaScript snippet!" }
-	<span class="token code-block">let bar = 42;</span>
+	<span class="token code-block language-js">let bar = 42;</span>
 	<span class="token punctuation">```</span>
 </span>

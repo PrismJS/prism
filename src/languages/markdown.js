@@ -1,3 +1,5 @@
+import { getTextContent } from '../core/classes/token.js';
+import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'markdown'>} */
@@ -98,10 +100,31 @@ export default {
 					// code block
 					// ```
 					pattern:
-						/^```\s*(?<codeLanguage>\{[^{}]*\}|[a-z+#:-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)(?<codeBlock>[\s\S]*?)(?:\n|\r\n?)```$/im,
+						/^```\s*(?:\{[^{}]*\}|[a-z+#:-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)[\s\S]*?(?:\n|\r\n?)```$/im,
 					inside: {
-						'code-block': groups => {
-							let lang = groups.codeLanguage;
+						'code-block': {
+							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)```$)/,
+							lookbehind: true,
+						},
+						'code-language': {
+							pattern: /^(```\s*)(?:\{[^{}]*\}|[a-z+#:-]+)/i,
+							lookbehind: true,
+						},
+						'punctuation': /```/,
+						/** @type {Grammar['$tokenize']} */
+						$tokenize (code, grammar, Prism) {
+							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+							const codeLang = tokens.find(
+								t => typeof t !== 'string' && t.type === 'code-language'
+							);
+							const codeBlock = tokens.find(
+								t => typeof t !== 'string' && t.type === 'code-block'
+							);
+							if (typeof codeLang !== 'object' || typeof codeBlock !== 'object') {
+								return tokens;
+							}
+
+							let lang = getTextContent(codeLang);
 							// Extract language code from curly braces like {r pressure, echo=FALSE} → r
 							if (lang.startsWith('{') && lang.endsWith('}')) {
 								const match = lang.slice(1, -1).match(/^\s*([a-z+#:-]+)/i);
@@ -112,9 +135,20 @@ export default {
 							}
 							// Apply transformations: c++ → cpp, c# → csharp, f# → fsharp, etc.
 							lang = lang.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
-							return lang.toLowerCase();
+							lang = lang.toLowerCase();
+
+							codeBlock.addAlias('language-' + lang);
+							const blockGrammar =
+								Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
+							if (blockGrammar) {
+								codeBlock.content = Prism.tokenize(
+									getTextContent(codeBlock),
+									blockGrammar
+								);
+							}
+
+							return tokens;
 						},
-						'punctuation': /```/,
 					},
 				},
 			],
@@ -295,46 +329,6 @@ export default {
 				'prolog': markdown,
 			},
 		};
-	},
-	effect (Prism) {
-		return Prism.hooks.add('wrap', env => {
-			if (
-				!Prism.plugins.autoloader ||
-				env.type !== 'code-block' ||
-				!env.classes.includes('needs-highlighting')
-			) {
-				return;
-			}
-
-			let codeLang = '';
-			for (let i = 0, l = env.classes.length; i < l; i++) {
-				const cls = env.classes[i];
-				const match = /language-(.+)/.exec(cls);
-				if (match) {
-					codeLang = match[1];
-					break;
-				}
-			}
-
-			if (codeLang && codeLang !== 'none' && typeof document !== 'undefined') {
-				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
-				env.attributes['id'] = id;
-
-				const autoloader = Prism.plugins.autoloader;
-				autoloader.loadLanguages(codeLang).then(
-					() => {
-						const element = document.getElementById(id);
-						if (element) {
-							element.innerHTML = Prism.highlight(
-								element.textContent || '',
-								codeLang
-							);
-						}
-					},
-					error => console.error(error)
-				);
-			}
-		});
 	},
 };
 
