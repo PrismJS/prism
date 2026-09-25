@@ -68,6 +68,12 @@ pre[class*="language-"] {
 	color: #e2777a;
 }
 
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.function-name {
 	color: #6196cc;
 }
@@ -121,4 +127,10 @@ pre[class*="language-"] {
 
 .token.inserted {
 	color: green;
+}
+
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
 }

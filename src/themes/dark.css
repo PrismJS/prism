@@ -95,6 +95,12 @@ pre[class*="language-"] {
 	color: hsl(75, 70%, 60%);
 }
 
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.operator,
 .token.entity,
 .token.url,
@@ -129,4 +135,10 @@ pre[class*="language-"] {
 
 .token.deleted {
 	color: red;
+}
+
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
 }
