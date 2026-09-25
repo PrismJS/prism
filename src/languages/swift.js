@@ -136,8 +136,9 @@ export default {
 		},
 		'number': /\b(?:[\d_]+(?:\.[\de_]+)?|0x[a-f0-9_]+(?:\.[a-f0-9p_]+)?|0b[01_]+|0o[0-7_]+)\b/i,
 
-		// A class name must start with an upper-case letter and be either 1 letter long or contain a lower-case letter.
-		'class-name': /\b[A-Z](?:[A-Z_\d]*[a-z]\w*)?\b/,
+		// A class name starts with an optional underscore prefix, then an upper-case letter.
+		// It must be either 1 letter long or contain a lower-case letter.
+		'class-name': /\b_*[A-Z](?:[A-Z_\d]*[a-z]\w*)?\b/,
 		'function': /\b[a-z_]\w*(?=\s*\()/i,
 		'constant': /\b(?:[A-Z_]{2,}|k[A-Z][A-Za-z_]+)\b/,
 
