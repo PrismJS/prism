@@ -231,6 +231,20 @@ describe('Registry: compound ids (outer:inner)', () => {
 		assert.strictEqual(nested?.id, 'meta:tpl:other');
 		assert.strictEqual(nested?.inner?.id, 'tpl:other');
 	});
+
+	it('should leave a `$inner` language the grammar chose itself alone', () => {
+		const { languageRegistry } = createRegistry();
+		languageRegistry.add({
+			id: 'fixed',
+			inner: null,
+			grammar: { 'line': { pattern: /^!.*(?:\n|$)/m }, $inner: { language: 'other', select: 'line' } },
+		});
+
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('fixed:host')?.resolvedGrammar);
+
+		// the instance's inner language (`host`) fills a gap, it does not overrule a stated language
+		assert.strictEqual(/** @type {InnerSpec} */ (grammar.$inner).language, 'other');
+	});
 });
 
 describe('Registry: $inner selectors', () => {
@@ -256,6 +270,39 @@ describe('Registry: $inner selectors', () => {
 			['line', [['prefix', '!'], ['keyword', 'host']]],
 			['line', [['prefix', '!'], ['keyword', 'host']]],
 		]);
+	});
+
+	it('should take the inner language from the selection', () => {
+		const { languageRegistry } = new Prism();
+		languageRegistry.add(host);
+		// no `select`: the default `:text` selection with an explicit language
+		languageRegistry.add({ id: 'meta', grammar: { 'tag': /\{\{[^}]*\}\}/, $inner: { language: 'host' } } });
+
+		const prism = languageRegistry.prism;
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+
+		assert.deepStrictEqual(simplify(prism.tokenize('host {{x}}', grammar)), [
+			['keyword', 'host'],
+			['tag', '{{x}}'],
+		]);
+	});
+
+	it('should reject a selection that names no container', () => {
+		// a typo is silent (no container of that name is found in the code), but naming nothing at
+		// all can only be a mistake, and would leave the inner language unused without a word
+		// with and without an inner language: the grammar is malformed either way
+		for (const inner of [host, null]) {
+			for (const select of ['', ' , ', []]) {
+				// a registry per case: `add` ignores an id it already has
+				const { languageRegistry } = new Prism();
+				languageRegistry.add(host);
+				languageRegistry.add({ id: 'meta', inner, grammar: { 'tag': /\{\{[^}]*\}\}/, $inner: { select } } });
+				const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+
+				assert.throws(() => languageRegistry.prism.tokenize('host', grammar), Error, /\$inner/,
+					JSON.stringify({ inner: inner?.id ?? null, select }));
+			}
+		}
 	});
 
 	it('should combine token containers with the unmatched text', () => {

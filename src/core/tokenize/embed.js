@@ -35,14 +35,16 @@ export function embed (text, grammar, prism) {
 
 	const outer = prism.tokenize(text, tokens);
 	const { language, select } = normalizeInner($inner);
+	const selectors = select.map(parseSelector);
+
 	const inner = /** @type {Grammar | undefined} */ (resolve.call(prism, language));
 	if (!inner) {
 		return outer;
 	}
 
 	// Collect the text of every selector before anything is put back, so all see the pristine tokens
-	const documents = select.map(selector => {
-		const runs = collectRuns(outer, parseSelector(selector));
+	const documents = selectors.map(selector => {
+		const runs = collectRuns(outer, selector);
 		const offsets = runs.slice(0, -1).map(run => run.text.length);
 		offsets.forEach((length, i) => (offsets[i] = length + (offsets[i - 1] ?? 0)));
 		const code = runs.map(run => run.text).join('');
@@ -66,14 +68,25 @@ export function embed (text, grammar, prism) {
 
 /**
  * Whether the given `$inner` value is the object form (`{ language, select }`) rather than a
- * grammar reference. Grammars never have strings (or arrays of them) as values, so `select` decides.
+ * grammar reference. A grammar maps token names to patterns, so an object is the object form
+ * when it has keys, all of them `language` or `select`, and `select` holds selectors.
+ * (A grammar whose *only* token is named `language` is therefore unreachable inline; reference
+ * it by id or from a function instead.)
  *
  * @param {unknown} value
  * @returns {value is InnerSpec}
  */
 export function isInnerSpec (value) {
-	const select = /** @type {InnerSpec | null} */ (value)?.select;
-	return typeof select === 'string' || (Array.isArray(select) && select.every(s => typeof s === 'string'));
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+
+	const { select } = /** @type {InnerSpec} */ (value);
+	const keys = Object.keys(value);
+
+	return keys.length > 0
+		&& keys.every(key => key === 'language' || key === 'select')
+		&& (select === undefined || [select].flat().every(s => typeof s === 'string'));
 }
 
 /**
@@ -82,7 +95,12 @@ export function isInnerSpec (value) {
  */
 function normalizeInner (value) {
 	if (isInnerSpec(value)) {
-		return { language: value.language, select: [value.select ?? TEXT].flat() };
+		const select = [value.select ?? TEXT].flat();
+		if (select.length === 0) {
+			throw new Error('The $inner selection is empty.');
+		}
+
+		return { language: value.language, select };
 	}
 	return { language: /** @type {GrammarRef} */ (value), select: [TEXT] };
 }
@@ -93,7 +111,13 @@ function normalizeInner (value) {
  */
 function parseSelector (selector) {
 	const names = new Set(selector.split(',').map(s => s.trim()).filter(Boolean));
-	return { text: names.delete(TEXT), names };
+	const text = names.delete(TEXT);
+
+	if (!text && names.size === 0) {
+		throw new Error(`The $inner selector ${JSON.stringify(selector)} names no container.`);
+	}
+
+	return { text, names };
 }
 
 /**
