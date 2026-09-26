@@ -15,7 +15,7 @@ export default {
 	id: 'diff',
 	// `diff:css` highlights a diff of CSS. There is no default inner language.
 	inner: null,
-	grammar ({ inner }) {
+	grammar () {
 		/** @type {import('../types.d.ts').Grammar} */
 		const diff = {
 			'coord': [
@@ -53,13 +53,13 @@ export default {
 						greedy: true,
 						alias: mainName,
 					},
-					// What is left after taking out the prefixes is code in the inner language.
-					// Unlike template tags, prefixes don't stand for anything, so they leave no placeholder.
-					$inner: inner,
-					$placeholder: false,
 				},
 			};
 		});
+
+		// A diff contains two versions of the code: the lines before the change and the lines
+		// after it. Each is highlighted as one whole with the inner language (without prefixes).
+		diff.$inner = { select: ['unchanged, deleted, diff', 'unchanged, inserted, diff'] };
 
 		return diff;
 	},

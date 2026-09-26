@@ -4,4 +4,4 @@
 
 export { getLanguage, setLanguage, isActive } from './shared/dom-util.js';
 export { extend, insertBefore } from './util/language-util.js';
-export { templating } from './shared/languages/templating.js';
+export { splitTokenStream, insertTokens } from './util/token-stream.js';

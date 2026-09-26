@@ -1,4 +1,5 @@
 import { extend } from '../../shared.js';
+import { isInnerSpec } from '../tokenize/embed.js';
 import { grammarPatch } from '../../util/grammar-patch.js';
 import { deepClone, defineLazyProperty } from '../../util/objects.js';
 import List from './list.js';
@@ -163,7 +164,6 @@ export default class Language extends EventTarget {
 		let { grammar } = def;
 		const base = this.base;
 		const inner = this.inner;
-		let innerUsed = false;
 
 		if (typeof grammar === 'function') {
 			const options = {
@@ -173,11 +173,6 @@ export default class Language extends EventTarget {
 					},
 				}),
 				languages: this.languages,
-
-				get inner () {
-					innerUsed = true;
-					return inner?.resolvedGrammar;
-				},
 
 				/**
 				 * @param {string} id
@@ -212,10 +207,18 @@ export default class Language extends EventTarget {
 			grammar = deepClone(grammar);
 		}
 
-		if (inner && !innerUsed && (/** @type {Grammar} */ (grammar)).$inner === undefined) {
-			// Unless the grammar places the inner language itself, everything that is not a token
-			// of this grammar is the inner language.
-			grammar = { ...grammar, $inner: () => inner.resolvedGrammar };
+		if (inner) {
+			// The inner language of this instance goes wherever the grammar's `$inner` says;
+			// by default, everything that is not a token of this grammar is the inner language.
+			const language = () => inner.resolvedGrammar;
+			const spec = (/** @type {Grammar} */ (grammar)).$inner;
+
+			if (spec === undefined) {
+				grammar = { ...grammar, $inner: language };
+			}
+			else if (isInnerSpec(spec) && spec.language === undefined) {
+				grammar = { ...grammar, $inner: { ...spec, language } };
+			}
 		}
 
 		// This will replace the getter with a writable property

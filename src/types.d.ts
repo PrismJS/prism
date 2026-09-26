@@ -54,11 +54,6 @@ export interface GrammarOptions {
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
 	readonly whenDefined: (id: string) => Promise<ComponentProto>;
-	/**
-	 * The resolved grammar of the inner language of a meta-language (see `LanguageProtoBase.inner`),
-	 * or `undefined` if there is none.
-	 */
-	readonly inner?: Grammar;
 }
 
 export interface ComponentProtoBase<Id extends string = string> {
@@ -84,9 +79,9 @@ interface LanguageProtoBase<Id extends string = string> extends ComponentProtoBa
 	 * A definition is the default inner language (e.g. `markup` for templating languages);
 	 * `null` means there is no default (e.g. `diff`). Use `:none` to explicitly opt out of a default.
 	 *
-	 * Everything that is not a token of this grammar is highlighted as the inner language, via `$inner`
-	 * at the top level. A `grammar` function can instead read the inner grammar from its `inner` option
-	 * and place `$inner` itself (e.g. `diff` puts it inside its line tokens).
+	 * By default, everything that is not a token of this grammar is highlighted as the inner language.
+	 * The grammar can select other parts instead with `$inner: { select }` (e.g. `diff` selects the
+	 * lines of its blocks, without their prefixes).
 	 */
 	inner?: LanguageProto | null;
 }
@@ -234,22 +229,45 @@ export type GrammarSpecial = {
 	 */
 	$rest?: Grammar | string | null;
 	/**
-	 * The language of everything that is not matched by this grammar.
+	 * An inner language for parts of the tokenized code.
 	 *
-	 * The code is tokenized with this grammar, the resulting tokens are removed, what is left is
-	 * tokenized as one whole with the `$inner` grammar and the tokens are put back afterwards.
-	 * This is how templating languages embed their host language and how `diff:css` highlights
-	 * the code inside a diff.
+	 * After tokenizing with this grammar, the selected parts of the result are concatenated,
+	 * tokenized as one whole with the inner language, and the resulting tokens are put back where
+	 * the parts were. By default the unmatched text is selected: this is how templating languages
+	 * embed their host language. `{ select }` selects other containers, e.g. the lines of a diff.
+	 *
+	 * A grammar reference alone is shorthand for `{ language }`. An inline grammar is told apart
+	 * from the object form by its keys, so one whose only token is named `language` has to be
+	 * referenced by id or from a function instead.
 	 */
-	$inner?: Grammar | string | (() => Grammar) | null;
-	/**
-	 * Whether the tokens of this grammar leave an identifier-like placeholder in the code that is
-	 * tokenized with `$inner` (default), so that the inner grammar still sees a value where they
-	 * were. Set to `false` for tokens that don't stand for anything (e.g. the prefixes of a diff).
-	 */
-	$placeholder?: boolean;
+	$inner?: GrammarRef | InnerSpec;
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 };
+
+/**
+ * A reference to a grammar: a language id, a grammar object, or a function returning one.
+ */
+export type GrammarRef = Grammar | string | (() => Grammar) | null | undefined;
+
+export interface InnerSpec {
+	/**
+	 * The inner language. Defaults to the inner language of the meta-language instance
+	 * (see `LanguageProtoBase.inner`).
+	 */
+	language?: GrammarRef;
+	/**
+	 * One selector per document. A selector is a comma-separated list of containers: token names
+	 * (matching a token's type or alias) and `:text` for the unmatched text. The strings directly
+	 * inside the selected containers are concatenated and highlighted as one whole. With several
+	 * selectors, this happens once per selector, later ones winning where they overlap.
+	 *
+	 * A selector that names no container at all is an error. A name that no token has is not:
+	 * it simply selects nothing, since a document need not contain every kind of container.
+	 *
+	 * @default ':text'
+	 */
+	select?: string | string[];
+}
 
 /**
  * Tokens within $insert

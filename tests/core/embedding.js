@@ -82,6 +82,33 @@ describe('Compound language ids (outer:inner)', () => {
 		util.assert.highlight({ language: 'diff:django:css', code: djangoCssDiff });
 	});
 
+	it('should highlight the before and after versions of a diff as wholes', ({ Prism }) => {
+		const code = ' /*\n-  old\n+  new\n  */';
+		const html = Prism.highlight(code, 'diff:javascript');
+
+		// both the deleted and the inserted line belong to the comment that the unchanged lines open and close
+		assert.include(html, '<span class="token prefix deleted">-</span><span class="token comment">  old');
+		assert.include(html, '<span class="token prefix inserted">+</span><span class="token comment">  new');
+	});
+
+	it('should keep the two versions of a diff apart', ({ Prism }) => {
+		// one selector over both versions would pair the deleted `/*` with the inserted `*/`
+		const html = Prism.highlight(' a\n-/*\n b\n+*/\n c', 'diff:javascript');
+
+		// an unchanged line is in both versions, and the last selector's reading wins:
+		// here the inserted one, where it is code
+		assert.include(html, '<span class="token prefix unchanged"> </span>b');
+		assert.notInclude(html, '<span class="token prefix unchanged"> </span><span class="token comment">b');
+	});
+
+	it('should highlight the blocks of a normal diff', ({ Prism }) => {
+		// `<` and `>` blocks are `deleted-arrow`/`inserted-arrow`; the selectors name them by alias
+		const html = Prism.highlight('1c1\n< const a = 1;\n---\n> const a = 2;', 'diff:javascript');
+
+		assert.include(html, '<span class="token prefix deleted">&lt;</span> <span class="token keyword">const</span>');
+		assert.include(html, '<span class="token prefix inserted">></span> <span class="token keyword">const</span>');
+	});
+
 	it('should support custom composition (php)', ({ util }) => {
 		util.assert.highlight({ language: 'php:none', code: '<?php echo 1; ?> <b>text</b>' });
 	});
