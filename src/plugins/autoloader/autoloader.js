@@ -1,5 +1,5 @@
 import prism from '../../global.js';
-import { getParentPre } from '../../shared/dom-util.js';
+import { getLanguage, getParentPre } from '../../shared/dom-util.js';
 import { resolveAlias } from '../../shared/meta/alias-data.js';
 import { toArray } from '../../util/iterables.js';
 import { languageIdParts } from '../../util/language-id.js';
@@ -160,6 +160,9 @@ const Self = {
 			return languageIdParts(name).filter(part => part && !ignoredLanguages.has(part));
 		}
 
+		/** Languages that failed to load, so they are not retried */
+		const failed = new Set();
+
 		return Prism.hooks.add('complete', ({ element, language, code }) => {
 			// No code means a plugin like File Highlight fills the element and highlights it later
 			if (!code || !language || ignoredLanguages.has(language)) {
@@ -171,7 +174,12 @@ const Self = {
 				deps.push(...mapDependency(name));
 			}
 
-			deps = deps.filter(name => !isLoaded(Prism, name));
+			// Code embedded in the element, like a Markdown fence: `<span class="token code-block language-csharp">`
+			for (const token of element.querySelectorAll('.token[class*="language-"]')) {
+				deps.push(...mapDependency(getLanguage(token)));
+			}
+
+			deps = [...new Set(deps)].filter(name => !isLoaded(Prism, name) && !failed.has(name));
 			if (deps.length === 0) {
 				// all dependencies are already loaded
 				return;
@@ -179,14 +187,19 @@ const Self = {
 
 			/** @type {Autoloader} */
 			const autoloader = Prism.pluginRegistry.peek(Self)?.plugin;
-			autoloader.loadLanguages(deps).then(
-				() => Prism.highlightElement(element),
-				reason => {
+			// Each language on its own, so one that fails, like an unknown fence, doesn't block the others
+			const loading = deps.map(name =>
+				autoloader.loadLanguages(name).catch(reason => {
+					failed.add(name);
 					Prism.config.errorHandler?.(
-						`Failed to load languages (${deps.join(', ')}): ${String(reason)}`
+						`Failed to load language ${name}: ${String(reason)}`
 					);
+				}));
+			Promise.all(loading).then(() => {
+				if (deps.some(name => isLoaded(Prism, name))) {
+					Prism.highlightElement(element);
 				}
-			);
+			});
 		});
 	},
 };
