@@ -90,7 +90,16 @@ export function highlightElement (element, options = {}) {
 		}).then(insertHighlightedCode, prism.config.errorHandler);
 	}
 	else {
-		insertHighlightedCode(prism.highlight(env.code, env.language, { grammar: env.grammar }));
+		// A broken grammar must not stop `highlightAll()` from highlighting the other snippets
+		let highlightedCode;
+		try {
+			highlightedCode = prism.highlight(env.code, env.language, { grammar: env.grammar });
+		}
+		catch (error) {
+			prism.config.errorHandler?.(error);
+			return;
+		}
+		insertHighlightedCode(highlightedCode);
 	}
 }
 
