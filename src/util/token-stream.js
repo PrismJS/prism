@@ -5,9 +5,10 @@ import { getTextContent, Token } from '../core/classes/token.js';
  *
  * A token that straddles an offset is split into two tokens with the same type and alias,
  * recursively, so that every returned segment is a well-formed token stream. The input is not
- * modified. This is the primitive for merging one tokenized structure with another over the
- * same text: highlight the text as one whole, then split the result where the structure has
- * its boundaries.
+ * modified, but the tokens that do not straddle an offset are shared with it rather than copied,
+ * so mutating a segment — with `insertTokens`, say — writes through into the input. This is the
+ * primitive for merging one tokenized structure with another over the same text: highlight the
+ * text as one whole, then split the result where the structure has its boundaries.
  *
  * @param {TokenStream} stream
  * @param {number[]} offsets
@@ -71,7 +72,34 @@ function splitItem (item, offset) {
 			? [item.content.slice(0, offset), item.content.slice(offset)]
 			: splitTokenStream(item.content, [offset]);
 
-	return [new Token(item.type, a, item.alias), new Token(item.type, b, item.alias)];
+	// Each half gets its own alias array: `addAlias` on one must not reach the other or the original
+	const alias = () => (Array.isArray(item.alias) ? [...item.alias] : item.alias);
+
+	return [new Token(item.type, a, alias()), new Token(item.type, b, alias())];
+}
+
+/**
+ * Replaces `count` items of `array` from `start` with `items`, in place.
+ *
+ * `array.splice(start, count, ...items)` passes every item as an argument, which overflows the
+ * stack on a large document, so the items are pushed one by one instead.
+ *
+ * @template T
+ * @param {T[]} array
+ * @param {number} start
+ * @param {number} count
+ * @param {readonly T[]} items
+ */
+export function replaceRange (array, start, count, items) {
+	const tail = array.slice(start + count);
+	array.length = start;
+
+	for (const item of items) {
+		array.push(item);
+	}
+	for (const item of tail) {
+		array.push(item);
+	}
 }
 
 /**
@@ -101,6 +129,13 @@ export function tokenMatches (token, names) {
  * @param {[offset: number, token: Token][]} insertions
  */
 export function insertTokens (stream, insertions) {
+	// Out of order, the walk moves backwards and slices text away without a word
+	insertions.forEach(([offset], i) => {
+		if (offset < 0 || (i > 0 && offset < insertions[i - 1][0])) {
+			throw new Error(`insertTokens: offsets must be ascending and non-negative, got ${offset} at ${i}.`);
+		}
+	});
+
 	let pos = 0;
 	let j = 0;
 
@@ -140,7 +175,7 @@ export function insertTokens (stream, insertions) {
 				parts.push(content.slice(last - pos));
 
 				if (typeof item === 'string') {
-					stream.splice(i, 1, ...parts);
+					replaceRange(stream, i, 1, parts);
 					i += parts.length - 1;
 				}
 				else {

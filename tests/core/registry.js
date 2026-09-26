@@ -305,6 +305,57 @@ describe('Registry: $inner selectors', () => {
 		}
 	});
 
+	it('should put a large document back without overflowing the stack', () => {
+		const { languageRegistry } = new Prism();
+		// one token per character, so both the inner stream and the tokens that follow it are
+		// longer than the argument limit of `splice`
+		languageRegistry.add({ id: 'dense', grammar: { 'ch': /[a-z]/ } });
+		languageRegistry.add({
+			id: 'meta',
+			grammar: { 'up': /[A-Z]/, $inner: { language: 'dense' } },
+		});
+
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+		const code = 'a'.repeat(150_000) + 'B'.repeat(150_000);
+		const tokens = languageRegistry.prism.tokenize(code, grammar);
+
+		assert.lengthOf(tokens, 300_000);
+	});
+
+	it('should not feed a dissolved `ignore` token to the inner language twice', () => {
+		const { languageRegistry } = new Prism();
+		// a delimited token, so a duplicated copy of the text supplies a closing delimiter
+		languageRegistry.add({ id: 'quoted', grammar: { 'string': /"[^"]*"/ } });
+		// `ignore` tokens count as unmatched text; naming one as a container too must not duplicate it
+		languageRegistry.add({
+			id: 'meta',
+			grammar: { 'ignore-x': /\[[^\]]*\]/, $inner: { language: 'quoted', select: ':text, ignore-x' } },
+		});
+
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+
+		// dissolved means the inner language sees exactly the text, once. A second copy of `["a]`
+		// used to be appended, and its `"` closed the quote that should stay unterminated
+		assert.deepStrictEqual(simplify(languageRegistry.prism.tokenize('["a] b', grammar)), ['["a] b']);
+	});
+
+	it('should select an `ignore` container a selector names without `:text`', () => {
+		const { languageRegistry } = new Prism();
+		languageRegistry.add({ id: 'quoted', grammar: { 'string': /"[^"]*"/ } });
+		// an `ignore` token is dissolved only into the `:text` run; named on its own it is a container
+		languageRegistry.add({
+			id: 'meta',
+			grammar: { 'ignore-x': /\[[^\]]*\]/, $inner: { language: 'quoted', select: 'ignore-x' } },
+		});
+
+		const grammar = /** @type {Grammar} */ (languageRegistry.getLanguage('meta')?.resolvedGrammar);
+
+		assert.deepStrictEqual(simplify(languageRegistry.prism.tokenize('["a" b] c', grammar)), [
+			['ignore-x', ['[', ['string', '"a"'], ' b]']],
+			' c',
+		]);
+	});
+
 	it('should combine token containers with the unmatched text', () => {
 		const { languageRegistry } = new Prism();
 		languageRegistry.add(host);
