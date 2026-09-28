@@ -94,6 +94,11 @@ code[class*="language-"] {
 	color: yellowgreen;
 }
 
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.3);
+	display: inline;
+}
+
 .token.atrule,
 .token.attr-value,
 .token.keyword {
@@ -119,4 +124,9 @@ code[class*="language-"] {
 
 .token.deleted {
 	color: red;
+}
+
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.3);
+	display: inline;
 }

@@ -109,6 +109,12 @@ pre[class*="language-"] {
 	color: #268bd2; /* blue */
 }
 
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.selector,
 .token.attr-name,
 .token.string,
@@ -117,6 +123,12 @@ pre[class*="language-"] {
 .token.url,
 .token.inserted {
 	color: #2aa198; /* cyan */
+}
+
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
 }
 
 .token.entity {
