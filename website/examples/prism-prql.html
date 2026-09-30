@@ -1,0 +1,45 @@
+<h2>Comments</h2>
+<pre><code># This is a comment</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"foo \"bar\" baz"
+'foo \'bar\' baz'
+""" "Multi-line" strings
+are supported."""
+''' 'Multi-line' strings
+are supported.'''</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>7
+2147483647
+3
+79228162514264337593543950336
+3.14
+1e100
+3.14e-10
+0e0
+</code></pre>
+
+<h2>Full example</h2>
+<pre><code>from invoices
+filter invoice_date >= @1970-01-16
+derive {
+  transaction_fees = 0.8,
+  income = total - transaction_fees
+}
+filter income > 1
+group customer_id (
+  aggregate {
+    average total,
+    sum_income = sum income,
+    ct = count total,
+  }
+)
+sort {-sum_income}
+take 10
+join c=customers (==customer_id)
+derive name = f"{c.last_name}, {c.first_name}"
+select {
+  c.customer_id, name, sum_income
+}
+derive db_version = s"version()"</code></pre>
