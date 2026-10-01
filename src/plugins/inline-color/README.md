@@ -3,7 +3,7 @@ title: Inline Color
 description: Adds a small inline preview for colors in style sheets.
 owner: RunDevelopment
 require: css-extras
-resources: /languages/css-extras.js { type="module" }
+resources: /languages/css-extras.js
 ---
 
 <section>
