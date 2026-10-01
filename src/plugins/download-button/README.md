@@ -6,7 +6,7 @@ require: toolbar
 noCSS: true
 resources:
   - /plugins/toolbar.css
-  - /plugins/toolbar.js { type="module" }
+  - /plugins/toolbar.js
 ---
 
 <section class="language-markup">

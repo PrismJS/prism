@@ -6,9 +6,9 @@ require: toolbar
 noCSS: true
 body_classes: language-text
 resources:
-  - /plugins/autoloader.js { type="module" }
+  - /plugins/autoloader.js
   - /plugins/toolbar.css
-  - /plugins/toolbar.js { type="module" }
+  - /plugins/toolbar.js
 ---
 
 <section>
