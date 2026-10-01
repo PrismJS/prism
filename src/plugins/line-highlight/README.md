@@ -4,7 +4,7 @@ description: Highlights specific lines and/or line ranges.
 owner: LeaVerou
 resources:
   - /plugins/line-numbers.css
-  - /plugins/line-numbers.js { type="module" }
+  - /plugins/line-numbers.js
 ---
 
 <section class="language-markup">
