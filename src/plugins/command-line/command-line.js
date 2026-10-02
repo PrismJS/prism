@@ -35,7 +35,10 @@ const Self = {
 					existingPrompt.remove();
 				}
 
-				const codeLines = env.code.split('\n');
+				// Browsers draw no line after a final line break, which every Markdown code fence ends with,
+				// so it gets no prompt
+				const finalLineBreak = env.code.endsWith('\n') ? '\n' : '';
+				const codeLines = env.code.replace(/\n$/, '').split('\n');
 
 				commandLine.numberOfLines = codeLines.length;
 				const outputLines = (commandLine.outputLines = []);
@@ -104,7 +107,7 @@ const Self = {
 					}
 				}
 
-				env.code = codeLines.join('\n');
+				env.code = codeLines.join('\n') + finalLineBreak;
 			},
 			'before-insert': env => {
 				const commandLine = (env.commandLine ??= {});

@@ -6,6 +6,7 @@ noCSS: true
 resources:
   - https://prismjs.com/assets/vendor/jszip.min.js
   - https://prismjs.com/assets/vendor/FileSaver.min.js
+  - /languages/css.js
   - ./demo.js
 ---
 
@@ -96,7 +97,7 @@ The Less filter used in Pug:
 
 # Markdown
 
-Markdown will use the Autoloader to automatically load missing languages.
+The Autoloader also loads the languages of code embedded in the highlighted code, like the fenced code blocks of Markdown.
 
 ````markdown
 The C# code will be highlighted __after__ the rest of this document.

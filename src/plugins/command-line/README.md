@@ -3,9 +3,9 @@ title: Command Line
 description: Display a command line with a prompt and, optionally, the output/response from the commands.
 owner: chriswells0
 resources:
-  - /languages/bash.js { type="module" }
-  - /languages/powershell.js { type="module" }
-  - /languages/sql.js { type="module" }
+  - /languages/bash.js
+  - /languages/powershell.js
+  - /languages/sql.js
 ---
 
 <section class="language-markup">
@@ -164,8 +164,7 @@ d-r--        10/14/2015   5:06 PM            Videos
      data-continuation-str="\" >
 ```
 
-```bash { .command-line data-filter-output="(out)" data-continuation-str="\" }
-export MY_VAR=123
+<pre class="command-line" data-filter-output="(out)" data-continuation-str="\"><code class="language-bash">export MY_VAR=123
 echo "hello"
 (out)hello
 echo one \
@@ -174,8 +173,7 @@ three
 (out)one two three
 (out)
 echo "goodbye"
-(out)goodbye
-```
+(out)goodbye</code></pre>
 
 ## Line continuation with Output (PowerShell)
 
