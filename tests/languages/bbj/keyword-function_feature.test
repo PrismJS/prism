@@ -1,0 +1,41 @@
+x = len(a$) + key(1) + ind(1)
+read (1,key=k$,len=10)a$
+
+----------------------------------------------------
+
+[
+	"x ",
+	["operator", "="],
+	["function", "len"],
+	["punctuation", "("],
+	["variable", "a$"],
+	["punctuation", ")"],
+	["operator", "+"],
+	["function", "key"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+	["operator", "+"],
+	["function", "ind"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["keyword", "read"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["keyword", "key"],
+	["operator", "="],
+	["variable", "k$"],
+	["punctuation", ","],
+	["keyword", "len"],
+	["operator", "="],
+	["number", "10"],
+	["punctuation", ")"],
+	["variable", "a$"]
+]
+
+----------------------------------------------------
+
+Checks that keywords which are also functions are functions when called.

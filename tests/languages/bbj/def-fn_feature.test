@@ -1,0 +1,35 @@
+DEF FNADD$(X$)
+    RETURN X$ + "!"
+FNEND
+DEF FNTWICE(X)=X*2
+
+----------------------------------------------------
+
+[
+	["keyword", "DEF"],
+	["function", "FNADD$"],
+	["punctuation", "("],
+	["variable", "X$"],
+	["punctuation", ")"],
+
+	["keyword", "RETURN"],
+	["variable", "X$"],
+	["operator", "+"],
+	["string", "\"!\""],
+
+	["keyword", "FNEND"],
+
+	["keyword", "DEF"],
+	["function", "FNTWICE"],
+	["punctuation", "("],
+	"X",
+	["punctuation", ")"],
+	["operator", "="],
+	"X",
+	["operator", "*"],
+	["number", "2"]
+]
+
+----------------------------------------------------
+
+Checks for user-defined functions.

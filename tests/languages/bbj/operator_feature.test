@@ -1,4 +1,4 @@
-or xor not and > >= < <= + =*
+or xor not and > >= < <= <> + - * / ^ =
 
 ----------------------------------------------------
 
@@ -11,9 +11,13 @@ or xor not and > >= < <= + =*
 	["operator", ">="],
 	["operator", "<"],
 	["operator", "<="],
+	["operator", "<>"],
 	["operator", "+"],
-	["operator", "="],
-	["operator", "*"]
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "^"],
+	["operator", "="]
 ]
 
 ----------------------------------------------------
