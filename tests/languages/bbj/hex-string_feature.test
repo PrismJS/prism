@@ -1,0 +1,31 @@
+x$ = $0A0D$
+x$ = $$
+print a$, $1b$
+x$ = a$+b$
+
+----------------------------------------------------
+
+[
+	["variable", "x$"],
+	["operator", "="],
+	["hex-string", "$0A0D$"],
+
+	["variable", "x$"],
+	["operator", "="],
+	["hex-string", "$$"],
+
+	["keyword", "print"],
+	["variable", "a$"],
+	["punctuation", ","],
+	["hex-string", "$1b$"],
+
+	["variable", "x$"],
+	["operator", "="],
+	["variable", "a$"],
+	["operator", "+"],
+	["variable", "b$"]
+]
+
+----------------------------------------------------
+
+Checks for hex strings.

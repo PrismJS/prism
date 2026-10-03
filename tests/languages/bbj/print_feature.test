@@ -1,0 +1,50 @@
+? "Hello"
+? #name$, x
+if x then ? "yes"
+PRINT @(2,17),"F7-Next"
+PRINT (1)@(0,0),'CE'
+
+----------------------------------------------------
+
+[
+	["keyword", "?"],
+	["string", "\"Hello\""],
+
+	["keyword", "?"],
+	["property", "#name$"],
+	["punctuation", ","],
+	" x\r\n",
+
+	["keyword", "if"],
+	" x ",
+	["keyword", "then"],
+	["keyword", "?"],
+	["string", "\"yes\""],
+
+	["keyword", "PRINT"],
+	["function", "@"],
+	["punctuation", "("],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "17"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["string", "\"F7-Next\""],
+
+	["keyword", "PRINT"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+	["function", "@"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["mnemonic", "'CE'"]
+]
+
+----------------------------------------------------
+
+Checks for ? as short for PRINT, and @(…) cursor positions.
