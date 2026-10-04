@@ -1,0 +1,22 @@
+# Global defaults
+	# indented comment
+
+Host example.com
+	# per-host comment
+
+----------------------------------------------------
+
+[
+	["comment", "# Global defaults"],
+	["comment", "# indented comment"],
+
+	["section", [
+		["keyword", "Host"],
+		["string", "example.com"]
+	]],
+	["comment", "# per-host comment"]
+]
+
+----------------------------------------------------
+
+Comments start with #.
