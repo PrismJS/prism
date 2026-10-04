@@ -132,7 +132,7 @@
 			"owner": "Golmote"
 		},
 		"aql": {
-			"title": "AQL",
+			"title": "AQL (ArangoDB)",
 			"owner": "RunDevelopment"
 		},
 		"arduino": {
