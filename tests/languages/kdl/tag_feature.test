@@ -1,0 +1,27 @@
+node
+my-node
+node1
+parent {
+    child1
+    child2
+}
+parent { child1; child2 }
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["tag", "my-node"],
+	["tag", "node1"],
+	["tag", "parent"],
+	["punctuation", "{"],
+	["tag", "child1"],
+	["tag", "child2"],
+	["punctuation", "}"],
+	["tag", "parent"],
+	["punctuation", "{"],
+	["tag", "child1"],
+	["punctuation", ";"],
+	["tag", "child2"],
+	["punctuation", "}"]
+]

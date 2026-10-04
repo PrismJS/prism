@@ -1,0 +1,38 @@
+node #true
+node #false
+node true
+node false
+node a=#true b=#false
+node a=true b=false
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["keyword", "#true"],
+
+	["tag", "node"],
+	["keyword", "#false"],
+
+	["tag", "node"],
+	["keyword", "true"],
+
+	["tag", "node"],
+	["keyword", "false"],
+
+	["tag", "node"],
+	["property", "a"],
+	["punctuation", "="],
+	["keyword", "#true"],
+	["property", "b"],
+	["punctuation", "="],
+	["keyword", "#false"],
+
+	["tag", "node"],
+	["property", "a"],
+	["punctuation", "="],
+	["keyword", "true"],
+	["property", "b"],
+	["punctuation", "="],
+	["keyword", "false"]
+]

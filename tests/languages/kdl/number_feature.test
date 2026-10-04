@@ -1,0 +1,35 @@
+node 0
+node 42
+node -42
+node +42
+node 3.14
+node -3.14
+node 1.5e10
+node 2.5E-3
+node 1_000_000
+node 0xDEAD_BEEF
+node 0o755
+node 0b1010_0101
+node #inf
+node #-inf
+node #nan
+
+----------------------------------------------------
+
+[
+	["tag", "node"], ["number", "0"],
+	["tag", "node"], ["number", "42"],
+	["tag", "node"], ["number", "-42"],
+	["tag", "node"], ["number", "+42"],
+	["tag", "node"], ["number", "3.14"],
+	["tag", "node"], ["number", "-3.14"],
+	["tag", "node"], ["number", "1.5e10"],
+	["tag", "node"], ["number", "2.5E-3"],
+	["tag", "node"], ["number", "1_000_000"],
+	["tag", "node"], ["number", "0xDEAD_BEEF"],
+	["tag", "node"], ["number", "0o755"],
+	["tag", "node"], ["number", "0b1010_0101"],
+	["tag", "node"], ["keyword", "#inf"],
+	["tag", "node"], ["keyword", "#-inf"],
+	["tag", "node"], ["keyword", "#nan"]
+]
