@@ -269,7 +269,10 @@
 		},
 		"cpp": {
 			"title": "C++",
-			"owner": "zeitgeist87"
+			"owner": "zeitgeist87",
+			"aliasTitles": {
+				"c++": "C++"
+			}
 		},
 		"cfscript": {
 			"title": "CFScript",
