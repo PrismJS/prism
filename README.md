@@ -10,6 +10,32 @@ You can learn more on [prismjs.com](https://prismjs.com/).
 [Why another syntax highlighter?](https://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/#more-1841)
 
 [More themes for Prism!](https://github.com/PrismJS/prism-themes)
+## Installation & Usage
+
+You can install and use Prism either through npm or via a CDN.
+
+### Using npm
+
+Install Prism with npm:
+
+    npm install prismjs
+
+Then import it into your project:
+
+    import Prism from 'prismjs';
+
+For more details, see:
+
+- https://prismjs.com/#basic-usage-bundlers  
+- https://prismjs.com/#basic-usage-node  
+
+### Using a CDN
+
+For quick browser usage:
+
+1. Go to https://prismjs.com/download.html  
+2. Select your theme, languages, and plugins.  
+3. Copy the generated `<link>` and `<script>` tags into your HTML file.
 
 ## Contribute to Prism!
 
