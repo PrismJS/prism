@@ -1,91 +1,157 @@
-{}
-{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" }
-Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" } doler sit amen {¯\_(ツ)_/¯}.
-@ExpressionInsteadOfNamelessParameterValue {x > 0}
-@ExpressionBlendedWithNamelessParameterValue sdf{x > 0}df
-@ExpressionsInsideNamedParameterValueWrappedInQuotes text:"{a} < {b}"
-@ExpressionsBlendedWithNamedParameterValue param:32r2f,df{x > 0},d.{Abs(0) + 12.24 > 0}ff
-@ExpressionsInsteadOfNamelessParameterAndQuotedParameter {remark} if:remark=="Saying \\"Stop { "the" } car\\" was a mistake."
+{score}
+Text {score + 1} text {Random(1, 10)} text
+Kohaku: You have {score} points{Random("!", "?")}
+@print {score}
+@print Score: {score}
+@print sdf{x > 0}df
+@print "Score: {score}"
+@set score = score + 1
+@set score = Random(1, 10) ; roll
+@if score > 10
+@unless done
+@or score == 5
+@while i < 10
+@char Kohaku if:score > 10 pos:50
+@choice "Go" if:met && score > 0 goto:#Next
+[if score > 10]
+<@if done>
+\{not an expression\}
+{unclosed
 
 ----------------------------------------------------
 
 [
-	["generic-text", [
-		["expression", "{}"]
+	["expression", "{score}"],
+
+	"\r\nText ",
+	["expression", "{score + 1}"],
+	" text ",
+	["expression", "{Random(1, 10)}"],
+	" text\r\n",
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
 	]],
-	["generic-text", [
-		["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"]
-	]],
-	["generic-text", [
-		"Expressions inside a generic text line: Loreim ipsu,",
-		["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"],
-		" doler sit amen ",
-		["expression", "{¯\\_(ツ)_/¯}"],
-		"."
-	]],
+	" You have ",
+	["expression", "{score}"],
+	" points",
+	["expression", "{Random(\"!\", \"?\")}"],
+
 	["command", [
-		["command-name", "@ExpressionInsteadOfNamelessParameterValue"],
-		["expression", "{x > 0}"]
+		["command-name", "@print"],
+		["expression", "{score}"]
 	]],
+
 	["command", [
-		["command-name", "@ExpressionBlendedWithNamelessParameterValue"],
-		["command-params", [
-			["command-param-value", "sdf"]
+		["command-name", "@print"],
+		["parameter-name", [
+			"Score",
+			["punctuation", ":"]
 		]],
-		["expression", "{x > 0}"],
-		["command-params", [
-			["command-param-value", "df"]
+		["expression", "{score}"]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-value", [
+			"sdf",
+			["expression", "{x > 0}"],
+			"df"
 		]]
 	]],
+
 	["command", [
-		["command-name", "@ExpressionsInsideNamedParameterValueWrappedInQuotes"],
-		["command-params", [
-			["command-param-id", "text:"],
-			["command-param-value", "\""]
-		]],
-		["expression", "{a}"],
-		["command-params", [
-			["command-param-value", "<"]
-		]],
-		["expression", "{b}"],
-		["command-params", [
-			["command-param-value", "\""]
+		["command-name", "@print"],
+		["string", [
+			"\"Score: ",
+			["expression", "{score}"],
+			"\""
 		]]
 	]],
+
 	["command", [
-		["command-name", "@ExpressionsBlendedWithNamedParameterValue"],
-		["command-params", [
-			["command-param-id", "param:"],
-			["command-param-value", "32r2f,df"]
-		]],
-		["expression", "{x > 0}"],
-		["command-params", [
-			["command-param-value", ",d."]
-		]],
-		["expression", "{Abs(0) + 12.24 > 0}"],
-		["command-params", [
-			["command-param-value", "ff"]
-		]]
+		["command-name", "@set"],
+		["expression", "score = score + 1"]
 	]],
+
 	["command", [
-		["command-name", "@ExpressionsInsteadOfNamelessParameterAndQuotedParameter"],
-		["expression", "{remark}"],
-		["command-params", [
-			["command-param-id", "if:"],
-			["command-param-value", "remark=="],
-			["quoted-string", "\"Saying \\\\\""],
-			["command-param-value", "Stop"]
+		["command-name", "@set"],
+		["expression", "score = Random(1, 10)"],
+		["comment", "; roll"]
+	]],
+
+	["command", [
+		["command-name", "@if"],
+		["expression", "score > 10"]
+	]],
+
+	["command", [
+		["command-name", "@unless"],
+		["expression", "done"]
+	]],
+
+	["command", [
+		["command-name", "@or"],
+		["expression", "score == 5"]
+	]],
+
+	["command", [
+		["command-name", "@while"],
+		["expression", "i < 10"]
+	]],
+
+	["command", [
+		["command-name", "@char"],
+		["parameter-value", ["Kohaku"]],
+		["parameter-name", [
+			"if",
+			["punctuation", ":"]
 		]],
-		["expression", "{ \"the\" }"],
-		["command-params", [
-			["command-param-value", "car\\\\\""],
-			["command-param-value", "was"],
-			["command-param-value", "a"],
-			["command-param-value", "mistake.\""]
-		]]
-	]]
+		["expression", "score > 10"],
+		["parameter-name", [
+			"pos",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["50"]]
+	]],
+
+	["command", [
+		["command-name", "@choice"],
+		["string", ["\"Go\""]],
+		["parameter-name", [
+			"if",
+			["punctuation", ":"]
+		]],
+		["expression", "met && score > 0"],
+		["parameter-name", [
+			"goto",
+			["punctuation", ":"]
+		]],
+		["label", "#Next"]
+	]],
+
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "if"],
+			["expression", "score > 10"]
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["punctuation", "<"],
+		["command", [
+			["command-name", "@if"],
+			["expression", "done"]
+		]],
+		["punctuation", ">"]
+	]],
+
+	"\r\n\\{not an expression\\}\r\n{unclosed"
 ]
 
 ----------------------------------------------------
 
-Expressions tests.
+Checks for expressions.

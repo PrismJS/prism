@@ -1,26 +1,12 @@
-import { getTextContent } from '../core/classes/token.js';
-import { withoutTokenize } from '../util/language-util.js';
+// Syntax reference: https://naninovel.com/guide/scenario-scripting
 
 /**
- * @param {string} input
- * @returns {boolean}
+ * @param {RegExp} pattern
+ * @param {Record<string, string>} parts
+ * @returns {string}
  */
-function isBracketsBalanced (input) {
-	const brackets = '[]{}';
-	const stack = [];
-	for (let i = 0; i < input.length; i++) {
-		const bracket = input[i];
-		const bracketsIndex = brackets.indexOf(bracket);
-		if (bracketsIndex !== -1) {
-			if (bracketsIndex % 2 === 0) {
-				stack.push(bracketsIndex + 1);
-			}
-			else if (stack.pop() !== bracketsIndex) {
-				return false;
-			}
-		}
-	}
-	return stack.length === 0;
+function fill (pattern, parts) {
+	return pattern.source.replace(/<(\w+)>/g, (_, name) => parts[name]);
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'naniscript'>} */
@@ -28,129 +14,153 @@ export default {
 	id: 'naniscript',
 	alias: 'nani',
 	grammar () {
-		const expressionDef = /\{[^\r\n\[\]{}]*\}/;
+		const expression = /\{(?:\\.|[^\\}\r\n])*\}/.source;
+		const string = fill(/"(?:\\.|<expression>|[^"\\{\r\n])*"/, { expression });
+		// A value runs across whitespace until the next named parameter, boolean flag or comment.
+		const atom = fill(/(?:<string>|<expression>|\\.|[^\s"{\\;])/, { string, expression });
+		const value = fill(/<atom>+(?:\s+(?![A-Za-z_]\w*[:!]|![A-Za-z_])<atom>+)*/, { atom });
 
-		const params = {
-			'quoted-string': {
-				pattern: /"(?:[^"\\]|\\.)*"/,
-				alias: 'operator',
+		const literal = {
+			'expression': {
+				pattern: RegExp(fill(/(?<!\\)<expression>/, { expression })),
+				alias: 'variable',
 			},
-			'command-param-id': {
-				pattern: /(\s)\w+:/,
-				lookbehind: true,
-				alias: 'property',
+			'text-id': {
+				pattern: /(?<!\\)\|#[^\s|]*\|/,
+				alias: 'comment',
 			},
-			'command-param-value': [
-				{
-					pattern: expressionDef,
-					alias: 'selector',
-				},
-				{
-					pattern: /([\t ])\S+/,
-					lookbehind: true,
-					greedy: true,
-					alias: 'operator',
-				},
-				{
-					pattern: /\S(?:.*\S)?/,
-					alias: 'operator',
-				},
+		};
+
+		const stringToken = {
+			pattern: RegExp(string),
+			greedy: true,
+			inside: literal,
+		};
+
+		/**
+		 * @param {string} commands
+		 * @param {string} parameters
+		 * @param {string} alias
+		 * @returns {import('../types.d.ts').GrammarToken[]}
+		 */
+		const parameterOf = (commands, parameters, alias) => [
+			{
+				pattern: RegExp(
+					fill(/(?<=^(?:@\s*)?(?:<commands>)\s+)<value>/, { commands, value })
+				),
+				greedy: true,
+				alias,
+			},
+			{
+				pattern: RegExp(fill(/(?<=\s(?:<parameters>):)<value>/, { parameters, value })),
+				greedy: true,
+				alias,
+			},
+		];
+
+		const command = {
+			'command-name': {
+				pattern: /^(?:@\s*)?[^\s;]+/,
+				alias: 'function',
+			},
+			'expression': [
+				...parameterOf('if|or|set|unless|while', 'if|or|set|unless', 'variable'),
+				literal.expression,
 			],
+			'label': parameterOf('gosub|goto', 'gosub|goto', 'symbol'),
+			'string': stringToken,
+			'comment': {
+				pattern: /(?<!\\);.*/,
+				greedy: true,
+			},
+			'parameter-name': {
+				pattern: /(?<=\s)(?:[A-Za-z_]\w*[:!]|![A-Za-z_]\w*)/,
+				alias: 'attr-name',
+				inside: {
+					'punctuation': /:/,
+					'boolean': /!/,
+				},
+			},
+			'parameter-value': {
+				pattern: RegExp(value),
+				greedy: true,
+				alias: 'attr-value',
+				inside: {
+					'string': stringToken,
+					...literal,
+				},
+			},
+		};
+
+		// Keeps the wrapper of inline commands and command tags out of reach of greedy patterns.
+		const body = {
+			pattern: /\S.*/,
+			inside: command,
 		};
 
 		return {
-			// ; ...
-			'comment': {
-				pattern: /^([\t ]*);.*/m,
-				lookbehind: true,
-			},
-			// > ...
-			// Define is a control line starting with '>' followed by a word, a space and a text.
-			'define': {
-				pattern: /^>.+/m,
-				alias: 'tag',
-				inside: {
-					'value': {
-						pattern: /(^>\w+[\t ]+)(?!\s)[^{}\r\n]+/,
-						lookbehind: true,
-						alias: 'operator',
-					},
-					'key': {
-						pattern: /(^>)\w+/,
-						lookbehind: true,
-					},
-				},
-			},
-			// # ...
+			'comment': /(?<=^[ \t]*);.*/m,
 			'label': {
-				pattern: /^([\t ]*)#[\t ]*\w+[\t ]*$/m,
-				lookbehind: true,
-				alias: 'regex',
+				pattern: /(?<=^[ \t]*)#.*/m,
+				alias: 'symbol',
+				inside: {
+					'comment': /(?<!\\);.*/,
+				},
 			},
 			'command': {
-				pattern: /^([\t ]*)@\w+(?=[\t ]|$).*/m,
-				lookbehind: true,
-				alias: 'function',
+				pattern: /(?<=^[ \t]*)@.*/m,
+				inside: command,
+			},
+			'author': {
+				pattern: /(?<=^[ \t]*)[^\s"\\{]+:(?=[ \t])/m,
+				alias: 'attr-value',
 				inside: {
-					'command-name': /^@\w+/,
-					'expression': {
-						pattern: expressionDef,
-						greedy: true,
-						alias: 'selector',
-					},
-					'command-params': {
-						pattern: /\s*\S[\s\S]*/,
-						inside: params,
-					},
+					'punctuation': /[.:]/,
 				},
 			},
-			// Generic is any line that doesn't start with operators: ;>#@
-			'generic-text': {
-				pattern: /(^[ \t]*)[^#@>;\s].*/m,
-				lookbehind: true,
-				alias: 'punctuation',
+			'inline-command': {
+				pattern: RegExp(
+					fill(/(?<!\\)\[(?:<string>|<expression>|\\.|[^\]"{\\\r\n])*\]/, {
+						string,
+						expression,
+					})
+				),
 				inside: {
-					// \{ ... \} ... \[ ... \] ... \"
-					'escaped-char': /\\[{}\[\]"]/,
-					'expression': {
-						pattern: expressionDef,
-						greedy: true,
-						alias: 'selector',
+					'punctuation': /^\[|\]$/,
+					'command': body,
+				},
+			},
+			...literal,
+			'tag': [
+				{
+					pattern: /(?<!\\)<@[^>\r\n]*>/,
+					inside: {
+						'punctuation': /^<|>$/,
+						'command': body,
 					},
-					'inline-command': {
-						pattern: /\[[\t ]*\w[^\r\n\[\]]*\]/,
-						greedy: true,
-						alias: 'function',
-						inside: {
-							'command-params': {
-								pattern: /(^\[[\t ]*\w+\b)[\s\S]+(?=\]$)/,
-								lookbehind: true,
-								inside: params,
-							},
-							'command-param-name': {
-								pattern: /^(\[[\t ]*)\w+/,
-								lookbehind: true,
-								alias: 'name',
-							},
-							'start-stop-char': /[\[\]]/,
+				},
+				{
+					pattern: /(?<!\\)<:[^>\r\n]*>/,
+					inside: {
+						'punctuation': /^<:|>$/,
+						'expression': {
+							pattern: /.+/,
+							alias: 'variable',
 						},
 					},
 				},
-			},
-
-			$tokenize (code, grammar, Prism) {
-				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
-				tokens.forEach(token => {
-					if (typeof token !== 'string' && token.type === 'generic-text') {
-						const content = getTextContent(token);
-						if (!isBracketsBalanced(content)) {
-							token.type = 'bad-line';
-							token.content = content;
-						}
-					}
-				});
-				return tokens;
-			},
+				{
+					pattern: /(?<!\\)<\/[^/>\r\n]*\/[^>\r\n]*>/,
+					inside: {
+						'punctuation': /^<|>$|\//,
+						'option': {
+							pattern: /[^/]+/,
+							alias: 'string',
+						},
+					},
+				},
+				/(?<!\\)<[^>\r\n]*>/,
+			],
 		};
 	},
 };
