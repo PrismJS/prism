@@ -7,6 +7,15 @@ on open print show
 silent silentlog
 smooth textonly
 true user
+amd64-unicode bottom bzip2
+components current custom
+directory ifdiff ifnewer
+instfiles left license
+lzma nevershow right
+top try un.components
+un.custom un.directory un.instfiles
+un.license uninstConfirm x86-ansi
+x86-unicode zlib
 
 ARCHIVE
 FILE_ATTRIBUTE_ARCHIVE
@@ -51,6 +60,17 @@ NORMAL OFFLINE
 READONLY SHCTX
 SHELL_CONTEXT
 SYSTEM TEMPORARY
+FILE_ATTRIBUTE_HIDDEN HIDDEN
+HKCC IDD_DIR
+IDD_INST IDD_INSTFILES
+IDD_LICENSE IDD_SELCOM
+IDD_UNINST IDD_VERIFY
+MB_YESNOCANCEL SW_HIDE
+SW_SHOW SW_SHOWDEFAULT
+SW_SHOWMAXIMIZED SW_SHOWMINIMIZED
+SW_SHOWNORMAL Win7
+Win8 Win10
+WinVista
 
 ----------------------------------------------------
 
@@ -64,6 +84,19 @@ SYSTEM TEMPORARY
 	["property", "silent"], ["property", "silentlog"],
 	["property", "smooth"], ["property", "textonly"],
 	["property", "true"], ["property", "user"],
+	["property", "amd64-unicode"], ["property", "bottom"],
+	["property", "bzip2"], ["property", "components"],
+	["property", "current"], ["property", "custom"],
+	["property", "directory"], ["property", "ifdiff"],
+	["property", "ifnewer"], ["property", "instfiles"],
+	["property", "left"], ["property", "license"],
+	["property", "lzma"], ["property", "nevershow"],
+	["property", "right"], ["property", "top"],
+	["property", "try"], ["property", "un.components"],
+	["property", "un.custom"], ["property", "un.directory"],
+	["property", "un.instfiles"], ["property", "un.license"],
+	["property", "uninstConfirm"], ["property", "x86-ansi"],
+	["property", "x86-unicode"], ["property", "zlib"],
 	
 	["property", "ARCHIVE"],
 	["property", "FILE_ATTRIBUTE_ARCHIVE"],
@@ -107,7 +140,18 @@ SYSTEM TEMPORARY
 	["property", "NORMAL"], ["property", "OFFLINE"],
 	["property", "READONLY"], ["property", "SHCTX"],
 	["property", "SHELL_CONTEXT"],
-	["property", "SYSTEM"], ["property", "TEMPORARY"]
+	["property", "SYSTEM"], ["property", "TEMPORARY"],
+	["property", "FILE_ATTRIBUTE_HIDDEN"], ["property", "HIDDEN"],
+	["property", "HKCC"], ["property", "IDD_DIR"],
+	["property", "IDD_INST"], ["property", "IDD_INSTFILES"],
+	["property", "IDD_LICENSE"], ["property", "IDD_SELCOM"],
+	["property", "IDD_UNINST"], ["property", "IDD_VERIFY"],
+	["property", "MB_YESNOCANCEL"], ["property", "SW_HIDE"],
+	["property", "SW_SHOW"], ["property", "SW_SHOWDEFAULT"],
+	["property", "SW_SHOWMAXIMIZED"], ["property", "SW_SHOWMINIMIZED"],
+	["property", "SW_SHOWNORMAL"], ["property", "Win7"],
+	["property", "Win8"], ["property", "Win10"],
+	["property", "WinVista"]
 ]
 
 ----------------------------------------------------
