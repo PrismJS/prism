@@ -29,7 +29,7 @@ resources:
 
 The `data-language`{ .language-markup } attribute can be used to display a specific label whether it has been defined as a language or not.
 
-<pre data-language="SVG v1.1" data-src="https://prismjs.com/assets/logo.svg"></pre>
+<pre data-language="SVG v1.1" data-src="/assets/logo.svg"></pre>
 
 ## Plain text
 
