@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 
 function getGlobal () {
 	return typeof window === 'object' ? window : {};
@@ -357,7 +357,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @callback Adapter

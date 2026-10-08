@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { getParentPre, isActive } from '../../shared/dom-util.js';
 import { isNonNull, noop } from '../../shared/util.js';
 import { combineCallbacks } from '../../util/combine-callbacks.js';
@@ -277,7 +277,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @typedef {object} Info

@@ -1,5 +1,5 @@
-import prism from '../../global.js';
 import cssExtras from '../../languages/css-extras.js';
+import registry from '../../registry.js';
 import { insertBefore } from '../../util/insert.js';
 import { forEach } from '../../util/iterables.js';
 
@@ -790,4 +790,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
