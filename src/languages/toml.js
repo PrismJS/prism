@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'toml'>} */
-export default {
+const Self = {
 	id: 'toml',
 	grammar () {
 		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
@@ -62,3 +64,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

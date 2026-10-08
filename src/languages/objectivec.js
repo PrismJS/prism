@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import c from './c.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'objectivec'>} */
-export default {
+const Self = {
 	id: 'objectivec',
 	base: c,
 	alias: 'objc',
@@ -18,3 +19,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

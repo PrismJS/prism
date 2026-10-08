@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'jq'>} */
-export default {
+const Self = {
 	id: 'jq',
 	grammar () {
 		const interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
@@ -70,3 +72,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

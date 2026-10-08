@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * @param {string} lang
  * @param {string} [pattern]
@@ -20,7 +22,7 @@ function createLanguageString (lang, pattern) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'arturo'>} */
-export default {
+const Self = {
 	id: 'arturo',
 	alias: 'art',
 	grammar: {
@@ -107,3 +109,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

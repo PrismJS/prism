@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'cypher'>} */
-export default {
+const Self = {
 	id: 'cypher',
 	grammar: {
 		// https://neo4j.com/docs/cypher-manual/current/syntax/comments/
@@ -40,3 +42,7 @@ export default {
 		'punctuation': /[()[\]{},;.]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

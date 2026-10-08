@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'coq'>} */
-export default {
+const Self = {
 	id: 'coq',
 	grammar () {
 		// https://github.com/coq/coq
@@ -60,3 +62,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

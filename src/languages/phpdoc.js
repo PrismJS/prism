@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javadoclike from './javadoclike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'phpdoc'>} */
-export default {
+const Self = {
 	id: 'phpdoc',
 	base: javadoclike,
 	grammar () {
@@ -34,3 +35,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

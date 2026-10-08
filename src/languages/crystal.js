@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import ruby from './ruby.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'crystal'>} */
-export default {
+const Self = {
 	id: 'crystal',
 	base: ruby,
 	grammar ({ base }) {
@@ -66,3 +67,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

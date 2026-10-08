@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { insertBefore } from '../util/language-util.js';
 import c from './c.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'cpp'>} */
-export default {
+const Self = {
 	id: 'cpp',
 	require: c,
 	optional: 'opencl-extensions',
@@ -131,3 +132,7 @@ export default {
 		return cpp;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

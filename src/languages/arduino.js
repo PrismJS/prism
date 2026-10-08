@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import cpp from './cpp.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'arduino'>} */
-export default {
+const Self = {
 	id: 'arduino',
 	base: cpp,
 	alias: 'ino',
@@ -16,3 +17,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

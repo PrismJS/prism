@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'warpscript'>} */
-export default {
+const Self = {
 	id: 'warpscript',
 	grammar: {
 		'comment': /#.*|\/\/.*|\/\*[\s\S]*?\*\//,
@@ -24,3 +26,7 @@ export default {
 		'operator': /==|&&?|\|\|?|\*\*?|>>>?|<<|[<>!~]=?|[-/%^]|\+!?|\b(?:AND|NOT|OR)\b/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

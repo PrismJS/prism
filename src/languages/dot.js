@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'dot'>} */
-export default {
+const Self = {
 	id: 'dot',
 	alias: 'gv',
 	grammar () {
@@ -82,3 +84,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

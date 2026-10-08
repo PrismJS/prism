@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'moonscript'>} */
-export default {
+const Self = {
 	id: 'moonscript',
 	alias: 'moon',
 	grammar: {
@@ -59,3 +61,7 @@ export default {
 		'punctuation': /[.,()[\]{}\\]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

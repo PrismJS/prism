@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'renpy'>} */
-export default {
+const Self = {
 	id: 'renpy',
 	alias: 'rpy',
 	grammar: {
@@ -33,3 +35,7 @@ export default {
 		'punctuation': /[{}[\];(),.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

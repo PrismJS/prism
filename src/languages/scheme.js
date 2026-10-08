@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * Given a topologically sorted BNF grammar, this will return the RegExp source of last rule of the grammar.
  *
@@ -19,7 +21,7 @@ function SortedBNF (grammar) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'scheme'>} */
-export default {
+const Self = {
 	id: 'scheme',
 	grammar: {
 		// this supports "normal" single-line comments:
@@ -132,3 +134,7 @@ export default {
 		'punctuation': /[()\[\]']/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ada'>} */
-export default {
+const Self = {
 	id: 'ada',
 	grammar: {
 		'comment': /--.*/,
@@ -26,3 +28,7 @@ export default {
 		'variable': /\b[a-z](?:\w)*\b/i,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

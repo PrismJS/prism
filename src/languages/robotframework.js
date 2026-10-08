@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'robotframework'>} */
-export default {
+const Self = {
 	id: 'robotframework',
 	alias: 'robot',
 	grammar () {
@@ -108,6 +110,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken

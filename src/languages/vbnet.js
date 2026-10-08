@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import basic from './basic.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'vbnet'>} */
-export default {
+const Self = {
 	id: 'vbnet',
 	base: basic,
 	optional: 'xml-doc',
@@ -38,3 +39,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

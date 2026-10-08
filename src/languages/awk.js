@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'awk'>} */
-export default {
+const Self = {
 	id: 'awk',
 	alias: 'gawk',
 	grammar: {
@@ -34,3 +36,7 @@ export default {
 		'punctuation': /[()[\]{},;]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

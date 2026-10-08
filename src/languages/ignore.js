@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ignore'>} */
-export default {
+const Self = {
 	id: 'ignore',
 	alias: ['gitignore', 'hgignore', 'npmignore'],
 	grammar: {
@@ -19,3 +21,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

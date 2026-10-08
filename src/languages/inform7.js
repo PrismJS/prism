@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'inform7'>} */
-export default {
+const Self = {
 	id: 'inform7',
 	grammar () {
 		const inform7 = {
@@ -74,6 +76,10 @@ export default {
 		return inform7;
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar
