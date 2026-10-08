@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { getLanguage } from '../../shared/dom-util.js';
 
 export class FilterHighlightAll {
@@ -133,7 +133,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @callback Condition

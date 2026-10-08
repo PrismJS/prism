@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { setLanguage } from '../../shared/dom-util.js';
 
 /**
@@ -228,7 +228,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism

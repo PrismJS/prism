@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 
 /** @type {import('../../types.d.ts').PluginProto<'highlight-keywords'>} */
 const Self = {
@@ -15,4 +15,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
