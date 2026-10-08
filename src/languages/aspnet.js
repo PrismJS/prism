@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import csharp from './csharp.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'aspnet'>} */
-export default {
+const Self = {
 	id: 'aspnet',
 	base: markup,
 	require: csharp,
@@ -64,6 +65,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken

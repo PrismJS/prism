@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import { MARKUP_TAG } from '../shared/languages/patterns.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'xml'>} */
-export default {
+const Self = {
 	id: 'xml',
 	alias: ['ssml', 'atom', 'rss'],
 	grammar () {
@@ -95,3 +96,7 @@ export default {
 		});
 	},
 };
+
+export default Self;
+
+registry.add(Self);

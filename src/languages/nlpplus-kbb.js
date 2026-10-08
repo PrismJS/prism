@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * NLP++ knowledge bases (.kbb, https://visualtext.org/nlp/): an indented
  * hierarchy of concepts, each optionally followed by a colon and
@@ -5,7 +7,7 @@
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus-kbb'>}
  */
-export default {
+const Self = {
 	id: 'nlpplus-kbb',
 	alias: 'kbb',
 	grammar: {
@@ -45,3 +47,7 @@ export default {
 		'punctuation': /[[\],:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

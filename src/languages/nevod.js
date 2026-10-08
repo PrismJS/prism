@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nevod'>} */
-export default {
+const Self = {
 	id: 'nevod',
 	grammar: {
 		'comment': /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
@@ -130,3 +132,7 @@ export default {
 		'name': /[a-zA-Z0-9\-.]+/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

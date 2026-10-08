@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nand2tetris-hdl'>} */
-export default {
+const Self = {
 	id: 'nand2tetris-hdl',
 	grammar: {
 		'comment': /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
@@ -11,3 +13,7 @@ export default {
 		'punctuation': /[{}[\];(),:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

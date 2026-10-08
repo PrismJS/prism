@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'batch'>} */
-export default {
+const Self = {
 	id: 'batch',
 	grammar () {
 		const variable = /%%?[~:\w]+%?|!\S+!/;
@@ -102,3 +104,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

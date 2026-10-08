@@ -1,3 +1,4 @@
+import registry from '../registry.js';
 import xml from './xml.js';
 
 /**
@@ -91,7 +92,7 @@ function attributeEmbedded (attrName, lang) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'markup'>} */
-export default {
+const Self = {
 	id: 'markup',
 	base: xml,
 	alias: ['html', 'svg', 'mathml'],
@@ -118,6 +119,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'jsstacktrace'>} */
-export default {
+const Self = {
 	id: 'jsstacktrace',
 	grammar: {
 		'error-message': {
@@ -51,3 +53,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

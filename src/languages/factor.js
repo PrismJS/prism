@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import { regexEscape } from '../shared/util.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'factor'>} */
-export default {
+const Self = {
 	id: 'factor',
 	grammar () {
 		/**
@@ -949,3 +950,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

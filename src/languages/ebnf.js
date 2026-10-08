@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ebnf'>} */
-export default {
+const Self = {
 	id: 'ebnf',
 	grammar: {
 		'comment': /\(\*[\s\S]*?\*\)/,
@@ -24,3 +26,7 @@ export default {
 		'operator': /[-=|*/!]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

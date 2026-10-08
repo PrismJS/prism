@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'livescript'>} */
-export default {
+const Self = {
 	id: 'livescript',
 	grammar: {
 		'comment': [
@@ -121,3 +123,7 @@ export default {
 		'punctuation': /[(){}\[\]|.,:;`]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

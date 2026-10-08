@@ -1,7 +1,9 @@
+import registry from '../registry.js';
+
 // https://wren.io/
 
 /** @type {import('../types.d.ts').LanguageProto<'wren'>} */
-export default {
+const Self = {
 	id: 'wren',
 	grammar: {
 		// Multiline comments in Wren can have nested multiline comments
@@ -102,3 +104,7 @@ export default {
 		'punctuation': /[\[\](){}.,;]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

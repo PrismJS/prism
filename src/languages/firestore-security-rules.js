@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'firestore-security-rules'>} */
-export default {
+const Self = {
 	id: 'firestore-security-rules',
 	base: clike,
 	grammar () {
@@ -43,3 +44,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'typoscript'>} */
-export default {
+const Self = {
 	id: 'typoscript',
 	alias: 'tsconfig',
 	grammar () {
@@ -80,3 +82,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

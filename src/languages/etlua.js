@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import lua from './lua.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'etlua'>} */
-export default {
+const Self = {
 	id: 'etlua',
 	require: lua,
 	inner: markup,
@@ -22,3 +23,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'prql'>} */
-export default {
+const Self = {
 	id: 'prql',
 	grammar () {
 		const string = /("(?:"")*|'(?:'')*)(?:\\[\s\S]|[^\\])*?\1/.source;
@@ -89,3 +91,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

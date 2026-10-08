@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'autohotkey'>} */
-export default {
+const Self = {
 	id: 'autohotkey',
 	grammar () {
 		// NOTES - follows first-first highlight method, block is locked after highlight, different from SyntaxHl
@@ -54,3 +56,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

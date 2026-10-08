@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import haskell from './haskell.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'idris'>} */
-export default {
+const Self = {
 	id: 'idris',
 	base: haskell,
 	alias: 'idr',
@@ -44,3 +45,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'agda'>} */
-export default {
+const Self = {
 	id: 'agda',
 	grammar: {
 		'comment': /\{-[\s\S]*?(?:-\}|$)|--.*/,
@@ -24,3 +26,7 @@ export default {
 			/\b(?:Set|abstract|constructor|data|eta-equality|field|forall|hiding|import|in|inductive|infix|infixl|infixr|instance|let|macro|module|mutual|no-eta-equality|open|overlap|pattern|postulate|primitive|private|public|quote|quoteContext|quoteGoal|quoteTerm|record|renaming|rewrite|syntax|tactic|unquote|unquoteDecl|unquoteDef|using|variable|where|with)\b/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

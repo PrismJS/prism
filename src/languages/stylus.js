@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'stylus'>} */
-export default {
+const Self = {
 	id: 'stylus',
 	grammar () {
 		const unit = {
@@ -149,6 +151,10 @@ export default {
 		});
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

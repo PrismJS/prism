@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * NLP++ dictionaries (.dict, https://visualtext.org/nlp/): each line is a
  * headword, one or more words, followed by the attribute=value pairs the
@@ -5,7 +7,7 @@
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus-dict'>}
  */
-export default {
+const Self = {
 	id: 'nlpplus-dict',
 	grammar: {
 		'comment': [
@@ -42,3 +44,7 @@ export default {
 		'operator': /=/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

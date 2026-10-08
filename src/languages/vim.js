@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'vim'>} */
-export default {
+const Self = {
 	id: 'vim',
 	grammar: {
 		'string': /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\r\n]|'')*'/,
@@ -14,3 +16,7 @@ export default {
 		'punctuation': /[{}[\](),;:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

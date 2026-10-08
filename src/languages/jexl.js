@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'jexl'>} */
-export default {
+const Self = {
 	id: 'jexl',
 	grammar: {
 		'string': /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
@@ -18,3 +20,7 @@ export default {
 		'punctuation': /[{}[\](),.]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

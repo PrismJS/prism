@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'qml'>} */
-export default {
+const Self = {
 	id: 'qml',
 	require: javascript,
 	grammar () {
@@ -75,3 +76,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

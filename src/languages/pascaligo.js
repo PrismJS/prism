@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'pascaligo'>} */
-export default {
+const Self = {
 	id: 'pascaligo',
 	grammar () {
 		// Pascaligo is a layer 2 smart contract language for the tezos blockchain
@@ -68,3 +70,7 @@ export default {
 		return pascaligo;
 	},
 };
+
+export default Self;
+
+registry.add(Self);
