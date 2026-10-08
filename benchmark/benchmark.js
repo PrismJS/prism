@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Benchmark from 'benchmark';
 import fetch from 'cross-fetch';
-import { gitP } from 'simple-git';
+import { simpleGit } from 'simple-git';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { parseLanguageNames } from '../tests/helper/test-case.js';
@@ -469,7 +469,7 @@ async function getCandidates (config) {
 	const remoteBaseDir = path.join(__dirname, 'remotes');
 	await fs.promises.mkdir(remoteBaseDir, { recursive: true });
 
-	const baseGit = gitP(remoteBaseDir);
+	const baseGit = simpleGit(remoteBaseDir);
 
 	for (const remote of config.remotes) {
 		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo)[0];
@@ -481,10 +481,10 @@ async function getCandidates (config) {
 		if (!fs.existsSync(remoteDir)) {
 			console.log(`Cloning ${remote.repo}`);
 			await baseGit.clone(remote.repo, remoteName);
-			remoteGit = gitP(remoteDir);
+			remoteGit = simpleGit(remoteDir);
 		}
 		else {
-			remoteGit = gitP(remoteDir);
+			remoteGit = simpleGit(remoteDir);
 			await remoteGit.fetch('origin', branch); // get latest version of branch
 		}
 		await remoteGit.checkout(branch); // switch to branch
