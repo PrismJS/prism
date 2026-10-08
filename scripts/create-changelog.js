@@ -1,4 +1,4 @@
-import simpleGit from 'simple-git';
+import { simpleGit } from 'simple-git';
 import components from '../src/components.json' with { type: 'json' };
 import { runTask } from './tasks.js';
 
