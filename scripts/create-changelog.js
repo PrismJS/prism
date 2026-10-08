@@ -2,7 +2,7 @@ import { simpleGit } from 'simple-git';
 import components from '../src/components.json' with { type: 'json' };
 import { runTask } from './tasks.js';
 
-const git = simpleGit(__dirname);
+const git = simpleGit(import.meta.dirname);
 
 /**
  * Creates an array which iterates its items in the order given by `compareFn`.
