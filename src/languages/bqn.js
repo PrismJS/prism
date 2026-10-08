@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'bqn'>} */
-export default {
+const Self = {
 	id: 'bqn',
 	grammar: {
 		'shebang': {
@@ -66,3 +68,7 @@ export default {
 		'punctuation': /[←⇐↩(){}⟨⟩[\]‿·⋄,.;:?]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

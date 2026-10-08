@@ -1,4 +1,5 @@
 import { getTextContent, Token } from '../core/classes/token.js';
+import registry from '../registry.js';
 import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
@@ -107,7 +108,7 @@ function walkTokens (tokens) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'xquery'>} */
-export default {
+const Self = {
 	id: 'xquery',
 	base: markup,
 	grammar ({ base }) {
@@ -195,6 +196,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').TokenStream} TokenStream

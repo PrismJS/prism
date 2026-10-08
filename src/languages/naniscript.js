@@ -1,4 +1,5 @@
 import { getTextContent } from '../core/classes/token.js';
+import registry from '../registry.js';
 import { withoutTokenize } from '../util/language-util.js';
 
 /**
@@ -24,7 +25,7 @@ function isBracketsBalanced (input) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'naniscript'>} */
-export default {
+const Self = {
 	id: 'naniscript',
 	alias: 'nani',
 	grammar () {
@@ -154,3 +155,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

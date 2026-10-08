@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'lua'>} */
-export default {
+const Self = {
 	id: 'lua',
 	grammar: {
 		'comment': /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
@@ -25,3 +27,7 @@ export default {
 		'punctuation': /[\[\](){},;]|\.+|:+/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'squirrel'>} */
-export default {
+const Self = {
 	id: 'squirrel',
 	base: clike,
 	grammar ({ base }) {
@@ -54,3 +55,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

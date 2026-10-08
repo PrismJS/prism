@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'yaml'>} */
-export default {
+const Self = {
 	id: 'yaml',
 	alias: 'yml',
 	grammar () {
@@ -110,3 +112,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

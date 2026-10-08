@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'abnf'>} */
-export default {
+const Self = {
 	id: 'abnf',
 	grammar () {
 		const coreRules =
@@ -58,3 +60,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

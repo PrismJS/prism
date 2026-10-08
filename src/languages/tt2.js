@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'tt2'>} */
-export default {
+const Self = {
 	id: 'tt2',
 	require: clike,
 	inner: markup,
@@ -58,3 +59,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

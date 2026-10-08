@@ -1,3 +1,4 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /**
@@ -30,7 +31,7 @@ function nested (pattern, depthLog2) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'csharp'>} */
-export default {
+const Self = {
 	id: 'csharp',
 	base: clike,
 	optional: 'xml-doc',
@@ -452,3 +453,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'excel-formula'>} */
-export default {
+const Self = {
 	id: 'excel-formula',
 	alias: ['xlsx', 'xls'],
 	grammar: {
@@ -67,3 +69,7 @@ export default {
 		'punctuation': /[[\]();{}|]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

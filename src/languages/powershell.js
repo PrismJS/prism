@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'powershell'>} */
-export default {
+const Self = {
 	id: 'powershell',
 	grammar () {
 		const boolean = /\$(?:false|true)\b/i;
@@ -60,3 +62,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'yang'>} */
-export default {
+const Self = {
 	id: 'yang',
 	grammar: {
 		// https://tools.ietf.org/html/rfc6020#page-34
@@ -22,3 +24,7 @@ export default {
 		'punctuation': /[{};:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

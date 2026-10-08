@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'pure'>} */
-export default {
+const Self = {
 	id: 'pure',
 	grammar () {
 		// https://agraef.github.io/pure-docs/pure.html#lexical-matters
@@ -98,3 +100,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

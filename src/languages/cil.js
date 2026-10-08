@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'cil'>} */
-export default {
+const Self = {
 	id: 'cil',
 	grammar: {
 		'comment': /\/\/.*/,
@@ -30,3 +32,7 @@ export default {
 		'punctuation': /[{}[\];(),:=]|IL_[0-9A-Za-z]+/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

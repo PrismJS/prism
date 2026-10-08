@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'icon'>} */
-export default {
+const Self = {
 	id: 'icon',
 	grammar: {
 		'comment': /#.*/,
@@ -25,3 +27,7 @@ export default {
 		'punctuation': /[\[\](){},;]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'php-extras'>} */
-export default {
+const Self = {
 	id: 'php-extras',
 	grammar: {
 		'this': {
@@ -17,3 +19,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

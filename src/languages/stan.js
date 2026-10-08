@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'stan'>} */
-export default {
+const Self = {
 	id: 'stan',
 	grammar () {
 		// https://mc-stan.org/docs/2_28/reference-manual/bnf-grammars.html
@@ -66,3 +68,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

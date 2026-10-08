@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'gettext'>} */
-export default {
+const Self = {
 	id: 'gettext',
 	alias: 'po',
 	grammar: {
@@ -44,3 +46,7 @@ export default {
 		'punctuation': /[\[\]]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

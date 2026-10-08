@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'xeora'>} */
-export default {
+const Self = {
 	id: 'xeora',
 	base: markup,
 	alias: 'xeoracube',
@@ -118,3 +119,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

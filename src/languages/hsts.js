@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'hsts'>} */
-export default {
+const Self = {
 	id: 'hsts',
 	grammar () {
 		/**
@@ -18,3 +20,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

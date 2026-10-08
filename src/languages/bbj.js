@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'bbj'>} */
-export default {
+const Self = {
 	id: 'bbj',
 	grammar: {
 		'comment': {
@@ -20,3 +22,7 @@ export default {
 		'punctuation': /[.,;:()]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

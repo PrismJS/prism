@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'elixir'>} */
-export default {
+const Self = {
 	id: 'elixir',
 	grammar () {
 		const stringInside = {
@@ -98,3 +100,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

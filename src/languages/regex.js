@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'regex'>} */
-export default {
+const Self = {
 	id: 'regex',
 	grammar () {
 		const specialEscape = {
@@ -106,3 +108,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
