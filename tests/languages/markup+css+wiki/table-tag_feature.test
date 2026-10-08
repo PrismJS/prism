@@ -37,6 +37,10 @@ baz
 | foo || style="font-weight:bold;"| bar || baz
 |}
 
+{|
+|colspan=2|cell
+|}
+
 ----------------------------------------------------
 
 [
@@ -150,6 +154,18 @@ baz
 		["table-bar", "|"]
 	]], " bar ",
 	["punctuation", "||"], " baz\r\n",
+	["punctuation", "|}"],
+
+	["punctuation", "{|"],
+	["punctuation", "|"],
+	["table-tag", [
+		["attr-name", ["colspan"]],
+		["attr-value", [
+			["punctuation", "="],
+			"2"
+		]],
+		["table-bar", "|"]
+	]], "cell\r\n",
 	["punctuation", "|}"]
 ]
 

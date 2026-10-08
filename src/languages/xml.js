@@ -59,7 +59,7 @@ export default {
 						},
 					},
 					'attr-value': {
-						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?![^\s>]))|=/,
 						inside: {
 							'punctuation': [
 								{

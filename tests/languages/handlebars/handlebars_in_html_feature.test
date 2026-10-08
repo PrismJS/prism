@@ -1,7 +1,7 @@
 {{aUserModel.name}}
 <div>{{listOfUsers.firstObject.name}}</div>
 {{if name "I have a name" "I have no name"}}
-<span data-has-name={{if name true}}></span>
+<span data-has-name={{if name true}} class={{c}}></span>
 <div {{on "click" this.hello}} />
 
 ----------------------------------------------------
@@ -44,15 +44,31 @@
 		["delimiter", "}}"]
 	]],
 
-	"\r\n<span data-has-name=",
-	["handlebars", [
-		["delimiter", "{{"],
-		["variable", "if"],
-		["variable", "name"],
-		["boolean", "true"],
-		["delimiter", "}}"]
+	["tag", [
+		["punctuation", "<"],
+		["tag", ["span"]],
+		["attr-name", ["data-has-name"]],
+		["attr-value", [
+			["punctuation", "="]
+		]],
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "if"],
+			["variable", "name"],
+			["boolean", "true"],
+			["delimiter", "}}"]
+		]],
+		["attr-name", ["class"]],
+		["attr-value", [
+			["punctuation", "="]
+		]],
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "c"],
+			["delimiter", "}}"]
+		]],
+		["punctuation", ">"]
 	]],
-	">",
 	["tag", [
 		["punctuation", "</"],
 		["tag", ["span"]],
