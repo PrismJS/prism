@@ -36,7 +36,7 @@ export default class ComponentRegistry extends EventTarget {
 	/**
 	 * Path to the components, used for loading.
 	 *
-	 * @type {string}
+	 * @type {string | undefined}
 	 */
 	path;
 
@@ -54,18 +54,20 @@ export default class ComponentRegistry extends EventTarget {
 
 	/**
 	 *
-	 * @param {ComponentRegistryOptions} options
+	 * @param {ComponentRegistryOptions} [options]
 	 */
-	constructor (options) {
+	constructor (options = {}) {
 		super();
 
 		this.options = options;
 		let { path, preload, prism } = options;
 
-		this.prism = prism;
+		// Only the shared registry has no instance, and it never reads `prism`
+		this.prism = /** @type {Prism} */ (prism);
 
-		path = path.endsWith('/') ? path : path + '/';
-		this.path = path;
+		if (path) {
+			this.path = path.endsWith('/') ? path : path + '/';
+		}
 
 		if (preload) {
 			void this.loadAll(preload);
@@ -226,9 +228,9 @@ export default class ComponentRegistry extends EventTarget {
 
 /**
  * @typedef {object} ComponentRegistryOptions
- * @property {string} path Path to the components
+ * @property {string} [path] Path to the components
  * @property {string[]} [preload] List of component ids to preload
- * @property {Prism} prism A reference to the Prism instance
+ * @property {Prism} [prism] A reference to the Prism instance
  */
 
 /**

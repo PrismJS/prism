@@ -405,6 +405,7 @@ async function buildTypes () {
 async function buildJS () {
 	const input = {
 		'index': path.join(SRC_DIR, 'index.js'),
+		'core': path.join(SRC_DIR, 'core.js'),
 		'global': path.join(SRC_DIR, 'global.js'),
 		'shared': path.join(SRC_DIR, 'shared.js'),
 	};

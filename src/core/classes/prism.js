@@ -1,5 +1,4 @@
-import globalDefaults from '../../config.js';
-import { allSettled, documentReady, nextTick } from '../../util/async.js';
+import { allSettled, nextTick } from '../../util/async.js';
 import { highlightAll } from '../highlight-all.js';
 import { highlightElement } from '../highlight-element.js';
 import { highlight } from '../highlight.js';
@@ -31,7 +30,7 @@ export default class Prism {
 	/**
 	 * @type {PrismConfig}
 	 */
-	config = globalDefaults;
+	config;
 
 	/**
 	 * @type {Promise<unknown>[]}
@@ -47,7 +46,7 @@ export default class Prism {
 	 * @param {PrismConfig} [config={}]
 	 */
 	constructor (config = {}) {
-		this.config = Object.assign({}, globalDefaults, config);
+		this.config = { ...config };
 
 		this.config.errorHandler ??= /** @type {PrismConfig['errorHandler']} */ (
 			this.config.silent ? () => undefined : console.error
@@ -56,13 +55,13 @@ export default class Prism {
 		const reportError = this.config.errorHandler;
 
 		this.languageRegistry = new LanguageRegistry({
-			path: /** @type {string} */ (this.config.languagePath),
+			path: this.config.languagePath ?? './languages/',
 			preload: this.config.languages,
 			prism: this,
 		});
 
 		this.pluginRegistry = new PluginRegistry({
-			path: /** @type {string} */ (this.config.pluginPath),
+			path: this.config.pluginPath ?? './plugins/',
 			prism: this,
 		});
 
@@ -77,12 +76,6 @@ export default class Prism {
 				.catch(reportError);
 			this.waitFor.push(pluginsReady);
 		}
-
-		if (!this.config.manual) {
-			this.waitFor.push(documentReady());
-
-			this.ready.then(() => this.highlightAll()).catch(reportError);
-		}
 	}
 
 	get languages () {
@@ -91,6 +84,21 @@ export default class Prism {
 
 	get plugins () {
 		return this.pluginRegistry.cache;
+	}
+
+	/**
+	 * Registers a language or plugin with this instance.
+	 *
+	 * @param {ComponentProto} def
+	 * @returns {boolean} `false` if it was already registered
+	 */
+	register (def) {
+		// Only languages have a grammar
+		if (def.grammar) {
+			return this.languageRegistry.add(def);
+		}
+
+		return this.pluginRegistry.add(def);
 	}
 
 	/**
@@ -165,5 +173,5 @@ export default class Prism {
  * @import { HighlightAllOptions } from '../highlight-all.js';
  * @import { HighlightElementOptions } from '../highlight-element.js';
  * @import { HighlightOptions } from '../highlight.js';
- * @import { PrismConfig, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
+ * @import { PrismConfig, ComponentProto, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
  */

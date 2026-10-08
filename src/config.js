@@ -62,15 +62,15 @@ function getGlobalArraySetting (name) {
 }
 
 /**
- * @type {PrismConfig}
+ * @type {PrismConfig & { manual: boolean }}
  */
 export const globalDefaults = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
 	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
-	languagePath: /** @type {string} */ (getGlobalSetting('language-path') ?? './languages/'),
-	pluginPath: /** @type {string} */ (getGlobalSetting('plugin-path') ?? './plugins/'),
+	languagePath: /** @type {string | undefined} */ (getGlobalSetting('language-path')),
+	pluginPath: /** @type {string | undefined} */ (getGlobalSetting('plugin-path')),
 };
 
 export default globalDefaults;

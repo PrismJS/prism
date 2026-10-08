@@ -1,7 +1,8 @@
 import { assert } from 'chai';
 import { getEventListeners } from 'node:events';
 import Language from '../../src/core/classes/language.js';
-import { Prism } from '../../src/core/prism.js';
+import globalPrism, { Prism } from '../../src/core/prism.js';
+import registry from '../../src/registry.js';
 import { simplify } from '../helper/token-stream-transformer.js';
 
 describe('Registry', () => {
@@ -432,5 +433,15 @@ describe('Registry: $inner selectors', () => {
 				['b', [['punctuation', '('], 'z', ['punctuation', ')']]],
 			]
 		);
+	});
+});
+
+describe('Registry: self-registration', () => {
+	it('should add a self-registered language to the global instance only', () => {
+		// every language and plugin does this on import
+		registry.add({ id: 'self-registered', grammar: { 'keyword': /\bfoo\b/ } });
+
+		assert.isTrue(globalPrism.languageRegistry.has('self-registered'));
+		assert.isFalse(new Prism().languageRegistry.has('self-registered'));
 	});
 });
