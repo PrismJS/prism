@@ -6,27 +6,27 @@ import { languageIdParts } from '../../util/language-id.js';
 
 function getDefaultSrcPath () {
 	if (typeof document !== 'undefined') {
-		const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
-		if (script) {
+		// Not `document.currentScript`: it is null by the time this runs, during highlighting
+		const autoloaderPath = document
+			.querySelector('script[data-autoloader-path]')
+			?.getAttribute('data-autoloader-path');
+		if (autoloaderPath != null) {
+			// data-autoloader-path is set, so just use it
+			return autoloaderPath.trim().replace(/\/?$/, '/');
+		}
+		else {
 			const autoloaderFile =
 				/\bplugins\/autoloader\/autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 			const prismFile = /(^|\/)[\w-]+\.(?:min\.)?m?js(?:\?[^\r\n/]*)?$/i;
 
-			const autoloaderPath = script.getAttribute('data-autoloader-path');
-			if (autoloaderPath != null) {
-				// data-autoloader-path is set, so just use it
-				return autoloaderPath.trim().replace(/\/?$/, '/');
+			const src = import.meta.url;
+			if (autoloaderFile.test(src)) {
+				// the script is the original autoloader script in the usual Prism project structure
+				return src.replace(autoloaderFile, '');
 			}
-			else {
-				const src = script.src;
-				if (autoloaderFile.test(src)) {
-					// the script is the original autoloader script in the usual Prism project structure
-					return src.replace(autoloaderFile, '/');
-				}
-				else if (prismFile.test(src)) {
-					// the script is part of a bundle like a custom prism.js from the download page
-					return src.replace(prismFile, '$1/');
-				}
+			else if (prismFile.test(src)) {
+				// the script is part of a bundle like a custom prism.js from the download page
+				return src.replace(prismFile, '$1');
 			}
 		}
 	}
