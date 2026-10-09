@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { getEventListeners } from 'node:events';
 import Language from '../../src/core/classes/language.js';
 import { Prism } from '../../src/core/prism.js';
 import { simplify } from '../helper/token-stream-transformer.js';
@@ -36,6 +37,17 @@ describe('Registry', () => {
 		});
 
 		assert.deepStrictEqual(languageRegistry.getLanguage('c')?.resolvedGrammar, grammar);
+	});
+
+	it('should stop listening for added languages once `whenDefined()` resolves', async () => {
+		const { languageRegistry } = new Prism();
+
+		const defined = languageRegistry.whenDefined('a');
+		languageRegistry.add({ id: 'a', grammar: {} });
+		await defined;
+
+		// a leftover listener would run on every later `add`, one per resolved `whenDefined()`
+		assert.isEmpty(getEventListeners(languageRegistry, 'addlanguage'));
 	});
 
 	it.skip('should throw on circular dependencies', () => {

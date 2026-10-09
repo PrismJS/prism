@@ -100,7 +100,10 @@ export default class ComponentRegistry extends EventTarget {
 			const handler = e => {
 				if (e.detail.id === id) {
 					resolve(e.detail.component);
-					this.removeEventListener('add', /** @type {EventListener} */ (handler));
+					this.removeEventListener(
+						'add' + Self.type,
+						/** @type {EventListener} */ (handler)
+					);
 				}
 			};
 			this.addEventListener('add' + Self.type, /** @type {EventListener} */ (handler));
