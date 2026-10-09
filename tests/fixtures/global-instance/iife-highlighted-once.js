@@ -4,7 +4,7 @@ import { JSDOM } from 'jsdom';
 const { window } = new JSDOM();
 Object.assign(globalThis, { window, document: window.document });
 
-// A separate copy of the class, like the one inside the IIFE build, which already highlighted the page
+// A separate copy of the class stands in for the IIFE build, which highlights the page itself
 const url = new URL('../../../src/core/classes/prism.js?copy', import.meta.url);
 const { default: IifePrism } = await import(url.href);
 const iife = new IifePrism();
