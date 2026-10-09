@@ -2,9 +2,8 @@ name: Rebuild Website
 
 on:
   push:
-    branches:
-      # FIXME: Use the main branch when v2 is out
-      - v2
+    tags:
+      - v*
 
 jobs:
   trigger-rebuild:
