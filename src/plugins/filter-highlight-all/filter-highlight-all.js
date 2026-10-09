@@ -95,19 +95,27 @@ const Self = {
 		});
 
 		if (typeof document !== 'undefined') {
-			const script = document.currentScript;
-			if (script) {
-				config.filterKnown = script.hasAttribute('data-filter-known');
+			// Not `document.currentScript`: it is null for module scripts.
+			// Like Prism's own settings, fall back to `data-prism-*` on any element
+			const script = document.querySelector(
+				'script:is([data-filter-known], [data-filter-selector], [data-reject-selector])'
+			);
+			const element = document.querySelector(
+				'[data-prism-filter-known], [data-prism-filter-selector], [data-prism-reject-selector]'
+			);
+			/** @param {string} name */
+			const getAttribute = name =>
+				script?.getAttribute(`data-${name}`) ?? element?.getAttribute(`data-prism-${name}`);
 
-				let attr;
-				attr = script.getAttribute('data-filter-selector');
-				if (attr) {
-					config.addSelector(attr);
-				}
-				attr = script.getAttribute('data-reject-selector');
-				if (attr) {
-					config.reject.addSelector(attr);
-				}
+			config.filterKnown = getAttribute('filter-known') != null;
+
+			let attr = getAttribute('filter-selector');
+			if (attr) {
+				config.addSelector(attr);
+			}
+			attr = getAttribute('reject-selector');
+			if (attr) {
+				config.reject.addSelector(attr);
 			}
 		}
 

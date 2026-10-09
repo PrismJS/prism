@@ -65,6 +65,8 @@ You can also add the following `data-*`{ .language-none } attributes to the scri
 
 : This attribute can be used to set the value of `Prism.pluginRegistry.peek('filter-highlight-all').plugin.filterKnown`. `filterKnown` will be set to `true` if the attribute is present, `false` otherwise.
 
+If no script has an attribute, Filter highlightAll reads it with the `data-prism-` prefix from the first element that has one, e.g. `<html data-prism-reject-selector="<css selector>">`{ .language-markup }.
+
 </section>
 
 <section>
