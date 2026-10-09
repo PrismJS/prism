@@ -47,6 +47,12 @@ By default, the plugin will look for the missing grammars in the `languages` fol
 Prism.pluginRegistry.peek('autoloader').plugin.srcPath = 'https://example.com/path/to/grammars/';
 ```
 
+You can also set it with a `data-autoloader-path` attribute on a script:
+
+```markup
+<script type="module" src="..." data-autoloader-path="https://example.com/path/to/grammars/"></script>
+```
+
 _Note:_ Autoloader is pretty good at guessing this path. You most likely won't have to change this path.
 
 ## Compound language ids
