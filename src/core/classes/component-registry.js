@@ -62,7 +62,7 @@ export default class ComponentRegistry extends EventTarget {
 		this.options = options;
 		let { path, preload, prism } = options;
 
-		// Only the shared registry has no instance, and it never reads `prism`
+		// Only the registry in registry.js has no instance, and it never reads `prism`
 		this.prism = /** @type {Prism} */ (prism);
 
 		if (path) {
@@ -158,6 +158,24 @@ export default class ComponentRegistry extends EventTarget {
 	}
 
 	/**
+	 * Calls `callback` with every component the registry has now, then with each one added later.
+	 *
+	 * @param {(component: T) => void} callback
+	 * @returns {() => void} Stops calls for components added later
+	 */
+	subscribe (callback) {
+		for (const component of Object.values(this.cache)) {
+			callback(component);
+		}
+
+		/** @param {Event} e */
+		let listener = e =>
+			callback(/** @type {CustomEvent<AddEventPayload<T>>} */ (e).detail.component);
+		this.addEventListener('add', listener);
+		return () => this.removeEventListener('add', listener);
+	}
+
+	/**
 	 *
 	 * @param {string} id
 	 * @returns {boolean}
@@ -188,6 +206,13 @@ export default class ComponentRegistry extends EventTarget {
 		if (this.loading[id] !== undefined) {
 			// Already loading
 			return this.loading[id];
+		}
+
+		if (!this.path) {
+			throw new Error(
+				`Cannot load "${id}" because the registry has no "path" to load component files from. ` +
+					'Pass "path" when you create the registry, or add the component with "add()" instead.'
+			);
 		}
 
 		const loadingComponent = import(this.path + id + '.js')

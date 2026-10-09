@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { getEventListeners } from 'node:events';
+import ComponentRegistry from '../../src/core/classes/component-registry.js';
 import Language from '../../src/core/classes/language.js';
-import globalPrism, { Prism } from '../../src/core/prism.js';
-import registry from '../../src/registry.js';
+import { Prism } from '../../src/core/prism.js';
 import { simplify } from '../helper/token-stream-transformer.js';
 
 describe('Registry', () => {
@@ -436,12 +436,36 @@ describe('Registry: $inner selectors', () => {
 	});
 });
 
-describe('Registry: self-registration', () => {
-	it('should add a self-registered language to the global instance only', () => {
-		// every language and plugin does this on import
-		registry.add({ id: 'self-registered', grammar: { 'keyword': /\bfoo\b/ } });
+describe('Registry: subscribe', () => {
+	// Languages and plugins can be imported before or after the global instance exists
+	it('should pass components added before subscribing', () => {
+		const registry = new ComponentRegistry();
+		const ids = [];
 
-		assert.isTrue(globalPrism.languageRegistry.has('self-registered'));
-		assert.isFalse(new Prism().languageRegistry.has('self-registered'));
+		registry.add({ id: 'a' });
+		registry.subscribe(def => ids.push(def.id));
+
+		assert.deepStrictEqual(ids, ['a']);
+	});
+
+	it('should pass components added after subscribing', () => {
+		const registry = new ComponentRegistry();
+		const ids = [];
+
+		registry.subscribe(def => ids.push(def.id));
+		registry.add({ id: 'a' });
+
+		assert.deepStrictEqual(ids, ['a']);
+	});
+
+	it('should stop passing components after unsubscribing', () => {
+		const registry = new ComponentRegistry();
+		const ids = [];
+
+		const unsubscribe = registry.subscribe(def => ids.push(def.id));
+		unsubscribe();
+		registry.add({ id: 'a' });
+
+		assert.deepStrictEqual(ids, []);
 	});
 });

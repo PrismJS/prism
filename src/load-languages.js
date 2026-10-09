@@ -53,8 +53,7 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 				const path = pathJoin(srcPath, `languages/${id}.js`);
 				/** @type {{ default: ComponentProto }} */
 				const exports = await importFile(path);
-				// @ts-ignore
-				Prism.languageRegistry.add(exports.default);
+				Prism.register(exports.default);
 			}
 			catch (error) {
 				if (!loadLanguages.silent) {

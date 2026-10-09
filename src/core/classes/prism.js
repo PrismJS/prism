@@ -13,6 +13,19 @@ import PluginRegistry from './plugin-registry.js';
  */
 export default class Prism {
 	/**
+	 * Checks whether `value` is a Prism instance, even one from another copy of Prism,
+	 * such as the IIFE build and an ESM import.
+	 * `instanceof` and `#private` fields miss those, because each copy has its own class,
+	 * so this method itself marks the class.
+	 *
+	 * @param {any} value
+	 * @returns {value is Prism}
+	 */
+	static isPrism (value) {
+		return typeof value?.constructor?.isPrism === 'function';
+	}
+
+	/**
 	 * @type {Hooks}
 	 */
 	hooks = new Hooks();

@@ -1,10 +1,20 @@
+import Prism from './core/classes/prism.js';
+
 const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement = hasDOM ? document.currentScript : null;
 
 /**
+ * The instance of a global build (IIFE) that the page loaded before this module.
+ * Otherwise `globalThis.Prism` can hold a config object.
+ *
+ * @type {Prism | undefined}
+ */
+export const iifePrism = Prism.isPrism(globalThis.Prism) ? globalThis.Prism : undefined;
+
+/**
  * @type {GlobalConfig}
  */
-const globalConfig = globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
+const globalConfig = iifePrism ? {} : (globalThis.Prism ?? {});
 
 /**
  * @param {string} name
@@ -62,10 +72,14 @@ function getGlobalArraySetting (name) {
 }
 
 /**
- * @type {PrismConfig & { manual: boolean }}
+ * Whether the auto-start entry (`prismjs` and the IIFE build) leaves highlighting the page to the user.
+ */
+export const manual = getGlobalBooleanSetting('manual', !hasDOM);
+
+/**
+ * @type {PrismConfig}
  */
 export const globalDefaults = {
-	manual: getGlobalBooleanSetting('manual', !hasDOM),
 	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),

@@ -95,7 +95,7 @@ export class Autoloader {
 					promise = import(path).then(exports => {
 						/** @type {import('../../types.d.ts').LanguageProto} */
 						const proto = exports.default;
-						this.Prism.languageRegistry.add(proto);
+						this.Prism.register(proto);
 					});
 					this._importCache.set(path, promise);
 				}

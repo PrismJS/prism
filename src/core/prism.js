@@ -4,34 +4,23 @@
  * @license MIT <https://opensource.org/licenses/MIT>
  * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
  */
-import globalDefaults from '../config.js';
+import globalDefaults, { iifePrism } from '../config.js';
 import registry from '../registry.js';
 import Prism from './classes/prism.js';
 
 /**
- * Prism singleton.
- * This will always be available, and will automatically read config options.
- * This instance of Prism is unique. Even if this module is imported from
- * different sources, the same Prism instance will be returned.
- * In global builds, it will also be the Prism global variable.
- * When a global build (IIFE) has already set it, this module reuses that instance.
- * Any imported plugins and languages will automatically be added to this instance.
+ * The global Prism instance.
+ * It reads the page config and gets every language and plugin imported with this copy of Prism.
+ * In global builds (IIFE), it is also the `Prism` global variable.
+ * The ESM and CommonJS builds reuse that instance when the page has one.
+ * Otherwise each of them creates its own.
  *
  * @type {Prism}
  */
-let prism = globalThis.Prism;
+let prism = iifePrism ?? new Prism(globalDefaults);
 
-// The IIFE build has its own copy of the class, so `instanceof` would miss its instance.
-// That instance already takes everything from the registry
-if (prism?.constructor?.name !== 'Prism') {
-	prism = new Prism(globalDefaults);
-
-	for (const def of Object.values(registry.cache)) {
-		prism.register(def);
-	}
-	registry.addEventListener('add', e =>
-		prism.register(/** @type {CustomEvent} */ (e).detail.component));
-}
+// The IIFE build has its own registry, so an instance it created still needs this one
+registry.subscribe(def => prism.register(def));
 
 export default prism;
 
