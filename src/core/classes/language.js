@@ -87,7 +87,8 @@ export default class Language extends EventTarget {
 					return language.resolvedGrammar;
 				}
 				else {
-					return this.registry.getLanguage(def.id).resolvedGrammar;
+					return /** @type {Language} */ (this.registry.getLanguage(def.id))
+						.resolvedGrammar;
 				}
 			});
 		}
@@ -98,7 +99,7 @@ export default class Language extends EventTarget {
 				this.languages,
 				id,
 				() => {
-					return this.registry.getLanguage(id).resolvedGrammar;
+					return /** @type {Language} */ (this.registry.getLanguage(id)).resolvedGrammar;
 				},
 				this.registry.peek(id) ?? this.registry.whenDefined(id)
 			);

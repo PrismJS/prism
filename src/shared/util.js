@@ -41,7 +41,8 @@ export const noop = () => {
 };
 
 /**
- * @param {any} value
+ * @template T
+ * @param {T} value
  * @returns {value is T & {}}
  */
 export function isNonNull (value) {
