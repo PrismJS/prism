@@ -7,10 +7,11 @@ import { promisify } from 'node:util';
  * Runs a fixture in a fresh process: the global instance is created once per module graph.
  *
  * @param {string} name
+ * @param {...string} args
  */
-async function runFixture (name) {
+async function runFixture (name, ...args) {
 	const file = new URL(`../fixtures/global-instance/${name}.js`, import.meta.url);
-	const { stdout } = await promisify(execFile)(process.execPath, [fileURLToPath(file)]);
+	const { stdout } = await promisify(execFile)(process.execPath, [fileURLToPath(file), ...args]);
 	return JSON.parse(stdout);
 }
 
@@ -28,16 +29,40 @@ describe('Global instance', () => {
 		assert.isTrue(registered);
 	});
 
-	// A page can load the IIFE build and then import Prism as a module
-	it('should reuse the instance of the IIFE build', async () => {
-		const result = await runFixture('iife-reused');
+	// A page can load the IIFE build and then import Prism as a module.
+	// Unbuilt source (`dev`) matches any version, e.g. a source checkout next to a dist build
+	for (const [module, iife] of [['2.0.0', '2.1.0'], ['dev', '3.0.0'], ['3.0.0', 'dev']]) {
+		it(`should reuse the instance of the IIFE build (module ${module}, IIFE ${iife})`, async () => {
+			const result = await runFixture('iife-reused', module, iife);
 
-		assert.deepStrictEqual(result, { reused: true, registered: true });
-	});
+			assert.deepStrictEqual(result, { reused: true, registered: true });
+		});
+	}
 
 	it('should not highlight the page again after the IIFE build', async () => {
 		const { highlightAllRuns } = await runFixture('iife-highlighted-once');
 
 		assert.strictEqual(highlightAllRuns, 0);
+	});
+
+	// Either build can load first. Here the module build does, e.g. before a `defer` IIFE build or one a widget adds later
+	it('should share its instance and registry with later copies of Prism', async () => {
+		const result = await runFixture('module-first');
+
+		assert.deepStrictEqual(result, { published: true, shared: true, registered: true });
+	});
+
+	// Without a page, no other copy of Prism can need the instance
+	it('should not set the global variable without a page', async () => {
+		const { global } = await runFixture('no-page');
+
+		assert.isFalse(global);
+	});
+
+	// Two major versions can't share an instance, but each still works on its own
+	it('should create its own instance next to another major version', async () => {
+		const result = await runFixture('other-major');
+
+		assert.deepStrictEqual(result, { reused: false, kept: true, warnings: 1 });
 	});
 });

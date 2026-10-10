@@ -13,10 +13,15 @@ import PluginRegistry from './plugin-registry.js';
  */
 export default class Prism {
 	/**
+	 * The version of Prism, such as `2.0.0`. The build fills it in, so unbuilt source has `dev`.
+	 */
+	static version = /* version_placeholder[ */ 'dev' /* ] */;
+
+	/**
 	 * Checks whether `value` is a Prism instance, even one from another copy of Prism,
 	 * such as the IIFE build and an ESM import.
-	 * `instanceof` and `#private` fields miss those, because each copy has its own class,
-	 * so this method itself marks the class.
+	 * `instanceof` and `#private` fields miss an instance of another copy, because each copy has its own class.
+	 * So the check looks for `isPrism` on the value's class: every copy of the class has this method.
 	 *
 	 * @param {any} value
 	 * @returns {value is Prism}
@@ -44,6 +49,13 @@ export default class Prism {
 	 * @type {PrismConfig}
 	 */
 	config;
+
+	/**
+	 * The registry the languages and plugins add themselves to on import, if this is the global instance.
+	 *
+	 * @type {ComponentRegistry<ComponentProto> | undefined}
+	 */
+	registry;
 
 	/**
 	 * @type {Promise<unknown>[]}
@@ -186,5 +198,6 @@ export default class Prism {
  * @import { HighlightAllOptions } from '../highlight-all.js';
  * @import { HighlightElementOptions } from '../highlight-element.js';
  * @import { HighlightOptions } from '../highlight.js';
+ * @import ComponentRegistry from './component-registry.js';
  * @import { PrismConfig, ComponentProto, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
  */

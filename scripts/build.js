@@ -9,6 +9,7 @@ import MagicString from 'magic-string';
 import { rollup } from 'rollup';
 import ts from 'typescript';
 import { webfont } from 'webfont';
+import pkg from '../package.json' with { type: 'json' };
 import components from '../src/components.json' with { type: 'json' };
 import { toArray } from '../src/util/iterables.js';
 import { parallel, runTask, series } from './tasks.js';
@@ -204,12 +205,15 @@ const dataToInsert = {
 				.map(({ name, title }) => [name, title])
 		);
 	},
+	version_placeholder: () => Promise.resolve(pkg.version),
 };
 
 /** @type {Plugin} */
 const dataInsertPlugin = {
 	name: 'data-insert',
-	async renderChunk (code, chunk) {
+	// Replace the placeholders before tree-shaking, or Rollup takes their source values as constants:
+	// with `Prism.version` as `'dev'`, it drops the major-version check from the IIFE build
+	async transform (code, id) {
 		const pattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
 
 		// search for placeholders
@@ -231,7 +235,7 @@ const dataInsertPlugin = {
 				dataByName[name] = await dataToInsert[name]();
 			}
 			else {
-				throw new Error(`Unknown placeholder ${name} in ${chunk.fileName}`);
+				throw new Error(`Unknown placeholder ${name} in ${id}`);
 			}
 		}
 

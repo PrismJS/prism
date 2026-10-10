@@ -4,22 +4,42 @@
  * @license MIT <https://opensource.org/licenses/MIT>
  * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
  */
-import globalDefaults, { iifePrism } from '../config.js';
+import globalDefaults, { hasDOM, sharedPrism } from '../config.js';
 import registry from '../registry.js';
 import Prism from './classes/prism.js';
 
 /**
  * The global Prism instance.
- * It reads the page config and gets every language and plugin imported with this copy of Prism.
- * In global builds (IIFE), it is also the `Prism` global variable.
- * The ESM and CommonJS builds reuse that instance when the page has one.
- * Otherwise each of them creates its own.
+ * It reads the page config and gets every language and plugin imported with any copy of Prism on the page.
+ * The first copy on a page creates it and puts it in the `Prism` global variable.
+ * Every later copy of the same major version, the IIFE build or a module build, uses it.
  *
  * @type {Prism}
  */
-let prism = iifePrism ?? new Prism(globalDefaults);
+let prism = sharedPrism ?? new Prism(globalDefaults);
 
-// The IIFE build has its own registry, so an instance it created still needs this one
+if (!sharedPrism) {
+	prism.registry = registry;
+
+	if (!Prism.isPrism(globalThis.Prism)) {
+		// Later copies of Prism on the page, such as the IIFE build, find the instance through the global.
+		// Without a DOM, as in Node, no other copy can share it, so no global is set
+		if (hasDOM) {
+			globalThis.Prism = prism;
+		}
+	}
+	else if (!prism.config.silent) {
+		// NOTE: The IIFE build sets `window.Prism` again after this code runs (`var Prism = …` from Rollup's `name`),
+		// so next to another major version it still replaces that version's instance
+		console.warn(
+			`Prism ${Prism.version} can't use the instance of another major version on the page, so it created its own.`
+		);
+	}
+}
+
+// Every copy subscribes its registry, not only the one that created the instance.
+// A later copy can still have a registry of its own,
+// e.g. css imported by a module script before a `defer` IIFE build created the instance
 registry.subscribe(def => prism.register(def));
 
 export default prism;

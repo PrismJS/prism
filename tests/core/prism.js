@@ -11,7 +11,7 @@ describe('Prism.isPrism', () => {
 		assert.isTrue(Prism.isPrism(new OtherPrism()));
 	});
 
-	// `window.Prism` can also hold page settings
+	// `window.Prism` holds either an instance or page settings
 	it('should reject a config object', () => {
 		assert.isFalse(Prism.isPrism({ manual: true }));
 	});

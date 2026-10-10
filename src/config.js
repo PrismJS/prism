@@ -1,20 +1,42 @@
 import Prism from './core/classes/prism.js';
 
-const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
+export const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement = hasDOM ? document.currentScript : null;
 
 /**
- * The instance of a global build (IIFE) that the page loaded before this module.
- * Otherwise `globalThis.Prism` can hold a config object.
+ * Whether this copy of Prism can use `prism`, an instance of another copy.
+ * Only the same major version can, and unbuilt source (`dev`) matches any version.
+ *
+ * @param {Prism} prism
+ */
+function isCompatible (prism) {
+	let version = /** @type {typeof Prism} */ (prism.constructor).version;
+	return (
+		version === 'dev' ||
+		Prism.version === 'dev' ||
+		parseInt(version) === parseInt(Prism.version)
+	);
+}
+
+/**
+ * The global instance that another copy of Prism (the IIFE build or a module build) put on the page before this one,
+ * if its major version matches.
+ * Without an instance, `globalThis.Prism` can hold a config object.
  *
  * @type {Prism | undefined}
  */
-export const iifePrism = Prism.isPrism(globalThis.Prism) ? globalThis.Prism : undefined;
+export const sharedPrism =
+	Prism.isPrism(globalThis.Prism) && isCompatible(globalThis.Prism)
+		? globalThis.Prism
+		: undefined;
 
 /**
  * @type {GlobalConfig}
  */
-const globalConfig = iifePrism ? {} : (globalThis.Prism ?? {});
+const globalConfig =
+	typeof globalThis.Prism === 'object' && !Prism.isPrism(globalThis.Prism)
+		? (globalThis.Prism ?? {})
+		: {};
 
 /**
  * @param {string} name
