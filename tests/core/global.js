@@ -39,6 +39,14 @@ describe('Global instance', () => {
 		});
 	}
 
+	// A later copy takes the registry of the IIFE build from the global, and the IIFE build already subscribed it.
+	// A second listener would call `register()` twice for every new language or plugin
+	it('should not subscribe the registry of the IIFE build again', async () => {
+		const result = await runFixture('iife-registry-shared');
+
+		assert.deepStrictEqual(result, { shared: true, listeners: 1 });
+	});
+
 	it('should not highlight the page again after the IIFE build', async () => {
 		const { highlightAllRuns } = await runFixture('iife-highlighted-once');
 

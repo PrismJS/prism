@@ -37,10 +37,12 @@ if (!sharedPrism) {
 	}
 }
 
-// Every copy subscribes its registry, not only the one that created the instance.
-// A later copy can still have a registry of its own,
+// The copy that created the instance subscribed its registry, and `registry.js` in a later copy takes that registry from the global.
+// A second listener would call `register()` twice for each new component, so a later copy subscribes only a registry of its own,
 // e.g. css imported by a module script before a `defer` IIFE build created the instance
-registry.subscribe(def => prism.register(def));
+if (registry !== sharedPrism?.registry) {
+	registry.subscribe(def => prism.register(def));
+}
 
 export default prism;
 
