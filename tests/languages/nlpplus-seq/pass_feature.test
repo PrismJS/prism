@@ -1,6 +1,7 @@
 tokenize	nil	# convert the input to tokens
 dicttokz	nil
 nlp	sentences	# cut the text into sentences
+pat	paragraphs
 rec	nested
 stub	words
 end	words
@@ -19,6 +20,9 @@ end	words
 	["keyword", "nlp"],
 	["function", "sentences"],
 	["comment", "# cut the text into sentences"],
+
+	["keyword", "pat"],
+	["function", "paragraphs"],
 
 	["keyword", "rec"],
 	["function", "nested"],

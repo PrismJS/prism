@@ -1,7 +1,7 @@
 /**
  * NLP++ analyzer sequences (analyzer.seq, https://visualtext.org/nlp/): one
  * pass per line, the pass type, the pass file or nil, and a comment. A
- * leading slash makes a pass inactive.
+ * leading slash makes a pass inactive; two slashes start a comment.
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus-seq'>}
  */
@@ -11,6 +11,7 @@ export default {
 		'comment': [
 			{ pattern: /\/\*[\s\S]*?\*\//, greedy: true },
 			{ pattern: /#.*/, greedy: true },
+			{ pattern: /^\/\/.*/m, greedy: true },
 			// a lone slash at the start of a line switches the pass off
 			{ pattern: /^\/(?!\*).*/m, greedy: true, alias: 'inactive' },
 		],
@@ -18,16 +19,16 @@ export default {
 		// pass type: once the type is a token, their lookbehind cannot see it.
 		'constant': {
 			pattern:
-				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|python|rec|stub|tok(?:en(?:ize)?)?)\s+)nil\b/im,
+				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\s+)nil\b/im,
 			lookbehind: true,
 		},
 		'function': {
 			pattern:
-				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|python|rec|stub|tok(?:en(?:ize)?)?)\s+)[^\s#]+/im,
+				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\s+)[^\s#]+/im,
 			lookbehind: true,
 		},
-		// pass types the engine's sequence reader accepts
+		// pass types the engine's sequence reader accepts; "pat" is read as "nlp"
 		'keyword':
-			/^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|python|rec|stub|tok(?:en(?:ize)?)?)\b/im,
+			/^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\b/im,
 	},
 };

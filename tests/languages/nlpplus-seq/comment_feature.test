@@ -1,4 +1,5 @@
 # a line comment
+// also a line comment
 /* a block
    comment */
 
@@ -6,6 +7,7 @@
 
 [
 	["comment", "# a line comment"],
+	["comment", "// also a line comment"],
 	["comment", "/* a block\r\n   comment */"]
 ]
 
