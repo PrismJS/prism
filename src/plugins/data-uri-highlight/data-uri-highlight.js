@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 
 /** @type {import('../../types.d.ts').PluginProto<'data-uri-highlight'>} */
@@ -43,4 +43,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
