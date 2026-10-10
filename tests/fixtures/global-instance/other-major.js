@@ -18,12 +18,15 @@ console.warn = () => warnings++;
 
 const { default: prism } = await import('../../../src/core/prism.js');
 const { default: registry } = await import('../../../src/registry.js');
+// The IIFE build of this version sets the global to the default export of its entry
+const { default: exported } = await import('../../../src/iife.js');
 
 console.log(
 	JSON.stringify({
 		reused: prism === other,
 		kept: globalThis.Prism === other,
 		ownRegistry: registry !== other.registry,
+		exported: exported === other,
 		warnings,
 	})
 );

@@ -455,7 +455,7 @@ async function buildJS () {
 		iife: {
 			rollupOptions: {
 				...defaultRollupOptions,
-				input: path.join(SRC_DIR, 'auto-start.js'),
+				input: path.join(SRC_DIR, 'iife.js'),
 				plugins: [
 					...defaultRollupOptions.plugins.slice(0, -1), // remove default terser plugin
 					rollupTerser({ ...terserOptions, module: false }),

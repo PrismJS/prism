@@ -86,6 +86,6 @@ describe('Global instance', () => {
 	it('should create its own instance next to another major version', async () => {
 		const result = await runFixture('other-major', '2.0.0', '3.0.0');
 
-		assert.deepStrictEqual(result, { reused: false, kept: true, ownRegistry: true, warnings: 1 });
+		assert.deepStrictEqual(result, { reused: false, kept: true, ownRegistry: true, exported: true, warnings: 1 });
 	});
 });

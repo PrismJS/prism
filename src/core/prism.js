@@ -38,8 +38,6 @@ if (!sharedPrism) {
 		}
 	}
 	else if (!prism.config.silent) {
-		// NOTE: The IIFE build sets `window.Prism` again after this code runs (`var Prism = …` from Rollup's `name`),
-		// so next to another major version it still replaces that version's instance
 		console.warn(
 			`Prism ${Prism.version} can't use the instance of another major version on the page, so it created its own.`
 		);
