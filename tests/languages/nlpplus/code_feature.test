@@ -1,0 +1,78 @@
+S("value") = num(N("value",1)) * num(N("numeric",2));
+L("con") = getconcept(G("caps"),X("$text"));
+AddUniqueStr(L("con"),"type","abbrev");
+or(1,2);
+
+----------------------------------------------------
+
+[
+	["accessor", "S"],
+	["punctuation", "("],
+	["string", "\"value\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "num"],
+	["punctuation", "("],
+	["accessor", "N"],
+	["punctuation", "("],
+	["string", "\"value\""],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["builtin", "num"],
+	["punctuation", "("],
+	["accessor", "N"],
+	["punctuation", "("],
+	["string", "\"numeric\""],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"con\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "getconcept"],
+	["punctuation", "("],
+	["accessor", "G"],
+	["punctuation", "("],
+	["string", "\"caps\""],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["accessor", "X"],
+	["punctuation", "("],
+	["string", "\"$text\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "AddUniqueStr"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"con\""],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["string", "\"type\""],
+	["punctuation", ","],
+	["string", "\"abbrev\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["builtin", "or"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for node accessors, built-in calls (including or()) and user function calls.

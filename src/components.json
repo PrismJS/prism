@@ -844,6 +844,32 @@
 			"title": "Nix",
 			"owner": "Golmote"
 		},
+		"nlpplus": {
+			"title": "NLP++",
+			"aliasTitles": {
+				"nlp": "NLP++"
+			},
+			"owner": "ddehilster"
+		},
+		"nlpplus-seq": {
+			"title": "NLP++ Analyzer Sequence",
+			"owner": "ddehilster"
+		},
+		"nlpplus-dict": {
+			"title": "NLP++ Dictionary",
+			"owner": "ddehilster"
+		},
+		"nlpplus-kbb": {
+			"title": "NLP++ Knowledge Base",
+			"aliasTitles": {
+				"kbb": "NLP++ Knowledge Base"
+			},
+			"owner": "ddehilster"
+		},
+		"nlpplus-tree": {
+			"title": "NLP++ Parse Tree",
+			"owner": "ddehilster"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"

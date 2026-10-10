@@ -1,0 +1,83 @@
+afghan nationality=1 adj=1 noun=1 country=afghanistan iso2=af iso3=afg pos=adj
+afghan pos=noun
+american samoan nationality=1 adj=1 noun=1 country="american samoa" iso2=as iso3=asm pos=adj
+act timezone=1 sign=- hour=5 ambig=2 descr="Acre Time"
+aardvark
+
+----------------------------------------------------
+
+[
+	["headword", "afghan"],
+	["attr-name", "nationality"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "adj"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "noun"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "country"],
+	["operator", "="],
+	["attr-value", "afghanistan"],
+	["attr-name", "iso2"],
+	["operator", "="],
+	["attr-value", "af"],
+	["attr-name", "iso3"],
+	["operator", "="],
+	["attr-value", "afg"],
+	["attr-name", "pos"],
+	["operator", "="],
+	["attr-value", "adj"],
+
+	["headword", "afghan"],
+	["attr-name", "pos"],
+	["operator", "="],
+	["attr-value", "noun"],
+
+	["headword", "american samoan"],
+	["attr-name", "nationality"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "adj"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "noun"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "country"],
+	["operator", "="],
+	["string", "\"american samoa\""],
+	["attr-name", "iso2"],
+	["operator", "="],
+	["attr-value", "as"],
+	["attr-name", "iso3"],
+	["operator", "="],
+	["attr-value", "asm"],
+	["attr-name", "pos"],
+	["operator", "="],
+	["attr-value", "adj"],
+
+	["headword", "act"],
+	["attr-name", "timezone"],
+	["operator", "="],
+	["number", "1"],
+	["attr-name", "sign"],
+	["operator", "="],
+	["attr-value", "-"],
+	["attr-name", "hour"],
+	["operator", "="],
+	["number", "5"],
+	["attr-name", "ambig"],
+	["operator", "="],
+	["number", "2"],
+	["attr-name", "descr"],
+	["operator", "="],
+	["string", "\"Acre Time\""],
+
+	["headword", "aardvark"]
+]
+
+----------------------------------------------------
+
+Checks for headwords (including multi-word ones), attribute names, numbers, and bare and quoted values.

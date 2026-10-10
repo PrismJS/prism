@@ -1,0 +1,177 @@
+_x [0,6,0,6,8,23,node,b,un,sem,fired,blt]
+   a [0,0,0,0,0,0,alpha]
+   1 [1,1,1,1,0,0,num]
+   . [2,2,2,2,0,0,punct]
+     [3,3,3,3,0,0,white]
+   x [4,4,4,4,0,0,ctrl]
+   y [5,5,5,5,0,0,emoji]
+   z [6,6,6,6,0,0,null]
+
+----------------------------------------------------
+
+[
+	["node", "_x"],
+	["record", [
+		["punctuation", "["],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "8"],
+		["punctuation", ","],
+		["number", "23"],
+		["punctuation", ","],
+		["node-type", "node"],
+		["punctuation", ","],
+		["flag", "b"],
+		["punctuation", ","],
+		["flag", "un"],
+		["punctuation", ","],
+		["flag", "sem"],
+		["punctuation", ","],
+		["flag", "fired"],
+		["punctuation", ","],
+		["flag", "blt"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "a"],
+	["record", [
+		["punctuation", "["],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "alpha"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "1"],
+	["record", [
+		["punctuation", "["],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "num"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "."],
+	["record", [
+		["punctuation", "["],
+		["number", "2"],
+		["punctuation", ","],
+		["number", "2"],
+		["punctuation", ","],
+		["number", "2"],
+		["punctuation", ","],
+		["number", "2"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "punct"],
+		["punctuation", "]"]
+	]],
+
+	["record", [
+		["punctuation", "["],
+		["number", "3"],
+		["punctuation", ","],
+		["number", "3"],
+		["punctuation", ","],
+		["number", "3"],
+		["punctuation", ","],
+		["number", "3"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "white"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "x"],
+	["record", [
+		["punctuation", "["],
+		["number", "4"],
+		["punctuation", ","],
+		["number", "4"],
+		["punctuation", ","],
+		["number", "4"],
+		["punctuation", ","],
+		["number", "4"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "ctrl"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "y"],
+	["record", [
+		["punctuation", "["],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "emoji"],
+		["punctuation", "]"]
+	]],
+
+	["leaf", "z"],
+	["record", [
+		["punctuation", "["],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "6"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "null"],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for every node type and flag the engine writes.

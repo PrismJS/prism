@@ -1,0 +1,22 @@
+_abbr <- _xALPHA \. @@
+_word <- \- \, @@
+
+----------------------------------------------------
+
+[
+	["node", "_abbr"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["char", "\\."],
+	["region", "@@"],
+
+	["node", "_word"],
+	["arrow", "<-"],
+	["char", "\\-"],
+	["char", "\\,"],
+	["region", "@@"]
+]
+
+----------------------------------------------------
+
+Checks for backslash-escaped literal characters in rules.
