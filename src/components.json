@@ -844,6 +844,13 @@
 			"title": "Nix",
 			"owner": "Golmote"
 		},
+		"nlpplus": {
+			"title": "NLP++",
+			"aliasTitles": {
+				"nlp": "NLP++"
+			},
+			"owner": "ddehilster"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"

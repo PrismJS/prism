@@ -1,0 +1,32 @@
+_money <-
+	_money			### (1)
+	_number			### (2)
+	_currency [opt]	### (3)
+	@@
+
+----------------------------------------------------
+
+[
+	["node", "_money"],
+	["arrow", "<-"],
+
+	["node", "_money"],
+	["comment", "### (1)"],
+
+	["node", "_number"],
+	["comment", "### (2)"],
+
+	["node", "_currency"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "opt"],
+		["punctuation", "]"]
+	]],
+	["comment", "### (3)"],
+
+	["region", "@@"]
+]
+
+----------------------------------------------------
+
+Checks for a rule in standard rule format, with numbered element comments.

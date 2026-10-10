@@ -1,0 +1,46 @@
+_np [base] <- _xWILD [min=2 match=(_xCAP _xNUM)] _xEMOJI _xEND @@
+_asset <- in [s] cash @@
+
+----------------------------------------------------
+
+[
+	["node", "_np"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "base"],
+		["punctuation", "]"]
+	]],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "min"],
+		["operator", "="],
+		["number", "2"],
+		["attr-name", "match"],
+		["operator", "="],
+		["punctuation", "("],
+		["constant", "_xCAP"],
+		["constant", "_xNUM"],
+		["punctuation", ")"],
+		["punctuation", "]"]
+	]],
+	["constant", "_xEMOJI"],
+	["constant", "_xEND"],
+	["region", "@@"],
+
+	["node", "_asset"],
+	["arrow", "<-"],
+	" in ",
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["punctuation", "]"]
+	]],
+	" cash ",
+	["region", "@@"]
+]
+
+----------------------------------------------------
+
+Checks for rule element modifiers, special node constants, and literal words in rules.

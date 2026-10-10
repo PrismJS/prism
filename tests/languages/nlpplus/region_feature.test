@@ -1,0 +1,37 @@
+@NODES _ROOT
+@PATH _ROOT _paragraph _sentence
+@CODE
+@@CODE
+@RULES
+_np <- _det _noun @@
+@@RULES
+
+----------------------------------------------------
+
+[
+	["region", "@NODES"],
+	["constant", "_ROOT"],
+
+	["region", "@PATH"],
+	["constant", "_ROOT"],
+	["node", "_paragraph"],
+	["node", "_sentence"],
+
+	["region", "@CODE"],
+
+	["region", "@@CODE"],
+
+	["region", "@RULES"],
+
+	["node", "_np"],
+	["arrow", "<-"],
+	["node", "_det"],
+	["node", "_noun"],
+	["region", "@@"],
+
+	["region", "@@RULES"]
+]
+
+----------------------------------------------------
+
+Checks for region markers and their closing forms.

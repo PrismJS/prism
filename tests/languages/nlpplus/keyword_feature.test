@@ -1,0 +1,74 @@
+if (L("x") && !L("y") || L("z") == 2) {
+	L("i")++;
+} else {
+	"out.txt" << "seen: \"" << L("v") << "\"\n";
+}
+while (L("i") < 10.5) return 0;
+
+----------------------------------------------------
+
+[
+	["keyword", "if"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"x\""],
+	["punctuation", ")"],
+	["operator", "&&"],
+	["operator", "!"],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"y\""],
+	["punctuation", ")"],
+	["operator", "||"],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"z\""],
+	["punctuation", ")"],
+	["operator", "=="],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"i\""],
+	["punctuation", ")"],
+	["operator", "++"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["keyword", "else"],
+	["punctuation", "{"],
+
+	["string", "\"out.txt\""],
+	["operator", "<<"],
+	["string", "\"seen: \\\"\""],
+	["operator", "<<"],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"v\""],
+	["punctuation", ")"],
+	["operator", "<<"],
+	["string", "\"\\\"\\n\""],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "while"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"i\""],
+	["punctuation", ")"],
+	["operator", "<"],
+	["number", "10.5"],
+	["punctuation", ")"],
+	["keyword", "return"],
+	["number", "0"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for keywords, operators, strings with escapes, and numbers.
