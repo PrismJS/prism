@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'gherkin'>} */
-export default {
+const Self = {
 	id: 'gherkin',
 	grammar () {
 		const tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|(?:(?!\|).)*/.source;
@@ -88,3 +90,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

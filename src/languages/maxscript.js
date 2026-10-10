@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'maxscript'>} */
-export default {
+const Self = {
 	id: 'maxscript',
 	grammar () {
 		const keywords =
@@ -98,3 +100,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

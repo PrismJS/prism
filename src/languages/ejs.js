@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ejs'>} */
-export default {
+const Self = {
 	id: 'ejs',
 	require: javascript,
 	inner: markup,
@@ -32,3 +33,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

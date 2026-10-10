@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import { withoutTokenize } from '../util/language-util.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'graphql'>} */
-export default {
+const Self = {
 	id: 'graphql',
 	grammar: {
 		'comment': /#.*/,
@@ -214,6 +215,10 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../core.js').Token} Token

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'magma'>} */
-export default {
+const Self = {
 	id: 'magma',
 	grammar: {
 		'output': {
@@ -40,3 +42,7 @@ export default {
 		'punctuation': /[()[\]{}<>,;.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
 import { toArray } from '../util/iterables.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'javascript'>} */
-export default {
+const Self = {
 	id: 'javascript',
 	base: clike,
 	optional: 'js-templates',
@@ -221,6 +222,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

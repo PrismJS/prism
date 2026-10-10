@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { insertBefore } from '../util/language-util.js';
 import csharp from './csharp.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'cshtml'>} */
-export default {
+const Self = {
 	id: 'cshtml',
 	base: markup,
 	require: csharp,
@@ -266,3 +267,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

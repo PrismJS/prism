@@ -1,7 +1,9 @@
+import registry from '../registry.js';
+
 // based loosely upon: https://github.com/Azure/bicep/blob/main/src/textmate/bicep.tmlanguage
 
 /** @type {import('../types.d.ts').LanguageProto<'bicep'>} */
-export default {
+const Self = {
 	id: 'bicep',
 	grammar: {
 		'comment': [
@@ -80,3 +82,7 @@ export default {
 		'punctuation': /[{}[\];(),.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'css-selector'>} */
-export default {
+const Self = {
 	id: 'css-selector',
 	grammar () {
 		const string =
@@ -65,3 +67,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

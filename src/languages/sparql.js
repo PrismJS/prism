@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import turtle from './turtle.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'sparql'>} */
-export default {
+const Self = {
 	id: 'sparql',
 	base: turtle,
 	alias: 'rq',
@@ -24,3 +25,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

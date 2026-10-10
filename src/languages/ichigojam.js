@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ichigojam'>} */
-export default {
+const Self = {
 	id: 'ichigojam',
 	grammar () {
 		// according to the offical reference (EN)
@@ -21,3 +23,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

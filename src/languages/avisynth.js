@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'avisynth'>} */
-export default {
+const Self = {
 	id: 'avisynth',
 	alias: 'avs',
 	grammar () {
@@ -219,3 +221,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'json'>} */
-export default {
+const Self = {
 	id: 'json',
 	alias: 'webmanifest',
 	grammar () {
@@ -30,3 +32,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

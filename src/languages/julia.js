@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'julia'>} */
-export default {
+const Self = {
 	id: 'julia',
 	grammar: {
 		'comment': {
@@ -40,3 +42,7 @@ export default {
 		'constant': /\b(?:(?:Inf|NaN)(?:16|32|64)?|im|pi)\b|[πℯ]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

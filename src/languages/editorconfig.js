@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'editorconfig'>} */
-export default {
+const Self = {
 	id: 'editorconfig',
 	grammar: {
 		// https://editorconfig-specification.readthedocs.io
@@ -28,3 +30,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

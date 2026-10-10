@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'fortran'>} */
-export default {
+const Self = {
 	id: 'fortran',
 	grammar: {
 		'quoted-number': {
@@ -43,3 +45,7 @@ export default {
 		'punctuation': /\(\/|\/\)|[(),;:&]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,9 +1,10 @@
 import { getTextContent } from '../core/classes/token.js';
+import registry from '../registry.js';
 import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'markdown'>} */
-export default {
+const Self = {
 	id: 'markdown',
 	base: markup,
 	alias: 'md',
@@ -331,6 +332,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

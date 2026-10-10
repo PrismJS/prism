@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import bash from './bash.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'shell-session'>} */
-export default {
+const Self = {
 	id: 'shell-session',
 	require: bash,
 	alias: ['sh-session', 'shellsession'],
@@ -73,3 +74,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

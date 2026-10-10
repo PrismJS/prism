@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'abap'>} */
-export default {
+const Self = {
 	id: 'abap',
 	grammar: {
 		'comment': /^\*.*/m,
@@ -54,3 +56,7 @@ export default {
 		'punctuation': /[,.:()]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,8 +1,10 @@
+import registry from '../registry.js';
+
 // ABNF grammar:
 // https://github.com/dhall-lang/dhall-lang/blob/master/standard/dhall.abnf
 
 /** @type {import('../types.d.ts').LanguageProto<'dhall'>} */
-export default {
+const Self = {
 	id: 'dhall',
 	grammar: {
 		// Multi-line comments can be nested. E.g. {- foo {- bar -} -}
@@ -72,3 +74,7 @@ export default {
 		'class-name': /\b[A-Z]\w*\b/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);
