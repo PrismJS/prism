@@ -1339,6 +1339,10 @@
 		"zig": {
 			"title": "Zig",
 			"owner": "RunDevelopment"
+		},
+		"ssh-config": {
+			"title": "SSH configuration",
+			"owner": "GracesonVfx"
 		}
 	},
 	"plugins": {
