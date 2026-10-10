@@ -39,6 +39,14 @@ describe('Global instance', () => {
 		});
 	}
 
+	// Each module looks for the instance when it is first imported.
+	// Here `registry.js` runs before the IIFE build, and `core/prism.js` runs after it
+	it('should reuse the instance of an IIFE build that runs after a language', async () => {
+		const result = await runFixture('language-before-iife');
+
+		assert.deepStrictEqual(result, { reused: true, registered: true });
+	});
+
 	// A later copy takes the registry of the IIFE build from the global, and the IIFE build already subscribed it.
 	// A second listener would call `register()` twice for every new language or plugin
 	it('should not subscribe the registry of the IIFE build again', async () => {
@@ -53,11 +61,18 @@ describe('Global instance', () => {
 		assert.strictEqual(highlightAllRuns, 0);
 	});
 
+	// `auto-start.js` runs after `core/prism.js` set the global, so a fresh lookup would find this copy's own instance
+	it('should highlight the page when it is the first copy of Prism', async () => {
+		const { highlightAllRuns } = await runFixture('first-copy-highlights');
+
+		assert.strictEqual(highlightAllRuns, 1);
+	});
+
 	// Either build can load first. Here the module build does, e.g. before a `defer` IIFE build or one a widget adds later
 	it('should share its instance and registry with later copies of Prism', async () => {
 		const result = await runFixture('module-first');
 
-		assert.deepStrictEqual(result, { published: true, shared: true, registered: true });
+		assert.deepStrictEqual(result, { published: true, registered: true });
 	});
 
 	// Without a page, no other copy of Prism can need the instance
@@ -69,8 +84,8 @@ describe('Global instance', () => {
 
 	// Two major versions can't share an instance, but each still works on its own
 	it('should create its own instance next to another major version', async () => {
-		const result = await runFixture('other-major');
+		const result = await runFixture('other-major', '2.0.0', '3.0.0');
 
-		assert.deepStrictEqual(result, { reused: false, kept: true, warnings: 1 });
+		assert.deepStrictEqual(result, { reused: false, kept: true, ownRegistry: true, warnings: 1 });
 	});
 });

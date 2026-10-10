@@ -4,13 +4,22 @@
  * @license MIT <https://opensource.org/licenses/MIT>
  * @author Lea Verou <https://lea.verou.me> and contributors <https://github.com/PrismJS/prism/graphs/contributors>
  */
-import globalDefaults, { hasDOM, sharedPrism } from '../config.js';
+import globalDefaults, { hasDOM } from '../config.js';
+import { findSharedPrism } from '../find-shared-prism.js';
 import registry from '../registry.js';
 import Prism from './classes/prism.js';
 
 /**
- * The global Prism instance.
- * It reads the page config and gets every language and plugin imported with any copy of Prism on the page.
+ * The global instance, if another copy of Prism of the same major version created it before this copy ran.
+ * `undefined` when this copy creates the instance itself.
+ *
+ * @type {Prism | undefined}
+ */
+export const sharedPrism = findSharedPrism();
+
+/**
+ * The global Prism instance: {@link sharedPrism} when another copy created it, otherwise a new instance.
+ * It reads the page config and gets every language and plugin imported with any copy of Prism of the same major version on the page.
  * The first copy on a page creates it and puts it in the `Prism` global variable.
  * Every later copy of the same major version, the IIFE build or a module build, uses it.
  *

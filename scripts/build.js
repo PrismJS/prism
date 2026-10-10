@@ -212,7 +212,7 @@ const dataToInsert = {
 const dataInsertPlugin = {
 	name: 'data-insert',
 	// Replace the placeholders before tree-shaking, or Rollup takes their source values as constants:
-	// with `Prism.version` as `'dev'`, it drops the major-version check from the IIFE build
+	// with `version` in `src/version.js` as `'dev'`, it drops the major-version check from every build
 	async transform (code, id) {
 		const pattern = /\/\*\s*(\w+)\[\s*\*\/[\s\S]*?\/\*\s*\]\s*\*\//g;
 

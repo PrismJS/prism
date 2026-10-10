@@ -4,33 +4,6 @@ export const hasDOM = typeof document !== 'undefined' && typeof window !== 'unde
 const scriptElement = hasDOM ? document.currentScript : null;
 
 /**
- * Whether this copy of Prism can use `prism`, an instance of another copy.
- * Only the same major version can, and unbuilt source (`dev`) matches any version.
- *
- * @param {Prism} prism
- */
-function isCompatible (prism) {
-	let version = /** @type {typeof Prism} */ (prism.constructor).version;
-	return (
-		version === 'dev' ||
-		Prism.version === 'dev' ||
-		parseInt(version) === parseInt(Prism.version)
-	);
-}
-
-/**
- * The global instance that another copy of Prism (the IIFE build or a module build) put on the page before this one,
- * if its major version matches.
- * Without an instance, `globalThis.Prism` can hold a config object.
- *
- * @type {Prism | undefined}
- */
-export const sharedPrism =
-	Prism.isPrism(globalThis.Prism) && isCompatible(globalThis.Prism)
-		? globalThis.Prism
-		: undefined;
-
-/**
  * @type {GlobalConfig}
  */
 const globalConfig =

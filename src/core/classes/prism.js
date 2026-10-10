@@ -1,4 +1,5 @@
 import { allSettled, nextTick } from '../../util/async.js';
+import { version } from '../../version.js';
 import { highlightAll } from '../highlight-all.js';
 import { highlightElement } from '../highlight-element.js';
 import { highlight } from '../highlight.js';
@@ -15,7 +16,7 @@ export default class Prism {
 	/**
 	 * The version of Prism, such as `2.0.0`. The build fills it in, so unbuilt source has `dev`.
 	 */
-	static version = /* version_placeholder[ */ 'dev' /* ] */;
+	static version = version;
 
 	/**
 	 * Checks whether `value` is a Prism instance, even one from another copy of Prism,
