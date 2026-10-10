@@ -12,6 +12,16 @@
 			"import": "./dist/index.js",
 			"require": "./dist/cjs/index.js"
 		},
+		"./core.js": {
+			"types": "./types/core.d.ts",
+			"import": "./dist/core.js",
+			"require": "./dist/cjs/core.js"
+		},
+		"./global.js": {
+			"types": "./types/global.d.ts",
+			"import": "./dist/global.js",
+			"require": "./dist/cjs/global.js"
+		},
 		"./shared.js": {
 			"types": "./types/shared.d.ts",
 			"import": "./dist/shared.js",

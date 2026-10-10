@@ -1,5 +1,5 @@
-import globalDefaults from '../../config.js';
-import { allSettled, documentReady, nextTick } from '../../util/async.js';
+import { allSettled, nextTick } from '../../util/async.js';
+import { version } from '../../version.js';
 import { highlightAll } from '../highlight-all.js';
 import { highlightElement } from '../highlight-element.js';
 import { highlight } from '../highlight.js';
@@ -13,6 +13,24 @@ import PluginRegistry from './plugin-registry.js';
  * In most use cases, you just need the pre-existing Prism instance, see {@link prism}.
  */
 export default class Prism {
+	/**
+	 * The version of Prism, such as `2.0.0`. The build fills it in, so unbuilt source has `dev`.
+	 */
+	static version = version;
+
+	/**
+	 * Checks whether `value` is a Prism instance, even one from another copy of Prism,
+	 * such as the IIFE build and an ESM import.
+	 * `instanceof` and `#private` fields miss an instance of another copy, because each copy has its own class.
+	 * So the check looks for `isPrism` on the value's class: every copy of the class has this method.
+	 *
+	 * @param {any} value
+	 * @returns {value is Prism}
+	 */
+	static isPrism (value) {
+		return typeof value?.constructor?.isPrism === 'function';
+	}
+
 	/**
 	 * @type {Hooks}
 	 */
@@ -31,7 +49,14 @@ export default class Prism {
 	/**
 	 * @type {PrismConfig}
 	 */
-	config = globalDefaults;
+	config;
+
+	/**
+	 * The registry the languages and plugins add themselves to on import, if this is the global instance.
+	 *
+	 * @type {ComponentRegistry<ComponentProto> | undefined}
+	 */
+	registry;
 
 	/**
 	 * @type {Promise<unknown>[]}
@@ -47,7 +72,7 @@ export default class Prism {
 	 * @param {PrismConfig} [config={}]
 	 */
 	constructor (config = {}) {
-		this.config = Object.assign({}, globalDefaults, config);
+		this.config = { ...config };
 
 		this.config.errorHandler ??= /** @type {PrismConfig['errorHandler']} */ (
 			this.config.silent ? () => undefined : console.error
@@ -56,13 +81,13 @@ export default class Prism {
 		const reportError = this.config.errorHandler;
 
 		this.languageRegistry = new LanguageRegistry({
-			path: /** @type {string} */ (this.config.languagePath),
+			path: this.config.languagePath ?? './languages/',
 			preload: this.config.languages,
 			prism: this,
 		});
 
 		this.pluginRegistry = new PluginRegistry({
-			path: /** @type {string} */ (this.config.pluginPath),
+			path: this.config.pluginPath ?? './plugins/',
 			prism: this,
 		});
 
@@ -77,12 +102,6 @@ export default class Prism {
 				.catch(reportError);
 			this.waitFor.push(pluginsReady);
 		}
-
-		if (!this.config.manual) {
-			this.waitFor.push(documentReady());
-
-			this.ready.then(() => this.highlightAll()).catch(reportError);
-		}
 	}
 
 	get languages () {
@@ -91,6 +110,21 @@ export default class Prism {
 
 	get plugins () {
 		return this.pluginRegistry.cache;
+	}
+
+	/**
+	 * Registers a language or plugin with this instance.
+	 *
+	 * @param {ComponentProto} def
+	 * @returns {boolean} `false` if it was already registered
+	 */
+	register (def) {
+		// Only languages have a grammar
+		if (def.grammar) {
+			return this.languageRegistry.add(def);
+		}
+
+		return this.pluginRegistry.add(def);
 	}
 
 	/**
@@ -165,5 +199,6 @@ export default class Prism {
  * @import { HighlightAllOptions } from '../highlight-all.js';
  * @import { HighlightElementOptions } from '../highlight-element.js';
  * @import { HighlightOptions } from '../highlight.js';
- * @import { PrismConfig, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
+ * @import ComponentRegistry from './component-registry.js';
+ * @import { PrismConfig, ComponentProto, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
  */

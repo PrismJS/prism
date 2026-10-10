@@ -1,10 +1,15 @@
-const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
+import Prism from './core/classes/prism.js';
+
+export const hasDOM = typeof document !== 'undefined' && typeof window !== 'undefined';
 const scriptElement = hasDOM ? document.currentScript : null;
 
 /**
  * @type {GlobalConfig}
  */
-const globalConfig = globalThis.Prism?.constructor?.name === 'Object' ? globalThis.Prism : {};
+const globalConfig =
+	typeof globalThis.Prism === 'object' && !Prism.isPrism(globalThis.Prism)
+		? (globalThis.Prism ?? {})
+		: {};
 
 /**
  * @param {string} name
@@ -62,15 +67,19 @@ function getGlobalArraySetting (name) {
 }
 
 /**
+ * Whether the auto-start entry (`prismjs` and the IIFE build) leaves highlighting the page to the user.
+ */
+export const manual = getGlobalBooleanSetting('manual', !hasDOM);
+
+/**
  * @type {PrismConfig}
  */
 export const globalDefaults = {
-	manual: getGlobalBooleanSetting('manual', !hasDOM),
 	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
-	languagePath: /** @type {string} */ (getGlobalSetting('language-path') ?? './languages/'),
-	pluginPath: /** @type {string} */ (getGlobalSetting('plugin-path') ?? './plugins/'),
+	languagePath: /** @type {string | undefined} */ (getGlobalSetting('language-path')),
+	pluginPath: /** @type {string | undefined} */ (getGlobalSetting('plugin-path')),
 };
 
 export default globalDefaults;
