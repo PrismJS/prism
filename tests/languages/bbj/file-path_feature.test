@@ -1,0 +1,27 @@
+use ::lib/util.bbj::Util
+use ::C:\bbj\lib.bbj::Lib
+use ::a.bbj::A; use ::b.bbj::B
+
+----------------------------------------------------
+
+[
+	["keyword", "use"],
+	["file-path", "::lib/util.bbj::"],
+	["class-name", "Util"],
+
+	["keyword", "use"],
+	["file-path", "::C:\\bbj\\lib.bbj::"],
+	["class-name", "Lib"],
+
+	["keyword", "use"],
+	["file-path", "::a.bbj::"],
+	["class-name", "A"],
+	["punctuation", ";"],
+	["keyword", "use"],
+	["file-path", "::b.bbj::"],
+	["class-name", "B"]
+]
+
+----------------------------------------------------
+
+Checks for file paths and the classes loaded from them.

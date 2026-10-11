@@ -1,0 +1,88 @@
+a$ = str(x)
+b$ = chr(13)
+c$ = cvs(y$, 3)
+d = fnTotal(1)
+e$ = fnAdd$(a$, b$)
+f$ = name$(1,3)
+g$ = line$(pos+1)
+sysgui!.addWindow(10, 10, 200, 200, "Hi")
+
+----------------------------------------------------
+
+[
+	["variable", "a$"],
+	["operator", "="],
+	["function", "str"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"],
+
+	["variable", "b$"],
+	["operator", "="],
+	["function", "chr"],
+	["punctuation", "("],
+	["number", "13"],
+	["punctuation", ")"],
+
+	["variable", "c$"],
+	["operator", "="],
+	["function", "cvs"],
+	["punctuation", "("],
+	["variable", "y$"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"],
+
+	"\r\nd ",
+	["operator", "="],
+	["function", "fnTotal"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["variable", "e$"],
+	["operator", "="],
+	["function", "fnAdd$"],
+	["punctuation", "("],
+	["variable", "a$"],
+	["punctuation", ","],
+	["variable", "b$"],
+	["punctuation", ")"],
+
+	["variable", "f$"],
+	["operator", "="],
+	["variable", "name$"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"],
+
+	["variable", "g$"],
+	["operator", "="],
+	["variable", "line$"],
+	["punctuation", "("],
+	"pos",
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["variable", "sysgui!"],
+	["punctuation", "."],
+	["function", "addWindow"],
+	["punctuation", "("],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", ","],
+	["string", "\"Hi\""],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions. Only user-defined FN functions have a type suffix; name$(…) is a substring.

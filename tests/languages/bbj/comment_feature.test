@@ -1,23 +1,35 @@
 rem Single line comment
-
+REM upper case
+rem
+x = 1; rem trailing comment
+rem "not a string"
 rem /**
 rem  * This file is part of the X plugin.
-rem  *
-rem  * For the full copyright and license information, please view the LICENSE
-rem  * file that was distributed with this source code.
 rem  */
+
+theorem = 1
+remark$ = "x"
+rem15 = 2
 
 ----------------------------------------------------
 
 [
 	["comment", "rem Single line comment"],
-
+	["comment", "REM upper case"],
+	["comment", "rem"],
+	"\r\nx ",
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"],
+	["comment", "rem trailing comment"],
+	["comment", "rem \"not a string\""],
 	["comment", "rem /**"],
 	["comment", "rem  * This file is part of the X plugin."],
-	["comment", "rem  *"],
-	["comment", "rem  * For the full copyright and license information, please view the LICENSE"],
-	["comment", "rem  * file that was distributed with this source code."],
-	["comment", "rem  */"]
+	["comment", "rem  */"],
+
+	"\r\n\r\ntheorem ", ["operator", "="], ["number", "1"],
+	["variable", "remark$"], ["operator", "="], ["string", "\"x\""],
+	"\r\nrem15 ", ["operator", "="], ["number", "2"]
 ]
 
 ----------------------------------------------------

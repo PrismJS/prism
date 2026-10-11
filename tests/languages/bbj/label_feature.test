@@ -1,0 +1,83 @@
+done:
+  0030 retry:
+goto done
+gosub sub_routine
+on x goto l1, l2, l3
+exitto done
+seterr oops
+read (1,key=k$,err=oops,dom=missing)a$
+open (1,end=eof)"file.dat"
+goto 0030
+
+----------------------------------------------------
+
+[
+	["label", [
+		"done",
+		["punctuation", ":"]
+	]],
+
+	["line-number", "0030"],
+	["label", [
+		"retry",
+		["punctuation", ":"]
+	]],
+
+	["keyword", "goto"],
+	["label", ["done"]],
+
+	["keyword", "gosub"],
+	["label", ["sub_routine"]],
+
+	["keyword", "on"],
+	" x ",
+	["keyword", "goto"],
+	["label", [
+		"l1",
+		["punctuation", ","],
+		" l2",
+		["punctuation", ","],
+		" l3"
+	]],
+
+	["keyword", "exitto"],
+	["label", ["done"]],
+
+	["keyword", "seterr"],
+	["label", ["oops"]],
+
+	["keyword", "read"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["keyword", "key"],
+	["operator", "="],
+	["variable", "k$"],
+	["punctuation", ","],
+	["keyword", "err"],
+	["operator", "="],
+	["label", "oops"],
+	["punctuation", ","],
+	["keyword", "dom"],
+	["operator", "="],
+	["label", "missing"],
+	["punctuation", ")"],
+	["variable", "a$"],
+
+	["keyword", "open"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["keyword", "end"],
+	["operator", "="],
+	["label", "eof"],
+	["punctuation", ")"],
+	["string", "\"file.dat\""],
+
+	["keyword", "goto"],
+	["number", "0030"]
+]
+
+----------------------------------------------------
+
+Checks for label declarations and references.
