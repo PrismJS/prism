@@ -1,0 +1,44 @@
+Host github.com
+	HostName github.com
+	User git
+	Port 22
+	IdentityFile ~/.ssh/id_ed25519
+	ForwardAgent yes
+	Compression no
+
+Match host *.internal
+	ProxyJump bastion
+
+----------------------------------------------------
+
+[
+	["section", [
+		["keyword", "Host"],
+		["string", "github.com"]
+	]],
+	["keyword", "HostName"],
+	" github.com\r\n\t",
+	["keyword", "User"],
+	" git\r\n\t",
+	["keyword", "Port"],
+	["number", "22"],
+	["keyword", "IdentityFile"],
+	" ~/.ssh/id_ed25519\r\n\t",
+	["keyword", "ForwardAgent"],
+	["boolean", "yes"],
+	["keyword", "Compression"],
+	["boolean", "no"],
+
+	["section", [
+		["keyword", "Match"],
+		["string", "host"],
+		["operator", "*"],
+		["string", ".internal"]
+	]],
+	["keyword", "ProxyJump"],
+	" bastion"
+]
+
+----------------------------------------------------
+
+Common ssh_config keywords, booleans, and Host/Match sections.

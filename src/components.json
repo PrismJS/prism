@@ -1133,6 +1133,10 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"ssh-config": {
+			"title": "SSH config",
+			"owner": "Errr0rr404"
+		},
 		"squirrel": {
 			"title": "Squirrel",
 			"owner": "RunDevelopment"
