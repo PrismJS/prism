@@ -1,0 +1,465 @@
+adc
+and
+asl
+asr
+aug
+bbr0
+bbr1
+bbr2
+bbr3
+bbr4
+bbr5
+bbr6
+bbr7
+bbs0
+bbs1
+bbs2
+bbs3
+bbs4
+bbs5
+bbs6
+bbs7
+bcc
+bcs
+beq
+bit
+bmi
+bne
+bpl
+bra
+brk
+bvc
+bvs
+clc
+cld
+cle
+cli
+clv
+cmp
+cpx
+cpy
+cpz
+dec
+dew
+dex
+dey
+eor
+inc
+inw
+inx
+iny
+jmp
+jsr
+lda
+ldx
+ldy
+ldz
+lsr
+neg
+nop
+ora
+pha
+php
+phx
+phy
+phz
+pla
+plp
+plx
+ply
+plz
+rmb0
+rmb1
+rmb2
+rmb3
+rmb4
+rmb5
+rmb6
+rmb7
+rol
+ror
+rti
+rtn
+rts
+sbc
+sec
+sed
+see
+sei
+smb0
+smb1
+smb2
+smb3
+smb4
+smb5
+smb6
+smb7
+sta
+stx
+sty
+stz
+tab
+tax
+tay
+taz
+tba
+trb
+tsb
+tsx
+txa
+txs
+tsy
+tya
+tys
+tza
+ADC
+AND
+ASL
+ASR
+AUG
+BBR0
+BBR1
+BBR2
+BBR3
+BBR4
+BBR5
+BBR6
+BBR7
+BBS0
+BBS1
+BBS2
+BBS3
+BBS4
+BBS5
+BBS6
+BBS7
+BCC
+BCS
+BEQ
+BIT
+BMI
+BNE
+BPL
+BRA
+BRK
+BVC
+BVS
+CLC
+CLD
+CLE
+CLI
+CLV
+CMP
+CPX
+CPY
+CPZ
+DEC
+DEW
+DEX
+DEY
+EOR
+INC
+INW
+INX
+INY
+JMP
+JSR
+LDA
+LDX
+LDY
+LDZ
+LSR
+NEG
+NOP
+ORA
+PHA
+PHP
+PHX
+PHY
+PHZ
+PLA
+PLP
+PLX
+PLY
+PLZ
+RMB0
+RMB1
+RMB2
+RMB3
+RMB4
+RMB5
+RMB6
+RMB7
+ROL
+ROR
+RTI
+RTN
+RTS
+SBC
+SEC
+SED
+SEE
+SEI
+SMB0
+SMB1
+SMB2
+SMB3
+SMB4
+SMB5
+SMB6
+SMB7
+STA
+STX
+STY
+STZ
+TAB
+TAX
+TAY
+TAZ
+TBA
+TRB
+TSB
+TSX
+TXA
+TXS
+TSY
+TYA
+TYS
+TZA
+
+----------------------------------------------------
+
+[
+	["op-code", "adc"],
+	["op-code", "and"],
+	["op-code", "asl"],
+	["op-code", "asr"],
+	["op-code", "aug"],
+	["op-code", "bbr0"],
+	["op-code", "bbr1"],
+	["op-code", "bbr2"],
+	["op-code", "bbr3"],
+	["op-code", "bbr4"],
+	["op-code", "bbr5"],
+	["op-code", "bbr6"],
+	["op-code", "bbr7"],
+	["op-code", "bbs0"],
+	["op-code", "bbs1"],
+	["op-code", "bbs2"],
+	["op-code", "bbs3"],
+	["op-code", "bbs4"],
+	["op-code", "bbs5"],
+	["op-code", "bbs6"],
+	["op-code", "bbs7"],
+	["op-code", "bcc"],
+	["op-code", "bcs"],
+	["op-code", "beq"],
+	["op-code", "bit"],
+	["op-code", "bmi"],
+	["op-code", "bne"],
+	["op-code", "bpl"],
+	["op-code", "bra"],
+	["op-code", "brk"],
+	["op-code", "bvc"],
+	["op-code", "bvs"],
+	["op-code", "clc"],
+	["op-code", "cld"],
+	["op-code", "cle"],
+	["op-code", "cli"],
+	["op-code", "clv"],
+	["op-code", "cmp"],
+	["op-code", "cpx"],
+	["op-code", "cpy"],
+	["op-code", "cpz"],
+	["op-code", "dec"],
+	["op-code", "dew"],
+	["op-code", "dex"],
+	["op-code", "dey"],
+	["op-code", "eor"],
+	["op-code", "inc"],
+	["op-code", "inw"],
+	["op-code", "inx"],
+	["op-code", "iny"],
+	["op-code", "jmp"],
+	["op-code", "jsr"],
+	["op-code", "lda"],
+	["op-code", "ldx"],
+	["op-code", "ldy"],
+	["op-code", "ldz"],
+	["op-code", "lsr"],
+	["op-code", "neg"],
+	["op-code", "nop"],
+	["op-code", "ora"],
+	["op-code", "pha"],
+	["op-code", "php"],
+	["op-code", "phx"],
+	["op-code", "phy"],
+	["op-code", "phz"],
+	["op-code", "pla"],
+	["op-code", "plp"],
+	["op-code", "plx"],
+	["op-code", "ply"],
+	["op-code", "plz"],
+	["op-code", "rmb0"],
+	["op-code", "rmb1"],
+	["op-code", "rmb2"],
+	["op-code", "rmb3"],
+	["op-code", "rmb4"],
+	["op-code", "rmb5"],
+	["op-code", "rmb6"],
+	["op-code", "rmb7"],
+	["op-code", "rol"],
+	["op-code", "ror"],
+	["op-code", "rti"],
+	["op-code", "rtn"],
+	["op-code", "rts"],
+	["op-code", "sbc"],
+	["op-code", "sec"],
+	["op-code", "sed"],
+	["op-code", "see"],
+	["op-code", "sei"],
+	["op-code", "smb0"],
+	["op-code", "smb1"],
+	["op-code", "smb2"],
+	["op-code", "smb3"],
+	["op-code", "smb4"],
+	["op-code", "smb5"],
+	["op-code", "smb6"],
+	["op-code", "smb7"],
+	["op-code", "sta"],
+	["op-code", "stx"],
+	["op-code", "sty"],
+	["op-code", "stz"],
+	["op-code", "tab"],
+	["op-code", "tax"],
+	["op-code", "tay"],
+	["op-code", "taz"],
+	["op-code", "tba"],
+	["op-code", "trb"],
+	["op-code", "tsb"],
+	["op-code", "tsx"],
+	["op-code", "txa"],
+	["op-code", "txs"],
+	["op-code", "tsy"],
+	["op-code", "tya"],
+	["op-code", "tys"],
+	["op-code", "tza"],
+	["op-code", "ADC"],
+	["op-code", "AND"],
+	["op-code", "ASL"],
+	["op-code", "ASR"],
+	["op-code", "AUG"],
+	["op-code", "BBR0"],
+	["op-code", "BBR1"],
+	["op-code", "BBR2"],
+	["op-code", "BBR3"],
+	["op-code", "BBR4"],
+	["op-code", "BBR5"],
+	["op-code", "BBR6"],
+	["op-code", "BBR7"],
+	["op-code", "BBS0"],
+	["op-code", "BBS1"],
+	["op-code", "BBS2"],
+	["op-code", "BBS3"],
+	["op-code", "BBS4"],
+	["op-code", "BBS5"],
+	["op-code", "BBS6"],
+	["op-code", "BBS7"],
+	["op-code", "BCC"],
+	["op-code", "BCS"],
+	["op-code", "BEQ"],
+	["op-code", "BIT"],
+	["op-code", "BMI"],
+	["op-code", "BNE"],
+	["op-code", "BPL"],
+	["op-code", "BRA"],
+	["op-code", "BRK"],
+	["op-code", "BVC"],
+	["op-code", "BVS"],
+	["op-code", "CLC"],
+	["op-code", "CLD"],
+	["op-code", "CLE"],
+	["op-code", "CLI"],
+	["op-code", "CLV"],
+	["op-code", "CMP"],
+	["op-code", "CPX"],
+	["op-code", "CPY"],
+	["op-code", "CPZ"],
+	["op-code", "DEC"],
+	["op-code", "DEW"],
+	["op-code", "DEX"],
+	["op-code", "DEY"],
+	["op-code", "EOR"],
+	["op-code", "INC"],
+	["op-code", "INW"],
+	["op-code", "INX"],
+	["op-code", "INY"],
+	["op-code", "JMP"],
+	["op-code", "JSR"],
+	["op-code", "LDA"],
+	["op-code", "LDX"],
+	["op-code", "LDY"],
+	["op-code", "LDZ"],
+	["op-code", "LSR"],
+	["op-code", "NEG"],
+	["op-code", "NOP"],
+	["op-code", "ORA"],
+	["op-code", "PHA"],
+	["op-code", "PHP"],
+	["op-code", "PHX"],
+	["op-code", "PHY"],
+	["op-code", "PHZ"],
+	["op-code", "PLA"],
+	["op-code", "PLP"],
+	["op-code", "PLX"],
+	["op-code", "PLY"],
+	["op-code", "PLZ"],
+	["op-code", "RMB0"],
+	["op-code", "RMB1"],
+	["op-code", "RMB2"],
+	["op-code", "RMB3"],
+	["op-code", "RMB4"],
+	["op-code", "RMB5"],
+	["op-code", "RMB6"],
+	["op-code", "RMB7"],
+	["op-code", "ROL"],
+	["op-code", "ROR"],
+	["op-code", "RTI"],
+	["op-code", "RTN"],
+	["op-code", "RTS"],
+	["op-code", "SBC"],
+	["op-code", "SEC"],
+	["op-code", "SED"],
+	["op-code", "SEE"],
+	["op-code", "SEI"],
+	["op-code", "SMB0"],
+	["op-code", "SMB1"],
+	["op-code", "SMB2"],
+	["op-code", "SMB3"],
+	["op-code", "SMB4"],
+	["op-code", "SMB5"],
+	["op-code", "SMB6"],
+	["op-code", "SMB7"],
+	["op-code", "STA"],
+	["op-code", "STX"],
+	["op-code", "STY"],
+	["op-code", "STZ"],
+	["op-code", "TAB"],
+	["op-code", "TAX"],
+	["op-code", "TAY"],
+	["op-code", "TAZ"],
+	["op-code", "TBA"],
+	["op-code", "TRB"],
+	["op-code", "TSB"],
+	["op-code", "TSX"],
+	["op-code", "TXA"],
+	["op-code", "TXS"],
+	["op-code", "TSY"],
+	["op-code", "TYA"],
+	["op-code", "TYS"],
+	["op-code", "TZA"]
+]
+
+----------------------------------------------------
+
+Check for opcodes
