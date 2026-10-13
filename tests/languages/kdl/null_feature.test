@@ -1,0 +1,24 @@
+node #null
+node null
+node key=#null
+node key=null
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["keyword", "#null"],
+
+	["tag", "node"],
+	["keyword", "null"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["keyword", "#null"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["keyword", "null"]
+]

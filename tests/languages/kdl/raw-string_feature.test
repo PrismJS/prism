@@ -1,0 +1,27 @@
+node #"v2 raw with \n literal"#
+node ##"v2 raw with "# inside"##
+node #"""
+    multi
+    line raw
+    """#
+node r"v1 raw \n literal"
+node r##"v1 raw with "# inside"##
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["raw-string", "#\"v2 raw with \\n literal\"#"],
+
+	["tag", "node"],
+	["raw-string", "##\"v2 raw with \"# inside\"##"],
+
+	["tag", "node"],
+	["raw-string", "#\"\"\"\r\n    multi\r\n    line raw\r\n    \"\"\"#"],
+
+	["tag", "node"],
+	["raw-string", "r\"v1 raw \\n literal\""],
+
+	["tag", "node"],
+	["raw-string", "r##\"v1 raw with \"# inside\"##"]
+]

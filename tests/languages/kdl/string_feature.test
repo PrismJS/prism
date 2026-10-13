@@ -1,0 +1,27 @@
+node "hello"
+node "with \"escaped\" quotes"
+node "newline\nhere"
+node "unicode \u{1F4A9}"
+node """
+    multi-line
+    string
+    """
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["string", "\"hello\""],
+
+	["tag", "node"],
+	["string", "\"with \\\"escaped\\\" quotes\""],
+
+	["tag", "node"],
+	["string", "\"newline\\nhere\""],
+
+	["tag", "node"],
+	["string", "\"unicode \\u{1F4A9}\""],
+
+	["tag", "node"],
+	["string", "\"\"\"\r\n    multi-line\r\n    string\r\n    \"\"\""]
+]
