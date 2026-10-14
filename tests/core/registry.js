@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import { getEventListeners } from 'node:events';
+import ComponentRegistry from '../../src/core/classes/component-registry.js';
 import Language from '../../src/core/classes/language.js';
 import { Prism } from '../../src/core/prism.js';
 import { simplify } from '../helper/token-stream-transformer.js';
@@ -432,5 +433,27 @@ describe('Registry: $inner selectors', () => {
 				['b', [['punctuation', '('], 'z', ['punctuation', ')']]],
 			]
 		);
+	});
+});
+
+describe('Registry: subscribe', () => {
+	it('should stop passing components after unsubscribing', () => {
+		const registry = new ComponentRegistry();
+		const ids = [];
+
+		const unsubscribe = registry.subscribe(def => ids.push(def.id));
+		unsubscribe();
+		registry.add({ id: 'a' });
+
+		assert.deepStrictEqual(ids, []);
+	});
+});
+
+describe('Registry: load', () => {
+	// The registry of all imported components has no path, and `import('undefinedx.js')` would hide why
+	it('should explain that a registry without a path cannot load', () => {
+		const registry = new ComponentRegistry();
+
+		assert.throws(() => registry.load('x'), /no "path"/);
 	});
 });

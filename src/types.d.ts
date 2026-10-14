@@ -15,7 +15,6 @@ export type { Plugin };
 export type Plugins = Record<string, Plugin>;
 
 export interface PrismConfig {
-	manual?: boolean;
 	silent?: boolean;
 	errorHandler?: (reason: any) => PromiseLike<never>;
 	plugins?: string[];
