@@ -25,13 +25,7 @@ export default class Plugin extends EventTarget {
 
 		for (const def of this.require) {
 			// Ensure all required plugins and languages are registered
-			if (def.grammar) {
-				// We have a language definition
-				this.registry.prism.languageRegistry.add(def);
-			}
-			else {
-				this.registry.add(def);
-			}
+			this.registry.prism.register(def);
 		}
 	}
 

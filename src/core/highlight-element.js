@@ -1,6 +1,5 @@
 import { getLanguage, setLanguage } from '../shared/dom-util.js';
 import { htmlEncode } from '../shared/util.js';
-import singleton from './prism.js';
 
 /**
  * Highlights the code inside a single element.
@@ -21,12 +20,11 @@ import singleton from './prism.js';
  * @param {HighlightElementOptions} [options={}]
  */
 export function highlightElement (element, options = {}) {
-	const prism = this ?? singleton;
 	const { async, callback } = options;
 
 	// Find language
 	const language = getLanguage(element);
-	const grammar = prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
+	const grammar = this.languageRegistry.getLanguage(language)?.resolvedGrammar;
 
 	// Set language on the element, if not present
 	setLanguage(element, language);
@@ -52,16 +50,16 @@ export function highlightElement (element, options = {}) {
 	 */
 	const insertHighlightedCode = highlightedCode => {
 		env.highlightedCode = highlightedCode;
-		prism.hooks.run('before-insert', env);
+		this.hooks.run('before-insert', env);
 
 		env.element.innerHTML = env.highlightedCode;
 
-		prism.hooks.run('after-highlight', env);
-		prism.hooks.run('complete', env);
+		this.hooks.run('after-highlight', env);
+		this.hooks.run('complete', env);
 		callback?.(env.element);
 	};
 
-	prism.hooks.run('before-sanity-check', env);
+	this.hooks.run('before-sanity-check', env);
 
 	// plugins may change/add the parent/element
 	parent = env.element.parentElement;
@@ -70,12 +68,12 @@ export function highlightElement (element, options = {}) {
 	}
 
 	if (!env.code) {
-		prism.hooks.run('complete', env);
+		this.hooks.run('complete', env);
 		callback?.(env.element);
 		return;
 	}
 
-	prism.hooks.run('before-highlight', env);
+	this.hooks.run('before-highlight', env);
 
 	if (!env.grammar) {
 		insertHighlightedCode(htmlEncode(env.code));
@@ -87,16 +85,16 @@ export function highlightElement (element, options = {}) {
 			language: env.language,
 			code: env.code,
 			grammar: env.grammar,
-		}).then(insertHighlightedCode, prism.config.errorHandler);
+		}).then(insertHighlightedCode, this.config.errorHandler);
 	}
 	else {
 		// A broken grammar must not stop `highlightAll()` from highlighting the other snippets
 		let highlightedCode;
 		try {
-			highlightedCode = prism.highlight(env.code, env.language, { grammar: env.grammar });
+			highlightedCode = this.highlight(env.code, env.language, { grammar: env.grammar });
 		}
 		catch (error) {
-			prism.config.errorHandler?.(error);
+			this.config.errorHandler?.(error);
 			return;
 		}
 		insertHighlightedCode(highlightedCode);
