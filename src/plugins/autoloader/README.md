@@ -55,6 +55,8 @@ You can also set it with a `data-autoloader-path` attribute on a script:
 
 _Note:_ Autoloader is pretty good at guessing this path. You most likely won't have to change this path.
 
+If you build your site with a bundler, such as webpack or Vite, the grammars are not part of the bundle. Copy the `languages` folder from `prismjs/dist` next to the bundled JavaScript file. If you put it elsewhere, set `srcPath` to the folder that contains it.
+
 ## Compound language ids
 
 Compound ids of meta-languages such as `language-diff:css` or `language-django:css` are understood: the plugin loads every part (`diff` and `css`).

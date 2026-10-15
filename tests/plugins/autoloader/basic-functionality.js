@@ -36,9 +36,13 @@ describe('Autoloader', () => {
 	 * Returns the default `srcPath` of the Autoloader on a page with the given element.
 	 *
 	 * @param {string} settings The HTML of the element that carries `data-autoloader-path`
+	 * @param {string} [url] The URL of the page
 	 */
-	async function srcPath (settings) {
-		const { Prism, document, window, loadPlugins, withGlobals } = createPrismDOM();
+	async function srcPath (settings, url) {
+		const { Prism, dom, document, window, loadPlugins, withGlobals } = createPrismDOM();
+		if (url) {
+			dom.reconfigure({ url });
+		}
 		document.head.innerHTML = settings;
 		await loadPlugins('autoloader');
 
@@ -58,10 +62,22 @@ describe('Autoloader', () => {
 		assert.strictEqual(path, 'https://example.com/prism/');
 	});
 
+	// A file: page, so the bundler guard stays off and the plugin's own URL decides
 	it('should ignore data-autoloader-path on an element other than a script', async () => {
-		const path = await srcPath('<meta data-autoloader-path="https://example.com/prism">');
+		const path = await srcPath(
+			'<meta data-autoloader-path="https://example.com/prism">',
+			'file:///test.html'
+		);
 
 		assert.strictEqual(path, new URL('../../../src/', import.meta.url).href);
+	});
+
+	// The test page is served over https, while the plugin loads from a file: URL,
+	// as in a webpack bundle that replaces `import.meta.url` with a path on the build machine
+	it('should not use a file: URL as the default srcPath on a web page', async () => {
+		const path = await srcPath('');
+
+		assert.strictEqual(path, './');
 	});
 
 	it('should load the language of code embedded in the element', async () => {
@@ -78,5 +94,6 @@ describe('Autoloader', () => {
 
 		assert.include(html, '<span class="token property">color</span>');
 		assert.lengthOf(errors, 1);
+		assert.include(errors[0], 'srcPath');
 	});
 });
