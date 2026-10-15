@@ -324,6 +324,21 @@ const cjsExportPlugin = {
 };
 
 /**
+ * Compiles `import.meta.url` to `undefined` in the CJS build.
+ * Rollup's CJS output for it calls `require('u' + 'rl')` (Node's `url` module),
+ * which webpack, Rspack, esbuild and Parcel cannot resolve when they bundle for the browser.
+ * Code that reads `import.meta.url` must handle `undefined`, as it must in an esbuild IIFE bundle.
+ *
+ * @type {Plugin}
+ */
+const cjsImportMetaPlugin = {
+	name: 'cjs-import-meta',
+	resolveImportMeta (property) {
+		return property === 'url' ? 'undefined' : null;
+	},
+};
+
+/**
  * @param {MagicString} s
  * @returns {{ code: string; map: SourceMapInput }}
  */
@@ -441,7 +456,12 @@ async function buildJS () {
 		cjs: {
 			rollupOptions: {
 				...defaultRollupOptions,
-				plugins: [...defaultRollupOptions.plugins, commonjs(), cjsExportPlugin],
+				plugins: [
+					...defaultRollupOptions.plugins,
+					commonjs(),
+					cjsExportPlugin,
+					cjsImportMetaPlugin,
+				],
 			},
 			outputOptions: {
 				...defaultOutputOptions,
