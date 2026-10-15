@@ -19,6 +19,18 @@ function isText (child) {
 	return child.nodeType === 3;
 }
 
+/**
+ * The keep-markup ancestor this node was recorded under, if that ancestor
+ * has already been put back in the highlighted tree.
+ *
+ * @param {NodeData} node
+ * @returns {Element | undefined}
+ */
+function insertedKeepParent (node) {
+	const parent = node.keepParent?.element;
+	return parent?.parentNode ? parent : undefined;
+}
+
 /** @type {import('../../types.d.ts').PluginProto<'keep-markup'>} */
 const Self = {
 	id: 'keep-markup',
@@ -55,6 +67,8 @@ const Self = {
 				let pos = 0;
 				/** @type {NodeData[]} */
 				const data = [];
+				/** @type {NodeData | undefined} */
+				let keepParent;
 
 				/**
 				 * @param {Element} element
@@ -72,10 +86,14 @@ const Self = {
 						element,
 						posOpen: pos,
 						posClose: NaN,
+						keepParent,
 					};
 					data.push(o);
 
+					const prevKeepParent = keepParent;
+					keepParent = o;
 					processChildren(element);
+					keepParent = prevKeepParent;
 
 					o.posClose = pos;
 				}
@@ -144,6 +162,20 @@ const Self = {
 							}
 
 							if (nodeState.start && nodeState.end) {
+								const parent = insertedKeepParent(nodeState.node);
+								if (
+									nodeState.node.posOpen === nodeState.node.posClose &&
+									parent &&
+									!parent.contains(nodeState.start[0])
+								) {
+									// Empty range at the same text offset as an
+									// already-wrapped ancestor sits after that
+									// ancestor. insertNode would flatten nested
+									// zero-length markup (#1640).
+									parent.appendChild(nodeState.node.element);
+									return false;
+								}
+
 								// Select the range and wrap it with the element
 								const range = document.createRange();
 								range.setStart(...nodeState.start);
@@ -162,7 +194,15 @@ const Self = {
 
 					// For each tag, we walk the DOM to reinsert it
 					data.forEach(node => {
-						walk(env.element, { node, pos: 0 });
+						const nodeState = { node, pos: 0 };
+						walk(env.element, nodeState);
+
+						// Empty markup at an ancestor's posClose has no later
+						// text inside that ancestor, so the walk never starts.
+						const parent = insertedKeepParent(node);
+						if (!nodeState.start && node.posOpen === node.posClose && parent) {
+							parent.appendChild(node.element);
+						}
 					});
 					// Store new highlightedCode for later hooks calls
 					env.highlightedCode = env.element.innerHTML;
@@ -181,6 +221,7 @@ prism.pluginRegistry.add(Self);
  * @property {Element} element
  * @property {number} posOpen
  * @property {number} posClose
+ * @property {NodeData} [keepParent]
  */
 
 /**
