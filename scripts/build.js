@@ -346,7 +346,9 @@ const terserOptions = {
 		unsafe_regexp: true,
 	},
 	format: {
-		comments: false,
+		// Bundlers read these on `import()` calls that load components at runtime.
+		// Without them, webpack and Rspack bundle every file in `dist/`, and Turbopack fails to build.
+		comments: /webpackIgnore|@vite-ignore/,
 	},
 	keep_classnames: true,
 };

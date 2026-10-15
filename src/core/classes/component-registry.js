@@ -188,7 +188,11 @@ export default class ComponentRegistry extends EventTarget {
 			return this.loading[id];
 		}
 
-		const loadingComponent = import(this.path + id + '.js')
+		// The path is known only at runtime, so bundlers must leave this call alone.
+		// Without these comments, webpack and Rspack bundle all of `dist/`, Turbopack fails, and Vite warns when Prism is symlinked.
+		const loadingComponent = import(
+			/* webpackIgnore: true */ /* @vite-ignore */ this.path + id + '.js'
+		)
 			.then(m => {
 				/** @type {T} */
 				const component = m.default ?? m;

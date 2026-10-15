@@ -92,11 +92,15 @@ export class Autoloader {
 
 				let promise = this._importCache.get(path);
 				if (promise === undefined) {
-					promise = import(path).then(exports => {
-						/** @type {import('../../types.d.ts').LanguageProto} */
-						const proto = exports.default;
-						this.Prism.languageRegistry.add(proto);
-					});
+					// The path is known only at runtime, so bundlers must leave this call alone.
+					// Without these comments, webpack and Rspack bundle all of `dist/`, Turbopack fails, and Vite warns when Prism is symlinked.
+					promise = import(/* webpackIgnore: true */ /* @vite-ignore */ path).then(
+						exports => {
+							/** @type {import('../../types.d.ts').LanguageProto} */
+							const proto = exports.default;
+							this.Prism.languageRegistry.add(proto);
+						}
+					);
 					this._importCache.set(path, promise);
 				}
 				return promise;
