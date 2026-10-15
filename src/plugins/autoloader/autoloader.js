@@ -19,8 +19,14 @@ function getDefaultSrcPath () {
 				/\bplugins\/autoloader\/autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 			const prismFile = /(^|\/)[\w-]+\.(?:min\.)?m?js(?:\?[^\r\n/]*)?$/i;
 
+			// In an esbuild IIFE bundle, `import.meta` is `{}`, so `src` is undefined
 			const src = import.meta.url;
-			if (autoloaderFile.test(src)) {
+			if (src?.startsWith('file:') && document.location.protocol !== 'file:') {
+				// webpack, Rspack and Parcel replace `import.meta.url` with the file's path on the build machine,
+				// like `file:///home/me/app/node_modules/prismjs/dist/autoloader-….js`. A web page cannot load it.
+				return './';
+			}
+			else if (autoloaderFile.test(src)) {
 				// the script is the original autoloader script in the usual Prism project structure
 				return src.replace(autoloaderFile, '');
 			}
@@ -196,7 +202,8 @@ const Self = {
 				autoloader.loadLanguages(name).catch(reason => {
 					failed.add(name);
 					Prism.config.errorHandler?.(
-						`Failed to load language ${name}: ${String(reason)}`
+						`Failed to load language ${name}: ${String(reason)}\n` +
+							`Check that Prism has a "${name}" language, and that the Autoloader's "srcPath" points to the folder that contains Prism's "languages" folder.`
 					);
 				}));
 			Promise.all(loading).then(() => {
