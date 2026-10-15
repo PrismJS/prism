@@ -23,7 +23,9 @@ const importCache = new Map();
 function importFile (file) {
 	let promise = importCache.get(file);
 	if (promise === undefined) {
-		promise = import(file);
+		// The path is known only at runtime, so bundlers must leave this call alone.
+		// Without these comments, webpack and Rspack bundle all of `dist/`, Turbopack fails, and Vite warns when Prism is symlinked.
+		promise = import(/* webpackIgnore: true */ /* @vite-ignore */ file);
 		importCache.set(file, promise);
 	}
 	return promise;
