@@ -21,7 +21,7 @@ export default {
 			alias: 'operator',
 		},
 		'dyadic-operator': {
-			pattern: /[.⍣⍠⍤∘⌸@⌺⍥]/,
+			pattern: /[.⍣⍠⍤⍛∘⌸@⌺⍥]/,
 			alias: 'operator',
 		},
 		'assignment': {
