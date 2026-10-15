@@ -1,0 +1,50 @@
+Kohaku: Hello
+Kohaku.Happy: Hello
+    Kohaku: Indented
+Yuko: Hi [wait 1] there
+Not an author:because no space
+Kohaku:
+"Quoted": not an author
+
+----------------------------------------------------
+
+[
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Hello\r\n",
+
+	["author", [
+		"Kohaku",
+		["punctuation", "."],
+		"Happy",
+		["punctuation", ":"]
+	]],
+	" Hello\r\n    ",
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Indented\r\n",
+
+	["author", [
+		"Yuko",
+		["punctuation", ":"]
+	]],
+	" Hi ",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "wait"],
+			["parameter-value", ["1"]]
+		]],
+		["punctuation", "]"]
+	]],
+	" there\r\nNot an author:because no space\r\nKohaku:\r\n\"Quoted\": not an author"
+]
+
+----------------------------------------------------
+
+Checks for author prefixes.

@@ -1,17 +1,61 @@
-;
-; comment
-\:; invalid comment
+; Line comment
+    ; Indented comment
+	; Tab-indented comment
+;No space
+@wait 1 ; after command
+@print "not ; a comment" ; comment
+@print {a ; b} ; comment
+# Label ; after label
+Text [wait 1 ; inside inline] text
+Not a comment ; in generic text
 
 ----------------------------------------------------
 
 [
-	["comment", ";"],
-	["comment", "; comment"],
-	["generic-text", [
-		"\\:; invalid comment"
-	]]
+	["comment", "; Line comment"],
+
+	["comment", "; Indented comment"],
+
+	["comment", "; Tab-indented comment"],
+
+	["comment", ";No space"],
+
+	["command", [
+		["command-name", "@wait"],
+		["parameter-value", ["1"]],
+		["comment", "; after command"]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["string", ["\"not ; a comment\""]],
+		["comment", "; comment"]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["expression", "{a ; b}"],
+		["comment", "; comment"]
+	]],
+
+	["label", [
+		"# Label ",
+		["comment", "; after label"]
+	]],
+
+	"\r\nText ",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "wait"],
+			["parameter-value", ["1"]],
+			["comment", "; inside inline"]
+		]],
+		["punctuation", "]"]
+	]],
+	" text\r\nNot a comment ; in generic text"
 ]
 
 ----------------------------------------------------
 
-Comment tests.
+Checks for comments.

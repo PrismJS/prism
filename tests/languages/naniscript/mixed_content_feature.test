@@ -1,93 +1,151 @@
-Generic text with inlined commands[i] example[command 1 danger:true] more text here [act danger:false true:false]
+; Scenario script example.
+# Start
+@back Beach
+@char Kohaku.Happy pos:50 wait!
+Kohaku: Hi! Welcome to {location}.[wait 1] Make yourself at home.
+@choice "Thanks" goto:#Thanks
+@choice "Leave" goto:#Leave if:canLeave
+@stop
 
-@action1ForTwoLinesWithCommands
-@action2ForTwoLinesWithCommands
+# Thanks
+@set visited = visited + 1 ; count visits
+@if visited > 1
+    Kohaku: Back again?
+@else
+    Kohaku: Nice to meet you!
+@goto #Start
 
-@commandAndGenericTextOnNewLine
-Massa ut elementum.
-
-@commandWithParameterAndGenericTextOnNewLine WideParam
-Integer
-
-Escaped braces inside generic text\{abu\}nt @ >ip#s;um< @ \[sdff j9dj\]
-
-UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
-"Integer: a = {a} malesuada a + b = {a + b}", Random(a, b) = {Random(a, b)}, Random("foo", "bar", "foobar") = {Random("foo", "bar", "foobar")},}
-#
->
-@
+# Leave
+Kohaku.Sad: See you <b>soon</b>...<->
+@goto #Start
 
 ----------------------------------------------------
 
 [
-	["generic-text", [
-		"Generic text with inlined commands",
-		["inline-command", [
-			["start-stop-char", "["],
-			["command-param-name", "i"],
-			["start-stop-char", "]"]
+	["comment", "; Scenario script example."],
+
+	["label", ["# Start"]],
+
+	["command", [
+		["command-name", "@back"],
+		["parameter-value", ["Beach"]]
+	]],
+
+	["command", [
+		["command-name", "@char"],
+		["parameter-value", ["Kohaku.Happy"]],
+		["parameter-name", [
+			"pos",
+			["punctuation", ":"]
 		]],
-		" example",
-		["inline-command", [
-			["start-stop-char", "["],
-			["command-param-name", "command"],
-			["command-params", [
-				["command-param-value", "1"],
-				["command-param-id", "danger:"],
-				["command-param-value", "true"]
-			]],
-			["start-stop-char", "]"]
-		]],
-		" more text here ",
-		["inline-command", [
-			["start-stop-char", "["],
-			["command-param-name", "act"],
-			["command-params", [
-				["command-param-id", "danger:"],
-				["command-param-value", "false"],
-				["command-param-id", "true:"],
-				["command-param-value", "false"]
-			]],
-			["start-stop-char", "]"]
+		["parameter-value", ["50"]],
+		["parameter-name", [
+			"wait",
+			["boolean", "!"]
 		]]
 	]],
 
-	["command", [
-		["command-name", "@action1ForTwoLinesWithCommands"]
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
 	]],
+	" Hi! Welcome to ",
+	["expression", "{location}"],
+	".",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "wait"],
+			["parameter-value", ["1"]]
+		]],
+		["punctuation", "]"]
+	]],
+	" Make yourself at home.\r\n",
+
 	["command", [
-		["command-name", "@action2ForTwoLinesWithCommands"]
+		["command-name", "@choice"],
+		["string", ["\"Thanks\""]],
+		["parameter-name", [
+			"goto",
+			["punctuation", ":"]
+		]],
+		["label", "#Thanks"]
 	]],
 
 	["command", [
-		["command-name", "@commandAndGenericTextOnNewLine"]
+		["command-name", "@choice"],
+		["string", ["\"Leave\""]],
+		["parameter-name", [
+			"goto",
+			["punctuation", ":"]
+		]],
+		["label", "#Leave"],
+		["parameter-name", [
+			"if",
+			["punctuation", ":"]
+		]],
+		["expression", "canLeave"]
 	]],
-	["generic-text", ["Massa ut elementum."]],
 
 	["command", [
-		["command-name", "@commandWithParameterAndGenericTextOnNewLine"],
-		["command-params", [
-			["command-param-value", "WideParam"]
-		]]
-	]],
-	["generic-text", ["Integer"]],
-
-	["generic-text", [
-		"Escaped braces inside generic text",
-		["escaped-char", "\\{"],
-		"abu",
-		["escaped-char", "\\}"],
-		"nt @ >ip#s;um< @ ",
-		["escaped-char", "\\["],
-		"sdff j9dj",
-		["escaped-char", "\\]"]
+		["command-name", "@stop"]
 	]],
 
-	["bad-line", "UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf ["],
-	["bad-line", "\"Integer: a = {a} malesuada a + b = {a + b}\", Random(a, b) = {Random(a, b)}, Random(\"foo\", \"bar\", \"foobar\") = {Random(\"foo\", \"bar\", \"foobar\")},}"],
-	"\r\n#\r\n>\r\n@"
+	["label", ["# Thanks"]],
+
+	["command", [
+		["command-name", "@set"],
+		["expression", "visited = visited + 1"],
+		["comment", "; count visits"]
+	]],
+
+	["command", [
+		["command-name", "@if"],
+		["expression", "visited > 1"]
+	]],
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Back again?\r\n",
+
+	["command", [
+		["command-name", "@else"]
+	]],
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Nice to meet you!\r\n",
+
+	["command", [
+		["command-name", "@goto"],
+		["label", "#Start"]
+	]],
+
+	["label", ["# Leave"]],
+
+	["author", [
+		"Kohaku",
+		["punctuation", "."],
+		"Sad",
+		["punctuation", ":"]
+	]],
+	" See you ",
+	["tag", "<b>"],
+	"soon",
+	["tag", "</b>"],
+	"...",
+	["tag", "<->"],
+
+	["command", [
+		["command-name", "@goto"],
+		["label", "#Start"]
+	]]
 ]
 
 ----------------------------------------------------
 
-Mixed tests of Generic Text, Commands, Inline Commands.
+Checks for a realistic script mixing all constructs.

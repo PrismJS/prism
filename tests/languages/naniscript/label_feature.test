@@ -1,24 +1,60 @@
-#
-# Section1
-#Section2
-# Section4
-#			SectionWithMultipleTabsBefore
-## Section3
-# Section with multiple words
-	# Section with
-	# Section with tab
+#Start
+# Start
+	# Indented
+# Multi word label
+@goto Script001
+@goto Script001#AfterStorm
+@goto #Epilogue hold!
+@gosub #Sub
+@choice "Go" goto:#Epilogue
+[goto #Next]
 
 ----------------------------------------------------
 
 [
-	"#\r\n",
-	["label", "# Section1"],
-	["label", "#Section2"],
-	["label", "# Section4"],
-	["label", "#\t\t\tSectionWithMultipleTabsBefore"],
-	"\r\n## Section3\r\n# Section with multiple words\r\n\t# Section with\r\n\t# Section with tab"
+	["label", ["#Start"]],
+	["label", ["# Start"]],
+	["label", ["# Indented"]],
+	["label", ["# Multi word label"]],
+	["command", [
+		["command-name", "@goto"],
+		["label", "Script001"]
+	]],
+	["command", [
+		["command-name", "@goto"],
+		["label", "Script001#AfterStorm"]
+	]],
+	["command", [
+		["command-name", "@goto"],
+		["label", "#Epilogue"],
+		["parameter-name", [
+			"hold",
+			["boolean", "!"]
+		]]
+	]],
+	["command", [
+		["command-name", "@gosub"],
+		["label", "#Sub"]
+	]],
+	["command", [
+		["command-name", "@choice"],
+		["string", ["\"Go\""]],
+		["parameter-name", [
+			"goto",
+			["punctuation", ":"]
+		]],
+		["label", "#Epilogue"]
+	]],
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "goto"],
+			["label", "#Next"]
+		]],
+		["punctuation", "]"]
+	]]
 ]
 
 ----------------------------------------------------
 
-Label tests.
+Checks for labels and navigation targets.
