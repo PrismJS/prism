@@ -1,5 +1,4 @@
 import { camelToKebabCase } from '../../shared/util.js';
-import singleton from '../prism.js';
 
 /**
  * @this {Prism}
@@ -7,20 +6,19 @@ import singleton from '../prism.js';
  * @returns {Grammar | Function | undefined}
  */
 export function resolve (reference) {
-	const prism = this ?? singleton;
 	let ret = reference ?? undefined;
 
 	if (typeof ret === 'string') {
-		ret = prism.languageRegistry.getLanguage(ret)?.resolvedGrammar;
+		ret = this.languageRegistry.getLanguage(ret)?.resolvedGrammar;
 	}
 
 	if (typeof ret === 'function' && ret.length === 0) {
 		// Function with no arguments, resolve eagerly
-		ret = ret.call(prism);
+		ret = ret.call(this);
 	}
 
 	if (typeof ret === 'object' && ret.$rest) {
-		const restGrammar = resolve.call(prism, ret.$rest) ?? {};
+		const restGrammar = resolve.call(this, ret.$rest) ?? {};
 		if (typeof restGrammar === 'object') {
 			ret = { ...ret, ...restGrammar };
 		}
