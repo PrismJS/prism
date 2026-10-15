@@ -1,5 +1,5 @@
-import prism from '../../global.js';
 import cssExtras from '../../languages/css-extras.js';
+import registry from '../../registry.js';
 import { MARKUP_TAG } from '../../shared/languages/patterns.js';
 
 const HTML_TAG = RegExp(MARKUP_TAG, 'g');
@@ -112,4 +112,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
