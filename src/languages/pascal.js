@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'pascal'>} */
-export default {
+const Self = {
 	id: 'pascal',
 	alias: 'objectpascal',
 	grammar () {
@@ -81,6 +83,10 @@ export default {
 		return pascal;
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken

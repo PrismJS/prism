@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'mongodb'>} */
-export default {
+const Self = {
 	id: 'mongodb',
 	base: javascript,
 	grammar () {
@@ -314,3 +315,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'rip'>} */
-export default {
+const Self = {
 	id: 'rip',
 	grammar: {
 		'comment': {
@@ -42,3 +44,7 @@ export default {
 		'reference': /[^\d\s`'",.:;#\/\\()<>\[\]{}][^\s`'",.:;#\/\\()<>\[\]{}]*/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

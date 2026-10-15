@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { insertBefore, withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'php'>} */
-export default {
+const Self = {
 	id: 'php',
 	inner: markup,
 	optional: 'php-extras',
@@ -367,6 +368,10 @@ export default {
 		});
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

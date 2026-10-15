@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'uorazor'>} */
-export default {
+const Self = {
 	id: 'uorazor',
 	grammar: {
 		'comment-hash': {
@@ -55,3 +57,7 @@ export default {
 		'punctuation': /[()\[\]{}:.,]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

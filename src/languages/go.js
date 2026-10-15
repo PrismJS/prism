@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'go'>} */
-export default {
+const Self = {
 	id: 'go',
 	base: clike,
 	grammar () {
@@ -37,3 +38,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

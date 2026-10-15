@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'metafont'>} */
-export default {
+const Self = {
 	id: 'metafont',
 	grammar: {
 		// Syntax of METAFONT with the added (public) elements of PlainMETAFONT. Except for internal quantities they are expected to be rarely redefined. Freely inspired by the syntax of Christophe Grandsire for the Crimson Editor.
@@ -94,3 +96,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

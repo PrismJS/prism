@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import jsx from './jsx.js';
 import typescript from './typescript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'tsx'>} */
-export default {
+const Self = {
 	id: 'tsx',
 	require: [jsx, typescript],
 	grammar ({ extend }) {
@@ -26,3 +27,7 @@ export default {
 		return tsx;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

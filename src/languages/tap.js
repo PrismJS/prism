@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import yaml from './yaml.js';
 
 // https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
 /** @type {import('../types.d.ts').LanguageProto<'tap'>} */
-export default {
+const Self = {
 	id: 'tap',
 	require: yaml,
 	grammar: {
@@ -27,3 +28,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

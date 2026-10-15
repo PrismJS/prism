@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'brainfuck'>} */
-export default {
+const Self = {
 	id: 'brainfuck',
 	grammar: {
 		'pointer': {
@@ -22,3 +24,7 @@ export default {
 		'comment': /\S+/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ftl'>} */
-export default {
+const Self = {
 	id: 'ftl',
 	inner: markup,
 	grammar () {
@@ -118,6 +119,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

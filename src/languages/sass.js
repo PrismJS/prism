@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import css from './css.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'sass'>} */
-export default {
+const Self = {
 	id: 'sass',
 	base: css,
 	grammar ({ base }) {
@@ -76,3 +77,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

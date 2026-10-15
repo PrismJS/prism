@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nix'>} */
-export default {
+const Self = {
 	id: 'nix',
 	grammar: {
 		'comment': {
@@ -39,3 +41,7 @@ export default {
 		'punctuation': /[{}()[\].,:;]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

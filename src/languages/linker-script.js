@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'linker-script'>} */
-export default {
+const Self = {
 	id: 'linker-script',
 	alias: 'ld',
 	grammar: {
@@ -31,3 +33,7 @@ export default {
 		'punctuation': /[(){},;]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

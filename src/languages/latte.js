@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 import php from './php.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'latte'>} */
-export default {
+const Self = {
 	id: 'latte',
 	require: [markup, php],
 	grammar ({ extend }) {
@@ -69,6 +70,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

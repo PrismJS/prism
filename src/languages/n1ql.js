@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'n1ql'>} */
-export default {
+const Self = {
 	id: 'n1ql',
 	grammar () {
 		// https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html
@@ -30,3 +32,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

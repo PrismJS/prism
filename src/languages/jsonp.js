@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import json from './json.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'jsonp'>} */
-export default {
+const Self = {
 	id: 'jsonp',
 	base: json,
 	grammar () {
@@ -15,3 +16,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

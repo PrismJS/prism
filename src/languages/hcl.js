@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'hcl'>} */
-export default {
+const Self = {
 	id: 'hcl',
 	grammar: {
 		'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
@@ -10,7 +12,8 @@ export default {
 		},
 		'keyword': [
 			{
-				pattern: /(?:data|ephemeral|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
+				pattern:
+					/(?:data|ephemeral|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
 				inside: {
 					'type': {
 						pattern: /(data|ephemeral|resource|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
@@ -66,3 +69,7 @@ export default {
 		'punctuation': /[=\[\]{}]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

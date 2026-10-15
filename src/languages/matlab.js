@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'matlab'>} */
-export default {
+const Self = {
 	id: 'matlab',
 	grammar: {
 		'comment': [/%\{[\s\S]*?\}%/, /%.+/],
@@ -16,3 +18,7 @@ export default {
 		'punctuation': /\.{3}|[.,;\[\](){}!]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'sml'>} */
-export default {
+const Self = {
 	id: 'sml',
 	alias: 'smlnj',
 	grammar () {
@@ -71,3 +73,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

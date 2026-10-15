@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'bash'>} */
-export default {
+const Self = {
 	id: 'bash',
 	alias: ['sh', 'shell'],
 	grammar () {
@@ -244,3 +246,7 @@ export default {
 		return bash;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

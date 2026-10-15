@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import java from './java.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'scala'>} */
-export default {
+const Self = {
 	id: 'scala',
 	base: java,
 	grammar () {
@@ -57,3 +58,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

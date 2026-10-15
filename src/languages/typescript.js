@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import { insertBefore } from '../util/language-util.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'typescript'>} */
-export default {
+const Self = {
 	id: 'typescript',
 	require: javascript,
 	alias: 'ts',
@@ -71,3 +72,7 @@ export default {
 		return typescript;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

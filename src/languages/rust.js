@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'rust'>} */
-export default {
+const Self = {
 	id: 'rust',
 	grammar () {
 		let multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;
@@ -128,3 +130,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

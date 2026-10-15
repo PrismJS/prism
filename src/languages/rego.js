@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'rego'>} */
-export default {
+const Self = {
 	id: 'rego',
 	grammar () {
 		// https://www.openpolicyagent.org/docs/latest/policy-reference/
@@ -34,3 +36,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'icu-message-format'>} */
-export default {
+const Self = {
 	id: 'icu-message-format',
 	grammar () {
 		// https://unicode-org.github.io/icu/userguide/format_parse/messages/
@@ -155,3 +157,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
