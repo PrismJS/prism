@@ -162,7 +162,21 @@ const Self = {
 
 					// For each tag, we walk the DOM to reinsert it
 					data.forEach(node => {
-						walk(env.element, { node, pos: 0 });
+						const nodeState = { node, pos: 0 };
+						walk(env.element, nodeState);
+
+						// Empty markup at end-of-content has posOpen === posClose at
+						// the last text offset. The walk starts on
+						// `pos + length > posOpen`, so a text node that *ends*
+						// exactly there never matches, and there is no later text
+						// (#1618). Reinsert as the last child of the code element.
+						// Using `>=` instead would find that text, but a zero-width
+						// Range#insertNode at its end lands before following
+						// siblings — reversing adjacent empty tags and pulling
+						// them into a preceding kept element (see #1622).
+						if (!nodeState.start && node.posOpen === node.posClose) {
+							env.element.appendChild(node.element);
+						}
 					});
 					// Store new highlightedCode for later hooks calls
 					env.highlightedCode = env.element.innerHTML;
