@@ -1,0 +1,12 @@
+"hello"
+"with \"escape\" and \\ backslash"
+"multi
+line"
+
+----------------------------------------------------
+
+[
+	["string", "\"hello\""],
+	["string", "\"with \\\"escape\\\" and \\\\ backslash\""],
+	"\r\n\"multi\r\nline\""
+]

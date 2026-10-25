@@ -1042,6 +1042,10 @@
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
 		},
+		"rgc": {
+			"title": "RGC",
+			"owner": "rgc-lang"
+		},
 		"rip": {
 			"title": "Rip",
 			"owner": "ravinggenius"

@@ -1,0 +1,31 @@
+fib(n)
+print("hi")
+obj.method()
+range(1, 10)
+
+----------------------------------------------------
+
+[
+	["function", "fib"],
+	["punctuation", "("],
+	"n",
+	["punctuation", ")"],
+
+	["function", "print"],
+	["punctuation", "("],
+	["string", "\"hi\""],
+	["punctuation", ")"],
+
+	"\r\nobj",
+	["punctuation", "."],
+	["function", "method"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "range"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ")"]
+]

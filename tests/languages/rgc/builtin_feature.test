@@ -1,0 +1,10 @@
+int float bool str
+
+----------------------------------------------------
+
+[
+	["builtin", "int"],
+	["builtin", "float"],
+	["builtin", "bool"],
+	["builtin", "str"]
+]

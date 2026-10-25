@@ -1,0 +1,27 @@
+class Counter:
+enum Color:
+interface Shape:
+class Child(Parent):
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "Counter"],
+	["punctuation", ":"],
+
+	["keyword", "enum"],
+	["class-name", "Color"],
+	["punctuation", ":"],
+
+	["keyword", "interface"],
+	["class-name", "Shape"],
+	["punctuation", ":"],
+
+	["keyword", "class"],
+	["class-name", "Child"],
+	["punctuation", "("],
+	"Parent",
+	["punctuation", ")"],
+	["punctuation", ":"]
+]

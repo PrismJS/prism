@@ -1,0 +1,140 @@
+# A sample RGC program
+def fib(n: int) -> int:
+    if n <= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+class Counter:
+    value: int = 0
+
+    def increment(self) -> None:
+        self.value += 1
+
+counter: Counter = @var Counter()
+for i in range(10):
+    counter.increment()
+match counter.value:
+    case 10 => print("ten")
+    case _ => print(counter.value)
+print(counter.value)
+
+----------------------------------------------------
+
+[
+	["comment", "# A sample RGC program"],
+
+	["keyword", "def"],
+	["function", "fib"],
+	["punctuation", "("],
+	"n",
+	["punctuation", ":"],
+	["builtin", "int"],
+	["punctuation", ")"],
+	["operator", "->"],
+	["builtin", "int"],
+	["punctuation", ":"],
+
+	["keyword", "if"],
+	" n ",
+	["operator", "<="],
+	["number", "1"],
+	["punctuation", ":"],
+
+	["keyword", "return"],
+	" n\r\n    ",
+
+	["keyword", "return"],
+	["function", "fib"],
+	["punctuation", "("],
+	"n ",
+	["operator", "-"],
+	["number", "1"],
+	["punctuation", ")"],
+	["operator", "+"],
+	["function", "fib"],
+	["punctuation", "("],
+	"n ",
+	["operator", "-"],
+	["number", "2"],
+	["punctuation", ")"],
+
+	["keyword", "class"],
+	["class-name", "Counter"],
+	["punctuation", ":"],
+
+	"\r\n    value",
+	["punctuation", ":"],
+	["builtin", "int"],
+	["operator", "="],
+	["number", "0"],
+
+	["keyword", "def"],
+	["function", "increment"],
+	["punctuation", "("],
+	"self",
+	["punctuation", ")"],
+	["operator", "->"],
+	["boolean", "None"],
+	["punctuation", ":"],
+
+	"\r\n        self",
+	["punctuation", "."],
+	"value ",
+	["operator", "+="],
+	["number", "1"],
+
+	"\r\n\r\ncounter",
+	["punctuation", ":"],
+	" Counter ",
+	["operator", "="],
+	["decorator", "@var"],
+	["function", "Counter"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "for"],
+	" i ",
+	["keyword", "in"],
+	["function", "range"],
+	["punctuation", "("],
+	["number", "10"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+
+	"\r\n    counter",
+	["punctuation", "."],
+	["function", "increment"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "match"],
+	" counter",
+	["punctuation", "."],
+	"value",
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	["number", "10"],
+	["operator", "=>"],
+	["function", "print"],
+	["punctuation", "("],
+	["string", "\"ten\""],
+	["punctuation", ")"],
+
+	["keyword", "case"],
+	" _ ",
+	["operator", "=>"],
+	["function", "print"],
+	["punctuation", "("],
+	"counter",
+	["punctuation", "."],
+	"value",
+	["punctuation", ")"],
+
+	["function", "print"],
+	["punctuation", "("],
+	"counter",
+	["punctuation", "."],
+	"value",
+	["punctuation", ")"]
+]

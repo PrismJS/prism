@@ -1,0 +1,14 @@
+# line comment
+x = 1 # trailing
+/* block
+comment */
+@var value = 1
+
+----------------------------------------------------
+
+[
+	["comment", "# line comment"],
+	"\r\nx ", ["operator", "="], ["number", "1"], ["comment", "# trailing"],
+	["block-comment", "/* block\r\ncomment */"],
+	["decorator", "@var"], " value ", ["operator", "="], ["number", "1"]
+]

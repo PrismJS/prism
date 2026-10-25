@@ -1,0 +1,35 @@
+def class enum interface import
+if elif else for in while
+match case
+and or not
+return break continue pass var
+
+----------------------------------------------------
+
+[
+	["keyword", "def"],
+	["keyword", "class"],
+	["class-name", "enum"],
+	["keyword", "interface"],
+	["class-name", "import"],
+
+	["keyword", "if"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "for"],
+	["keyword", "in"],
+	["keyword", "while"],
+
+	["keyword", "match"],
+	["keyword", "case"],
+
+	["keyword", "and"],
+	["keyword", "or"],
+	["keyword", "not"],
+
+	["keyword", "return"],
+	["keyword", "break"],
+	["keyword", "continue"],
+	["keyword", "pass"],
+	["keyword", "var"]
+]

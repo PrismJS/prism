@@ -1,0 +1,23 @@
+@var Counter()
+@SomeType value
+@var
+@Box(ptr)
+
+----------------------------------------------------
+
+[
+	["decorator", "@var"],
+	["function", "Counter"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["decorator", "@SomeType"],
+	" value\r\n",
+
+	["decorator", "@var"],
+
+	["decorator", "@Box"],
+	["punctuation", "("],
+	"ptr",
+	["punctuation", ")"]
+]
