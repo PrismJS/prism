@@ -1,0 +1,110 @@
+labels: ['prod', 'eu-west', 'canary']
+matrix: [[1, 2], [3, 4]]
+mixed: [1, 'two', true, null]
+pool: {
+	min: 2
+	max: 16
+}
+healthcheck: {path: '/health', interval: 10s}
+maintainers: [
+	{name: 'Sindre Sorhus', email: 'sindre@sorhus.com'}
+	{name: 'Random Person', email: 'person@example.com'}
+]
+
+----------------------------------------------------
+
+[
+	["key", "labels"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["string", "'prod'"],
+	["punctuation", ","],
+	["string", "'eu-west'"],
+	["punctuation", ","],
+	["string", "'canary'"],
+	["punctuation", "]"],
+
+	["key", "matrix"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["punctuation", "["],
+	["number", "3"],
+	["punctuation", ","],
+	["number", "4"],
+	["punctuation", "]"],
+	["punctuation", "]"],
+
+	["key", "mixed"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["string", "'two'"],
+	["punctuation", ","],
+	["boolean", "true"],
+	["punctuation", ","],
+	["null", "null"],
+	["punctuation", "]"],
+
+	["key", "pool"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+
+	["key", "min"],
+	["punctuation", ":"],
+	["number", "2"],
+
+	["key", "max"],
+	["punctuation", ":"],
+	["number", "16"],
+
+	["punctuation", "}"],
+
+	["key", "healthcheck"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["key", "path"],
+	["punctuation", ":"],
+	["string", "'/health'"],
+	["punctuation", ","],
+	["key", "interval"],
+	["punctuation", ":"],
+	["duration", "10s"],
+	["punctuation", "}"],
+
+	["key", "maintainers"],
+	["punctuation", ":"],
+	["punctuation", "["],
+
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Sindre Sorhus'"],
+	["punctuation", ","],
+	["key", "email"],
+	["punctuation", ":"],
+	["string", "'sindre@sorhus.com'"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Random Person'"],
+	["punctuation", ","],
+	["key", "email"],
+	["punctuation", ":"],
+	["string", "'person@example.com'"],
+	["punctuation", "}"],
+
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Arrays and objects, with one-line and multi-line containers.

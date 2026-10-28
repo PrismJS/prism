@@ -1,0 +1,53 @@
+literal-block: '''
+	''''
+	still content
+	'''
+escaped-block: """
+	""""
+	still content
+	"""
+literal-unicode: 'before middle after'
+escaped-unicode: "before middle after"
+empty-keys: [{'': 1}, {"": 2}]
+/* x /*/
+after-comment: true
+
+----------------------------------------------------
+
+[
+	["key", "literal-block"],
+	["punctuation", ":"],
+	["block-string", "'''\r\n\t''''\r\n\tstill content\r\n\t'''"],
+	["key", "escaped-block"],
+	["punctuation", ":"],
+	["block-string", "\"\"\"\r\n\t\"\"\"\"\r\n\tstill content\r\n\t\"\"\""],
+	["key", "literal-unicode"],
+	["punctuation", ":"],
+	["string", "'before\u2028middle\u2029after'"],
+	["key", "escaped-unicode"],
+	["punctuation", ":"],
+	["string", "\"before\u2028middle\u2029after\""],
+	["key", "empty-keys"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["punctuation", "{"],
+	["key", "''"],
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["key", "\"\""],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", "}"],
+	["punctuation", "]"],
+	["comment", "/* x /*/"],
+	["key", "after-comment"],
+	["punctuation", ":"],
+	["boolean", "true"]
+]
+
+----------------------------------------------------
+
+Longer quote runs remain block-string content in both quote styles. Literal U+2028 and U+2029 stay inside single-line strings. Empty quoted keys are properties. The slash before a block comment terminator belongs to its body, and tokenization resumes after the terminator.

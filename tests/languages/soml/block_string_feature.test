@@ -1,0 +1,73 @@
+empty:
+	'''
+	'''
+column-zero:
+	'''
+at column zero
+'''
+longer:
+	''''
+	content that holds ''' inside
+	''''
+prose:
+	'''
+	Terminates TLS.
+	Routes requests to internal services.
+	'''
+symbols:
+	'''
+	# not a comment
+	/* not a comment */
+	'''
+looks-like-soml:
+	'''
+	key: 'value'
+	404: 1
+	2026-09-19T14:00:00Z
+	30s
+	'''
+escaped:
+	"""
+	keeps \n and \" escapes
+	"""
+literal-after-comment: /*'*/'''
+literal content
+'''
+escaped-after-comment: /*"*/"""
+escaped content
+"""
+items: [/*'*/'''
+literal item
+''',/*"*/"""
+escaped item
+"""]
+
+----------------------------------------------------
+
+[
+	["key", "empty"], ["punctuation", ":"],
+	["block-string", "'''\r\n\t'''"],
+	["key", "column-zero"], ["punctuation", ":"],
+	["block-string", "'''\r\nat column zero\r\n'''"],
+	["key", "longer"], ["punctuation", ":"],
+	["block-string", "''''\r\n\tcontent that holds ''' inside\r\n\t''''"],
+	["key", "prose"], ["punctuation", ":"],
+	["block-string", "'''\r\n\tTerminates TLS.\r\n\tRoutes requests to internal services.\r\n\t'''"],
+	["key", "symbols"], ["punctuation", ":"],
+	["block-string", "'''\r\n\t# not a comment\r\n\t/* not a comment */\r\n\t'''"],
+	["key", "looks-like-soml"], ["punctuation", ":"],
+	["block-string", "'''\r\n\tkey: 'value'\r\n\t404: 1\r\n\t2026-09-19T14:00:00Z\r\n\t30s\r\n\t'''"],
+	["key", "escaped"], ["punctuation", ":"],
+	["block-string", "\"\"\"\r\n\tkeeps \\n and \\\" escapes\r\n\t\"\"\""],
+	["key", "literal-after-comment"], ["punctuation", ":"], ["comment", "/*'*/"],
+	["block-string", "'''\r\nliteral content\r\n'''"],
+	["key", "escaped-after-comment"], ["punctuation", ":"], ["comment", "/*\"*/"],
+	["block-string", "\"\"\"\r\nescaped content\r\n\"\"\""],
+	["key", "items"], ["punctuation", ":"], ["punctuation", "["], ["comment", "/*'*/"],
+	["block-string", "'''\r\nliteral item\r\n'''"], ["punctuation", ","], ["comment", "/*\"*/"],
+	["block-string", "\"\"\"\r\nescaped item\r\n\"\"\""], ["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Block strings are delimited by a run of three or more quotes, and their content is text, even when it looks like keys, values, or comments.

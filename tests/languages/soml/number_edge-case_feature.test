@@ -1,0 +1,29 @@
+zero: 0
+negative-zero: -0
+scientific: 1e5
+negative-exponent: 1.5e-3
+int64: 9_007_199_254_740_993
+hex: 0xFF
+octal: 0o755
+binary: 0b1101
+infinity: infinity
+negative-infinity: -infinity
+
+----------------------------------------------------
+
+[
+	["key", "zero"], ["punctuation", ":"], ["number", "0"],
+	["key", "negative-zero"], ["punctuation", ":"], ["number", "-0"],
+	["key", "scientific"], ["punctuation", ":"], ["number", "1e5"],
+	["key", "negative-exponent"], ["punctuation", ":"], ["number", "1.5e-3"],
+	["key", "int64"], ["punctuation", ":"], ["number", "9_007_199_254_740_993"],
+	["key", "hex"], ["punctuation", ":"], ["number", "0xFF"],
+	["key", "octal"], ["punctuation", ":"], ["number", "0o755"],
+	["key", "binary"], ["punctuation", ":"], ["number", "0b1101"],
+	["key", "infinity"], ["punctuation", ":"], ["number", "infinity"],
+	["key", "negative-infinity"], ["punctuation", ":"], ["number", "-infinity"]
+]
+
+----------------------------------------------------
+
+Ints and floats use underscores as separators, alternate radices carry no sign, and infinity is a value.
