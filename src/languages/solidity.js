@@ -11,8 +11,16 @@ export default {
 				pattern: /(\b(?:contract|enum|interface|library|new|struct|using)\s+)(?!\d)[\w$]+/,
 				lookbehind: true,
 			},
-			'keyword':
-				/\b(?:_|anonymous|as|assembly|assert|break|calldata|case|constant|constructor|continue|contract|default|delete|do|else|emit|enum|event|external|for|from|function|if|import|indexed|inherited|interface|internal|is|let|library|mapping|memory|modifier|new|payable|pragma|private|public|pure|require|returns?|revert|selfdestruct|solidity|storage|struct|suicide|switch|this|throw|using|var|view|while)\b/,
+			'keyword': [
+				{
+					// the `from` keyword in import statements:
+					// `import {A as B} from "...";`, `import * as X from "...";`
+					pattern:
+						/(\bimport\b\s+(?:\{[\s\S]*?\}|\*\s+as\s+[A-Za-z_$][\w$]*)\s+)\bfrom\b/,
+					lookbehind: true,
+				},
+				/\b(?:_|anonymous|as|assembly|assert|break|calldata|case|constant|constructor|continue|contract|default|delete|do|else|emit|enum|event|external|for|function|if|import|indexed|inherited|interface|internal|is|let|library|mapping|memory|modifier|new|payable|pragma|private|public|pure|require|returns?|revert(?=\s*(?:\(|[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*\s*\())|selfdestruct|solidity|storage|struct|suicide|switch|this|throw|using|var|view|while)\b/,
+			],
 			'operator': /=>|->|:=|=:|\*\*|\+\+|--|\|\||&&|<<=?|>>=?|[-+*/%^&|<>!=]=?|[~?]/,
 			$insertBefore: {
 				'keyword': {
