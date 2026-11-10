@@ -109,7 +109,17 @@ describe('insertTokens', () => {
 
 	it('should reject offsets that are not ascending and non-negative', () => {
 		// walking backwards slices text away without a word, so the contract is enforced, not assumed
-		assert.throws(() => insertTokens(['ab', 'cdef'], [[4, new Token('a', '1')], [1, new Token('b', '2')]]), /ascending/);
+		assert.throws(
+			() =>
+				insertTokens(
+					['ab', 'cdef'],
+					[
+						[4, new Token('a', '1')],
+						[1, new Token('b', '2')],
+					]
+				),
+			/ascending/
+		);
 		assert.throws(() => insertTokens(['ab'], [[-1, new Token('x', '@')]]), /non-negative/);
 	});
 

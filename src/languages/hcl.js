@@ -10,7 +10,8 @@ export default {
 		},
 		'keyword': [
 			{
-				pattern: /(?:data|ephemeral|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
+				pattern:
+					/(?:data|ephemeral|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
 				inside: {
 					'type': {
 						pattern: /(data|ephemeral|resource|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,

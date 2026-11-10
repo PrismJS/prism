@@ -115,7 +115,9 @@ export function tokenMatches (token, names) {
 	}
 
 	const alias = token.alias;
-	return Array.isArray(alias) ? alias.some(a => names.has(a)) : alias !== undefined && names.has(alias);
+	return Array.isArray(alias)
+		? alias.some(a => names.has(a))
+		: alias !== undefined && names.has(alias);
 }
 
 /**
@@ -132,7 +134,9 @@ export function insertTokens (stream, insertions) {
 	// Out of order, the walk moves backwards and slices text away without a word
 	insertions.forEach(([offset], i) => {
 		if (offset < 0 || (i > 0 && offset < insertions[i - 1][0])) {
-			throw new Error(`insertTokens: offsets must be ascending and non-negative, got ${offset} at ${i}.`);
+			throw new Error(
+				`insertTokens: offsets must be ascending and non-negative, got ${offset} at ${i}.`
+			);
 		}
 	});
 

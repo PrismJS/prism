@@ -87,8 +87,14 @@ describe('Compound language ids (outer:inner)', () => {
 		const html = Prism.highlight(code, 'diff:javascript');
 
 		// both the deleted and the inserted line belong to the comment that the unchanged lines open and close
-		assert.include(html, '<span class="token prefix deleted">-</span><span class="token comment">  old');
-		assert.include(html, '<span class="token prefix inserted">+</span><span class="token comment">  new');
+		assert.include(
+			html,
+			'<span class="token prefix deleted">-</span><span class="token comment">  old'
+		);
+		assert.include(
+			html,
+			'<span class="token prefix inserted">+</span><span class="token comment">  new'
+		);
 	});
 
 	it('should keep the two versions of a diff apart', ({ Prism }) => {
@@ -98,15 +104,24 @@ describe('Compound language ids (outer:inner)', () => {
 		// an unchanged line is in both versions, and the last selector's reading wins:
 		// here the inserted one, where it is code
 		assert.include(html, '<span class="token prefix unchanged"> </span>b');
-		assert.notInclude(html, '<span class="token prefix unchanged"> </span><span class="token comment">b');
+		assert.notInclude(
+			html,
+			'<span class="token prefix unchanged"> </span><span class="token comment">b'
+		);
 	});
 
 	it('should highlight the blocks of a normal diff', ({ Prism }) => {
 		// `<` and `>` blocks are `deleted-arrow`/`inserted-arrow`; the selectors name them by alias
 		const html = Prism.highlight('1c1\n< const a = 1;\n---\n> const a = 2;', 'diff:javascript');
 
-		assert.include(html, '<span class="token prefix deleted">&lt;</span> <span class="token keyword">const</span>');
-		assert.include(html, '<span class="token prefix inserted">></span> <span class="token keyword">const</span>');
+		assert.include(
+			html,
+			'<span class="token prefix deleted">&lt;</span> <span class="token keyword">const</span>'
+		);
+		assert.include(
+			html,
+			'<span class="token prefix inserted">></span> <span class="token keyword">const</span>'
+		);
 	});
 
 	it('should support custom composition (php)', ({ util }) => {

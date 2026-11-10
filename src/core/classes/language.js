@@ -1,7 +1,7 @@
 import { extend } from '../../shared.js';
-import { isInnerSpec } from '../tokenize/embed.js';
 import { grammarPatch } from '../../util/grammar-patch.js';
 import { deepClone, defineLazyProperty } from '../../util/objects.js';
+import { isInnerSpec } from '../tokenize/embed.js';
 import List from './list.js';
 
 export default class Language extends EventTarget {
@@ -212,7 +212,7 @@ export default class Language extends EventTarget {
 			// The inner language of this instance goes wherever the grammar's `$inner` says;
 			// by default, everything that is not a token of this grammar is the inner language.
 			const language = () => inner.resolvedGrammar;
-			const spec = (/** @type {Grammar} */ (grammar)).$inner;
+			const spec = /** @type {Grammar} */ (grammar).$inner;
 
 			if (spec === undefined) {
 				grammar = { ...grammar, $inner: language };

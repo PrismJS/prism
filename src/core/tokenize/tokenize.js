@@ -1,6 +1,6 @@
-import { embed } from './embed.js';
 import { LinkedList } from '../linked-list.js';
 import singleton from '../prism.js';
+import { embed } from './embed.js';
 import { _matchGrammar } from './match.js';
 
 /**

@@ -1,5 +1,10 @@
 import { getTextContent } from '../../core/classes/token.js';
-import { insertTokens, replaceRange, splitTokenStream, tokenMatches } from '../../util/token-stream.js';
+import {
+	insertTokens,
+	replaceRange,
+	splitTokenStream,
+	tokenMatches,
+} from '../../util/token-stream.js';
 import { resolve } from './util.js';
 
 /** The name of the container of the unmatched text in a selector. */
@@ -48,7 +53,10 @@ export function embed (text, grammar, prism) {
 		const offsets = runs.slice(0, -1).map(run => run.text.length);
 		offsets.forEach((length, i) => (offsets[i] = length + (offsets[i - 1] ?? 0)));
 		const code = runs.map(run => run.text).join('');
-		return { runs, segments: runs.length ? splitTokenStream(prism.tokenize(code, inner), offsets) : [] };
+		return {
+			runs,
+			segments: runs.length ? splitTokenStream(prism.tokenize(code, inner), offsets) : [],
+		};
 	});
 
 	// Put the tokens back, last selector first and back to front, so that a container selected
@@ -84,9 +92,11 @@ export function isInnerSpec (value) {
 	const { select } = /** @type {InnerSpec} */ (value);
 	const keys = Object.keys(value);
 
-	return keys.length > 0
-		&& keys.every(key => key === 'language' || key === 'select')
-		&& (select === undefined || [select].flat().every(s => typeof s === 'string'));
+	return (
+		keys.length > 0 &&
+		keys.every(key => key === 'language' || key === 'select') &&
+		(select === undefined || [select].flat().every(s => typeof s === 'string'))
+	);
 }
 
 /**
@@ -110,7 +120,12 @@ function normalizeInner (value) {
  * @returns {Selector}
  */
 function parseSelector (selector) {
-	const names = new Set(selector.split(',').map(s => s.trim()).filter(Boolean));
+	const names = new Set(
+		selector
+			.split(',')
+			.map(s => s.trim())
+			.filter(Boolean)
+	);
 	const text = names.delete(TEXT);
 
 	if (!text && names.size === 0) {
@@ -156,7 +171,9 @@ function collectRuns (stream, { text, names }) {
 
 		if (start !== -1) {
 			// Tokens after the last string stay where they are
-			const inside = between.filter(([, , i]) => i < end).map(([offset, token]) => /** @type {[number, Token]} */ ([offset, token]));
+			const inside = between
+				.filter(([, , i]) => i < end)
+				.map(([offset, token]) => /** @type {[number, Token]} */ ([offset, token]));
 			runs.push({
 				container,
 				text,
@@ -189,7 +206,11 @@ function collectRuns (stream, { text, names }) {
 			}
 			else if (typeof item.content === 'string') {
 				const token = item;
-				runs.push({ container: item, text: item.content, replace: segment => (token.content = segment) });
+				runs.push({
+					container: item,
+					text: item.content,
+					replace: segment => (token.content = segment),
+				});
 			}
 			else {
 				collect(item.content, false);
