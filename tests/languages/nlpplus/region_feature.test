@@ -2,36 +2,37 @@
 @PATH _ROOT _paragraph _sentence
 @CODE
 @@CODE
+@POSTCODE
+@@POSTCODE
 @RULES
 _np <- _det _noun @@
 @@RULES
+@GROUP
 
 ----------------------------------------------------
 
 [
 	["region", "@NODES"],
 	["constant", "_ROOT"],
-
 	["region", "@PATH"],
 	["constant", "_ROOT"],
 	["node", "_paragraph"],
 	["node", "_sentence"],
-
 	["region", "@CODE"],
-
 	["region", "@@CODE"],
-
+	["region", "@POSTCODE"],
+	["region", "@@POSTCODE"],
 	["region", "@RULES"],
-
 	["node", "_np"],
 	["arrow", "<-"],
 	["node", "_det"],
 	["node", "_noun"],
 	["region", "@@"],
-
-	["region", "@@RULES"]
+	["region", "@@RULES"],
+	"\r\n@GROUP"
 ]
 
 ----------------------------------------------------
 
-Checks for region markers and their closing forms.
+Checks for region markers and their closing forms. @GROUP is not a marker
+(the engine reports a syntax error), so it stays plain text.

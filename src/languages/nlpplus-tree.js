@@ -25,15 +25,30 @@ export default {
 			lookbehind: true,
 			alias: 'symbol',
 		},
-		// [start,end,ostart,oend,pass,rule,type,flags..., ("name" value) ...]
+		// [start,end,ostart,oend,pass,rule,type,flags..., ("name" value ...) ...]
+		// The engine writes each variable as ("name" v1 v2 ...) (lite/pn.cpp,
+		// Iarg::genArg). A value is an integer, a float (C++ stream format,
+		// possibly 1.23457e+06), a "string", concept:"..." (a KB concept),
+		// pnode:"..." (a parse-tree node), kbobject:"<name>" (a KB phrase,
+		// attribute or value) or <ostream>.
 		'record': {
 			pattern: /\[.*\][ \t]*$/m,
 			inside: {
 				'attr-name': {
-					pattern: /(\(\s*)"(?:\\.|[^"\\])*"/,
+					pattern: /(\(\s*)"[^"\r\n]*"/,
 					lookbehind: true,
 				},
-				'string': /"(?:\\.|[^"\\])*"/,
+				'value-type': {
+					pattern: /\b(?:concept|kbobject|pnode):(?=")/,
+					alias: 'keyword',
+				},
+				// Only a one-character value is backslash-escaped ("\,"); a longer
+				// string is written raw, quotes and all ("he said "hi""), so a
+				// string ends at the quote that is followed by the next value or
+				// the closing parenthesis.
+				'string':
+					/"(?:\\.|[^\\\r\n])*?"(?=[ \t]*\)|[ \t]+(?:[-\d"<]|concept:|kbobject:|pnode:))/,
+				'constant': /<ostream>/,
 				'node-type': {
 					pattern: /\b(?:alpha|ctrl|emoji|node|null|num|punct|white)\b/,
 					alias: 'builtin',
@@ -42,7 +57,10 @@ export default {
 					pattern: /\b(?:b|blt|fired|sem|un)\b/,
 					alias: 'keyword',
 				},
-				'number': /\b\d+\b/,
+				'number': {
+					pattern: /(^|[^\w.])-?\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/,
+					lookbehind: true,
+				},
 				'punctuation': /[[\](),]/,
 			},
 		},
