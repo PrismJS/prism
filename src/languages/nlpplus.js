@@ -18,7 +18,8 @@ export default {
 	grammar: {
 		'comment': [
 			{ pattern: /\/\*[\s\S]*?\*\//, greedy: true },
-			{ pattern: /#.*/, greedy: true },
+			// \# is a literal pound sign in a rule, not a comment
+			{ pattern: /(^|[^\\])#.*/, lookbehind: true, greedy: true },
 		],
 		'string': {
 			pattern: /"(?:\\.|[^"\\\r\n])*"/,
@@ -36,22 +37,46 @@ export default {
 			pattern: /<-/,
 			alias: 'operator',
 		},
-		// The modifiers after a rule element: [opt], [s], [min=2 match=(_xCAP _xNUM)].
+		// The modifiers after a rule element: [opt], [s], [min=2 match=(_xCAP _xNUM)],
+		// [one vareq=("pos" "noun")]. They may hold strings and escaped brackets
+		// (match=( \] \) )). Not after ")": G("x")[0] is an array index.
 		'modifiers': {
-			pattern: /\[[^[\]\r\n]*\]/,
+			pattern: /(^|[^)])\[(?:\\.|"(?:\\.|[^"\\\r\n])*"|[^[\]\\"\r\n])*\]/,
+			lookbehind: true,
+			greedy: true,
 			inside: {
-				'attr-name':
-					/\b(?:attrs?|base|da|deacc(?:ent)?|excepts?|fails?|gp|group|layers?|look(?:ahead)?|match(?:es)?|max|min|nest|o|one|opt(?:ion(?:al)?)?|pass(?:es)?|plus|recurse|ren(?:ame)?|s|singlet|star|t|tree|trig(?:ger)?|unsealed)\b/i,
+				// A value list: match=(one two). Its words are literals, never keys.
+				'value-list': {
+					pattern: /\((?:\\.|"(?:\\.|[^"\\\r\n])*"|[^()\\"\r\n])*\)/,
+					inside: {
+						'string': /"(?:\\.|[^"\\\r\n])*"/,
+						'constant':
+							/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
+						'node': {
+							pattern: /\b_[\p{L}\p{N}_]+/u,
+							alias: 'class-name',
+						},
+						'char': /\\./,
+						'punctuation': /[()]/,
+					},
+				},
+				'string': /"(?:\\.|[^"\\\r\n])*"/,
+				// The keys the engine accepts (lite/ielt.cpp). Most ignore case; the
+				// abbreviations da, dcc, deacc, dj, look, s and xs must be lowercase.
+				'attr-name': [
+					/\b(?:attrs?|base|cap|deaccent|debug|dejunk|excepts?|fails?|gp|group|layers?|length|lengthr|lookahead|lowercase|match(?:es)?|max|min|nest|numrange|o|one|opt(?:ion(?:al)?)?|pass(?:es)?|plus|recurse|regexpi?|ren(?:ame)?|singlet|star|t|tree|trig(?:ger)?|unknown|unsealed|uppercase|var|vareq|vargt|varlt|varne|varz|xsinglet|xt|xtree)\b/i,
+					/\b(?:da|dcc|deacc|dj|look|s|xs)\b/,
+				],
 				'constant':
 					/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
 				'node': {
-					pattern: /\b_[a-z]\w*/i,
+					pattern: /\b_[\p{L}\p{N}_]+/u,
 					alias: 'class-name',
 				},
 				'char': /\\./,
 				'number': /\b\d+\b/,
 				'operator': /=/,
-				'punctuation': /[[\]()]/,
+				'punctuation': /[[\]]/,
 			},
 		},
 		// A literal character in a rule is backslash-escaped: \. \, \-
@@ -59,9 +84,10 @@ export default {
 		// Special node names that match classes of text: _xWILD, _xALPHA ...
 		'constant':
 			/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
-		// Every other leading-underscore name is a parse-tree node: _noun, _money.
+		// Every other leading-underscore name is a parse-tree node: _noun, _money,
+		// and also _34 or _café (letters, digits and _ in any script).
 		'node': {
-			pattern: /\b_[a-z]\w*/i,
+			pattern: /\b_[\p{L}\p{N}_]+/u,
 			alias: 'class-name',
 		},
 		// N("x"), S("x"), X("x"), G("x"), L("x"): node, semantic, context,
@@ -75,7 +101,7 @@ export default {
 		'keyword': /\b(?:else|if|return|while)\b/i,
 		'function': /\b[a-z]\w*(?=\s*\()/i,
 		'number': /\b\d+(?:\.\d+)?\b/,
-		'operator': /<<|&&|\|\||\+\+|--|[!=<>]=?|[-+*/%]/,
+		'operator': /<<|&&|\|\||\+\+|--|%%|[!=<>]=?|[-+*/%]/,
 		'punctuation': /[{}[\]();,]/,
 	},
 };

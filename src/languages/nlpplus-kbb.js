@@ -15,11 +15,11 @@ export default {
 		// top-level one, an indented concept sits below another.
 		'concept': [
 			{
-				pattern: /^[^\s#/:][^:\n]*?(?=:|$)/m,
+				pattern: /^[^\s#/:](?:[^:#\n]*[^\s:#])?(?=[ \t\r]*(?:[:#]|$))/m,
 				alias: 'namespace',
 			},
 			{
-				pattern: /(^[ \t]+)[^\s#/:][^:\n]*?(?=:|$)/m,
+				pattern: /(^[ \t]+)[^\s#/:](?:[^:#\n]*[^\s:#])?(?=[ \t\r]*(?:[:#]|$))/m,
 				lookbehind: true,
 				alias: 'class-name',
 			},
@@ -33,8 +33,10 @@ export default {
 			greedy: true,
 		},
 		'attr-name': /[\w-]+(?=\s*=)/,
+		// The reader stores a value as a number only when it is all digits;
+		// -5 and 1.5 are strings.
 		'number': {
-			pattern: /([=[,]\s*)-?\d+(?:\.\d+)?(?![^\s,\]])/,
+			pattern: /([=[,]\s*)\d+(?![^\s,\]])/,
 			lookbehind: true,
 		},
 		'attr-value': {

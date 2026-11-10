@@ -19,10 +19,12 @@ _asset <- in [s] cash @@
 		["number", "2"],
 		["attr-name", "match"],
 		["operator", "="],
-		["punctuation", "("],
-		["constant", "_xCAP"],
-		["constant", "_xNUM"],
-		["punctuation", ")"],
+		["value-list", [
+			["punctuation", "("],
+			["constant", "_xCAP"],
+			["constant", "_xNUM"],
+			["punctuation", ")"]
+		]],
 		["punctuation", "]"]
 	]],
 	["constant", "_xEMOJI"],

@@ -1,0 +1,36 @@
+words # a comment after a concept
+  dog # another one
+  cat: count=3, code=007, neg=-5, f=1.5
+
+----------------------------------------------------
+
+[
+	["concept", "words"],
+	["comment", "# a comment after a concept"],
+
+	["concept", "dog"],
+	["comment", "# another one"],
+
+	["concept", "cat"],
+	["punctuation", ":"],
+	["attr-name", "count"],
+	["operator", "="],
+	["number", "3"],
+	["punctuation", ","],
+	["attr-name", "code"],
+	["operator", "="],
+	["number", "007"],
+	["punctuation", ","],
+	["attr-name", "neg"],
+	["operator", "="],
+	["attr-value", "-5"],
+	["punctuation", ","],
+	["attr-name", "f"],
+	["operator", "="],
+	["attr-value", "1.5"]
+]
+
+----------------------------------------------------
+
+A # ends a concept name. Only all-digit values are numbers; -5 and 1.5 are
+strings to the reader.

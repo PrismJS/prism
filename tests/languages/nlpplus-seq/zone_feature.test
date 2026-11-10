@@ -1,0 +1,30 @@
+tokenize	nil
+zone	_line	# a zone pass names the node to run inside
+nlp	inside
+endzone	nil
+nlp	foo	// a // comment can follow a pass
+
+----------------------------------------------------
+
+[
+	["keyword", "tokenize"],
+	["constant", "nil"],
+
+	["keyword", "zone"],
+	["function", "_line"],
+	["comment", "# a zone pass names the node to run inside"],
+
+	["keyword", "nlp"],
+	["function", "inside"],
+
+	["keyword", "endzone"],
+	["constant", "nil"],
+
+	["keyword", "nlp"],
+	["function", "foo"],
+	["comment", "// a // comment can follow a pass"]
+]
+
+----------------------------------------------------
+
+Checks the zone and endzone pass types and a trailing // comment.

@@ -11,7 +11,8 @@ export default {
 		'comment': [
 			{ pattern: /\/\*[\s\S]*?\*\//, greedy: true },
 			{ pattern: /#.*/, greedy: true },
-			{ pattern: /^\/\/.*/m, greedy: true },
+			// like #, a // comment can start anywhere on the line
+			{ pattern: /\/\/.*/, greedy: true },
 			// a lone slash at the start of a line switches the pass off
 			{ pattern: /^\/(?!\*).*/m, greedy: true, alias: 'inactive' },
 		],
@@ -19,16 +20,16 @@ export default {
 		// pass type: once the type is a token, their lookbehind cannot see it.
 		'constant': {
 			pattern:
-				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\s+)nil\b/im,
+				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|endzone|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?|zone)\s+)nil\b/im,
 			lookbehind: true,
 		},
 		'function': {
 			pattern:
-				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\s+)[^\s#]+/im,
+				/(^(?:chartok|cmltok(?:enize)?|dicttokz?|end|endzone|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?|zone)\s+)[^\s#]+/im,
 			lookbehind: true,
 		},
 		// pass types the engine's sequence reader accepts; "pat" is read as "nlp"
 		'keyword':
-			/^(?:chartok|cmltok(?:enize)?|dicttokz?|end|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?)\b/im,
+			/^(?:chartok|cmltok(?:enize)?|dicttokz?|end|endzone|folder|gen(?:hash)?|hash|intern|lines?|nintern|nlp|pat|python|rec|stub|tok(?:en(?:ize)?)?|zone)\b/im,
 	},
 };

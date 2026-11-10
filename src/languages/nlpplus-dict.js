@@ -13,7 +13,7 @@ export default {
 		// The headword: words separated by spaces, up to the first attribute
 		// name. Words and spaces never overlap, so there is no backtracking.
 		'headword': {
-			pattern: /^[^\s#/=][^\s=]*(?:[ \t]+(?![\w-]+[ \t]*=)[^\s=]+)*/m,
+			pattern: /^[^\s#/=][^\s=#]*(?:[ \t]+(?![\w-]+[ \t]*=)[^\s=#]+)*/m,
 			alias: 'class-name',
 		},
 		'comment': [
@@ -25,8 +25,10 @@ export default {
 			greedy: true,
 		},
 		'attr-name': /[\w-]+(?=\s*=)/,
+		// The reader stores a value as a number only when it is all digits;
+		// -5 and 1.5 are strings.
 		'number': {
-			pattern: /(=\s*)-?\d+(?:\.\d+)?(?!\S)/,
+			pattern: /(=\s*)\d+(?!\S)/,
 			lookbehind: true,
 		},
 		'attr-value': {
