@@ -15,23 +15,43 @@
 export default {
 	id: 'nlpplus',
 	alias: 'nlp',
-	grammar: {
+	grammar () {
+		const string = /"(?:\\.|[^"\\\r\n])*"/;
+		// \# is a literal pound sign in a rule, not a comment
+		const lineComment = /(?<!\\)#.*/;
+		// Special node names that match classes of text: _xWILD, _xALPHA ...
+		const constant =
+			/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/;
+		// Every other leading-underscore name is a parse-tree node: _noun, _money,
+		// and also _34 or _café (letters, digits and _ in any script).
+		const node = {
+			pattern: /\b_[\p{L}\p{N}_]+/u,
+			alias: 'class-name',
+		};
+		// A literal character in a rule is backslash-escaped: \. \, \-
+		const char = /\\./;
+
+		return {
 		'comment': [
 			{ pattern: /\/\*[\s\S]*?\*\//, greedy: true },
-			// \# is a literal pound sign in a rule, not a comment
-			{ pattern: /(^|[^\\])#.*/, lookbehind: true, greedy: true },
+			{ pattern: lineComment, greedy: true },
 		],
 		'string': {
-			pattern: /"(?:\\.|[^"\\\r\n])*"/,
+			pattern: string,
 			greedy: true,
 		},
-		// @RULES, @POST, @CODE ... and their closing @@ forms; a bare @@ ends a rule.
-		// These are the 12 markers the engine's pass-file tokenizer knows
-		// (data/rfb/spec/bigtok.nlp); any other @NAME is a syntax error.
+		// @RULES, @POST, @CODE ... and their closing @@ forms. These are the 12
+		// markers the engine's pass-file tokenizer knows (data/rfb/spec/bigtok.nlp);
+		// any other @NAME is a syntax error. Like every rule literal, they ignore case.
 		'region': {
 			pattern:
-				/@@?(?:CHECK|CODE|DECL|MULTI|NODES|PATH|POST|POSTCODE|PRE|RECURSE|RULES|SELECT)\b|@@/,
+				/@@?(?:CHECK|CODE|DECL|MULTI|NODES|PATH|POST|POSTCODE|PRE|RECURSE|RULES|SELECT)\b/i,
 			alias: 'keyword',
+		},
+		// A bare @@ ends one rule, as ; ends a statement (the tokenizer's _ENDRULE).
+		'rule-end': {
+			pattern: /@@/,
+			alias: 'punctuation',
 		},
 		'arrow': {
 			pattern: /<-/,
@@ -39,57 +59,42 @@ export default {
 		},
 		// The modifiers after a rule element: [opt], [s], [min=2 match=(_xCAP _xNUM)],
 		// [one vareq=("pos" "noun")]. They may hold strings and escaped brackets
-		// (match=( \] \) )). Not after ")": G("x")[0] is an array index.
+		// (match=( \] \) )) and span lines. Not after ")": G("x")[0] is an array index.
 		'modifiers': {
-			pattern: /(^|[^)])\[(?:\\.|"(?:\\.|[^"\\\r\n])*"|[^[\]\\"\r\n])*\]/,
-			lookbehind: true,
+			pattern: /(?<!\))\[(?:\\.|"(?:\\.|[^"\\\r\n])*"|[^[\]\\"])*\]/,
 			greedy: true,
 			inside: {
 				// A value list: match=(one two). Its words are literals, never keys.
+				// A list that spans lines may hold # comments.
 				'value-list': {
-					pattern: /\((?:\\.|"(?:\\.|[^"\\\r\n])*"|[^()\\"\r\n])*\)/,
+					pattern: /\((?:\\.|"(?:\\.|[^"\\\r\n])*"|[^()\\"])*\)/,
 					inside: {
-						'string': /"(?:\\.|[^"\\\r\n])*"/,
-						'constant':
-							/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
-						'node': {
-							pattern: /\b_[\p{L}\p{N}_]+/u,
-							alias: 'class-name',
-						},
-						'char': /\\./,
+						'string': string,
+						'comment': lineComment,
+						'constant': constant,
+						'node': node,
+						'char': char,
 						'punctuation': /[()]/,
 					},
 				},
-				'string': /"(?:\\.|[^"\\\r\n])*"/,
+				'string': string,
 				// The keys the engine accepts (lite/ielt.cpp). Most ignore case; the
 				// abbreviations da, dcc, deacc, dj, look, s and xs must be lowercase.
 				'attr-name': [
 					/\b(?:attrs?|base|cap|deaccent|debug|dejunk|excepts?|fails?|gp|group|layers?|length|lengthr|lookahead|lowercase|match(?:es)?|max|min|nest|numrange|o|one|opt(?:ion(?:al)?)?|pass(?:es)?|plus|recurse|regexpi?|ren(?:ame)?|singlet|star|t|tree|trig(?:ger)?|unknown|unsealed|uppercase|var|vareq|vargt|varlt|varne|varz|xsinglet|xt|xtree)\b/i,
 					/\b(?:da|dcc|deacc|dj|look|s|xs)\b/,
 				],
-				'constant':
-					/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
-				'node': {
-					pattern: /\b_[\p{L}\p{N}_]+/u,
-					alias: 'class-name',
-				},
-				'char': /\\./,
+				'constant': constant,
+				'node': node,
+				'char': char,
 				'number': /\b\d+\b/,
 				'operator': /=/,
 				'punctuation': /[[\]]/,
 			},
 		},
-		// A literal character in a rule is backslash-escaped: \. \, \-
-		'char': /\\./,
-		// Special node names that match classes of text: _xWILD, _xALPHA ...
-		'constant':
-			/\b_(?:ROOT|xALPHA|xANY|xBLANK|xCAP|xCAPLET|xCTRL|xEMOJI|xEND|xEOF|xLET|xNIL|xNUM|xPUNCT|xSTART|xVAR|xWHITE|xWILD)\b/,
-		// Every other leading-underscore name is a parse-tree node: _noun, _money,
-		// and also _34 or _café (letters, digits and _ in any script).
-		'node': {
-			pattern: /\b_[\p{L}\p{N}_]+/u,
-			alias: 'class-name',
-		},
+		'char': char,
+		'constant': constant,
+		'node': node,
 		// N("x"), S("x"), X("x"), G("x"), L("x"): node, semantic, context,
 		// global and local variables.
 		'accessor': {
@@ -103,5 +108,6 @@ export default {
 		'number': /\b\d+(?:\.\d+)?\b/,
 		'operator': /<<|&&|\|\||\+\+|--|%%|[!=<>]=?|[-+*/%]/,
 		'punctuation': /[{}[\]();,]/,
+		};
 	},
 };

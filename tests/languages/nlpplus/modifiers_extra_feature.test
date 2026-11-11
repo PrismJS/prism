@@ -27,7 +27,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		["attr-name", "plus"],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -46,7 +46,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		]],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -68,7 +68,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		]],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -92,7 +92,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		]],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -106,7 +106,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		["attr-name", "OPT"],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -122,7 +122,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		["attr-name", "look"],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -167,7 +167,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		["attr-name", "xt"],
 		["punctuation", "]"]
 	]],
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_x"],
 	["arrow", "<-"],
@@ -183,7 +183,7 @@ _x <- _xWILD [match=(one look base group s)] @@
 		]],
 		["punctuation", "]"]
 	]],
-	["region", "@@"]
+	["rule-end", "@@"]
 ]
 
 ----------------------------------------------------

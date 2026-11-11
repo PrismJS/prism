@@ -8,18 +8,18 @@ _noun_phrase <- _det _noun @@
 	["node", "_34"],
 	["arrow", "<-"],
 	" hello ",
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_café"],
 	["arrow", "<-"],
 	" world ",
-	["region", "@@"],
+	["rule-end", "@@"],
 
 	["node", "_noun_phrase"],
 	["arrow", "<-"],
 	["node", "_det"],
 	["node", "_noun"],
-	["region", "@@"]
+	["rule-end", "@@"]
 ]
 
 ----------------------------------------------------

@@ -5,6 +5,7 @@ _ROOT [0,1362,0,1362,0,0,node,un, ("TOT LINES" 1) ("TOT TABS" 0) ("TOT LOWERS" 2
       _dose [5,12,5,12,12,22,node,fired,blt, ("min" "1") ("max" "1") ("unit" "tablet") ("kind" "count") ("rule" "doses rule 1")]
          _range [5,5,5,5,11,32,node,fired,blt, ("min" "1") ("max" "1") ("rule" "ranges rule 2")]
             _qty [5,5,5,5,10,17,node,fired,blt, ("value" "1") ("rule" "quantities rule 1")]
+   _café [5,5,5,5,10,17,node,fired,blt]
 
 ----------------------------------------------------
 
@@ -269,6 +270,29 @@ _ROOT [0,1362,0,1362,0,0,node,un, ("TOT LINES" 1) ("TOT TABS" 0) ("TOT LOWERS" 2
 		["attr-name", "\"rule\""],
 		["string", "\"quantities rule 1\""],
 		["punctuation", ")"],
+		["punctuation", "]"]
+	]],
+
+	["node", "_café"],
+	["record", [
+		["punctuation", "["],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "10"],
+		["punctuation", ","],
+		["number", "17"],
+		["punctuation", ","],
+		["node-type", "node"],
+		["punctuation", ","],
+		["flag", "fired"],
+		["punctuation", ","],
+		["flag", "blt"],
 		["punctuation", "]"]
 	]]
 ]

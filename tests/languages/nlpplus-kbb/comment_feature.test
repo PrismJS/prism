@@ -1,12 +1,15 @@
 # a line comment
 /* a block
    comment */
+  zzkeep   /* comment after a word line -- must not swallow the word */
 
 ----------------------------------------------------
 
 [
 	["comment", "# a line comment"],
-	["comment", "/* a block\r\n   comment */"]
+	["comment", "/* a block\r\n   comment */"],
+	["concept", "zzkeep"],
+	["comment", "/* comment after a word line -- must not swallow the word */"]
 ]
 
 ----------------------------------------------------

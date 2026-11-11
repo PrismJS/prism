@@ -8,7 +8,7 @@ _xWILD [min=1 match=(\#)]	### (1)
 	["arrow", "<-"],
 	["char", "\\#"],
 	["constant", "_xWILD"],
-	["region", "@@"],
+	["rule-end", "@@"],
 	["comment", "# a real comment"],
 
 	["constant", "_xWILD"],

@@ -16,13 +16,11 @@ export default {
 		],
 		// a node built by a rule, then a leaf token
 		'node': {
-			pattern: /(^[ \t]*)_\w+(?=[ \t]+\[)/m,
-			lookbehind: true,
+			pattern: /(?<=^[ \t]*)_[\p{L}\p{N}_]+(?=[ \t]+\[)/mu,
 			alias: 'class-name',
 		},
 		'leaf': {
-			pattern: /(^[ \t]*)\S+(?=[ \t]+\[)/m,
-			lookbehind: true,
+			pattern: /(?<=^[ \t]*)\S+(?=[ \t]+\[)/m,
 			alias: 'symbol',
 		},
 		// [start,end,ostart,oend,pass,rule,type,flags..., ("name" value ...) ...]
@@ -35,8 +33,7 @@ export default {
 			pattern: /\[.*\][ \t]*$/m,
 			inside: {
 				'attr-name': {
-					pattern: /(\(\s*)"[^"\r\n]*"/,
-					lookbehind: true,
+					pattern: /(?<=\(\s*)"[^"\r\n]*"/,
 				},
 				'value-type': {
 					pattern: /\b(?:concept|kbobject|pnode):(?=")/,
@@ -57,10 +54,7 @@ export default {
 					pattern: /\b(?:b|blt|fired|sem|un)\b/,
 					alias: 'keyword',
 				},
-				'number': {
-					pattern: /(^|[^\w.])-?\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/,
-					lookbehind: true,
-				},
+				'number': /(?<![\w.])-?\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/,
 				'punctuation': /[[\](),]/,
 			},
 		},

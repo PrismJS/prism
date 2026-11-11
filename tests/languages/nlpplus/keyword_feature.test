@@ -4,6 +4,7 @@ if (L("x") && !L("y") || L("z") == 2) {
 	"out.txt" << "seen: \"" << L("v") << "\"\n";
 }
 while (L("i") < 10.5) return 0;
+IF (1) RETURN 0; Else WHILE (0) {}
 
 ----------------------------------------------------
 
@@ -66,7 +67,22 @@ while (L("i") < 10.5) return 0;
 	["punctuation", ")"],
 	["keyword", "return"],
 	["number", "0"],
-	["punctuation", ";"]
+	["punctuation", ";"],
+
+	["keyword", "IF"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+	["keyword", "RETURN"],
+	["number", "0"],
+	["punctuation", ";"],
+	["keyword", "Else"],
+	["keyword", "WHILE"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

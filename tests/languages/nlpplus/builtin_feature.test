@@ -9,6 +9,8 @@ L("p") = DICTphraselookup(L("x"));
 L("r") = refind("a+", L("x"));
 push(L("arr"), 1);
 @@CODE
+@RULES
+_x <- next single [s] @@
 
 ----------------------------------------------------
 
@@ -117,7 +119,19 @@ push(L("arr"), 1);
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["region", "@@CODE"]
+	["region", "@@CODE"],
+
+	["region", "@RULES"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	" next single ",
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"]
 ]
 
 ----------------------------------------------------

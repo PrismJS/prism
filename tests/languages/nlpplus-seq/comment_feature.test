@@ -2,13 +2,23 @@
 // also a line comment
 /* a block
    comment */
+nlp	blockrules	/* trailing */	# /* */ around and inside @RULES
 
 ----------------------------------------------------
 
 [
 	["comment", "# a line comment"],
+
 	["comment", "// also a line comment"],
-	["comment", "/* a block\r\n   comment */"]
+
+	["comment", "/* a block\r\n   comment */"],
+
+	["pass", [
+		["keyword", "nlp"],
+		["function", "blockrules"]
+	]],
+	["comment", "/* trailing */"],
+	["comment", "# /* */ around and inside @RULES"]
 ]
 
 ----------------------------------------------------

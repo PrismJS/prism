@@ -7,6 +7,20 @@
 @RULES
 _np <- _det _noun @@
 @@RULES
+@post
+@@post
+@PRE
+@@PRE
+@CHECK
+@@CHECK
+@POST
+@@POST
+@MULTI
+@@MULTI
+@RECURSE listarg
+@@RECURSE listarg
+@SELECT
+@@SELECT
 @GROUP
 
 ----------------------------------------------------
@@ -27,8 +41,24 @@ _np <- _det _noun @@
 	["arrow", "<-"],
 	["node", "_det"],
 	["node", "_noun"],
-	["region", "@@"],
+	["rule-end", "@@"],
 	["region", "@@RULES"],
+	["region", "@post"],
+	["region", "@@post"],
+	["region", "@PRE"],
+	["region", "@@PRE"],
+	["region", "@CHECK"],
+	["region", "@@CHECK"],
+	["region", "@POST"],
+	["region", "@@POST"],
+	["region", "@MULTI"],
+	["region", "@@MULTI"],
+	["region", "@RECURSE"],
+	" listarg\r\n",
+	["region", "@@RECURSE"],
+	" listarg\r\n",
+	["region", "@SELECT"],
+	["region", "@@SELECT"],
 	"\r\n@GROUP"
 ]
 

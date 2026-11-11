@@ -10,28 +10,42 @@ end	words
 ----------------------------------------------------
 
 [
-	["keyword", "tokenize"],
-	["constant", "nil"],
+	["pass", [
+		["keyword", "tokenize"],
+		["constant", "nil"]
+	]],
 	["comment", "# convert the input to tokens"],
 
-	["keyword", "dicttokz"],
-	["constant", "nil"],
+	["pass", [
+		["keyword", "dicttokz"],
+		["constant", "nil"]
+	]],
 
-	["keyword", "nlp"],
-	["function", "sentences"],
+	["pass", [
+		["keyword", "nlp"],
+		["function", "sentences"]
+	]],
 	["comment", "# cut the text into sentences"],
 
-	["keyword", "pat"],
-	["function", "paragraphs"],
+	["pass", [
+		["keyword", "pat"],
+		["function", "paragraphs"]
+	]],
 
-	["keyword", "rec"],
-	["function", "nested"],
+	["pass", [
+		["keyword", "rec"],
+		["function", "nested"]
+	]],
 
-	["keyword", "stub"],
-	["function", "words"],
+	["pass", [
+		["keyword", "stub"],
+		["function", "words"]
+	]],
 
-	["keyword", "end"],
-	["function", "words"],
+	["pass", [
+		["keyword", "end"],
+		["function", "words"]
+	]],
 
 	["comment", "/nlp\toldPass\t# switched off"]
 ]

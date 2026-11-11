@@ -9,24 +9,25 @@ export default {
 	id: 'nlpplus-kbb',
 	alias: 'kbb',
 	grammar: {
-		// Before the strings: Prism splits the text around each string, and a
-		// line-start pattern run afterwards would match at those splits too.
-		// Indentation is the hierarchy: a concept at the start of a line is a
-		// top-level one, an indented concept sits below another.
-		'concept': [
-			{
-				pattern: /^[^\s#/:](?:[^:#\n]*[^\s:#])?(?=[ \t\r]*(?:[:#]|$))/m,
-				alias: 'namespace',
-			},
-			{
-				pattern: /(^[ \t]+)[^\s#/:](?:[^:#\n]*[^\s:#])?(?=[ \t\r]*(?:[:#]|$))/m,
-				lookbehind: true,
-				alias: 'class-name',
-			},
-		],
 		'comment': [
 			{ pattern: /\/\*[\s\S]*?\*\//, greedy: true },
 			{ pattern: /#.*/, greedy: true },
+		],
+		// Indentation is the hierarchy: a concept at the start of a line is a
+		// top-level one, an indented concept sits below another. Greedy, so that
+		// ^ is a real line start and not the start of the text after a comment;
+		// a name stops before # or /*, so that it never takes a comment in.
+		'concept': [
+			{
+				pattern: /^(?!\/\*)[^\s:#]+(?:[ \t]+(?!\/\*)[^\s:#]+)*/m,
+				greedy: true,
+				alias: 'namespace',
+			},
+			{
+				pattern: /(?<=^[ \t]+)(?!\/\*)[^\s:#]+(?:[ \t]+(?!\/\*)[^\s:#]+)*/m,
+				greedy: true,
+				alias: 'class-name',
+			},
 		],
 		'string': {
 			pattern: /"(?:\\.|[^"\\\r\n])*"/,
@@ -35,13 +36,9 @@ export default {
 		'attr-name': /[\w-]+(?=\s*=)/,
 		// The reader stores a value as a number only when it is all digits;
 		// -5 and 1.5 are strings.
-		'number': {
-			pattern: /([=[,]\s*)\d+(?![^\s,\]])/,
-			lookbehind: true,
-		},
+		'number': /(?<=[=[,]\s*)\d+(?![^\s,\]])/,
 		'attr-value': {
-			pattern: /([=[,]\s*)[^\s"[\],=]+/,
-			lookbehind: true,
+			pattern: /(?<=[=[,]\s*)[^\s"[\],=]+/,
 			alias: 'string',
 		},
 		'operator': /=/,

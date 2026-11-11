@@ -1,4 +1,5 @@
 ca iso=2 language=[catalan,valencian]
+gd iso=2 language=[gaelic,"scottish gaelic"]
 
 ----------------------------------------------------
 
@@ -9,7 +10,15 @@ ca iso=2 language=[catalan,valencian]
 	["number", "2"],
 	["attr-name", "language"],
 	["operator", "="],
-	["attr-value", "[catalan,valencian]"]
+	["attr-value", "[catalan,valencian]"],
+
+	["headword", "gd"],
+	["attr-name", "iso"],
+	["operator", "="],
+	["number", "2"],
+	["attr-name", "language"],
+	["operator", "="],
+	["attr-value", "[gaelic,\"scottish gaelic\"]"]
 ]
 
 ----------------------------------------------------

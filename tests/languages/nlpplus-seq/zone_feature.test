@@ -7,21 +7,31 @@ nlp	foo	// a // comment can follow a pass
 ----------------------------------------------------
 
 [
-	["keyword", "tokenize"],
-	["constant", "nil"],
+	["pass", [
+		["keyword", "tokenize"],
+		["constant", "nil"]
+	]],
 
-	["keyword", "zone"],
-	["function", "_line"],
+	["pass", [
+		["keyword", "zone"],
+		["function", "_line"]
+	]],
 	["comment", "# a zone pass names the node to run inside"],
 
-	["keyword", "nlp"],
-	["function", "inside"],
+	["pass", [
+		["keyword", "nlp"],
+		["function", "inside"]
+	]],
 
-	["keyword", "endzone"],
-	["constant", "nil"],
+	["pass", [
+		["keyword", "endzone"],
+		["constant", "nil"]
+	]],
 
-	["keyword", "nlp"],
-	["function", "foo"],
+	["pass", [
+		["keyword", "nlp"],
+		["function", "foo"]
+	]],
 	["comment", "// a // comment can follow a pass"]
 ]
 

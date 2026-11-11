@@ -846,9 +846,6 @@
 		},
 		"nlpplus": {
 			"title": "NLP++",
-			"aliasTitles": {
-				"nlp": "NLP++"
-			},
 			"owner": "ddehilster"
 		},
 		"nlpplus-seq": {
@@ -861,9 +858,6 @@
 		},
 		"nlpplus-kbb": {
 			"title": "NLP++ Knowledge Base",
-			"aliasTitles": {
-				"kbb": "NLP++ Knowledge Base"
-			},
 			"owner": "ddehilster"
 		},
 		"nlpplus-tree": {

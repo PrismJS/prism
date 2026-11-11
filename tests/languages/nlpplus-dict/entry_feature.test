@@ -3,6 +3,8 @@ afghan pos=noun
 american samoan nationality=1 adj=1 noun=1 country="american samoa" iso2=as iso3=asm pos=adj
 act timezone=1 sign=- hour=5 ambig=2 descr="Acre Time"
 aardvark
+/ noun=1
+    dog canislupus=1
 
 ----------------------------------------------------
 
@@ -75,7 +77,17 @@ aardvark
 	["operator", "="],
 	["string", "\"Acre Time\""],
 
-	["headword", "aardvark"]
+	["headword", "aardvark"],
+
+	["headword", "/"],
+	["attr-name", "noun"],
+	["operator", "="],
+	["number", "1"],
+
+	["headword", "dog"],
+	["attr-name", "canislupus"],
+	["operator", "="],
+	["number", "1"]
 ]
 
 ----------------------------------------------------
