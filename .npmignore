@@ -23,6 +23,8 @@ SECURITY.md
 # Dev-only config and tooling
 .vscode/
 .prettierrc.js
+.prettierignore
+.husky/
 tsconfig.json
 scripts/
 _headers

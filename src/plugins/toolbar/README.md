@@ -35,10 +35,10 @@ For more flexibility, the Toolbar exposes a JavaScript function that can be used
 The function accepts a key for the button and an object with a `text` property string and an optional `onClick` function or a `url` string. The `onClick` function will be called when the button is clicked, while the `url` property will be set to the anchor tag's `href`.
 
 ```js
-const toolbar = Prism.pluginRegistry.peek('toolbar').plugin;
+const toolbar = Prism.pluginRegistry.peek("toolbar").plugin;
 
-toolbar.registerButton('hello-world', {
-	text: 'Hello World!', // required
+toolbar.registerButton("hello-world", {
+	text: "Hello World!", // required
 	onClick: function (env) {
 		// optional
 		alert(`This code snippet is written in ${env.language}.`);
@@ -51,11 +51,11 @@ See how the above code registers the `Hello World!` button? You can use this in 
 If you need more control, you can provide a function to `registerButton` that returns either a `span`, `a`, or `button` element.
 
 ```js
-toolbar.registerButton('select-code', env => {
-	let button = document.createElement('button');
-	button.innerHTML = 'Select Code';
+toolbar.registerButton("select-code", env => {
+	let button = document.createElement("button");
+	button.innerHTML = "Select Code";
 
-	button.addEventListener('click', () => {
+	button.addEventListener("click", () => {
 		// Source: http://stackoverflow.com/a/11128179/2757940
 		if (document.body.createTextRange) {
 			// ms

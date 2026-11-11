@@ -61,7 +61,6 @@ Output lines are user selectable by default, so if you select the whole content 
 
 You can configure the plugin to handle multi-line commands. This can be done in two ways; setting a line continuation string (as in Bash); or explicitly marking continuation lines with a prefix for languages that do not have a continuation string/character, e.g. SQL, Scala, etc..
 
-
 `data-continuation-str`
 
 : Set this attribute to the line continuation string/character, e.g. for bash `data-continuation-str="\"`

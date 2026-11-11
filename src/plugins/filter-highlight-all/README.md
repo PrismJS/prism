@@ -76,15 +76,15 @@ If no script has an attribute, Filter highlightAll reads it with the `data-prism
 The following code is used to define a filter on this page.
 
 ```js
-const filterHighlightAll = Prism.pluginRegistry.peek('filter-highlight-all').plugin;
+const filterHighlightAll = Prism.pluginRegistry.peek("filter-highlight-all").plugin;
 
 // <code> elements with a .no-highlight class will be ignored
-filterHighlightAll.reject.addSelector('code.no-highlight');
-filterHighlightAll.reject.addSelector('pre.no-highlight > code');
+filterHighlightAll.reject.addSelector("code.no-highlight");
+filterHighlightAll.reject.addSelector("pre.no-highlight > code");
 
 // don't highlight CSS code
 filterHighlightAll.add(function (env) {
-	return env.language !== 'css';
+	return env.language !== "css";
 });
 ```
 

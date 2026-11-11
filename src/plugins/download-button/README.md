@@ -32,8 +32,10 @@ Optionally, the text of the button can also be customized by using a `data-downl
 # Examples
 
 The plugin’s JS code:
+
 <pre data-src="./download-button.js" data-download-link data-download-link-label="Download the code!"></pre>
 
 This page:
+
 <pre data-src="./index.html" data-download-link></pre>
 </section>

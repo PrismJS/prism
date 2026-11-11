@@ -40,7 +40,7 @@ To enable rainbow braces, simply add the `rainbow-braces` class to a code block.
 ```js
 const func = (a, b) => {
 	return `${a}:${b}`;
-}
+};
 ```
 
 ## Lisp

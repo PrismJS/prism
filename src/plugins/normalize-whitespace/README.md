@@ -33,7 +33,7 @@ The plugin can be disabled for a particular code block by adding the class `no-w
 The default settings can be overridden with the `setDefaults()`{ .language-javascript } method like so:
 
 ```js
-Prism.pluginRegistry.peek('normalize-whitespace').plugin.setDefaults({
+Prism.pluginRegistry.peek("normalize-whitespace").plugin.setDefaults({
 	"remove-trailing": true,
 	"remove-indent": true,
 	"left-trim": true,
@@ -166,7 +166,7 @@ let code = "\t\t\tlet data = 1;    ";
 // and then indents by 1 tab
 code = nw.normalize(code, {
 	// Extra settings
-	indent: 1
+	indent: 1,
 });
 
 // Returns a highlighted HTML string
