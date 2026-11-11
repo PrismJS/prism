@@ -2,14 +2,27 @@
 /* a block
    comment */
   zzkeep   /* comment after a word line -- must not swallow the word */
+t3: c="x#y", d=4
 
 ----------------------------------------------------
 
 [
 	["comment", "# a line comment"],
+
 	["comment", "/* a block\r\n   comment */"],
+
 	["concept", "zzkeep"],
-	["comment", "/* comment after a word line -- must not swallow the word */"]
+	["comment", "/* comment after a word line -- must not swallow the word */"],
+
+	["concept", "t3"],
+	["punctuation", ":"],
+	["attr-name", "c"],
+	["operator", "="],
+	["string", "\"x#y\""],
+	["punctuation", ","],
+	["attr-name", "d"],
+	["operator", "="],
+	["number", "4"]
 ]
 
 ----------------------------------------------------
