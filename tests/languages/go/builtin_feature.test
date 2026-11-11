@@ -2,6 +2,8 @@ bool
 byte
 complex64
 complex128
+any
+comparable
 error
 float32
 float64
@@ -41,6 +43,8 @@ recover
 	["builtin", "byte"],
 	["builtin", "complex64"],
 	["builtin", "complex128"],
+	["builtin", "any"],
+	["builtin", "comparable"],
 	["builtin", "error"],
 	["builtin", "float32"],
 	["builtin", "float64"],
