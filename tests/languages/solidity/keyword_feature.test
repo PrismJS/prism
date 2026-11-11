@@ -19,7 +19,6 @@ enum;
 event
 external
 for
-from
 function
 if
 import
@@ -42,7 +41,6 @@ pure
 require
 return
 returns
-revert
 selfdestruct
 solidity
 storage
@@ -81,7 +79,6 @@ while
 	["keyword", "event"],
 	["keyword", "external"],
 	["keyword", "for"],
-	["keyword", "from"],
 	["keyword", "function"],
 	["keyword", "if"],
 	["keyword", "import"],
@@ -107,7 +104,6 @@ while
 	["keyword", "require"],
 	["keyword", "return"],
 	["keyword", "returns"],
-	["keyword", "revert"],
 	["keyword", "selfdestruct"],
 	["keyword", "solidity"],
 	["keyword", "storage"],
