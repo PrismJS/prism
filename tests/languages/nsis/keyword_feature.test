@@ -20,6 +20,7 @@ ClearErrors
 CompletedText
 ComponentText
 CopyFiles
+CPU
 CRCCheck
 CreateDirectory
 CreateFont
@@ -63,6 +64,8 @@ FindFirst
 FindNext
 FindWindow
 FlushINI
+Function
+FunctionEnd
 GetCurInstType
 GetCurrentAddress
 GetDlgItem
@@ -78,12 +81,15 @@ GetFunctionEnd
 GetInstDirError
 GetKnownFolderPath
 GetLabelAddress
+GetRegView
+GetShellVarContext
 GetTempFileName
 GetWinVer
 Goto
 HideWindow
 Icon
 IfAbort
+IfAltRegView
 IfErrors
 IfFileExists
 IfRebootFlag
@@ -117,11 +123,18 @@ LicenseData
 LicenseForceSelection
 LicenseLangString
 LicenseText
+LoadAndSetImage
 LoadLanguageFile
 LockWindow
 LogSet
 LogText
+ManifestAppendCustomString
+ManifestDisableWindowFiltering
 ManifestDPIAware
+ManifestDPIAwareness
+ManifestGdiScaling
+ManifestLongPathAware
+ManifestMaxVersionTested
 ManifestSupportedOS
 Math
 MessageBox
@@ -134,13 +147,18 @@ NSISdl
 OutFile
 Page
 PageCallbacks
+PageEx
+PageExEnd
+PEAddResource
 PEDllCharacteristics
+PERemoveResource
 PESubsysVer
 Pop
 Push
 Quit
 ReadEnvStr
 ReadINIStr
+ReadMemory
 ReadRegDWORD
 ReadRegStr
 Reboot
@@ -158,7 +176,9 @@ SectionGetInstTypes
 SectionGetSize
 SectionGetText
 SectionGroup
+SectionGroupEnd
 SectionIn
+SectionInstType
 SectionSetFlags
 SectionSetInstTypes
 SectionSetSize
@@ -167,6 +187,7 @@ SendMessage
 SetAutoClose
 SetBrandingImage
 SetCompress
+SetCompressionLevel
 SetCompressor
 SetCompressorDictSize
 SetCtlColors
@@ -210,6 +231,7 @@ UninstallSubCaption
 UninstallText
 UninstPage
 UnRegDLL
+UnsafeStrCpy
 UserInfo
 Var
 VIAddVersionKey
@@ -252,6 +274,7 @@ XPStyle
 	["keyword", "CompletedText"],
 	["keyword", "ComponentText"],
 	["keyword", "CopyFiles"],
+	["keyword", "CPU"],
 	["keyword", "CRCCheck"],
 	["keyword", "CreateDirectory"],
 	["keyword", "CreateFont"],
@@ -295,6 +318,8 @@ XPStyle
 	["keyword", "FindNext"],
 	["keyword", "FindWindow"],
 	["keyword", "FlushINI"],
+	["keyword", "Function"],
+	["keyword", "FunctionEnd"],
 	["keyword", "GetCurInstType"],
 	["keyword", "GetCurrentAddress"],
 	["keyword", "GetDlgItem"],
@@ -310,12 +335,15 @@ XPStyle
 	["keyword", "GetInstDirError"],
 	["keyword", "GetKnownFolderPath"],
 	["keyword", "GetLabelAddress"],
+	["keyword", "GetRegView"],
+	["keyword", "GetShellVarContext"],
 	["keyword", "GetTempFileName"],
 	["keyword", "GetWinVer"],
 	["keyword", "Goto"],
 	["keyword", "HideWindow"],
 	["keyword", "Icon"],
 	["keyword", "IfAbort"],
+	["keyword", "IfAltRegView"],
 	["keyword", "IfErrors"],
 	["keyword", "IfFileExists"],
 	["keyword", "IfRebootFlag"],
@@ -349,11 +377,18 @@ XPStyle
 	["keyword", "LicenseForceSelection"],
 	["keyword", "LicenseLangString"],
 	["keyword", "LicenseText"],
+	["keyword", "LoadAndSetImage"],
 	["keyword", "LoadLanguageFile"],
 	["keyword", "LockWindow"],
 	["keyword", "LogSet"],
 	["keyword", "LogText"],
+	["keyword", "ManifestAppendCustomString"],
+	["keyword", "ManifestDisableWindowFiltering"],
 	["keyword", "ManifestDPIAware"],
+	["keyword", "ManifestDPIAwareness"],
+	["keyword", "ManifestGdiScaling"],
+	["keyword", "ManifestLongPathAware"],
+	["keyword", "ManifestMaxVersionTested"],
 	["keyword", "ManifestSupportedOS"],
 	["keyword", "Math"],
 	["keyword", "MessageBox"],
@@ -366,13 +401,18 @@ XPStyle
 	["keyword", "OutFile"],
 	["keyword", "Page"],
 	["keyword", "PageCallbacks"],
+	["keyword", "PageEx"],
+	["keyword", "PageExEnd"],
+	["keyword", "PEAddResource"],
 	["keyword", "PEDllCharacteristics"],
+	["keyword", "PERemoveResource"],
 	["keyword", "PESubsysVer"],
 	["keyword", "Pop"],
 	["keyword", "Push"],
 	["keyword", "Quit"],
 	["keyword", "ReadEnvStr"],
 	["keyword", "ReadINIStr"],
+	["keyword", "ReadMemory"],
 	["keyword", "ReadRegDWORD"],
 	["keyword", "ReadRegStr"],
 	["keyword", "Reboot"],
@@ -390,7 +430,9 @@ XPStyle
 	["keyword", "SectionGetSize"],
 	["keyword", "SectionGetText"],
 	["keyword", "SectionGroup"],
+	["keyword", "SectionGroupEnd"],
 	["keyword", "SectionIn"],
+	["keyword", "SectionInstType"],
 	["keyword", "SectionSetFlags"],
 	["keyword", "SectionSetInstTypes"],
 	["keyword", "SectionSetSize"],
@@ -399,6 +441,7 @@ XPStyle
 	["keyword", "SetAutoClose"],
 	["keyword", "SetBrandingImage"],
 	["keyword", "SetCompress"],
+	["keyword", "SetCompressionLevel"],
 	["keyword", "SetCompressor"],
 	["keyword", "SetCompressorDictSize"],
 	["keyword", "SetCtlColors"],
@@ -442,6 +485,7 @@ XPStyle
 	["keyword", "UninstallText"],
 	["keyword", "UninstPage"],
 	["keyword", "UnRegDLL"],
+	["keyword", "UnsafeStrCpy"],
 	["keyword", "UserInfo"],
 	["keyword", "Var"],
 	["keyword", "VIAddVersionKey"],
