@@ -1,0 +1,34 @@
+# a line comment
+/* a block
+   comment */
+# SUBJ:     /* */ block comments around and inside @RULES, and proof that a
+L("file") << "#  " << L("text") << "\n";
+
+----------------------------------------------------
+
+[
+	["comment", "# a line comment"],
+
+	["comment", "/* a block\r\n   comment */"],
+
+	["comment", "# SUBJ:     /* */ block comments around and inside @RULES, and proof that a"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"file\""],
+	["punctuation", ")"],
+	["operator", "<<"],
+	["string", "\"#  \""],
+	["operator", "<<"],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"text\""],
+	["punctuation", ")"],
+	["operator", "<<"],
+	["string", "\"\\n\""],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for line and block comments.

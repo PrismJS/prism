@@ -1,0 +1,140 @@
+@DECL
+AddWord(L("w")) { return addword(L("w")); }
+@@DECL
+@CODE
+L("n") = strlength("abc");
+L("s") = StrLength("abc");
+L("j") = LJ(L("n"), 5);
+L("p") = DICTphraselookup(L("x"));
+L("r") = refind("a+", L("x"));
+push(L("arr"), 1);
+@@CODE
+@RULES
+_x <- next single [s] @@
+
+----------------------------------------------------
+
+[
+	["region", "@DECL"],
+
+	["function", "AddWord"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"w\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["builtin", "addword"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"w\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["region", "@@DECL"],
+
+	["region", "@CODE"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"n\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "strlength"],
+	["punctuation", "("],
+	["string", "\"abc\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"s\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["function", "StrLength"],
+	["punctuation", "("],
+	["string", "\"abc\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"j\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "LJ"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"n\""],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["number", "5"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"p\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "DICTphraselookup"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"x\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"r\""],
+	["punctuation", ")"],
+	["operator", "="],
+	["builtin", "refind"],
+	["punctuation", "("],
+	["string", "\"a+\""],
+	["punctuation", ","],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"x\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["builtin", "push"],
+	["punctuation", "("],
+	["accessor", "L"],
+	["punctuation", "("],
+	["string", "\"arr\""],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["region", "@@CODE"],
+
+	["region", "@RULES"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	" next single ",
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"]
+]
+
+----------------------------------------------------
+
+Checks that built-in functions match the engine's own names (lite/funcs.h)
+with exact case: AddWord is a user function, StrLength is not a built-in.

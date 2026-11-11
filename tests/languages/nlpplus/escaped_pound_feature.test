@@ -1,0 +1,34 @@
+_s <- \# _xWILD @@ # a real comment
+_xWILD [min=1 match=(\#)]	### (1)
+
+----------------------------------------------------
+
+[
+	["node", "_s"],
+	["arrow", "<-"],
+	["char", "\\#"],
+	["constant", "_xWILD"],
+	["rule-end", "@@"],
+	["comment", "# a real comment"],
+
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "min"],
+		["operator", "="],
+		["number", "1"],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["char", "\\#"],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["comment", "### (1)"]
+]
+
+----------------------------------------------------
+
+An escaped \# is a literal in a rule, not the start of a comment.

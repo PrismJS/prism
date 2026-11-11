@@ -1,0 +1,68 @@
+***************
+    PASS 12 (doses)
+***************
+
+PAT OUTPUT TREE:
+
+
+_ROOT [0,1362,0,1362,0,0,node,un, ("TOT LINES" 1) ("TOT TABS" 0) ("TOT LOWERS" 229) ("TOT CAPS" 35) ("TOT UPPERS" 8) ("TOT NUMS" 51)]
+
+----------------------------------------------------
+
+[
+	["header", "***************"],
+	["header", "    PASS 12 (doses)"],
+	["header", "***************"],
+
+	["header", "PAT OUTPUT TREE:"],
+
+	["node", "_ROOT"],
+	["record", [
+		["punctuation", "["],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "1362"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "1362"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["node-type", "node"],
+		["punctuation", ","],
+		["flag", "un"],
+		["punctuation", ","],
+		["punctuation", "("],
+		["attr-name", "\"TOT LINES\""],
+		["number", "1"],
+		["punctuation", ")"],
+		["punctuation", "("],
+		["attr-name", "\"TOT TABS\""],
+		["number", "0"],
+		["punctuation", ")"],
+		["punctuation", "("],
+		["attr-name", "\"TOT LOWERS\""],
+		["number", "229"],
+		["punctuation", ")"],
+		["punctuation", "("],
+		["attr-name", "\"TOT CAPS\""],
+		["number", "35"],
+		["punctuation", ")"],
+		["punctuation", "("],
+		["attr-name", "\"TOT UPPERS\""],
+		["number", "8"],
+		["punctuation", ")"],
+		["punctuation", "("],
+		["attr-name", "\"TOT NUMS\""],
+		["number", "51"],
+		["punctuation", ")"],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for the pass headers between tree snapshots.

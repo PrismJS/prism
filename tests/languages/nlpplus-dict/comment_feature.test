@@ -1,0 +1,28 @@
+# a line comment
+/* a block
+   comment */
+# a "#" comment holding /* an opener that must stay plain text
+zzkeep pos=noun note="a /* b */ c"   /* comment after an entry */
+
+----------------------------------------------------
+
+[
+	["comment", "# a line comment"],
+
+	["comment", "/* a block\r\n   comment */"],
+
+	["comment", "# a \"#\" comment holding /* an opener that must stay plain text"],
+
+	["headword", "zzkeep"],
+	["attr-name", "pos"],
+	["operator", "="],
+	["attr-value", "noun"],
+	["attr-name", "note"],
+	["operator", "="],
+	["string", "\"a /* b */ c\""],
+	["comment", "/* comment after an entry */"]
+]
+
+----------------------------------------------------
+
+Checks for line and block comments.

@@ -1,0 +1,194 @@
+_x <- _xALPHA [one vareq=("pos" "noun") plus] @@
+_x <- _xWILD [one match=( \) \] \} )] @@
+_x <- _xWILD [one lookahead match=(_xCAP \( \[ \< \" )] @@
+_x <- _xALPHA [xs dejunk dj xtree cap regexp="^h" varz=("x")] @@
+_x <- _xALPHA [s look S LOOK T OPT] @@
+_x <- _xALPHA [da dcc deacc dj xs s look] @@
+_x <- _xALPHA [attrs base debug deaccent excepts fails gp group layers length lengthr lowercase matches max min nest numrange o optional passes recurse regexpi rename singlet star tree trigger unknown unsealed uppercase var vargt varlt varne xsinglet xt] @@
+_x <- _xWILD [match=(one look base group s)] @@
+
+----------------------------------------------------
+
+[
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "one"],
+		["attr-name", "vareq"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["string", "\"pos\""],
+			["string", "\"noun\""],
+			["punctuation", ")"]
+		]],
+		["attr-name", "plus"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "one"],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["char", "\\)"],
+			["char", "\\]"],
+			["char", "\\}"],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "one"],
+		["attr-name", "lookahead"],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["constant", "_xCAP"],
+			["char", "\\("],
+			["char", "\\["],
+			["char", "\\<"],
+			["char", "\\\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "xs"],
+		["attr-name", "dejunk"],
+		["attr-name", "dj"],
+		["attr-name", "xtree"],
+		["attr-name", "cap"],
+		["attr-name", "regexp"],
+		["operator", "="],
+		["string", "\"^h\""],
+		["attr-name", "varz"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["string", "\"x\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["attr-name", "look"],
+		" S LOOK ",
+		["attr-name", "T"],
+		["attr-name", "OPT"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "da"],
+		["attr-name", "dcc"],
+		["attr-name", "deacc"],
+		["attr-name", "dj"],
+		["attr-name", "xs"],
+		["attr-name", "s"],
+		["attr-name", "look"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "attrs"],
+		["attr-name", "base"],
+		["attr-name", "debug"],
+		["attr-name", "deaccent"],
+		["attr-name", "excepts"],
+		["attr-name", "fails"],
+		["attr-name", "gp"],
+		["attr-name", "group"],
+		["attr-name", "layers"],
+		["attr-name", "length"],
+		["attr-name", "lengthr"],
+		["attr-name", "lowercase"],
+		["attr-name", "matches"],
+		["attr-name", "max"],
+		["attr-name", "min"],
+		["attr-name", "nest"],
+		["attr-name", "numrange"],
+		["attr-name", "o"],
+		["attr-name", "optional"],
+		["attr-name", "passes"],
+		["attr-name", "recurse"],
+		["attr-name", "regexpi"],
+		["attr-name", "rename"],
+		["attr-name", "singlet"],
+		["attr-name", "star"],
+		["attr-name", "tree"],
+		["attr-name", "trigger"],
+		["attr-name", "unknown"],
+		["attr-name", "unsealed"],
+		["attr-name", "uppercase"],
+		["attr-name", "var"],
+		["attr-name", "vargt"],
+		["attr-name", "varlt"],
+		["attr-name", "varne"],
+		["attr-name", "xsinglet"],
+		["attr-name", "xt"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			"one look base group s",
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"]
+]
+
+----------------------------------------------------
+
+Modifiers may hold strings and escaped brackets. Every key the engine accepts is
+highlighted (lite/ielt.cpp). The abbreviations s, look, da, dcc, deacc, dj and xs
+must be lowercase, so S and LOOK stay plain. Words in a match list are literals,
+not keys.

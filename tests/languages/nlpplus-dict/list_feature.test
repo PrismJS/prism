@@ -1,0 +1,27 @@
+ca iso=2 language=[catalan,valencian]
+gd iso=2 language=[gaelic,"scottish gaelic"]
+
+----------------------------------------------------
+
+[
+	["headword", "ca"],
+	["attr-name", "iso"],
+	["operator", "="],
+	["number", "2"],
+	["attr-name", "language"],
+	["operator", "="],
+	["attr-value", "[catalan,valencian]"],
+
+	["headword", "gd"],
+	["attr-name", "iso"],
+	["operator", "="],
+	["number", "2"],
+	["attr-name", "language"],
+	["operator", "="],
+	["attr-value", "[gaelic,\"scottish gaelic\"]"]
+]
+
+----------------------------------------------------
+
+The dictionary reader has no list syntax: an unquoted value is one string,
+brackets and commas included (cs/libconsh/cg.cpp, CG::readDict).

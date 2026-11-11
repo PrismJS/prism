@@ -1,0 +1,55 @@
+tokenize	nil	# convert the input to tokens
+dicttokz	nil
+nlp	sentences	# cut the text into sentences
+pat	paragraphs
+rec	nested
+stub	words
+end	words
+/nlp	oldPass	# switched off
+
+----------------------------------------------------
+
+[
+	["pass", [
+		["keyword", "tokenize"],
+		["constant", "nil"]
+	]],
+	["comment", "# convert the input to tokens"],
+
+	["pass", [
+		["keyword", "dicttokz"],
+		["constant", "nil"]
+	]],
+
+	["pass", [
+		["keyword", "nlp"],
+		["function", "sentences"]
+	]],
+	["comment", "# cut the text into sentences"],
+
+	["pass", [
+		["keyword", "pat"],
+		["function", "paragraphs"]
+	]],
+
+	["pass", [
+		["keyword", "rec"],
+		["function", "nested"]
+	]],
+
+	["pass", [
+		["keyword", "stub"],
+		["function", "words"]
+	]],
+
+	["pass", [
+		["keyword", "end"],
+		["function", "words"]
+	]],
+
+	["comment", "/nlp\toldPass\t# switched off"]
+]
+
+----------------------------------------------------
+
+Checks for pass types, pass files, nil, and inactive passes.
