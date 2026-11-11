@@ -1,6 +1,7 @@
 `my column`
 `from`
 select {`first name`, `ns.table`}
+select {`a # b`, "c"}
 
 ----------------------------------------------------
 
@@ -30,6 +31,17 @@ select {`first name`, `ns.table`}
 		"ns.table",
 		["punctuation", "`"]
 	]],
+	["punctuation", "}"],
+
+	["builtin", "select"],
+	["punctuation", "{"],
+	["identifier", [
+		["punctuation", "`"],
+		"a # b",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["string", "\"c\""],
 	["punctuation", "}"]
 ]
 

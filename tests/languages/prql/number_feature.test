@@ -35,9 +35,7 @@
 	["number", "5days"],
 	["number", "10years"],
 	["number", "1microseconds"],
-	["number", "0b0000_1111_0000_11111"],
-	["number", "0o7_55"],
-	["number", "0xdead_BEEF"],
+	"\r\n0b0000_1111_0000_11111\r\n0o7_55\r\n0xdead_BEEF\r\n",
 	["number", "100_000"],
 	["number", "1_000.000_5"]
 ]

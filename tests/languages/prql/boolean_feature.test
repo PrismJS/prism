@@ -1,15 +1,13 @@
 true
 false
-null
 
 ----------------------------------------------------
 
 [
 	["boolean", "true"],
-	["boolean", "false"],
-	["boolean", "null"]
+	["boolean", "false"]
 ]
 
 ----------------------------------------------------
 
-Checks for booleans and null.
+Checks for booleans.

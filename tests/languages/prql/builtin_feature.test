@@ -2,7 +2,7 @@ from select filter derive aggregate group join sort take window
 append intersect remove loop
 min max sum average stddev count count_distinct all any concat_array
 lag lead first last rank rank_dense row_number
-as in tuple_map tuple_zip
+as in tuple_map tuple_reduce tuple_reverse tuple_uniq tuple_zip
 from_text read_csv read_json read_parquet
 
 ----------------------------------------------------
@@ -46,6 +46,9 @@ from_text read_csv read_json read_parquet
 	["builtin", "as"],
 	["builtin", "in"],
 	["builtin", "tuple_map"],
+	["builtin", "tuple_reduce"],
+	["builtin", "tuple_reverse"],
+	["builtin", "tuple_uniq"],
 	["builtin", "tuple_zip"],
 
 	["builtin", "from_text"],

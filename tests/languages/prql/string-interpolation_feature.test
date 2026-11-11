@@ -1,12 +1,13 @@
 f"{c.last_name}, {c.first_name}"
 s"version()"
 s"SELECT * FROM {table}"
-f"{{literal}} {x + 1}"
+f"{{literal}} {d:%Y-%m-%d}"
 f"""multi
 {line}"""
 s"SELECT *
 FROM {t}"
 f"""""a {b} """ c"""""
+f"{x} # {y}"
 
 ----------------------------------------------------
 
@@ -46,9 +47,9 @@ f"""""a {b} """ c"""""
 		["string", "f\"{{literal}} "],
 		["interpolation", [
 			["punctuation", "{"],
-			"x ",
-			["operator", "+"],
-			["number", "1"],
+			"d",
+			["punctuation", ":"],
+			["format-spec", "%Y-%m-%d"],
 			["punctuation", "}"]
 		]],
 		["string", "\""]
@@ -79,6 +80,21 @@ f"""""a {b} """ c"""""
 			["punctuation", "}"]
 		]],
 		["string", " \"\"\" c\"\"\"\"\""]
+	]],
+	["string-interpolation", [
+		["string", "f\""],
+		["interpolation", [
+			["punctuation", "{"],
+			"x",
+			["punctuation", "}"]
+		]],
+		["string", " # "],
+		["interpolation", [
+			["punctuation", "{"],
+			"y",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
 	]]
 ]
 
