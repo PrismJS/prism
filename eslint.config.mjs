@@ -1,20 +1,25 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import js from '@eslint/js';
-
-import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintCommentsPlugin from 'eslint-plugin-eslint-comments';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config = [
 	{
-		ignores: ['benchmark/downloads', 'benchmark/remotes', 'dist', 'node_modules', 'src/types.d.ts', 'types'],
+		ignores: [
+			'benchmark/downloads',
+			'benchmark/remotes',
+			'dist',
+			'node_modules',
+			'src/types.d.ts',
+			'types',
+		],
 	},
 	js.configs.recommended,
 	{

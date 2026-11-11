@@ -70,7 +70,7 @@ Source code:
 
 ```html
 <body data-prismjs-copy-timeout="500">
-	<pre><code class="language-js" data-prismjs-copy="Copy the JavaScript snippet!">console.log('Hello, world!');</code></pre>
+	<pre><code class="language-js" data-prismjs-copy="Copy the JavaScript snippet!">console.log("Hello, world!");</code></pre>
 
 	<pre><code class="language-c" data-prismjs-copy="Copy the C snippet!">int main() {
 	return 0;
@@ -83,7 +83,7 @@ Output:
 <div data-prismjs-copy-timeout="500">
 
 ```js { data-prismjs-copy="Copy the JavaScript snippet!" }
-console.log('Hello, world!');
+console.log("Hello, world!");
 ```
 
 ```c { data-prismjs-copy="Copy the C snippet!" }
@@ -121,7 +121,8 @@ int main() {
 }
 ```
 
-	</div>
+    </div>
+
 </div>
 
 ## i18n
@@ -145,7 +146,7 @@ Source code:
 	return 0;
 }</code></pre>
 
-	<pre><code class="language-js">console.log('Hello, world!');</code></pre>
+	<pre><code class="language-js">console.log("Hello, world!");</code></pre>
 </body>
 </html>
 ```
@@ -165,7 +166,7 @@ int main() {
 ```
 
 ```js
-console.log('Hello, world!');
+console.log("Hello, world!");
 ```
 
 </div>
@@ -178,21 +179,21 @@ Source code:
 <!DOCTYPE html>
 <html lang="en"><!-- The head is omitted. -->
 <body>
-	<pre><code class="language-js">console.log('Hello, world!');</code></pre>
+	<pre><code class="language-js">console.log("Hello, world!");</code></pre>
 
 	<pre
 		lang="ru"
 		data-prismjs-copy="Скопировать"
 		data-prismjs-copy-error="Нажмите Ctrl+C, чтобы скопировать"
 		data-prismjs-copy-success="Скопировано!"
-	><code class="language-js">console.log('Привет, мир!');</code></pre>
+	><code class="language-js">console.log("Привет, мир!");</code></pre>
 
 	<pre
 		lang="zh-Hans-CN"
 		data-prismjs-copy="复制文本"
 		data-prismjs-copy-error="按Ctrl+C复制"
 		data-prismjs-copy-success="文本已复制！"
-	><code class="language-js">console.log('你好，世界！');</code></pre>
+	><code class="language-js">console.log("你好，世界！");</code></pre>
 </body>
 </html>
 ```
@@ -200,15 +201,15 @@ Source code:
 Output:
 
 ```js
-console.log('Hello, world!');
+console.log("Hello, world!");
 ```
 
 ```js { lang="ru" data-prismjs-copy="Скопировать" data-prismjs-copy-error="Нажмите Ctrl+C, чтобы скопировать" data-prismjs-copy-success="Скопировано!" }
-console.log('Привет, мир!');
+console.log("Привет, мир!");
 ```
 
 ```js { lang="zh-Hans-CN" data-prismjs-copy="复制文本" data-prismjs-copy-error="按Ctrl+C复制" data-prismjs-copy-success="文本已复制！" }
-console.log('你好，世界！');
+console.log("你好，世界！");
 ```
 
 </section>
