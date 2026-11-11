@@ -1,0 +1,87 @@
+f"{c.last_name}, {c.first_name}"
+s"version()"
+s"SELECT * FROM {table}"
+f"{{literal}} {x + 1}"
+f"""multi
+{line}"""
+s"SELECT *
+FROM {t}"
+f"""""a {b} """ c"""""
+
+----------------------------------------------------
+
+[
+	["string-interpolation", [
+		["string", "f\""],
+		["interpolation", [
+			["punctuation", "{"],
+			"c",
+			["punctuation", "."],
+			"last_name",
+			["punctuation", "}"]
+		]],
+		["string", ", "],
+		["interpolation", [
+			["punctuation", "{"],
+			"c",
+			["punctuation", "."],
+			"first_name",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"version()\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"SELECT * FROM "],
+		["interpolation", [
+			["punctuation", "{"],
+			"table",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"{{literal}} "],
+		["interpolation", [
+			["punctuation", "{"],
+			"x ",
+			["operator", "+"],
+			["number", "1"],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"\"\"multi\r\n"],
+		["interpolation", [
+			["punctuation", "{"],
+			"line",
+			["punctuation", "}"]
+		]],
+		["string", "\"\"\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"SELECT *\r\nFROM "],
+		["interpolation", [
+			["punctuation", "{"],
+			"t",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"\"\"\"\"a "],
+		["interpolation", [
+			["punctuation", "{"],
+			"b",
+			["punctuation", "}"]
+		]],
+		["string", " \"\"\" c\"\"\"\"\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for f-strings and s-strings.

@@ -1,13 +1,18 @@
-aggregate derive filter
-from group join
-select sort take
+case enum func import internal into let module prql type
 
 ----------------------------------------------------
 
 [
-	["keyword", "aggregate"], ["keyword", "derive"], ["keyword", "filter"]
-	["keyword", "from"], ["keyword", "group"], ["keyword", "join"],
-	["keyword", "select"], ["keyword", "sort"], ["keyword", "take"]
+	["keyword", "case"],
+	["keyword", "enum"],
+	["keyword", "func"],
+	["keyword", "import"],
+	["keyword", "internal"],
+	["keyword", "into"],
+	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "prql"],
+	["keyword", "type"]
 ]
 
 ----------------------------------------------------

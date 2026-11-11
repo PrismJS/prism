@@ -1,13 +1,19 @@
 #
 # foobar
+#! doc comment
+from t # trailing
+"a" # it's "quoted"
 
 ----------------------------------------------------
 
 [
 	["comment", "#"],
-	["comment", "# foobar"]
+	["comment", "# foobar"],
+	["doc-comment", "#! doc comment"],
+	["builtin", "from"], " t ", ["comment", "# trailing"],
+	["string", "\"a\""], ["comment", "# it's \"quoted\""]
 ]
 
 ----------------------------------------------------
 
-Checks for comments.
+Checks for comments and doc comments.

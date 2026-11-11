@@ -1,15 +1,59 @@
-min max sum
-average stddev
-every any
+from select filter derive aggregate group join sort take window
+append intersect remove loop
+min max sum average stddev count count_distinct all any concat_array
+lag lead first last rank rank_dense row_number
+as in tuple_map tuple_zip
+from_text read_csv read_json read_parquet
 
 ----------------------------------------------------
 
 [
-	["builtin", "min"], ["builtin", "max"], ["builtin", "sum"],
-	["builtin", "average"],	["builtin", "stddev"],
-	["builtin", "every"], ["builtin", "any"]
+	["builtin", "from"],
+	["builtin", "select"],
+	["builtin", "filter"],
+	["builtin", "derive"],
+	["builtin", "aggregate"],
+	["builtin", "group"],
+	["builtin", "join"],
+	["builtin", "sort"],
+	["builtin", "take"],
+	["builtin", "window"],
+
+	["builtin", "append"],
+	["builtin", "intersect"],
+	["builtin", "remove"],
+	["builtin", "loop"],
+
+	["builtin", "min"],
+	["builtin", "max"],
+	["builtin", "sum"],
+	["builtin", "average"],
+	["builtin", "stddev"],
+	["builtin", "count"],
+	["builtin", "count_distinct"],
+	["builtin", "all"],
+	["builtin", "any"],
+	["builtin", "concat_array"],
+
+	["builtin", "lag"],
+	["builtin", "lead"],
+	["builtin", "first"],
+	["builtin", "last"],
+	["builtin", "rank"],
+	["builtin", "rank_dense"],
+	["builtin", "row_number"],
+
+	["builtin", "as"],
+	["builtin", "in"],
+	["builtin", "tuple_map"],
+	["builtin", "tuple_zip"],
+
+	["builtin", "from_text"],
+	["builtin", "read_csv"],
+	["builtin", "read_json"],
+	["builtin", "read_parquet"]
 ]
 
 ----------------------------------------------------
 
-Checks for builtins.
+Checks for standard library functions and transforms.

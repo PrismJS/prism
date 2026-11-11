@@ -1,0 +1,17 @@
+$1
+$name
+$my_param.field
+filter id == $1
+
+----------------------------------------------------
+
+[
+	["variable", "$1"],
+	["variable", "$name"],
+	["variable", "$my_param.field"],
+	["builtin", "filter"], " id ", ["operator", "=="], ["variable", "$1"]
+]
+
+----------------------------------------------------
+
+Checks for parameters.

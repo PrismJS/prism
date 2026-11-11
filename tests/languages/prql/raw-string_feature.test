@@ -1,0 +1,13 @@
+r"C:\path\{x}"
+r'it"s'
+
+----------------------------------------------------
+
+[
+	["raw-string", "r\"C:\\path\\{x}\""],
+	["raw-string", "r'it\"s'"]
+]
+
+----------------------------------------------------
+
+Checks for raw strings, which have no escapes or interpolation.

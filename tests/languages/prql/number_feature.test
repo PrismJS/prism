@@ -1,0 +1,47 @@
+0
+42
+1_000_000
+3.14
+1e100
+3.14e-10
+0b1010
+0b_1010
+0o755
+0xFF
+0x_ff
+5days
+10years
+1microseconds
+0b0000_1111_0000_11111
+0o7_55
+0xdead_BEEF
+100_000
+1_000.000_5
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "42"],
+	["number", "1_000_000"],
+	["number", "3.14"],
+	["number", "1e100"],
+	["number", "3.14e-10"],
+	["number", "0b1010"],
+	["number", "0b_1010"],
+	["number", "0o755"],
+	["number", "0xFF"],
+	["number", "0x_ff"],
+	["number", "5days"],
+	["number", "10years"],
+	["number", "1microseconds"],
+	["number", "0b0000_1111_0000_11111"],
+	["number", "0o7_55"],
+	["number", "0xdead_BEEF"],
+	["number", "100_000"],
+	["number", "1_000.000_5"]
+]
+
+----------------------------------------------------
+
+Checks for numbers, including radix prefixes and units.
