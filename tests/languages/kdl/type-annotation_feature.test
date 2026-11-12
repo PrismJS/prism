@@ -1,11 +1,20 @@
+(type)node
 node (u8)42
 node (regex)".*"
 (published)date "1970-01-01"
 node prop=(i32)100
+node (type)arg
 
 ----------------------------------------------------
 
 [
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "type"],
+		["punctuation", ")"]
+	]],
+	["tag", "node"],
+
 	["tag", "node"],
 	["type-annotation", [
 		["punctuation", "("],
@@ -38,5 +47,13 @@ node prop=(i32)100
 		["class-name", "i32"],
 		["punctuation", ")"]
 	]],
-	["number", "100"]
+	["number", "100"],
+
+	["tag", "node"],
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "type"],
+		["punctuation", ")"]
+	]],
+	"arg"
 ]

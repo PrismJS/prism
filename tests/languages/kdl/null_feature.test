@@ -2,23 +2,27 @@ node #null
 node null
 node key=#null
 node key=null
+node allow-null
 
 ----------------------------------------------------
 
 [
 	["tag", "node"],
-	["keyword", "#null"],
+	["null", "#null"],
 
 	["tag", "node"],
-	["keyword", "null"],
-
-	["tag", "node"],
-	["property", "key"],
-	["punctuation", "="],
-	["keyword", "#null"],
+	["null", "null"],
 
 	["tag", "node"],
 	["property", "key"],
 	["punctuation", "="],
-	["keyword", "null"]
+	["null", "#null"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["null", "null"],
+
+	["tag", "node"],
+	" allow-null"
 ]
