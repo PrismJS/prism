@@ -96,21 +96,22 @@ export default {
 					alias: 'keyword',
 				},
 				{
+					// https://spec.commonmark.org/0.31.2/#fenced-code-blocks
 					// ```optional language
 					// code block
 					// ```
-					pattern:
-						/^```\s*(?:\{[^{}]*\}|[a-z+#:-]+)(?:[ \t][^\n\r]*)?(?:\n|\r\n?)[\s\S]*?(?:\n|\r\n?)```$/im,
+					pattern: /^ {0,3}(`{3,})[^\n\r`]*(?:\n|\r\n?)[\s\S]*?^ {0,3}\1`*[ \t]*$/m,
+					greedy: true,
 					inside: {
 						'code-block': {
-							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)```$)/,
+							pattern: /^(.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?).*$)/,
 							lookbehind: true,
 						},
 						'code-language': {
-							pattern: /^(```\s*)(?:\{[^{}]*\}|[a-z+#:-]+)/i,
+							pattern: /^( *`+[ \t]*)(?:\{[^{}]*\}|[\w+#:-]+)/,
 							lookbehind: true,
 						},
-						'punctuation': /```/,
+						'punctuation': /`+/,
 						/** @type {Grammar['$tokenize']} */
 						$tokenize (code, grammar, Prism) {
 							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
