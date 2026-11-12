@@ -13,6 +13,7 @@ Kohaku: You have {score} points{Random("!", "?")}
 @while i < 10
 @char Kohaku if:score > 10 pos:50
 @choice "Go" if:met && score > 0 goto:#Next
+@print "I'm still alive." if: not dead
 [if score > 10]
 <@if done>
 \{not an expression\}
@@ -129,6 +130,16 @@ Kohaku: You have {score} points{Random("!", "?")}
 			["punctuation", ":"]
 		]],
 		["label", "#Next"]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["string", ["\"I'm still alive.\""]],
+		["parameter-name", [
+			"if",
+			["punctuation", ":"]
+		]],
+		["expression", "not dead"]
 	]],
 
 	["inline-command", [
