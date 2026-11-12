@@ -5,6 +5,14 @@ import { htmlEncode } from '../../shared/util.js';
 const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';
 
+/**
+ * The code of each highlighted element before the filters stripped their prefixes,
+ * and the text the element showed afterwards.
+ *
+ * @type {WeakMap<Element, { code: string, text: string }>}
+ */
+const sources = new WeakMap();
+
 /** @type {import('../../types.d.ts').PluginProto<'command-line'>} */
 const Self = {
 	id: 'command-line',
@@ -33,7 +41,16 @@ const Self = {
 				const existingPrompt = env.element.querySelector('.' + PROMPT_CLASS);
 				if (existingPrompt) {
 					existingPrompt.remove();
+					// The prompt means the element still shows what this plugin rendered, which lacks the filter
+					// prefixes, e.g. when the Autoloader highlights it again once its language loads.
+					// Text appended since then is new code
+					const source = sources.get(env.element);
+					const text = env.element.textContent;
+					if (source && text.startsWith(source.text)) {
+						env.code = source.code + text.slice(source.text.length);
+					}
 				}
+				commandLine.source = env.code;
 
 				// Browsers draw no line after a final line break, which every Markdown code fence ends with,
 				// so it gets no prompt
@@ -206,6 +223,10 @@ const Self = {
 				}
 
 				env.element.insertBefore(prompt, env.element.firstChild);
+				sources.set(env.element, {
+					code: commandLine.source,
+					text: env.element.textContent,
+				});
 				commandLine.complete = true;
 			},
 		});
@@ -219,6 +240,7 @@ prism.pluginRegistry.add(Self);
 /**
  * @typedef {object} CommandLineInfo
  * @property {boolean} [complete]
+ * @property {string} [source]
  * @property {number} [numberOfLines]
  * @property {string[]} [outputLines]
  * @property {Set<number>} [continuationLineIndicies]

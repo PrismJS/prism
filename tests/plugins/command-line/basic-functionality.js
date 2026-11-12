@@ -47,4 +47,58 @@ describe('Command Line', () => {
 
 		assert.strictEqual(document.querySelector('.token.output')?.textContent, 'file.txt');
 	});
+
+	// The Autoloader highlights an element again once its language loads
+	// https://github.com/PrismJS/prism/issues/1416
+	// https://github.com/PrismJS/prism/issues/3774
+	it('should keep filtered output and continuations when highlighted again', ({
+		document,
+		Prism,
+	}) => {
+		document.body.innerHTML = `<pre class="command-line language-bash" data-filter-output="(out)" data-filter-continuation="(con)"><code>ls\n(out)file.txt\necho a \\\n(con)b</code></pre>`;
+		const code = /** @type {HTMLElement} */ (document.querySelector('code'));
+		Prism.highlightElement(code);
+		const firstPass = code.innerHTML;
+
+		Prism.highlightElement(code);
+
+		assert.strictEqual(code.innerHTML, firstPass);
+	});
+
+	// A live terminal demo appends the next command and highlights again
+	it('should keep filtered output when code is appended', ({ document, Prism }) => {
+		document.body.innerHTML = `<pre class="command-line language-bash" data-filter-output="(out)"><code>ls\n(out)foo</code></pre>`;
+		const code = /** @type {HTMLElement} */ (document.querySelector('code'));
+		Prism.highlightElement(code);
+
+		code.append('\npwd');
+		Prism.highlightElement(code);
+
+		assert.deepStrictEqual(
+			[...code.querySelectorAll('.token.command, .token.output')].map(
+				line => `${line.classList[1]} ${line.textContent}`
+			),
+			['command ls', 'output foo', 'command pwd']
+		);
+	});
+});
+
+describe('Command Line with Normalize Whitespace', () => {
+	const { it } = createTestSuite({
+		languages: 'bash',
+		plugins: ['command-line', 'normalize-whitespace'],
+	});
+
+	// On the second pass, Normalize Whitespace trims the shown output before Command Line sees it,
+	// e.g. `  total 3` becomes `total 3`
+	it('should keep indented output when highlighted again', ({ document, Prism }) => {
+		document.body.innerHTML = `<pre class="command-line language-bash" data-filter-output="(out)"><code>(out)  total 3\nls</code></pre>`;
+		const code = /** @type {HTMLElement} */ (document.querySelector('code'));
+		Prism.highlightElement(code);
+		const firstPass = code.innerHTML;
+
+		Prism.highlightElement(code);
+
+		assert.strictEqual(code.innerHTML, firstPass);
+	});
 });
