@@ -25,13 +25,56 @@ export default {
 		const VALUE_START = `(?<![^${NON_ID}])`;
 		const VALUE_END = `(?![^${NON_ID}])`;
 
+		// Where a node can start: the start of a line, or right after `{` or `;`.
+		const NODE_START = '(?:^|[{;])[\\t ]*';
+		// A type annotation, like `(u8)`, and any space after it.
+		const TYPE = '\\([^()]*\\)[\\t ]*';
+
+		// Slashdash (`/-`) comments out the node, argument, property or children
+		// block that follows it. These pieces describe just enough of KDL to find
+		// where that element ends, and are kept unambiguous so they can't
+		// backtrack badly. Every string is treated as `"..."`, which also covers
+		// multi-line and raw strings, unless a raw string contains an odd number
+		// of `"`s or a `\"`.
+		const SD_STRING = '"(?:\\\\[\\s\\S]|[^"\\\\])*"';
+		const SD_BLOCK_COMMENT = '/\\*(?:[^*]|\\*(?!/))*\\*/';
+		// Whitespace, newlines and comments allowed between `/-` and its target.
+		const SD_SPACE = `(?:\\s|//.*$|${SD_BLOCK_COMMENT})*`;
+		// A children block, nested up to `depth` levels.
+		const sdBlock = depth =>
+			'\\{(?:' +
+			`${SD_STRING}|${SD_BLOCK_COMMENT}|//.*$|/(?![/*])|[^{}"/]` +
+			(depth > 1 ? `|${sdBlock(depth - 1)}` : '') +
+			')*\\}';
+		const SD_CHILDREN = sdBlock(6);
+		// The rest of a node: everything up to an unescaped newline, `;`, the `}`
+		// of the enclosing block, or a line comment.
+		const SD_NODE_REST =
+			'(?:' +
+			`${SD_STRING}|${SD_BLOCK_COMMENT}|/(?![/*])` +
+			'|\\\\[\\t ]*(?://.*)?\\r?\\n' +
+			`|${SD_CHILDREN}` +
+			'|[^\\r\\n;{}"/\\\\]' +
+			')*';
+		// An argument or property, with optional type annotations.
+		const SD_VALUE = `(?:${TYPE})?(?:r?#*${SD_STRING}#*|#?[^${NON_ID}]+)`;
+		const SD_ENTRY = `${SD_VALUE}(?:[\\t ]*=[\\t ]*${SD_VALUE})?`;
+
 		return {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
 				greedy: true,
 			},
 			'slashdash': {
-				pattern: /\/-/,
+				pattern: RegExp(
+					// A whole node, when `/-` is where a node starts.
+					`(?<=${NODE_START})/-${SD_SPACE}(?!\\s)${SD_NODE_REST}` +
+					// Otherwise a children block, property or argument.
+					`|/-${SD_SPACE}(?:${SD_CHILDREN}|${SD_ENTRY})` +
+					// Fallback if what follows can't be matched.
+					'|/-',
+					'm'
+				),
 				greedy: true,
 				alias: 'comment',
 			},
@@ -55,9 +98,8 @@ export default {
 				greedy: true,
 			},
 			'tag': {
-				// First identifier of a node: at the start of a line or right after
-				// `{` or `;`, optionally preceded by a type annotation.
-				pattern: RegExp(`(?<=(?:^|[{;])[\\t ]*(?:\\([^()]*\\)[\\t ]*)?)${STRINGY}`, 'm'),
+				// First name of a node, optionally after a type annotation.
+				pattern: RegExp(`(?<=${NODE_START}(?:${TYPE})?)${STRINGY}`, 'm'),
 				greedy: true,
 			},
 			'type-annotation': {

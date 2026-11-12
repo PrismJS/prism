@@ -7,30 +7,43 @@ node {
 }
 node 1 /- // stuff
 2 3
+node "string"/-foo=1 bar
+node /- (u8)42 /-(t)key=(t)"value" 3
+node 1 /- { child } { real }
+/-this-is-commented {
+    this entire node {
+        is gone "with } brace"
+    }
+}
+after
+/-node 1 \
+    2 /* } */ 3
+parent { /-child; other }
+/-node r#"raw"# // trailing comment
+/-
+spread-out-node
+/-raw #"""
+    } still raw
+    """#
+kept
 
 ----------------------------------------------------
 
 [
-	["slashdash", "/-"],
-	" commented-node\r\n",
+	["slashdash", "/- commented-node"],
 
 	["tag", "node"],
-	["slashdash", "/-"],
-	["number", "1"],
+	["slashdash", "/- 1"],
 	["number", "2"],
 	["number", "3"],
 
 	["tag", "node"],
-	["slashdash", "/-"],
-	["property", "key"],
-	["punctuation", "="],
-	"value\r\n",
+	["slashdash", "/- key=value"],
 
 	["tag", "node"],
 	["punctuation", "{"],
 
-	["slashdash", "/-"],
-	" commented-child\r\n    ",
+	["slashdash", "/- commented-child"],
 
 	["tag", "real-child"],
 
@@ -38,9 +51,45 @@ node 1 /- // stuff
 
 	["tag", "node"],
 	["number", "1"],
-	["slashdash", "/-"],
-	["comment", "// stuff"],
+	["slashdash", "/- // stuff\r\n2"],
+	["number", "3"],
 
-	["number", "2"],
-	["number", "3"]
+	["tag", "node"],
+	["string", "\"string\""],
+	["slashdash", "/-foo=1"],
+	" bar\r\n",
+
+	["tag", "node"],
+	["slashdash", "/- (u8)42"],
+	["slashdash", "/-(t)key=(t)\"value\""],
+	["number", "3"],
+
+	["tag", "node"],
+	["number", "1"],
+	["slashdash", "/- { child }"],
+	["punctuation", "{"],
+	["tag", "real"],
+	["punctuation", "}"],
+
+	["slashdash", "/-this-is-commented {\r\n    this entire node {\r\n        is gone \"with } brace\"\r\n    }\r\n}"],
+
+	["tag", "after"],
+
+	["slashdash", "/-node 1 \\\r\n    2 /* } */ 3"],
+
+	["tag", "parent"],
+	["punctuation", "{"],
+	["slashdash", "/-child"],
+	["punctuation", ";"],
+	["tag", "other"],
+	["punctuation", "}"],
+
+	["slashdash", "/-node r#\"raw\"# "],
+	["comment", "// trailing comment"],
+
+	["slashdash", "/-\r\nspread-out-node"],
+
+	["slashdash", "/-raw #\"\"\"\r\n    } still raw\r\n    \"\"\"#"],
+
+	["tag", "kept"]
 ]
