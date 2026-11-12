@@ -94,6 +94,7 @@ export default {
 					'doc-comment': {
 						pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
 						greedy: true,
+						alias: 'comment',
 						inside: 'jsdoc',
 					},
 				},

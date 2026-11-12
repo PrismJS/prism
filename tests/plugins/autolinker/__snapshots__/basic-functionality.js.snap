@@ -65,7 +65,7 @@ Autolinking in raw text:
 `;
 
 exports[`Autolinker In JS code 1`] = `
-"<span class=\\"token doc-comment\\">
+"<span class=\\"token doc-comment comment\\">
 	/** * Prism: Lightweight, robust, elegant syntax highlighting * MIT license
 	<a class=\\"token url-link\\" href=\\"http://www.opensource.org/licenses/mit-license.php/\\">
 		http://www.opensource.org/licenses/mit-license.php/

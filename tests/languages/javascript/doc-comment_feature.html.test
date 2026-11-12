@@ -1,0 +1,9 @@
+/** foo */
+
+----------------------------------------------------
+
+<span class="token doc-comment comment">/** foo */</span>
+
+----------------------------------------------------
+
+Checks that doc comments keep the "comment" class, which themes color.
