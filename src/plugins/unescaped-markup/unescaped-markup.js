@@ -1,4 +1,5 @@
 import prism from '../../global.js';
+import { languageSelector } from '../../shared/dom-util.js';
 
 /** @type {import('../../types.d.ts').PluginProto<'unescaped-markup'>} */
 const Self = {
@@ -6,11 +7,7 @@ const Self = {
 	effect (Prism) {
 		return Prism.hooks.add({
 			'before-highlightall': env => {
-				env.selector +=
-					', [class*="lang-"] script[type="text/plain"]' +
-					', [class*="language-"] script[type="text/plain"]' +
-					', script[type="text/plain"][class*="lang-"]' +
-					', script[type="text/plain"][class*="language-"]';
+				env.selector += `, ${languageSelector} script[type="text/plain"], script[type="text/plain"]${languageSelector}`;
 			},
 			'before-sanity-check': env => {
 				/** @type {HTMLElement} */

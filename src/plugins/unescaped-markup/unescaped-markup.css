@@ -1,8 +1,27 @@
-/* Fallback, in case JS does not run, to ensure the code is at least visible */
-[class*="lang-"] script[type="text/plain"],
-[class*="language-"] script[type="text/plain"],
-script[type="text/plain"][class*="lang-"],
-script[type="text/plain"][class*="language-"] {
+/* Fallback, in case JS does not run, to ensure the code is at least visible.
+   Matches the same whole language classes as `languageSelector` in `src/shared/dom-util.js`.
+   `\9 ` and `\a ` are the CSS escapes for a tab and a line feed. */
+:is(
+		[class^="language-"],
+		[class*=" language-"],
+		[class*="\9 language-"],
+		[class*="\a language-"],
+		[class^="lang-"],
+		[class*=" lang-"],
+		[class*="\9 lang-"],
+		[class*="\a lang-"]
+	)
+	script[type="text/plain"],
+script[type="text/plain"]:is(
+		[class^="language-"],
+		[class*=" language-"],
+		[class*="\9 language-"],
+		[class*="\a language-"],
+		[class^="lang-"],
+		[class*=" lang-"],
+		[class*="\9 lang-"],
+		[class*="\a lang-"]
+	) {
 	display: block;
 	font:
 		100% Consolas,
