@@ -1,3 +1,4 @@
+import { languageSelector } from '../shared/dom-util.js';
 import singleton from './prism.js';
 
 /**
@@ -21,8 +22,7 @@ export function highlightAll (options = {}) {
 	const env = {
 		callback,
 		root: root ?? document,
-		selector:
-			'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+		selector: `code${languageSelector}, ${languageSelector} code`,
 	};
 
 	prism.hooks.run('before-highlightall', env);
