@@ -1138,6 +1138,10 @@
 			"title": "Solution file",
 			"owner": "RunDevelopment"
 		},
+		"soml": {
+			"title": "SOML",
+			"owner": "sindresorhus"
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"owner": "Golmote"

@@ -1,0 +1,15 @@
+# \"escaped\": 1
+/* \"escaped\": 2 */
+value: 3
+
+----------------------------------------------------
+
+[
+	["comment", "# \\\"escaped\\\": 1\r"],
+	["comment", "/* \\\"escaped\\\": 2 */"],
+	["key", "value"], ["punctuation", ":"], ["number", "3"]
+]
+
+----------------------------------------------------
+
+A backslash-escaped quote inside a comment does not start a string that would turn part of the comment into a key.

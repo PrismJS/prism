@@ -1,0 +1,29 @@
+replicas: 3
+ratio: 0.75
+budget: 1_000_000
+mask: 0b1010_1100
+permissions: 0o644
+color: 0xFF8800
+limit: infinity
+floor: -infinity
+drained: false
+owner: null
+
+----------------------------------------------------
+
+[
+	["key", "replicas"], ["punctuation", ":"], ["number", "3"],
+	["key", "ratio"], ["punctuation", ":"], ["number", "0.75"],
+	["key", "budget"], ["punctuation", ":"], ["number", "1_000_000"],
+	["key", "mask"], ["punctuation", ":"], ["number", "0b1010_1100"],
+	["key", "permissions"], ["punctuation", ":"], ["number", "0o644"],
+	["key", "color"], ["punctuation", ":"], ["number", "0xFF8800"],
+	["key", "limit"], ["punctuation", ":"], ["number", "infinity"],
+	["key", "floor"], ["punctuation", ":"], ["number", "-infinity"],
+	["key", "drained"], ["punctuation", ":"], ["boolean", "false"],
+	["key", "owner"], ["punctuation", ":"], ["null", "null"]
+]
+
+----------------------------------------------------
+
+Numbers, keywords, booleans, and null.

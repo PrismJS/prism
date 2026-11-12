@@ -1,0 +1,55 @@
+{
+	name: 'soml'
+	version: '1.0.0'
+	labels: ['prod', 'eu-west']
+	nested: {
+		a: 1
+		b: [1, 2]
+	}
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'soml'"],
+
+	["key", "version"],
+	["punctuation", ":"],
+	["string", "'1.0.0'"],
+
+	["key", "labels"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["string", "'prod'"],
+	["punctuation", ","],
+	["string", "'eu-west'"],
+	["punctuation", "]"],
+
+	["key", "nested"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+
+	["key", "a"],
+	["punctuation", ":"],
+	["number", "1"],
+
+	["key", "b"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", "]"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+A document may be a braced object, and its braces nest without any help from indentation.

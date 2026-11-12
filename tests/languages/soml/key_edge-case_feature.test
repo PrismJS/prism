@@ -1,0 +1,107 @@
+404: 'not found'
+-foo: 1
+_private: 2
+7zip-bin: 'x'
+'the name': 'space'
+'a.b': 'dot'
+'a:b': 'colon'
+'#hash': 'hash'
+'a/*b': 'comment marker'
+true: 1
+null: 2
+infinity: 3
+30s: 4
+pool: {min: 2, max: 16}
+nested: {
+	deep: {
+		deeper: 1
+	}
+}
+
+----------------------------------------------------
+
+[
+	["key", "404"],
+	["punctuation", ":"],
+	["string", "'not found'"],
+
+	["key", "-foo"],
+	["punctuation", ":"],
+	["number", "1"],
+
+	["key", "_private"],
+	["punctuation", ":"],
+	["number", "2"],
+
+	["key", "7zip-bin"],
+	["punctuation", ":"],
+	["string", "'x'"],
+
+	["key", "'the name'"],
+	["punctuation", ":"],
+	["string", "'space'"],
+
+	["key", "'a.b'"],
+	["punctuation", ":"],
+	["string", "'dot'"],
+
+	["key", "'a:b'"],
+	["punctuation", ":"],
+	["string", "'colon'"],
+
+	["key", "'#hash'"],
+	["punctuation", ":"],
+	["string", "'hash'"],
+
+	["key", "'a/*b'"],
+	["punctuation", ":"],
+	["string", "'comment marker'"],
+
+	["key", "true"],
+	["punctuation", ":"],
+	["number", "1"],
+
+	["key", "null"],
+	["punctuation", ":"],
+	["number", "2"],
+
+	["key", "infinity"],
+	["punctuation", ":"],
+	["number", "3"],
+
+	["key", "30s"],
+	["punctuation", ":"],
+	["number", "4"],
+
+	["key", "pool"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["key", "min"],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["key", "max"],
+	["punctuation", ":"],
+	["number", "16"],
+	["punctuation", "}"],
+
+	["key", "nested"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+
+	["key", "deep"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+
+	["key", "deeper"],
+	["punctuation", ":"],
+	["number", "1"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+A key is always a string, may begin with a digit or a dash, and needs quotes only for characters outside the bare set.

@@ -1,0 +1,79 @@
+values: [
+	'prod'
+	1
+	-2.5
+	true
+	null
+	30s
+	2026-09-19T14:00:00Z
+	[1, 2]
+	{name: 'Sindre'}
+	'''
+	a block string item
+	'''
+]
+inline: ['prod', 1, true, null, 30s, 2026-09-19T14:00:00Z, {name: 'Sindre'}]
+
+----------------------------------------------------
+
+[
+	["key", "values"],
+	["punctuation", ":"],
+	["punctuation", "["],
+
+	["string", "'prod'"],
+
+	["number", "1"],
+
+	["number", "-2.5"],
+
+	["boolean", "true"],
+
+	["null", "null"],
+
+	["duration", "30s"],
+
+	["instant", "2026-09-19T14:00:00Z"],
+
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", "]"],
+
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Sindre'"],
+	["punctuation", "}"],
+
+	["block-string", "'''\r\n\ta block string item\r\n\t'''"],
+
+	["punctuation", "]"],
+
+	["key", "inline"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["string", "'prod'"],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", ","],
+	["boolean", "true"],
+	["punctuation", ","],
+	["null", "null"],
+	["punctuation", ","],
+	["duration", "30s"],
+	["punctuation", ","],
+	["instant", "2026-09-19T14:00:00Z"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Sindre'"],
+	["punctuation", "}"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Every value type stays intact at the start of an array line and after a comma, including instants, which hold a `:`.
