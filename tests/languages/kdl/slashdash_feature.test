@@ -26,6 +26,8 @@ spread-out-node
     } still raw
     """#
 kept
+node \
+    /- arg kept
 
 ----------------------------------------------------
 
@@ -57,7 +59,7 @@ kept
 	["tag", "node"],
 	["string", "\"string\""],
 	["slashdash", "/-foo=1"],
-	" bar\r\n",
+	["identifier-string", "bar"],
 
 	["tag", "node"],
 	["slashdash", "/- (u8)42"],
@@ -91,5 +93,11 @@ kept
 
 	["slashdash", "/-raw #\"\"\"\r\n    } still raw\r\n    \"\"\"#"],
 
-	["tag", "kept"]
+	["tag", "kept"],
+
+	["tag", "node"],
+	["punctuation", "\\"],
+
+	["slashdash", "/- arg"],
+	["identifier-string", "kept"]
 ]

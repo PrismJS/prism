@@ -8,6 +8,9 @@ node r"v1 raw \n literal"
 node r##"v1 raw with "# inside"##
 prop spdx description="An SPDX license identifier"
 node ref=#"[id="info-link"]"#
+build #"""
+    echo "foo" key=value
+    """# #"a"# #"b"#
 
 ----------------------------------------------------
 
@@ -28,7 +31,7 @@ node ref=#"[id="info-link"]"#
 	["raw-string", "r##\"v1 raw with \"# inside\"##"],
 
 	["tag", "prop"],
-	" spdx ",
+	["identifier-string", "spdx"],
 	["property", "description"],
 	["punctuation", "="],
 	["string", "\"An SPDX license identifier\""],
@@ -36,5 +39,10 @@ node ref=#"[id="info-link"]"#
 	["tag", "node"],
 	["property", "ref"],
 	["punctuation", "="],
-	["raw-string", "#\"[id=\"info-link\"]\"#"]
+	["raw-string", "#\"[id=\"info-link\"]\"#"],
+
+	["tag", "build"],
+	["raw-string", "#\"\"\"\r\n    echo \"foo\" key=value\r\n    \"\"\"#"],
+	["raw-string", "#\"a\"#"],
+	["raw-string", "#\"b\"#"]
 ]

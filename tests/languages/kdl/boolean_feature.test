@@ -38,5 +38,6 @@ node foo-true is-false
 	["boolean", "false"],
 
 	["tag", "node"],
-	" foo-true is-false"
+	["identifier-string", "foo-true"],
+	["identifier-string", "is-false"]
 ]

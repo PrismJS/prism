@@ -16,17 +16,25 @@ export default {
 		// (Being more specific about `\u{...}` causes regex-pattern ambiguity.)
 		const QUOTED = '"(?:\\\\[\\s\\S]|[^"\\\\\\r\\n])*"';
 
+		// Raw string. v2: one or more `#`s, then `"..."` or `"""..."""`. v1: `r`,
+		// then zero or more `#`s, then quotes. Backreferences make the closing
+		// quotes and `#`s match the opening ones, and the body can't contain the
+		// closing sequence, so a match never runs past its own end.
+		const RAW = '(?:r|(?=#))(#*)("(?:"")?)(?:(?!\\2\\1)[\\s\\S])*\\2\\1';
+
 		// Anything that can fill an identifier slot (node name, property key,
 		// type annotation name).
-		const STRINGY = `(?:${QUOTED}|${IDENT})`;
+		const STRINGY = `(?:${RAW}|${QUOTED}|${IDENT})`;
 
 		// Keyword and number values can't touch identifier characters on either
-		// side, so `foo-true`, `allow-null` and `utf-8` stay plain identifiers.
+		// side, so `foo-true`, `allow-null` and `utf-8` are whole identifiers
+		// rather than identifiers with a value inside.
 		const VALUE_START = `(?<![^${NON_ID}])`;
 		const VALUE_END = `(?![^${NON_ID}])`;
 
-		// Where a node can start: the start of a line, or right after `{` or `;`.
-		const NODE_START = '(?:^|[{;])[\\t ]*';
+		// Where a node can start: the start of a line (unless the line before ends
+		// in a `\` continuation), or right after `{` or `;`.
+		const NODE_START = '(?:^(?<!\\\\[\\t ]*(?://.*)?\\r?\\n)|[{;])[\\t ]*';
 		// A type annotation, like `(u8)`, and any space after it.
 		const TYPE = '\\([^()]*\\)[\\t ]*';
 
@@ -78,28 +86,26 @@ export default {
 				greedy: true,
 				alias: 'comment',
 			},
-			'raw-string': {
-				// v2 raw strings: one or more `#`s, then `"..."` or `"""..."""`.
-				// v1 raw strings: `r`, then zero or more `#`s, then quotes.
-				// Backreferences enforce matching hash counts and quotes on both sides.
-				pattern: /(?:r|(?=#))(#*)("(?:"")?)[\s\S]*?\2\1/,
-				greedy: true,
-				alias: 'string',
-			},
 			'property': {
-				// Must come before `string` so quoted-string keys win over the
-				// generic string pattern.
+				// Comes before the string tokens so quoted and raw keys are
+				// properties.
 				pattern: RegExp(`${STRINGY}(?=\\s*=[^=])`),
 				greedy: true,
 				alias: 'attr-name',
 			},
-			'string': {
-				pattern: RegExp(`"""[\\s\\S]*?"""|${QUOTED}`),
+			'tag': {
+				// First name of a node, optionally after a type annotation. Comes
+				// before the string tokens so quoted and raw node names are tags too.
+				pattern: RegExp(`(?<=${NODE_START}(?:${TYPE})?)${STRINGY}`, 'm'),
 				greedy: true,
 			},
-			'tag': {
-				// First name of a node, optionally after a type annotation.
-				pattern: RegExp(`(?<=${NODE_START}(?:${TYPE})?)${STRINGY}`, 'm'),
+			'raw-string': {
+				pattern: RegExp(RAW),
+				greedy: true,
+				alias: 'string',
+			},
+			'string': {
+				pattern: RegExp(`"""[\\s\\S]*?"""|${QUOTED}`),
 				greedy: true,
 			},
 			'type-annotation': {
@@ -120,6 +126,12 @@ export default {
 			'number': RegExp(
 				`${VALUE_START}(?:#-?inf|#nan|[+-]?(?:0x[\\da-fA-F][\\da-fA-F_]*|0o[0-7][0-7_]*|0b[01][01_]*|\\d[\\d_]*(?:\\.\\d[\\d_]*)?(?:[eE][+-]?\\d[\\d_]*)?))${VALUE_END}`
 			),
+			'identifier-string': {
+				// A bare identifier used as a value, like `my-pkg` in `name my-pkg`.
+				// KDL v2 treats it as a string, the same as `"my-pkg"`.
+				pattern: RegExp(`${VALUE_START}${IDENT}${VALUE_END}`),
+				alias: 'string',
+			},
 			'punctuation': /[{};=\\]/,
 		};
 	},

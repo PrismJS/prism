@@ -19,21 +19,57 @@ node bar-1 1.0.0
 ----------------------------------------------------
 
 [
-	["tag", "node"], ["number", "0"],
-	["tag", "node"], ["number", "42"],
-	["tag", "node"], ["number", "-42"],
-	["tag", "node"], ["number", "+42"],
-	["tag", "node"], ["number", "3.14"],
-	["tag", "node"], ["number", "-3.14"],
-	["tag", "node"], ["number", "1.5e10"],
-	["tag", "node"], ["number", "2.5E-3"],
-	["tag", "node"], ["number", "1_000_000"],
-	["tag", "node"], ["number", "0xDEAD_BEEF"],
-	["tag", "node"], ["number", "0o755"],
-	["tag", "node"], ["number", "0b1010_0101"],
-	["tag", "node"], ["number", "#inf"],
-	["tag", "node"], ["number", "#-inf"],
-	["tag", "node"], ["number", "#nan"],
-	["tag", "meta"], ["property", "charset"], ["punctuation", "="], "utf-8\r\n",
-	["tag", "node"], " bar-1 1.0.0"
+	["tag", "node"],
+	["number", "0"],
+
+	["tag", "node"],
+	["number", "42"],
+
+	["tag", "node"],
+	["number", "-42"],
+
+	["tag", "node"],
+	["number", "+42"],
+
+	["tag", "node"],
+	["number", "3.14"],
+
+	["tag", "node"],
+	["number", "-3.14"],
+
+	["tag", "node"],
+	["number", "1.5e10"],
+
+	["tag", "node"],
+	["number", "2.5E-3"],
+
+	["tag", "node"],
+	["number", "1_000_000"],
+
+	["tag", "node"],
+	["number", "0xDEAD_BEEF"],
+
+	["tag", "node"],
+	["number", "0o755"],
+
+	["tag", "node"],
+	["number", "0b1010_0101"],
+
+	["tag", "node"],
+	["number", "#inf"],
+
+	["tag", "node"],
+	["number", "#-inf"],
+
+	["tag", "node"],
+	["number", "#nan"],
+
+	["tag", "meta"],
+	["property", "charset"],
+	["punctuation", "="],
+	["identifier-string", "utf-8"],
+
+	["tag", "node"],
+	["identifier-string", "bar-1"],
+	" 1.0.0"
 ]

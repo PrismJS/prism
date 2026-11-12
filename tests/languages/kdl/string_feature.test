@@ -6,6 +6,9 @@ node """
     multi-line
     string
     """
+node """
+    looks-like-node "x" { y }
+    """
 
 ----------------------------------------------------
 
@@ -23,5 +26,8 @@ node """
 	["string", "\"unicode \\u{1F4A9}\""],
 
 	["tag", "node"],
-	["string", "\"\"\"\r\n    multi-line\r\n    string\r\n    \"\"\""]
+	["string", "\"\"\"\r\n    multi-line\r\n    string\r\n    \"\"\""],
+
+	["tag", "node"],
+	["string", "\"\"\"\r\n    looks-like-node \"x\" { y }\r\n    \"\"\""]
 ]

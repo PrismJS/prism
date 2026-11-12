@@ -4,6 +4,7 @@ node a=1 b=2
 node key = 1
 node "quoted key"="value"
 match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+node #"raw key"#=1 r"v1 key"=2
 
 ----------------------------------------------------
 
@@ -39,5 +40,13 @@ match app-id=r#"^org\.keepassxc\.KeePassXC$"#
 	["tag", "match"],
 	["property", "app-id"],
 	["punctuation", "="],
-	["raw-string", "r#\"^org\\.keepassxc\\.KeePassXC$\"#"]
+	["raw-string", "r#\"^org\\.keepassxc\\.KeePassXC$\"#"],
+
+	["tag", "node"],
+	["property", "#\"raw key\"#"],
+	["punctuation", "="],
+	["number", "1"],
+	["property", "r\"v1 key\""],
+	["punctuation", "="],
+	["number", "2"]
 ]

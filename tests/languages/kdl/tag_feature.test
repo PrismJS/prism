@@ -6,22 +6,71 @@ parent {
     child2
 }
 parent { child1; child2 }
+"quoted node" arg
+#"raw node"# arg
+r"v1 raw node" arg
+(type)"typed quoted"
+"illegal(){}[]/\\=#;identifier" #"1.2.3"# "#false"=#true
+title \
+  "continued arg" \
+  bare-arg // comment
+after
 
 ----------------------------------------------------
 
 [
 	["tag", "node"],
+
 	["tag", "my-node"],
+
 	["tag", "node1"],
+
 	["tag", "parent"],
 	["punctuation", "{"],
+
 	["tag", "child1"],
+
 	["tag", "child2"],
+
 	["punctuation", "}"],
+
 	["tag", "parent"],
 	["punctuation", "{"],
 	["tag", "child1"],
 	["punctuation", ";"],
 	["tag", "child2"],
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["tag", "\"quoted node\""],
+	["identifier-string", "arg"],
+
+	["tag", "#\"raw node\"#"],
+	["identifier-string", "arg"],
+
+	["tag", "r\"v1 raw node\""],
+	["identifier-string", "arg"],
+
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "type"],
+		["punctuation", ")"]
+	]],
+	["tag", "\"typed quoted\""],
+
+	["tag", "\"illegal(){}[]/\\\\=#;identifier\""],
+	["raw-string", "#\"1.2.3\"#"],
+	["property", "\"#false\""],
+	["punctuation", "="],
+	["boolean", "#true"],
+
+	["tag", "title"],
+	["punctuation", "\\"],
+
+	["string", "\"continued arg\""],
+	["punctuation", "\\"],
+
+	["identifier-string", "bare-arg"],
+	["comment", "// comment"],
+
+	["tag", "after"]
 ]

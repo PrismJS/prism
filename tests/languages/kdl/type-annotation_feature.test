@@ -55,5 +55,5 @@ node (type)arg
 		["class-name", "type"],
 		["punctuation", ")"]
 	]],
-	"arg"
+	["identifier-string", "arg"]
 ]
