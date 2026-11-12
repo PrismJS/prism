@@ -61,16 +61,12 @@ var myElement = <MyComponent someProperty={true} />;
 	]],
 
 	["tag", [
-		"<",
-		["tag", [
-		]],
-		">"
+		["punctuation", "<"],
+		["punctuation", ">"]
 	]],
 	["plain-text", " "],
 	["tag", [
 		["punctuation", "</"],
-		["tag", [
-		]],
 		["punctuation", ">"]
 	]],
 
