@@ -11,6 +11,7 @@ export default {
 		'ejs-comment': {
 			pattern: /<%#[\s\S]*?%>/,
 			greedy: true,
+			alias: 'comment',
 		},
 		'escape': {
 			pattern: /<%%|%%>/,
