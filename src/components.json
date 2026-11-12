@@ -980,6 +980,10 @@
 			"title": "Protocol Buffers",
 			"owner": "just-boris"
 		},
+		"prql": {
+			"title": "PRQL",
+			"owner": "vanillajonathan"
+		},
 		"pug": {
 			"title": "Pug",
 			"owner": "Golmote"

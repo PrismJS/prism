@@ -1,0 +1,50 @@
+`my column`
+`from`
+select {`first name`, `ns.table`}
+select {`a # b`, "c"}
+
+----------------------------------------------------
+
+[
+	["identifier", [
+		["punctuation", "`"],
+		"my column",
+		["punctuation", "`"]
+	]],
+
+	["identifier", [
+		["punctuation", "`"],
+		"from",
+		["punctuation", "`"]
+	]],
+
+	["builtin", "select"],
+	["punctuation", "{"],
+	["identifier", [
+		["punctuation", "`"],
+		"first name",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["identifier", [
+		["punctuation", "`"],
+		"ns.table",
+		["punctuation", "`"]
+	]],
+	["punctuation", "}"],
+
+	["builtin", "select"],
+	["punctuation", "{"],
+	["identifier", [
+		["punctuation", "`"],
+		"a # b",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["string", "\"c\""],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for backtick-quoted identifiers.

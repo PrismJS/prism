@@ -1,0 +1,28 @@
+@{binding_strength=1}
+let add = a b -> a + b
+
+----------------------------------------------------
+
+[
+	["annotation", [
+		["annotation-marker", "@"],
+		["punctuation", "{"],
+		"binding_strength",
+		["operator", "="],
+		["number", "1"],
+		["punctuation", "}"]
+	]],
+
+	["keyword", "let"],
+	" add ",
+	["operator", "="],
+	" a b ",
+	["operator", "->"],
+	" a ",
+	["operator", "+"],
+	" b"
+]
+
+----------------------------------------------------
+
+Checks for annotations.
