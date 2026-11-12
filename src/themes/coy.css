@@ -220,4 +220,6 @@ pre[data-line] code {
 }
 pre .line-highlight {
 	margin-top: 0;
+	/* With Line Numbers, the highlight sits in the `<pre>`, under the code's `z-index: 1` */
+	z-index: 1;
 }
