@@ -58,11 +58,12 @@ const Self = {
 
 				/**
 				 * @param {Element} element
+				 * @param {NodeData} [parent]
 				 */
-				function processElement (element) {
+				function processElement (element, parent) {
 					if (!shouldKeep(element)) {
 						// don't keep this element and just process its children
-						processChildren(element);
+						processChildren(element, parent);
 						return;
 					}
 
@@ -72,22 +73,24 @@ const Self = {
 						element,
 						posOpen: pos,
 						posClose: NaN,
+						parent,
 					};
 					data.push(o);
 
-					processChildren(element);
+					processChildren(element, o);
 
 					o.posClose = pos;
 				}
 
 				/**
 				 * @param {Element} element
+				 * @param {NodeData} [parent]
 				 */
-				function processChildren (element) {
+				function processChildren (element, parent) {
 					for (let i = 0, l = element.childNodes.length; i < l; i++) {
 						const child = element.childNodes[i];
 						if (isElement(child)) {
-							processElement(child);
+							processElement(child, parent);
 						}
 						else if (isText(child)) {
 							pos += child.data.length;
@@ -160,9 +163,13 @@ const Self = {
 						return true;
 					};
 
-					// For each tag, we walk the DOM to reinsert it
+					// For each tag, we walk its restored parent to reinsert it
 					data.forEach(node => {
-						walk(env.element, { node, pos: 0 });
+						const parent = node.parent?.element ?? env.element;
+						if (walk(parent, { node, pos: node.parent?.posOpen ?? 0 })) {
+							// No text follows an empty tag inside its parent, e.g. `<x>a<y></y></x>`
+							parent.appendChild(node.element);
+						}
 					});
 					// Store new highlightedCode for later hooks calls
 					env.highlightedCode = env.element.innerHTML;
@@ -181,6 +188,7 @@ prism.pluginRegistry.add(Self);
  * @property {Element} element
  * @property {number} posOpen
  * @property {number} posClose
+ * @property {NodeData} [parent] The closest kept ancestor
  */
 
 /**
