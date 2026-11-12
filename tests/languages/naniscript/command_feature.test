@@ -1,207 +1,257 @@
-@
-@ cmdWithWhiteSpaceBefore
-@cmdWithTrailingSemicolon:
-@paramlessCmd
- @cmdWithNoParamsAndWhitespaceBefore
-	@cmdWithNoParamsAndTabBefore
-				 @cmdWithNoParamsAndTabAndSpacesBefore
-						 @cmdWithNoParamsWrappedInWhitespaces
-@cmdWithNoParamWithTrailingSpace 
-@cmdWithNoParamWithMultipleTrailingSpaces    
-@cmdWithNoParamWithTrailingTab	
-@cmdWithNoParamWithTrailingTabAndSpaces				
-@cmdWithPositiveIntParam 1
-@cmdWithNegativeIntParam -1
-@cmdWithPositiveFloatParamAndNoFraction 1.
-@cmdWithPositiveFloatParamAndFraction 1.10
-@cmdWithPositiveHegativeFloatParamAndNoFraction -1.
-@cmdWithPositiveHegativeFloatParamAndFraction -1.10
-@cmdWithBoolParamAndPositive true
-@cmdWithBoolParamAndNegative false
-@cmdWithStringParam hello$co\:mma"d"
-@cmdWithQuotedStringNamelessParameter "hello grizzly"
-@cmdWithQuotedStringNamelessParameterWithEscapedQuotesInTheValue "hello \"grizzly\""
-@set choice="moe"
-@command hello.grizzly
-@command one,two,three
-@command 1,2,3
-@command true,false,true
-@command hi:grizzly
-@command hi:1
-@command hi:true
-@command 1 in:forest danger:true
-@char 1 pos:0.25,-0.75 look:right
+@wait
+@ wait
+@wait 1
+@char Kohaku pos:50 look:right
+@char Kohaku.Happy
+@print Hello, world
+@print "Hello, world!"
+@print "Hello \"World\""
+@print Say "Hi" please
+@back wait!
+@back !wait
+@bgm Piano fade:1.5 loop:false
+@camera pos:0,10 offset:-1,0.5 time:2
+@print Time: 12:00
+@print Hello!
+@print Hello;world
+[wait 1]
+Text with [i]inline[-] commands [wait 1] and [ ] [-] [>] [<]
+Kohaku: Hello [char Kohaku.Happy pos:50]world
+[print "a]b" pos:50]
+\[not a command\]
+[unclosed
 
 ----------------------------------------------------
 
 [
-	"@\r\n@ cmdWithWhiteSpaceBefore\r\n@cmdWithTrailingSemicolon:\r\n",
 	["command", [
-		["command-name", "@paramlessCmd"]
+		["command-name", "@wait"]
 	]],
+
 	["command", [
-		["command-name", "@cmdWithNoParamsAndWhitespaceBefore"]
+		["command-name", "@ wait"]
 	]],
+
 	["command", [
-		["command-name", "@cmdWithNoParamsAndTabBefore"]
+		["command-name", "@wait"],
+		["parameter-value", ["1"]]
 	]],
-	["command", [
-		["command-name", "@cmdWithNoParamsAndTabAndSpacesBefore"]
-	]],
-	["command", [
-		["command-name", "@cmdWithNoParamsWrappedInWhitespaces"]
-	]],
-	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingSpace"]
-	]],
-	["command", [
-		["command-name", "@cmdWithNoParamWithMultipleTrailingSpaces"]
-	]],
-	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingTab"]
-	]],
-	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingTabAndSpaces"]
-	]],
-	["command", [
-		["command-name", "@cmdWithPositiveIntParam"],
-		["command-params", [
-			["command-param-value", "1"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithNegativeIntParam"],
-		["command-params", [
-			["command-param-value", "-1"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithPositiveFloatParamAndNoFraction"],
-		["command-params", [
-			["command-param-value", "1."]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithPositiveFloatParamAndFraction"],
-		["command-params", [
-			["command-param-value", "1.10"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithPositiveHegativeFloatParamAndNoFraction"],
-		["command-params", [
-			["command-param-value", "-1."]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithPositiveHegativeFloatParamAndFraction"],
-		["command-params", [
-			["command-param-value", "-1.10"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithBoolParamAndPositive"],
-		["command-params", [
-			["command-param-value", "true"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithBoolParamAndNegative"],
-		["command-params", [
-			["command-param-value", "false"]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithStringParam"],
-		["command-params", [
-			["command-param-value", "hello$co\\:mma\"d\""]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithQuotedStringNamelessParameter"],
-		["command-params", [
-			["quoted-string", "\"hello grizzly\""]
-		]]
-	]],
-	["command", [
-		["command-name", "@cmdWithQuotedStringNamelessParameterWithEscapedQuotesInTheValue"],
-		["command-params", [
-			["quoted-string", "\"hello \\\"grizzly\\\"\""]
-		]]
-	]],
-	["command", [
-		["command-name", "@set"],
-		["command-params", [
-			["command-param-value", "choice=\"moe\""]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-value", "hello.grizzly"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-value", "one,two,three"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-value", "1,2,3"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-value", "true,false,true"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-id", "hi:"],
-			["command-param-value", "grizzly"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-id", "hi:"],
-			["command-param-value", "1"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-id", "hi:"],
-			["command-param-value", "true"]
-		]]
-	]],
-	["command", [
-		["command-name", "@command"],
-		["command-params", [
-			["command-param-value", "1"],
-			["command-param-id", "in:"],
-			["command-param-value", "forest"],
-			["command-param-id", "danger:"],
-			["command-param-value", "true"]
-		]]
-	]],
+
 	["command", [
 		["command-name", "@char"],
-		["command-params", [
-			["command-param-value", "1"],
-			["command-param-id", "pos:"],
-			["command-param-value", "0.25,-0.75"],
-			["command-param-id", "look:"],
-			["command-param-value", "right"]
+		["parameter-value", ["Kohaku"]],
+		["parameter-name", [
+			"pos",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["50"]],
+		["parameter-name", [
+			"look",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["right"]]
+	]],
+
+	["command", [
+		["command-name", "@char"],
+		["parameter-value", ["Kohaku.Happy"]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-value", ["Hello, world"]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["string", ["\"Hello, world!\""]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["string", ["\"Hello \\\"World\\\"\""]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-value", [
+			"Say ",
+			["string", ["\"Hi\""]],
+			" please"
 		]]
-	]]
+	]],
+
+	["command", [
+		["command-name", "@back"],
+		["parameter-name", [
+			"wait",
+			["boolean", "!"]
+		]]
+	]],
+
+	["command", [
+		["command-name", "@back"],
+		["parameter-name", [
+			["boolean", "!"],
+			"wait"
+		]]
+	]],
+
+	["command", [
+		["command-name", "@bgm"],
+		["parameter-value", ["Piano"]],
+		["parameter-name", [
+			"fade",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["1.5"]],
+		["parameter-name", [
+			"loop",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["false"]]
+	]],
+
+	["command", [
+		["command-name", "@camera"],
+		["parameter-name", [
+			"pos",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["0,10"]],
+		["parameter-name", [
+			"offset",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["-1,0.5"]],
+		["parameter-name", [
+			"time",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["2"]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-name", [
+			"Time",
+			["punctuation", ":"]
+		]],
+		["parameter-value", ["12:00"]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-name", [
+			"Hello",
+			["boolean", "!"]
+		]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-value", ["Hello"]],
+		["comment", ";world"]
+	]],
+
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "wait"],
+			["parameter-value", ["1"]]
+		]],
+		["punctuation", "]"]
+	]],
+
+	"\r\nText with ",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "i"]
+		]],
+		["punctuation", "]"]
+	]],
+	"inline",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "-"]
+		]],
+		["punctuation", "]"]
+	]],
+	" commands ",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "wait"],
+			["parameter-value", ["1"]]
+		]],
+		["punctuation", "]"]
+	]],
+	" and ",
+	["inline-command", [
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "-"]
+		]],
+		["punctuation", "]"]
+	]],
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", ">"]
+		]],
+		["punctuation", "]"]
+	]],
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "<"]
+		]],
+		["punctuation", "]"]
+	]],
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Hello ",
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "char"],
+			["parameter-value", ["Kohaku.Happy"]],
+			["parameter-name", [
+				"pos",
+				["punctuation", ":"]
+			]],
+			["parameter-value", ["50"]]
+		]],
+		["punctuation", "]"]
+	]],
+	"world\r\n",
+
+	["inline-command", [
+		["punctuation", "["],
+		["command", [
+			["command-name", "print"],
+			["string", ["\"a]b\""]],
+			["parameter-name", [
+				"pos",
+				["punctuation", ":"]
+			]],
+			["parameter-value", ["50"]]
+		]],
+		["punctuation", "]"]
+	]],
+
+	"\r\n\\[not a command\\]\r\n[unclosed"
 ]
 
 ----------------------------------------------------
 
-Command tests.
+Checks for command lines and inline commands.
