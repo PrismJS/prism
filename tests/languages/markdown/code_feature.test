@@ -1,5 +1,72 @@
 `foo bar baz`
 ``foo `bar` baz``
+```foo `` bar```
+` `` `
+`foo
+-bar`
+````````eight````````
+`````````nine`````````
+
+`foo\`bar
+
+\`foo`
+
+```foo``
+
+`foo``bar``
+
+`foo
+
+bar`
+
+- `foo
+  - bar`
+
+1. `foo
+2. bar`
+
+`foo
+# bar`
+
+`foo
+> bar`
+
+`foo
+```
+bar`
+```
+
+`foo
+***
+bar`
+
+`foo
+___
+bar`
+
+`foo
+bar
+===
+baz`
+
+`foo
+bar
+---
+baz`
+
+`foo
+| a | b |
+|---|---|
+bar`
+
+`foo
+a | b
+---|---
+bar`
+
+`foo
+<!-- c -->
+bar`
 
     foobar
 
@@ -15,6 +82,95 @@ var a = 0;
 [
 	["code-snippet", "`foo bar baz`"],
 	["code-snippet", "``foo `bar` baz``"],
+	["code-snippet", "```foo `` bar```"],
+	["code-snippet", "` `` `"],
+	["code-snippet", "`foo\r\n-bar`"],
+	["code-snippet", "````````eight````````"],
+	"\r\n`````````nine`````````\r\n\r\n",
+
+	["code-snippet", "`foo\\`"],
+	"bar\r\n\r\n\\`foo`\r\n\r\n```foo``\r\n\r\n`foo",
+	["code-snippet", "``bar``"],
+
+	"\r\n\r\n`foo\r\n\r\nbar`\r\n\r\n",
+
+	["list", "-"], " `foo\r\n  ",
+	["list", "-"], " bar`\r\n\r\n",
+
+	["list", "1."], " `foo\r\n",
+	["list", "2."], " bar`\r\n\r\n`foo\r\n",
+	["title", [
+		["punctuation", "#"],
+		" bar`"
+	]],
+
+	"\r\n\r\n`foo\r\n",
+	["blockquote", ">"], " bar`\r\n\r\n`foo\r\n",
+	["code", [
+		["punctuation", "```"],
+		["code-block", "bar`"],
+		["punctuation", "```"]
+	]],
+
+	"\r\n\r\n`foo\r\n",
+
+	["hr", "***"],
+
+	"\r\nbar`\r\n\r\n`foo\r\n___\r\nbar`\r\n\r\n`foo\r\n",
+
+	["title", [
+		"bar\r\n",
+		["punctuation", "==="]
+	]],
+
+	"\r\nbaz`\r\n\r\n`foo\r\n",
+
+	["title", [
+		"bar\r\n",
+		["punctuation", "---"]
+	]],
+
+	"\r\nbaz`\r\n\r\n`foo\r\n",
+
+	["table", [
+		["table-header-row", [
+			["punctuation", "|"],
+			["table-header", [" a "]],
+			["punctuation", "|"],
+			["table-header", [" b "]],
+			["punctuation", "|"]
+		]],
+		["table-line", [
+			["punctuation", "|"],
+			["punctuation", "---"],
+			["punctuation", "|"],
+			["punctuation", "---"],
+			["punctuation", "|"]
+		]],
+		["table-data-rows", [
+		]]
+	]],
+	"bar`\r\n\r\n`foo\r\n",
+
+	["table", [
+		["table-header-row", [
+			["table-header", ["a "]],
+			["punctuation", "|"],
+			["table-header", [" b"]]
+		]],
+		["table-line", [
+			["punctuation", "---"],
+			["punctuation", "|"],
+			["punctuation", "---"]
+		]],
+		["table-data-rows", [
+		]]
+	]],
+	"bar`\r\n\r\n`foo\r\n",
+
+	["comment", "<!-- c -->"],
+
+	"\r\nbar`\r\n\r\n",
 
 	["code", "    foobar"],
 

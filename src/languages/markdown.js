@@ -269,9 +269,14 @@ export default {
 				},
 			},
 			'code-snippet': {
+				// https://spec.commonmark.org/0.31.2/#code-spans
 				// `code`
-				// ``code``
-				pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+				// ``code with ` inside``
+				// A span may run over line breaks, but not past a blank line or into a new block.
+				// Runs of 9+ backticks are left out.
+				// Trying every run length is slow on long lines full of unmatched runs.
+				pattern:
+					/(^|[^\\`])(`{1,8})(?!`)(?:[^\r\n]|(?:\n|\r\n?)(?![ \t]*(?:[\r\n]|```|[#>|<]|(?:[*+-]|\d+\.)[ \t]|(?:=+|\*{3,}|_{3,})[ \t]*[\r\n]|:?-[-:| \t]*[\r\n])))*?(?<!`)\2(?!`)/,
 				lookbehind: true,
 				greedy: true,
 				alias: ['code', 'keyword'],
