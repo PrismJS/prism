@@ -52,7 +52,7 @@ export default {
 				alias,
 			},
 			{
-				pattern: RegExp(fill(/(?<=\s(?:<parameters>):)<value>/, { parameters, value })),
+				pattern: RegExp(fill(/(?<=\s(?:<parameters>):\s*)<value>/, { parameters, value })),
 				greedy: true,
 				alias,
 			},
