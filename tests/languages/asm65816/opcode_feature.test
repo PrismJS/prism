@@ -1,0 +1,377 @@
+adc
+and
+asl
+bcc
+bcs
+beq
+bit
+bmi
+bne
+bpl
+bra
+brk
+brl
+bvc
+bvs
+clc
+cld
+cli
+clv
+cmp
+cop
+cpx
+cpy
+dec
+dex
+dey
+eor
+inc
+inx
+iny
+jml
+jmp
+jsl
+jsr
+lda
+ldx
+ldy
+lsr
+mvn
+mvp
+nop
+ora
+pea
+pei
+per
+pha
+phb
+phd
+phk
+php
+phx
+phy
+pla
+plb
+pld
+plp
+plx
+ply
+rep
+rol
+ror
+rti
+rtl
+rts
+sbc
+sec
+sed
+sei
+sep
+sta
+stp
+stx
+sty
+stz
+tax
+tay
+tcd
+tcs
+tdc
+trb
+tsb
+tsc
+tsx
+txa
+txs
+txy
+tya
+tyx
+wai
+wdm
+xba
+xce
+ADC
+AND
+ASL
+BCC
+BCS
+BEQ
+BIT
+BMI
+BNE
+BPL
+BRA
+BRK
+BRL
+BVC
+BVS
+CLC
+CLD
+CLI
+CLV
+CMP
+COP
+CPX
+CPY
+DEC
+DEX
+DEY
+EOR
+INC
+INX
+INY
+JML
+JMP
+JSL
+JSR
+LDA
+LDX
+LDY
+LSR
+MVN
+MVP
+NOP
+ORA
+PEA
+PEI
+PER
+PHA
+PHB
+PHD
+PHK
+PHP
+PHX
+PHY
+PLA
+PLB
+PLD
+PLP
+PLX
+PLY
+REP
+ROL
+ROR
+RTI
+RTL
+RTS
+SBC
+SEC
+SED
+SEI
+SEP
+STA
+STP
+STX
+STY
+STZ
+TAX
+TAY
+TCD
+TCS
+TDC
+TRB
+TSB
+TSC
+TSX
+TXA
+TXS
+TXY
+TYA
+TYX
+WAI
+WDM
+XBA
+XCE
+
+----------------------------------------------------
+
+[
+	["op-code", "adc"],
+	["op-code", "and"],
+	["op-code", "asl"],
+	["op-code", "bcc"],
+	["op-code", "bcs"],
+	["op-code", "beq"],
+	["op-code", "bit"],
+	["op-code", "bmi"],
+	["op-code", "bne"],
+	["op-code", "bpl"],
+	["op-code", "bra"],
+	["op-code", "brk"],
+	["op-code", "brl"],
+	["op-code", "bvc"],
+	["op-code", "bvs"],
+	["op-code", "clc"],
+	["op-code", "cld"],
+	["op-code", "cli"],
+	["op-code", "clv"],
+	["op-code", "cmp"],
+	["op-code", "cop"],
+	["op-code", "cpx"],
+	["op-code", "cpy"],
+	["op-code", "dec"],
+	["op-code", "dex"],
+	["op-code", "dey"],
+	["op-code", "eor"],
+	["op-code", "inc"],
+	["op-code", "inx"],
+	["op-code", "iny"],
+	["op-code", "jml"],
+	["op-code", "jmp"],
+	["op-code", "jsl"],
+	["op-code", "jsr"],
+	["op-code", "lda"],
+	["op-code", "ldx"],
+	["op-code", "ldy"],
+	["op-code", "lsr"],
+	["op-code", "mvn"],
+	["op-code", "mvp"],
+	["op-code", "nop"],
+	["op-code", "ora"],
+	["op-code", "pea"],
+	["op-code", "pei"],
+	["op-code", "per"],
+	["op-code", "pha"],
+	["op-code", "phb"],
+	["op-code", "phd"],
+	["op-code", "phk"],
+	["op-code", "php"],
+	["op-code", "phx"],
+	["op-code", "phy"],
+	["op-code", "pla"],
+	["op-code", "plb"],
+	["op-code", "pld"],
+	["op-code", "plp"],
+	["op-code", "plx"],
+	["op-code", "ply"],
+	["op-code", "rep"],
+	["op-code", "rol"],
+	["op-code", "ror"],
+	["op-code", "rti"],
+	["op-code", "rtl"],
+	["op-code", "rts"],
+	["op-code", "sbc"],
+	["op-code", "sec"],
+	["op-code", "sed"],
+	["op-code", "sei"],
+	["op-code", "sep"],
+	["op-code", "sta"],
+	["op-code", "stp"],
+	["op-code", "stx"],
+	["op-code", "sty"],
+	["op-code", "stz"],
+	["op-code", "tax"],
+	["op-code", "tay"],
+	["op-code", "tcd"],
+	["op-code", "tcs"],
+	["op-code", "tdc"],
+	["op-code", "trb"],
+	["op-code", "tsb"],
+	["op-code", "tsc"],
+	["op-code", "tsx"],
+	["op-code", "txa"],
+	["op-code", "txs"],
+	["op-code", "txy"],
+	["op-code", "tya"],
+	["op-code", "tyx"],
+	["op-code", "wai"],
+	["op-code", "wdm"],
+	["op-code", "xba"],
+	["op-code", "xce"],
+	["op-code", "ADC"],
+	["op-code", "AND"],
+	["op-code", "ASL"],
+	["op-code", "BCC"],
+	["op-code", "BCS"],
+	["op-code", "BEQ"],
+	["op-code", "BIT"],
+	["op-code", "BMI"],
+	["op-code", "BNE"],
+	["op-code", "BPL"],
+	["op-code", "BRA"],
+	["op-code", "BRK"],
+	["op-code", "BRL"],
+	["op-code", "BVC"],
+	["op-code", "BVS"],
+	["op-code", "CLC"],
+	["op-code", "CLD"],
+	["op-code", "CLI"],
+	["op-code", "CLV"],
+	["op-code", "CMP"],
+	["op-code", "COP"],
+	["op-code", "CPX"],
+	["op-code", "CPY"],
+	["op-code", "DEC"],
+	["op-code", "DEX"],
+	["op-code", "DEY"],
+	["op-code", "EOR"],
+	["op-code", "INC"],
+	["op-code", "INX"],
+	["op-code", "INY"],
+	["op-code", "JML"],
+	["op-code", "JMP"],
+	["op-code", "JSL"],
+	["op-code", "JSR"],
+	["op-code", "LDA"],
+	["op-code", "LDX"],
+	["op-code", "LDY"],
+	["op-code", "LSR"],
+	["op-code", "MVN"],
+	["op-code", "MVP"],
+	["op-code", "NOP"],
+	["op-code", "ORA"],
+	["op-code", "PEA"],
+	["op-code", "PEI"],
+	["op-code", "PER"],
+	["op-code", "PHA"],
+	["op-code", "PHB"],
+	["op-code", "PHD"],
+	["op-code", "PHK"],
+	["op-code", "PHP"],
+	["op-code", "PHX"],
+	["op-code", "PHY"],
+	["op-code", "PLA"],
+	["op-code", "PLB"],
+	["op-code", "PLD"],
+	["op-code", "PLP"],
+	["op-code", "PLX"],
+	["op-code", "PLY"],
+	["op-code", "REP"],
+	["op-code", "ROL"],
+	["op-code", "ROR"],
+	["op-code", "RTI"],
+	["op-code", "RTL"],
+	["op-code", "RTS"],
+	["op-code", "SBC"],
+	["op-code", "SEC"],
+	["op-code", "SED"],
+	["op-code", "SEI"],
+	["op-code", "SEP"],
+	["op-code", "STA"],
+	["op-code", "STP"],
+	["op-code", "STX"],
+	["op-code", "STY"],
+	["op-code", "STZ"],
+	["op-code", "TAX"],
+	["op-code", "TAY"],
+	["op-code", "TCD"],
+	["op-code", "TCS"],
+	["op-code", "TDC"],
+	["op-code", "TRB"],
+	["op-code", "TSB"],
+	["op-code", "TSC"],
+	["op-code", "TSX"],
+	["op-code", "TXA"],
+	["op-code", "TXS"],
+	["op-code", "TXY"],
+	["op-code", "TYA"],
+	["op-code", "TYX"],
+	["op-code", "WAI"],
+	["op-code", "WDM"],
+	["op-code", "XBA"],
+	["op-code", "XCE"]
+]
+
+----------------------------------------------------
+
+Check for opcodes
