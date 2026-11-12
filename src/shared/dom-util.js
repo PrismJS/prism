@@ -1,6 +1,16 @@
 const lang = /(?:^|\s)lang(?:uage)?-([\w:-]+)(?=\s|$)/i;
 
 /**
+ * Matches an element with a `language-xxxx` or `lang-xxxx` class, but not with `copy-language-xxxx`.
+ * The class may follow a space, a tab or a line feed, e.g. `class="line-numbers\n\tlanguage-css"`.
+ * `\9 ` and `\a ` are the CSS escapes for a tab and a line feed. The space after each one ends the escape.
+ */
+export const languageSelector = `:is(
+	[class^="language-"], [class*=" language-"], [class*="\\9 language-"], [class*="\\a language-"],
+	[class^="lang-"], [class*=" lang-"], [class*="\\9 lang-"], [class*="\\a lang-"]
+)`;
+
+/**
  * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
  *
  * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
