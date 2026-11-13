@@ -59,7 +59,7 @@ export function extend (base, grammar) {
 			if (Array.isArray(relToken)) {
 				// Insert in multiple places
 				for (const t of relToken) {
-					lang[all][t][tokenName] = token;
+					(lang[all][t] ??= {})[tokenName] = token;
 				}
 			}
 			else if (relToken) {
