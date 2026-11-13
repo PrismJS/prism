@@ -1,0 +1,28 @@
+node #null
+node null
+node key=#null
+node key=null
+node allow-null
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["null", "#null"],
+
+	["tag", "node"],
+	["null", "null"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["null", "#null"],
+
+	["tag", "node"],
+	["property", "key"],
+	["punctuation", "="],
+	["null", "null"],
+
+	["tag", "node"],
+	["identifier-string", "allow-null"]
+]
