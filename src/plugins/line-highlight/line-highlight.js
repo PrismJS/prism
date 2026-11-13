@@ -112,11 +112,18 @@ export class LineHighlight {
 		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line') || '';
 
 		const ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
-		const offset = Number(pre.getAttribute('data-line-offset')) || 0;
 
 		const parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 		const lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 		const hasLineNumbers = isActive(pre, LINE_NUMBERS_CLASS);
+		/** @type {LineNumbers | undefined} */
+		const lineNumbers = hasLineNumbers
+			? this.Prism.pluginRegistry.peek('line-numbers')?.plugin
+			: undefined;
+		// Line Numbers counts lines from `data-start`, and `data-line` follows the numbers it shows
+		const offset = lineNumbers
+			? parseInt(pre.getAttribute('data-start') || '1', 10) - 1
+			: Number(pre.getAttribute('data-line-offset')) || 0;
 		const codeElement = pre.querySelector('code');
 		const parentElement = hasLineNumbers ? pre : codeElement || pre;
 		/** @type {(function():void)[]} */
@@ -161,9 +168,7 @@ export class LineHighlight {
 			});
 
 			// if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
-			if (hasLineNumbers && this.Prism.pluginRegistry.peek('line-numbers')?.plugin) {
-				/** @type {LineNumbers} */
-				const lineNumbers = this.Prism.pluginRegistry.peek('line-numbers')?.plugin;
+			if (lineNumbers) {
 				const startNode = lineNumbers.getLine(pre, start);
 				const endNode = lineNumbers.getLine(pre, end);
 
@@ -207,12 +212,7 @@ export class LineHighlight {
 		});
 
 		const id = pre.id;
-		if (
-			hasLineNumbers &&
-			this.Prism.pluginRegistry.peek('line-numbers')?.plugin &&
-			isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) &&
-			id
-		) {
+		if (lineNumbers && isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) && id) {
 			// This implements linkable line numbers. Linkable line numbers use Line Highlight to create a link to a
 			// specific line. For this to work, the pre element has to:
 			//  1) have line numbers,
@@ -229,8 +229,6 @@ export class LineHighlight {
 			const start = parseInt(pre.getAttribute('data-start') || '1');
 
 			// iterate all line number spans
-			/** @type {LineNumbers} */
-			const lineNumbers = this.Prism.pluginRegistry.peek('line-numbers')?.plugin;
 			lineNumbers.getLines(pre)?.forEach((lineSpan, i) => {
 				const lineNumber = i + start;
 				lineSpan.onclick = () => {

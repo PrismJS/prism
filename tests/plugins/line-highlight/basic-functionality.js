@@ -14,7 +14,7 @@ const sub = (a, b) => a - b;
 describe('Line Highlight', () => {
 	const { it } = createTestSuite({
 		languages: 'javascript',
-		plugins: 'line-highlight',
+		plugins: ['line-numbers', 'line-highlight'],
 	});
 
 	it('single line', ({ util }) => {
@@ -52,6 +52,24 @@ describe('Line Highlight', () => {
 			language: 'none',
 			code: exampleCode,
 			attributes: { 'data-line': '41, 43-45, 48', 'data-line-offset': '40' },
+		});
+	});
+
+	// With Line Numbers, `data-line` uses the numbers it shows, which begin at `data-start`
+	it('line numbers with data-start', ({ util }) => {
+		util.assert.highlightPreElement({
+			language: 'none',
+			code: 'a\nb\nc',
+			attributes: { 'class': 'line-numbers', 'data-start': '40', 'data-line': '42' },
+		});
+	});
+
+	// `data-start="0"` numbers the lines 0, 1, 2, so line 3 is out of bounds
+	it('line numbers with data-start="0"', ({ util }) => {
+		util.assert.highlightPreElement({
+			language: 'none',
+			code: 'a\nb\nc',
+			attributes: { 'class': 'line-numbers', 'data-start': '0', 'data-line': '3' },
 		});
 	});
 
