@@ -1,5 +1,4 @@
 import { Token } from '../classes/token.js';
-import singleton from '../prism.js';
 import { tokenize } from './tokenize.js';
 import { resolve, tokenizeByNamedGroups } from './util.js';
 
@@ -14,10 +13,8 @@ import { resolve, tokenizeByNamedGroups } from './util.js';
  * @returns {void}
  */
 export function _matchGrammar (text, tokenList, grammar, startNode, startPos, rematch) {
-	const prism = this ?? singleton;
-
 	// @ts-ignore
-	grammar = resolve.call(prism, grammar);
+	grammar = resolve.call(this, grammar);
 
 	for (const token in grammar) {
 		const tokenValue = grammar[token];
@@ -39,7 +36,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 			const patternObj = toGrammarToken(patterns[j]);
 			let { pattern, lookbehind = false, greedy = false, alias, inside } = patternObj;
-			const insideGrammar = resolve.call(prism, inside);
+			const insideGrammar = resolve.call(this, inside);
 
 			let flagsToAdd = '';
 
@@ -168,14 +165,14 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 								if (typeof localInsideGrammar === 'function') {
 									// Late resolving
 									localInsideGrammar = resolve.call(
-										prism,
+										this,
 										localInsideGrammar(match.groups)
 									);
 								}
 
 								if (localInsideGrammar) {
 									// @ts-ignore
-									content = tokenize.call(prism, content, localInsideGrammar);
+									content = tokenize.call(this, content, localInsideGrammar);
 								}
 							}
 
@@ -187,7 +184,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 				}
 				else if (insideGrammar) {
 					// @ts-ignore
-					content = tokenize.call(prism, content, insideGrammar);
+					content = tokenize.call(this, content, insideGrammar);
 				}
 
 				const wrapped = new Token(token, content, alias, matchStr);
@@ -207,7 +204,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 						reach,
 					};
 					_matchGrammar.call(
-						prism,
+						this,
 						text,
 						tokenList,
 						grammar,

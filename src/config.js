@@ -62,15 +62,19 @@ function getGlobalArraySetting (name) {
 }
 
 /**
+ * Whether the package's main entry (`prismjs`) and the IIFE build leave highlighting the page to the user.
+ */
+export const manual = getGlobalBooleanSetting('manual', !hasDOM);
+
+/**
  * @type {PrismConfig}
  */
 export const globalDefaults = {
-	manual: getGlobalBooleanSetting('manual', !hasDOM),
 	silent: getGlobalBooleanSetting('silent', false),
 	languages: getGlobalArraySetting('languages'),
 	plugins: getGlobalArraySetting('plugins'),
-	languagePath: /** @type {string} */ (getGlobalSetting('language-path') ?? './languages/'),
-	pluginPath: /** @type {string} */ (getGlobalSetting('plugin-path') ?? './plugins/'),
+	languagePath: /** @type {string | undefined} */ (getGlobalSetting('language-path')),
+	pluginPath: /** @type {string | undefined} */ (getGlobalSetting('plugin-path')),
 };
 
 export default globalDefaults;
