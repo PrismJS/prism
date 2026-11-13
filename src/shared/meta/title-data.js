@@ -34,5 +34,5 @@ export function getTitle (name) {
 		return `${getTitle(name.slice(0, index))} (${getTitle(name.slice(index + 1))})`;
 	}
 
-	return knownTitles[name] || guessTitle(name);
+	return Object.hasOwn(knownTitles, name) ? knownTitles[name] : guessTitle(name);
 }

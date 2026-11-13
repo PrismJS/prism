@@ -43,6 +43,9 @@ describe('Show language', () => {
 
 		// compound ids
 		test(dom, 'Diff (JavaScript)', `<pre class="language-diff:js"><code>foo</code></pre>`);
+
+		// unknown ids named like an `Object.prototype` member
+		test(dom, 'Constructor', `<pre class="language-constructor"><code>foo</code></pre>`);
 	});
 
 	it('should work with custom titles', dom => {
