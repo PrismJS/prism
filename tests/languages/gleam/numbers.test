@@ -1,0 +1,11 @@
+======
+Numbers
+======
+let x = 42
+let y = 3.14
+let z = 0xFF
+======
+<span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">42</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token number">3.14</span>
+<span class="token keyword">let</span> z <span class="token operator">=</span> <span class="token number">0xFF</span>
+======

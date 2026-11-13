@@ -1,0 +1,9 @@
+======
+Attributes
+======
+@external(erlang, "calendar", "local_time")
+pub fn now() { Nil }
+======
+<span class="token attribute">@external</span><span class="token punctuation">(</span>erlang<span class="token punctuation">,</span> <span class="token string">"calendar"</span><span class="token punctuation">,</span> <span class="token string">"local_time"</span><span class="token punctuation">)</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token builtin">Nil</span> <span class="token punctuation">}</span>
+======
