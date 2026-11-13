@@ -1,6 +1,22 @@
 import ComponentRegistry from './component-registry.js';
 import Plugin from './plugin.js';
 
+/** @type {WeakMap<Plugin, () => void>} */
+const effectCleanups = new WeakMap();
+
+/**
+ * @param {PluginProto} def
+ * @param {string} id
+ * @returns {boolean}
+ */
+function optionalDependsOn (def, id) {
+	const optional = def.optional;
+	if (typeof optional === 'string') {
+		return optional === id;
+	}
+	return Array.isArray(optional) && optional.includes(id);
+}
+
 export default class PluginRegistry extends ComponentRegistry {
 	static type = 'plugin';
 
@@ -25,10 +41,46 @@ export default class PluginRegistry extends ComponentRegistry {
 			this.defs.set(def, plugin);
 			this.instances[def.id] = plugin;
 
-			plugin.effect?.(this.prism);
+			this.#runEffect(plugin);
+			// Optional dependents may already have registered hooks. Re-run them so those
+			// hooks run after this plugin.
+			this.#rerunOptionalDependents(def.id);
 		}
 
 		return added;
+	}
+
+	/**
+	 * @param {Plugin} plugin
+	 */
+	#runEffect (plugin) {
+		effectCleanups.get(plugin)?.();
+
+		const cleanup = plugin.effect?.(this.prism);
+		if (typeof cleanup === 'function') {
+			effectCleanups.set(plugin, cleanup);
+		}
+		else {
+			effectCleanups.delete(plugin);
+		}
+	}
+
+	/**
+	 * Re-run effects of plugins that list `id` as optional, then plugins that depend on those.
+	 *
+	 * @param {string} id
+	 * @param {Set<string>} [seen]
+	 */
+	#rerunOptionalDependents (id, seen = new Set()) {
+		for (const other of Object.values(this.instances)) {
+			if (other.id === id || seen.has(other.id) || !optionalDependsOn(other.def, id)) {
+				continue;
+			}
+
+			seen.add(other.id);
+			this.#runEffect(other);
+			this.#rerunOptionalDependents(other.id, seen);
+		}
 	}
 
 	/**
