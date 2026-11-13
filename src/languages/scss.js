@@ -29,7 +29,7 @@ export default {
 			'selector': {
 				// Initial look-ahead is used to prevent matching of blank selectors
 				pattern:
-					/(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/,
+					/(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\}|:{1,2}[-\w]+\((?:[^()]|\([^()]*\))*\))+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/,
 				inside: {
 					'parent': {
 						pattern: /&/,
