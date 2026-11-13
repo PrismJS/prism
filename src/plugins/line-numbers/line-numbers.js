@@ -269,6 +269,17 @@ const Self = {
 			env.element.appendChild(lineNumbersWrapper);
 
 			resizeElements([pre]);
+
+			// Plugin `complete` hooks run in registration order. If line-highlight registered
+			// before this plugin, it ran before the line-number rows existed and could not
+			// measure them. Re-apply it now that the rows are in the DOM.
+			const lineHighlightPlugin = Prism.pluginRegistry.peek('line-highlight')?.plugin;
+			if (lineHighlightPlugin) {
+				const lineHighlight = /** @type {{ highlightLines: (pre: Element) => () => void }} */ (
+					lineHighlightPlugin
+				);
+				lineHighlight.highlightLines(pre)();
+			}
 		});
 
 		return combineCallbacks(removeListener, completeHook);
