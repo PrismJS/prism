@@ -156,7 +156,7 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 				tokenList.removeRange(removeFrom, removeCount);
 
 				const byGroups = match.groups ? tokenizeByNamedGroups(match) : null;
-				if (byGroups && byGroups.length > 1) {
+				if (byGroups && byGroups.some(arg => typeof arg === 'object')) {
 					content = byGroups
 						.map(arg => {
 							let content = typeof arg === 'string' ? arg : arg.content;
