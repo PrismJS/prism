@@ -1,0 +1,33 @@
+name$ = "x"
+count% = 1
+obj! = null()
+arr$[1] = "a"
+
+----------------------------------------------------
+
+[
+	["variable", "name$"],
+	["operator", "="],
+	["string", "\"x\""],
+
+	["variable", "count%"],
+	["operator", "="],
+	["number", "1"],
+
+	["variable", "obj!"],
+	["operator", "="],
+	["function", "null"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["variable", "arr$"],
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", "]"],
+	["operator", "="],
+	["string", "\"a\""]
+]
+
+----------------------------------------------------
+
+Checks for variables with a type suffix.

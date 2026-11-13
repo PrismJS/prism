@@ -1,98 +1,385 @@
-abstract all argc begin bye callback case chn class classend ctl day delete dim dom 
-dread dsz else end endif err exitto extends fi field for from gosub goto if implements 
-interface interfaceend iol iolist let list load method methodend methodret on opts pfx 
-print private process_events protected psz public read read_resource release remove_callback 
-repeat restore return rev seterr setesc sqlchn sqlunt ssn start static swend switch sys then 
-tim unt until use void wend where while declare
+abstract
+addr
+all
+argc
+auto
+background
+begin
+break
+bye
+call
+callback
+case
+cast
+chanopt
+chdir
+chn
+class
+classend
+clear
+clearp
+clipclear
+clipfromfile
+clipfromstr
+cliplock
+cliptofile
+clipunlock
+close
+continue
+ctl
+data
+day
+declare
+def
+default
+delete
+denum
+dim
+direct
+dom
+dread
+drop
+dsz
+dump
+else
+end
+endif
+endtrace
+enter
+erase
+err
+escape
+except
+execute
+exit
+exitto
+extends
+extract
+extractrecord
+fi
+field
+file
+fileopt
+find
+findrecord
+floatingpoint
+fnend
+fnerr
+for
+from
+fulltext
+gosub
+goto
+if
+implements
+ind
+indexed
+initfile
+input
+inpute
+inputn
+inputrecord
+interface
+interfaceend
+iol
+iolist
+key
+lcheckin
+len
+let
+limit
+list
+load
+lock
+method
+methodend
+methodret
+mkdir
+mkeyed
+mode
+new
+next
+on
+open
+opts
+pfx
+precision
+prefix
+print
+printrecord
+private
+process_events
+protected
+psz
+public
+read
+readrecord
+read_resource
+record
+redim
+release
+remove
+remove_callback
+rename
+repeat
+resclose
+reset
+restore
+retry
+return
+rev
+rmdir
+run
+save
+savep
+select
+serial
+setday
+setdrive
+seterr
+setesc
+setopts
+setterm
+settime
+settrace
+sort
+sortby
+sqlchn
+sqlclose
+sqlcommit
+sqlexec
+sqlopen
+sqlprep
+sqlrollback
+sqlset
+sqlunt
+ssn
+start
+static
+step
+stop
+string
+swend
+switch
+sys
+table
+then
+throw
+tim
+to
+unlock
+unt
+until
+updatelic
+use
+vkeyed
+void
+wait
+wend
+where
+while
+write
+writerecord
+xcall
+xfile
+xkeyed
+#this!
+#super!
+list! tim$ key% rem15
 
 ----------------------------------------------------
 
 [
 	["keyword", "abstract"],
+	["keyword", "addr"],
 	["keyword", "all"],
 	["keyword", "argc"],
+	["keyword", "auto"],
+	["keyword", "background"],
 	["keyword", "begin"],
+	["keyword", "break"],
 	["keyword", "bye"],
+	["keyword", "call"],
 	["keyword", "callback"],
 	["keyword", "case"],
+	["keyword", "cast"],
+	["keyword", "chanopt"],
+	["keyword", "chdir"],
 	["keyword", "chn"],
 	["keyword", "class"],
 	["keyword", "classend"],
+	["keyword", "clear"],
+	["keyword", "clearp"],
+	["keyword", "clipclear"],
+	["keyword", "clipfromfile"],
+	["keyword", "clipfromstr"],
+	["keyword", "cliplock"],
+	["keyword", "cliptofile"],
+	["keyword", "clipunlock"],
+	["keyword", "close"],
+	["keyword", "continue"],
 	["keyword", "ctl"],
+	["keyword", "data"],
 	["keyword", "day"],
+	["keyword", "declare"],
+	["keyword", "def"],
+	["keyword", "default"],
 	["keyword", "delete"],
+	["keyword", "denum"],
 	["keyword", "dim"],
+	["keyword", "direct"],
 	["keyword", "dom"],
-
 	["keyword", "dread"],
+	["keyword", "drop"],
 	["keyword", "dsz"],
+	["keyword", "dump"],
 	["keyword", "else"],
 	["keyword", "end"],
 	["keyword", "endif"],
+	["keyword", "endtrace"],
+	["keyword", "enter"],
+	["keyword", "erase"],
 	["keyword", "err"],
+	["keyword", "escape"],
+	["keyword", "except"],
+	["keyword", "execute"],
+	["keyword", "exit"],
 	["keyword", "exitto"],
 	["keyword", "extends"],
+	["keyword", "extract"],
+	["keyword", "extractrecord"],
 	["keyword", "fi"],
 	["keyword", "field"],
+	["keyword", "file"],
+	["keyword", "fileopt"],
+	["keyword", "find"],
+	["keyword", "findrecord"],
+	["keyword", "floatingpoint"],
+	["keyword", "fnend"],
+	["keyword", "fnerr"],
 	["keyword", "for"],
 	["keyword", "from"],
+	["keyword", "fulltext"],
 	["keyword", "gosub"],
 	["keyword", "goto"],
 	["keyword", "if"],
 	["keyword", "implements"],
-
+	["keyword", "ind"],
+	["keyword", "indexed"],
+	["keyword", "initfile"],
+	["keyword", "input"],
+	["keyword", "inpute"],
+	["keyword", "inputn"],
+	["keyword", "inputrecord"],
 	["keyword", "interface"],
 	["keyword", "interfaceend"],
 	["keyword", "iol"],
 	["keyword", "iolist"],
+	["keyword", "key"],
+	["keyword", "lcheckin"],
+	["keyword", "len"],
 	["keyword", "let"],
+	["keyword", "limit"],
 	["keyword", "list"],
 	["keyword", "load"],
+	["keyword", "lock"],
 	["keyword", "method"],
 	["keyword", "methodend"],
 	["keyword", "methodret"],
+	["keyword", "mkdir"],
+	["keyword", "mkeyed"],
+	["keyword", "mode"],
+	["keyword", "new"],
+	["keyword", "next"],
 	["keyword", "on"],
+	["keyword", "open"],
 	["keyword", "opts"],
 	["keyword", "pfx"],
-
+	["keyword", "precision"],
+	["keyword", "prefix"],
 	["keyword", "print"],
+	["keyword", "printrecord"],
 	["keyword", "private"],
 	["keyword", "process_events"],
 	["keyword", "protected"],
 	["keyword", "psz"],
 	["keyword", "public"],
 	["keyword", "read"],
+	["keyword", "readrecord"],
 	["keyword", "read_resource"],
+	["keyword", "record"],
+	["keyword", "redim"],
 	["keyword", "release"],
+	["keyword", "remove"],
 	["keyword", "remove_callback"],
-
+	["keyword", "rename"],
 	["keyword", "repeat"],
+	["keyword", "resclose"],
+	["keyword", "reset"],
 	["keyword", "restore"],
+	["keyword", "retry"],
 	["keyword", "return"],
 	["keyword", "rev"],
+	["keyword", "rmdir"],
+	["keyword", "run"],
+	["keyword", "save"],
+	["keyword", "savep"],
+	["keyword", "select"],
+	["keyword", "serial"],
+	["keyword", "setday"],
+	["keyword", "setdrive"],
 	["keyword", "seterr"],
 	["keyword", "setesc"],
+	["keyword", "setopts"],
+	["keyword", "setterm"],
+	["keyword", "settime"],
+	["keyword", "settrace"],
+	["keyword", "sort"],
+	["keyword", "sortby"],
 	["keyword", "sqlchn"],
+	["keyword", "sqlclose"],
+	["keyword", "sqlcommit"],
+	["keyword", "sqlexec"],
+	["keyword", "sqlopen"],
+	["keyword", "sqlprep"],
+	["keyword", "sqlrollback"],
+	["keyword", "sqlset"],
 	["keyword", "sqlunt"],
 	["keyword", "ssn"],
 	["keyword", "start"],
 	["keyword", "static"],
+	["keyword", "step"],
+	["keyword", "stop"],
+	["keyword", "string"],
 	["keyword", "swend"],
 	["keyword", "switch"],
 	["keyword", "sys"],
+	["keyword", "table"],
 	["keyword", "then"],
-
+	["keyword", "throw"],
 	["keyword", "tim"],
+	["keyword", "to"],
+	["keyword", "unlock"],
 	["keyword", "unt"],
 	["keyword", "until"],
+	["keyword", "updatelic"],
 	["keyword", "use"],
+	["keyword", "vkeyed"],
 	["keyword", "void"],
+	["keyword", "wait"],
 	["keyword", "wend"],
 	["keyword", "where"],
 	["keyword", "while"],
-	["keyword", "declare"]
+	["keyword", "write"],
+	["keyword", "writerecord"],
+	["keyword", "xcall"],
+	["keyword", "xfile"],
+	["keyword", "xkeyed"],
+	["keyword", "#this!"],
+	["keyword", "#super!"],
+	["variable", "list!"], ["variable", "tim$"], ["variable", "key%"], " rem15"
 ]
 
 ----------------------------------------------------
 
-Checks for keywords.
+Checks for keywords, and that names which only start with a keyword are not keywords.
