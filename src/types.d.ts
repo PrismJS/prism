@@ -40,12 +40,12 @@ export type HooksAll = Record<keyof HookEnv, HookCallback[]>;
 
 export type HooksAdd = <Name extends keyof HookEnv>(
 	name: Name | Name[] | MultipleHooks<Name>,
-	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	callback?: HookCallback<Name>
 ) => () => void;
 
 export type HooksRemove = <Name extends keyof HookEnv>(
 	name: Name | Name[] | MultipleHooks<Name>,
-	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	callback?: HookCallback<Name>
 ) => void;
 
 export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Name]) => void;
