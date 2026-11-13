@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { isActive } from '../../shared/dom-util.js';
 
 /**
@@ -181,7 +181,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @typedef {object} NodeData

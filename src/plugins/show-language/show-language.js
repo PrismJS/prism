@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { getParentPre } from '../../shared/dom-util.js';
 import { getTitle } from '../../shared/meta/title-data.js';
 import toolbar from '../toolbar/toolbar.js';
@@ -31,4 +31,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
