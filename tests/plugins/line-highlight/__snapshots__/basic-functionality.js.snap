@@ -6,6 +6,12 @@ b
 c<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span></span></code><div aria-hidden=\\"true\\" data-range=\\"42\\" class=\\" line-highlight\\" style=\\"top: 0px; height: 0px; width: 0px;\\"></div></pre>"
 `;
 
+exports[`Line Highlight line numbers with data-start="0" 1`] = `
+"<pre class=\\"line-numbers language-none\\" data-start=\\"0\\" data-line=\\"3\\" tabindex=\\"0\\" style=\\"counter-reset: linenumber -1;\\"><code class=\\"language-none\\">a
+b
+c<span aria-hidden=\\"true\\" class=\\"line-numbers-rows\\"><span></span><span></span><span></span></span></code></pre>"
+`;
+
 exports[`Line Highlight multiple ranges 1`] = `
 "<pre data-line=\\"1, 3-5, 8\\" class=\\"language-none\\" tabindex=\\"0\\"><code class=\\"language-none\\">// foo
 var foo = 0;

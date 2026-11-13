@@ -64,6 +64,15 @@ describe('Line Highlight', () => {
 		});
 	});
 
+	// `data-start="0"` numbers the lines 0, 1, 2, so line 3 is out of bounds
+	it('line numbers with data-start="0"', ({ util }) => {
+		util.assert.highlightPreElement({
+			language: 'none',
+			code: 'a\nb\nc',
+			attributes: { 'class': 'line-numbers', 'data-start': '0', 'data-line': '3' },
+		});
+	});
+
 	it('out of bounds ranges', ({ util }) => {
 		util.assert.highlightPreElement({
 			language: 'none',

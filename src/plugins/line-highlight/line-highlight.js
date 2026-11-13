@@ -122,7 +122,7 @@ export class LineHighlight {
 			: undefined;
 		// Line Numbers counts lines from `data-start`, and `data-line` follows the numbers it shows
 		const offset = lineNumbers
-			? (parseInt(String(pre.getAttribute('data-start')), 10) || 1) - 1
+			? parseInt(pre.getAttribute('data-start') || '1', 10) - 1
 			: Number(pre.getAttribute('data-line-offset')) || 0;
 		const codeElement = pre.querySelector('code');
 		const parentElement = hasLineNumbers ? pre : codeElement || pre;

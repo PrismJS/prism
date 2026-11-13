@@ -152,7 +152,7 @@ export class LineNumbers {
 		if (!lineNumberRows) {
 			return;
 		}
-		const lineNumberStart = parseInt(String(element.getAttribute('data-start')), 10) || 1;
+		const lineNumberStart = parseInt(element.getAttribute('data-start') || '1', 10);
 		const lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
 
 		if (number < lineNumberStart) {
