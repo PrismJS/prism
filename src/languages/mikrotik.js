@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'mikrotik'>} */
-export default {
+const Self = {
 	id: 'mikrotik',
 	optional: 'regex',
 	alias: ['routeros', 'ros'],
@@ -651,3 +653,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

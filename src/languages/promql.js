@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'promql'>} */
-export default {
+const Self = {
 	id: 'promql',
 	grammar () {
 		// Thanks to: https://github.com/prometheus-community/monaco-promql/blob/master/src/promql/promql.ts
@@ -97,3 +99,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

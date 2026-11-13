@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'avro-idl'>} */
-export default {
+const Self = {
 	id: 'avro-idl',
 	alias: 'avdl',
 	grammar () {
@@ -55,3 +57,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

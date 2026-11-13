@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'mata'>} */
-export default {
+const Self = {
 	id: 'mata',
 	grammar () {
 		// https://www.stata.com/manuals/m.pdf
@@ -55,3 +57,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

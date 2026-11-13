@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'dataweave'>} */
-export default {
+const Self = {
 	id: 'dataweave',
 	grammar: {
 		'url': /\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/,
@@ -41,3 +43,7 @@ export default {
 		'boolean': /\b(?:false|true)\b/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

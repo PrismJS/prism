@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'smali'>} */
-export default {
+const Self = {
 	id: 'smali',
 	grammar () {
 		// Test files for the parser itself:
@@ -93,3 +95,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

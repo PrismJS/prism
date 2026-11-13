@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'clojure'>} */
-export default {
+const Self = {
 	id: 'clojure',
 	grammar () {
 		// Copied from https://github.com/jeluard/prism-clojure
@@ -37,3 +39,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

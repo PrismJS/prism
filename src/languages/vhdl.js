@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'vhdl'>} */
-export default {
+const Self = {
 	id: 'vhdl',
 	grammar: {
 		'comment': /--.+/,
@@ -30,3 +32,7 @@ export default {
 		'punctuation': /[{}[\];(),.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

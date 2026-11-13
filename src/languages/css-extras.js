@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import cssSelector from './css-selector.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'css-extras'>} */
-export default {
+const Self = {
 	id: 'css-extras',
 	require: cssSelector,
 	grammar () {
@@ -50,3 +51,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

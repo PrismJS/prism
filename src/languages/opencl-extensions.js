@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'opencl-extensions'>} */
-export default {
+const Self = {
 	id: 'opencl-extensions',
 	grammar: {
 		// Extracted from http://streamcomputing.eu/downloads/?opencl_host.lang (opencl-types and opencl-host)
@@ -34,3 +36,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

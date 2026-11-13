@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'odin'>} */
-export default {
+const Self = {
 	id: 'odin',
 	grammar () {
 		const escapes =
@@ -105,3 +107,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

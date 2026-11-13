@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import scheme from './scheme.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'lilypond'>} */
-export default {
+const Self = {
 	id: 'lilypond',
 	require: scheme,
 	alias: 'ly',
@@ -77,3 +78,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

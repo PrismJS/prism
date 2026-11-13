@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'actionscript'>} */
-export default {
+const Self = {
 	id: 'actionscript',
 	base: javascript,
 	grammar () {
@@ -28,3 +29,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

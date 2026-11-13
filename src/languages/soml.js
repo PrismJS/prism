@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'soml'>} */
-export default {
+const Self = {
 	id: 'soml',
 	grammar () {
 		// https://github.com/soml-lang/soml/blob/main/spec.md
@@ -69,3 +71,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

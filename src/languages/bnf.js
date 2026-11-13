@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'bnf'>} */
-export default {
+const Self = {
 	id: 'bnf',
 	alias: 'rbnf',
 	grammar: {
@@ -22,3 +24,7 @@ export default {
 		'operator': /::=|[|()[\]{}*+?]|\.{3}/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

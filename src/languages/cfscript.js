@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'cfscript'>} */
-export default {
+const Self = {
 	id: 'cfscript',
 	base: clike,
 	alias: 'cfc',
@@ -54,3 +55,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

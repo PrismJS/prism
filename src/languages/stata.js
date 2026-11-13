@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import java from './java.js';
 import mata from './mata.js';
 import python from './python.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'stata'>} */
-export default {
+const Self = {
 	id: 'stata',
 	require: [mata, java, python],
 	grammar () {
@@ -83,3 +84,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'splunk-spl'>} */
-export default {
+const Self = {
 	id: 'splunk-spl',
 	grammar: {
 		'comment': /`comment\("(?:\\.|[^\\"])*"\)`/,
@@ -27,3 +29,7 @@ export default {
 		'punctuation': /[()[\],]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

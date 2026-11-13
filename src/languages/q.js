@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'q'>} */
-export default {
+const Self = {
 	id: 'q',
 	grammar: {
 		'string': /"(?:\\.|[^"\\\r\n])*"/,
@@ -56,3 +58,7 @@ export default {
 		'punctuation': /[(){}\[\];.]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

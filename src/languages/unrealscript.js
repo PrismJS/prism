@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'unrealscript'>} */
-export default {
+const Self = {
 	id: 'unrealscript',
 	alias: ['uscript', 'uc'],
 	grammar: {
@@ -45,3 +47,7 @@ export default {
 		'punctuation': /[()[\]{};,.]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

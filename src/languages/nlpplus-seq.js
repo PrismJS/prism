@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * NLP++ analyzer sequences (analyzer.seq, https://visualtext.org/nlp/): one
  * pass per line, the pass type, the pass file or nil, and a comment. A
@@ -5,7 +7,7 @@
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus-seq'>}
  */
-export default {
+const Self = {
 	id: 'nlpplus-seq',
 	grammar: {
 		'comment': [
@@ -28,3 +30,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

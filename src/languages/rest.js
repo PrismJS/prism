@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'rest'>} */
-export default {
+const Self = {
 	id: 'rest',
 	grammar: {
 		'table': [
@@ -218,3 +220,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

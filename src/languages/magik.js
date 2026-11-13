@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'magik'>} */
-export default {
+const Self = {
 	id: 'magik',
 	grammar: {
 		'comment': [
@@ -152,3 +154,7 @@ export default {
 		],
 	},
 };
+
+export default Self;
+
+registry.add(Self);

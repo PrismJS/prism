@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'puppet'>} */
-export default {
+const Self = {
 	id: 'puppet',
 	grammar () {
 		const interpolation = [
@@ -143,3 +145,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import c from './c.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'hlsl'>} */
-export default {
+const Self = {
 	id: 'hlsl',
 	base: c,
 	grammar ({ base }) {
@@ -30,3 +31,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import sql from './sql.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'plsql'>} */
-export default {
+const Self = {
 	id: 'plsql',
 	base: sql,
 	grammar () {
@@ -25,3 +26,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

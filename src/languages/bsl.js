@@ -1,6 +1,9 @@
 /* eslint-disable no-misleading-character-class */
+
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'bsl'>} */
-export default {
+const Self = {
 	id: 'bsl',
 	alias: 'oscript',
 	grammar () {
@@ -81,3 +84,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

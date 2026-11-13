@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import haskell, { asciiOperator, infixOperator } from './haskell.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'purescript'>} */
-export default {
+const Self = {
 	id: 'purescript',
 	base: haskell,
 	alias: 'purs',
@@ -38,3 +39,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

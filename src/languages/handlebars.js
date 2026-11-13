@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'handlebars'>} */
-export default {
+const Self = {
 	id: 'handlebars',
 	inner: markup,
 	alias: ['hbs', 'mustache'],
@@ -35,3 +36,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

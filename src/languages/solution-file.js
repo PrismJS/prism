@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'solution-file'>} */
-export default {
+const Self = {
 	id: 'solution-file',
 	alias: 'sln',
 	grammar () {
@@ -51,3 +53,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
