@@ -132,6 +132,12 @@ pre[class*="language-"]:after {
 	color: #c92c2c;
 }
 
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.selector,
 .token.attr-name,
 .token.string,
@@ -140,6 +146,12 @@ pre[class*="language-"]:after {
 .token.builtin,
 .token.inserted {
 	color: #2f9c0a;
+}
+
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
 }
 
 .token.operator,
