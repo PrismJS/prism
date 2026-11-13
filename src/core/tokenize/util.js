@@ -42,6 +42,8 @@ export function tokenizeByNamedGroups (match) {
 	let i = 0;
 
 	const entries = Object.entries(match.indices?.groups || {})
+		// a named group that did not take part in the match has `undefined` indices
+		.filter(([, groupIndices]) => groupIndices != null)
 		.map(([type, [start, end]]) => ({
 			type,
 			start: start - match.index,
