@@ -138,10 +138,8 @@ This plugin can also be used on the server or on the command line with Node.js:
 
 ```js
 import Prism from "prismjs";
-import javascript from "prismjs/languages/javascript.js";
+import "prismjs/languages/javascript.js";
 import { NormalizeWhitespace as Normalizer } from "prismjs/plugins/normalize-whitespace.js";
-
-Prism.languageRegistry.add(javascript);
 
 // Create a new Normalizer object
 let nw = new Normalizer({
