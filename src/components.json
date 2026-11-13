@@ -1079,6 +1079,9 @@
 			"title": "Robot Framework",
 			"owner": "RunDevelopment"
 		},
+		"rql": {
+			"title": "RQL (RavenDB)"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"owner": "samflores"

@@ -1,0 +1,20 @@
+from Products
+where vector.search(embedding.text(Description), $query)
+
+----------------------------------------------------
+
+[
+	["keyword", "from"],
+	" Products\r\n",
+
+	["keyword", "where"],
+	["function", "vector.search"],
+	["punctuation", "("],
+	["function", "embedding.text"],
+	["punctuation", "("],
+	"Description",
+	["punctuation", ")"],
+	["punctuation", ","],
+	" $query",
+	["punctuation", ")"]
+]
