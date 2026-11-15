@@ -163,14 +163,6 @@
 			"title": "6502 Assembly",
 			"owner": "kzurawel"
 		},
-		"asm65c02": {
-			"title": "65C02 Assembly",
-			"owner": "SvOlli"
-		},
-		"asm65ce02": {
-			"title": "65CE02 Assembly",
-			"owner": "SvOlli"
-		},
 		"asm65816": {
 			"title": "65816 Assembly",
 			"owner": "SvOlli"
@@ -282,6 +274,14 @@
 		"cpp": {
 			"title": "C++",
 			"owner": "zeitgeist87"
+		},
+		"asm65c02": {
+			"title": "65C02 Assembly",
+			"owner": "SvOlli"
+		},
+		"asm65ce02": {
+			"title": "65CE02 Assembly",
+			"owner": "SvOlli"
 		},
 		"cfscript": {
 			"title": "CFScript",

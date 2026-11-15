@@ -1,5 +1,7 @@
 LDA $8000,z
 ASL A
+STA ($AA,s),y
+STA ($AA,sp),y
 
 ----------------------------------------------------
 
@@ -10,7 +12,25 @@ ASL A
 	["register", "z"],
 
 	["op-code", "ASL"],
-	["register", "A"]
+	["register", "A"],
+
+	["op-code", "STA"],
+	["punctuation", "("],
+	["hex-number", "$AA"],
+	["punctuation", ","],
+	["register", "s"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["register", "y"],
+
+	["op-code", "STA"],
+	["punctuation", "("],
+	["hex-number", "$AA"],
+	["punctuation", ","],
+	["register", "sp"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["register", "y"]
 ]
 
 ----------------------------------------------------

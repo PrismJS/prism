@@ -2,6 +2,7 @@ adc
 and
 asl
 asr
+asw
 aug
 bbr0
 bbr1
@@ -43,13 +44,26 @@ dec
 dew
 dex
 dey
+dez
 eor
 inc
 inw
 inx
 iny
+inz
 jmp
 jsr
+lbcc
+lbcs
+lbeq
+lbit
+lbmi
+lbne
+lbpl
+lbra
+lbrk
+lbvc
+lbvs
 lda
 ldx
 ldy
@@ -60,6 +74,7 @@ nop
 ora
 pha
 php
+phw
 phx
 phy
 phz
@@ -78,6 +93,7 @@ rmb6
 rmb7
 rol
 ror
+row
 rti
 rtn
 rts
@@ -116,6 +132,7 @@ ADC
 AND
 ASL
 ASR
+ASW
 AUG
 BBR0
 BBR1
@@ -157,13 +174,26 @@ DEC
 DEW
 DEX
 DEY
+DEZ
 EOR
 INC
 INW
 INX
 INY
+INZ
 JMP
 JSR
+LBCC
+LBCS
+LBEQ
+LBIT
+LBMI
+LBNE
+LBPL
+LBRA
+LBRK
+LBVC
+LBVS
 LDA
 LDX
 LDY
@@ -174,6 +204,7 @@ NOP
 ORA
 PHA
 PHP
+PHW
 PHX
 PHY
 PHZ
@@ -192,6 +223,7 @@ RMB6
 RMB7
 ROL
 ROR
+ROW
 RTI
 RTN
 RTS
@@ -234,6 +266,7 @@ TZA
 	["op-code", "and"],
 	["op-code", "asl"],
 	["op-code", "asr"],
+	["op-code", "asw"],
 	["op-code", "aug"],
 	["op-code", "bbr0"],
 	["op-code", "bbr1"],
@@ -275,13 +308,26 @@ TZA
 	["op-code", "dew"],
 	["op-code", "dex"],
 	["op-code", "dey"],
+	["op-code", "dez"],
 	["op-code", "eor"],
 	["op-code", "inc"],
 	["op-code", "inw"],
 	["op-code", "inx"],
 	["op-code", "iny"],
+	["op-code", "inz"],
 	["op-code", "jmp"],
 	["op-code", "jsr"],
+	["op-code", "lbcc"],
+	["op-code", "lbcs"],
+	["op-code", "lbeq"],
+	"\r\nlbit\r\n",
+	["op-code", "lbmi"],
+	["op-code", "lbne"],
+	["op-code", "lbpl"],
+	["op-code", "lbra"],
+	"\r\nlbrk\r\n",
+	["op-code", "lbvc"],
+	["op-code", "lbvs"],
 	["op-code", "lda"],
 	["op-code", "ldx"],
 	["op-code", "ldy"],
@@ -292,6 +338,7 @@ TZA
 	["op-code", "ora"],
 	["op-code", "pha"],
 	["op-code", "php"],
+	["op-code", "phw"],
 	["op-code", "phx"],
 	["op-code", "phy"],
 	["op-code", "phz"],
@@ -310,6 +357,7 @@ TZA
 	["op-code", "rmb7"],
 	["op-code", "rol"],
 	["op-code", "ror"],
+	["op-code", "row"],
 	["op-code", "rti"],
 	["op-code", "rtn"],
 	["op-code", "rts"],
@@ -348,6 +396,7 @@ TZA
 	["op-code", "AND"],
 	["op-code", "ASL"],
 	["op-code", "ASR"],
+	["op-code", "ASW"],
 	["op-code", "AUG"],
 	["op-code", "BBR0"],
 	["op-code", "BBR1"],
@@ -389,13 +438,26 @@ TZA
 	["op-code", "DEW"],
 	["op-code", "DEX"],
 	["op-code", "DEY"],
+	["op-code", "DEZ"],
 	["op-code", "EOR"],
 	["op-code", "INC"],
 	["op-code", "INW"],
 	["op-code", "INX"],
 	["op-code", "INY"],
+	["op-code", "INZ"],
 	["op-code", "JMP"],
 	["op-code", "JSR"],
+	["op-code", "LBCC"],
+	["op-code", "LBCS"],
+	["op-code", "LBEQ"],
+	"\r\nLBIT\r\n",
+	["op-code", "LBMI"],
+	["op-code", "LBNE"],
+	["op-code", "LBPL"],
+	["op-code", "LBRA"],
+	"\r\nLBRK\r\n",
+	["op-code", "LBVC"],
+	["op-code", "LBVS"],
 	["op-code", "LDA"],
 	["op-code", "LDX"],
 	["op-code", "LDY"],
@@ -406,6 +468,7 @@ TZA
 	["op-code", "ORA"],
 	["op-code", "PHA"],
 	["op-code", "PHP"],
+	["op-code", "PHW"],
 	["op-code", "PHX"],
 	["op-code", "PHY"],
 	["op-code", "PHZ"],
@@ -424,6 +487,7 @@ TZA
 	["op-code", "RMB7"],
 	["op-code", "ROL"],
 	["op-code", "ROR"],
+	["op-code", "ROW"],
 	["op-code", "RTI"],
 	["op-code", "RTN"],
 	["op-code", "RTS"],

@@ -26,7 +26,7 @@ export default {
 			alias: 'number',
 		},
 		'register': {
-			pattern: /\b[xya]\b/i,
+			pattern: /\b(?:[xya]|sp?)\b/i,
 			alias: 'variable',
 		},
 		'punctuation': /[\[\](),:]/,

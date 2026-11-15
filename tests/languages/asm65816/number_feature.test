@@ -2,6 +2,7 @@ LDA #127
 STA $8000
 STA #$1
 LDX #%10001010
+STA $C0FFEE
 
 ----------------------------------------------------
 
@@ -9,7 +10,8 @@ LDX #%10001010
 	["op-code", "LDA"], ["decimal-number", "#127"],
 	["op-code", "STA"], ["hex-number", "$8000"],
 	["op-code", "STA"], ["hex-number", "#$1"],
-	["op-code", "LDX"], ["binary-number", "#%10001010"]
+	["op-code", "LDX"], ["binary-number", "#%10001010"],
+	["op-code", "STA"], ["hex-number", "$C0FFEE"]
 ]
 
 ----------------------------------------------------
