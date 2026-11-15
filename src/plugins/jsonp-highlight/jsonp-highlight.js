@@ -247,7 +247,7 @@ const Self = {
 	},
 	effect (Prism) {
 		/** @type {JsonpHighlight} */
-		const config = Prism.plugins.jsonpHighlight;
+		const config = Prism.pluginRegistry.peek(Self)?.plugin;
 
 		const LOADING_MESSAGE = 'Loading…';
 		/** @param {string} name */
@@ -292,7 +292,7 @@ const Self = {
 
 				// preload the language
 				/** @type {import('../autoloader/autoloader.js').Autoloader} */
-				const autoloader = Prism.plugins.autoloader;
+				const autoloader = Prism.pluginRegistry.peek('autoloader')?.plugin;
 				if (autoloader) {
 					autoloader.preloadLanguages(language);
 				}
@@ -357,7 +357,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @callback Adapter

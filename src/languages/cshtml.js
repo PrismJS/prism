@@ -5,7 +5,8 @@ import markup from './markup.js';
 /** @type {import('../types.d.ts').LanguageProto<'cshtml'>} */
 export default {
 	id: 'cshtml',
-	require: [markup, csharp],
+	base: markup,
+	require: csharp,
 	alias: 'razor',
 	grammar ({ extend }) {
 		// Docs:
@@ -138,8 +139,6 @@ export default {
 		// In the below code, both CSHTML and C#+HTML will be create as separate language definitions that reference each
 		// other. However, only CSHTML will be exported via `Prism.languages`.
 
-		const cshtml = extend('markup', {});
-
 		const csharpWithHtml = extend('csharp', {});
 		insertBefore(csharpWithHtml, 'string', {
 			'html': {
@@ -166,104 +165,104 @@ export default {
 			},
 		};
 
-		const tag = /** @type {GrammarToken} */ (cshtml.tag);
-		tag.pattern = RegExp(/<\/?/.source + tagContent);
-		const attrValue = /** @type {GrammarToken} */ (
-			/** @type {Grammar} */ (tag.inside)['attr-value']
-		);
-		attrValue.pattern = RegExp(/=\s*/.source + tagAttrValue);
-		insertBefore(/** @type {Grammar} */ (attrValue.inside), 'punctuation', {
-			'value': inlineValue,
-		});
-
-		insertBefore(cshtml, 'prolog', {
-			'razor-comment': {
-				pattern: /@\*[\s\S]*?\*@/,
-				greedy: true,
-				alias: 'comment',
-			},
-
-			'block': {
-				pattern: RegExp(
-					/(^|[^@])@/.source +
-						'(?:' +
-						[
-							// @{ ... }
-							curly,
-							// @code{ ... }
-							/(?:code|functions)\s*/.source + curly,
-							// @for (...) { ... }
-							/(?:for|foreach|lock|switch|using|while)\s*/.source +
-								round +
-								/\s*/.source +
-								curly,
-							// @do { ... } while (...);
-							/do\s*/.source +
-								curly +
-								/\s*while\s*/.source +
-								round +
-								/(?:\s*;)?/.source,
-							// @try { ... } catch (...) { ... } finally { ... }
-							/try\s*/.source +
-								curly +
-								/\s*catch\s*/.source +
-								round +
-								/\s*/.source +
-								curly +
-								/\s*finally\s*/.source +
-								curly,
-							// @if (...) {...} else if (...) {...} else {...}
-							/if\s*/.source +
-								round +
-								/\s*/.source +
-								curly +
-								'(?:' +
-								/\s*else/.source +
-								'(?:' +
-								/\s+if\s*/.source +
-								round +
-								')?' +
-								/\s*/.source +
-								curly +
-								')*',
-							// @helper Ident(params) { ... }
-							/helper\s+\w+\s*/.source + round + /\s*/.source + curly,
-						].join('|') +
-						')'
-				),
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'keyword': /^@\w*/,
-					'csharp': cs,
+		return {
+			$merge: {
+				'tag': {
+					pattern: RegExp(/<\/?/.source + tagContent),
+					inside: {
+						'attr-value': {
+							pattern: RegExp(/=\s*/.source + tagAttrValue),
+						},
+					},
 				},
 			},
+			$insertBefore: {
+				'tag/attr-value/punctuation': {
+					'value': inlineValue,
+				},
+				'prolog': {
+					'razor-comment': {
+						pattern: /@\*[\s\S]*?\*@/,
+						greedy: true,
+						alias: 'comment',
+					},
 
-			'directive': {
-				pattern:
-					/^([ \t]*)@(?:addTagHelper|attribute|implements|inherits|inject|layout|model|namespace|page|preservewhitespace|removeTagHelper|section|tagHelperPrefix|using)(?=\s).*/m,
-				lookbehind: true,
-				greedy: true,
-				inside: {
-					'keyword': /^@\w+/,
-					'csharp': cs,
+					'block': {
+						pattern: RegExp(
+							/(^|[^@])@/.source +
+								'(?:' +
+								[
+									// @{ ... }
+									curly,
+									// @code{ ... }
+									/(?:code|functions)\s*/.source + curly,
+									// @for (...) { ... }
+									/(?:for|foreach|lock|switch|using|while)\s*/.source +
+										round +
+										/\s*/.source +
+										curly,
+									// @do { ... } while (...);
+									/do\s*/.source +
+										curly +
+										/\s*while\s*/.source +
+										round +
+										/(?:\s*;)?/.source,
+									// @try { ... } catch (...) { ... } finally { ... }
+									/try\s*/.source +
+										curly +
+										/\s*catch\s*/.source +
+										round +
+										/\s*/.source +
+										curly +
+										/\s*finally\s*/.source +
+										curly,
+									// @if (...) {...} else if (...) {...} else {...}
+									/if\s*/.source +
+										round +
+										/\s*/.source +
+										curly +
+										'(?:' +
+										/\s*else/.source +
+										'(?:' +
+										/\s+if\s*/.source +
+										round +
+										')?' +
+										/\s*/.source +
+										curly +
+										')*',
+									// @helper Ident(params) { ... }
+									/helper\s+\w+\s*/.source + round + /\s*/.source + curly,
+								].join('|') +
+								')'
+						),
+						lookbehind: true,
+						greedy: true,
+						inside: {
+							'keyword': /^@\w*/,
+							'csharp': cs,
+						},
+					},
+
+					'directive': {
+						pattern:
+							/^([ \t]*)@(?:addTagHelper|attribute|implements|inherits|inject|layout|model|namespace|page|preservewhitespace|removeTagHelper|section|tagHelperPrefix|using)(?=\s).*/m,
+						lookbehind: true,
+						greedy: true,
+						inside: {
+							'keyword': /^@\w+/,
+							'csharp': cs,
+						},
+					},
+
+					'value': inlineValue,
+
+					'delegate-operator': {
+						pattern: /(^|[^@])@(?=<)/,
+						lookbehind: true,
+						alias: 'operator',
+					},
 				},
 			},
-
-			'value': inlineValue,
-
-			'delegate-operator': {
-				pattern: /(^|[^@])@(?=<)/,
-				lookbehind: true,
-				alias: 'operator',
-			},
-		});
-
-		return cshtml;
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

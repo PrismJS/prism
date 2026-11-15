@@ -1,0 +1,28 @@
+foo # a comment after a headword
+bar n=12 neg=-5 f=1.5 q="7"
+
+----------------------------------------------------
+
+[
+	["headword", "foo"],
+	["comment", "# a comment after a headword"],
+
+	["headword", "bar"],
+	["attr-name", "n"],
+	["operator", "="],
+	["number", "12"],
+	["attr-name", "neg"],
+	["operator", "="],
+	["attr-value", "-5"],
+	["attr-name", "f"],
+	["operator", "="],
+	["attr-value", "1.5"],
+	["attr-name", "q"],
+	["operator", "="],
+	["string", "\"7\""]
+]
+
+----------------------------------------------------
+
+A # ends a headword. Only all-digit values are numbers; -5 and 1.5 are
+strings to the reader.

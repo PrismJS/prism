@@ -1,20 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'go'>} */
 export default {
 	id: 'go',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'char': {
-				pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
-				greedy: true,
-			},
-		});
-
-		delete base['class-name'];
-
+	grammar () {
 		return {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"|`[^`]*`/,
@@ -35,7 +25,15 @@ export default {
 			'operator':
 				/[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
 			'builtin':
-				/\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|imag|u?int(?:8|16|32|64)?|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/,
+				/\b(?:any|append|bool|byte|cap|close|comparable|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|imag|u?int(?:8|16|32|64)?|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/,
+			$insert: {
+				'char': {
+					$before: 'string',
+					pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
+					greedy: true,
+				},
+			},
+			$delete: ['class-name'],
 		};
 	},
 };

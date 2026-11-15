@@ -8,7 +8,7 @@ describe('Custom class', () => {
 
 	it('should set prefix', ({ Prism, util }) => {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 		customClass.prefix = 'prism-';
 
 		util.assert.highlight({
@@ -19,7 +19,7 @@ describe('Custom class', () => {
 
 	it('should reset prefix', ({ Prism, util }) => {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 		customClass.prefix = '';
 
 		util.assert.highlight({
@@ -30,7 +30,7 @@ describe('Custom class', () => {
 
 	it('should map class names using a function', ({ Prism, util }) => {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 		customClass.map(cls => {
 			return `${cls}-suffix`;
 		});
@@ -43,7 +43,7 @@ describe('Custom class', () => {
 
 	it('should map class names using an object', ({ Prism, util }) => {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 		customClass.map({
 			boolean: 'b',
 			keyword: 'kw',
@@ -59,7 +59,7 @@ describe('Custom class', () => {
 
 	it('should reset map', ({ Prism, util }) => {
 		/** @type {CustomClass} */
-		const customClass = Prism.plugins.customClass;
+		const customClass = Prism.pluginRegistry.peek('custom-class')?.plugin;
 		customClass.map({});
 
 		util.assert.highlight({

@@ -15,6 +15,7 @@ export default {
 
 		const string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/
 			.source;
+		// eslint-disable-next-line regexp/no-dupe-disjunctions -- the (?!["']) lookahead makes the unquoted alternative disjoint from <STR>
 		const option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(
 			/<STR>/g,
 			() => string

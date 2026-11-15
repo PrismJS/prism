@@ -1,0 +1,36 @@
+values: [
+	'''
+	first
+	'''# after literal
+	"""
+	second
+	""",/* after escaped */
+	''''
+	'''
+	"""
+	''''/* after wider delimiter */
+]
+after: true
+
+----------------------------------------------------
+
+[
+	["key", "values"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["block-string", "'''\r\n\tfirst\r\n\t'''"],
+	["comment", "# after literal\r"],
+	["block-string", "\"\"\"\r\n\tsecond\r\n\t\"\"\""],
+	["punctuation", ","],
+	["comment", "/* after escaped */"],
+	["block-string", "''''\r\n\t'''\r\n\t\"\"\"\r\n\t''''"],
+	["comment", "/* after wider delimiter */"],
+	["punctuation", "]"],
+	["key", "after"],
+	["punctuation", ":"],
+	["boolean", "true"]
+]
+
+----------------------------------------------------
+
+Comments, commas, and closing brackets resume after a block delimiter. Shorter runs and runs of the other quote character remain block content.

@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ruby'>} */
@@ -6,19 +5,13 @@ export default {
 	id: 'ruby',
 	base: clike,
 	alias: 'rb',
-	grammar ({ base }) {
+	grammar () {
 		/**
 		 * Original by Samuel Flores
 		 *
 		 * Adds the following new token classes:
 		 *     constant, builtin, variable, symbol, regex
 		 */
-		insertBefore(base, 'operator', {
-			'double-colon': {
-				pattern: /::/,
-				alias: 'punctuation',
-			},
-		});
 
 		const interpolation = {
 			pattern: /((?:^|[^\\])(?:\\{2})*)#\{(?:[^{}]|\{[^{}]*\})*\}/,
@@ -36,8 +29,6 @@ export default {
 			},
 		};
 
-		delete base.function;
-
 		const percentExpression =
 			'(?:' +
 			[
@@ -51,136 +42,6 @@ export default {
 
 		const symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/
 			.source;
-
-		insertBefore(base, 'keyword', {
-			'regex-literal': [
-				{
-					pattern: RegExp(/%r/.source + percentExpression + /[egimnosux]{0,6}/.source),
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'regex': /[\s\S]+/,
-					},
-				},
-				{
-					pattern:
-						/(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[egimnosux]{0,6}(?=\s*(?:$|[\r\n,.;})#]))/,
-					lookbehind: true,
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'regex': /[\s\S]+/,
-					},
-				},
-			],
-			'variable': /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
-			'symbol': [
-				{
-					pattern: RegExp(/(^|[^:]):/.source + symbolName),
-					lookbehind: true,
-					greedy: true,
-				},
-				{
-					pattern: RegExp(/([\r\n{(,][ \t]*)/.source + symbolName + /(?=:(?!:))/.source),
-					lookbehind: true,
-					greedy: true,
-				},
-			],
-			'method-definition': {
-				pattern: /(\bdef\s+)\w+(?:\s*\.\s*\w+)?/,
-				lookbehind: true,
-				inside: {
-					'function': /\b\w+$/,
-					'keyword': /^self\b/,
-					'class-name': /^\w+/,
-					'punctuation': /\./,
-				},
-			},
-		});
-
-		insertBefore(base, 'string', {
-			'string-literal': [
-				{
-					pattern: RegExp(/%[qQiIwWs]?/.source + percentExpression),
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'string': /[\s\S]+/,
-					},
-				},
-				{
-					pattern: /("|')(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|(?!\1)[^\\#\r\n])*\1/,
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'string': /[\s\S]+/,
-					},
-				},
-				{
-					pattern: /<<[-~]?([a-z_]\w*)[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
-					alias: 'heredoc-string',
-					greedy: true,
-					inside: {
-						'delimiter': {
-							pattern: /^<<[-~]?[a-z_]\w*|\b[a-z_]\w*$/i,
-							inside: {
-								'symbol': /\b\w+/,
-								'punctuation': /^<<[-~]?/,
-							},
-						},
-						'interpolation': interpolation,
-						'string': /[\s\S]+/,
-					},
-				},
-				{
-					pattern: /<<[-~]?'([a-z_]\w*)'[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
-					alias: 'heredoc-string',
-					greedy: true,
-					inside: {
-						'delimiter': {
-							pattern: /^<<[-~]?'[a-z_]\w*'|\b[a-z_]\w*$/i,
-							inside: {
-								'symbol': /\b\w+/,
-								'punctuation': /^<<[-~]?'|'$/,
-							},
-						},
-						'string': /[\s\S]+/,
-					},
-				},
-			],
-			'command-literal': [
-				{
-					pattern: RegExp(/%x/.source + percentExpression),
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'command': {
-							pattern: /[\s\S]+/,
-							alias: 'string',
-						},
-					},
-				},
-				{
-					pattern: /`(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|[^\\`#\r\n])*`/,
-					greedy: true,
-					inside: {
-						'interpolation': interpolation,
-						'command': {
-							pattern: /[\s\S]+/,
-							alias: 'string',
-						},
-					},
-				},
-			],
-		});
-
-		delete base.string;
-
-		insertBefore(base, 'number', {
-			'builtin':
-				/\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
-			'constant': /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/,
-		});
 
 		return {
 			'comment': {
@@ -199,6 +60,145 @@ export default {
 				/\b(?:BEGIN|END|alias|and|begin|break|case|class|def|define_method|defined|do|each|else|elsif|end|ensure|extend|for|if|in|include|module|new|next|nil|not|or|prepend|private|protected|public|raise|redo|require|rescue|retry|return|self|super|then|throw|undef|unless|until|when|while|yield)\b/,
 			'operator': /\.{2,3}|&\.|===|<?=>|[!=]?~|(?:&&|\|\||<<|>>|\*\*|[+\-*/%<>!^&|=])=?|[?:]/,
 			'punctuation': /[(){}[\].,;]/,
+			$insertBefore: {
+				'operator': {
+					'double-colon': {
+						pattern: /::/,
+						alias: 'punctuation',
+					},
+				},
+				'keyword': {
+					'regex-literal': [
+						{
+							pattern: RegExp(
+								/%r/.source + percentExpression + /[egimnosux]{0,6}/.source
+							),
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'regex': /[\s\S]+/,
+							},
+						},
+						{
+							pattern:
+								/(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[egimnosux]{0,6}(?=\s*(?:$|[\r\n,.;})#]))/,
+							lookbehind: true,
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'regex': /[\s\S]+/,
+							},
+						},
+					],
+					'variable': /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
+					'symbol': [
+						{
+							pattern: RegExp(/(^|[^:]):/.source + symbolName),
+							lookbehind: true,
+							greedy: true,
+						},
+						{
+							pattern: RegExp(
+								/([\r\n{(,][ \t]*)/.source + symbolName + /(?=:(?!:))/.source
+							),
+							lookbehind: true,
+							greedy: true,
+						},
+					],
+					'method-definition': {
+						pattern: /(\bdef\s+)\w+(?:\s*\.\s*\w+)?/,
+						lookbehind: true,
+						inside: {
+							'function': /\b\w+$/,
+							'keyword': /^self\b/,
+							'class-name': /^\w+/,
+							'punctuation': /\./,
+						},
+					},
+				},
+				'string': {
+					'string-literal': [
+						{
+							pattern: RegExp(/%[qQiIwWs]?/.source + percentExpression),
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'string': /[\s\S]+/,
+							},
+						},
+						{
+							pattern:
+								/("|')(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|(?!\1)[^\\#\r\n])*\1/,
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'string': /[\s\S]+/,
+							},
+						},
+						{
+							pattern: /<<[-~]?([a-z_]\w*)[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+							alias: 'heredoc-string',
+							greedy: true,
+							inside: {
+								'delimiter': {
+									pattern: /^<<[-~]?[a-z_]\w*|\b[a-z_]\w*$/i,
+									inside: {
+										'symbol': /\b\w+/,
+										'punctuation': /^<<[-~]?/,
+									},
+								},
+								'interpolation': interpolation,
+								'string': /[\s\S]+/,
+							},
+						},
+						{
+							pattern: /<<[-~]?'([a-z_]\w*)'[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+							alias: 'heredoc-string',
+							greedy: true,
+							inside: {
+								'delimiter': {
+									pattern: /^<<[-~]?'[a-z_]\w*'|\b[a-z_]\w*$/i,
+									inside: {
+										'symbol': /\b\w+/,
+										'punctuation': /^<<[-~]?'|'$/,
+									},
+								},
+								'string': /[\s\S]+/,
+							},
+						},
+					],
+					'command-literal': [
+						{
+							pattern: RegExp(/%x/.source + percentExpression),
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'command': {
+									pattern: /[\s\S]+/,
+									alias: 'string',
+								},
+							},
+						},
+						{
+							pattern: /`(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|[^\\`#\r\n])*`/,
+							greedy: true,
+							inside: {
+								'interpolation': interpolation,
+								'command': {
+									pattern: /[\s\S]+/,
+									alias: 'string',
+								},
+							},
+						},
+					],
+				},
+				'number': {
+					'builtin':
+						/\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
+					'constant': /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/,
+				},
+			},
+			$delete: ['function', 'string'],
 		};
 	},
 };

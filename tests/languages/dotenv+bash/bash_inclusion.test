@@ -1,0 +1,44 @@
+SHORT_HASH=$(git rev-parse --short HEAD)
+PWD_MESSAGE="Running from $(pwd)"
+DATABASE_URL=postgres://$(whoami)@localhost/my_database
+
+----------------------------------------------------
+
+[
+	["assign-left", ["SHORT_HASH"]],
+	["operator", ["="]],
+	["variable", [
+		["variable", "$("],
+		["function", "git"],
+		" rev-parse ",
+		["parameter", "--short"],
+		" HEAD",
+		["variable", ")"]
+	]],
+
+	["assign-left", ["PWD_MESSAGE"]],
+	["operator", ["="]],
+	["string", [
+		"\"Running from ",
+		["variable", [
+			["variable", "$("],
+			["builtin", "pwd"],
+			["variable", ")"]
+		]],
+		"\""
+	]],
+
+	["assign-left", ["DATABASE_URL"]],
+	["operator", ["="]],
+	"postgres://",
+	["variable", [
+		["variable", "$("],
+		["function", "whoami"],
+		["variable", ")"]
+	]],
+	"@localhost/my_database"
+]
+
+----------------------------------------------------
+
+Check for bash inclusion.

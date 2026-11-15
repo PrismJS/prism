@@ -1,12 +1,11 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'handlebars'>} */
 export default {
 	id: 'handlebars',
-	require: markup,
+	inner: markup,
 	alias: ['hbs', 'mustache'],
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'handlebars': {
 			pattern: /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/,
 			inside: {
@@ -34,10 +33,5 @@ export default {
 				'variable': /[^!"#%&'()*+,\/;<=>@\[\\\]^`{|}~\s]+/,
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

@@ -1,0 +1,9 @@
+<%# foo %>
+
+----------------------------------------------------
+
+<span class="token ejs-comment comment">&lt;%# foo %></span>
+
+----------------------------------------------------
+
+Checks that EJS comments keep the "comment" class, which themes color.

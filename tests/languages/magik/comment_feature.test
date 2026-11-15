@@ -1,0 +1,41 @@
+# Single line 'comment'
+
+# Multi
+# Line
+# Comment
+
+_block
+ 1 _and # comment
+ 2
+_endblock
+
+## documentation
+
+## multi
+## line
+## documentation
+
+----------------------------------------------------
+
+[
+	["comment", "# Single line 'comment'"],
+
+	["comment", "# Multi"],
+	["comment", "# Line"],
+	["comment", "# Comment"],
+
+	["keyword", "_block"],
+	["number", "1"], ["keyword", "_and"], ["comment", "# comment"],
+	["number", "2"],
+	["keyword", "_endblock"],
+
+	["comment", "## documentation"],
+
+	["comment", "## multi"],
+	["comment", "## line"],
+	["comment", "## documentation"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

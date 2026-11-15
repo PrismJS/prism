@@ -11,7 +11,6 @@ tests/
 *.html
 *.svg
 composer.json
-dangerfile.js
 .editorconfig
 .gitattributes
 .travis.yml
@@ -20,3 +19,12 @@ eslint.config.mjs
 .jsdoc.json
 MAINTAINERS.md
 SECURITY.md
+
+# Dev-only config and tooling
+.vscode/
+.prettierrc.js
+.prettierignore
+.husky/
+tsconfig.json
+scripts/
+_headers

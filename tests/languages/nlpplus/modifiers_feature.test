@@ -1,0 +1,196 @@
+_np [base] <- _xWILD [min=2 match=(_xCAP _xNUM)] _xEMOJI _xEND @@
+_asset <- in [s] cash @@
+_coord [layer=_noun] <-
+_xWILD [s plus fails=(\. \? \! _paragraphSeparator)]
+_cLF [base layer=(_LIT )] <- \\ n [ren=\n] @@
+_xNIL <- _xALPHA [regexp="t*"] @@
+_xWILD [s one matches=("_xALPHA" "_" ":")]
+_xALPHA [s one matches=("#PCDATA")] ### (4)
+_STMTS [base] <- _xWILD [s one match=(_STMT _EXPR
+	_BLOCK	# 12/15/99 AM.
+	)] @@
+_x <- _xALPHA _xANY _xBLANK _xCAP _xCAPLET _xCTRL _xEOF _xLET _xNIL _xNUM _xPUNCT _xSTART _xWHITE @@
+
+----------------------------------------------------
+
+[
+	["node", "_np"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "base"],
+		["punctuation", "]"]
+	]],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "min"],
+		["operator", "="],
+		["number", "2"],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["constant", "_xCAP"],
+			["constant", "_xNUM"],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["constant", "_xEMOJI"],
+	["constant", "_xEND"],
+	["rule-end", "@@"],
+
+	["node", "_asset"],
+	["arrow", "<-"],
+	" in ",
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["punctuation", "]"]
+	]],
+	" cash ",
+	["rule-end", "@@"],
+
+	["node", "_coord"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "layer"],
+		["operator", "="],
+		["node", "_noun"],
+		["punctuation", "]"]
+	]],
+	["arrow", "<-"],
+
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["attr-name", "plus"],
+		["attr-name", "fails"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["char", "\\."],
+			["char", "\\?"],
+			["char", "\\!"],
+			["node", "_paragraphSeparator"],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+
+	["node", "_cLF"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "base"],
+		["attr-name", "layer"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["node", "_LIT"],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["arrow", "<-"],
+	["char", "\\\\"],
+	" n ",
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "ren"],
+		["operator", "="],
+		["char", "\\n"],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["constant", "_xNIL"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "regexp"],
+		["operator", "="],
+		["string", "\"t*\""],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["attr-name", "one"],
+		["attr-name", "matches"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["string", "\"_xALPHA\""],
+			["string", "\"_\""],
+			["string", "\":\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+
+	["constant", "_xALPHA"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["attr-name", "one"],
+		["attr-name", "matches"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("],
+			["string", "\"#PCDATA\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["comment", "### (4)"],
+
+	["node", "_STMTS"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "base"],
+		["punctuation", "]"]
+	]],
+	["arrow", "<-"],
+	["constant", "_xWILD"],
+	["modifiers", [
+		["punctuation", "["],
+		["attr-name", "s"],
+		["attr-name", "one"],
+		["attr-name", "match"],
+		["operator", "="],
+		["value-list", [
+			["punctuation", "("], ["node", "_STMT"], ["node", "_EXPR"],
+			["node", "_BLOCK"], ["comment", "# 12/15/99 AM."],
+			["punctuation", ")"]
+		]],
+		["punctuation", "]"]
+	]],
+	["rule-end", "@@"],
+
+	["node", "_x"],
+	["arrow", "<-"],
+	["constant", "_xALPHA"],
+	["constant", "_xANY"],
+	["constant", "_xBLANK"],
+	["constant", "_xCAP"],
+	["constant", "_xCAPLET"],
+	["constant", "_xCTRL"],
+	["constant", "_xEOF"],
+	["constant", "_xLET"],
+	["constant", "_xNIL"],
+	["constant", "_xNUM"],
+	["constant", "_xPUNCT"],
+	["constant", "_xSTART"],
+	["constant", "_xWHITE"],
+	["rule-end", "@@"]
+]
+
+----------------------------------------------------
+
+Checks for rule element modifiers, special node constants, and literal words in rules.

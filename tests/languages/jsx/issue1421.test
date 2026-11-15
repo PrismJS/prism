@@ -31,10 +31,8 @@ class Columns extends React.Component {
 	["punctuation", "("],
 
 	["tag", [
-		"<",
-		["tag", [
-		]],
-		">"
+		["punctuation", "<"],
+		["punctuation", ">"]
 	]],
 	["plain-text", "\r\n        "],
 	["tag", [
@@ -63,8 +61,6 @@ class Columns extends React.Component {
 	["plain-text", "\r\n      "],
 	["tag", [
 		["punctuation", "</"],
-		["tag", [
-		]],
 		["punctuation", ">"]
 	]],
 

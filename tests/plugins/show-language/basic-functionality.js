@@ -4,7 +4,7 @@ import { createTestSuite } from '../../helper/prism-dom-util.js';
 
 describe('Show language', () => {
 	const { it } = createTestSuite({
-		languages: ['markup', 'javascript'],
+		languages: ['markup', 'javascript', 'diff'],
 		plugins: 'show-language',
 	});
 
@@ -40,6 +40,9 @@ describe('Show language', () => {
 		// aliases with a different title
 		test(dom, 'HTML', `<pre class="language-html"><code>foo</code></pre>`);
 		test(dom, 'SVG', `<pre class="language-svg"><code>foo</code></pre>`);
+
+		// compound ids
+		test(dom, 'Diff (JavaScript)', `<pre class="language-diff:js"><code>foo</code></pre>`);
 	});
 
 	it('should work with custom titles', dom => {

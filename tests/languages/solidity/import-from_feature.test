@@ -1,0 +1,60 @@
+import {A as B} from "f";
+import * as X from "f";
+import "f";
+import {from} from "f";
+
+function f(address from) {}
+uint from = 1;
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	["punctuation", "{"],
+	"A ",
+	["keyword", "as"],
+	" B",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "\"f\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["operator", "*"],
+	["keyword", "as"],
+	" X ",
+	["keyword", "from"],
+	["string", "\"f\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["string", "\"f\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	"from",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "\"f\""],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function", "f"],
+	["punctuation", "("],
+	["builtin", "address"],
+	" from",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["builtin", "uint"],
+	" from ",
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that `from` is only highlighted as a keyword in import statements.

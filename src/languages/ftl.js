@@ -1,10 +1,9 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'ftl'>} */
 export default {
 	id: 'ftl',
-	require: markup,
+	inner: markup,
 	grammar () {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
@@ -72,7 +71,7 @@ export default {
 			stringInterpolation
 		).inside.interpolation.inside.$rest = ftl;
 
-		return /** @type {Grammar} */ ({
+		return {
 			'ftl-comment': {
 				// the pattern is shortened to be more efficient
 				pattern: /<#--[\s\S]*?-->/,
@@ -116,8 +115,7 @@ export default {
 					},
 				},
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+		};
 	},
 };
 

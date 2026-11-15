@@ -1,22 +1,73 @@
+import { camelToKebabCase } from '../../shared/util.js';
+import singleton from '../prism.js';
+
 /**
- * @param {Registry} components
- * @param {Grammar | string | null | undefined} reference
- * @returns {Grammar | undefined}
+ * @this {Prism}
+ * @param {Grammar | string | Function | null | undefined} reference
+ * @returns {Grammar | Function | undefined}
  */
-export function resolve (components, reference) {
-	if (reference) {
-		if (typeof reference === 'string') {
-			return components.getLanguage(reference);
-		}
-		return reference;
+export function resolve (reference) {
+	const prism = this ?? singleton;
+	let ret = reference ?? undefined;
+
+	if (typeof ret === 'string') {
+		ret = prism.languageRegistry.getLanguage(ret)?.resolvedGrammar;
 	}
-	return undefined;
+
+	if (typeof ret === 'function' && ret.length === 0) {
+		// Function with no arguments, resolve eagerly
+		ret = ret.call(prism);
+	}
+
+	if (typeof ret === 'object' && ret.$rest) {
+		const restGrammar = resolve.call(prism, ret.$rest) ?? {};
+		if (typeof restGrammar === 'object') {
+			ret = { ...ret, ...restGrammar };
+		}
+
+		delete ret.$rest;
+	}
+
+	return /** @type {Grammar | undefined} */ (ret);
 }
 
 /**
- * @typedef {import('../../types.d.ts').Grammar} Grammar
+ *
+ * @param {RegExpExecArray} match
+ * @returns {({type: string, content: string} | string)[]}
  */
+export function tokenizeByNamedGroups (match) {
+	const str = match[0];
+	const result = [];
+	let i = 0;
+
+	const entries = Object.entries(match.indices?.groups || {})
+		.map(([type, [start, end]]) => ({
+			type,
+			start: start - match.index,
+			end: end - match.index,
+		}))
+		.sort((a, b) => a.start - b.start);
+
+	for (let { type, start, end } of entries) {
+		if (start > i) {
+			result.push(str.slice(i, start));
+		}
+
+		const content = str.slice(start, end);
+		type = camelToKebabCase(type);
+		result.push({ type, content });
+		i = end;
+	}
+
+	if (i < str.length) {
+		result.push(str.slice(i));
+	}
+
+	return result;
+}
 
 /**
- * @typedef {import('../registry.js').Registry} Registry
+ * @import { Prism } from '../prism.js';
+ * @import { Grammar, LanguageRegistry } from '../../types.d.ts';
  */

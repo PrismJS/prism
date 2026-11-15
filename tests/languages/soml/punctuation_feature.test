@@ -1,0 +1,31 @@
+port:8080
+name:'no space after the colon'
+pool:{min:2,max:16}
+
+----------------------------------------------------
+
+[
+	["key", "port"],
+	["punctuation", ":"],
+	["number", "8080"],
+
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'no space after the colon'"],
+
+	["key", "pool"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["key", "min"],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["key", "max"],
+	["punctuation", ":"],
+	["number", "16"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+A key and its `:` have no whitespace between them, and a value may follow the `:` directly.

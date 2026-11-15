@@ -1,0 +1,37 @@
+/* leading */'': 0
+"escaped\"key": 1
+/*'*/after-comment: 2
+/*'*/'after-quoted-comment': 2
+/*"*/"after-double-comment": 2
+object:{-:3,_:4,'quoted':5,"double":6}
+values: ['key: value', "\"key\": value", '2026-09-19T14:00:00Z', 2026-09-19T14:00:00Z]
+# '2026-09-19T14:00:00Z': 7
+/* "2026-09-19T14:00:00Z": 8 */
+last: 9
+
+----------------------------------------------------
+
+[
+	["comment", "/* leading */"], ["key", "''"], ["punctuation", ":"], ["number", "0"],
+	["key", "\"escaped\\\"key\""], ["punctuation", ":"], ["number", "1"],
+	["comment", "/*'*/"], ["key", "after-comment"], ["punctuation", ":"], ["number", "2"],
+	["comment", "/*'*/"], ["key", "'after-quoted-comment'"], ["punctuation", ":"], ["number", "2"],
+	["comment", "/*\"*/"], ["key", "\"after-double-comment\""], ["punctuation", ":"], ["number", "2"],
+	["key", "object"], ["punctuation", ":"], ["punctuation", "{"],
+	["key", "-"], ["punctuation", ":"], ["number", "3"], ["punctuation", ","],
+	["key", "_"], ["punctuation", ":"], ["number", "4"], ["punctuation", ","],
+	["key", "'quoted'"], ["punctuation", ":"], ["number", "5"], ["punctuation", ","],
+	["key", "\"double\""], ["punctuation", ":"], ["number", "6"], ["punctuation", "}"],
+	["key", "values"], ["punctuation", ":"], ["punctuation", "["],
+	["string", "'key: value'"], ["punctuation", ","],
+	["string", "\"\\\"key\\\": value\""], ["punctuation", ","],
+	["string", "'2026-09-19T14:00:00Z'"], ["punctuation", ","],
+	["instant", "2026-09-19T14:00:00Z"], ["punctuation", "]"],
+	["comment", "# '2026-09-19T14:00:00Z': 7\r"],
+	["comment", "/* \"2026-09-19T14:00:00Z\": 8 */"],
+	["key", "last"], ["punctuation", ":"], ["number", "9"]
+]
+
+----------------------------------------------------
+
+Keys work at collection boundaries and directly after comments, while quoted values and comments keep key-like content intact.

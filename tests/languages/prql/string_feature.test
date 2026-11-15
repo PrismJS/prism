@@ -1,0 +1,34 @@
+"foo \"bar\" baz"
+'foo \'bar\' baz'
+"it's"
+"""a "multi-line"
+string"""
+'''another
+one'''
+"# not a comment"
+"line one
+# not a comment, it's still a string" + 'q'
+"""""has """ inside"""""
+'''''five'''''
+""
+
+----------------------------------------------------
+
+[
+	["string", "\"foo \\\"bar\\\" baz\""],
+	["string", "'foo \\'bar\\' baz'"],
+	["string", "\"it's\""],
+	["string", "\"\"\"a \"multi-line\"\r\nstring\"\"\""],
+	["string", "'''another\r\none'''"],
+	["string", "\"# not a comment\""],
+	["string", "\"line one\r\n# not a comment, it's still a string\""],
+	["operator", "+"],
+	["string", "'q'"],
+	["string", "\"\"\"\"\"has \"\"\" inside\"\"\"\"\""],
+	["string", "'''''five'''''"],
+	["string", "\"\""]
+]
+
+----------------------------------------------------
+
+Checks for strings, including multi-line strings and strings with three or more quotes.

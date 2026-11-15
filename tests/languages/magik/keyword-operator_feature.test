@@ -1,0 +1,13 @@
+_is _isnt _cf
+_div _mod
+
+----------------------------------------------------
+
+[
+	["keyword-operator", "_is"], ["keyword-operator", "_isnt"], ["keyword-operator", "_cf"],
+	["keyword-operator", "_div"], ["keyword-operator", "_mod"]
+]
+
+----------------------------------------------------
+
+Checks for keyword operators.

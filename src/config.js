@@ -8,7 +8,6 @@ const globalConfig = globalThis.Prism?.constructor?.name === 'Object' ? globalTh
 
 /**
  * @param {string} name
- * @returns {string | boolean | null | undefined}
  */
 function getGlobalSetting (name) {
 	// eslint-disable-next-line regexp/no-unused-capturing-group
@@ -44,15 +43,38 @@ function getGlobalBooleanSetting (name, defaultValue) {
 }
 
 /**
+ * @param {string} name
+ * @returns {string[]}
+ */
+function getGlobalArraySetting (name) {
+	const value = getGlobalSetting(name);
+	if (value === null || value === undefined || value === false || value === 'false') {
+		return [];
+	}
+	else if (typeof value === 'string') {
+		return value.split(',').map(s => s.trim());
+	}
+	else if (Array.isArray(value)) {
+		return value;
+	}
+
+	return [];
+}
+
+/**
  * @type {PrismConfig}
  */
 export const globalDefaults = {
 	manual: getGlobalBooleanSetting('manual', !hasDOM),
+	silent: getGlobalBooleanSetting('silent', false),
+	languages: getGlobalArraySetting('languages'),
+	plugins: getGlobalArraySetting('plugins'),
+	languagePath: /** @type {string} */ (getGlobalSetting('language-path') ?? './languages/'),
+	pluginPath: /** @type {string} */ (getGlobalSetting('plugin-path') ?? './plugins/'),
 };
 
 export default globalDefaults;
 
 /**
- * @typedef {import('./types.d.ts').PrismConfig} PrismConfig
- * @typedef {import('./types.d.ts').GlobalConfig} GlobalConfig
+ * @import { PrismConfig, GlobalConfig } from './types.d.ts';
  */

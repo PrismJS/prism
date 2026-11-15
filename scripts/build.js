@@ -305,6 +305,40 @@ const lazyGrammarPlugin = {
 };
 
 /**
+ * Makes `require("prismjs")` return the default export directly with named
+ * exports as properties, so CJS consumers don't need `.default`.
+ *
+ * @type {Plugin}
+ */
+const cjsExportPlugin = {
+	name: 'cjs-default-export',
+	renderChunk (code) {
+		if (!code.includes('exports.default=')) {
+			return null;
+		}
+
+		code += 'module.exports=Object.assign(exports.default,exports);';
+
+		return { code, map: null };
+	},
+};
+
+/**
+ * Compiles `import.meta.url` to `undefined` in the CJS build.
+ * Rollup's CJS output for it calls `require('u' + 'rl')` (Node's `url` module),
+ * which webpack, Rspack, esbuild and Parcel cannot resolve when they bundle for the browser.
+ * Code that reads `import.meta.url` must handle `undefined`, as it must in an esbuild IIFE bundle.
+ *
+ * @type {Plugin}
+ */
+const cjsImportMetaPlugin = {
+	name: 'cjs-import-meta',
+	resolveImportMeta (property) {
+		return property === 'url' ? 'undefined' : null;
+	},
+};
+
+/**
  * @param {MagicString} s
  * @returns {{ code: string; map: SourceMapInput }}
  */
@@ -315,7 +349,8 @@ function toRenderedChunk (s) {
 	};
 }
 
-const terserPlugin = rollupTerser({
+/** @type {import('@rollup/plugin-terser').Options} */
+const terserOptions = {
 	ecma: 2020,
 	module: true,
 	compress: {
@@ -326,10 +361,13 @@ const terserPlugin = rollupTerser({
 		unsafe_regexp: true,
 	},
 	format: {
-		comments: false,
+		// Bundlers read these on `import()` calls that load components at runtime.
+		// Without them, webpack and Rspack bundle every file in `dist/`, and Turbopack fails to build.
+		comments: /webpackIgnore|@vite-ignore/,
 	},
 	keep_classnames: true,
-});
+};
+const terserPlugin = rollupTerser(terserOptions);
 
 async function clean () {
 	const outputDir = path.join(__dirname, '../dist');
@@ -384,7 +422,7 @@ async function buildTypes () {
 async function buildJS () {
 	const input = {
 		'index': path.join(SRC_DIR, 'index.js'),
-		'prism': path.join(SRC_DIR, 'prism.global.js'),
+		'global': path.join(SRC_DIR, 'global.js'),
 		'shared': path.join(SRC_DIR, 'shared.js'),
 	};
 	for (const id of languageIds) {
@@ -410,16 +448,43 @@ async function buildJS () {
 	const bundles = {
 		esm: {
 			rollupOptions: defaultRollupOptions,
-			outputOptions: defaultOutputOptions,
+			outputOptions: {
+				...defaultOutputOptions,
+				format: 'es',
+			},
 		},
 		cjs: {
 			rollupOptions: {
 				...defaultRollupOptions,
-				plugins: [...defaultRollupOptions.plugins, commonjs()],
+				plugins: [
+					...defaultRollupOptions.plugins,
+					commonjs(),
+					cjsExportPlugin,
+					cjsImportMetaPlugin,
+				],
 			},
 			outputOptions: {
 				...defaultOutputOptions,
 				dir: './dist/cjs',
+				format: 'cjs',
+			},
+		},
+		iife: {
+			rollupOptions: {
+				...defaultRollupOptions,
+				input: path.join(SRC_DIR, 'auto-start.js'),
+				plugins: [
+					...defaultRollupOptions.plugins.slice(0, -1), // remove default terser plugin
+					rollupTerser({ ...terserOptions, module: false }),
+				],
+			},
+			outputOptions: {
+				...defaultOutputOptions,
+				dir: undefined,
+				file: path.join(DIST_DIR, 'prism.js'),
+				format: 'iife',
+				name: 'Prism',
+				exports: 'default',
 			},
 		},
 	};
@@ -429,6 +494,14 @@ async function buildJS () {
 			bundle.build = await rollup(bundle.rollupOptions);
 			await bundle.build.write(bundle.outputOptions);
 		}
+		// The root package.json has "type": "module", so Node treats all .js files as ESM.
+		// This overrides that for the CJS directory, since Node uses the nearest parent
+		// package.json to determine the module system: https://nodejs.org/api/packages.html#type
+		await writeFile(
+			path.join(DIST_DIR, 'cjs', 'package.json'),
+			JSON.stringify({ type: 'commonjs' }),
+			'utf-8'
+		);
 	}
 	finally {
 		for (const bundle of Object.values(bundles)) {
@@ -437,74 +510,10 @@ async function buildJS () {
 	}
 }
 
-// Helper to get file size in bytes, or 0 if not found
-/**
- * @param {string} filePath
- */
-const getFileSize = async filePath => {
-	try {
-		const stat = await fs.promises.stat(filePath);
-		return stat.size;
-	}
-	catch {
-		return 0;
-	}
-};
-
-/**
- * @typedef {object} FileSizes
- * @property {number} [css]
- * @property {number} [js]
- */
-
-async function calculateFileSizes () {
-	const ret = {
-		core: {},
-		themes: {},
-		languages: {},
-		plugins: {},
-	};
-
-	ret.core.js = await getFileSize(path.join(DIST_DIR, 'index.js'));
-
-	for (const category of ['themes', 'languages', 'plugins']) {
-		let ids = themeIds;
-		if (category === 'languages') {
-			ids = languageIds;
-		}
-		else if (category === 'plugins') {
-			ids = pluginIds;
-		}
-
-		for (const id of ids) {
-			ret[category][id] = {};
-
-			for (const ext of ['js', 'css']) {
-				if (
-					(ext === 'css' &&
-						(category === 'languages' || components[category][id].noCSS)) ||
-					(category === 'themes' && ext === 'js')
-				) {
-					continue;
-				}
-
-				const filePath = path.join(DIST_DIR, category, id);
-				ret[category][id][ext] = await getFileSize(`${filePath}.${ext}`);
-			}
-		}
-	}
-
-	await fs.promises.writeFile(
-		path.join(DIST_DIR, 'file-sizes.json'),
-		JSON.stringify(ret, null, '\t')
-	);
-}
-
 runTask(
 	series(
 		clean,
 		parallel(buildTypes, buildJS, series(treeviewIconFont, minifyCSS)),
-		copyComponentsJson,
-		calculateFileSizes
+		copyComponentsJson
 	)
 );

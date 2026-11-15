@@ -1,0 +1,52 @@
+:if (true) do={ :put 1 }
+:if (true) do={ :if (false) do={ :put 2 } }
+
+----------------------------------------------------
+
+[
+	["prefix", ":"],
+	["keyword", "if"],
+	["operator", "("],
+	["subexpression", [
+		["boolean", "true"]
+	]],
+	["operator", ")"],
+	["keyword", "do"],
+	["operator", "="],
+	["begin-of-scope", "{"],
+	["prefix", ":"],
+	["command", "put"],
+	["number", "1"],
+	["end-of-scope", "}"],
+
+	["prefix", ":"],
+	["keyword", "if"],
+	["operator", "("],
+	["subexpression", [
+		["boolean", "true"]
+	]],
+	["operator", ")"],
+	["keyword", "do"],
+	["operator", "="],
+	["begin-of-scope", "{"],
+	["prefix", ":"],
+	["keyword", "if"],
+	["operator", "("],
+	["subexpression", [
+		["boolean", "false"]
+	]],
+	["operator", ")"],
+	["keyword", "do"],
+	["operator", "="],
+	["begin-of-scope", "{"],
+	["prefix", ":"],
+	["command", "put"],
+	["number", "2"],
+	["end-of-scope", "}"],
+	["end-of-scope", "}"]
+]
+
+----------------------------------------------------
+
+Tests the `begin-of-scope` and `end-of-scope` tokens: `{` and `}` in code block
+contexts (e.g., `do={...}`, `else={...}`). Also tests nested scopes.

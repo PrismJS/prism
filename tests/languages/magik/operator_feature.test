@@ -1,0 +1,75 @@
+_and<<
+_andif<<
+_or<<
+_orif<<
+_xor<<
+**<<
+**^<<
+*<<
+*^<<
+/<<
+/^<<
+_mod<<
+_mod^<<
+_div<<
+_div^<<
+-<<
+-^<<
++<<
++^<<
+<<
+^<<
+<>
+>=
+<=
+<
+~=
+=
+**
+*
+/
++
+-
+~
+
+----------------------------------------------------
+
+[
+	["operator", "_and<<"],
+	["operator", "_andif<<"],
+	["operator", "_or<<"],
+	["operator", "_orif<<"],
+	["operator", "_xor<<"],
+	["operator", "**<<"],
+	["operator", "**^<<"],
+	["operator", "*<<"],
+	["operator", "*^<<"],
+	["operator", "/<<"],
+	["operator", "/^<<"],
+	["operator", "_mod<<"],
+	["operator", "_mod^<<"],
+	["operator", "_div<<"],
+	["operator", "_div^<<"],
+	["operator", "-<<"],
+	["operator", "-^<<"],
+	["operator", "+<<"],
+	["operator", "+^<<"],
+	["operator", "<<"],
+	["operator", "^<<"],
+	["operator", "<>"],
+	["operator", ">="],
+	["operator", "<="],
+	["operator", "<"],
+	["operator", "~="],
+	["operator", "="],
+	["operator", "**"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "~"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

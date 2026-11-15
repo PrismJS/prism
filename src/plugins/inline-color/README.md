@@ -3,7 +3,7 @@ title: Inline Color
 description: Adds a small inline preview for colors in style sheets.
 owner: RunDevelopment
 require: css-extras
-resources: /languages/css-extras.js { type="module" }
+resources: /languages/css-extras.js
 ---
 
 <section>
@@ -25,7 +25,7 @@ span.bar {
 }
 ```
 
-<pre data-src="https://dev.prismjs.com/themes/prism.css"></pre>
+<pre data-src="/themes/prism.css"></pre>
 
 ## HTML (Markup)
 

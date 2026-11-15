@@ -1,5 +1,4 @@
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
-import { embeddedIn } from '../shared/languages/templating.js';
 
 /**
  * Creates a new pattern to match a template string with a special tag.
@@ -18,7 +17,7 @@ function createTemplate (language, tag) {
 		lookbehind: true,
 		greedy: true,
 		alias: 'template-string',
-		inside: /** @type {Grammar} */ ({
+		inside: {
 			'template-punctuation': {
 				pattern: /^`|`$/,
 				alias: 'string',
@@ -39,10 +38,10 @@ function createTemplate (language, tag) {
 							$rest: 'javascript',
 						},
 					},
-					$tokenize: embeddedIn(language),
+					$inner: language,
 				},
 			},
-		}),
+		},
 	};
 }
 
@@ -83,6 +82,5 @@ export default {
 };
 
 /**
- * @typedef {import('../types.d.ts').Grammar} Grammar
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */

@@ -38,4 +38,4 @@
 
 ----------------------------------------------------
 
-Checks for #2008 where a part of markup templating's placeholder was tokenized as `number` by CSS Extras.
+Checks for #2008: the CSS around an embedded PHP block in a `style` attribute is still tokenized, `width` as a property of its own.

@@ -5,7 +5,7 @@ import { withoutTokenize } from '../util/language-util.js';
 export default {
 	id: 'treeview',
 	alias: 'tree-view',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'treeview-part': {
 			pattern: /^.+/m,
 			inside: {
@@ -95,7 +95,7 @@ export default {
 				},
 			},
 		},
-	}),
+	},
 };
 
 /**

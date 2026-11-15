@@ -4,7 +4,7 @@ import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 /** @type {import('../../types.d.ts').PluginProto<'show-invisibles'>} */
 const Self = {
 	id: 'show-invisibles',
-	optional: ['autolinker', 'data-uri-highlight', 'diff-highlight'],
+	optional: ['autolinker', 'data-uri-highlight'],
 	effect (Prism) {
 		const invisibles = {
 			'tab': /\t/,
@@ -22,4 +22,4 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);

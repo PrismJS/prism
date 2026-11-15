@@ -30,15 +30,17 @@ function walkTokens (tokens) {
 
 		if (isToken) {
 			const nestedTag = token.content[1];
-			if (token.type === 'tag' && typeof nestedTag === 'object' && nestedTag.type === 'tag') {
+			if (token.type === 'tag' && typeof nestedTag === 'object') {
 				// We found a tag, now find its kind
+				// A fragment (`<>`, `</>`) has no name token
+				const tagName = nestedTag.type === 'tag' ? stringifyToken(nestedTag) : '';
 
 				const firstChild = token.content[0];
 				if (typeof firstChild === 'object' && firstChild.content === '</') {
 					// Closing tag
 					if (
 						openedTags.length > 0 &&
-						openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag)
+						openedTags[openedTags.length - 1].tagName === tagName
 					) {
 						// Pop matching opening tag
 						openedTags.pop();
@@ -52,7 +54,7 @@ function walkTokens (tokens) {
 					else {
 						// Opening tag
 						openedTags.push({
-							tagName: stringifyToken(nestedTag),
+							tagName,
 							openedBraces: 0,
 						});
 					}
@@ -147,7 +149,6 @@ export default {
 				.source
 		);
 
-		tag.inside['tag'].pattern = /^(<\/?)[^\s>\/]*/;
 		tag.inside['attr-value'].pattern =
 			/=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
 		tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;

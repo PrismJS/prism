@@ -1,0 +1,17 @@
+_clone
+_super
+_thisthread
+_package
+
+----------------------------------------------------
+
+[
+	["builtin", "_clone"],
+	["builtin", "_super"],
+	["builtin", "_thisthread"],
+	["builtin", "_package"]
+]
+
+----------------------------------------------------
+
+Checks for builtins.

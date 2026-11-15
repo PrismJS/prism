@@ -1,0 +1,72 @@
+Hello <b>bold</b> and <i>italic</i> text
+Wait for input<->then continue
+Choose </Yes/No/Maybe>
+Score <:score> and <:score + 1>
+Hello <@char Kohaku.Happy pos:50>world
+<color=red>red</color> text
+Escaped \<b> tag
+Not a tag < because no closing
+
+----------------------------------------------------
+
+[
+	"Hello ",
+	["tag", "<b>"],
+	"bold",
+	["tag", "</b>"],
+	" and ",
+	["tag", "<i>"],
+	"italic",
+	["tag", "</i>"],
+	" text\r\nWait for input",
+	["tag", "<->"],
+	"then continue\r\nChoose ",
+	["tag", [
+		["punctuation", "<"],
+		["punctuation", "/"],
+		["option", "Yes"],
+		["punctuation", "/"],
+		["option", "No"],
+		["punctuation", "/"],
+		["option", "Maybe"],
+		["punctuation", ">"]
+	]],
+
+	"\r\nScore ",
+	["tag", [
+		["punctuation", "<:"],
+		["expression", "score"],
+		["punctuation", ">"]
+	]],
+	" and ",
+	["tag", [
+		["punctuation", "<:"],
+		["expression", "score + 1"],
+		["punctuation", ">"]
+	]],
+
+	"\r\nHello ",
+	["tag", [
+		["punctuation", "<"],
+		["command", [
+			["command-name", "@char"],
+			["parameter-value", ["Kohaku.Happy"]],
+			["parameter-name", [
+				"pos",
+				["punctuation", ":"]
+			]],
+			["parameter-value", ["50"]]
+		]],
+		["punctuation", ">"]
+	]],
+	"world\r\n",
+
+	["tag", "<color=red>"],
+	"red",
+	["tag", "</color>"],
+	" text\r\nEscaped \\<b> tag\r\nNot a tag < because no closing"
+]
+
+----------------------------------------------------
+
+Checks for text tags.

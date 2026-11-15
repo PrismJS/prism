@@ -1,0 +1,23 @@
+# line comment with a 'quote', a b: 2 pair, and a 30s duration
+
+/* block comment
+   with a "quote" and # hash */
+
+a: 1 # trailing comment
+
+----------------------------------------------------
+
+[
+	["comment", "# line comment with a 'quote', a b: 2 pair, and a 30s duration\r"],
+
+	["comment", "/* block comment\r\n   with a \"quote\" and # hash */"],
+
+	["key", "a"],
+	["punctuation", ":"],
+	["number", "1"],
+	["comment", "# trailing comment"]
+]
+
+----------------------------------------------------
+
+Comments can appear wherever whitespace may go, and a comment holds strings and other syntax as plain text.

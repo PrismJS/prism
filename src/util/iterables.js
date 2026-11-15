@@ -39,3 +39,31 @@ export function forEach (value, callbackFn) {
 		callbackFn(value, 0);
 	}
 }
+
+/**
+ * Checks whether the given value is iterable.
+ *
+ * @param {any} value
+ * @returns {value is Iterable<any>}
+ */
+export function isIterable (value) {
+	return typeof value === 'object' && Symbol.iterator in Object(value);
+}
+
+/**
+ * Converts the given value to an iterable.
+ *
+ * If the given value is already iterable, it will be returned as is.
+ * Otherwise, it will be converted to an array.
+ *
+ * @template T
+ * @param {any} value
+ * @returns {Iterable<T>}
+ */
+export function toIterable (value) {
+	if (isIterable(value)) {
+		return value;
+	}
+
+	return toArray(value);
+}

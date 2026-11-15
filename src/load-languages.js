@@ -1,6 +1,7 @@
 import { resolveAlias } from './shared/meta/alias-data.js';
 import { knownLanguages } from './shared/meta/all-languages-data.js';
 import { toArray } from './util/iterables.js';
+import { languageIdParts } from './util/language-id.js';
 
 /**
  * @param {string} dir
@@ -22,7 +23,9 @@ const importCache = new Map();
 function importFile (file) {
 	let promise = importCache.get(file);
 	if (promise === undefined) {
-		promise = import(file);
+		// The path is known only at runtime, so bundlers must leave this call alone.
+		// Without these comments, webpack and Rspack bundle all of `dist/`, Turbopack fails, and Vite warns when Prism is symlinked.
+		promise = import(/* webpackIgnore: true */ /* @vite-ignore */ file);
 		importCache.set(file, promise);
 	}
 	return promise;
@@ -40,8 +43,11 @@ function importFile (file) {
  */
 export async function loadLanguages (Prism, languages = knownLanguages, srcPath = '.') {
 	languages = toArray(languages)
+		// compound ids like `diff:css` load all their parts
+		.flatMap(languageIdParts)
+		.filter(id => id !== 'none')
 		.map(resolveAlias)
-		.filter(id => !Prism.components.has(id));
+		.filter(id => !Prism.languageRegistry.has(id));
 
 	await Promise.all(
 		languages.map(async id => {
@@ -49,7 +55,8 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 				const path = pathJoin(srcPath, `languages/${id}.js`);
 				/** @type {{ default: ComponentProto }} */
 				const exports = await importFile(path);
-				Prism.components.add(exports.default);
+				// @ts-ignore
+				Prism.languageRegistry.add(exports.default);
 			}
 			catch (error) {
 				if (!loadLanguages.silent) {
@@ -66,6 +73,6 @@ export async function loadLanguages (Prism, languages = knownLanguages, srcPath 
 loadLanguages.silent = false;
 
 /**
- * @typedef {import('./core.js').Prism} Prism
- * @typedef {import('./types.d.ts').ComponentProto} ComponentProto
+ * @import { Prism } from './core.js';
+ * @import { ComponentProto } from './types.d.ts';
  */

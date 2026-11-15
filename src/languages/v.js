@@ -1,53 +1,14 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'v'>} */
 export default {
 	id: 'v',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'char': {
-				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
-				alias: 'rune',
-			},
-		});
-
+	grammar () {
 		const genericInside = {
 			'punctuation': /[<>]/,
 			'class-name': /\w+/,
 		};
-
-		insertBefore(base, 'operator', {
-			'attribute': {
-				pattern:
-					/(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
-				lookbehind: true,
-				alias: 'annotation',
-				inside: {
-					'punctuation': /[\[\]]/,
-					'keyword': /\w+/,
-				},
-			},
-			'generic': {
-				pattern: /<\w+>(?=\s*[\)\{])/,
-				inside: genericInside,
-			},
-		});
-
-		insertBefore(base, 'function', {
-			'generic-function': {
-				// e.g. foo<T>( ...
-				pattern: /\b\w+\s*<\w+>(?=\()/,
-				inside: {
-					'function': /^\w+/,
-					'generic': {
-						pattern: /<\w+>/,
-						inside: genericInside,
-					},
-				},
-			},
-		});
 
 		return {
 			'string': {
@@ -88,6 +49,41 @@ export default {
 				/~|\?|[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\.?/,
 			'builtin':
 				/\b(?:any(?:_float|_int)?|bool|byte(?:ptr)?|charptr|f(?:32|64)|i(?:8|16|64|128|nt)|rune|size_t|string|u(?:16|32|64|128)|voidptr)\b/,
+			$insert: {
+				'char': {
+					$before: 'string',
+					pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
+					alias: 'rune',
+				},
+				'attribute': {
+					$before: 'operator',
+					pattern:
+						/(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
+					lookbehind: true,
+					alias: 'annotation',
+					inside: {
+						'punctuation': /[\[\]]/,
+						'keyword': /\w+/,
+					},
+				},
+				'generic': {
+					$before: 'operator',
+					pattern: /<\w+>(?=\s*[\)\{])/,
+					inside: genericInside,
+				},
+				'generic-function': {
+					$before: 'function',
+					// e.g. foo<T>( ...
+					pattern: /\b\w+\s*<\w+>(?=\()/,
+					inside: {
+						'function': /^\w+/,
+						'generic': {
+							pattern: /<\w+>/,
+							inside: genericInside,
+						},
+					},
+				},
+			},
 		};
 	},
 };

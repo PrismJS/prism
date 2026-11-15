@@ -1,0 +1,51 @@
+/*
+A block comment holds a 'quote', a "quote", and a # hash.
+*/
+# A line comment holds a 'quote'.
+a: 1 /* inline */ # trailing
+b: 'x # y' # not part of the string
+/* before a key */ d: 2
+e: { /* inside braces */ f: 3 }
+c: 1 /* unclosed
+
+----------------------------------------------------
+
+[
+	["comment", "/*\r\nA block comment holds a 'quote', a \"quote\", and a # hash.\r\n*/"],
+
+	["comment", "# A line comment holds a 'quote'.\r"],
+
+	["key", "a"],
+	["punctuation", ":"],
+	["number", "1"],
+	["comment", "/* inline */"],
+	["comment", "# trailing\r"],
+
+	["key", "b"],
+	["punctuation", ":"],
+	["string", "'x # y'"],
+	["comment", "# not part of the string\r"],
+
+	["comment", "/* before a key */"],
+	["key", "d"],
+	["punctuation", ":"],
+	["number", "2"],
+
+	["key", "e"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["comment", "/* inside braces */"],
+	["key", "f"],
+	["punctuation", ":"],
+	["number", "3"],
+	["punctuation", "}"],
+
+	["key", "c"],
+	["punctuation", ":"],
+	["number", "1"],
+	["comment", "/* unclosed"]
+]
+
+----------------------------------------------------
+
+Comments hold any syntax as plain text, and an unclosed block comment runs to the end of the file.

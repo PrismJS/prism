@@ -4,9 +4,9 @@ description: Automatically loads the needed languages to highlight the code bloc
 owner: Golmote
 noCSS: true
 resources:
-  - https://dev.prismjs.com/components.js
-  - https://prismjs.com/assets/vendor/jszip.min.js
-  - https://prismjs.com/assets/vendor/FileSaver.min.js
+  - /assets/vendor/jszip.min.js
+  - /assets/vendor/FileSaver.min.js
+  - /languages/css.js
   - ./demo.js
 ---
 
@@ -33,29 +33,33 @@ resources:
 The plugin will automatically handle missing grammars and load them for you. To do this, you need to provide a URL to a directory of all the grammars you want. This can be the path to a local directory with all grammars or a CDN URL.
 
 You can download all the available grammars by clicking on the following link: <button class="download-grammars" type="button">download all grammars</button>.<br />
-Alternatively, you can also clone the GitHub repo and take the `components` folder from there. Read our [usage section](https://prismjs.com/index.html#basic-usage-cdn) to use a CDN.
+Alternatively, you can also install the `prismjs` package and take the `dist` folder from there. Read our [usage section](/start/#basic-usage-cdn) to use a CDN.
 
-You can then download Prism core and any plugins from the [Download](https://prismjs.com/download.html) page, without checking any languages (or just check the languages you want to load by default, e.g. if you're using a language a lot, then you probably want to save the extra HTTP request).
+You can then download Prism core and any plugins from the [Download](/download/) page, without checking any languages (or just check the languages you want to load by default, e.g. if you're using a language a lot, then you probably want to save the extra HTTP request).
 
-A couple of additional options are available through the configuration object `Prism.plugins.autoloader`.
+An additional option is available through the configuration object `Prism.pluginRegistry.peek('autoloader').plugin`.
 
 ## Specifying the grammars path
 
-By default, the plugin will look for the missing grammars in the `components` folder. If your files are in a different location, you can specify it using the `languages_path` option:
+By default, the plugin will look for the missing grammars in the `languages` folder. If your files are in a different location, you can specify the folder that contains `languages`, as an absolute URL, using the `srcPath` option:
 
 ```
-Prism.plugins.autoloader.languages_path = 'path/to/grammars/';
+Prism.pluginRegistry.peek('autoloader').plugin.srcPath = 'https://example.com/path/to/grammars/';
+```
+
+You can also set it with a `data-autoloader-path` attribute on a script:
+
+```markup
+<script type="module" src="..." data-autoloader-path="https://example.com/path/to/grammars/"></script>
 ```
 
 _Note:_ Autoloader is pretty good at guessing this path. You most likely won't have to change this path.
 
-## Using development versions
+If you build your site with a bundler, such as webpack or Vite, the grammars are not part of the bundle. Copy the `languages` folder from `prismjs/dist` next to the bundled JavaScript file. If you put it elsewhere, set `srcPath` to the folder that contains it.
 
-By default, the plugin uses the minified versions of the grammars. If you wish to use the development versions instead, you can set the `use_minified` option to false:
+## Compound language ids
 
-```
-Prism.plugins.autoloader.use_minified = false;
-```
+Compound ids of meta-languages such as `language-diff:css` or `language-django:css` are understood: the plugin loads every part (`diff` and `css`).
 
 ## Specifying additional dependencies
 
@@ -68,14 +72,6 @@ All default dependencies are already included in the plugin. However, there are 
 		color: @red;
 	}
 </code><pre>
-```
-
-## Force to reload a grammar
-
-The plugin usually doesn't reload a grammar if it already exists. In some very specific cases, you might however want to do so. If you add an exclamation mark after an alias in the `data-dependencies` attribute, this language will be reloaded.
-
-```html
-<pre class="language-markup" data-dependencies="markup,css!"><code>
 ```
 
 </section>
@@ -109,10 +105,10 @@ The Less filter used in Pug:
 
 # Markdown
 
-Markdown will use the Autoloader to automatically load missing languages.
+The Autoloader also loads the languages of code embedded in the highlighted code, like the fenced code blocks of Markdown.
 
 ````markdown
-The C# code will be highlighted __after__ the rest of this document.
+The C# code will be highlighted **after** the rest of this document.
 
 ```csharp
 public class Foo : IBar<int> {

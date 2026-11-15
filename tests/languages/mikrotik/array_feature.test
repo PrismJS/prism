@@ -1,0 +1,239 @@
+:local arr {1;2;3};
+:local arr2 {"key1"=val1;"key2"=val2};
+:local arr3 {true;false;true};
+:local arr4 {192.168.1.1;10.0.0.1};
+:local arr5 {"hello";"world"};
+:local arr6 {"escaped \n \t";"$myVar"};
+:local arr7 {"key1"=val1;"key2"=val2;"key3"=val3};
+:local arr8 { *1A; *0};
+:local arr9 {10.0.0.0/24;192.168.0.0/16};
+:local arr10 {2001:db8::/32;::1};
+:local arr11 {may/13/1982 16:30:15;jan/01/2024};
+:local arr12 {16:30:15;1d2h};
+:local arr13 {ether1;wlan1};
+
+----------------------------------------------------
+
+[
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "1"],
+		["array-item-delimiter", ";"],
+		["array-item", "2"],
+		["array-item-delimiter", ";"],
+		["array-item", "3"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr2"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", [
+			["key", [
+				["punctuation", "\""],
+				"key1",
+				["punctuation", "\""]
+			]],
+			["operator", "="],
+			["value", "val1"]
+		]],
+		["array-item-delimiter", ";"],
+		["array-item", [
+			["key", [
+				["punctuation", "\""],
+				"key2",
+				["punctuation", "\""]
+			]],
+			["operator", "="],
+			["value", "val2"]
+		]],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr3"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "true"],
+		["array-item-delimiter", ";"],
+		["array-item", "false"],
+		["array-item-delimiter", ";"],
+		["array-item", "true"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr4"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "192.168.1.1"],
+		["array-item-delimiter", ";"],
+		["array-item", "10.0.0.1"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr5"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", ["\"hello\""]],
+		["array-item-delimiter", ";"],
+		["array-item", ["\"world\""]],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr6"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", [
+			"\"escaped ",
+			["escape-sequence", "\\n"],
+			["escape-sequence", "\\t"],
+			"\""
+		]],
+		["array-item-delimiter", ";"],
+		["array-item", [
+			"\"",
+			["substitution-operator", "$"],
+			["variable", "myVar"],
+			"\""
+		]],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr7"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", [
+			["key", [
+				["punctuation", "\""],
+				"key1",
+				["punctuation", "\""]
+			]],
+			["operator", "="],
+			["value", "val1"]
+		]],
+		["array-item-delimiter", ";"],
+		["array-item", [
+			["key", [
+				["punctuation", "\""],
+				"key2",
+				["punctuation", "\""]
+			]],
+			["operator", "="],
+			["value", "val2"]
+		]],
+		["array-item-delimiter", ";"],
+		["array-item", [
+			["key", [
+				["punctuation", "\""],
+				"key3",
+				["punctuation", "\""]
+			]],
+			["operator", "="],
+			["value", "val3"]
+		]],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr8"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", " "],
+		["array-item", "*1A"],
+		["array-item-delimiter", ";"],
+		["array-item", " "],
+		["array-item", "*0"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr9"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "10.0.0.0/24"],
+		["array-item-delimiter", ";"],
+		["array-item", "192.168.0.0/16"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr10"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "2001:db8::/32"],
+		["array-item-delimiter", ";"],
+		["array-item", "::1"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr11"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "may/13/1982 16:30:15"],
+		["array-item-delimiter", ";"],
+		["array-item", "jan/01/2024"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr12"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "16:30:15"],
+		["array-item-delimiter", ";"],
+		["array-item", "1d2h"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"],
+
+	["prefix", ":"],
+	["command", "local"],
+	["variable", "arr13"],
+	["array", [
+		["punctuation", "{"],
+		["array-item", "ether1"],
+		["array-item-delimiter", ";"],
+		["array-item", "wlan1"],
+		["punctuation", "}"]
+	]],
+	["end-of-command", ";"]
+]
+
+----------------------------------------------------
+
+Tests the `array` token: numeric arrays, key-value arrays, boolean arrays, IP address
+arrays, string arrays, arrays with escape sequences and variable interpolation inside
+string items, multi-pair key-value arrays. Also tests array items with all data types:
+internal IDs, IP prefixes, IPv6 addresses and prefixes, date-times, dates, times,
+durations, and bare fallback items.

@@ -1,11 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'dart'>} */
 export default {
 	id: 'dart',
 	base: clike,
-	grammar ({ base }) {
+	grammar () {
 		const keywords = [
 			/\b(?:async|sync|yield)\*/,
 			/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/,
@@ -28,47 +27,6 @@ export default {
 			},
 		};
 
-		insertBefore(base, 'string', {
-			'string-literal': {
-				pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\w+|\{(?:[^{}]|\{[^{}]*\})*\})/,
-						lookbehind: true,
-						inside: {
-							'punctuation': /^\$\{?|\}$/,
-							'expression': {
-								pattern: /[\s\S]+/,
-								inside: 'dart',
-							},
-						},
-					},
-					'string': /[\s\S]+/,
-				},
-			},
-			'string': undefined,
-		});
-
-		insertBefore(base, 'class-name', {
-			'metadata': {
-				pattern: /@\w+/,
-				alias: 'function',
-			},
-		});
-
-		insertBefore(base, 'class-name', {
-			'generics': {
-				pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
-				inside: {
-					'class-name': className,
-					'keyword': keywords,
-					'punctuation': /[<>(),.:]/,
-					'operator': /[?&|]/,
-				},
-			},
-		});
-
 		return {
 			'class-name': [
 				className,
@@ -83,6 +41,46 @@ export default {
 			'keyword': keywords,
 			'operator':
 				/\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/,
+			$insertBefore: {
+				'string': {
+					'string-literal': {
+						pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
+						greedy: true,
+						inside: {
+							'interpolation': {
+								pattern:
+									/((?:^|[^\\])(?:\\{2})*)\$(?:\w+|\{(?:[^{}]|\{[^{}]*\})*\})/,
+								lookbehind: true,
+								inside: {
+									'punctuation': /^\$\{?|\}$/,
+									'expression': {
+										pattern: /[\s\S]+/,
+										inside: 'dart',
+									},
+								},
+							},
+							'string': /[\s\S]+/,
+						},
+					},
+					'string': undefined,
+				},
+				'class-name': {
+					'metadata': {
+						pattern: /@\w+/,
+						alias: 'function',
+					},
+					'generics': {
+						pattern:
+							/<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
+						inside: {
+							'class-name': className,
+							'keyword': keywords,
+							'punctuation': /[<>(),.:]/,
+							'operator': /[?&|]/,
+						},
+					},
+				},
+			},
 		};
 	},
 };

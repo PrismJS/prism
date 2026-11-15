@@ -1,0 +1,29 @@
+'literal\path\': 'C:\literal\'
+"escaped\\path\\": "C:\\escaped\\"
+"quote\"key": "quote\"value"
+"\u{1f600}": "\u{0} \u{e9} \u{1f600}"
+'日本語': 'café'
+
+----------------------------------------------------
+
+[
+	["key", "'literal\\path\\'"],
+	["punctuation", ":"],
+	["string", "'C:\\literal\\'"],
+	["key", "\"escaped\\\\path\\\\\""],
+	["punctuation", ":"],
+	["string", "\"C:\\\\escaped\\\\\""],
+	["key", "\"quote\\\"key\""],
+	["punctuation", ":"],
+	["string", "\"quote\\\"value\""],
+	["key", "\"\\u{1f600}\""],
+	["punctuation", ":"],
+	["string", "\"\\u{0} \\u{e9} \\u{1f600}\""],
+	["key", "'日本語'"],
+	["punctuation", ":"],
+	["string", "'café'"]
+]
+
+----------------------------------------------------
+
+Literal backslashes stay literal, escaped backslashes and quotes stay inside strings and keys, and Unicode keys and escapes remain intact.

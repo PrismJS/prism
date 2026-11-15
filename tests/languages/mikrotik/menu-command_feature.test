@@ -1,0 +1,39 @@
+add
+disable
+edit
+enable
+export
+find
+flush
+get
+import
+monitor-traffic
+print
+quit
+redo
+remove
+send
+set
+undo
+
+----------------------------------------------------
+
+[
+	["command", "add"],
+	["command", "disable"],
+	["command", "edit"],
+	["command", "enable"],
+	["command", "export"],
+	["command", "find"],
+	["command", "flush"],
+	["command", "get"],
+	["command", "import"],
+	["command", "monitor-traffic"],
+	["command", "print"],
+	["command", "quit"],
+	["command", "redo"],
+	["command", "remove"],
+	["command", "send"],
+	["command", "set"],
+	["command", "undo"]
+]

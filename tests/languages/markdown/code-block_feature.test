@@ -6,6 +6,42 @@
 var foo = 0;
 ```
 
+```
+no language
+```
+
+```python3
+print(1)
+```
+
+```
+> not a quote
+```
+
+```js
+let a
+```  
+
+**after a closing fence with trailing spaces**
+
+ ```js
+let b
+```
+
+**after an indented fence**
+
+````md
+```js
+let c
+```
+````
+
+- item
+
+  ```js
+  let d
+  ```
+
 ----------------------------------------------------
 
 [
@@ -41,6 +77,71 @@ var foo = 0;
 	["code", [
 		["punctuation", "```"], ["code-language", "js"],
 		["code-block", "var foo = 0;"],
+		["punctuation", "```"]
+	]],
+
+	["code", [
+		["punctuation", "```"],
+		["code-block", "no language"],
+		["punctuation", "```"]
+	]],
+
+	["code", [
+		["punctuation", "```"], ["code-language", "python3"],
+		["code-block", "print(1)"],
+		["punctuation", "```"]
+	]],
+
+	["code", [
+		["punctuation", "```"],
+		["code-block", "> not a quote"],
+		["punctuation", "```"]
+	]],
+
+	["code", [
+		["punctuation", "```"], ["code-language", "js"],
+		["code-block", "let a"],
+		["punctuation", "```"]
+	]],
+
+	["bold", [
+		["punctuation", "**"],
+		["content", ["after a closing fence with trailing spaces"]],
+		["punctuation", "**"]
+	]],
+
+	["code", [
+		["punctuation", "```"], ["code-language", "js"],
+		["code-block", "let b"],
+		["punctuation", "```"]
+	]],
+
+	["bold", [
+		["punctuation", "**"],
+		["content", ["after an indented fence"]],
+		["punctuation", "**"]
+	]],
+
+	["code", [
+		["punctuation", "````"],
+		["code-language", "md"],
+
+		["code-block", [
+			["code", [
+				["punctuation", "```"], ["code-language", "js"],
+				["code-block", "let c"],
+				["punctuation", "```"]
+			]]
+		]],
+
+		["punctuation", "````"]
+	]],
+
+	["list", "-"], " item\r\n\r\n",
+
+	["code", [
+		["punctuation", "```"], ["code-language", "js"],
+		["code-block", "  let d"],
 		["punctuation", "```"]
 	]]
 ]

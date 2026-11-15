@@ -1,0 +1,11 @@
+_class _dynamic _global _import _local
+
+----------------------------------------------------
+
+[
+	["keyword-variable", "_class"], ["keyword-variable", "_dynamic"], ["keyword-variable", "_global"], ["keyword-variable", "_import"], ["keyword-variable", "_local"]
+]
+
+----------------------------------------------------
+
+Checks for keyword variables.

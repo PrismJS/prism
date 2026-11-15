@@ -1,7 +1,7 @@
 import { LinkedList } from '../linked-list.js';
 import singleton from '../prism.js';
+import { embed } from './embed.js';
 import { _matchGrammar } from './match.js';
-import { resolve } from './util.js';
 
 /**
  * This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input
@@ -28,15 +28,13 @@ import { resolve } from './util.js';
  */
 export function tokenize (text, grammar) {
 	const prism = this ?? singleton;
-	const customTokenize = grammar.$tokenize;
-	if (customTokenize) {
-		return customTokenize(text, grammar, prism);
+	const { $tokenize, $inner } = grammar;
+	if ($tokenize) {
+		return $tokenize(text, grammar, prism);
 	}
-
-	let restGrammar = resolve(prism.components, grammar.$rest);
-	while (restGrammar) {
-		grammar = { ...grammar, ...restGrammar };
-		restGrammar = resolve(prism.components, restGrammar.$rest);
+	if ($inner != null) {
+		// Parts of the result are highlighted as the inner language
+		return embed(text, grammar, prism);
 	}
 
 	const tokenList = new LinkedList();
@@ -55,8 +53,6 @@ export function tokenize (text, grammar) {
 }
 
 /**
- * @typedef {import('../../types.d.ts').TokenStream} TokenStream
- * @typedef {import('../../types.d.ts').Grammar} Grammar
- * @typedef {import('../../types.d.ts').GrammarTokens} GrammarTokens
- * @typedef {import('../prism.js').Prism} Prism
+ * @import { TokenStream, Grammar, GrammarTokens } from '../../types.d.ts';
+ * @import { Prism } from '../prism.js';
  */

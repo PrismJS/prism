@@ -1,0 +1,33 @@
+timeout: 30s
+retry-after: 1m30s
+grace: 1.5s
+tick: 500ms
+micro: 2us
+nano: 3ns
+long: 1h30m
+negative: -1h30m
+separators: 1_000h30_000m
+fractional-last: 1h30m2.5s
+all-units: 1h2m3s4ms5us6ns
+zero: 0s
+
+----------------------------------------------------
+
+[
+	["key", "timeout"], ["punctuation", ":"], ["duration", "30s"],
+	["key", "retry-after"], ["punctuation", ":"], ["duration", "1m30s"],
+	["key", "grace"], ["punctuation", ":"], ["duration", "1.5s"],
+	["key", "tick"], ["punctuation", ":"], ["duration", "500ms"],
+	["key", "micro"], ["punctuation", ":"], ["duration", "2us"],
+	["key", "nano"], ["punctuation", ":"], ["duration", "3ns"],
+	["key", "long"], ["punctuation", ":"], ["duration", "1h30m"],
+	["key", "negative"], ["punctuation", ":"], ["duration", "-1h30m"],
+	["key", "separators"], ["punctuation", ":"], ["duration", "1_000h30_000m"],
+	["key", "fractional-last"], ["punctuation", ":"], ["duration", "1h30m2.5s"],
+	["key", "all-units"], ["punctuation", ":"], ["duration", "1h2m3s4ms5us6ns"],
+	["key", "zero"], ["punctuation", ":"], ["duration", "0s"]
+]
+
+----------------------------------------------------
+
+Durations use h, m, s, ms, us, and ns, and a fraction is allowed on the last part.

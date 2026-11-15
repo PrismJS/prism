@@ -1,0 +1,17 @@
+_true
+_True
+_false
+_maybe
+
+----------------------------------------------------
+
+[
+	["boolean", "_true"],
+	["boolean", "_True"],
+	["boolean", "_false"],
+	["boolean", "_maybe"]
+]
+
+----------------------------------------------------
+
+Checks for booleans.

@@ -1,0 +1,115 @@
+DATE=$(date)
+SHORT_HASH=$(git rev-parse --short HEAD)
+LONG_HASH=`git rev-parse HEAD`
+BUILD_ID="build-$(uuidgen)"
+PWD_MESSAGE="Running from $(pwd)"
+
+DATABASE_URL="postgres://$(whoami)@localhost/my_database"
+WITH_SUBSTITUTION=postgres://$(whoami)@localhost/my_database
+NO_SUBSTITUTION='postgres://$(whoami)@localhost/my_database'
+AND_HERE=`Some text...
+postgres://$(whoami)@localhost/my_database`
+
+----------------------------------------------------
+
+[
+	["key", "DATE"],
+	["assignment-operator", "="],
+	["value", [
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "date"],
+			["command-substitution-punctuation", ")"]
+		]]
+	]],
+
+	["key", "SHORT_HASH"],
+	["assignment-operator", "="],
+	["value", [
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "git rev-parse --short HEAD"],
+			["command-substitution-punctuation", ")"]
+		]]
+	]],
+
+	["key", "LONG_HASH"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"git rev-parse HEAD",
+		["punctuation", "`"]
+	]],
+
+	["key", "BUILD_ID"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"build-",
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "uuidgen"],
+			["command-substitution-punctuation", ")"]
+		]],
+		["punctuation", "\""]
+	]],
+
+	["key", "PWD_MESSAGE"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"Running from ",
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "pwd"],
+			["command-substitution-punctuation", ")"]
+		]],
+		["punctuation", "\""]
+	]],
+
+	["key", "DATABASE_URL"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"postgres://",
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "whoami"],
+			["command-substitution-punctuation", ")"]
+		]],
+		"@localhost/my_database",
+		["punctuation", "\""]
+	]],
+
+	["key", "WITH_SUBSTITUTION"],
+	["assignment-operator", "="],
+	["value", [
+		"postgres://",
+		["command-substitution", [
+			["command-substitution-punctuation", "$("],
+			["shell-command", "whoami"],
+			["command-substitution-punctuation", ")"]
+		]],
+		"@localhost/my_database"
+	]],
+
+	["key", "NO_SUBSTITUTION"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "'"],
+		"postgres://$(whoami)@localhost/my_database",
+		["punctuation", "'"]
+	]],
+
+	["key", "AND_HERE"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"Some text...\r\npostgres://$(whoami)@localhost/my_database",
+		["punctuation", "`"]
+	]]
+]
+
+----------------------------------------------------
+
+Check for command substitution.

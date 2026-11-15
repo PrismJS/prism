@@ -1,0 +1,39 @@
+_pragma(classify_level=basic, usage=restricted, topic=prism)
+_pragma(classify_level=advanced, usage=unrestricted, topic=different_prism)
+
+----------------------------------------------------
+
+[
+	["pragma", [
+		"_pragma(",
+		["modifier", "classify_level"],
+		["pragma-punctuation", "="],
+		"basic",
+		["pragma-punctuation", ","],
+		["modifier", "usage"],
+		["pragma-punctuation", "="],
+		"restricted",
+		["pragma-punctuation", ","],
+		["modifier", "topic"],
+		["pragma-punctuation", "="],
+		"prism)"
+	]],
+	["pragma", [
+		"_pragma(",
+		["modifier", "classify_level"],
+		["pragma-punctuation", "="],
+		"advanced",
+		["pragma-punctuation", ","],
+		["modifier", "usage"],
+		["pragma-punctuation", "="],
+		"unrestricted",
+		["pragma-punctuation", ","],
+		["modifier", "topic"],
+		["pragma-punctuation", "="],
+		"different_prism)"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for pragmas.

@@ -1,0 +1,64 @@
+revert();
+revert("Not enough Ether provided.");
+revert CustomError();
+revert CustomError(1, 2);
+revert Lib.Error();
+
+function g(bool revert) {}
+revert = true;
+
+----------------------------------------------------
+
+[
+	["keyword", "revert"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "revert"],
+	["punctuation", "("],
+	["string", "\"Not enough Ether provided.\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "revert"],
+	["function", "CustomError"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "revert"],
+	["function", "CustomError"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "revert"],
+	" Lib",
+	["punctuation", "."],
+	["function", "Error"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function", "g"],
+	["punctuation", "("],
+	["builtin", "bool"],
+	" revert",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	"\r\nrevert ",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that `revert` is only highlighted as a keyword at the start of a revert statement.

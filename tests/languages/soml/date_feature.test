@@ -1,0 +1,116 @@
+launch-date:2026-11-01
+2026-11-01: 2026-11-02
+values: [0001-01-01, 9999-12-31, 1582-10-10, 2011-12-30]
+text: '2026-11-01'
+instant: 2026-11-01T12:00:00Z
+# 2026-11-01
+/* 2026-11-01 */
+
+----------------------------------------------------
+
+[
+	[
+		"key",
+		"launch-date"
+	],
+	[
+		"punctuation",
+		":"
+	],
+	[
+		"date",
+		"2026-11-01"
+	],
+	[
+		"key",
+		"2026-11-01"
+	],
+	[
+		"punctuation",
+		":"
+	],
+	[
+		"date",
+		"2026-11-02"
+	],
+	[
+		"key",
+		"values"
+	],
+	[
+		"punctuation",
+		":"
+	],
+	[
+		"punctuation",
+		"["
+	],
+	[
+		"date",
+		"0001-01-01"
+	],
+	[
+		"punctuation",
+		","
+	],
+	[
+		"date",
+		"9999-12-31"
+	],
+	[
+		"punctuation",
+		","
+	],
+	[
+		"date",
+		"1582-10-10"
+	],
+	[
+		"punctuation",
+		","
+	],
+	[
+		"date",
+		"2011-12-30"
+	],
+	[
+		"punctuation",
+		"]"
+	],
+	[
+		"key",
+		"text"
+	],
+	[
+		"punctuation",
+		":"
+	],
+	[
+		"string",
+		"'2026-11-01'"
+	],
+	[
+		"key",
+		"instant"
+	],
+	[
+		"punctuation",
+		":"
+	],
+	[
+		"instant",
+		"2026-11-01T12:00:00Z"
+	],
+	[
+		"comment",
+		"# 2026-11-01\r"
+	],
+	[
+		"comment",
+		"/* 2026-11-01 */"
+	]
+]
+
+----------------------------------------------------
+
+Calendar dates stay intact as values and array items, while date-like keys, strings, comments, and instants keep their own tokens.

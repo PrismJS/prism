@@ -1,0 +1,83 @@
+:beep
+:delay
+:deserialize
+:environment
+:error
+:execute
+:find
+:global
+:jobname
+:len
+:local
+:log
+:nothing
+:onerror
+:parse
+:pick
+:put
+:range
+:resolve
+:retry
+:rndnum
+:rndstr
+:serialize
+:set
+:time
+:timestamp
+:toarray
+:tobool
+:tocrlf
+:toid
+:toip
+:toip6
+:tolf
+:tonsec
+:tonum
+:tostr
+:totime
+:typeof
+:return
+
+----------------------------------------------------
+
+[
+	["prefix", ":"], ["command", "beep"],
+	["prefix", ":"], ["command", "delay"],
+	["prefix", ":"], ["command", "deserialize"],
+	["prefix", ":"], ["command", "environment"],
+	["prefix", ":"], ["command", "error"],
+	["prefix", ":"], ["command", "execute"],
+	["prefix", ":"], ["command", "find"],
+	["prefix", ":"], ["command", "global"],
+	["prefix", ":"], ["command", "jobname"],
+	["prefix", ":"], ["command", "len"],
+	["prefix", ":"], ["command", "local"],
+	["prefix", ":"], ["command", "log"],
+	["prefix", ":"], ["command", "nothing"],
+	["prefix", ":"], ["command", "onerror"],
+	["prefix", ":"], ["command", "parse"],
+	["prefix", ":"], ["command", "pick"],
+	["prefix", ":"], ["command", "put"],
+	["prefix", ":"], ["command", "range"],
+	["prefix", ":"], ["command", "resolve"],
+	["prefix", ":"], ["command", "retry"],
+	["prefix", ":"], ["command", "rndnum"],
+	["prefix", ":"], ["command", "rndstr"],
+	["prefix", ":"], ["command", "serialize"],
+	["prefix", ":"], ["command", "set"],
+	["prefix", ":"], ["command", "time"],
+	["prefix", ":"], ["command", "timestamp"],
+	["prefix", ":"], ["command", "toarray"],
+	["prefix", ":"], ["command", "tobool"],
+	["prefix", ":"], ["command", "tocrlf"],
+	["prefix", ":"], ["command", "toid"],
+	["prefix", ":"], ["command", "toip"],
+	["prefix", ":"], ["command", "toip6"],
+	["prefix", ":"], ["command", "tolf"],
+	["prefix", ":"], ["command", "tonsec"],
+	["prefix", ":"], ["command", "tonum"],
+	["prefix", ":"], ["command", "tostr"],
+	["prefix", ":"], ["command", "totime"],
+	["prefix", ":"], ["command", "typeof"],
+	["prefix", ":"], ["command", "return"]
+]

@@ -5,7 +5,7 @@ owner: zeitgeist87
 optional: unescaped-markup
 noCSS: true
 body_classes: language-markup
-resources: /plugins/keep-markup.js { type="module" }
+resources: /plugins/keep-markup.js
 ---
 
 <style type="text/css">
@@ -33,7 +33,7 @@ The plugin can be disabled for a particular code block by adding the class `no-w
 The default settings can be overridden with the `setDefaults()`{ .language-javascript } method like so:
 
 ```js
-Prism.plugins.NormalizeWhitespace.setDefaults({
+Prism.pluginRegistry.peek("normalize-whitespace").plugin.setDefaults({
 	"remove-trailing": true,
 	"remove-indent": true,
 	"left-trim": true,
@@ -137,8 +137,12 @@ It is also compatible with the [keep-markup](../keep-markup) plugin:
 This plugin can also be used on the server or on the command line with Node.js:
 
 ```js
-let Prism = require("prismjs");
-let Normalizer = require("prismjs/plugins/normalize-whitespace/normalize-whitespace");
+import Prism from "prismjs";
+import javascript from "prismjs/languages/javascript.js";
+import { NormalizeWhitespace as Normalizer } from "prismjs/plugins/normalize-whitespace.js";
+
+Prism.languageRegistry.add(javascript);
+
 // Create a new Normalizer object
 let nw = new Normalizer({
 	"remove-trailing": true,
@@ -153,7 +157,7 @@ let nw = new Normalizer({
 });
 
 // ..or use the default object from Prism
-nw = Prism.plugins.NormalizeWhitespace;
+nw = Prism.pluginRegistry.peek("normalize-whitespace").plugin;
 
 // The code snippet you want to highlight, as a string
 let code = "\t\t\tlet data = 1;    ";
@@ -162,11 +166,11 @@ let code = "\t\t\tlet data = 1;    ";
 // and then indents by 1 tab
 code = nw.normalize(code, {
 	// Extra settings
-	indent: 1
+	indent: 1,
 });
 
 // Returns a highlighted HTML string
-let html = Prism.highlight(code, Prism.languages.javascript);
+let html = Prism.highlight(code, "javascript");
 ```
 
 </section>

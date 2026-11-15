@@ -1,0 +1,343 @@
+HELLO="Hi, ${NAME}"
+FULL="${HELLO}, welcome to ${APP_ENV}"
+
+INTERPOLATED=Multiple $FOO:+false ${BAR-main}\nLines of text
+ALSO_INTERPOLATED="Multiple\nLines with a var ${BAZ+42} and an escape sequence \" "
+NON_INTERPOLATED='Text without variable (like, $YOLO) interpolation'
+MULTILINE_NON_INTERPOLATED=`Long text here (with escape sequences, like \`
+or similar),
+e.g. a private SSH key (without $VAR interpolation)`
+
+KEY=${FOO:-default}
+KEY=${FOO:-false}
+KEY=${FOO:-true value}
+KEY=$FOO:-false
+KEY=$FOO:-false value
+KEY=${FOO--42}
+KEY=$FOO-42 years
+KEY=${FOO:--15}
+
+KEY=${BAR:+alternative}
+KEY=${BAR+true}
+KEY=${BAR+false value}
+KEY=$BAR+true
+KEY=$BAR+true value
+KEY=${BAR:+42}
+KEY=${BAR:+-42}
+KEY=${BAR:+42 years}
+KEY=$BAR:+42 years
+KEY="$FOO:+42"
+
+----------------------------------------------------
+
+[
+	["key", "HELLO"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"Hi, ",
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "NAME"],
+			["variable-expansion-punctuation", "}"]
+		]],
+		["punctuation", "\""]
+	]],
+
+	["key", "FULL"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "HELLO"],
+			["variable-expansion-punctuation", "}"]
+		]],
+		", welcome to ",
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "APP_ENV"],
+			["variable-expansion-punctuation", "}"]
+		]],
+		["punctuation", "\""]
+	]],
+
+	["key", "INTERPOLATED"],
+	["assignment-operator", "="],
+	["value", [
+		"Multiple ",
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "false"]
+		]],
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", "-"],
+			["default-value", "main"],
+			["variable-expansion-punctuation", "}"]
+		]],
+		["escape-sequence", "\\n"],
+		"Lines of text"
+	]],
+
+	["key", "ALSO_INTERPOLATED"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"Multiple",
+		["escape-sequence", "\\n"],
+		"Lines with a var ",
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAZ"],
+			["variable-expansion-punctuation", "+"],
+			["alternative-value", "42"],
+			["variable-expansion-punctuation", "}"]
+		]],
+		" and an escape sequence ",
+		["escape-sequence", "\\\""],
+		["punctuation", "\""]
+	]],
+
+	["key", "NON_INTERPOLATED"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "'"],
+		"Text without variable (like, $YOLO) interpolation",
+		["punctuation", "'"]
+	]],
+
+	["key", "MULTILINE_NON_INTERPOLATED"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"Long text here (with escape sequences, like ",
+		["escape-sequence", "\\`"],
+
+		"\r\nor similar),\r\ne.g. a private SSH key (without $VAR interpolation)",
+		["punctuation", "`"]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "default"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "false"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "true value"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "false"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "false"]
+		]],
+		" value"
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", "-"],
+			["default-value", "-42"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", "-"],
+			["default-value", "42"]
+		]],
+		" years"
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":-"],
+			["default-value", "-15"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "alternative"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", "+"],
+			["alternative-value", "true"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", "+"],
+			["alternative-value", "false value"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", "+"],
+			["alternative-value", "true"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", "+"],
+			["alternative-value", "true"]
+		]],
+		" value"
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "42"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", ":+"],
+			["variable-expansion-punctuation", "-"],
+			["default-value", "42"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "${"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "42 years"],
+			["variable-expansion-punctuation", "}"]
+		]]
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "BAR"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "42"]
+		]],
+		" years"
+	]],
+
+	["key", "KEY"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		["variable-expansion", [
+			["variable-expansion-punctuation", "$"],
+			["variable", "FOO"],
+			["variable-expansion-punctuation", ":+"],
+			["alternative-value", "42"]
+		]],
+		["punctuation", "\""]
+	]]
+]
+
+----------------------------------------------------
+
+Check for interpolation (also known as variable expansion).

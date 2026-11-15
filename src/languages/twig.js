@@ -1,11 +1,10 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'twig'>} */
 export default {
 	id: 'twig',
-	require: markup,
-	grammar: /** @type {Grammar} */ ({
+	inner: markup,
+	grammar: {
 		'twig-comment': {
 			pattern: /\{#[\s\S]*?#\}/,
 			greedy: true,
@@ -45,10 +44,5 @@ export default {
 				'punctuation': /[()\[\]{}:.,]/,
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

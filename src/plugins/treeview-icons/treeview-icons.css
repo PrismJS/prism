@@ -69,7 +69,8 @@
 	font-style: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	width: 2.5ex;
+	/* em, not ex: the generated font has no x-height, so browsers guess ex, some narrower than the icon */
+	width: 1.66em;
 	display: inline-block;
 }
 

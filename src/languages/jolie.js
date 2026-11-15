@@ -1,37 +1,10 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'jolie'>} */
 export default {
 	id: 'jolie',
 	base: clike,
-	grammar ({ base }) {
-		insertBefore(base, 'keyword', {
-			'aggregates': {
-				pattern:
-					/(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
-				lookbehind: true,
-				inside: {
-					'keyword': /\bwith\b/,
-					'class-name': /\w+/,
-					'punctuation': /,/,
-				},
-			},
-			'redirects': {
-				pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
-				lookbehind: true,
-				inside: {
-					'punctuation': /,/,
-					'class-name': /\w+/,
-					'operator': /=>/,
-				},
-			},
-			'property': {
-				pattern:
-					/\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/,
-			},
-		});
-
+	grammar () {
 		return {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\[\s\S]|[^"\\])*"/,
@@ -51,6 +24,33 @@ export default {
 			'punctuation': /[()[\]{},;.:]/,
 			'builtin':
 				/\b(?:Byte|any|bool|char|double|enum|float|int|length|long|ranges|regex|string|undefined|void)\b/,
+			$insertBefore: {
+				'keyword': {
+					'aggregates': {
+						pattern:
+							/(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
+						lookbehind: true,
+						inside: {
+							'keyword': /\bwith\b/,
+							'class-name': /\w+/,
+							'punctuation': /,/,
+						},
+					},
+					'redirects': {
+						pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
+						lookbehind: true,
+						inside: {
+							'punctuation': /,/,
+							'class-name': /\w+/,
+							'operator': /=>/,
+						},
+					},
+					'property': {
+						pattern:
+							/\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/,
+					},
+				},
+			},
 		};
 	},
 };

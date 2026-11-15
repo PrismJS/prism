@@ -1,0 +1,16 @@
+e-mail
+b-tree
+a-record
+
+----------------------------------------------------
+
+[
+	"e-mail\r\nb-tree\r\na-record"
+]
+
+----------------------------------------------------
+
+Kebab-case identifiers whose first component is a single hex letter (a-f) must not
+produce a number token for that letter or an operator token for the hyphen.
+Without the (?!-[a-z]) guard, `e` would be consumed as a number, leaving `-mail`
+as a new segment where `(?<![a-z])-` would falsely match as an arithmetic operator.

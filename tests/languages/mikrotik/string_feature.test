@@ -1,0 +1,73 @@
+"hello world"
+"escape sequences: \n \r \t \\ \" \$ \_ \61"
+"variable: $myVar"
+"quoted var: $\"my-var\""
+"expression: $[/system identity get name]"
+"subexpr: $(1 + 2)"
+"trailing dollar: $"
+
+----------------------------------------------------
+
+[
+	["string", ["\"hello world\""]],
+	["string", [
+		"\"escape sequences: ",
+		["escape-sequence", "\\n"],
+		["escape-sequence", "\\r"],
+		["escape-sequence", "\\t"],
+		["escape-sequence", "\\\\"],
+		["escape-sequence", "\\\""],
+		["escape-sequence", "\\$"],
+		["escape-sequence", "\\_"],
+		["escape-sequence", "\\61"],
+		"\""
+	]],
+	["string", [
+		"\"variable: ",
+		["substitution-operator", "$"],
+		["variable", "myVar"],
+		"\""
+	]],
+	["string", [
+		"\"quoted var: $",
+		["escape-sequence", "\\\""],
+		"my-var",
+		["escape-sequence", "\\\""],
+		"\""
+	]],
+	["string", [
+		"\"expression: ",
+		["expression", [
+			["begin-of-expression", "$["],
+			["command-substitution", [
+				["prefix", "/"],
+				["command", "system"],
+				" identity ",
+				["command", "get"],
+				" name"
+			]],
+			["end-of-expression", "]"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"subexpr: ",
+		["expression", [
+			["begin-of-expression", "$("],
+			["subexpression", [
+				["number", "1"],
+				["operator", "+"],
+				["number", "2"]
+			]],
+			["end-of-expression", ")"]
+		]],
+		"\""
+	]],
+	["string", ["\"trailing dollar: $\""]]
+]
+
+----------------------------------------------------
+
+Tests the `string` token: plain strings, escape sequences (`\n`, `\r`, `\t`, `\\`,
+`\"`, `\$`, `\_`, octal), variable interpolation (`$var`), quoted variable names
+(`$"var-name"`), command substitution inside strings, and a trailing literal `$`.

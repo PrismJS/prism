@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'sqf'>} */
@@ -6,24 +5,6 @@ export default {
 	id: 'sqf',
 	base: clike,
 	grammar ({ base }) {
-		insertBefore(base, 'string', {
-			'macro': {
-				pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
-				lookbehind: true,
-				greedy: true,
-				alias: 'property',
-				inside: {
-					'directive': {
-						pattern: /#[a-z]+\b/i,
-						alias: 'keyword',
-					},
-					'comment': base.comment,
-				},
-			},
-		});
-
-		delete base['class-name'];
-
 		return {
 			'string': {
 				pattern: /"(?:(?:"")?[^"])*"(?!")|'(?:[^'])*'/,
@@ -42,6 +23,23 @@ export default {
 				alias: 'keyword',
 			},
 			'constant': /\bDIK(?:_[a-z\d]+)+\b/i,
+			$insert: {
+				'macro': {
+					$before: 'string',
+					pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
+					lookbehind: true,
+					greedy: true,
+					alias: 'property',
+					inside: {
+						'directive': {
+							pattern: /#[a-z]+\b/i,
+							alias: 'keyword',
+						},
+						'comment': base.comment,
+					},
+				},
+			},
+			$delete: ['class-name'],
 		};
 	},
 };

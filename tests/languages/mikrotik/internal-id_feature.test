@@ -1,0 +1,15 @@
+get *0
+get *1A
+get *ff
+get *FF
+get *1a
+
+----------------------------------------------------
+
+[
+	["command", "get"], ["internal-id", "*0"],
+	["command", "get"], ["internal-id", "*1A"],
+	["command", "get"], ["internal-id", "*ff"],
+	["command", "get"], ["internal-id", "*FF"],
+	["command", "get"], ["internal-id", "*1a"]
+]

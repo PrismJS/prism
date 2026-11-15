@@ -1,0 +1,40 @@
+%default total
+%inline
+%foreign "C:puts,libc"
+%hint
+%hide
+%builtin
+%spec
+%extern
+%macro
+%runElab
+
+----------------------------------------------------
+
+[
+	["pragma", "%default"],
+	["keyword", "total"],
+
+	["pragma", "%inline"],
+
+	["pragma", "%foreign"],
+	["string", ["\"C:puts,libc\""]],
+
+	["pragma", "%hint"],
+
+	["pragma", "%hide"],
+
+	["pragma", "%builtin"],
+
+	["pragma", "%spec"],
+
+	["pragma", "%extern"],
+
+	["pragma", "%macro"],
+
+	["pragma", "%runElab"]
+]
+
+----------------------------------------------------
+
+Checks for %-prefixed pragmas.

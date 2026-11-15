@@ -41,13 +41,11 @@ ___SOY1___{$foo}
 
 	["tag", [
 		["punctuation", "<"],
-		["tag", [
-			"h",
-			["soy", [
-				["delimiter", "{"],
-				["variable", ["$headingLevel"]],
-				["delimiter", "}"]
-			]]
+		["tag", ["h"]],
+		["soy", [
+			["delimiter", "{"],
+			["variable", ["$headingLevel"]],
+			["delimiter", "}"]
 		]],
 		["punctuation", ">"]
 	]],

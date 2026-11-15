@@ -1,4 +1,4 @@
-const lang = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i;
+const lang = /(?:^|\s)lang(?:uage)?-([\w:-]+)(?=\s|$)/i;
 
 /**
  * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.

@@ -1,15 +1,14 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'soy'>} */
 export default {
 	id: 'soy',
-	require: markup,
+	inner: markup,
 	grammar () {
 		const stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 		const numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
 
-		return /** @type {Grammar} */ ({
+		return {
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
@@ -82,11 +81,6 @@ export default {
 					'punctuation': /[{}()\[\]|.,:]/,
 				},
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

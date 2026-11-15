@@ -71,7 +71,7 @@ export default {
 			},
 		});
 
-		return /** @type {Grammar} */ (inform7);
+		return inform7;
 	},
 };
 

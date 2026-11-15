@@ -152,8 +152,8 @@ function testPatterns (getPrism, mainLanguage) {
 		}
 
 		// static analysis
-		for (const id of Prism.components['entries'].keys()) {
-			const grammar = Prism.components.getLanguage(id);
+		for (const id of Object.keys(Prism.languages)) {
+			const grammar = Prism.languageRegistry.getLanguage(id)?.resolvedGrammar;
 			if (grammar) {
 				traverse(grammar, id);
 			}
@@ -162,7 +162,7 @@ function testPatterns (getPrism, mainLanguage) {
 		// dynamic analysis
 		for (const lang of getRelevantLanguages()) {
 			const snippets = testSnippets.get(lang);
-			const grammar = Prism.components.getLanguage(lang);
+			const grammar = Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
 
 			const oldTokenize = Prism.tokenize;
 			Prism.tokenize = function (code, grammar) {
@@ -269,7 +269,8 @@ function testPatterns (getPrism, mainLanguage) {
 		await forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
-				if (group.references.length === 0 && !isLookbehindGroup) {
+				const isNamedGroup = !!group.name; // named capturing groups are used for tokenization, so they are not unused
+				if (group.references.length === 0 && !isLookbehindGroup && !isNamedGroup) {
 					const fixes = [];
 					fixes.push(
 						`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`

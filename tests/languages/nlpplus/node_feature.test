@@ -1,0 +1,27 @@
+_34 <- hello @@
+_café <- world @@
+_noun_phrase <- _det _noun @@
+
+----------------------------------------------------
+
+[
+	["node", "_34"],
+	["arrow", "<-"],
+	" hello ",
+	["rule-end", "@@"],
+
+	["node", "_café"],
+	["arrow", "<-"],
+	" world ",
+	["rule-end", "@@"],
+
+	["node", "_noun_phrase"],
+	["arrow", "<-"],
+	["node", "_det"],
+	["node", "_noun"],
+	["rule-end", "@@"]
+]
+
+----------------------------------------------------
+
+Node names may start with a digit and use letters from any script.

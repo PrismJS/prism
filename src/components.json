@@ -395,6 +395,10 @@
 			"title": "Docker",
 			"owner": "JustinBeckwith"
 		},
+		"dotenv": {
+			"title": "Dotenv (.env)",
+			"owner": "DmitrySharabin"
+		},
 		"dot": {
 			"title": "DOT (Graphviz)",
 			"owner": "RunDevelopment"
@@ -748,6 +752,10 @@
 			"title": "Lua",
 			"owner": "Golmote"
 		},
+		"magik": {
+			"title": "Magik",
+			"owner": "sebastiaanspeck"
+		},
 		"magma": {
 			"title": "Magma (CAS)",
 			"owner": "RunDevelopment"
@@ -783,6 +791,14 @@
 		"metafont": {
 			"title": "METAFONT",
 			"owner": "LaeriExNihilo"
+		},
+		"mikrotik": {
+			"title": "MikroTik",
+			"aliasTitles": {
+				"routeros": "RouterOS Script",
+				"ros": "RouterOS Script"
+			},
+			"owner": "DmitrySharabin"
 		},
 		"mizar": {
 			"title": "Mizar",
@@ -840,6 +856,26 @@
 			"title": "Nix",
 			"owner": "Golmote"
 		},
+		"nlpplus": {
+			"title": "NLP++",
+			"owner": "ddehilster"
+		},
+		"nlpplus-seq": {
+			"title": "NLP++ Analyzer Sequence",
+			"owner": "ddehilster"
+		},
+		"nlpplus-dict": {
+			"title": "NLP++ Dictionary",
+			"owner": "ddehilster"
+		},
+		"nlpplus-kbb": {
+			"title": "NLP++ Knowledge Base",
+			"owner": "ddehilster"
+		},
+		"nlpplus-tree": {
+			"title": "NLP++ Parse Tree",
+			"owner": "ddehilster"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"
@@ -883,7 +919,8 @@
 		"pascal": {
 			"title": "Pascal",
 			"aliasTitles": {
-				"objectpascal": "Object Pascal"
+				"objectpascal": "Object Pascal",
+				"delphi": "Delphi"
 			},
 			"owner": "Golmote"
 		},
@@ -954,6 +991,10 @@
 		"protobuf": {
 			"title": "Protocol Buffers",
 			"owner": "just-boris"
+		},
+		"prql": {
+			"title": "PRQL",
+			"owner": "vanillajonathan"
 		},
 		"pug": {
 			"title": "Pug",
@@ -1109,6 +1150,10 @@
 			"title": "Solution file",
 			"owner": "RunDevelopment"
 		},
+		"soml": {
+			"title": "SOML",
+			"owner": "sindresorhus"
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"owner": "Golmote"
@@ -1159,10 +1204,6 @@
 		},
 		"systemd": {
 			"title": "Systemd configuration file",
-			"owner": "RunDevelopment"
-		},
-		"t4-templating": {
-			"title": "T4 templating",
 			"owner": "RunDevelopment"
 		},
 		"t4-cs": {
@@ -1363,10 +1404,6 @@
 			"title": "Autolinker",
 			"description": "Converts URLs and emails in code to clickable links. Parses Markdown links in comments."
 		},
-		"wpd": {
-			"title": "WebPlatform Docs",
-			"description": "Makes tokens link to <a href=\"https://webplatform.github.io/docs/\">WebPlatform.org documentation</a>. The links open in a new tab."
-		},
 		"custom-class": {
 			"title": "Custom Class",
 			"description": "This plugin allows you to prefix Prism's default classes (<code>.comment</code> can become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code>). You can even add new classes.",
@@ -1461,14 +1498,9 @@
 			"description": "Highlights matching braces.",
 			"owner": "RunDevelopment"
 		},
-		"diff-highlight": {
-			"title": "Diff Highlight",
-			"description": "Highlights the code inside diff blocks.",
-			"owner": "RunDevelopment"
-		},
 		"filter-highlight-all": {
 			"title": "Filter highlightAll",
-			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
+			"description": "Filters the elements the <code>highlightAll</code> method actually highlights.",
 			"owner": "RunDevelopment",
 			"noCSS": true
 		},

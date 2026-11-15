@@ -1,9 +1,9 @@
 ---
 name: New language request
 about: Suggest a new language Prism should support.
-title: ''
+title: ""
 labels: language-definitions, new language
-assignees: ''
+assignees: ""
 ---
 
 **Language**

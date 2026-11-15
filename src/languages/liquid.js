@@ -1,11 +1,10 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'liquid'>} */
 export default {
 	id: 'liquid',
-	require: markup,
-	grammar: /** @type {Grammar} */ ({
+	inner: markup,
+	grammar: {
 		'ignore-raw': {
 			pattern: /(\{%-?\s*raw\b[^\}]*\})[\s\S]*?(?=\{%-?\s*endraw\b[^\}]*\})/,
 			lookbehind: true,
@@ -59,10 +58,5 @@ export default {
 				},
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

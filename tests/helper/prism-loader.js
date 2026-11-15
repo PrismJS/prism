@@ -45,9 +45,6 @@ async function getComponentUncached (id) {
 	}
 }
 
-/**
- * @typedef {import('../../src/types.d.ts').ComponentProto} ComponentProto
- */
 /** @type {Map<string, Promise<ComponentProto>>} */
 const componentCache = new Map();
 
@@ -76,7 +73,7 @@ export async function createInstance (languages) {
 	const instance = new Prism();
 
 	const protos = await Promise.all(toArray(languages).map(getComponent));
-	instance.components.add(...protos);
+	protos.forEach(proto => instance.languageRegistry.add(/** @type { LanguageProto }*/ (proto)));
 
 	return instance;
 }
@@ -148,14 +145,24 @@ export function createPrismDOM () {
 	};
 
 	/**
-	 * Loads the given languages or plugins.
-	 *
-	 * @param {string|string[]} languagesOrPlugins
+	 * @param {string|string[]} languages
 	 */
-	const load = async languagesOrPlugins => {
-		const protos = await Promise.all(toArray(languagesOrPlugins).map(getComponent));
+	const loadLanguages = async languages => {
+		const protos = await Promise.all(toArray(languages).map(getComponent));
 		withGlobals(() => {
-			instance.components.add(...protos);
+			protos.forEach(proto =>
+				instance.languageRegistry.add(/** @type { LanguageProto }*/ (proto)));
+		});
+	};
+
+	/**
+	 * @param {string|string[]} plugins
+	 */
+	const loadPlugins = async plugins => {
+		const protos = await Promise.all(toArray(plugins).map(getComponent));
+		withGlobals(() => {
+			protos.forEach(proto =>
+				instance.pluginRegistry.add(/** @type {PluginProto} */ (proto)));
 		});
 	};
 
@@ -164,8 +171,8 @@ export function createPrismDOM () {
 		window,
 		document: window.document,
 		Prism: window.Prism,
-		loadLanguages: load,
-		loadPlugins: load,
+		loadLanguages,
+		loadPlugins,
 		withGlobals,
 	};
 }
@@ -176,3 +183,5 @@ export function createPrismDOM () {
  * @template T
  * @typedef {import('../types.d.ts').PrismDOM<T>} PrismDOM
  */
+
+/** @import {ComponentProto, PluginProto, LanguageProto} from '../../src/types.d.ts'; */

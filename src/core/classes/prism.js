@@ -1,10 +1,12 @@
 import globalDefaults from '../../config.js';
+import { allSettled, documentReady, nextTick } from '../../util/async.js';
 import { highlightAll } from '../highlight-all.js';
 import { highlightElement } from '../highlight-element.js';
 import { highlight } from '../highlight.js';
-import { Registry } from '../registry.js';
 import { tokenize } from '../tokenize/tokenize.js';
 import { Hooks } from './hooks.js';
+import LanguageRegistry from './language-registry.js';
+import PluginRegistry from './plugin-registry.js';
 
 /**
  * Prism class, to create Prism instances with different settings.
@@ -17,19 +19,104 @@ export default class Prism {
 	hooks = new Hooks();
 
 	/**
-	 * @type {Registry}
+	 * @type {LanguageRegistry}
 	 */
-	components = new Registry(this);
+	languageRegistry;
 
 	/**
-	 * @type {object}
+	 * @type {PluginRegistry}
 	 */
-	plugins = {};
+	pluginRegistry;
 
 	/**
 	 * @type {PrismConfig}
 	 */
 	config = globalDefaults;
+
+	/**
+	 * @type {Promise<unknown>[]}
+	 */
+	waitFor = [nextTick()];
+
+	/**
+	 * @type {Promise<unknown>}
+	 */
+	ready = allSettled(this.waitFor);
+
+	/**
+	 * @param {PrismConfig} [config={}]
+	 */
+	constructor (config = {}) {
+		this.config = Object.assign({}, globalDefaults, config);
+
+		this.config.errorHandler ??= /** @type {PrismConfig['errorHandler']} */ (
+			this.config.silent ? () => undefined : console.error
+		);
+
+		const reportError = this.config.errorHandler;
+
+		this.languageRegistry = new LanguageRegistry({
+			path: /** @type {string} */ (this.config.languagePath),
+			preload: this.config.languages,
+			prism: this,
+		});
+
+		this.pluginRegistry = new PluginRegistry({
+			path: /** @type {string} */ (this.config.pluginPath),
+			prism: this,
+		});
+
+		this.languagesReady = this.languageRegistry.ready;
+		this.waitFor.push(this.languagesReady);
+
+		// Preload plugins
+		const plugins = this.config.plugins;
+		if (plugins && plugins.length > 0) {
+			const pluginsReady = this.languagesReady
+				.then(() => this.waitFor.push(...this.pluginRegistry.loadAll(plugins)))
+				.catch(reportError);
+			this.waitFor.push(pluginsReady);
+		}
+
+		if (!this.config.manual) {
+			this.waitFor.push(documentReady());
+
+			this.ready.then(() => this.highlightAll()).catch(reportError);
+		}
+	}
+
+	get languages () {
+		return this.languageRegistry.cache;
+	}
+
+	get plugins () {
+		return this.pluginRegistry.cache;
+	}
+
+	/**
+	 * Load a language by its id.
+	 *
+	 * @param {string} id
+	 * @returns {Promise<Language | LanguageProto | null>}
+	 */
+	async loadLanguage (id) {
+		const language = await this.languageRegistry.load(id);
+
+		return language;
+	}
+
+	/**
+	 * Load a plugin by its id.
+	 *
+	 * @param {string} id
+	 * @returns {Promise<PluginProto | null>}
+	 */
+	async loadPlugin (id) {
+		await this.languagesReady; // first, wait for any pending languages to load
+		const plugin = await this.pluginRegistry.load(id);
+
+		return plugin;
+	}
 
 	/**
 	 * See {@link highlightAll}.
@@ -75,10 +162,8 @@ export default class Prism {
 }
 
 /**
- * @typedef {import('../../config.d.ts').PrismConfig} PrismConfig
- * @typedef {import('../highlight-all.js').HighlightAllOptions} HighlightAllOptions
- * @typedef {import('../highlight-element.js').HighlightElementOptions} HighlightElementOptions
- * @typedef {import('../highlight.js').HighlightOptions} HighlightOptions
- * @typedef {import('../../types.d.ts').Grammar} Grammar
- * @typedef {import('../../types.d.ts').TokenStream} TokenStream
+ * @import { HighlightAllOptions } from '../highlight-all.js';
+ * @import { HighlightElementOptions } from '../highlight-element.js';
+ * @import { HighlightOptions } from '../highlight.js';
+ * @import { PrismConfig, PluginProto, Language, LanguageProto, Grammar, TokenStream } from '../../types.d.ts';
  */

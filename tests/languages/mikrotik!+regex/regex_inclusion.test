@@ -1,0 +1,98 @@
+find name~"^[a-z]+\d?$"
+find name~"prefix$varName\.\d+"
+find src-address~"(10|192)\."
+[find name~"\\.$currentQueue$"]
+[find ~"test"]
+
+----------------------------------------------------
+
+[
+	["command", "find"],
+	["regex", [
+		["parameter", "name"],
+		["operator", "~"],
+		["punctuation", "\""],
+		["anchor", "^"],
+		["char-class", [
+			["char-class-punctuation", "["],
+			["range", [
+				"a",
+				["range-punctuation", "-"],
+				"z"
+			]],
+			["char-class-punctuation", "]"]
+		]],
+		["quantifier", "+"],
+		["char-set", "\\d"],
+		["quantifier", "?"],
+		["anchor", "$"],
+		["punctuation", "\""]
+	]],
+
+	["command", "find"],
+	["regex", [
+		["parameter", "name"],
+		["operator", "~"],
+		["punctuation", "\""],
+		"prefix",
+		["variable", [
+			["substitution-operator", "$"],
+			"varName"
+		]],
+		["special-escape", "\\."],
+		["char-set", "\\d"],
+		["quantifier", "+"],
+		["punctuation", "\""]
+	]],
+
+	["command", "find"],
+	["regex", [
+		["parameter", "src-address"],
+		["operator", "~"],
+		["punctuation", "\""],
+		["group", ["("]],
+		"10",
+		["alternation", "|"],
+		"192",
+		["group", ")"],
+		["special-escape", "\\."],
+		["punctuation", "\""]
+	]],
+
+	["punctuation", "["],
+	["command-substitution", [
+		["command", "find"],
+		["regex", [
+			["parameter", "name"],
+			["operator", "~"],
+			["punctuation", "\""],
+			["special-escape", "\\\\"],
+			["char-set", "."],
+			["variable", [
+				["substitution-operator", "$"],
+				"currentQueue"
+			]],
+			["anchor", "$"],
+			["punctuation", "\""]
+		]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["command-substitution", [
+		["command", "find"],
+		["regex", [
+			["operator", "~"],
+			["punctuation", "\""],
+			"test",
+			["punctuation", "\""]
+		]]
+	]],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Tests that the regex language is properly embedded inside MikroTik regex strings
+via `$rest: 'regex'`. Also tests that `$` before variable names in regex strings
+is tokenized as `substitution-operator` (not as the regex `anchor` token).

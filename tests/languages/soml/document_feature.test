@@ -1,0 +1,36 @@
+[
+	{name: 'Sindre Sorhus', email: 'sindre@sorhus.com'}
+	{name: 'Random Person', email: 'person@example.com'}
+]
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Sindre Sorhus'"],
+	["punctuation", ","],
+	["key", "email"],
+	["punctuation", ":"],
+	["string", "'sindre@sorhus.com'"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'Random Person'"],
+	["punctuation", ","],
+	["key", "email"],
+	["punctuation", ":"],
+	["string", "'person@example.com'"],
+	["punctuation", "}"],
+
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+A document may be a top-level array of records.

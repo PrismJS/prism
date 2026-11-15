@@ -1,0 +1,51 @@
+name: 'soml'
+content-type: 'application/soml'
+'the name': 'quoted'
+404: 'not found'
+2024-01-01: 'new year'
+true: 1
+pool: {min: 2, max: 16}
+
+----------------------------------------------------
+
+[
+	["key", "name"],
+	["punctuation", ":"],
+	["string", "'soml'"],
+
+	["key", "content-type"],
+	["punctuation", ":"],
+	["string", "'application/soml'"],
+
+	["key", "'the name'"],
+	["punctuation", ":"],
+	["string", "'quoted'"],
+
+	["key", "404"],
+	["punctuation", ":"],
+	["string", "'not found'"],
+
+	["key", "2024-01-01"],
+	["punctuation", ":"],
+	["string", "'new year'"],
+
+	["key", "true"],
+	["punctuation", ":"],
+	["number", "1"],
+
+	["key", "pool"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["key", "min"],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["key", "max"],
+	["punctuation", ":"],
+	["number", "16"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Keys are bare, may begin with a digit, and are always strings. A quoted key is the escape hatch.

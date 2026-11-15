@@ -1,0 +1,103 @@
+f"{c.last_name}, {c.first_name}"
+s"version()"
+s"SELECT * FROM {table}"
+f"{{literal}} {d:%Y-%m-%d}"
+f"""multi
+{line}"""
+s"SELECT *
+FROM {t}"
+f"""""a {b} """ c"""""
+f"{x} # {y}"
+
+----------------------------------------------------
+
+[
+	["string-interpolation", [
+		["string", "f\""],
+		["interpolation", [
+			["punctuation", "{"],
+			"c",
+			["punctuation", "."],
+			"last_name",
+			["punctuation", "}"]
+		]],
+		["string", ", "],
+		["interpolation", [
+			["punctuation", "{"],
+			"c",
+			["punctuation", "."],
+			"first_name",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"version()\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"SELECT * FROM "],
+		["interpolation", [
+			["punctuation", "{"],
+			"table",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"{{literal}} "],
+		["interpolation", [
+			["punctuation", "{"],
+			"d",
+			["punctuation", ":"],
+			["format-spec", "%Y-%m-%d"],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"\"\"multi\r\n"],
+		["interpolation", [
+			["punctuation", "{"],
+			"line",
+			["punctuation", "}"]
+		]],
+		["string", "\"\"\""]
+	]],
+	["string-interpolation", [
+		["string", "s\"SELECT *\r\nFROM "],
+		["interpolation", [
+			["punctuation", "{"],
+			"t",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "f\"\"\"\"\"a "],
+		["interpolation", [
+			["punctuation", "{"],
+			"b",
+			["punctuation", "}"]
+		]],
+		["string", " \"\"\" c\"\"\"\"\""]
+	]],
+	["string-interpolation", [
+		["string", "f\""],
+		["interpolation", [
+			["punctuation", "{"],
+			"x",
+			["punctuation", "}"]
+		]],
+		["string", " # "],
+		["interpolation", [
+			["punctuation", "{"],
+			"y",
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for f-strings and s-strings.

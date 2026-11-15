@@ -1,11 +1,10 @@
-import { embeddedIn } from '../shared/languages/templating.js';
-import { insertBefore } from '../util/language-util.js';
+import { insertBefore, withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'php'>} */
 export default {
 	id: 'php',
-	require: markup,
+	inner: markup,
 	optional: 'php-extras',
 	grammar ({ getOptionalLanguage }) {
 		/**
@@ -355,21 +354,16 @@ export default {
 			insertBefore(php, 'variable', /** @type {GrammarTokens} */ (extras));
 		}
 
-		const embedded = embeddedIn('markup');
 		return /** @type {Grammar} */ ({
 			'php': {
 				pattern:
 					/<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/,
 				inside: php,
 			},
+			// Bare PHP without `<?` is not embedded in markup
 			/** @type {Grammar['$tokenize']} */
-			$tokenize: (code, grammar, Prism) => {
-				if (!/<\?/.test(code)) {
-					return Prism.tokenize(code, php);
-				}
-
-				return embedded(code, grammar, Prism);
-			},
+			$tokenize: (code, grammar, Prism) =>
+				Prism.tokenize(code, /<\?/.test(code) ? withoutTokenize(grammar) : php),
 		});
 	},
 };

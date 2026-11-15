@@ -1,31 +1,38 @@
 import prism from '../../global.js';
-import { getParentPre } from '../../shared/dom-util.js';
+import { getLanguage, getParentPre } from '../../shared/dom-util.js';
 import { resolveAlias } from '../../shared/meta/alias-data.js';
 import { toArray } from '../../util/iterables.js';
+import { languageIdParts } from '../../util/language-id.js';
 
 function getDefaultSrcPath () {
 	if (typeof document !== 'undefined') {
-		const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
-		if (script) {
+		// Not `document.currentScript`: it is null by the time this runs, during highlighting
+		const autoloaderPath = document
+			.querySelector('script[data-autoloader-path]')
+			?.getAttribute('data-autoloader-path');
+		if (autoloaderPath != null) {
+			// data-autoloader-path is set, so just use it
+			return autoloaderPath.trim().replace(/\/?$/, '/');
+		}
+		else {
 			const autoloaderFile =
 				/\bplugins\/autoloader\/autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 			const prismFile = /(^|\/)[\w-]+\.(?:min\.)?m?js(?:\?[^\r\n/]*)?$/i;
 
-			const autoloaderPath = script.getAttribute('data-autoloader-path');
-			if (autoloaderPath != null) {
-				// data-autoloader-path is set, so just use it
-				return autoloaderPath.trim().replace(/\/?$/, '/');
+			// In an esbuild IIFE bundle, `import.meta` is `{}`, so `src` is undefined
+			const src = import.meta.url;
+			if (src?.startsWith('file:') && document.location.protocol !== 'file:') {
+				// webpack, Rspack and Parcel replace `import.meta.url` with the file's path on the build machine,
+				// like `file:///home/me/app/node_modules/prismjs/dist/autoloader-….js`. A web page cannot load it.
+				return './';
 			}
-			else {
-				const src = script.src;
-				if (autoloaderFile.test(src)) {
-					// the script is the original autoloader script in the usual Prism project structure
-					return src.replace(autoloaderFile, '/');
-				}
-				else if (prismFile.test(src)) {
-					// the script is part of a bundle like a custom prism.js from the download page
-					return src.replace(prismFile, '$1/');
-				}
+			else if (autoloaderFile.test(src)) {
+				// the script is the original autoloader script in the usual Prism project structure
+				return src.replace(autoloaderFile, '');
+			}
+			else if (prismFile.test(src)) {
+				// the script is part of a bundle like a custom prism.js from the download page
+				return src.replace(prismFile, '$1');
 			}
 		}
 	}
@@ -50,9 +57,7 @@ const ignoredLanguages = new Set(['none']);
  * @param {string} name The name of the language
  */
 function isLoaded (Prism, name) {
-	// resolve alias
-	const id = resolveAlias(name);
-	return Prism.components.has(id) || ignoredLanguages.has(id);
+	return Prism.languageRegistry.has(name) || ignoredLanguages.has(name);
 }
 
 export class Autoloader {
@@ -83,6 +88,7 @@ export class Autoloader {
 	 */
 	async loadLanguages (languages) {
 		const toLoad = toArray(languages)
+			.flatMap(languageIdParts)
 			.map(resolveAlias)
 			.filter(id => !isLoaded(this.Prism, id));
 
@@ -92,11 +98,15 @@ export class Autoloader {
 
 				let promise = this._importCache.get(path);
 				if (promise === undefined) {
-					promise = import(path).then(exports => {
-						/** @type {import('../../types.d.ts').ComponentProto} */
-						const proto = exports.default;
-						this.Prism.components.add(proto);
-					});
+					// The path is known only at runtime, so bundlers must leave this call alone.
+					// Without these comments, webpack and Rspack bundle all of `dist/`, Turbopack fails, and Vite warns when Prism is symlinked.
+					promise = import(/* webpackIgnore: true */ /* @vite-ignore */ path).then(
+						exports => {
+							/** @type {import('../../types.d.ts').LanguageProto} */
+							const proto = exports.default;
+							this.Prism.languageRegistry.add(proto);
+						}
+					);
 					this._importCache.set(path, promise);
 				}
 				return promise;
@@ -107,14 +117,14 @@ export class Autoloader {
 	/**
 	 * Loads all given languages concurrently.
 	 *
-	 * This function simply invokes {@link Autoloader#loadLanguages} and logs errors to `console.error`.
+	 * This function simply invokes {@link Autoloader#loadLanguages} and reports errors to `Prism.config.errorHandler`.
 	 *
 	 * @param {string | string[]} languages
 	 * @returns {void}
 	 */
 	preloadLanguages (languages) {
 		this.loadLanguages(languages).catch(reason => {
-			console.error(
+			this.Prism.config.errorHandler?.(
 				`Failed to preload languages (${toArray(languages).join(', ')}): ${String(reason)}`
 			);
 		});
@@ -152,20 +162,20 @@ const Self = {
 		 * @returns {string[]}
 		 */
 		function mapDependency (name) {
-			if (!name || ignoredLanguages.has(name)) {
+			if (!name) {
 				return [];
 			}
-			else if (/^diff-./i.test(name)) {
-				// the "diff-xxxx" format is used by the Diff Highlight plugin
-				return ['diff', name.slice('diff-'.length)];
-			}
-			else {
-				return [name];
-			}
+
+			// compound ids like `diff:css` require all their parts
+			return languageIdParts(name).filter(part => part && !ignoredLanguages.has(part));
 		}
 
-		return Prism.hooks.add('complete', ({ element, language }) => {
-			if (!language || ignoredLanguages.has(language)) {
+		/** Languages that failed to load, so they are not retried */
+		const failed = new Set();
+
+		return Prism.hooks.add('complete', ({ element, language, code }) => {
+			// No code means a plugin like File Highlight fills the element and highlights it later
+			if (!code || !language || ignoredLanguages.has(language)) {
 				return;
 			}
 
@@ -174,29 +184,40 @@ const Self = {
 				deps.push(...mapDependency(name));
 			}
 
-			deps = deps.filter(name => !isLoaded(Prism, name));
+			// Code embedded in the element, like a Markdown fence: `<span class="token code-block language-csharp">`
+			for (const token of element.querySelectorAll('.token[class*="language-"]')) {
+				deps.push(...mapDependency(getLanguage(token)));
+			}
+
+			deps = [...new Set(deps)].filter(name => !isLoaded(Prism, name) && !failed.has(name));
 			if (deps.length === 0) {
 				// all dependencies are already loaded
 				return;
 			}
 
 			/** @type {Autoloader} */
-			const autoloader = Prism.plugins.autoloader;
-			autoloader.loadLanguages(deps).then(
-				() => Prism.highlightElement(element),
-				reason => {
-					console.error(
-						`Failed to load languages (${deps.join(', ')}): ${String(reason)}`
+			const autoloader = Prism.pluginRegistry.peek(Self)?.plugin;
+			// Each language on its own, so one that fails, like an unknown fence, doesn't block the others
+			const loading = deps.map(name =>
+				autoloader.loadLanguages(name).catch(reason => {
+					failed.add(name);
+					Prism.config.errorHandler?.(
+						`Failed to load language ${name}: ${String(reason)}\n` +
+							`Check that Prism has a "${name}" language, and that the Autoloader's "srcPath" points to the folder that contains Prism's "languages" folder.`
 					);
+				}));
+			Promise.all(loading).then(() => {
+				if (deps.some(name => isLoaded(Prism, name))) {
+					Prism.highlightElement(element);
 				}
-			);
+			});
 		});
 	},
 };
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {import('../../core.js').Prism} Prism

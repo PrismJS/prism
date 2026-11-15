@@ -1,6 +1,6 @@
 ---
 title: Treeview
-description: A language with special styles to highlight file system tree structures.
+description: Adds icons and special styles to highlighted file system tree structures.
 owner: Golmote
 ---
 

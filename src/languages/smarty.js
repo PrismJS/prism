@@ -1,10 +1,9 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'smarty'>} */
 export default {
 	id: 'smarty',
-	require: markup,
+	inner: markup,
 	grammar () {
 		const expression = {
 			pattern: /[\s\S]+/,
@@ -82,7 +81,7 @@ export default {
 			)
 		);
 
-		return /** @type {Grammar} */ ({
+		return {
 			'ignore-literal': {
 				pattern: /(\{literal\})[\s\S]*?(?=\{\/literal\})/,
 				lookbehind: true,
@@ -105,12 +104,10 @@ export default {
 				greedy: true,
 				inside: smarty,
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-		});
+		};
 	},
 };
 
 /**
- * @typedef {import('../types.d.ts').Grammar} Grammar
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
  */

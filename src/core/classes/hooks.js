@@ -72,7 +72,7 @@ export class Hooks {
 		else if (typeof name === 'object') {
 			// Map of hook names to callbacks
 			for (const n in name) {
-				this.remove(n, callback);
+				this.remove(n, name[n]);
 			}
 		}
 		else {

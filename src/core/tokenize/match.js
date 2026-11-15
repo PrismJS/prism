@@ -1,7 +1,7 @@
 import { Token } from '../classes/token.js';
 import singleton from '../prism.js';
 import { tokenize } from './tokenize.js';
-import { resolve } from './util.js';
+import { resolve, tokenizeByNamedGroups } from './util.js';
 
 /**
  * @this {Prism}
@@ -16,9 +16,17 @@ import { resolve } from './util.js';
 export function _matchGrammar (text, tokenList, grammar, startNode, startPos, rematch) {
 	const prism = this ?? singleton;
 
+	// @ts-ignore
+	grammar = resolve.call(prism, grammar);
+
 	for (const token in grammar) {
 		const tokenValue = grammar[token];
-		if (!grammar.hasOwnProperty(token) || token.startsWith('$') || !tokenValue) {
+		if (
+			!grammar.hasOwnProperty(token) ||
+			token.startsWith('$') ||
+			!tokenValue ||
+			typeof tokenValue === 'function' // functional tokens ($inside for now) are handled on L170, and we should ignore them in all other cases
+		) {
 			continue;
 		}
 
@@ -31,11 +39,22 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 			const patternObj = toGrammarToken(patterns[j]);
 			let { pattern, lookbehind = false, greedy = false, alias, inside } = patternObj;
-			const insideGrammar = resolve(prism.components, inside);
+			const insideGrammar = resolve.call(prism, inside);
+
+			let flagsToAdd = '';
 
 			if (greedy && !pattern.global) {
 				// Without the global flag, lastIndex won't work
-				patternObj.pattern = pattern = RegExp(pattern.source, pattern.flags + 'g');
+				flagsToAdd += 'g';
+			}
+
+			if (pattern.source?.includes('(?<') && pattern.hasIndices === false) {
+				// Has named groups, we need to be able to capture their indices
+				flagsToAdd += 'd';
+			}
+
+			if (flagsToAdd) {
+				patternObj.pattern = pattern = RegExp(pattern.source, pattern.flags + flagsToAdd);
 			}
 
 			for (
@@ -60,7 +79,8 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 				}
 
 				let removeCount = 1; // this is the to parameter of removeBetween
-				let match;
+				/** @type {RegExpExecArray | null} */
+				let match = null;
 
 				if (greedy) {
 					match = matchPattern(pattern, pos, text, lookbehind);
@@ -114,6 +134,10 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 				const from = match.index;
 				const matchStr = match[0];
+
+				/** @type {TokenStream | string} */
+				let content = matchStr;
+
 				const before = str.slice(0, from);
 				const after = str.slice(from + matchStr.length);
 
@@ -131,12 +155,42 @@ export function _matchGrammar (text, tokenList, grammar, startNode, startPos, re
 
 				tokenList.removeRange(removeFrom, removeCount);
 
-				const wrapped = new Token(
-					token,
-					insideGrammar ? tokenize.call(prism, matchStr, insideGrammar) : matchStr,
-					alias,
-					matchStr
-				);
+				const byGroups = match.groups ? tokenizeByNamedGroups(match) : null;
+				if (byGroups && byGroups.length > 1) {
+					content = byGroups
+						.map(arg => {
+							let content = typeof arg === 'string' ? arg : arg.content;
+							const type = typeof arg === 'string' ? undefined : arg.type;
+
+							if (insideGrammar) {
+								let localInsideGrammar = type ? insideGrammar[type] : insideGrammar;
+
+								if (typeof localInsideGrammar === 'function') {
+									// Late resolving
+									localInsideGrammar = resolve.call(
+										prism,
+										localInsideGrammar(match.groups)
+									);
+								}
+
+								if (localInsideGrammar) {
+									// @ts-ignore
+									content = tokenize.call(prism, content, localInsideGrammar);
+								}
+							}
+
+							return typeof arg === 'object' && arg.type
+								? new Token(arg.type, content)
+								: content;
+						})
+						.flat(); // Flatten tokens like ['foo']
+				}
+				else if (insideGrammar) {
+					// @ts-ignore
+					content = tokenize.call(prism, content, insideGrammar);
+				}
+
+				const wrapped = new Token(token, content, alias, matchStr);
 				currentNode = tokenList.addAfter(removeFrom, wrapped);
 
 				if (after) {
@@ -210,10 +264,8 @@ function toGrammarToken (pattern) {
  */
 
 /**
- * @typedef {import('../prism.js').Prism} Prism
- * @typedef {import('../../types.d.ts').GrammarToken} GrammarToken
- * @typedef {import('../../types.d.ts').GrammarTokens} GrammarTokens
- * @typedef {import('../../types.d.ts').RegExpLike} RegExpLike
+ * @import { Prism } from '../prism.js';
+ * @import { Grammar, GrammarToken, GrammarTokens, TokenStream, RegExpLike } from '../../types.d.ts';
  */
 
 /**

@@ -1,0 +1,54 @@
+empty-array: []
+empty-object: {}
+spaced-array: [ ]
+spaced-object: { }
+commented-array: [
+	# nothing here
+]
+commented-object: {
+	/* nothing here */
+}
+
+----------------------------------------------------
+
+[
+	["key", "empty-array"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["punctuation", "]"],
+
+	["key", "empty-object"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["key", "spaced-array"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["punctuation", "]"],
+
+	["key", "spaced-object"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["key", "commented-array"],
+	["punctuation", ":"],
+	["punctuation", "["],
+
+	["comment", "# nothing here\r"],
+
+	["punctuation", "]"],
+
+	["key", "commented-object"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+
+	["comment", "/* nothing here */"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Empty containers are valid, and a comment may sit inside one.

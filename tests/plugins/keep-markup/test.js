@@ -82,17 +82,18 @@ describe('Keep Markup', () => {
 		assert.strictEqual(secondNodeRefBefore, secondNodeRefAfter);
 	});
 
-	// The markup is removed if it's the last element and the element's name is a single letter: a(nchor), b(old), i(talic)...
 	// https://github.com/PrismJS/prism/issues/1618
-	/*
-	it('should keep last single letter empty markup', function () {
-		const result = execute(`<code class="language-none">xy<a></a></code>`)
-		expect(result.start.length).to.equal(1)
-		expect(result.end.length).to.equal(1)
-		expect(result.nodes.length).to.equal(1)
-		expect(result.nodes[0].nodeName).to.equal('A')
-	})
-	*/
+	it('should keep empty markup at the end', dom => {
+		keepMarkup(dom, `xy<a></a>`);
+		keepMarkup(dom, `xy<a></a><b></b>`);
+	});
+
+	// https://github.com/PrismJS/prism/issues/1640
+	it('should keep empty markup inside its parent', dom => {
+		keepMarkup(dom, `<x>a<y></y></x>b`);
+		keepMarkup(dom, `<x>a<y></y><z></z></x>b`);
+		keepMarkup(dom, `<x>a<y><z></z></y></x>b`);
+	});
 });
 
 /**

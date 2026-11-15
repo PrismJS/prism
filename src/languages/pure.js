@@ -1,12 +1,61 @@
-import { insertBefore } from '../util/language-util.js';
-
 /** @type {import('../types.d.ts').LanguageProto<'pure'>} */
 export default {
 	id: 'pure',
 	grammar () {
 		// https://agraef.github.io/pure-docs/pure.html#lexical-matters
 
-		const pure = /** @type {Grammar} */ ({
+		const inlineLang = {
+			pattern: /%<[\s\S]+?%>/,
+			greedy: true,
+			inside: {
+				'lang': {
+					pattern: /(^%< *)-\*-.+?-\*-/,
+					lookbehind: true,
+					alias: 'comment',
+				},
+				'delimiter': {
+					pattern: /^%<.*|%>$/,
+					alias: 'punctuation',
+				},
+				// C is the default inline language
+				$rest: 'c',
+			},
+		};
+
+		const inlineLanguages = ['c', { lang: 'c++', alias: 'cpp' }, 'fortran'];
+		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
+
+		const insertBeforeInlineLang = [];
+		inlineLanguages.forEach(item => {
+			let alias;
+			let lang;
+			if (typeof item === 'string') {
+				alias = lang = item;
+			}
+			else {
+				alias = item.alias;
+				lang = item.lang;
+			}
+
+			insertBeforeInlineLang.push([
+				['inline-lang-' + alias],
+				{
+					pattern: RegExp(
+						inlineLanguageRe.replace(
+							'<lang>',
+							lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')
+						),
+						'i'
+					),
+					inside: {
+						...inlineLang.inside,
+						$rest: alias,
+					},
+				},
+			]);
+		});
+
+		return {
 			'comment': [
 				{
 					pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
@@ -18,23 +67,7 @@ export default {
 				},
 				/#!.+/,
 			],
-			'inline-lang': {
-				pattern: /%<[\s\S]+?%>/,
-				greedy: true,
-				inside: {
-					'lang': {
-						pattern: /(^%< *)-\*-.+?-\*-/,
-						lookbehind: true,
-						alias: 'comment',
-					},
-					'delimiter': {
-						pattern: /^%<.*|%>$/,
-						alias: 'punctuation',
-					},
-					// C is the default inline language
-					$rest: /** @type {Grammar['$rest']} */ ('c'),
-				},
-			},
+			'inline-lang': inlineLang,
 			'string': {
 				pattern: /"(?:\\.|[^"\\\r\n])*"/,
 				greedy: true,
@@ -59,46 +92,9 @@ export default {
 				/(?:[!"#$%&'*+,\-.\/:<=>?@\\^`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]|\b_+\b)+|\b(?:and|div|mod|not|or)\b/,
 			// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 			'punctuation': /[(){}\[\];,|]/,
-		});
-
-		const inlineLanguages = ['c', { lang: 'c++', alias: 'cpp' }, 'fortran'];
-		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
-
-		inlineLanguages.forEach(item => {
-			let alias;
-			let lang;
-			if (typeof item === 'string') {
-				alias = lang = item;
-			}
-			else {
-				alias = item.alias;
-				lang = item.lang;
-			}
-
-			insertBefore(pure, 'inline-lang', {
-				['inline-lang-' + alias]: {
-					pattern: RegExp(
-						inlineLanguageRe.replace(
-							'<lang>',
-							lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')
-						),
-						'i'
-					),
-					inside: /** @type {Grammar} */ ({
-						.../** @type {Grammar} */ (
-							/** @type {GrammarToken} */ (pure['inline-lang']).inside
-						),
-						$rest: alias,
-					}),
-				},
-			});
-		});
-
-		return pure;
+			$insertBefore: {
+				'inline-lang': Object.fromEntries(insertBeforeInlineLang),
+			},
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- */

@@ -1,0 +1,35 @@
+Bool
+Char
+Double
+IO
+Int
+Integer
+List
+Maybe
+Nat
+String
+Type
+Unit
+Void
+
+----------------------------------------------------
+
+[
+	["builtin", "Bool"],
+	["builtin", "Char"],
+	["builtin", "Double"],
+	["builtin", "IO"],
+	["builtin", "Int"],
+	["builtin", "Integer"],
+	["builtin", "List"],
+	["builtin", "Maybe"],
+	["builtin", "Nat"],
+	["builtin", "String"],
+	["builtin", "Type"],
+	["builtin", "Unit"],
+	["builtin", "Void"]
+]
+
+----------------------------------------------------
+
+Checks for built-in type constructors.

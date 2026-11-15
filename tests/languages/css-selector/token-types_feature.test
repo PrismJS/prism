@@ -1,0 +1,154 @@
+.foo
+#bar
+:hover
+::before
+::selection
+> + ~ ||
+:nth-child(2n+1)
+:nth-child(even)
+[type="text" i]
+[data-lang|='en']
+[data-count=items]
+[svg|href$="icon" s]
+[attr*=value]
+[attr^="start"]
+[attr~=token]
+[attr|=lang]
+[attr=value s]
+ul#menu > li.item:not(:first-child) + li[data-role="cta"]::before
+
+----------------------------------------------------
+
+[
+	["class", ".foo"],
+
+	["id", "#bar"],
+
+	["pseudo-class", ":hover"],
+
+	["pseudo-element", "::before"],
+
+	["pseudo-element", "::selection"],
+
+	["combinator", ">"],
+	["combinator", "+"],
+	["combinator", "~"],
+	["combinator", "||"],
+
+	["pseudo-class", ":nth-child"],
+	["punctuation", "("],
+	["n-th", [
+		["number", "2n"],
+		["operator", "+"],
+		["number", "1"]
+	]],
+	["punctuation", ")"],
+
+	["pseudo-class", ":nth-child"],
+	["punctuation", "("],
+	["n-th", "even"],
+	["punctuation", ")"],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "type"],
+		["operator", "="],
+		["attr-value", "\"text\""],
+		["case-sensitivity", "i"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "data-lang"],
+		["operator", "|="],
+		["attr-value", "'en'"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "data-count"],
+		["operator", "="],
+		["attr-value", "items"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["namespace", [
+			"svg",
+			["punctuation", "|"]
+		]],
+		["attr-name", "href"],
+		["operator", "$="],
+		["attr-value", "\"icon\""],
+		["case-sensitivity", "s"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "attr"],
+		["operator", "*="],
+		["attr-value", "value"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "attr"],
+		["operator", "^="],
+		["attr-value", "\"start\""],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "attr"],
+		["operator", "~="],
+		["attr-value", "token"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "attr"],
+		["operator", "|="],
+		["attr-value", "lang"],
+		["punctuation", "]"]
+	]],
+
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "attr"],
+		["operator", "="],
+		["attr-value", "value"],
+		["case-sensitivity", "s"],
+		["punctuation", "]"]
+	]],
+
+	"\r\nul",
+	["id", "#menu"],
+	["combinator", ">"],
+	" li",
+	["class", ".item"],
+	["pseudo-class", ":not"],
+	["punctuation", "("],
+	["pseudo-class", ":first-child"],
+	["punctuation", ")"],
+	["combinator", "+"],
+	" li",
+	["attribute", [
+		["punctuation", "["],
+		["attr-name", "data-role"],
+		["operator", "="],
+		["attr-value", "\"cta\""],
+		["punctuation", "]"]
+	]],
+	["pseudo-element", "::before"]
+]
+
+----------------------------------------------------
+
+Test the core css-selector token types.

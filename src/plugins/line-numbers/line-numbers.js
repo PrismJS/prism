@@ -152,7 +152,7 @@ export class LineNumbers {
 		if (!lineNumberRows) {
 			return;
 		}
-		const lineNumberStart = parseInt(String(element.getAttribute('data-start')), 10) || 1;
+		const lineNumberStart = parseInt(element.getAttribute('data-start') || '1', 10);
 		const lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
 
 		if (number < lineNumberStart) {
@@ -213,7 +213,7 @@ const Self = {
 		let lastWidth = NaN;
 		const listener = () => {
 			/** @type {LineNumbers} */
-			const lineNumbers = Prism.plugins.lineNumbers;
+			const lineNumbers = Prism.pluginRegistry.peek(Self)?.plugin;
 			if (lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;
 			}
@@ -277,7 +277,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {object} Info

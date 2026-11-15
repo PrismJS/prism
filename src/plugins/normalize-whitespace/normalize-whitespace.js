@@ -160,7 +160,7 @@ const Self = {
 	},
 	effect (Prism) {
 		/** @type {NormalizeWhitespace} */
-		const Normalizer = Prism.plugins.normalizeWhitespace;
+		const Normalizer = Prism.pluginRegistry.peek(Self)?.plugin;
 
 		return Prism.hooks.add('before-sanity-check', env => {
 			if (!env.code) {
@@ -211,7 +211,7 @@ const Self = {
 				}
 			}
 
-			if (!env.element.children.length || !Prism.components.has('keep-markup')) {
+			if (!env.element.children.length || !Prism.pluginRegistry.has('keep-markup')) {
 				env.code = before + env.code + after;
 				env.code = Normalizer.normalize(env.code, settings);
 			}
@@ -227,7 +227,7 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);
 
 /**
  * @typedef {object} NormalizeWhitespaceDefaults

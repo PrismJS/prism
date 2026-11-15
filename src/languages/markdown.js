@@ -1,5 +1,5 @@
 import { getTextContent } from '../core/classes/token.js';
-import { insertBefore, withoutTokenize } from '../util/language-util.js';
+import { withoutTokenize } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'markdown'>} */
@@ -7,7 +7,7 @@ export default {
 	id: 'markdown',
 	base: markup,
 	alias: 'md',
-	grammar ({ base }) {
+	grammar () {
 		// Allow only one line break
 		const inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
@@ -34,7 +34,7 @@ export default {
 		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
 			.source;
 
-		insertBefore(base, 'prolog', {
+		const markdown = {
 			'front-matter-block': {
 				pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 				lookbehind: true,
@@ -96,75 +96,61 @@ export default {
 					alias: 'keyword',
 				},
 				{
+					// https://spec.commonmark.org/0.31.2/#fenced-code-blocks
 					// ```optional language
 					// code block
 					// ```
-					pattern: /^```[\s\S]*?^```$/m,
+					pattern: /^ {0,3}(`{3,})[^\n\r`]*(?:\n|\r\n?)[\s\S]*?^ {0,3}\1`*[ \t]*$/m,
 					greedy: true,
-					inside: /** @type {Grammar} */ ({
+					inside: {
 						'code-block': {
-							pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
+							pattern: /^(.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?).*$)/,
 							lookbehind: true,
 						},
 						'code-language': {
-							pattern: /^(```).+/,
+							pattern: /^( *`+[ \t]*)(?:\{[^{}]*\}|[\w+#:-]+)/,
 							lookbehind: true,
 						},
-						'punctuation': /```/,
+						'punctuation': /`+/,
 						/** @type {Grammar['$tokenize']} */
 						$tokenize (code, grammar, Prism) {
 							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+							const codeLang = tokens.find(
+								t => typeof t !== 'string' && t.type === 'code-language'
+							);
+							const codeBlock = tokens.find(
+								t => typeof t !== 'string' && t.type === 'code-block'
+							);
+							if (typeof codeLang !== 'object' || typeof codeBlock !== 'object') {
+								return tokens;
+							}
 
-							/*
-							 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-							 * is optional. But the grammar is defined so that there is only one case we have to handle:
-							 *
-							 * token.content = [
-							 *     <span class="punctuation">```</span>,
-							 *     <span class="code-language">xxxx</span>,
-							 *     '\n', // exactly one new lines (\r or \n or \r\n)
-							 *     <span class="code-block">...</span>,
-							 *     '\n', // exactly one new lines again
-							 *     <span class="punctuation">```</span>
-							 * ];
-							 */
-
-							const codeLang = tokens[1];
-							const codeBlock = tokens[3];
-
-							if (
-								typeof codeLang === 'object' &&
-								typeof codeBlock === 'object' &&
-								codeLang.type === 'code-language' &&
-								codeBlock.type === 'code-block'
-							) {
-								// this might be a language that Prism does not support
-
-								// do some replacements to support C++, C#, and F#
-								const lang = getTextContent(codeLang.content)
-									.replace(/\b#/g, 'sharp')
-									.replace(/\b\+\+/g, 'pp');
-								// only use the first word
-								const langName = /[a-z][\w-]*/i.exec(lang)?.[0].toLowerCase();
-								if (langName) {
-									codeBlock.addAlias('language-' + langName);
-
-									const grammar = Prism.components.getLanguage(lang);
-									if (grammar) {
-										codeBlock.content = Prism.tokenize(
-											getTextContent(codeBlock),
-											grammar
-										);
-									}
-									else {
-										codeBlock.addAlias('needs-highlighting');
-									}
+							let lang = getTextContent(codeLang);
+							// Extract language code from curly braces like {r pressure, echo=FALSE} → r
+							if (lang.startsWith('{') && lang.endsWith('}')) {
+								const match = lang.slice(1, -1).match(/^\s*([a-z+#:-]+)/i);
+								if (match) {
+									// Not match[0] — that would keep the whitespace `\s*` skipped
+									lang = match[1];
 								}
+							}
+							// Apply transformations: c++ → cpp, c# → csharp, f# → fsharp, etc.
+							lang = lang.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
+							lang = lang.toLowerCase();
+
+							codeBlock.addAlias('language-' + lang);
+							const blockGrammar =
+								Prism.languageRegistry.getLanguage(lang)?.resolvedGrammar;
+							if (blockGrammar) {
+								codeBlock.content = Prism.tokenize(
+									getTextContent(codeBlock),
+									blockGrammar
+								);
 							}
 
 							return tokens;
 						},
-					}),
+					},
 				},
 			],
 			'title': [
@@ -283,9 +269,14 @@ export default {
 				},
 			},
 			'code-snippet': {
+				// https://spec.commonmark.org/0.31.2/#code-spans
 				// `code`
-				// ``code``
-				pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+				// ``code with ` inside``
+				// A span may run over line breaks, but not past a blank line or into a new block.
+				// Runs of 9+ backticks are left out.
+				// Trying every run length is slow on long lines full of unmatched runs.
+				pattern:
+					/(^|[^\\`])(`{1,8})(?!`)(?:[^\r\n]|(?:\n|\r\n?)(?![ \t]*(?:[\r\n]|```|[#>|<]|(?:[*+-]|\d+\.)[ \t]|(?:=+|\*{3,}|_{3,})[ \t]*[\r\n]|:?-[-:| \t]*[\r\n])))*?(?<!`)\2(?!`)/,
 				lookbehind: true,
 				greedy: true,
 				alias: ['code', 'keyword'],
@@ -321,63 +312,29 @@ export default {
 					},
 				},
 			},
-		});
+		};
 
 		['url', 'bold', 'italic', 'strike'].forEach(token => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(inside => {
-				if (token !== inside) {
-					/** @type {Grammar} */ (
-						/** @type {GrammarToken}*/ (
-							/** @type {Grammar} */ (
-								/** @type {GrammarToken} */ (base[token]).inside
-							).content
-						).inside
-					)[inside] = base[inside];
+				if (token === inside) {
+					return;
 				}
+
+				/** @type {Grammar} */ (
+					/** @type {GrammarToken}*/ (
+						/** @type {Grammar} */ (
+							/** @type {GrammarToken} */ (markdown[token]).inside
+						).content
+					).inside
+				)[inside] = markdown[inside];
 			});
 		});
 
-		return {};
-	},
-	effect (Prism) {
-		return Prism.hooks.add('wrap', env => {
-			if (
-				!Prism.plugins.autoloader ||
-				env.type !== 'code-block' ||
-				!env.classes.includes('needs-highlighting')
-			) {
-				return;
-			}
-
-			let codeLang = '';
-			for (let i = 0, l = env.classes.length; i < l; i++) {
-				const cls = env.classes[i];
-				const match = /language-(.+)/.exec(cls);
-				if (match) {
-					codeLang = match[1];
-					break;
-				}
-			}
-
-			if (codeLang && codeLang !== 'none' && typeof document !== 'undefined') {
-				const id = `md-${new Date().valueOf()}-${Math.floor(Math.random() * 1e16)}`;
-				env.attributes['id'] = id;
-
-				const autoloader = Prism.plugins.autoloader;
-				autoloader.loadLanguages(codeLang).then(
-					() => {
-						const element = document.getElementById(id);
-						if (element) {
-							element.innerHTML = Prism.highlight(
-								element.textContent || '',
-								codeLang
-							);
-						}
-					},
-					error => console.error(error)
-				);
-			}
-		});
+		return {
+			$insertBefore: {
+				'prolog': markdown,
+			},
+		};
 	},
 };
 

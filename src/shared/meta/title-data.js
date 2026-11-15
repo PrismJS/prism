@@ -20,9 +20,19 @@ function guessTitle (name) {
  *
  * If the given name is not a known language, then a guessed title will be returned.
  *
+ * Compound ids (`outer:inner`) produce titles like `Diff (JavaScript)`.
+ *
  * @param {string} name
  * @returns {string}
  */
 export function getTitle (name) {
+	// `php:none` is still PHP, just without its inner language
+	name = name.replace(/:none$/, '');
+
+	const index = name.indexOf(':');
+	if (index !== -1) {
+		return `${getTitle(name.slice(0, index))} (${getTitle(name.slice(index + 1))})`;
+	}
+
 	return knownTitles[name] || guessTitle(name);
 }

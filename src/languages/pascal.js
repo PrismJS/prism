@@ -1,7 +1,7 @@
 /** @type {import('../types.d.ts').LanguageProto<'pascal'>} */
 export default {
 	id: 'pascal',
-	alias: 'objectpascal',
+	alias: ['objectpascal', 'delphi'],
 	grammar () {
 		// Based on Free Pascal
 

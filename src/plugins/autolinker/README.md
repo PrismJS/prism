@@ -13,6 +13,7 @@ URLs and emails will be linked automatically, you don’t need to do anything. T
 ```markdown
 [Text you want to see](https://url-goes-here.com)
 ```
+
 </section>
 
 <section>
@@ -50,4 +51,5 @@ Lea Verou https://lea.verou.me or, with Markdown, [Lea Verou](https://lea.verou.
 <img src="https://prismjs.com/assets/img/spectrum.png" alt="In attributes too!" />
 <p>Autolinking in raw text: https://prismjs.com</p>
 ```
+
 </section>

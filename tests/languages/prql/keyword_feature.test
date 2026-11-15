@@ -1,0 +1,20 @@
+case enum func import internal into let module prql type
+
+----------------------------------------------------
+
+[
+	["keyword", "case"],
+	["keyword", "enum"],
+	["keyword", "func"],
+	["keyword", "import"],
+	["keyword", "internal"],
+	["keyword", "into"],
+	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "prql"],
+	["keyword", "type"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

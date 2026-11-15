@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Previewers should add previewer tokens in CSS 1`] = `
+"<span class=\\"token selector\\">a</span>
+<span class=\\"token punctuation\\">{</span>
+<span class=\\"token property\\">background</span>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token gradient\\">
+	<span class=\\"token function\\">linear-gradient</span>
+	<span class=\\"token punctuation\\">(</span>
+	90deg
+	<span class=\\"token punctuation\\">,</span>
+	red
+	<span class=\\"token punctuation\\">,</span>
+	blue
+	<span class=\\"token punctuation\\">)</span>
+</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">transform</span>
+<span class=\\"token punctuation\\">:</span>
+<span class=\\"token function\\">rotate</span>
+<span class=\\"token punctuation\\">(</span>
+<span class=\\"token angle\\">45deg</span>
+<span class=\\"token punctuation\\">)</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token property\\">transition</span>
+<span class=\\"token punctuation\\">:</span>
+color
+<span class=\\"token time\\">0.5s</span>
+<span class=\\"token easing\\">ease-in-out</span>
+<span class=\\"token punctuation\\">;</span>
+<span class=\\"token punctuation\\">}</span>
+"
+`;
+
+exports[`Previewers should add previewer tokens in Sass 1`] = `
+"<span class=\\"token variable-line\\">
+	<span class=\\"token variable\\">$angle</span>
+	<span class=\\"token punctuation\\">:</span>
+	<span class=\\"token angle\\">30deg</span>
+</span>
+<span class=\\"token selector\\">a</span>
+<span class=\\"token property-line\\">
+	<span class=\\"token property\\">transition</span>
+	<span class=\\"token punctuation\\">:</span>
+	<span class=\\"token time\\">2s</span>
+	<span class=\\"token easing\\">ease-in</span>
+</span>
+"
+`;
+
+exports[`Previewers should add previewer tokens in Stylus 1`] = `
+"<span class=\\"token selector\\">a</span>
+<span class=\\"token property-declaration\\">
+	<span class=\\"token property\\">transform</span>
+	rotate
+	<span class=\\"token punctuation\\">(</span>
+	<span class=\\"token angle\\">45deg</span>
+	<span class=\\"token punctuation\\">)</span>
+</span>
+<span class=\\"token property-declaration\\">
+	<span class=\\"token property\\">transition</span>
+	<span class=\\"token time\\">2s</span>
+	<span class=\\"token easing\\">ease</span>
+</span>
+"
+`;
+
+exports[`Previewers should add previewer tokens in markup after an html block 1`] = `
+"a
+"
+`;
+
+exports[`Previewers should add previewer tokens in markup after an html block 2`] = `
+"<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">div</span>
+	<span class=\\"token attr-name\\">data-angle</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		<span class=\\"token angle\\">45deg</span>
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<span class=\\"token tag\\">div</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+"
+`;
+
+exports[`Previewers should add previewer tokens in markup attributes 1`] = `
+"<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;</span>
+	<span class=\\"token tag\\">div</span>
+	<span class=\\"token attr-name\\">data-angle</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		<span class=\\"token angle\\">45deg</span>
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token attr-name\\">data-time</span>
+	<span class=\\"token attr-value\\">
+		<span class=\\"token punctuation attr-equals\\">=</span>
+		<span class=\\"token punctuation\\">\\"</span>
+		<span class=\\"token time\\">2s</span>
+		<span class=\\"token punctuation\\">\\"</span>
+	</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+<span class=\\"token tag\\">
+	<span class=\\"token punctuation\\">&lt;/</span>
+	<span class=\\"token tag\\">div</span>
+	<span class=\\"token punctuation\\">&gt;</span>
+</span>
+"
+`;
+
+exports[`Previewers without CSS should add previewer tokens in Stylus 1`] = `
+"<span class=\\"token selector\\">a</span>
+<span class=\\"token property-declaration\\">
+	<span class=\\"token property\\">color</span>
+	<span class=\\"token color color\\">#fff</span>
+</span>
+<span class=\\"token property-declaration\\">
+	<span class=\\"token property\\">transition</span>
+	<span class=\\"token time\\">1s</span>
+</span>
+"
+`;

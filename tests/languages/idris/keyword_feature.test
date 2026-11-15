@@ -1,14 +1,19 @@
-Type
+auto
+autobind
 case
 class
 codata
 constructor
 corecord
+covering
 data
+default
 do
 dsl
 else
 export
+failing
+forall
 if
 implementation
 implicit
@@ -25,9 +30,11 @@ module
 mutual
 namespace
 of
+open
 parameters
 partial
 postulate
+prefix
 private
 proof
 public
@@ -37,6 +44,7 @@ rewrite
 syntax
 then
 total
+typebind
 using
 where
 with
@@ -44,17 +52,22 @@ with
 ----------------------------------------------------
 
 [
-	["keyword", "Type"],
+	["keyword", "auto"],
+	["keyword", "autobind"],
 	["keyword", "case"],
 	["keyword", "class"],
 	["keyword", "codata"],
 	["keyword", "constructor"],
 	["keyword", "corecord"],
+	["keyword", "covering"],
 	["keyword", "data"],
+	["keyword", "default"],
 	["keyword", "do"],
 	["keyword", "dsl"],
 	["keyword", "else"],
 	["keyword", "export"],
+	["keyword", "failing"],
+	["keyword", "forall"],
 	["keyword", "if"],
 	["keyword", "implementation"],
 	["keyword", "implicit"],
@@ -71,9 +84,11 @@ with
 	["keyword", "mutual"],
 	["keyword", "namespace"],
 	["keyword", "of"],
+	["keyword", "open"],
 	["keyword", "parameters"],
 	["keyword", "partial"],
 	["keyword", "postulate"],
+	["keyword", "prefix"],
 	["keyword", "private"],
 	["keyword", "proof"],
 	["keyword", "public"],
@@ -83,6 +98,7 @@ with
 	["keyword", "syntax"],
 	["keyword", "then"],
 	["keyword", "total"],
+	["keyword", "typebind"],
 	["keyword", "using"],
 	["keyword", "where"],
 	["keyword", "with"]
@@ -90,4 +106,4 @@ with
 
 ----------------------------------------------------
 
-Checks for some keywords.
+Checks for keywords.

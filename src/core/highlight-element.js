@@ -26,8 +26,7 @@ export function highlightElement (element, options = {}) {
 
 	// Find language
 	const language = getLanguage(element);
-	const languageId = this.components.resolveAlias(language);
-	const grammar = this.components.getLanguage(languageId);
+	const grammar = prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
 
 	// Set language on the element, if not present
 	setLanguage(element, language);
@@ -88,17 +87,25 @@ export function highlightElement (element, options = {}) {
 			language: env.language,
 			code: env.code,
 			grammar: env.grammar,
-		}).then(insertHighlightedCode, error => console.log(error));
+		}).then(insertHighlightedCode, prism.config.errorHandler);
 	}
 	else {
-		insertHighlightedCode(prism.highlight(env.code, env.language, { grammar: env.grammar }));
+		// A broken grammar must not stop `highlightAll()` from highlighting the other snippets
+		let highlightedCode;
+		try {
+			highlightedCode = prism.highlight(env.code, env.language, { grammar: env.grammar });
+		}
+		catch (error) {
+			prism.config.errorHandler?.(error);
+			return;
+		}
+		insertHighlightedCode(highlightedCode);
 	}
 }
 
 /**
- * @typedef {import('./prism.js').Prism} Prism
- * @typedef {import('../types.d.ts').HookEnv} HookEnv
- * @typedef {import('../types.d.ts').Grammar} Grammar
+ * @import { Prism } from './prism.js';
+ * @import { HookEnv, Grammar } from '../types.d.ts';
  */
 
 /**

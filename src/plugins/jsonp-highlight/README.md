@@ -15,7 +15,7 @@ Use the `data-jsonp` attribute on `<pre>` elements, like so:
 ```html
 <pre
 	class="language-javascript"
-	data-jsonp="https://api.github.com/repos/PrismJS/prism/contents/prism.js">
+	data-jsonp="https://api.github.com/repos/PrismJS/prism/contents/src/core.js">
 </pre>
 ```
 
@@ -36,7 +36,7 @@ The following JSONP APIs are automatically detected and parsed:
 If you need to do your own parsing, you can hook your your own data adapters in two ways:
 
 1. Supply the `data-adapter` parameter on the `<pre>` element. This must be the name of a globally defined function. The plugin will use _only_ this adapter to parse the response.
-2. Register your adapter function by calling `Prism.plugins.jsonphighlight.registerAdapter(rsp => { … })`{ .language-javascript }. It will be added to the list of inbuilt adapters and used if no other registered adapter (e.g. GitHub/Bitbucket) can parse the response.
+2. Register your adapter function by calling `Prism.pluginRegistry.peek('jsonp-highlight').plugin.registerAdapter('my-adapter', rsp => { … })`{ .language-javascript }. It will be added to the list of inbuilt adapters and used if no other registered adapter (e.g. GitHub/Bitbucket) can parse the response.
 
 In either case, the function must accept at least a single parameter (the JSONP response) and returns a string of the content to highlight. If your adapter cannot parse the response, you must return `null`{ .language-javascript }. The DOM node that will contain the highlighted code will also be passed in as the second argument, incase you need to use it to query any extra information (maybe you wish to inspect the `class` or `data-jsonp` attributes to assist in parsing the response).
 
@@ -50,9 +50,11 @@ The following example demonstrates both methods of using a custom adapter, to si
 	}
 </script>
 
-<!-- … include prism.js … -->
-<script>
-	Prism.plugins.jsonphighlight.registerAdapter(rsp => {
+<script type="module">
+	import Prism from "https://v2.dev.prismjs.com/dist/index.js";
+	import "https://v2.dev.prismjs.com/dist/plugins/jsonp-highlight.js";
+
+	Prism.pluginRegistry.peek('jsonp-highlight').plugin.registerAdapter('dump', rsp => {
 		return "using registerAdapter: " + JSON.stringify(rsp, null, 2);
 	})
 </script>
@@ -89,7 +91,7 @@ There's a bit of a catch with gists, as they can actually contain multiple files
 
 The plugin’s JS code (from GitHub):
 
-<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/plugins/contents/jsonp-highlight/prism-jsonp-highlight.js"></pre>
+<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/prism/contents/src/plugins/jsonp-highlight/jsonp-highlight.js"></pre>
 
 GitHub Gist (gist contains a single file, automatically selected):
 

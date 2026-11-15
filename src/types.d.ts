@@ -1,8 +1,27 @@
+import type Language from './core/classes/language.js';
+import type Plugin from './core/classes/plugin.js';
 import type { Token } from './core/classes/token.js';
 import type { Prism } from './core/prism.js';
 
+export type { default as LanguageRegistry } from './core/classes/language-registry.js';
+
+export type { Language };
+export type Languages = Record<string, Language>;
+export type LanguageGrammars = Record<string, Grammar>;
+
+export type { default as PluginRegistry } from './core/classes/plugin-registry.js';
+
+export type { Plugin };
+export type Plugins = Record<string, Plugin>;
+
 export interface PrismConfig {
 	manual?: boolean;
+	silent?: boolean;
+	errorHandler?: (reason: any) => PromiseLike<never>;
+	plugins?: string[];
+	languages?: string[];
+	pluginPath?: string;
+	languagePath?: string;
 }
 
 export type GlobalConfig = Record<string, PrismConfig[keyof PrismConfig] | null>;
@@ -21,12 +40,12 @@ export type HooksAll = Record<keyof HookEnv, HookCallback[]>;
 
 export type HooksAdd = <Name extends keyof HookEnv>(
 	name: Name | Name[] | MultipleHooks<Name>,
-	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	callback?: HookCallback<Name>
 ) => () => void;
 
 export type HooksRemove = <Name extends keyof HookEnv>(
 	name: Name | Name[] | MultipleHooks<Name>,
-	callback?: Name extends MultipleHooks<Name> ? never : HookCallback<Name>
+	callback?: HookCallback<Name>
 ) => void;
 
 export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Name]) => void;
@@ -34,6 +53,7 @@ export type HooksRun = <Name extends keyof HookEnv>(name: Name, env: HookEnv[Nam
 export interface GrammarOptions {
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar;
+	readonly whenDefined: (id: string) => Promise<ComponentProto>;
 }
 
 export interface ComponentProtoBase<Id extends string = string> {
@@ -50,31 +70,44 @@ export type LanguageProto<Id extends string = string> =
 	| LanguageProtoWithRequire<Id>
 	| LanguageProtoWithBaseAndRequire<Id>;
 
-interface LanguageProtoPlain<Id extends string = string> extends ComponentProtoBase<Id> {
-	grammar: Grammar | ((options: GrammarOptions) => Grammar);
+interface LanguageProtoBase<Id extends string = string> extends ComponentProtoBase<Id> {
 	plugin?: undefined;
+	/**
+	 * Marks this language as a meta-language that embeds or produces another language and can be
+	 * used with a compound id (`outer:inner`, e.g. `diff:css`, `django:css`, `diff:django:css`).
+	 *
+	 * A definition is the default inner language (e.g. `markup` for templating languages);
+	 * `null` means there is no default (e.g. `diff`). Use `:none` to explicitly opt out of a default.
+	 *
+	 * By default, everything that is not a token of this grammar is highlighted as the inner language.
+	 * The grammar can select other parts instead with `$inner: { select }` (e.g. `diff` selects the
+	 * lines of its blocks, without their prefixes).
+	 */
+	inner?: LanguageProto | null;
+}
+
+interface LanguageProtoPlain<Id extends string = string> extends LanguageProtoBase<Id> {
+	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 	base?: never; // Explicitly no base allowed
 	require?: never; // Explicitly no require allowed
 }
 
-interface LanguageProtoWithBase<Id extends string = string> extends ComponentProtoBase<Id> {
+interface LanguageProtoWithBase<Id extends string = string> extends LanguageProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions & { readonly base: Grammar }) => Grammar);
-	plugin?: undefined;
 	base: LanguageProto; // Required base
 	require?: never; // Explicitly no require allowed
 }
 
-interface LanguageProtoWithRequire<Id extends string = string> extends ComponentProtoBase<Id> {
+interface LanguageProtoWithRequire<Id extends string = string> extends LanguageProtoBase<Id> {
 	grammar:
 		| Grammar
 		| ((options: GrammarOptions & { readonly languages: Record<string, Grammar> }) => Grammar);
-	plugin?: undefined;
 	base?: never; // Explicitly no base allowed
 	require: ComponentProto | readonly ComponentProto[]; // Required require
 }
 
 interface LanguageProtoWithBaseAndRequire<Id extends string = string>
-	extends ComponentProtoBase<Id> {
+	extends LanguageProtoBase<Id> {
 	grammar:
 		| Grammar
 		| ((
@@ -83,7 +116,6 @@ interface LanguageProtoWithBaseAndRequire<Id extends string = string>
 					readonly languages: Record<string, Grammar>;
 				}
 		  ) => Grammar);
-	plugin?: undefined;
 	base: LanguageProto; // Required base
 	require: ComponentProto | readonly ComponentProto[]; // Required require
 }
@@ -91,6 +123,7 @@ interface LanguageProtoWithBaseAndRequire<Id extends string = string>
 type PluginType<Name extends string> = unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar?: undefined;
+	inner?: undefined;
 	plugin?: (
 		Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }
 	) => PluginType<KebabToCamelCase<Id>> & {};
@@ -195,8 +228,46 @@ export type GrammarSpecial = {
 	 * An optional grammar object that will be appended to this grammar.
 	 */
 	$rest?: Grammar | string | null;
+	/**
+	 * An inner language for parts of the tokenized code.
+	 *
+	 * After tokenizing with this grammar, the selected parts of the result are concatenated,
+	 * tokenized as one whole with the inner language, and the resulting tokens are put back where
+	 * the parts were. By default the unmatched text is selected: this is how templating languages
+	 * embed their host language. `{ select }` selects other containers, e.g. the lines of a diff.
+	 *
+	 * A grammar reference alone is shorthand for `{ language }`. An inline grammar is told apart
+	 * from the object form by its keys, so one whose only token is named `language` has to be
+	 * referenced by id or from a function instead.
+	 */
+	$inner?: GrammarRef | InnerSpec;
 	$tokenize?: (code: string, grammar: Grammar, Prism: Prism) => TokenStream;
 };
+
+/**
+ * A reference to a grammar: a language id, a grammar object, or a function returning one.
+ */
+export type GrammarRef = Grammar | string | (() => Grammar) | null | undefined;
+
+export interface InnerSpec {
+	/**
+	 * The inner language. Defaults to the inner language of the meta-language instance
+	 * (see `LanguageProtoBase.inner`).
+	 */
+	language?: GrammarRef;
+	/**
+	 * One selector per document. A selector is a comma-separated list of containers: token names
+	 * (matching a token's type or alias) and `:text` for the unmatched text. The strings directly
+	 * inside the selected containers are concatenated and highlighted as one whole. With several
+	 * selectors, this happens once per selector, later ones winning where they overlap.
+	 *
+	 * A selector that names no container at all is an error. A name that no token has is not:
+	 * it simply selects nothing, since a document need not contain every kind of container.
+	 *
+	 * @default ':text'
+	 */
+	select?: string | string[];
+}
 
 /**
  * Tokens within $insert

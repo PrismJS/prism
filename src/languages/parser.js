@@ -1,14 +1,20 @@
-import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'parser'>} */
 export default {
 	id: 'parser',
 	base: markup,
-	grammar ({ base }) {
+	grammar () {
 		const punctuation = /[\[\](){};]/;
 
 		const parser = {
+			'expression': {
+				// Allow for 3 levels of depth
+				pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
+				greedy: true,
+				lookbehind: true,
+				inside: {}, // See below
+			},
 			'keyword': {
 				pattern:
 					/(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
@@ -39,62 +45,44 @@ export default {
 			'punctuation': punctuation,
 		};
 
-		insertBefore(parser, 'keyword', {
-			'parser-comment': {
-				pattern: /(\s)#.*/,
+		parser['expression'].inside = {
+			'string': {
+				pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[\s\S])*\2/,
 				lookbehind: true,
-				alias: 'comment',
 			},
-			'expression': {
-				// Allow for 3 levels of depth
-				pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
-				greedy: true,
-				lookbehind: true,
-				inside: {
-					'string': {
-						pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[\s\S])*\2/,
+			'keyword': parser.keyword,
+			'variable': parser.variable,
+			'function': parser.function,
+			'boolean': /\b(?:false|true)\b/,
+			'number': /\b(?:0x[a-f\d]+|\d+(?:\.\d*)?(?:e[+-]?\d+)?)\b/i,
+			'escape': parser.escape,
+			'operator':
+				/[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
+			'punctuation': punctuation,
+		};
+
+		return {
+			...parser,
+			$insertBefore: {
+				'keyword': {
+					'parser-comment': {
+						pattern: /(\s)#.*/,
 						lookbehind: true,
+						alias: 'comment',
 					},
+				},
+				'tag/attr-value/punctuation': {
+					'expression': parser.expression,
 					'keyword': parser.keyword,
 					'variable': parser.variable,
 					'function': parser.function,
-					'boolean': /\b(?:false|true)\b/,
-					'number': /\b(?:0x[a-f\d]+|\d+(?:\.\d*)?(?:e[+-]?\d+)?)\b/i,
 					'escape': parser.escape,
-					'operator':
-						/[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
-					'punctuation': punctuation,
+					'parser-punctuation': {
+						pattern: punctuation,
+						alias: 'punctuation',
+					},
 				},
 			},
-		});
-
-		insertBefore(
-			/** @type {Grammar} */ (
-				/** @type {GrammarToken} */ (
-					/** @type {Grammar} */ (/** @type {GrammarToken} */ (base['tag']).inside)[
-						'attr-value'
-					]
-				).inside
-			),
-			'punctuation',
-			{
-				'expression': parser.expression,
-				'keyword': parser.keyword,
-				'variable': parser.variable,
-				'function': parser.function,
-				'escape': parser.escape,
-				'parser-punctuation': {
-					pattern: punctuation,
-					alias: 'punctuation',
-				},
-			}
-		);
-
-		return parser;
+		};
 	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- */

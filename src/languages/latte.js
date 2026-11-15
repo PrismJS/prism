@@ -1,4 +1,3 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import { insertBefore } from '../util/language-util.js';
 import markup from './markup.js';
 import php from './php.js';
@@ -38,7 +37,7 @@ export default {
 			},
 		});
 
-		return /** @type {Grammar} */ ({
+		return {
 			'latte-comment': {
 				pattern: /\{\*[\s\S]*?\*\}/,
 				greedy: true,
@@ -66,8 +65,8 @@ export default {
 					},
 				},
 			},
-			$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn(markupLatte)),
-		});
+			$inner: markupLatte,
+		};
 	},
 };
 

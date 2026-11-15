@@ -1,0 +1,32 @@
+release-date: 2026-09-19T14:00:00Z
+precise: 2026-09-19T14:00:00.123456789+02:00
+when: [
+	2026-09-19T14:00:00Z
+	2026-09-20T14:00:00Z
+]
+
+----------------------------------------------------
+
+[
+	["key", "release-date"],
+	["punctuation", ":"],
+	["instant", "2026-09-19T14:00:00Z"],
+
+	["key", "precise"],
+	["punctuation", ":"],
+	["instant", "2026-09-19T14:00:00.123456789+02:00"],
+
+	["key", "when"],
+	["punctuation", ":"],
+	["punctuation", "["],
+
+	["instant", "2026-09-19T14:00:00Z"],
+
+	["instant", "2026-09-20T14:00:00Z"],
+
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Instants are values, not strings, and stay intact at the start of an array item.

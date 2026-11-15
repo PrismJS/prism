@@ -1,0 +1,122 @@
+APP_ENV=production
+API_VERSION=1.2.3
+LOG=true
+USERS_COUNT=42
+TIMEOUT=30.5
+
+BARE_KEY
+EMPTY_STRING=
+#DISABLED_VAR=value
+
+APP_NAME="My App"
+WELCOME="Hello\nWorld"
+PASSWORD='literal#string'
+ESCAPED="He said: \"Hello\""
+
+HOST=example.com
+PORT=8080
+ENABLE=true
+SPECIAL=some\#literal
+
+MULTILINE=`line 1 \
+line 2 \
+line 3`
+
+SPACEY   =   spaced-value
+TABS		=	value-with-tabs
+TABS_AND_SPACES   		=   	value-with-tabs-and-spaces
+
+----------------------------------------------------
+
+[
+	["key", "APP_ENV"], ["assignment-operator", "="], ["value", ["production"]],
+	["key", "API_VERSION"], ["assignment-operator", "="], ["value", ["1.2.3"]],
+	["key", "LOG"], ["assignment-operator", "="], ["value", "true"],
+	["key", "USERS_COUNT"], ["assignment-operator", "="], ["value", "42"],
+	["key", "TIMEOUT"], ["assignment-operator", "="], ["value", "30.5"],
+
+	["key", "BARE_KEY"],
+	["key", "EMPTY_STRING"], ["assignment-operator", "="],
+	["comment", "#DISABLED_VAR=value"],
+
+	["key", "APP_NAME"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"My App",
+		["punctuation", "\""]
+	]],
+
+	["key", "WELCOME"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"Hello",
+		["escape-sequence", "\\n"],
+		"World",
+		["punctuation", "\""]
+	]],
+
+	["key", "PASSWORD"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "'"],
+		"literal#string",
+		["punctuation", "'"]
+	]],
+
+	["key", "ESCAPED"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "\""],
+		"He said: ",
+		["escape-sequence", "\\\""],
+		"Hello",
+		["escape-sequence", "\\\""],
+		["punctuation", "\""]
+	]],
+
+	["key", "HOST"],
+	["assignment-operator", "="],
+	["value", ["example.com"]],
+
+	["key", "PORT"],
+	["assignment-operator", "="],
+	["value", "8080"],
+
+	["key", "ENABLE"],
+	["assignment-operator", "="],
+	["value", "true"],
+
+	["key", "SPECIAL"],
+	["assignment-operator", "="],
+	["value", [
+		"some",
+		["escape-sequence", "\\#"],
+		"literal"
+	]],
+
+	["key", "MULTILINE"],
+	["assignment-operator", "="],
+	["value", [
+		["punctuation", "`"],
+		"line 1 \\\r\nline 2 \\\r\nline 3",
+		["punctuation", "`"]
+	]],
+
+	["key", "SPACEY"],
+	["assignment-operator", "="],
+	["value", ["spaced-value"]],
+
+	["key", "TABS"],
+	["assignment-operator", "="],
+	["value", ["value-with-tabs"]],
+
+	["key", "TABS_AND_SPACES"],
+	["assignment-operator", "="],
+	["value", ["value-with-tabs-and-spaces"]]
+]
+
+----------------------------------------------------
+
+Check for key-value pairs.

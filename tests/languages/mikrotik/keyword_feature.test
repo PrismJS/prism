@@ -1,0 +1,29 @@
+do=
+else=
+for=
+foreach=
+from=
+if=
+in=
+on-error=
+once
+step=
+to=
+while=
+
+----------------------------------------------------
+
+[
+	["keyword", "do"], ["operator", "="],
+	["keyword", "else"], ["operator", "="],
+	["keyword", "for"], ["operator", "="],
+	["keyword", "foreach"], ["operator", "="],
+	["keyword", "from"], ["operator", "="],
+	["keyword", "if"], ["operator", "="],
+	["keyword", "in"], ["operator", "="],
+	["keyword", "on-error"], ["operator", "="],
+	["keyword", "once"],
+	["keyword", "step"], ["operator", "="],
+	["keyword", "to"], ["operator", "="],
+	["keyword", "while"], ["operator", "="]
+]

@@ -4,11 +4,11 @@ description: Previewers for angles, colors, gradients, easing and time.
 owner: Golmote
 require: css-extras
 resources:
-  - /languages/css-extras.js { type="module" }
-  - /languages/less.js { type="module" }
-  - /languages/sass.js { type="module" }
-  - /languages/scss.js { type="module" }
-  - /languages/stylus.js { type="module" }
+  - /languages/css-extras.js
+  - /languages/less.js
+  - /languages/sass.js
+  - /languages/scss.js
+  - /languages/stylus.js
 ---
 
 <section class="language-markup">
@@ -204,11 +204,11 @@ div {
 
 # API
 
-This plugins provides a constructor that can be accessed through `Prism.plugins.Previewer`.
+This plugins provides a constructor that can be imported from `prismjs/plugins/previewers.js` as `Previewer`. Add a previewer with `Prism.pluginRegistry.peek('previewers').plugin.add(previewer)`.
 
 Once a previewer has been instantiated, an HTML element is appended to the document body. This element will appear when specific tokens are hovered.
 
-## `new Prism.plugins.Previewer(type, updater, supportedLanguages)`
+## `new Previewer(type, updater, supportedLanguages)`
 
 - `type`: the token type this previewer is associated to. The previewer will be shown when hovering tokens of this type.
 

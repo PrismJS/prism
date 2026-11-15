@@ -4,7 +4,6 @@ import { tokenizeStrings } from '../../shared/tokenize-strings.js';
 /** @type {import('../../types.d.ts').PluginProto<'autolinker'>} */
 const Self = {
 	id: 'autolinker',
-	optional: 'diff-highlight',
 	effect (Prism) {
 		/**
 		 * @param {string} chars
@@ -21,8 +20,11 @@ const Self = {
 				`(?:#${balanced(/[\w\-+%~/.:=&!$'*,;@?#]/.source)}*)?`
 		);
 		const email = /\b\S+@[\w.]+[a-z]{2}/;
+		// Only a URL target: `handlers[name](event)` is code
+		const mdLink = RegExp(String.raw`\[([^\]]+)\]\((${url.source})\)`);
 
 		const links = {
+			'md-link': mdLink,
 			'url-link': url,
 			'email-link': email,
 		};
@@ -38,6 +40,11 @@ const Self = {
 					if (env.type === 'email-link' && !href.startsWith('mailto:')) {
 						href = 'mailto:' + href;
 					}
+					else if (env.type === 'md-link') {
+						const [, text, link] = /** @type {RegExpMatchArray} */ (href.match(mdLink));
+						env.content = text;
+						href = link;
+					}
 
 					env.tag = 'a';
 					env.attributes.href = href;
@@ -49,4 +56,4 @@ const Self = {
 
 export default Self;
 
-prism.components.add(Self);
+prism.pluginRegistry.add(Self);

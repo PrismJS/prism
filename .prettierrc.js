@@ -41,5 +41,13 @@ export default {
 				singleQuote: false,
 			},
 		},
+		{
+			// Docs write JS with double quotes, and YAML front matter is indented with 2 spaces
+			files: '*.md',
+			options: {
+				singleQuote: false,
+				tabWidth: 2,
+			},
+		},
 	],
 };

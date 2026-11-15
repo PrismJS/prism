@@ -1,10 +1,10 @@
 ---
 name: Highlighting bug report
 about: Does Prism highlight parts of your code incorrectly or is a language feature
-    not supported?
-title: ''
+  not supported?
+title: ""
 labels: language-definitions
-assignees: ''
+assignees: ""
 ---
 
 **Information**

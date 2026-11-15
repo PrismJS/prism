@@ -1,0 +1,21 @@
+!terminal!
+sw:!terminal!
+|!terminal!|
+|!terminal|!
+!|terminal|!
+!||!
+
+----------------------------------------------------
+
+[
+	["dynamic-variable", "!terminal!"],
+	["dynamic-variable", "sw:!terminal!"],
+	["dynamic-variable", "|!terminal!|"],
+	["dynamic-variable", "|!terminal|!"],
+	["dynamic-variable", "!|terminal|!"],
+	["dynamic-variable", "!||!"]
+]
+
+----------------------------------------------------
+
+Checks for dynamic variables.

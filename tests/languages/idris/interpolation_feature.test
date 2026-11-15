@@ -1,0 +1,29 @@
+"hello \{name}"
+"sum: \{show (x + y)}"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"hello ",
+		["interpolation", [
+			["punctuation", "\\{"],
+			"name",
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"sum: ",
+		["interpolation", [
+			["punctuation", "\\{"],
+			"show (x + y)",
+			["punctuation", "}"]
+		]],
+		"\""
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string interpolation with \{expr}.

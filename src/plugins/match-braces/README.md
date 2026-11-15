@@ -2,7 +2,7 @@
 title: Match braces
 description: Highlights matching braces.
 owner: RunDevelopment
-resources: /plugins/autoloader.js { type="module" }
+resources: /plugins/autoloader.js
 ---
 
 <section class="language-markup">
@@ -40,7 +40,7 @@ To enable rainbow braces, simply add the `rainbow-braces` class to a code block.
 ```js
 const func = (a, b) => {
 	return `${a}:${b}`;
-}
+};
 ```
 
 ## Lisp

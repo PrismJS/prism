@@ -1,0 +1,45 @@
+:symbol
+:boolean?
+:kleenean??
+:int!internal
+:|piped|
+:|123|
+:int|!|internal
+:new|()|
+:|A|b|c ||()|
+:_new
+:|=|
+:|new world|
+:||
+:|ABC|\||def|
+:||\D|D|
+(:symbol)
+{:symbol}
+[:symbol]
+
+----------------------------------------------------
+
+[
+	["symbol", ":symbol"],
+	["symbol", ":boolean?"],
+	["symbol", ":kleenean??"],
+	["symbol", ":int!internal"],
+	["symbol", ":|piped|"],
+	["symbol", ":|123|"],
+	["symbol", ":int|!|internal"],
+	["symbol", ":new|()|"],
+	["symbol", ":|A|b|c ||()|"],
+	["symbol", ":_new"],
+	["symbol", ":|=|"],
+	["symbol", ":|new world|"],
+	["symbol", ":||"],
+	["symbol", ":|ABC|\\||def|"],
+	["symbol", ":||\\D|D|"],
+	["punctuation", "("], ["symbol", ":symbol"], ["punctuation", ")"],
+	["punctuation", "{"], ["symbol", ":symbol"], ["punctuation", "}"],
+	["punctuation", "["], ["symbol", ":symbol"], ["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for symbols.

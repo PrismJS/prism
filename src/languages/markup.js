@@ -1,4 +1,3 @@
-import { insertBefore } from '../util/language-util.js';
 import xml from './xml.js';
 
 /**
@@ -96,31 +95,30 @@ export default {
 	id: 'markup',
 	base: xml,
 	alias: ['html', 'svg', 'mathml'],
-	grammar ({ base }) {
-		insertBefore(base, 'cdata', {
-			'style': inlineEmbedded('style', 'css'),
-			'script': inlineEmbedded('script', 'javascript'),
-		});
-
-		const tag = /** @type {GrammarToken & { inside: Grammar }} */ (base.tag);
-		insertBefore(tag.inside, 'attr-value', {
-			'special-attr': [
-				attributeEmbedded('style', 'css'),
-				// add attribute support for all DOM events.
-				// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
-				attributeEmbedded(
-					/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
-						.source,
-					'javascript'
-				),
-			],
-		});
-
-		return {};
+	grammar () {
+		return {
+			$insertBefore: {
+				'cdata': {
+					'style': inlineEmbedded('style', 'css'),
+					'script': inlineEmbedded('script', 'javascript'),
+				},
+				'tag/attr-value': {
+					'special-attr': [
+						attributeEmbedded('style', 'css'),
+						// add attribute support for all DOM events.
+						// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
+						attributeEmbedded(
+							/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
+								.source,
+							'javascript'
+						),
+					],
+				},
+			},
+		};
 	},
 };
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
- * @typedef {import('../types.d.ts').Grammar} Grammar
  */

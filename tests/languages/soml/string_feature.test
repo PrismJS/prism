@@ -1,0 +1,71 @@
+literal: 'C:\Users\sindre\dev'
+escaped: "line one\nline two\t\"quoted\"\u{1f600}"
+hash: '# not a comment'
+block-marker: '/* not a comment */'
+instant-text: '2026-09-19T14:00:00Z'
+duration-text: '30s'
+number-text: '123'
+block:
+	'''
+	Terminates TLS.
+	Routes requests.
+	'''
+wide:
+	''''
+	holds ''' inside
+	''''
+escaped-block:
+	"""
+	keeps \n escapes
+	"""
+
+----------------------------------------------------
+
+[
+	["key", "literal"],
+	["punctuation", ":"],
+	["string", "'C:\\Users\\sindre\\dev'"],
+
+	["key", "escaped"],
+	["punctuation", ":"],
+	["string", "\"line one\\nline two\\t\\\"quoted\\\"\\u{1f600}\""],
+
+	["key", "hash"],
+	["punctuation", ":"],
+	["string", "'# not a comment'"],
+
+	["key", "block-marker"],
+	["punctuation", ":"],
+	["string", "'/* not a comment */'"],
+
+	["key", "instant-text"],
+	["punctuation", ":"],
+	["string", "'2026-09-19T14:00:00Z'"],
+
+	["key", "duration-text"],
+	["punctuation", ":"],
+	["string", "'30s'"],
+
+	["key", "number-text"],
+	["punctuation", ":"],
+	["string", "'123'"],
+
+	["key", "block"],
+	["punctuation", ":"],
+
+	["block-string", "'''\r\n\tTerminates TLS.\r\n\tRoutes requests.\r\n\t'''"],
+
+	["key", "wide"],
+	["punctuation", ":"],
+
+	["block-string", "''''\r\n\tholds ''' inside\r\n\t''''"],
+
+	["key", "escaped-block"],
+	["punctuation", ":"],
+
+	["block-string", "\"\"\"\r\n\tkeeps \\n escapes\r\n\t\"\"\""]
+]
+
+----------------------------------------------------
+
+Literal strings need no escaping, escaped strings accept `\n`, `\t`, `\"`, `\\`, and `\u{…}`, and block strings are delimited by a run of three or more quotes.

@@ -1,7 +1,7 @@
 {{aUserModel.name}}
 <div>{{listOfUsers.firstObject.name}}</div>
 {{if name "I have a name" "I have no name"}}
-<span data-has-name={{if name true}}></span>
+<span data-has-name={{if name true}} class={{c}}></span>
 <div {{on "click" this.hello}} />
 
 ----------------------------------------------------
@@ -49,14 +49,23 @@
 		["tag", ["span"]],
 		["attr-name", ["data-has-name"]],
 		["attr-value", [
-			["punctuation", "="],
-			["handlebars", [
-				["delimiter", "{{"],
-				["variable", "if"],
-				["variable", "name"],
-				["boolean", "true"],
-				["delimiter", "}}"]
-			]]
+			["punctuation", "="]
+		]],
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "if"],
+			["variable", "name"],
+			["boolean", "true"],
+			["delimiter", "}}"]
+		]],
+		["attr-name", ["class"]],
+		["attr-value", [
+			["punctuation", "="]
+		]],
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "c"],
+			["delimiter", "}}"]
 		]],
 		["punctuation", ">"]
 	]],
@@ -69,16 +78,14 @@
 	["tag", [
 		["punctuation", "<"],
 		["tag", ["div"]],
-		["attr-name", [
-			["handlebars", [
-				["delimiter", "{{"],
-				["variable", "on"],
-				["string", "\"click\""],
-				["variable", "this"],
-				["punctuation", "."],
-				["variable", "hello"],
-				["delimiter", "}}"]
-			]]
+		["handlebars", [
+			["delimiter", "{{"],
+			["variable", "on"],
+			["string", "\"click\""],
+			["variable", "this"],
+			["punctuation", "."],
+			["variable", "hello"],
+			["delimiter", "}}"]
 		]],
 		["punctuation", "/>"]
 	]]

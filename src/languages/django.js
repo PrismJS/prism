@@ -1,4 +1,3 @@
-import { embeddedIn } from '../shared/languages/templating.js';
 import markup from './markup.js';
 
 // Django/Jinja2 syntax definition for Prism.js <http://prismjs.com> syntax highlighter.
@@ -7,9 +6,9 @@ import markup from './markup.js';
 /** @type {import('../types.d.ts').LanguageProto<'django'>} */
 export default {
 	id: 'django',
-	require: markup,
+	inner: markup,
 	alias: 'jinja2',
-	grammar: /** @type {Grammar} */ ({
+	grammar: {
 		'django': {
 			pattern: /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}|\{#[\s\S]*?#\}/,
 			inside: {
@@ -47,10 +46,5 @@ export default {
 				'punctuation': /[{}[\](),.:;]/,
 			},
 		},
-		$tokenize: /** @type {Grammar['$tokenize']} */ (embeddedIn('markup')),
-	}),
+	},
 };
-
-/**
- * @typedef {import('../types.d.ts').Grammar} Grammar
- */

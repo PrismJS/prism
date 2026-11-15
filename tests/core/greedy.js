@@ -10,7 +10,7 @@ import { simplify } from '../helper/token-stream-transformer.js';
  */
 function testTokens ({ grammar, code, expected }) {
 	const instance = new Prism();
-	instance.components.add({ id: 'test', grammar });
+	instance.languageRegistry.add({ id: 'test', grammar });
 
 	const simpleTokens = simplify(instance.tokenize(code, grammar));
 
@@ -117,4 +117,4 @@ describe('Greedy matching', () => {
 	});
 });
 
-/** @typedef {import('../../src/types.d.ts').Grammar} Grammar */
+/** @import { Grammar } from '../../src/types.d.ts'; */

@@ -1,0 +1,57 @@
+Hello|#id1|
+Kohaku: Hello|#id2|
+@print Hello|#id3|
+@print "Hello|#id4|"
+@choice "Go|#id5|" goto:#Next
+Not an id |# with space|
+
+----------------------------------------------------
+
+[
+	"Hello",
+	["text-id", "|#id1|"],
+
+	["author", [
+		"Kohaku",
+		["punctuation", ":"]
+	]],
+	" Hello",
+	["text-id", "|#id2|"],
+
+	["command", [
+		["command-name", "@print"],
+		["parameter-value", [
+			"Hello",
+			["text-id", "|#id3|"]
+		]]
+	]],
+
+	["command", [
+		["command-name", "@print"],
+		["string", [
+			"\"Hello",
+			["text-id", "|#id4|"],
+			"\""
+		]]
+	]],
+
+	["command", [
+		["command-name", "@choice"],
+		["string", [
+			"\"Go",
+			["text-id", "|#id5|"],
+			"\""
+		]],
+		["parameter-name", [
+			"goto",
+			["punctuation", ":"]
+		]],
+		["label", "#Next"]
+	]],
+
+	"\r\nNot an id |# with space|"
+]
+
+----------------------------------------------------
+
+Checks for text identifiers.
