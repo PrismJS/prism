@@ -58,7 +58,7 @@ export function isObject (obj, type) {
 	}
 
 	const proto = Object.getPrototypeOf(obj);
-	return proto.constructor?.name === type;
+	return proto?.constructor?.name === type;
 }
 
 /**
@@ -66,7 +66,12 @@ export function isObject (obj, type) {
  * @returns {boolean}
  */
 export function isPlainObject (obj) {
-	return isObject(obj, 'Object');
+	if (!obj || typeof obj !== 'object') {
+		return false;
+	}
+
+	const proto = Object.getPrototypeOf(obj);
+	return proto === null || proto.constructor?.name === 'Object';
 }
 
 /**
