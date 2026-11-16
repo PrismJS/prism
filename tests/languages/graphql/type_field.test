@@ -1,0 +1,59 @@
+query {
+	signature {
+		identity
+		type
+		value
+	}
+}
+
+type Human {
+	type: String
+}
+
+extend type Human {
+	friends: [Character]
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "query"],
+	["punctuation", "{"],
+
+	["object", "signature"],
+	["punctuation", "{"],
+
+	["property", "identity"],
+	["property", "type"],
+	["property", "value"],
+
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Human"],
+	["punctuation", "{"],
+
+	["attr-name", "type"],
+	["punctuation", ":"],
+	["scalar", "String"],
+
+	["punctuation", "}"],
+
+	["keyword", "extend"],
+	["keyword", "type"],
+	["class-name", "Human"],
+	["punctuation", "{"],
+
+	["attr-name", "friends"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Character"],
+	["punctuation", "]"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+`type` is a keyword only in a type definition, not when used as a field name.

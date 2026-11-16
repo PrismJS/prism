@@ -69,6 +69,24 @@ export default {
 		$tokenize (code, grammar, Prism) {
 			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
+			// `type` is a definition keyword (`type Human`) and a legal field name.
+			// After class-name looks behind `type `, only a following class-name
+			// token still identifies a type definition.
+			for (let i = 0; i < tokens.length; i++) {
+				const token = tokens[i];
+				if (typeof token === 'string' || token.type !== 'keyword' || token.content !== 'type') {
+					continue;
+				}
+				let j = i + 1;
+				while (j < tokens.length && typeof tokens[j] === 'string') {
+					j++;
+				}
+				const next = tokens[j];
+				if (!next || typeof next === 'string' || next.type !== 'class-name') {
+					token.type = 'property';
+				}
+			}
+
 			/**
 			 * @param {Token | string} token
 			 * @returns {token is Token}

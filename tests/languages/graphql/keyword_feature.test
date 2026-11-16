@@ -46,7 +46,7 @@ union,
 	["punctuation", ","],
 	["keyword", "subscription"],
 	["punctuation", ","],
-	["keyword", "type"],
+	["property", "type"],
 	["punctuation", ","],
 	["keyword", "union"],
 	["punctuation", ","]
@@ -54,4 +54,4 @@ union,
 
 ----------------------------------------------------
 
-Checks for keywords.
+Checks for keywords. A bare `type` is a field name; type definitions are covered in class-name_feature and type_field.
