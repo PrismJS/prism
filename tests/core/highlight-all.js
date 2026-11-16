@@ -26,4 +26,16 @@ describe('highlightAll', () => {
 		);
 		assert.deepStrictEqual(errors, ['broken grammar']);
 	});
+
+	// https://github.com/PrismJS/prism/issues/3364
+	it('should only highlight elements with a whole language class', ({ document, Prism }) => {
+		Prism.languageRegistry.add({ id: 'fine', grammar: { keyword: /\bfoo\b/ } });
+		const ignored = `<code class="copy-language-fine">foo</code><div class="golang-fine"><code>foo</code></div>`;
+
+		document.body.innerHTML = `<code class="x language-fine">foo</code><code class="x\n\tlanguage-fine">foo</code><div class="lang-fine"><code>foo</code></div>${ignored}`;
+		Prism.highlightAll();
+
+		assert.strictEqual(document.querySelectorAll('.token').length, 3);
+		assert.isTrue(document.body.innerHTML.endsWith(ignored));
+	});
 });
