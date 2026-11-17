@@ -1,7 +1,6 @@
 LDA $8000,z
 ASL A
-STA ($AA,s),y
-STA ($AA,sp),y
+LDA (label,S),Y
 
 ----------------------------------------------------
 
@@ -14,23 +13,14 @@ STA ($AA,sp),y
 	["op-code", "ASL"],
 	["register", "A"],
 
-	["op-code", "STA"],
+	["op-code", "LDA"],
 	["punctuation", "("],
-	["hex-number", "$AA"],
+	"label",
 	["punctuation", ","],
-	["register", "s"],
+	["register", "S"],
 	["punctuation", ")"],
 	["punctuation", ","],
-	["register", "y"],
-
-	["op-code", "STA"],
-	["punctuation", "("],
-	["hex-number", "$AA"],
-	["punctuation", ","],
-	["register", "sp"],
-	["punctuation", ")"],
-	["punctuation", ","],
-	["register", "y"]
+	["register", "Y"]
 ]
 
 ----------------------------------------------------

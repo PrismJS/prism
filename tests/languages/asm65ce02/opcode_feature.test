@@ -29,6 +29,7 @@ bne
 bpl
 bra
 brk
+bsr
 bvc
 bvs
 clc
@@ -56,12 +57,10 @@ jsr
 lbcc
 lbcs
 lbeq
-lbit
 lbmi
 lbne
 lbpl
 lbra
-lbrk
 lbvc
 lbvs
 lda
@@ -159,6 +158,7 @@ BNE
 BPL
 BRA
 BRK
+BSR
 BVC
 BVS
 CLC
@@ -186,12 +186,10 @@ JSR
 LBCC
 LBCS
 LBEQ
-LBIT
 LBMI
 LBNE
 LBPL
 LBRA
-LBRK
 LBVC
 LBVS
 LDA
@@ -293,6 +291,7 @@ TZA
 	["op-code", "bpl"],
 	["op-code", "bra"],
 	["op-code", "brk"],
+	["op-code", "bsr"],
 	["op-code", "bvc"],
 	["op-code", "bvs"],
 	["op-code", "clc"],
@@ -320,12 +319,10 @@ TZA
 	["op-code", "lbcc"],
 	["op-code", "lbcs"],
 	["op-code", "lbeq"],
-	"\r\nlbit\r\n",
 	["op-code", "lbmi"],
 	["op-code", "lbne"],
 	["op-code", "lbpl"],
 	["op-code", "lbra"],
-	"\r\nlbrk\r\n",
 	["op-code", "lbvc"],
 	["op-code", "lbvs"],
 	["op-code", "lda"],
@@ -423,6 +420,7 @@ TZA
 	["op-code", "BPL"],
 	["op-code", "BRA"],
 	["op-code", "BRK"],
+	["op-code", "BSR"],
 	["op-code", "BVC"],
 	["op-code", "BVS"],
 	["op-code", "CLC"],
@@ -450,12 +448,10 @@ TZA
 	["op-code", "LBCC"],
 	["op-code", "LBCS"],
 	["op-code", "LBEQ"],
-	"\r\nLBIT\r\n",
 	["op-code", "LBMI"],
 	["op-code", "LBNE"],
 	["op-code", "LBPL"],
 	["op-code", "LBRA"],
-	"\r\nLBRK\r\n",
 	["op-code", "LBVC"],
 	["op-code", "LBVS"],
 	["op-code", "LDA"],

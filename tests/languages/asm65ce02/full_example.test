@@ -1,0 +1,48 @@
+; calculate all 8 bit Fibonacci numbers
+
+BUFFER = $1000
+
+fibonacci:
+   clc
+   cld
+   ldx   #1
+   stz   BUFFER
+   stx   BUFFER+1
+   dex
+@loop:
+   lda   BUFFER,x
+   inx
+   adc   BUFFER,x
+   bcs   @done
+   inx
+   sta   BUFFER,x
+   dex
+   bne   @loop
+@done:
+   rts
+
+----------------------------------------------------
+
+[
+	["comment", "; calculate all 8 bit Fibonacci numbers"],
+
+	"\r\n\r\nBUFFER = ", ["hex-number", "$1000"],
+
+	"\r\n\r\nfibonacci", ["punctuation", ":"],
+	["op-code", "clc"],
+	["op-code", "cld"],
+	["op-code", "ldx"], ["decimal-number", "#1"],
+	["op-code", "stz"], "   BUFFER\r\n   ",
+	["op-code", "stx"], "   BUFFER+", ["decimal-number", "1"],
+	["op-code", "dex"],
+	"\r\n@loop", ["punctuation", ":"],
+	["op-code", "lda"], "   BUFFER", ["punctuation", ","], ["register", "x"],
+	["op-code", "inx"],
+	["op-code", "adc"], "   BUFFER", ["punctuation", ","], ["register", "x"],
+	["op-code", "bcs"], "   @done\r\n   ",
+	["op-code", "inx"],
+	["op-code", "sta"], "   BUFFER", ["punctuation", ","], ["register", "x"],
+	["op-code", "dex"],
+	["op-code", "bne"], "   @loop\r\n@done", ["punctuation", ":"],
+	["op-code", "rts"]
+]

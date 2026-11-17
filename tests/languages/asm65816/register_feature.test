@@ -1,6 +1,6 @@
 LDA $8000,x
 ASL A
-LDA $AA,s
+ADC ($12,S),Y
 
 ----------------------------------------------------
 
@@ -13,10 +13,14 @@ LDA $AA,s
 	["op-code", "ASL"],
 	["register", "A"],
 
-	["op-code", "LDA"],
-	["hex-number", "$AA"],
+	["op-code", "ADC"],
+	["punctuation", "("],
+	["hex-number", "$12"],
 	["punctuation", ","],
-	["register", "s"]
+	["register", "S"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["register", "Y"]
 ]
 
 ----------------------------------------------------
