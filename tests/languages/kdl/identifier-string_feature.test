@@ -1,0 +1,48 @@
+name my-pkg
+node alias=underscore
+ノード お名前=ฅ^•ﻌ•^ฅ
+node foo-true allow-null CC-BY-SA-4.0
+node - a,b (type)typed key = value
+node 1.0.0 1abc
+
+----------------------------------------------------
+
+[
+	["tag", "name"],
+	["identifier-string", "my-pkg"],
+
+	["tag", "node"],
+	["property", "alias"],
+	["punctuation", "="],
+	["identifier-string", "underscore"],
+
+	["tag", "ノード"],
+	["property", "お名前"],
+	["punctuation", "="],
+	["identifier-string", "ฅ^•ﻌ•^ฅ"],
+
+	["tag", "node"],
+	["identifier-string", "foo-true"],
+	["identifier-string", "allow-null"],
+	["identifier-string", "CC-BY-SA-4.0"],
+
+	["tag", "node"],
+	["identifier-string", "-"],
+	["identifier-string", "a,b"],
+	["type-annotation", [
+		["punctuation", "("],
+		["class-name", "type"],
+		["punctuation", ")"]
+	]],
+	["identifier-string", "typed"],
+	["property", "key"],
+	["punctuation", "="],
+	["identifier-string", "value"],
+
+	["tag", "node"],
+	" 1.0.0 1abc"
+]
+
+----------------------------------------------------
+
+Bare identifiers used as values are strings in KDL v2. Invalid numbers stay plain.
