@@ -10,5 +10,5 @@ const knownAliases = /* aliases_placeholder[ */ {}; /* ] */
  * @returns {string}
  */
 export function resolveAlias (name) {
-	return knownAliases[name] || name;
+	return Object.hasOwn(knownAliases, name) ? knownAliases[name] : name;
 }

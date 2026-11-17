@@ -96,4 +96,17 @@ describe('Autoloader', () => {
 		assert.lengthOf(errors, 1);
 		assert.include(errors[0], 'srcPath');
 	});
+
+	// `constructor` is an `Object.prototype` member, not a known alias
+	it('should report `constructor` as a missing language file', async () => {
+		const { Prism, window, loadPlugins } = createPrismDOM();
+		await loadPlugins('autoloader');
+		const autoloader = Prism.pluginRegistry.peek('autoloader').plugin;
+		autoloader.srcPath = new URL('../../../src/', import.meta.url).href;
+
+		const error = await autoloader.loadLanguages('constructor').catch(String);
+		window.close();
+
+		assert.include(error, 'languages/constructor.js');
+	});
 });
