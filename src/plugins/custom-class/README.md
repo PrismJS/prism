@@ -13,7 +13,7 @@ body_classes: language-javascript
 Prism default classes are sensible but fixed and too generic. This plugin provide some ways to customize those classes to suit your needs. Example usages:
 
 - You want to add namespace for all of them (like `.prism--comment`) to avoid conflict with your existing classes.
-- You use a naming convention (like [BEM](https://en.bem.info/method)). You want to write classes like `.editor__comment`.
+- You use a naming convention (like [BEM](https://en.bem.info/methodology/)). You want to write classes like `.editor__comment`.
 - You use [CSS Modules](https://github.com/css-modules/css-modules). You want to use your hashed classes, like `.comment_7sh3a`.
 - You need more granular control about the classes of certain tokens. You can define functions which will add new classes to tokens, so selectively change the highlighting of certain parts of your code.
 
