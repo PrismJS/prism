@@ -4,7 +4,7 @@ export default {
 	alias: 'avdl',
 	grammar () {
 		// GitHub: https://github.com/apache/avro
-		// Docs: https://avro.apache.org/docs/current/idl.html
+		// Docs: https://avro.apache.org/docs/current/idl-language/
 
 		return {
 			'comment': {
