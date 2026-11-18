@@ -42,6 +42,7 @@ export function tokenizeByNamedGroups (match) {
 	let i = 0;
 
 	const entries = Object.entries(match.indices?.groups || {})
+		.filter(([, range]) => Boolean(range))
 		.map(([type, [start, end]]) => ({
 			type,
 			start: start - match.index,
