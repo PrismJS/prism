@@ -1,0 +1,34 @@
+from Orders as o
+where o.Company = "companies/1-A"
+select o.OrderedAt, o.ShipTo
+order by o.OrderedAt desc
+
+----------------------------------------------------
+
+[
+	["keyword", "from"],
+	" Orders as o\r\n",
+
+	["keyword", "where"],
+	" o",
+	["punctuation", "."],
+	"Company ",
+	["operator", "="],
+	["string", "\"companies/1-A\""],
+
+	["keyword", "select"],
+	" o",
+	["punctuation", "."],
+	"OrderedAt",
+	["punctuation", ","],
+	" o",
+	["punctuation", "."],
+	"ShipTo\r\n",
+
+	["keyword", "order"],
+	["keyword", "by"],
+	" o",
+	["punctuation", "."],
+	"OrderedAt ",
+	["order-by-option", "desc"]
+]

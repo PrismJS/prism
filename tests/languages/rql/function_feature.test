@@ -1,0 +1,26 @@
+from Products
+where search(Name, "chocolate") and boost(Discontinued = false, 2)
+
+----------------------------------------------------
+
+[
+	["keyword", "from"],
+	" Products\r\n",
+
+	["keyword", "where"],
+	["function", "search"],
+	["punctuation", "("],
+	"Name",
+	["punctuation", ","],
+	["string", "\"chocolate\""],
+	["punctuation", ")"],
+	["keyword", "and"],
+	["function", "boost"],
+	["punctuation", "("],
+	"Discontinued ",
+	["operator", "="],
+	["boolean", "false"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"]
+]

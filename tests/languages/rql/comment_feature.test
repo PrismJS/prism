@@ -1,0 +1,16 @@
+// single line comment
+from Orders /* block comment */ where Total > 100
+
+----------------------------------------------------
+
+[
+	["comment", "// single line comment"],
+
+	["keyword", "from"],
+	" Orders ",
+	["comment", "/* block comment */"],
+	["keyword", "where"],
+	" Total ",
+	["operator", ">"],
+	["number", "100"]
+]
