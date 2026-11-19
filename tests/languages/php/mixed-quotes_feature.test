@@ -1,0 +1,76 @@
+$s = "it's";
+// 'a' b
+$s = 'c';
+
+$s = "it's";
+/* 'a' */
+$s = 'c';
+
+# a ?> b
+
+$where = "IN ('" . implode( "', '", array_map( 'esc_sql', $names ) ) . "')";
+// 'childless' terms
+$childless = $args['childless'];
+
+----------------------------------------------------
+
+[
+	["variable", "$s"],
+	["operator", "="],
+	["string", ["\"it's\""]],
+	["punctuation", ";"],
+
+	["comment", "// 'a' b"],
+
+	["variable", "$s"],
+	["operator", "="],
+	["string", "'c'"],
+	["punctuation", ";"],
+
+	["variable", "$s"],
+	["operator", "="],
+	["string", ["\"it's\""]],
+	["punctuation", ";"],
+
+	["comment", "/* 'a' */"],
+
+	["variable", "$s"],
+	["operator", "="],
+	["string", "'c'"],
+	["punctuation", ";"],
+
+	["comment", "# a ?> b"],
+
+	["variable", "$where"],
+	["operator", "="],
+	["string", ["\"IN ('\""]],
+	["operator", "."],
+	["function", ["implode"]],
+	["punctuation", "("],
+	["string", ["\"', '\""]],
+	["punctuation", ","],
+	["function", ["array_map"]],
+	["punctuation", "("],
+	["string", "'esc_sql'"],
+	["punctuation", ","],
+	["variable", "$names"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["operator", "."],
+	["string", ["\"')\""]],
+	["punctuation", ";"],
+
+	["comment", "// 'childless' terms"],
+
+	["variable", "$childless"],
+	["operator", "="],
+	["variable", "$args"],
+	["punctuation", "["],
+	["string", "'childless'"],
+	["punctuation", "]"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that apostrophes in double-quoted strings do not break the comments and strings after them, and that `?>` inside a comment in bare PHP stays part of the comment.
