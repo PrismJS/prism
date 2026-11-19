@@ -2,6 +2,12 @@ $s = "it's";
 // 'a' b
 $s = 'c';
 
+$s = "it's";
+/* 'a' */
+$s = 'c';
+
+# a ?> b
+
 $where = "IN ('" . implode( "', '", array_map( 'esc_sql', $names ) ) . "')";
 // 'childless' terms
 $childless = $args['childless'];
@@ -20,6 +26,20 @@ $childless = $args['childless'];
 	["operator", "="],
 	["string", "'c'"],
 	["punctuation", ";"],
+
+	["variable", "$s"],
+	["operator", "="],
+	["string", ["\"it's\""]],
+	["punctuation", ";"],
+
+	["comment", "/* 'a' */"],
+
+	["variable", "$s"],
+	["operator", "="],
+	["string", "'c'"],
+	["punctuation", ";"],
+
+	["comment", "# a ?> b"],
 
 	["variable", "$where"],
 	["operator", "="],
@@ -53,4 +73,4 @@ $childless = $args['childless'];
 
 ----------------------------------------------------
 
-Checks that apostrophes in double-quoted strings do not break the comments and strings after them.
+Checks that apostrophes in double-quoted strings do not break the comments and strings after them, and that `?>` inside a comment in bare PHP stays part of the comment.

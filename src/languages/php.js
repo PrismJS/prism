@@ -14,7 +14,7 @@ export default {
 		 *
 		 * Supports PHP 5.3 - 8.0
 		 */
-		const comment = /\/\*[\s\S]*?\*\/|(?:\/\/|#(?!\[))(?:[^?\r\n]|\?(?!>))*/;
+		const comment = /\/\*[\s\S]*?\*\/|(?:\/\/|#(?!\[))(?:[^?\r\n]|\?(?!>$))*/;
 		const constant = [
 			{
 				pattern: /\b(?:false|true)\b/i,
