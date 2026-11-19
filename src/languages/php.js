@@ -14,7 +14,7 @@ export default {
 		 *
 		 * Supports PHP 5.3 - 8.0
 		 */
-		const comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
+		const comment = /\/\*[\s\S]*?\*\/|(?:\/\/|#(?!\[))(?:[^?\r\n]|\?(?!>))*/;
 		const constant = [
 			{
 				pattern: /\b(?:false|true)\b/i,
@@ -50,7 +50,10 @@ export default {
 				alias: 'comment',
 				inside: 'phpdoc',
 			},
-			'comment': comment,
+			'comment': {
+				pattern: comment,
+				greedy: true,
+			},
 			'variable': /\$+(?:\w+\b|(?=\{))/,
 			'package': {
 				pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
