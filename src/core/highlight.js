@@ -1,4 +1,3 @@
-import singleton from './prism.js';
 import stringify from './stringify.js';
 
 /**
@@ -21,10 +20,8 @@ import stringify from './stringify.js';
  * Prism.highlight('var foo = true;', 'javascript');
  */
 export function highlight (text, language, options) {
-	const prism = this ?? singleton;
-
 	const grammar =
-		options?.grammar ?? prism.languageRegistry.getLanguage(language)?.resolvedGrammar;
+		options?.grammar ?? this.languageRegistry.getLanguage(language)?.resolvedGrammar;
 
 	/** @type {HookEnv} */
 	const env = {
@@ -32,15 +29,15 @@ export function highlight (text, language, options) {
 		grammar,
 		language,
 	};
-	prism.hooks.run('before-tokenize', env);
+	this.hooks.run('before-tokenize', env);
 	if (!env.grammar) {
 		throw new Error('The language "' + env.language + '" has no grammar.');
 	}
 
-	env.tokens = prism.tokenize(env.code, env.grammar);
-	prism.hooks.run('after-tokenize', env);
+	env.tokens = this.tokenize(env.code, env.grammar);
+	this.hooks.run('after-tokenize', env);
 
-	return stringify(env.tokens, env.language, prism.hooks);
+	return stringify(env.tokens, env.language, this.hooks);
 }
 
 /**

@@ -1,5 +1,3 @@
-import singleton from './prism.js';
-
 /**
  * This is the most high-level function in Prism's API.
  * It queries all the elements that have a `.language-xxxx` class and then calls {@link Prism#highlightElement} on
@@ -14,7 +12,6 @@ import singleton from './prism.js';
  * @param {HighlightAllOptions} [options={}]
  */
 export function highlightAll (options = {}) {
-	const prism = this ?? singleton;
 	const { root, async, callback } = options;
 
 	/** @type {HookEnv} */
@@ -25,14 +22,14 @@ export function highlightAll (options = {}) {
 			'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
 	};
 
-	prism.hooks.run('before-highlightall', env);
+	this.hooks.run('before-highlightall', env);
 
 	env.elements = [...env.root.querySelectorAll(env.selector)];
 
-	prism.hooks.run('before-all-elements-highlight', env);
+	this.hooks.run('before-all-elements-highlight', env);
 
 	for (const element of env.elements) {
-		prism.highlightElement(element, { async, callback: env.callback });
+		this.highlightElement(element, { async, callback: env.callback });
 	}
 }
 
