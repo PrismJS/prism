@@ -1,4 +1,5 @@
 // Syntax reference: https://naninovel.com/guide/scenario-scripting
+import registry from '../registry.js';
 
 /**
  * @param {RegExp} pattern
@@ -10,7 +11,7 @@ function fill (pattern, parts) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'naniscript'>} */
-export default {
+const Self = {
 	id: 'naniscript',
 	alias: 'nani',
 	grammar () {
@@ -164,3 +165,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

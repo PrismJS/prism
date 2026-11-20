@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'wolfram'>} */
-export default {
+const Self = {
 	id: 'wolfram',
 	alias: ['mathematica', 'nb', 'wl'],
 	grammar: {
@@ -31,3 +33,7 @@ export default {
 		'punctuation': /[{}[\];(),.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'javastacktrace'>} */
-export default {
+const Self = {
 	id: 'javastacktrace',
 	grammar () {
 		// Specification:
@@ -145,3 +147,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ini'>} */
-export default {
+const Self = {
 	id: 'ini',
 	grammar: {
 		/**
@@ -43,3 +45,7 @@ export default {
 		'punctuation': /=/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

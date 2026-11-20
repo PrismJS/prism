@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import clike from './clike.js';
 import cpp from './cpp.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'chaiscript'>} */
-export default {
+const Self = {
 	id: 'chaiscript',
 	base: clike,
 	require: cpp,
@@ -73,3 +74,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

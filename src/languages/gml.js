@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'gml'>} */
-export default {
+const Self = {
 	id: 'gml',
 	base: clike,
 	alias: 'gamemakerlanguage',
@@ -19,3 +20,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

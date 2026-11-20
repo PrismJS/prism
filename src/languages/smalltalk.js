@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'smalltalk'>} */
-export default {
+const Self = {
 	id: 'smalltalk',
 	grammar: {
 		'comment': {
@@ -37,3 +39,7 @@ export default {
 		'punctuation': /[.;:?\[\](){}]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

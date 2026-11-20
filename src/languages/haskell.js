@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 export const infixOperator = {
 	pattern: /`(?:[A-Z][\w']*\.)*[_a-z][\w']*`/,
 	greedy: true,
@@ -14,7 +16,7 @@ export const asciiOperator =
 	/[-!#$%*+=?&@|~:<>^\\\/][-!#$%*+=?&@|~.:<>^\\\/]*|\.[-!#$%*+=?&@|~.:<>^\\\/]+/;
 
 /** @type {import('../types.d.ts').LanguageProto<'haskell'>} */
-export default {
+const Self = {
 	id: 'haskell',
 	alias: 'hs',
 	grammar: {
@@ -76,3 +78,7 @@ export default {
 		'punctuation': /[{}[\];(),.:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

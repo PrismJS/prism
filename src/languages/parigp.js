@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'parigp'>} */
-export default {
+const Self = {
 	id: 'parigp',
 	grammar () {
 		const keywords = [
@@ -53,3 +55,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

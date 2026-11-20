@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * NLP++, the programming language for natural language processing
  * (https://visualtext.org/nlp/). An analyzer is a sequence of passes; each
@@ -12,7 +14,7 @@
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus'>}
  */
-export default {
+const Self = {
 	id: 'nlpplus',
 	alias: 'nlp',
 	grammar () {
@@ -111,3 +113,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

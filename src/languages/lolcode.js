@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'lolcode'>} */
-export default {
+const Self = {
 	id: 'lolcode',
 	grammar: {
 		'comment': [/\bOBTW\s[\s\S]*?\sTLDR\b/, /\bBTW.+/],
@@ -52,3 +54,7 @@ export default {
 		'punctuation': /\.{3}|…|,|!/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

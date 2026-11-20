@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'peoplecode'>} */
-export default {
+const Self = {
 	id: 'peoplecode',
 	alias: 'pcode',
 	grammar: {
@@ -47,3 +49,7 @@ export default {
 		'punctuation': /[:.;,()[\]]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

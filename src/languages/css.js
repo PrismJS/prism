@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'css'>} */
-export default {
+const Self = {
 	id: 'css',
 	optional: 'css-extras',
 	grammar ({ getOptionalLanguage }) {
@@ -90,3 +92,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

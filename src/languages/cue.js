@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'cue'>} */
-export default {
+const Self = {
 	id: 'cue',
 	grammar () {
 		// https://cuelang.org/docs/references/spec/
@@ -89,3 +91,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

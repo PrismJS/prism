@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'antlr4'>} */
-export default {
+const Self = {
 	id: 'antlr4',
 	alias: 'g4',
 	grammar: {
@@ -67,3 +69,7 @@ export default {
 		'punctuation': /[;:()=]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

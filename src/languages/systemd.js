@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'systemd'>} */
-export default {
+const Self = {
 	id: 'systemd',
 	grammar () {
 		// https://www.freedesktop.org/software/systemd/man/systemd.syntax.html
@@ -79,3 +81,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

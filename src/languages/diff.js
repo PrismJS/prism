@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * A map from the name of a block to its line prefix.
  */
@@ -11,7 +13,7 @@ export const PREFIXES = {
 };
 
 /** @type {import('../types.d.ts').LanguageProto<'diff'>} */
-export default {
+const Self = {
 	id: 'diff',
 	// `diff:css` highlights a diff of CSS. There is no default inner language.
 	inner: null,
@@ -64,3 +66,7 @@ export default {
 		return diff;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

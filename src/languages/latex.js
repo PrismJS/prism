@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'latex'>} */
-export default {
+const Self = {
 	id: 'latex',
 	alias: ['tex', 'context'],
 	grammar () {
@@ -68,3 +70,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

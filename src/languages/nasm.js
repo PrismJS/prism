@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nasm'>} */
-export default {
+const Self = {
 	id: 'nasm',
 	grammar: {
 		'comment': /;.*$/m,
@@ -28,3 +30,7 @@ export default {
 		'operator': /[\[\]*+\-\/%<>=&|$!]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

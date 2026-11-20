@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'javadoclike'>} */
-export default {
+const Self = {
 	id: 'javadoclike',
 	grammar: {
 		'parameter': {
@@ -15,3 +17,7 @@ export default {
 		'punctuation': /[{}]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

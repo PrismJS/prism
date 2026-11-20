@@ -1,4 +1,5 @@
 import { getTextContent, Token } from '../core/classes/token.js';
+import registry from '../registry.js';
 import { insertBefore, withoutTokenize } from '../util/language-util.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
@@ -113,7 +114,7 @@ function walkTokens (tokens) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'jsx'>} */
-export default {
+const Self = {
 	id: 'jsx',
 	require: [markup, javascript],
 	grammar ({ extend }) {
@@ -185,6 +186,10 @@ export default {
 		return jsx;
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').Grammar} Grammar

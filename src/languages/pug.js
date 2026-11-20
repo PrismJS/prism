@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'pug'>} */
-export default {
+const Self = {
 	id: 'pug',
 	require: [markup, javascript],
 	grammar () {
@@ -200,3 +201,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

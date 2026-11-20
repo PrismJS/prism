@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'apacheconf'>} */
-export default {
+const Self = {
 	id: 'apacheconf',
 	grammar: {
 		'comment': /#.*/,
@@ -51,3 +53,7 @@ export default {
 		'regex': /\^?.*\$|\^.*\$?/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

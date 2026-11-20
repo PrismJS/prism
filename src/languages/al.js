@@ -1,7 +1,9 @@
+import registry from '../registry.js';
+
 // based on https://github.com/microsoft/AL/blob/master/grammar/alsyntax.tmlanguage
 
 /** @type {import('../types.d.ts').LanguageProto<'al'>} */
-export default {
+const Self = {
 	id: 'al',
 	grammar: {
 		'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
@@ -28,3 +30,7 @@ export default {
 		'punctuation': /[()\[\]{}:.;,]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

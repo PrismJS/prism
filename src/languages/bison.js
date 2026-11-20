@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import c from './c.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'bison'>} */
-export default {
+const Self = {
 	id: 'bison',
 	base: c,
 	grammar ({ base }) {
@@ -47,3 +48,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

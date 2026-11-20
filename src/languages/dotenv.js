@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {LanguageProto<'dotenv'>} */
-export default {
+const Self = {
 	id: 'dotenv',
 	optional: 'bash',
 	grammar () {
@@ -94,5 +96,9 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /** @import { GrammarToken, LanguageProto } from '../types.d.ts'; */

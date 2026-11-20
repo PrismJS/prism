@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'asm6502'>} */
-export default {
+const Self = {
 	id: 'asm6502',
 	grammar: {
 		'comment': /;.*/,
@@ -32,3 +34,7 @@ export default {
 		'punctuation': /[(),:]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

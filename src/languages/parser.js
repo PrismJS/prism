@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'parser'>} */
-export default {
+const Self = {
 	id: 'parser',
 	base: markup,
 	grammar () {
@@ -86,3 +87,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import c from './c.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'opencl'>} */
-export default {
+const Self = {
 	id: 'opencl',
 	base: c,
 	grammar () {
@@ -34,3 +35,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

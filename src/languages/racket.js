@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import scheme from './scheme.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'racket'>} */
-export default {
+const Self = {
 	id: 'racket',
 	base: scheme,
 	alias: 'rkt',
@@ -24,3 +25,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

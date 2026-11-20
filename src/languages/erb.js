@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 import ruby from './ruby.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'erb'>} */
-export default {
+const Self = {
 	id: 'erb',
 	require: ruby,
 	inner: markup,
@@ -24,3 +25,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

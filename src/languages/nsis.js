@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nsis'>} */
-export default {
+const Self = {
 	id: 'nsis',
 	grammar () {
 		/**
@@ -37,3 +39,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

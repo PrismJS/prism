@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'twig'>} */
-export default {
+const Self = {
 	id: 'twig',
 	inner: markup,
 	grammar: {
@@ -46,3 +47,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

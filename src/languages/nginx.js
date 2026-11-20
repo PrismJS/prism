@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'nginx'>} */
-export default {
+const Self = {
 	id: 'nginx',
 	grammar () {
 		const variable = /\$(?:\w[a-z\d]*(?:_[^\x00-\x1F\s"'\\()$]*)?|\{[^}\s"'\\]+\})/i;
@@ -55,3 +57,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

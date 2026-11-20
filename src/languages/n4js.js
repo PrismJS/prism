@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'n4js'>} */
-export default {
+const Self = {
 	id: 'n4js',
 	base: javascript,
 	alias: 'n4jsd',
@@ -21,3 +22,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

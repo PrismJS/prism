@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'web-idl'>} */
-export default {
+const Self = {
 	id: 'web-idl',
 	alias: 'webidl',
 	grammar () {
@@ -114,3 +116,7 @@ export default {
 		return webIdl;
 	},
 };
+
+export default Self;
+
+registry.add(Self);

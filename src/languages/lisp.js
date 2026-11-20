@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'lisp'>} */
-export default {
+const Self = {
 	id: 'lisp',
 	alias: ['emacs', 'elisp', 'emacs-lisp'],
 	grammar () {
@@ -210,3 +212,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

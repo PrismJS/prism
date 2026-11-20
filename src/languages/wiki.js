@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import markup from './markup.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'wiki'>} */
-export default {
+const Self = {
 	id: 'wiki',
 	base: markup,
 	grammar ({ base }) {
@@ -88,3 +89,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

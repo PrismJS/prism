@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'ocaml'>} */
-export default {
+const Self = {
 	id: 'ocaml',
 	grammar () {
 		// https://ocaml.org/manual/lex.html
@@ -64,3 +66,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

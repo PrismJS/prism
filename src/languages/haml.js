@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import ruby from './ruby.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'haml'>} */
-export default {
+const Self = {
 	id: 'haml',
 	require: ruby,
 	grammar () {
@@ -156,3 +157,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

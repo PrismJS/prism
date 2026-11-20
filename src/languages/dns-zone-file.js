@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'dns-zone-file'>} */
-export default {
+const Self = {
 	id: 'dns-zone-file',
 	alias: 'dns-zone',
 	grammar: {
@@ -35,3 +37,7 @@ export default {
 		'punctuation': /[()]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

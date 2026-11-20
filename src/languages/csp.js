@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'csp'>} */
-export default {
+const Self = {
 	id: 'csp',
 	grammar () {
 		/**
@@ -77,3 +79,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

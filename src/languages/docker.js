@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'docker'>} */
-export default {
+const Self = {
 	id: 'docker',
 	alias: 'dockerfile',
 	grammar () {
@@ -111,3 +113,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

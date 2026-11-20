@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'coffeescript'>} */
-export default {
+const Self = {
 	id: 'coffeescript',
 	base: javascript,
 	alias: 'coffee',
@@ -96,3 +97,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

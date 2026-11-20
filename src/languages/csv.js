@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'csv'>} */
-export default {
+const Self = {
 	id: 'csv',
 	grammar () {
 		// https://tools.ietf.org/html/rfc4180
@@ -10,3 +12,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'pcaxis'>} */
-export default {
+const Self = {
 	id: 'pcaxis',
 	alias: 'px',
 	grammar: {
@@ -55,3 +57,7 @@ export default {
 		'boolean': /NO|YES/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

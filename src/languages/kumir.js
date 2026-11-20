@@ -1,7 +1,9 @@
 /* eslint-disable regexp/no-dupe-characters-character-class */
 
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'kumir'>} */
-export default {
+const Self = {
 	id: 'kumir',
 	alias: 'kum',
 	grammar () {
@@ -118,3 +120,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

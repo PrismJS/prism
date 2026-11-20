@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'cooklang'>} */
-export default {
+const Self = {
 	id: 'cooklang',
 	grammar () {
 		// see https://github.com/cooklang/spec/blob/main/EBNF.md
@@ -137,3 +139,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

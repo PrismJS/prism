@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'perl'>} */
-export default {
+const Self = {
 	id: 'perl',
 	grammar () {
 		const brackets =
@@ -164,3 +166,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

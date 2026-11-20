@@ -1,7 +1,9 @@
+import registry from '../registry.js';
+
 // https://go.dev/ref/mod#go-mod-file-module
 
 /** @type {import('../types.d.ts').LanguageProto<'go-module'>} */
-export default {
+const Self = {
 	id: 'go-module',
 	alias: 'go-mod',
 	grammar: {
@@ -27,3 +29,7 @@ export default {
 		'punctuation': /[()[\],]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

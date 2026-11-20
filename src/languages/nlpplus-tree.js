@@ -1,3 +1,5 @@
+import registry from '../registry.js';
+
 /**
  * NLP++ parse trees (.tree, https://visualtext.org/nlp/) as the engine writes
  * them: indented nodes with their offsets, type, flags and variables in
@@ -5,7 +7,7 @@
  *
  * @type {import('../types.d.ts').LanguageProto<'nlpplus-tree'>}
  */
-export default {
+const Self = {
 	id: 'nlpplus-tree',
 	grammar: {
 		'header': [
@@ -60,3 +62,7 @@ export default {
 		},
 	},
 };
+
+export default Self;
+
+registry.add(Self);

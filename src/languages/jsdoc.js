@@ -1,9 +1,10 @@
+import registry from '../registry.js';
 import javadoclike from './javadoclike.js';
 import javascript from './javascript.js';
 import typescript from './typescript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'jsdoc'>} */
-export default {
+const Self = {
 	id: 'jsdoc',
 	base: javadoclike,
 	require: [javascript, typescript],
@@ -92,3 +93,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

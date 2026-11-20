@@ -1,7 +1,8 @@
+import registry from '../registry.js';
 import clike from './clike.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'qsharp'>} */
-export default {
+const Self = {
 	id: 'qsharp',
 	base: clike,
 	alias: 'qs',
@@ -143,3 +144,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

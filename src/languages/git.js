@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'git'>} */
-export default {
+const Self = {
 	id: 'git',
 	grammar: {
 		/*
@@ -70,3 +72,7 @@ export default {
 		'commit-sha1': /^commit \w{40}$/m,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

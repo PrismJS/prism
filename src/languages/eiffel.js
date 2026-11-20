@@ -1,5 +1,7 @@
+import registry from '../registry.js';
+
 /** @type {import('../types.d.ts').LanguageProto<'eiffel'>} */
-export default {
+const Self = {
 	id: 'eiffel',
 	grammar: {
 		'comment': /--.*/,
@@ -37,3 +39,7 @@ export default {
 		'operator': /\\\\|\|\.\.\||\.\.|\/[~\/=]?|[><]=?|[-+*^=~]/,
 	},
 };
+
+export default Self;
+
+registry.add(Self);

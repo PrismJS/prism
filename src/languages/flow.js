@@ -1,8 +1,9 @@
+import registry from '../registry.js';
 import { toArray } from '../util/iterables.js';
 import javascript from './javascript.js';
 
 /** @type {import('../types.d.ts').LanguageProto<'flow'>} */
-export default {
+const Self = {
 	id: 'flow',
 	base: javascript,
 	grammar ({ base }) {
@@ -42,3 +43,7 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);

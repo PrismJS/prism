@@ -1,3 +1,4 @@
+import registry from '../registry.js';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns.js';
 
 /**
@@ -46,7 +47,7 @@ function createTemplate (language, tag) {
 }
 
 /** @type {import('../types.d.ts').LanguageProto<'js-templates'>} */
-export default {
+const Self = {
 	id: 'js-templates',
 	grammar () {
 		return {
@@ -80,6 +81,10 @@ export default {
 		};
 	},
 };
+
+export default Self;
+
+registry.add(Self);
 
 /**
  * @typedef {import('../types.d.ts').GrammarToken} GrammarToken
