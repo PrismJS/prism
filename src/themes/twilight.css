@@ -104,6 +104,12 @@ code[class*="language-"] ::selection {
 	color: hsl(14, 58%, 55%); /* #CF6A4C */
 }
 
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.keyword,
 .token.property,
 .token.selector,
@@ -125,6 +131,12 @@ code[class*="language-"] ::selection {
 .token.variable,
 .token.inserted {
 	color: hsl(76, 21%, 52%); /* #8F9D6A */
+}
+
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
 }
 
 .token.atrule {

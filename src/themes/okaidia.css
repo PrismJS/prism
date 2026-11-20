@@ -74,6 +74,12 @@ pre[class*="language-"] {
 	color: #f92672;
 }
 
+.token.deleted:not(.prefix) {
+	background-color: rgba(255, 0, 0, 0.1);
+	color: inherit;
+	display: block;
+}
+
 .token.boolean,
 .token.number {
 	color: #ae81ff;
@@ -86,6 +92,12 @@ pre[class*="language-"] {
 .token.builtin,
 .token.inserted {
 	color: #a6e22e;
+}
+
+.token.inserted:not(.prefix) {
+	background-color: rgba(0, 255, 128, 0.1);
+	color: inherit;
+	display: block;
 }
 
 .token.operator,
