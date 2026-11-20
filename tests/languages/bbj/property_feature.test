@@ -1,0 +1,39 @@
+#name$ = "x"
+#count% = #count% + 1
+#items!.add(x!)
+#total = 0
+#getName()
+
+----------------------------------------------------
+
+[
+	["property", "#name$"],
+	["operator", "="],
+	["string", "\"x\""],
+
+	["property", "#count%"],
+	["operator", "="],
+	["property", "#count%"],
+	["operator", "+"],
+	["number", "1"],
+
+	["property", "#items!"],
+	["punctuation", "."],
+	["function", "add"],
+	["punctuation", "("],
+	["variable", "x!"],
+	["punctuation", ")"],
+
+	["property", "#total"],
+	["operator", "="],
+	["number", "0"],
+
+	"\r\n#",
+	["function", "getName"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for fields of the current object, and that its methods are functions.

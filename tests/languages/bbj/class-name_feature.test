@@ -1,0 +1,202 @@
+use java.util.HashMap
+use com.basiscomponents.db.DataRow
+class public Foo extends Bar implements A, B
+interface public Shape
+field private BBjString name$
+field public static java.util.List items!
+method public void greet(BBjNumber n%, java.lang.String s!)
+method public static java.util.List getAll()
+method public Foo()
+declare auto BBjWindow w!
+declare java.util.Map map!
+x! = new java.util.HashMap()
+api! = BBjAPI()
+declare GridBagLayout@ layout!
+declare BBjString[] names$
+panel! = new JPanel@(layout!)
+home$ = java.lang.System@.getProperty("basis.BBjHome")
+method public void show(JPanel@ p!, BBjString[] items$)
+
+----------------------------------------------------
+
+[
+	["keyword", "use"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"HashMap"
+	]],
+
+	["keyword", "use"],
+	["class-name", [
+		"com",
+		["punctuation", "."],
+		"basiscomponents",
+		["punctuation", "."],
+		"db",
+		["punctuation", "."],
+		"DataRow"
+	]],
+
+	["keyword", "class"],
+	["keyword", "public"],
+	["class-name", "Foo"],
+	["keyword", "extends"],
+	["class-name", ["Bar"]],
+	["keyword", "implements"],
+	["class-name", [
+		"A",
+		["punctuation", ","],
+		" B"
+	]],
+
+	["keyword", "interface"],
+	["keyword", "public"],
+	["class-name", "Shape"],
+
+	["keyword", "field"],
+	["keyword", "private"],
+	["class-name", ["BBjString"]],
+	["variable", "name$"],
+
+	["keyword", "field"],
+	["keyword", "public"],
+	["keyword", "static"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"List"
+	]],
+	["variable", "items!"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["keyword", "void"],
+	["function", "greet"],
+	["punctuation", "("],
+	["class-name", ["BBjNumber"]],
+	["variable", "n%"],
+	["punctuation", ","],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."],
+		"String"
+	]],
+	["variable", "s!"],
+	["punctuation", ")"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["keyword", "static"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"List"
+	]],
+	["function", "getAll"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["function", "Foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "declare"],
+	["keyword", "auto"],
+	["class-name", ["BBjWindow"]],
+	["variable", "w!"],
+
+	["keyword", "declare"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"Map"
+	]],
+	["variable", "map!"],
+
+	["variable", "x!"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"HashMap"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["variable", "api!"],
+	["operator", "="],
+	["class-name", "BBjAPI"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "declare"],
+	["class-name", ["GridBagLayout@"]],
+	["variable", "layout!"],
+
+	["keyword", "declare"],
+	["class-name", [
+		"BBjString",
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	["variable", "names$"],
+
+	["variable", "panel!"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", ["JPanel@"]],
+	["punctuation", "("],
+	["variable", "layout!"],
+	["punctuation", ")"],
+
+	["variable", "home$"],
+	["operator", "="],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."],
+		"System@"
+	]],
+	["punctuation", "."],
+	["function", "getProperty"],
+	["punctuation", "("],
+	["string", "\"basis.BBjHome\""],
+	["punctuation", ")"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["keyword", "void"],
+	["function", "show"],
+	["punctuation", "("],
+	["class-name", ["JPanel@"]],
+	["variable", "p!"],
+	["punctuation", ","],
+	["class-name", [
+		"BBjString",
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	["variable", "items$"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

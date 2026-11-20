@@ -1,0 +1,15 @@
+0010 PRINT "Hello"
+0020 x = 10
+  0030 GOTO 0010
+
+----------------------------------------------------
+
+[
+	["line-number", "0010"], ["keyword", "PRINT"], ["string", "\"Hello\""],
+	["line-number", "0020"], " x ", ["operator", "="], ["number", "10"],
+	["line-number", "0030"], ["keyword", "GOTO"], ["number", "0010"]
+]
+
+----------------------------------------------------
+
+Checks for line numbers.

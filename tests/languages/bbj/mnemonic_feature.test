@@ -1,0 +1,37 @@
+print 'CS', 'LF'
+print 'BOX'(10,12,4,4)
+print (1)'FONT'("pica")
+
+----------------------------------------------------
+
+[
+	["keyword", "print"],
+	["mnemonic", "'CS'"],
+	["punctuation", ","],
+	["mnemonic", "'LF'"],
+
+	["keyword", "print"],
+	["mnemonic", "'BOX'"],
+	["punctuation", "("],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "12"],
+	["punctuation", ","],
+	["number", "4"],
+	["punctuation", ","],
+	["number", "4"],
+	["punctuation", ")"],
+
+	["keyword", "print"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+	["mnemonic", "'FONT'"],
+	["punctuation", "("],
+	["string", "\"pica\""],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for mnemonics.

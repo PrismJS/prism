@@ -1,0 +1,239 @@
+rem ' Greeter sample
+use java.util.HashMap
+use ::lib/util.bbj::Util
+
+rem /**
+rem  * A friendly greeter.
+rem  */
+class public Greeter extends Util implements Runnable
+    field private BBjString Name$
+    field private java.util.HashMap cache!
+
+    method public Greeter(BBjString name$)
+        #Name$ = name$
+        #cache! = new java.util.HashMap()
+    methodend
+
+    method public BBjString greet(BBjNumber times%)
+        if times% <= 0 then methodret ""
+        msg$ = "Hello, """ + #Name$ + """!"
+        for i = 1 to times%
+            print 'BOLD', msg$, $0D0A$
+        next i
+        methodret msg$
+    methodend
+classend
+
+0010 OPEN (1,ERR=oops)"greet.dat"
+0020 READ (1,KEY="A",ERR=oops)a$
+oops:
+    seterr 0
+    declare auto Greeter g!
+    g! = new Greeter("BBj")
+    x$ = g!.greet(3); rem say hi
+    if BBjAPI.TRUE and len(x$) > 0 then gosub done
+done:
+    return
+
+----------------------------------------------------
+
+[
+	["comment", "rem ' Greeter sample"],
+
+	["keyword", "use"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"HashMap"
+	]],
+
+	["keyword", "use"],
+	["file-path", "::lib/util.bbj::"],
+	["class-name", "Util"],
+
+	["comment", "rem /**"],
+
+	["comment", "rem  * A friendly greeter."],
+
+	["comment", "rem  */"],
+
+	["keyword", "class"],
+	["keyword", "public"],
+	["class-name", "Greeter"],
+	["keyword", "extends"],
+	["class-name", ["Util"]],
+	["keyword", "implements"],
+	["class-name", ["Runnable"]],
+
+	["keyword", "field"],
+	["keyword", "private"],
+	["class-name", ["BBjString"]],
+	["variable", "Name$"],
+
+	["keyword", "field"],
+	["keyword", "private"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"HashMap"
+	]],
+	["variable", "cache!"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["function", "Greeter"],
+	["punctuation", "("],
+	["class-name", ["BBjString"]],
+	["variable", "name$"],
+	["punctuation", ")"],
+
+	["property", "#Name$"],
+	["operator", "="],
+	["variable", "name$"],
+
+	["property", "#cache!"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		"java",
+		["punctuation", "."],
+		"util",
+		["punctuation", "."],
+		"HashMap"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "methodend"],
+
+	["keyword", "method"],
+	["keyword", "public"],
+	["class-name", ["BBjString"]],
+	["function", "greet"],
+	["punctuation", "("],
+	["class-name", ["BBjNumber"]],
+	["variable", "times%"],
+	["punctuation", ")"],
+
+	["keyword", "if"],
+	["variable", "times%"],
+	["operator", "<="],
+	["number", "0"],
+	["keyword", "then"],
+	["keyword", "methodret"],
+	["string", "\"\""],
+
+	["variable", "msg$"],
+	["operator", "="],
+	["string", "\"Hello, \"\"\""],
+	["operator", "+"],
+	["property", "#Name$"],
+	["operator", "+"],
+	["string", "\"\"\"!\""],
+
+	["keyword", "for"],
+	" i ",
+	["operator", "="],
+	["number", "1"],
+	["keyword", "to"],
+	["variable", "times%"],
+
+	["keyword", "print"],
+	["mnemonic", "'BOLD'"],
+	["punctuation", ","],
+	["variable", "msg$"],
+	["punctuation", ","],
+	["hex-string", "$0D0A$"],
+
+	["keyword", "next"],
+	" i\r\n        ",
+
+	["keyword", "methodret"],
+	["variable", "msg$"],
+
+	["keyword", "methodend"],
+
+	["keyword", "classend"],
+
+	["line-number", "0010"],
+	["keyword", "OPEN"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["keyword", "ERR"],
+	["operator", "="],
+	["label", "oops"],
+	["punctuation", ")"],
+	["string", "\"greet.dat\""],
+
+	["line-number", "0020"],
+	["keyword", "READ"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["keyword", "KEY"],
+	["operator", "="],
+	["string", "\"A\""],
+	["punctuation", ","],
+	["keyword", "ERR"],
+	["operator", "="],
+	["label", "oops"],
+	["punctuation", ")"],
+	["variable", "a$"],
+
+	["label", [
+		"oops",
+		["punctuation", ":"]
+	]],
+
+	["keyword", "seterr"],
+	["number", "0"],
+
+	["keyword", "declare"],
+	["keyword", "auto"],
+	["class-name", ["Greeter"]],
+	["variable", "g!"],
+
+	["variable", "g!"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", ["Greeter"]],
+	["punctuation", "("],
+	["string", "\"BBj\""],
+	["punctuation", ")"],
+
+	["variable", "x$"],
+	["operator", "="],
+	["variable", "g!"],
+	["punctuation", "."],
+	["function", "greet"],
+	["punctuation", "("],
+	["number", "3"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "rem say hi"],
+
+	["keyword", "if"],
+	["boolean", "BBjAPI.TRUE"],
+	["operator", "and"],
+	["function", "len"],
+	["punctuation", "("],
+	["variable", "x$"],
+	["punctuation", ")"],
+	["operator", ">"],
+	["number", "0"],
+	["keyword", "then"],
+	["keyword", "gosub"],
+	["label", ["done"]],
+
+	["label", [
+		"done",
+		["punctuation", ":"]
+	]],
+
+	["keyword", "return"]
+]
