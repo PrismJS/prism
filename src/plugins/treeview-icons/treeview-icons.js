@@ -1,5 +1,5 @@
-import prism from '../../global.js';
 import treeview from '../../languages/treeview.js';
+import registry from '../../registry.js';
 
 /** @type {import('../../types.d.ts').PluginProto<'treeview-icons'>} */
 const Self = {
@@ -9,4 +9,4 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);

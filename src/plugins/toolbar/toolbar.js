@@ -1,4 +1,4 @@
-import prism from '../../global.js';
+import registry from '../../registry.js';
 import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
@@ -216,7 +216,7 @@ const Self = {
 
 export default Self;
 
-prism.pluginRegistry.add(Self);
+registry.add(Self);
 
 /**
  * @typedef {import('../../types.d.ts').HookEnv} HookEnv
