@@ -1,0 +1,29 @@
+The value is 25~\% above its limit.
+% a comment with \% in it
+a \\% a comment after a line break
+50\\\% is not a comment
+
+----------------------------------------------------
+
+[
+	"The value is 25~",
+	["function", "\\%"],
+	" above its limit.\r\n",
+
+	["comment", "% a comment with \\% in it"],
+
+	"\r\na ",
+	["function", "\\\\"],
+	["comment", "% a comment after a line break"],
+
+	"\r\n50",
+	["function", "\\\\"],
+	["function", "\\%"],
+	" is not a comment"
+]
+
+----------------------------------------------------
+
+Checks that an escaped percent sign is not a comment, while a percent sign after an escaped backslash is.
+
+See https://github.com/PrismJS/prism/issues/3563
