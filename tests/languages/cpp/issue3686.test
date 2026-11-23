@@ -1,0 +1,72 @@
+bool operator< (const Foo& f1, const Foo& f2)
+{
+	return f1.foo < f2.foo;
+}
+
+bool operator> (const Foo& f1, const Foo& f2)
+{
+	return f1.foo > f2.foo;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", "<"],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	" f1",
+	["punctuation", "."],
+	"foo ",
+	["operator", "<"],
+	" f2",
+	["punctuation", "."],
+	"foo",
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", ">"],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	" f1",
+	["punctuation", "."],
+	"foo ",
+	["operator", ">"],
+	" f2",
+	["punctuation", "."],
+	"foo",
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+A less-than operator must not be paired with a later `>` (here the one of `operator>`) as the
+template arguments of a generic function call across statements.
+
+See https://github.com/PrismJS/prism/issues/3686

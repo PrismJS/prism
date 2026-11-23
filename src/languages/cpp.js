@@ -82,7 +82,9 @@ export default {
 
 		insertBefore(cpp, 'keyword', {
 			'generic-function': {
-				pattern: /\b(?!operator\b)[a-z_]\w*\s*<(?:[^<>]|<[^<>]*>)*>(?=\s*\()/i,
+				// Template arguments don't contain statements, so a less-than operator must not pair up
+				// with a later `>` (e.g. `operator>`) across `;`, `{` or `}`.
+				pattern: /\b(?!operator\b)[a-z_]\w*\s*<(?:[^<>;{}]|<[^<>;{}]*>)*>(?=\s*\()/i,
 				inside: {
 					'function': /^\w+/,
 					'generic': {
