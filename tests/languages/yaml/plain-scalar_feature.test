@@ -1,0 +1,58 @@
+hyphens: a-b-c
+colon: hello:world
+command: sudo apt-get install foo
+user: 1000:984
+volumes:
+  - ./html:/var/www/html
+  - a-b
+json: {"a":1, "b":[2]}
+
+----------------------------------------------------
+
+[
+	["key", "hyphens"],
+	["punctuation", ":"],
+	" a-b-c\r\n",
+
+	["key", "colon"],
+	["punctuation", ":"],
+	" hello:world\r\n",
+
+	["key", "command"],
+	["punctuation", ":"],
+	" sudo apt-get install foo\r\n",
+
+	["key", "user"],
+	["punctuation", ":"],
+	" 1000:984\r\n",
+
+	["key", "volumes"],
+	["punctuation", ":"],
+
+	["punctuation", "-"],
+	" ./html:/var/www/html\r\n  ",
+
+	["punctuation", "-"],
+	" a-b\r\n",
+
+	["key", "json"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	"\"a\"",
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", ","],
+	" \"b\"",
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "2"],
+	["punctuation", "]"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks that `-` and `:` inside plain scalars are not highlighted as punctuation, while `-` and `:`
+followed by a space or directly following a quoted key still are.
+
+See https://github.com/PrismJS/prism/issues/2563 and https://github.com/PrismJS/prism/issues/3586

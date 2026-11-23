@@ -40,7 +40,7 @@ export default {
 		function createValuePattern (value, flags) {
 			flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 			const pattern =
-				/([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
+				/((?:[:\-](?=\s)\s*|["'\]}]:\s*|[,[{]\s*)(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
 					.replace(/<<prop>>/g, () => properties)
 					.replace(/<<value>>/g, () => value);
 			return RegExp(pattern, flags);
@@ -106,7 +106,10 @@ export default {
 			},
 			'tag': tag,
 			'important': anchorOrAlias,
-			'punctuation': /---|[:[\]{}\-,|>?]|\.\.\./,
+			// `-` and `:` are indicators only when followed by a space (or the end of the line), or, for `:`,
+			// when directly following a quoted key or a flow collection (e.g. `{"a":1}`).
+			// Everywhere else they are part of a plain scalar (e.g. `a-b`, `hello:world`).
+			'punctuation': /---|-(?=\s|$)|:(?=\s|$)|(?<=["'\]}]):|[[\]{},|>?]|\.\.\./,
 		};
 	},
 };
