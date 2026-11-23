@@ -12,7 +12,11 @@ export default {
 		};
 
 		return {
-			'comment': /%.*/,
+			'comment': {
+				// An escaped percent sign (`\%`) is a literal, but `\\%` is a line break followed by a comment.
+				pattern: /((?:^|[^\\])(?:\\\\)*)%.*/m,
+				lookbehind: true,
+			},
 			// the verbatim environment prints whitespace to the document
 			'cdata': {
 				pattern: /(\\begin\{((?:lstlisting|verbatim)\*?)\})[\s\S]*?(?=\\end\{\2\})/,
