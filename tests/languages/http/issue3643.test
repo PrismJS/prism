@@ -1,0 +1,14 @@
+Content-Type: text/html; charset=UTF-8
+
+<b>Hi</b>
+
+----------------------------------------------------
+
+[
+	["header", [
+		["header-name", "Content-Type"],
+		["punctuation", ":"],
+		["header-value", "text/html; charset=UTF-8"]
+	]],
+	["text-html", "\r\n<b>Hi</b>"]
+]
