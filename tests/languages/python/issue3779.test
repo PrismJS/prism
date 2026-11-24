@@ -1,0 +1,24 @@
+s = "first line \
+second line"
+f = f'a {b} \
+c'
+
+----------------------------------------------------
+
+[
+	"s ",
+	["operator", "="],
+	["string", "\"first line \\\r\nsecond line\""],
+
+	"\r\nf ",
+	["operator", "="],
+	["string-interpolation", [
+		["string", "f'a "],
+		["interpolation", [
+			["punctuation", "{"],
+			"b",
+			["punctuation", "}"]
+		]],
+		["string", " \\\r\nc'"]
+	]]
+]
