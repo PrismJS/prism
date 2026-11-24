@@ -45,7 +45,7 @@ export default {
 			// contextual keywords
 			// ("var" and "dynamic" are missing because they are used like types)
 			contextual:
-				'add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where with(?=\\s*{)',
+				'add alias and ascending async await by descending file(?=\\s+(?:abstract|class|delegate|enum|interface|partial|readonly|record|ref|sealed|static|struct|unsafe)\\b) from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where with(?=\\s*{)',
 			// all other keywords
 			other: 'abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield',
 		};

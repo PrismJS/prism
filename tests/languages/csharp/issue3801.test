@@ -1,0 +1,39 @@
+file class K {}
+file static class L {}
+var file = 1;
+File.Open(file, mode);
+
+----------------------------------------------------
+
+[
+	["keyword", "file"],
+	["keyword", "class"],
+	["class-name", ["K"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "file"],
+	["keyword", "static"],
+	["keyword", "class"],
+	["class-name", ["L"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" file ",
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"],
+
+	"\r\nFile",
+	["punctuation", "."],
+	["function", "Open"],
+	["punctuation", "("],
+	"file",
+	["punctuation", ","],
+	" mode",
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
