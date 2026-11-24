@@ -9,7 +9,7 @@ export default {
 			greedy: true,
 		},
 		'string-interpolation': {
-			pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,
+			pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/i,
 			greedy: true,
 			inside: {
 				'interpolation': {
@@ -38,7 +38,7 @@ export default {
 			alias: 'string',
 		},
 		'string': {
-			pattern: /(?:[rub]|br|rb)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,
+			pattern: /(?:[rub]|br|rb)?("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/i,
 			greedy: true,
 		},
 		'function': {
