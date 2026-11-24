@@ -53,6 +53,8 @@ export default {
 					'(' +
 						/content-type:\s*/.source +
 						pattern +
+						// optional media type parameters, e.g. "; charset=UTF-8"
+						/(?:[ \t]*;.*)?/.source +
 						/(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source +
 						')' +
 						// This is a little interesting:
