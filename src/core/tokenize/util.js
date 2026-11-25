@@ -47,9 +47,18 @@ export function tokenizeByNamedGroups (match) {
 			start: start - match.index,
 			end: end - match.index,
 		}))
-		.sort((a, b) => a.start - b.start);
+		.sort((a, b) => a.start - b.start || b.end - a.end);
 
 	for (let { type, start, end } of entries) {
+		// Capture groups in a regex can only ever be nested or disjoint, so a
+		// group starting inside an already emitted one is always fully nested
+		// in it. Emitting it again would duplicate its text in the token
+		// stream, so nested groups are skipped and stay part of the content
+		// of the group that encloses them.
+		if (start < i) {
+			continue;
+		}
+
 		if (start > i) {
 			result.push(str.slice(i, start));
 		}
