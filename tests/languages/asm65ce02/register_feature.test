@@ -1,0 +1,28 @@
+LDA $8000,z
+ASL A
+LDA (label,S),Y
+
+----------------------------------------------------
+
+[
+	["op-code", "LDA"],
+	["hex-number", "$8000"],
+	["punctuation", ","],
+	["register", "z"],
+
+	["op-code", "ASL"],
+	["register", "A"],
+
+	["op-code", "LDA"],
+	["punctuation", "("],
+	"label",
+	["punctuation", ","],
+	["register", "S"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["register", "Y"]
+]
+
+----------------------------------------------------
+
+Check for registers
