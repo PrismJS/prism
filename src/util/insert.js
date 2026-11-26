@@ -54,7 +54,7 @@ export function insertAfter (grammar, afterKey, tokens) {
  * @param {'before' | 'after'} [position='after']
  */
 export function insert (grammar, atKey, insert, position = 'after') {
-	if (!(atKey in grammar)) {
+	if (!Object.hasOwn(grammar, atKey)) {
 		// TODO support deep keys
 		throw new Error(`"${atKey}" has to be a key of grammar.`);
 	}
