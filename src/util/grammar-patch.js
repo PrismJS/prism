@@ -1,5 +1,36 @@
 import { insertAfter, insertBefore } from './insert.js';
-import { deepMerge } from './objects.js';
+import { isObject, isPlainObject } from './objects.js';
+
+/**
+ * Merges a token definition or patch into an existing token definition.
+ *
+ * @param {any} target
+ * @param {any} source
+ * @returns {any}
+ */
+function mergeToken (target, source) {
+	if (Array.isArray(target)) {
+		if (isPlainObject(source)) {
+			for (let i = 0; i < target.length; i++) {
+				target[i] = mergeToken(target[i], source);
+			}
+			return target;
+		}
+	}
+
+	if (isPlainObject(source) && (target instanceof RegExp || isObject(target, 'RegExp'))) {
+		target = { pattern: target };
+	}
+
+	if (isPlainObject(target) && isPlainObject(source)) {
+		for (const key in source) {
+			target[key] = mergeToken(target[key], source[key]);
+		}
+		return target;
+	}
+
+	return source ?? target;
+}
 
 /**
  * Apply a patch to a grammar to modify it.
@@ -22,7 +53,7 @@ export function grammarPatch (grammar, patch = grammar) {
 				// @ts-ignore
 				const obj = path.reduce((acc, key) => acc?.[key], grammar);
 
-				if (obj) {
+				if (isPlainObject(obj) && tokens) {
 					// @ts-ignore
 					insertBefore(obj, lastKey, tokens);
 				}
@@ -47,7 +78,7 @@ export function grammarPatch (grammar, patch = grammar) {
 				// @ts-ignore
 				const obj = path.reduce((acc, key) => acc?.[key], grammar);
 
-				if (obj) {
+				if (isPlainObject(obj) && tokens) {
 					// @ts-ignore
 					insertAfter(obj, lastKey, tokens);
 				}
@@ -73,8 +104,9 @@ export function grammarPatch (grammar, patch = grammar) {
 		for (const key in patch.$merge) {
 			const tokens = patch.$merge[key];
 
-			if (grammar[key]) {
-				deepMerge(grammar[key], tokens);
+			if (grammar[key] !== undefined) {
+				// @ts-ignore
+				grammar[key] = mergeToken(grammar[key], tokens);
 			}
 			else {
 				grammar[key] = /** @type {GrammarTokens} */ (tokens);
