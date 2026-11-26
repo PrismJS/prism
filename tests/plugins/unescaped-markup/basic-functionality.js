@@ -52,4 +52,13 @@ describe('Show language', () => {
 			`<div class="language-javascript"><script type="text/plain"><p>Example 2</p></script></div>`
 		);
 	});
+
+	// WordPress puts tag classes like `tag-golang-tips` on each post
+	// https://github.com/PrismJS/prism/issues/3364
+	it('should only pick script tags with a whole language class', ({ Prism, document }) => {
+		document.body.innerHTML = `<article class="tag-golang-tips"><script type="text/plain"><p>Template</p></script></article>`;
+		Prism.highlightAll();
+
+		assert.isNotNull(document.querySelector('article > script'));
+	});
 });
