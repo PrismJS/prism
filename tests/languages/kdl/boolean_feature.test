@@ -1,0 +1,43 @@
+node #true
+node #false
+node true
+node false
+node a=#true b=#false
+node a=true b=false
+node foo-true is-false
+
+----------------------------------------------------
+
+[
+	["tag", "node"],
+	["boolean", "#true"],
+
+	["tag", "node"],
+	["boolean", "#false"],
+
+	["tag", "node"],
+	["boolean", "true"],
+
+	["tag", "node"],
+	["boolean", "false"],
+
+	["tag", "node"],
+	["property", "a"],
+	["punctuation", "="],
+	["boolean", "#true"],
+	["property", "b"],
+	["punctuation", "="],
+	["boolean", "#false"],
+
+	["tag", "node"],
+	["property", "a"],
+	["punctuation", "="],
+	["boolean", "true"],
+	["property", "b"],
+	["punctuation", "="],
+	["boolean", "false"],
+
+	["tag", "node"],
+	["identifier-string", "foo-true"],
+	["identifier-string", "is-false"]
+]
