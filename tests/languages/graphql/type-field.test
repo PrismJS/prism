@@ -1,0 +1,62 @@
+query { signature { identity type value } }
+{ type(id: 1) { type } }
+{ type { type } }
+{ alias: type ... on Signature { type } }
+type Signature { type: String }
+
+----------------------------------------------------
+
+[
+	["keyword", "query"],
+	["punctuation", "{"],
+	["object", "signature"],
+	["punctuation", "{"],
+	["property", "identity"],
+	["property", "type"],
+	["property", "value"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property-query", "type"],
+	["punctuation", "("],
+	["attr-name", "id"],
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["property", "type"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["object", "type"],
+	["punctuation", "{"],
+	["property", "type"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["attr-name", "alias"],
+	["punctuation", ":"],
+	["property", "type"],
+	["operator", "..."],
+	["keyword", "on"],
+	["class-name", "Signature"],
+	["punctuation", "{"],
+	["property", "type"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Signature"],
+	["punctuation", "{"],
+	["attr-name", "type"],
+	["punctuation", ":"],
+	["scalar", "String"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+The name type is a field inside selection sets, but a keyword in a type definition.

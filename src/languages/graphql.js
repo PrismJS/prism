@@ -80,9 +80,29 @@ export default {
 			/**
 			 * get the graphql token stream that we want to customize
 			 */
-			const validTokens = tokens
+			const significantTokens = tokens
 				.filter(isToken)
-				.filter(token => token.type !== 'comment' && token.type !== 'scalar');
+				.filter(token => token.type !== 'comment');
+			let braceDepth = 0;
+			significantTokens.forEach((token, index) => {
+				if (token.type === 'punctuation' && token.content === '{') {
+					braceDepth++;
+				}
+				else if (token.type === 'punctuation' && token.content === '}') {
+					braceDepth--;
+				}
+				else if (braceDepth > 0 && token.type === 'keyword' && token.content === 'type') {
+					// Type definitions cannot occur inside braces, but fields can be named type.
+					const next = significantTokens[index + 1];
+					token.type =
+						next?.content === '('
+							? 'property-query'
+							: next?.content === '{'
+								? 'object'
+								: 'property';
+				}
+			});
+			const validTokens = significantTokens.filter(token => token.type !== 'scalar');
 
 			let currentIndex = 0;
 
