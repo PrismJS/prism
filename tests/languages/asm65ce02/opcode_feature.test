@@ -110,6 +110,7 @@ smb5
 smb6
 smb7
 sta
+stp
 stx
 sty
 stz
@@ -127,6 +128,7 @@ tsy
 tya
 tys
 tza
+wai
 ADC
 AND
 ASL
@@ -239,6 +241,7 @@ SMB5
 SMB6
 SMB7
 STA
+STP
 STX
 STY
 STZ
@@ -256,6 +259,7 @@ TSY
 TYA
 TYS
 TZA
+WAI
 
 ----------------------------------------------------
 
@@ -372,6 +376,7 @@ TZA
 	["op-code", "smb6"],
 	["op-code", "smb7"],
 	["op-code", "sta"],
+	"\r\nstp\r\n",
 	["op-code", "stx"],
 	["op-code", "sty"],
 	["op-code", "stz"],
@@ -389,6 +394,7 @@ TZA
 	["op-code", "tya"],
 	["op-code", "tys"],
 	["op-code", "tza"],
+	"\r\nwai\r\n",
 	["op-code", "ADC"],
 	["op-code", "AND"],
 	["op-code", "ASL"],
@@ -501,6 +507,7 @@ TZA
 	["op-code", "SMB6"],
 	["op-code", "SMB7"],
 	["op-code", "STA"],
+	"\r\nSTP\r\n",
 	["op-code", "STX"],
 	["op-code", "STY"],
 	["op-code", "STZ"],
@@ -517,7 +524,8 @@ TZA
 	["op-code", "TSY"],
 	["op-code", "TYA"],
 	["op-code", "TYS"],
-	["op-code", "TZA"]
+	["op-code", "TZA"],
+	"\r\nWAI"
 ]
 
 ----------------------------------------------------
